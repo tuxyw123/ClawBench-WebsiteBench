@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta name="site-base" content="/ClawBench-WebsiteBench/">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Compare tasks · WebsiteBench</title>
+  <link rel="stylesheet" href="/ClawBench-WebsiteBench/static/styles.css">
+  <script defer src="/ClawBench-WebsiteBench/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/ClawBench-WebsiteBench/"><span class="brand-mark">WB</span><span>Clone Atlas<small>Corpus QA viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/ClawBench-WebsiteBench/">Overview</a><a href="/ClawBench-WebsiteBench/tasks/">Task Atlas</a><a href="/ClawBench-WebsiteBench/compare/">Compare</a><a href="/ClawBench-WebsiteBench/methodology/">Methodology</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public · read only</span></div>
+
+  </header>
+  <main>
+<div class="page">
+  <section class="page-heading"><div><p class="eyebrow">Aligned task inspection</p><h1>Compare 2–4 tasks</h1><p>Official candidate scores, legacy verifier checks, readiness, and human conclusions use separate rows and labels.</p></div></section>
+  <form class="compare-picker" method="get" action="/ClawBench-WebsiteBench/compare/"><label>Select tasks<select name="items" multiple size="1"><option value="websitebench--northstar-market" selected>Northstar Market</option></select></label><button class="primary" type="submit">Compare selection</button></form>
+  <div class="alert warning">The public bundle currently contains fewer than two tasks.</div>
+  <div class="table-wrap panel compare-table"><table><thead><tr><th>Dimension</th><th><a href="/ClawBench-WebsiteBench/tasks/websitebench--northstar-market/">Northstar Market</a><small>websitebench</small></th></tr></thead><tbody>
+    <tr class="group"><th colspan="2">Product and state model</th></tr>
+    <tr><th>Product type</th><td>ecommerce-marketplace</td></tr>
+    <tr><th>Family / class</th><td>white-label-commerce-v1</td></tr>
+    <tr><th>Roles</th><td>guest, customer</td></tr>
+    <tr><th>Stateful entities</th><td>user, session, verification-token, password-reset-token, cart, cart-item, product, inventory, order, order-item</td></tr>
+    <tr><th>Capabilities</th><td>account-lifecycle, catalog-search, checkout, inventory, order-management, password-reset, persistent-cart</td></tr>
+    <tr class="group"><th colspan="2">Interaction, journey, and visual coverage</th></tr>
+    <tr><th>Interaction tags</th><td>async-feedback, browser-history, form-validation, keyboard-navigation, pagination, responsive-navigation</td></tr>
+    <tr><th>Routes / journeys / checkpoints / seeds</th><td>13 / 5 / 12 / 8</td></tr>
+    <tr><th>Declared interaction groups</th><td>header-and-navigation, responsive-menu-and-keyboard, search-query-and-history, category-filter, sorting-and-pagination, product-stock-controls, cart-quantity-and-remove, form-validation-and-feedback, loading-and-double-submit-guard, empty-error-and-success-states</td></tr>
+    <tr><th>Declared user journeys</th><td>catalog-search-and-product, registration-verification-and-login, session-lifecycle-and-safe-redirect, password-reset-and-session-invalidation, guest-cart-persistence-and-login-merge, checkout-decline-success-and-idempotency, order-history-detail-isolation-and-restart, cancellation-window-and-inventory-restock</td></tr>
+    <tr><th>Boundary / robustness groups</th><td>registration-input-validation-does-not-throttle, email-or-device-throttle-five-minute-boundary, verification-expiry-tamper-and-single-use, reset-expiry-tamper-and-single-use, session-expiry-and-reset-invalidation, safe-next-path-and-no-open-redirect, cart-stock-and-five-unit-cap, cart-merge-is-retry-safe, declined-payment-is-side-effect-free, invalid-and-expired-test-card, atomic-all-or-nothing-stock-shortage, checkout-idempotency-under-retry, cancellation-boundary-and-repeat-safety, cross-account-order-is-404, concurrent-stock-one-purchase</td></tr>
+    <tr><th>Visual breakpoints</th><td>desktop, mobile</td></tr>
+    <tr class="group"><th colspan="2">Protocol and observability</th></tr>
+    <tr><th>Public protocol artifacts</th><td>admin_contract_schema, candidate_contract, fixture_schema, prd, report_schema, scoring, smoke_cases, task_schema, visual_checkpoints</td></tr>
+    <tr><th>Reference observability policy</th><td>continuous</td></tr>
+    <tr><th>Hidden test family support</th><td>Pending</td></tr>
+    <tr class="group"><th colspan="2">Reproducibility, isolation, and compliance</th></tr>
+    <tr><th>Seed / reset / time</th><td><span class="state state-present">seed reset: present</span><span class="state state-present">controlled time: present</span></td></tr>
+    <tr><th>Persistent backend contract</th><td>Pending</td></tr>
+    <tr><th>Concurrency fixtures</th><td>Pending</td></tr>
+    <tr><th>Anti-cheat hard failures</th><td>Pending</td></tr>
+    <tr><th>License / asset record</th><td><span class="state state-present">present</span><small>{&#39;code&#39;: &#39;Apache-2.0&#39;, &#39;content&#39;: &#39;CC0-1.0 synthetic catalog and copy&#39;, &#39;assets&#39;: &#39;CC0-1.0 deterministic locally generated SVG artwork&#39;, &#39;trademarks&#39;: &#39;Northstar Market is a synthetic benchmark brand; no third-party commercial marks or assets are used&#39;}</small></td></tr>
+    <tr><th>Limitations record</th><td>Not applicable</td></tr>
+    <tr class="group"><th colspan="2">Human QA rubric</th></tr>
+    <tr><th>Protocol &amp; observability</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Behavioral depth</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Visual &amp; interaction coverage</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Reproducibility</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Isolation &amp; asset compliance</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Diversity / non-reskin</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr>
+    <tr><th>Human gate</th><td><span class="state state-unreviewed">unreviewed</span></td></tr>
+    <tr class="group"><th colspan="2">Candidate and self-verification evidence</th></tr>
+    <tr><th>Official WebsiteBench score</th><td>No official result</td></tr>
+    <tr><th>Official visual</th><td>—</td></tr><tr><th>Official interactions</th><td>—</td></tr><tr><th>Official journeys</th><td>—</td></tr><tr><th>Official robustness</th><td>—</td></tr><tr><th>Official efficiency</th><td>—</td></tr>
+    <tr><th>Legacy verifier</th><td>Not applicable</td></tr>
+  </tbody></table></div>
+</div>
+</main>
+  <footer><span>WebsiteBench Clone Atlas</span><span>Readiness, human QA, official scores, and legacy evidence stay separate.</span></footer>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta name="site-base" content="/ClawBench-WebsiteBench/">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Methodology · WebsiteBench</title>
+  <link rel="stylesheet" href="/ClawBench-WebsiteBench/static/styles.css">
+  <script defer src="/ClawBench-WebsiteBench/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/ClawBench-WebsiteBench/"><span class="brand-mark">WB</span><span>Clone Atlas<small>Corpus QA viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/ClawBench-WebsiteBench/">Overview</a><a href="/ClawBench-WebsiteBench/tasks/">Task Atlas</a><a href="/ClawBench-WebsiteBench/compare/">Compare</a><a href="/ClawBench-WebsiteBench/methodology/">Methodology</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public · read only</span></div>
+
+  </header>
+  <main>
+<div class="page prose-page">
+  <section class="page-heading"><div><p class="eyebrow">Methodology</p><h1>Six task-design judgments, no composite quality score</h1><p>The human rubric operationalizes the corpus requirements in <code>WebsiteBench.md</code>. It evaluates whether a task is fit to benchmark web-to-code systems; it does not evaluate a particular candidate implementation.</p></div></section>
+  <section class="method-grid">
+    <article><span>01</span><h2>Protocol & observability</h2><p>Are requirements public or normally observable? Are the PRD, candidate contract, browser policy, scoring contract, and hidden-test support coherent and fair?</p><small>WebsiteBench §§3, 8, 12</small></article>
+    <article><span>02</span><h2>Behavioral depth</h2><p>Do journeys exercise meaningful state changes, roles, failures, persistence, concurrency, and backend rules instead of a static shell?</p><small>WebsiteBench §§4, 6, 9</small></article>
+    <article><span>03</span><h2>Visual & interaction coverage</h2><p>Do checkpoints cover representative routes, states, desktop/mobile breakpoints, validation, loading, error, empty, and success interactions?</p><small>WebsiteBench §§6, 9.1–9.2</small></article>
+    <article><span>04</span><h2>Reproducibility</h2><p>Can seed, reset, controlled time, fixtures, accounts, and evaluation runs be reproduced without dependence on wall-clock waits or drifting services?</p><small>WebsiteBench §§4, 6.4, 11</small></article>
+    <article><span>05</span><h2>Isolation & asset compliance</h2><p>Does evaluation prevent reference proxying and external dependencies? Are code, content, assets, trademarks, and data sources appropriately licensed?</p><small>WebsiteBench §§2, 3.3, 9.5, 13</small></article>
+    <article><span>06</span><h2>Diversity & non-reskin</h2><p>Does the task add product-logic or interaction diversity rather than only changing logos, colors, copy, or fixture values within a family?</p><small>WebsiteBench §§6.1–6.2, 7</small></article>
+  </section>
+  <section class="panel"><h2>Evidence labels used by this viewer</h2><div class="definition-list"><div><strong>Automatic readiness</strong><p>Presence, absence, validity, or non-applicability of declared artifacts. Never weighted into a quality score.</p></div><div><strong>Human task QA</strong><p>Six explicit ratings plus a gate decision, reviewer, rationale, evidence references, revision, and artifact fingerprint.</p></div><div><strong>Official candidate result</strong><p>Only a schema-valid <code>websitebench.result.v1</code> report: one official /100 score and five official dimensions.</p></div><div><strong>Diagnostic visual metrics</strong><p>Viewer-side screenshot diagnostics for investigation. They do not stand in for the official visual score.</p></div><div><strong>Legacy verifier</strong><p>Self-verification check counts from compatibility clones. They are not candidate benchmark scores.</p></div></div></section>
+</div>
+</main>
+  <footer><span>WebsiteBench Clone Atlas</span><span>Readiness, human QA, official scores, and legacy evidence stay separate.</span></footer>
+</body>
+</html>

@@ -1,0 +1,326 @@
+{
+  "schema_version": "websitebench.viewer-index.v1",
+  "generated_at": "2026-07-19T08:03:07.394561+00:00",
+  "profile": "public",
+  "summary": {
+    "item_count": 1,
+    "websitebench_count": 1,
+    "legacy_count": 0,
+    "official_run_count": 0,
+    "invalid_run_count": 0,
+    "readiness": {
+      "invalid": 0,
+      "missing": 0,
+      "not_applicable": 2,
+      "present": 8
+    },
+    "distributions": {
+      "source_type": {
+        "websitebench": 1
+      },
+      "family": {
+        "white-label-commerce-v1": 1
+      },
+      "product_type": {
+        "ecommerce-marketplace": 1
+      },
+      "difficulty": {
+        "hard": 1
+      },
+      "split": {
+        "validation": 1
+      }
+    }
+  },
+  "items": [
+    {
+      "key": "websitebench--northstar-market",
+      "source_type": "websitebench",
+      "site_id": "northstar-market",
+      "display_name": "Northstar Market",
+      "description": "Synthetic white-label commerce site with account verification, persistent carts, simulated checkout, transactional inventory, orders, and controlled time.",
+      "family": "white-label-commerce-v1",
+      "product_type": "ecommerce-marketplace",
+      "difficulty": "hard",
+      "split": "validation",
+      "site_version": "1.0.0",
+      "capability_tags": [
+        "account-lifecycle",
+        "catalog-search",
+        "checkout",
+        "inventory",
+        "order-management",
+        "password-reset",
+        "persistent-cart"
+      ],
+      "interaction_tags": [
+        "async-feedback",
+        "browser-history",
+        "form-validation",
+        "keyboard-navigation",
+        "pagination",
+        "responsive-navigation"
+      ],
+      "roles": [
+        "guest",
+        "customer"
+      ],
+      "stateful_entities": [
+        "user",
+        "session",
+        "verification-token",
+        "password-reset-token",
+        "cart",
+        "cart-item",
+        "product",
+        "inventory",
+        "order",
+        "order-item"
+      ],
+      "counts": {
+        "routes": 13,
+        "journeys": 5,
+        "checkpoints": 12,
+        "seeds": 8,
+        "public_seeds": 2,
+        "hidden_test_families": null
+      },
+      "readiness": [
+        {
+          "id": "manifest_schema",
+          "label": "Manifest schema",
+          "status": "present",
+          "detail": ""
+        },
+        {
+          "id": "required_artifacts",
+          "label": "Required public artifacts",
+          "status": "present",
+          "detail": ""
+        },
+        {
+          "id": "scoring_contract",
+          "label": "Scoring contract",
+          "status": "present",
+          "detail": "five dimensions total 100 points"
+        },
+        {
+          "id": "seed_reset",
+          "label": "Seed and reset",
+          "status": "present",
+          "detail": "8 declared seeds; seed/reset scripts found"
+        },
+        {
+          "id": "controlled_time",
+          "label": "Controlled time",
+          "status": "present",
+          "detail": ""
+        },
+        {
+          "id": "journeys",
+          "label": "User journeys",
+          "status": "present",
+          "detail": "5 public smoke journeys"
+        },
+        {
+          "id": "visual_checkpoints",
+          "label": "Visual checkpoints",
+          "status": "present",
+          "detail": "12 checkpoints"
+        },
+        {
+          "id": "license",
+          "label": "License and assets",
+          "status": "present",
+          "detail": ""
+        },
+        {
+          "id": "candidate_report",
+          "label": "Official candidate report",
+          "status": "not_applicable",
+          "detail": "0 valid official runs"
+        },
+        {
+          "id": "visual_evidence",
+          "label": "Visual evidence companion",
+          "status": "not_applicable",
+          "detail": ""
+        }
+      ],
+      "readiness_counts": {
+        "invalid": 0,
+        "missing": 0,
+        "not_applicable": 2,
+        "present": 8
+      },
+      "official_runs": [],
+      "latest_official_result": null,
+      "legacy_verification": null,
+      "artifact_fingerprint": "1ea244b4acfcf277cef1ea868035ffa67f993ec3dfecd9ab9200eb9e7d59ae88",
+      "protocol": {
+        "public_artifacts": [
+          "admin_contract_schema",
+          "candidate_contract",
+          "fixture_schema",
+          "prd",
+          "report_schema",
+          "scoring",
+          "smoke_cases",
+          "task_schema",
+          "visual_checkpoints"
+        ],
+        "browser_policy": {
+          "engine": "browser-use",
+          "version": "0.12.6",
+          "reference_access": "continuous",
+          "allowed": [
+            "navigate to task-provided reference and mailbox URLs",
+            "inspect rendered accessibility tree and visible text",
+            "click, type, select, scroll, hover, and use browser history",
+            "capture viewport screenshots through the gateway",
+            "use a fresh isolated browser profile for each run"
+          ],
+          "denied": [
+            "arbitrary shell HTTP requests to reference or mailbox",
+            "raw HTML, response body, header, cookie, or storage export",
+            "source map, JavaScript bundle, stylesheet, or media download",
+            "DevTools, CDP, browser cache, or browser profile access",
+            "file upload, page download, print-to-file, or save-page",
+            "clipboard transfer from browser container to agent workspace"
+          ]
+        },
+        "tracks": {
+          "core": {
+            "enabled": true,
+            "human_messages": 0,
+            "human_minutes": 0,
+            "human_file_edits": false
+          },
+          "hitl": {
+            "enabled": true,
+            "human_messages": 12,
+            "human_minutes": 90,
+            "human_file_edits": false
+          }
+        },
+        "services": {
+          "public_port": 8080,
+          "admin_port": 8081,
+          "health_path": "/healthz",
+          "mailbox_delivery_path": "/api/v1/messages",
+          "mailbox_query_path": "/api/v1/inbox"
+        },
+        "license": {
+          "code": "Apache-2.0",
+          "content": "CC0-1.0 synthetic catalog and copy",
+          "assets": "CC0-1.0 deterministic locally generated SVG artwork",
+          "trademarks": "Northstar Market is a synthetic benchmark brand; no third-party commercial marks or assets are used"
+        },
+        "scoring_dimensions": {
+          "visual": {
+            "max_score": 20,
+            "aggregation": "mean checkpoint similarity times max_score",
+            "checkpoint_metrics": {
+              "ssim": 0.3,
+              "edge_f1": 0.2,
+              "color_histogram": 0.15,
+              "text": 0.2,
+              "geometry": 0.15
+            },
+            "checkpoint_file": "visual-checkpoints.json"
+          },
+          "interactions": {
+            "max_score": 20,
+            "aggregation": "passed assertions divided by total assertions times max_score",
+            "groups": [
+              "header-and-navigation",
+              "responsive-menu-and-keyboard",
+              "search-query-and-history",
+              "category-filter",
+              "sorting-and-pagination",
+              "product-stock-controls",
+              "cart-quantity-and-remove",
+              "form-validation-and-feedback",
+              "loading-and-double-submit-guard",
+              "empty-error-and-success-states"
+            ]
+          },
+          "journeys": {
+            "max_score": 40,
+            "aggregation": "sum of eight journey scores",
+            "journey_max_score": 5,
+            "terminal_failure_cap": 2.5,
+            "journeys": [
+              "catalog-search-and-product",
+              "registration-verification-and-login",
+              "session-lifecycle-and-safe-redirect",
+              "password-reset-and-session-invalidation",
+              "guest-cart-persistence-and-login-merge",
+              "checkout-decline-success-and-idempotency",
+              "order-history-detail-isolation-and-restart",
+              "cancellation-window-and-inventory-restock"
+            ]
+          },
+          "robustness": {
+            "max_score": 15,
+            "aggregation": "one point per passing group",
+            "groups": [
+              "registration-input-validation-does-not-throttle",
+              "email-or-device-throttle-five-minute-boundary",
+              "verification-expiry-tamper-and-single-use",
+              "reset-expiry-tamper-and-single-use",
+              "session-expiry-and-reset-invalidation",
+              "safe-next-path-and-no-open-redirect",
+              "cart-stock-and-five-unit-cap",
+              "cart-merge-is-retry-safe",
+              "declined-payment-is-side-effect-free",
+              "invalid-and-expired-test-card",
+              "atomic-all-or-nothing-stock-shortage",
+              "checkout-idempotency-under-retry",
+              "cancellation-boundary-and-repeat-safety",
+              "cross-account-order-is-404",
+              "concurrent-stock-one-purchase"
+            ]
+          },
+          "efficiency": {
+            "max_score": 5,
+            "aggregation": "one point per satisfied target",
+            "targets": {
+              "clean_build_seconds": {
+                "operator": "<=",
+                "value": 600
+              },
+              "image_bytes": {
+                "operator": "<=",
+                "value": 1610612736
+              },
+              "peak_memory_bytes": {
+                "operator": "<=",
+                "value": 1073741824
+              },
+              "p95_latency_ms_at_10_concurrent": {
+                "operator": "<=",
+                "value": 1000
+              },
+              "source_bytes": {
+                "operator": "<=",
+                "value": 52428800
+              }
+            }
+          }
+        },
+        "visual_viewports": [
+          "desktop",
+          "mobile"
+        ]
+      },
+      "documents": {
+        "prd": "# Northstar Market -- Public Product Requirements\n\nDocument version: `1.0.0`  \nProtocol version: `websitebench.site.v1`  \nProduct family: `white-label-commerce-v1`\n\nNorthstar Market is a synthetic online shop. A candidate implementation is\njudged by browser-visible behavior and persisted business state, not by its\nframework, source layout, database schema, or private API design.\n\n## 1. Product scope\n\nThe site contains 48 deterministic synthetic products in eight categories.\nIt supports responsive browsing, search, category filters, sorting, product\ndetails, a persistent cart, account registration and verification, login,\npassword reset, simulated checkout, order history, inventory, and order\ncancellation.\n\nThe following are intentionally out of scope: real payment processing, real\nemail delivery, shipping integrations, refunds, returns, coupons, product\nreviews, seller/admin experiences, and anonymous checkout.\n\n## 2. Public pages and navigation\n\nThe canonical browser paths are:\n\n| Path | Observable purpose |\n| --- | --- |\n| `/` | Home page, category navigation, featured products |\n| `/search` | Search results, filters, sorting, pagination |\n| `/products/{slug}` | Product detail and add-to-cart controls |\n| `/cart` | Cart contents, quantity controls, totals, checkout entry |\n| `/register` | Registration form and verification-sent state |\n| `/verify?token=...` | One-time email verification |\n| `/login` | Login form; accepts a `next` query parameter |\n| `/forgot-password` | Password-reset request form |\n| `/reset-password?token=...` | One-time password reset form |\n| `/checkout` | Address, shipping, and test-payment form |\n| `/checkout/success/{order_number}` | Order success summary |\n| `/account/orders` | Signed-in user's order history |\n| `/account/orders/{order_number}` | Signed-in user's order detail |\n\nThe header is present on all normal pages and provides a home link, product\nsearch, account entry, and cart entry. Desktop and mobile layouts may differ,\nbut all functionality remains reachable by keyboard and through accessible\nnames. The primary responsive breakpoints are 390 x 844 and 1440 x 1000.\n\n## 3. Catalog, search, and product details\n\n- Product titles, descriptions, brands, categories, prices, images, rating\n  summaries, and inventory are provided by the active fixture.\n- Search is case-insensitive and matches product title, brand, description,\n  category name, and tags.\n- Empty search displays all products. No-match search displays an explicit\n  empty state and a way to clear the search.\n- A category filter can be combined with search.\n- Sort choices are `Featured`, `Price: Low to High`, `Price: High to Low`, and\n  `Customer Rating`.\n- Results paginate at 12 products per page. Changing search, filter, or sort\n  returns to page 1. Invalid page numbers resolve to the nearest valid page.\n- The URL query string represents the active search state so refresh and Back\n  preserve it.\n- A product with zero inventory is marked `Out of stock` and cannot be added.\n- Product money is rendered from integer cents with two decimal places.\n\n## 4. Cart\n\n- Anonymous visitors may add products to a server-persisted guest cart.\n- A stable first-party device cookie identifies the guest cart. Refreshing,\n  navigating, or reopening the site with the same cookie preserves it.\n- Quantity for one product is limited by both current inventory and a hard cap\n  of 5 units.\n- Quantity controls provide increment, decrement, direct quantity selection,\n  and remove. Setting quantity to zero removes the line.\n- Adding the same product again increases its quantity up to the applicable\n  cap and displays feedback if the requested amount cannot be added.\n- Cart subtotal is the sum of current unit price times quantity. A cart does\n  not reserve stock.\n- On login, guest and account carts merge by product. Quantities are summed,\n  then capped at `min(current inventory, 5)`. The guest cart is cleared after\n  a successful merge. This operation is safe to retry and must not merge twice.\n- Logging out does not delete the account cart.\n- Starting checkout while signed out redirects to `/login` and returns to\n  checkout after successful login.\n\n## 5. Registration and email verification\n\nEmail addresses are normalized by trimming surrounding whitespace and applying\nUnicode-aware lowercase before uniqueness and rate-limit checks.\n\nThe registration form requires:\n\n- a syntactically valid email address;\n- a password of at least 10 characters containing an uppercase letter, a\n  lowercase letter, and a digit;\n- a matching password confirmation.\n\nInvalid client input does not consume the registration rate limit. An accepted\nregistration request creates or refreshes an unverified account, sends a link\nto the local test mailbox, and shows a verification-sent state. It starts a\nfive-minute rate-limit window for both the normalized email and the current\ndevice. During that window, another otherwise valid registration request that\nmatches either key is rejected with HTTP 429 semantics and the visible message\n`Please wait before trying to register again.`\n\nThe registration window uses the benchmark's controlled clock. At exactly five\nminutes after the accepted request, a new request is allowed.\n\nVerification links:\n\n- expire 30 minutes after issue;\n- can be used once;\n- verify only their associated account;\n- are valid while `now <= expires_at` and invalid after that instant;\n- display an explicit invalid/expired/already-used state when rejected.\n\nAn existing verified email is never replaced by registration. The response\nmust not expose whether a verified account exists.\n\n## 6. Login, sessions, and logout\n\n- Only verified accounts can log in.\n- Invalid email/password and unknown-account attempts show the same generic\n  error: `Email or password is incorrect.`\n- An unverified account shows `Verify your email before signing in.` and a link\n  back to registration.\n- A successful login creates a server-side session, merges the guest cart, and\n  redirects to the safe same-origin `next` path or home.\n- Sessions expire 24 hours after creation using the controlled clock. They are\n  valid while `now <= expires_at`.\n- Refresh and normal server restart preserve non-expired sessions.\n- Logout invalidates the current session and returns to home.\n- External, protocol-relative, or malformed `next` values must not produce an\n  open redirect.\n\n## 7. Forgot and reset password\n\nSubmitting `/forgot-password` always shows the same generic success message:\n`If an account exists, a reset link has been sent.` This prevents account\nenumeration. A verified matching account receives a link in the local test\nmailbox.\n\nReset links:\n\n- expire 60 minutes after issue;\n- can be used once;\n- are valid while `now <= expires_at`;\n- enforce the same password policy as registration;\n- invalidate all existing sessions for that user after a successful reset.\n\nReusing, tampering with, or opening an expired link displays an explicit\ninvalid/expired/already-used state and does not change the password.\n\n## 8. Checkout\n\nCheckout requires a verified, signed-in user and a non-empty cart. It collects:\n\n- full name;\n- address line 1 and optional address line 2;\n- city, two-letter US state, and five-digit ZIP code;\n- shipping method;\n- test card number, expiration, and CVV.\n\nShipping options are:\n\n- `Standard` -- $5.99, or free when merchandise subtotal is at least $75.00;\n- `Express` -- $14.99.\n\nTax is 8.25% of merchandise subtotal, rounded to the nearest cent using\nhalf-up rounding. Shipping is not taxed. Every monetary calculation uses\ninteger cents.\n\nThe local test-payment values are:\n\n- `4242 4242 4242 4242` -- success;\n- `4000 0000 0000 0002` -- decline with `Your test payment was declined.`\n\nAny other card number is invalid. Expiration must be a non-expired `MM/YY`\nvalue relative to the controlled clock; CVV must contain three digits. The\napplication must never persist a full card number or CVV. It may persist only\nthe successful test card's last four digits.\n\nThe final place-order action is idempotent. Retrying the same checkout request\nwith the same idempotency key returns the original order and never charges,\ndecrements inventory, or clears a cart twice.\n\nOrder placement is one atomic transaction:\n\n1. re-read every cart line and product inventory;\n2. if any requested quantity is unavailable, create no order, decrement no\n   inventory, preserve the cart, and identify affected lines to the user;\n3. if payment is declined, create no order, decrement no inventory, and\n   preserve the cart;\n4. on success, create one immutable order snapshot, decrement all inventory,\n   and clear the purchased account cart.\n\n## 9. Orders and cancellation\n\n- Order history and details persist across refresh, login, and service restart.\n- Users can access only their own orders. A missing order and another user's\n  order both render the same not-found response with HTTP 404 semantics.\n- Cross-account order access therefore never reveals whether the order exists.\n- A placed order has status `Placed`.\n- It may be cancelled while `now <= placed_at + 30 minutes`.\n- Successful cancellation changes status to `Cancelled`, records the\n  cancellation time, and atomically restores all inventory exactly once.\n- Repeating cancellation is safe and does not restock again.\n- After the 30-minute boundary, cancellation is rejected with\n  `The cancellation window has closed.` and neither order nor inventory changes.\n\n## 10. Controlled time\n\nReference and candidate environments receive an initial UTC timestamp through\nthe reset contract. All session, registration, verification, reset, payment\nexpiration, order, and cancellation decisions use that controlled clock rather\nthan wall-clock time. The evaluator advances it through the private benchmark\nadmin port. Browser UI must never expose the admin token or admin controls.\n\n## 11. Local test mailbox\n\nEmail is delivered only to the benchmark-provided local mailbox service. The\ntask supplies a browser-visible mailbox URL. Verification and reset messages\ncontain same-origin links to the active site. No external SMTP or email API is\npermitted or required.\n\n## 12. Accessibility and interaction feedback\n\n- Interactive controls have visible labels or accessible names.\n- Forms associate errors with their fields and preserve non-secret input after\n  validation errors.\n- Keyboard focus is visible. Dialogs, if used, trap focus and close with Escape.\n- Loading actions disable duplicate submission and expose a busy state.\n- Success, empty, and error states are textual, not color-only.\n- Product images have meaningful alternative text.\n\n## 13. Persistence and security boundaries\n\nUsers, carts, sessions, tokens, orders, idempotency records, and inventory are\nstored by a real persistent backend under `/data`. A process restart must not\nreset them. Only the authenticated benchmark reset endpoint may rebuild state.\nPasswords are stored with a salted adaptive password hash. Tokens are stored as\nnon-reversible digests. Secrets and payment data are excluded from the\nnormalized benchmark state endpoint.\n",
+        "candidate_contract": "# Northstar Market Candidate Contract\n\nContract version: `websitebench.candidate.v1`\n\nThe candidate may use any implementation language or framework. Evaluation\ncompares browser behavior and normalized state, not source architecture.\n\n## Required submission layout\n\n```text\n/app/\n  frontend/\n  backend/\n  README.md\n  Dockerfile\n  docker-compose.yml\n  .env.example\n  scripts/\n    seed\n    reset\n```\n\n`frontend/` and `backend/` must both exist even when a monolithic framework is\nused; the README may explain shared or generated code. `scripts/seed` and\n`scripts/reset` must be executable, non-interactive, and safe to rerun.\n\n## Startup and ports\n\nFrom a clean submission, this command must build and start the site:\n\n```bash\ndocker compose up --build --wait\n```\n\n- Public HTTP listens on container port `8080`.\n- Benchmark admin HTTP listens on container port `8081` and must not be linked\n  from or proxied through the public app.\n- `GET http://candidate:8080/healthz` returns HTTP 200 JSON containing\n  `{\"status\":\"ok\"}` only after the public app can serve requests and its\n  persistent store is ready.\n- Data that must survive restart is stored below `/data`.\n- The container supplies a health check and stops cleanly on SIGTERM.\n\nThe candidate compose file must not bind a fixed host port. The benchmark\norchestrator publishes random host ports when needed.\n\n## Runtime environment\n\nThe evaluator supplies:\n\n| Variable | Meaning |\n| --- | --- |\n| `PORT=8080` | Public HTTP port |\n| `BENCH_ADMIN_PORT=8081` | Private admin port |\n| `BENCH_ADMIN_TOKEN` | Secret required on every admin request |\n| `DATA_DIR=/data` | Persistent state directory |\n| `MAILBOX_API_URL` | Internal benchmark mailbox delivery API |\n| `MAILBOX_DELIVERY_TOKEN` | Bearer token for mailbox delivery |\n| `PUBLIC_MAILBOX_URL` | Browser-visible mailbox base URL |\n| `PUBLIC_SITE_URL` | Browser-visible site base URL used in email links |\n| `BENCH_FIXTURE_DIR=/bench-fixtures` | Read-only fixture directory |\n| `BENCH_CLOCK_MODE=controlled` | Requires use of benchmark-controlled time |\n\nThe application must accept values different from these defaults.\n\n## Benchmark admin HTTP contract\n\nEvery request to port 8081 requires header:\n\n```text\nX-Bench-Admin-Token: <BENCH_ADMIN_TOKEN>\n```\n\nMissing or incorrect credentials return 404 so the endpoint is not\ndistinguishable to an untrusted caller. The public listener must return 404 for\nall `/__bench/*` paths.\n\n### `GET /__bench/health`\n\nReturns 200 only after the database is ready:\n\n```json\n{\"schema_version\":1,\"status\":\"ok\"}\n```\n\n### `POST /__bench/reset`\n\nRequest body follows `websitebench.reset-request.v1`:\n\n```json\n{\n  \"schema_version\": 1,\n  \"run_id\": \"run-identifier\",\n  \"seed\": 9101,\n  \"now\": \"2026-01-15T12:00:00Z\",\n  \"fixture_path\": \"/bench-fixtures/9101.json\"\n}\n```\n\nThe fixture path must resolve inside `BENCH_FIXTURE_DIR`; traversal and symlink\nescape are rejected. Reset is transactional and idempotent: it clears existing\napplication state, loads the selected schema-valid fixture, sets the controlled\nclock, and clears sessions. The evaluator resets the external mailbox as a\nseparate privileged orchestration step. The app returns:\n\n```json\n{\n  \"schema_version\": 1,\n  \"status\": \"reset\",\n  \"run_id\": \"run-identifier\",\n  \"seed\": 9101,\n  \"now\": \"2026-01-15T12:00:00Z\"\n}\n```\n\n### `POST /__bench/clock/advance`\n\nRequest body follows `websitebench.clock-advance.v1`:\n\n```json\n{\"seconds\": 300}\n```\n\n`seconds` is an integer from 0 through 2,678,400 (31 days). The operation is\natomic and returns the new UTC time:\n\n```json\n{\"schema_version\":1,\"now\":\"2026-01-15T12:05:00Z\"}\n```\n\nTime never advances automatically while controlled mode is active.\n\n### `GET /__bench/state`\n\nReturns the normalized state described by `websitebench.state.v1`. It includes\ncatalog inventory, normalized users, carts, orders, token/session counts, clock,\nseed, and run ID. It excludes password hashes, raw tokens, session identifiers,\nadmin credentials, full card values, and CVV. Array order is deterministic.\n\n## Fixture requirements\n\nFixtures conform to `../../schemas/fixture.schema.json`. Candidate code must not\nspecial-case known seed numbers, fixture paths, product IDs, account emails, or\ntest order. Hidden fixtures use the same public schema but different values.\n\n## Mail delivery\n\nThe benchmark mailbox accepts candidate mail at the manifest's delivery path:\n\n```http\nPOST ${MAILBOX_API_URL}/api/v1/messages\nAuthorization: Bearer ${MAILBOX_DELIVERY_TOKEN}\nContent-Type: application/json\n```\n\n```json\n{\n  \"schema_version\": 1,\n  \"to\": \"shopper@example.test\",\n  \"subject\": \"Verify your Northstar Market email\",\n  \"text\": \"Open the link to verify your account: https://candidate/verify?token=...\"\n}\n```\n\n`to`, `subject`, and plain-text `text` are required. An optional sanitized\n`html` string is allowed. The mailbox returns HTTP 202 with a generated message\nID. Delivery authentication failure returns 404. Candidate runtime network\npolicy permits only this delivery API on the benchmark service network; it\ncannot query inboxes and has no internet access. The browser-visible mailbox and\nevaluator use the manifest's separate query path.\n\n## Prohibited techniques and hard failures\n\nThe following make the run ineligible for a score:\n\n- build, startup, health, or reset failure;\n- iframe, proxy, redirect, or runtime request to the reference site;\n- runtime internet access or remote screenshot/content service;\n- copied private reference source, assets, bundles, cache, or browser profile;\n- serving a static façade without a persistent backend for required state;\n- exposing the admin token or admin API through public HTTP;\n- host networking, privileged containers, host Docker socket, or undeclared\n  host filesystem mounts.\n\nOrdinary open-source dependencies fetched during the controlled build phase\nare allowed and recorded. Candidate runtime has no package-download access.\n\n## Resource envelope\n\n- clean build: at most 10 minutes;\n- final image set: at most 1.5 GiB compressed-size equivalent;\n- source submission excluding dependency caches: at most 50 MiB;\n- candidate peak memory: at most 1 GiB;\n- readiness after already-built image start: at most 60 seconds;\n- functional latency target: p95 at most 1 second under 10 concurrent users.\n\nExceeding a target loses only the efficiency points unless it prevents the\nevaluator from completing.\n"
+      },
+      "visual_evidence": null,
+      "visual_evidence_errors": []
+    }
+  ],
+  "invalid_runs": []
+}

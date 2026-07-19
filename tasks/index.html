@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta name="site-base" content="/ClawBench-WebsiteBench/">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Task Atlas · WebsiteBench</title>
+  <link rel="stylesheet" href="/ClawBench-WebsiteBench/static/styles.css">
+  <script defer src="/ClawBench-WebsiteBench/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/ClawBench-WebsiteBench/"><span class="brand-mark">WB</span><span>Clone Atlas<small>Corpus QA viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/ClawBench-WebsiteBench/">Overview</a><a href="/ClawBench-WebsiteBench/tasks/">Task Atlas</a><a href="/ClawBench-WebsiteBench/compare/">Compare</a><a href="/ClawBench-WebsiteBench/methodology/">Methodology</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public · read only</span></div>
+
+  </header>
+  <main>
+<div class="page">
+  <section class="page-heading"><div><p class="eyebrow">Corpus inventory</p><h1>Task Atlas</h1><p>Search and filter by declared metadata. “Pending” means the legacy adapter found no explicit field; it is never guessed from task prose.</p></div><button id="compare-selected" class="primary" type="button" disabled>Compare selected <span>0</span></button></section>
+  <section class="filter-bar" aria-label="Task filters">
+    <label><span>Search</span><input id="task-search" type="search" placeholder="Name, family, capability…"></label>
+    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option>websitebench</option><option>legacy</option></select></label>
+    <label><span>Difficulty</span><select id="difficulty-filter"><option value="">All difficulty</option><option>hard</option><option>medium</option><option>simple</option><option value="pending">Pending</option></select></label>
+    <label><span>Gate</span><select id="gate-filter"><option value="">All gates</option><option>approve</option><option>changes_requested</option><option>reject</option><option>unreviewed</option></select></label>
+    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Missing evidence</option><option value="official">Official candidate score</option><option value="legacy">Legacy checks passed</option></select></label>
+  </section>
+  <p class="result-count"><span id="visible-count">1</span> of 1 tasks shown</p>
+  <div class="table-wrap panel"><table class="atlas-table"><thead><tr><th class="select-column">Compare</th><th>Task</th><th>Declared type</th><th>Capabilities</th><th>Coverage</th><th>Automatic readiness</th><th>Human gate</th><th>Candidate evidence</th></tr></thead><tbody id="task-rows">
+    <tr data-task-row data-key="websitebench--northstar-market" data-name="northstar market" data-search="northstar market white-label-commerce-v1 ecommerce-marketplace account-lifecycle catalog-search checkout inventory order-management password-reset persistent-cart" data-source="websitebench" data-difficulty="hard" data-gate="unreviewed" data-missing="0" data-official="-1" data-legacy="-1">
+      <td><input type="checkbox" class="compare-check" value="websitebench--northstar-market" aria-label="Compare Northstar Market"></td>
+      <th><a href="/ClawBench-WebsiteBench/tasks/websitebench--northstar-market/">Northstar Market</a><small>white-label-commerce-v1 · validation</small></th>
+      <td>ecommerce-marketplace<small>hard</small></td>
+      <td><div class="tag-list"><span>account-lifecycle</span><span>catalog-search</span><span>checkout</span><span>inventory</span></div></td>
+      <td class="numbers"><span>R 13</span><span>J 5</span><span>C 12</span><span>S 8</span></td>
+      <td><div class="readiness-mini"><span class="present">8 present</span></div></td>
+      <td><span class="state state-unreviewed">unreviewed</span></td>
+      <td><span class="muted">No candidate result</span></td>
+    </tr>
+  </tbody></table></div>
+</div>
+</main>
+  <footer><span>WebsiteBench Clone Atlas</span><span>Readiness, human QA, official scores, and legacy evidence stay separate.</span></footer>
+</body>
+</html>
