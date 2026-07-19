@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.viewer-review.v1.json",
+  "title": "WebsiteBench corpus viewer review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "item_key", "artifact_fingerprint", "revision",
+    "reviewer", "gate", "visibility", "dimensions", "notes",
+    "evidence_refs", "created_at", "updated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "websitebench.viewer-review.v1"},
+    "item_key": {"type": "string", "pattern": "^[a-z0-9]+(?:--[a-z0-9-]+)+$"},
+    "artifact_fingerprint": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "reviewer": {"type": "string", "minLength": 1, "maxLength": 120},
+    "gate": {"enum": ["unreviewed", "approve", "changes_requested", "reject"]},
+    "visibility": {"enum": ["internal", "public"]},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol_observability", "behavioral_depth",
+        "visual_interaction_coverage", "reproducibility",
+        "isolation_asset_compliance", "diversity_non_reskin"
+      ],
+      "properties": {
+        "protocol_observability": {"$ref": "#/$defs/dimension"},
+        "behavioral_depth": {"$ref": "#/$defs/dimension"},
+        "visual_interaction_coverage": {"$ref": "#/$defs/dimension"},
+        "reproducibility": {"$ref": "#/$defs/dimension"},
+        "isolation_asset_compliance": {"$ref": "#/$defs/dimension"},
+        "diversity_non_reskin": {"$ref": "#/$defs/dimension"}
+      }
+    },
+    "notes": {"type": "string", "maxLength": 20000},
+    "evidence_refs": {"$ref": "#/$defs/evidence_refs"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rating", "notes", "evidence_refs"],
+      "properties": {
+        "rating": {"enum": ["unreviewed", "pass", "concern", "fail", "not_applicable"]},
+        "notes": {"type": "string", "maxLength": 10000},
+        "evidence_refs": {"$ref": "#/$defs/evidence_refs"}
+      }
+    }
+  }
+}

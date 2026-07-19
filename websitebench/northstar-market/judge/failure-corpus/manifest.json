@@ -1,0 +1,19 @@
+{
+  "schema_version": "websitebench.failure-corpus.v1",
+  "site_id": "northstar-market",
+  "source": "Apply one mutation at a time to a known-good candidate; never to the private reference.",
+  "mutations": [
+    {"id": "frontend-only-cart", "category": "persistence", "change": "Store cart only in browser memory", "expected_detector": "guest cart refresh journey"},
+    {"id": "email-only-throttle", "category": "time", "change": "Ignore device registration throttle", "expected_detector": "email-or-device five-minute boundary"},
+    {"id": "verification-reusable", "category": "authentication", "change": "Do not consume verification token", "expected_detector": "verification single-use robustness"},
+    {"id": "reset-keeps-sessions", "category": "session", "change": "Keep old sessions after password reset", "expected_detector": "reset invalidation journey"},
+    {"id": "cart-merge-twice", "category": "cart", "change": "Do not delete guest cart after merge", "expected_detector": "retry-safe cart merge"},
+    {"id": "tax-floating-truncate", "category": "checkout", "change": "Truncate floating tax instead of integer half-up", "expected_detector": "checkout totals journey"},
+    {"id": "decline-decrements-stock", "category": "inventory", "change": "Decrease inventory before payment result", "expected_detector": "decline side-effect robustness"},
+    {"id": "no-idempotency", "category": "order", "change": "Create a second order for a repeated key", "expected_detector": "checkout idempotency robustness"},
+    {"id": "cancel-restocks-twice", "category": "inventory", "change": "Restock on repeated cancellation", "expected_detector": "cancellation repeat safety"},
+    {"id": "order-id-enumeration", "category": "security", "change": "Return 403 for another user's order", "expected_detector": "cross-account 404 journey"},
+    {"id": "stock-check-outside-transaction", "category": "concurrency", "change": "Check stock before transaction", "expected_detector": "stock-one concurrent purchase"},
+    {"id": "familiar-commerce-drift", "category": "visual", "change": "Replace Northstar layout and wording with a familiar marketplace template", "expected_detector": "visual checkpoints and text metric"}
+  ]
+}

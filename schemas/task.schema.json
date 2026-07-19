@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "task.schema.json",
+  "title": "ClawBench-Pro Task",
+  "description": "Superset of the upstream ClawBench task.json schema (see schemas/upstream-task.schema.json, vendored at commit 3671e2cb4ec9eba8aeead5b0f0a3653f70d52352). All 130 upstream V2 benchmark tasks validate unchanged. ClawBench-Pro adds optional fields: split, site_config, step_schema.",
+  "type": "object",
+  "properties": {
+    "$schema": true,
+    "split": {
+      "type": "string",
+      "enum": ["benchmark", "train", "dev", "generated"],
+      "description": "Dataset split. benchmark = held-out human-written live-web tasks (eval only, never trained on); train = curated training tasks; dev = local debugging and CI; generated = synthesized candidates before curation. Tasks without this field default to benchmark when loaded from the upstream corpus."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Human-readable metadata for documentation purposes (not read by the agent)",
+      "properties": {
+        "task_id": {
+          "type": "integer",
+          "description": "Unique numeric identifier for the test case"
+        },
+        "metaclass": {
+          "type": "string",
+          "description": "High-level category of the test case"
+        },
+        "class": {
+          "type": "string",
+          "description": "Granular sub-category of the test case"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the test case"
+        },
+        "sites_involved": {
+          "type": "array",
+          "description": "Site domains involved in the test case (e.g., google.com, uber.com, github.com, etc.)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform involved in the test case (e.g., google, uber, github, etc.)"
+        },
+        "common_info": {
+          "type": "object",
+          "description": "Common information that is shared among all test cases. Required fields are relaxed relative to upstream so that self-hosted training tasks (which need no disposable email or resume) can omit entries.",
+          "properties": {
+            "email_credentials": {
+              "const": "credentials to use the assigned disposable email account"
+            },
+            "user_info": {
+              "const": "alex_green_personal_info.json; the dummy user's personal information"
+            },
+            "user_resume": {
+              "const": "PDF resume with disposable email account injected"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": true,
+      "required": [
+        "task_id",
+        "metaclass",
+        "class",
+        "description",
+        "sites_involved",
+        "platform"
+      ]
+    },
+    "instruction": {
+      "type": "string",
+      "description": "Task prompt sent to the agent"
+    },
+    "site_config": {
+      "type": "object",
+      "description": "Self-hosted website environment configuration. Present only on train/dev/generated tasks that run against the ClawBench-Pro site archetypes; benchmark tasks are live-web and must not set this.",
+      "properties": {
+        "archetype": {
+          "type": "string",
+          "enum": ["shop", "jobs", "forms", "booking", "account", "social"],
+          "description": "Which self-hosted site archetype serves this task"
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Deterministic seed for catalog/form/state generation and theme selection"
+        },
+        "theme": {
+          "type": "string",
+          "description": "Optional explicit theme/layout variant; defaults to a seed-derived choice"
+        },
+        "params": {
+          "type": "object",
+          "description": "Structured goal parameters (items, quantities, dates, recipients, field values) from which the environment derives the expected final payload and checkpoint list"
+        }
+      },
+      "required": ["archetype", "seed"],
+      "additionalProperties": false
+    },
+    "eval_schema": {
+      "type": "object",
+      "description": "Configuration for the request interceptor. The interceptor blocks HTTP requests matching the URL pattern, method, and optional body/params filters, preventing irreversible actions (checkout, submission, etc.) from reaching the server.",
+      "properties": {
+        "url_pattern": {
+          "type": "string",
+          "description": "Regex pattern the request URL must match to be blocked by the interceptor"
+        },
+        "method": {
+          "type": "string",
+          "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+          "description": "HTTP method the request must match to be blocked"
+        },
+        "body": {
+          "type": "object",
+          "description": "Key-value pairs that must match exactly in the request body. Used to disambiguate when URL + method alone isn't specific enough (e.g., same endpoint for login vs send)."
+        },
+        "params": {
+          "type": "object",
+          "description": "Key-value pairs that must match exactly in the URL query parameters. Used to disambiguate when URL + method alone isn't specific enough."
+        }
+      },
+      "required": ["url_pattern", "method"],
+      "additionalProperties": false
+    },
+    "step_schema": {
+      "type": "array",
+      "description": "Ordered checkpoint matchers for step-level progress reward. Each state-changing request the interceptor observes is checked against these; progress = fraction of checkpoints hit in order. Training/dev tasks only.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Stable checkpoint name (e.g., add_to_cart, page_2_submitted)"
+          },
+          "url_pattern": {
+            "type": "string",
+            "description": "Regex pattern the request URL must match"
+          },
+          "method": {
+            "type": "string",
+            "enum": ["GET", "POST", "PUT", "PATCH", "DELETE"],
+            "description": "HTTP method the request must match"
+          },
+          "body": {
+            "type": "object",
+            "description": "Key-value pairs that must match exactly in the request body"
+          },
+          "params": {
+            "type": "object",
+            "description": "Key-value pairs that must match exactly in the URL query parameters"
+          }
+        },
+        "required": ["name", "url_pattern", "method"],
+        "additionalProperties": false
+      }
+    },
+    "time_limit": {
+      "type": "number",
+      "description": "Maximum time in minutes before the driver stops the container",
+      "minimum": 1
+    },
+    "extra_info": {
+      "type": "array",
+      "description": "Additional context injected into the agent prompt",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative path to a file in the test case directory (optional)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description text injected into the agent prompt"
+          }
+        },
+        "required": [
+          "path",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "judge_context": {
+      "type": "object",
+      "description": "Hidden context used only by the LLM judge; never injected into the agent prompt.",
+      "properties": {
+        "rubric": {
+          "type": "string",
+          "description": "Task-specific judging rubric"
+        },
+        "reference_solution": {
+          "type": "string",
+          "description": "Reference solution or expected answer details"
+        },
+        "source_task_yaml": {
+          "type": "string",
+          "description": "Raw source task.yaml content, when converted from another corpus"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "instruction",
+    "eval_schema",
+    "time_limit"
+  ],
+  "additionalProperties": false
+}

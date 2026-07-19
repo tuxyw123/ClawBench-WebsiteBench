@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f36">
+  <title>{{ page_title }} · Northstar Market</title>
+  <link rel="stylesheet" href="/static/site.css">
+  <script defer src="/static/site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="announcement">Free standard shipping on merchandise orders $75+</div>
+    <div class="header-main shell">
+      <a class="brand" href="/" aria-label="Northstar Market home">
+        <span class="brand__mark" aria-hidden="true">✦</span>
+        <span>Northstar</span>
+      </a>
+      <form class="header-search" action="/search" method="get" role="search">
+        <label class="sr-only" for="site-search">Search products</label>
+        <input id="site-search" name="q" type="search" placeholder="Search the market" value="{{ request.query_params.get('q', '') }}">
+        <button type="submit" aria-label="Search"><span aria-hidden="true">⌕</span><span class="search-label">Search</span></button>
+      </form>
+      <nav class="header-actions" aria-label="Account and cart">
+        {% if user %}
+          <a href="/account/orders"><span class="muted">Hello, {{ user.full_name or 'shopper' }}</span><strong>Your orders</strong></a>
+          <form action="/logout" method="post"><button class="link-button" type="submit">Sign out</button></form>
+        {% else %}
+          <a href="/login"><span class="muted">Hello, sign in</span><strong>Account</strong></a>
+        {% endif %}
+        <a class="cart-link" href="/cart" aria-label="Cart, {{ cart_count }} items"><span aria-hidden="true">Bag</span><strong>{{ cart_count }}</strong></a>
+      </nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="category-menu">Menu</button>
+    </div>
+    <nav class="category-nav" id="category-menu" aria-label="Shop categories">
+      <div class="shell">
+        <a href="/search">Shop all</a>
+        {% for nav_category in categories %}
+          <a href="/search?category={{ nav_category.slug }}">{{ nav_category.name }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div><a class="brand brand--footer" href="/">✦ Northstar</a><p>Useful goods for considered days.</p></div>
+      <div><h2>Shop</h2><a href="/search">All products</a><a href="/search?sort=rating">Top rated</a></div>
+      <div><h2>Account</h2><a href="/login">Sign in</a><a href="/account/orders">Your orders</a></div>
+      <div><h2>Test store</h2><p>No real payments or deliveries are made.</p></div>
+    </div>
+  </footer>
+</body>
+</html>
+

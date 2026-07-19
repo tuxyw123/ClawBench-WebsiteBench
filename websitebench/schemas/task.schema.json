@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.task.v1.json",
+  "title": "Web2Code2Web agent task envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "task_id", "site_id", "site_version", "track",
+    "target_url", "mailbox_url", "public_files", "budget", "browser_gateway",
+    "candidate_workspace", "agent", "issued_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "websitebench.task.v1"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+    "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "site_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "site_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "track": {"enum": ["core", "hitl"]},
+    "target_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "mailbox_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "public_files": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest", "prd", "candidate_contract", "smoke_cases"],
+      "properties": {
+        "manifest": {"$ref": "#/$defs/workspace_path"},
+        "prd": {"$ref": "#/$defs/workspace_path"},
+        "candidate_contract": {"$ref": "#/$defs/workspace_path"},
+        "smoke_cases": {"$ref": "#/$defs/workspace_path"}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_time_seconds", "token_budget", "browser_actions", "candidate_builds"],
+      "properties": {
+        "wall_time_seconds": {"type": "integer", "minimum": 1},
+        "token_budget": {"type": "integer", "minimum": 1},
+        "browser_actions": {"type": "integer", "minimum": 1},
+        "candidate_builds": {"type": "integer", "minimum": 1}
+      }
+    },
+    "browser_gateway": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "tool_name", "reference_access"],
+      "properties": {
+        "url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+        "tool_name": {"const": "controlled_browser"},
+        "reference_access": {"const": "continuous"}
+      }
+    },
+    "candidate_workspace": {"const": "/workspace/candidate"},
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["harness", "model", "thinking_level"],
+      "properties": {
+        "harness": {"const": "codex"},
+        "model": {"type": "string", "minLength": 1},
+        "thinking_level": {"type": "string", "minLength": 1}
+      }
+    },
+    "issued_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "workspace_path": {
+      "type": "string",
+      "pattern": "^/task/public/[A-Za-z0-9._/-]+$",
+      "not": {"pattern": "(?:^|/)\\.\\.(?:/|$)"}
+    }
+  }
+}

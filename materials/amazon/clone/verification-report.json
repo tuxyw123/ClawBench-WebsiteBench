@@ -1,0 +1,427 @@
+{
+  "contract": {
+    "canonical_port": 8153,
+    "content_type": "application/x-www-form-urlencoded",
+    "method": "POST",
+    "structural_sha256": "cfda6fa7a667e33c98771f9d57723da4a8d25ae06204e060c851d5ac7ff5c745",
+    "target": {
+      "asin": "B0874XN4D8",
+      "quantity": 2,
+      "rank": 2
+    },
+    "task_count": 1,
+    "task_id": 900136,
+    "terminal_paths": [
+      "/gp/product/handle-buy-box/ref=dp_start-bbf_1_glance",
+      "/cart/add-to-cart/ref=mw_dp_buy_crt"
+    ],
+    "verification_port": 18153
+  },
+  "date": "2026-07-18",
+  "format": "clawbench.website-verification.v1",
+  "manual_original_resolution_inspection": true,
+  "reviewMode": true,
+  "source_observation": {
+    "anonymous": true,
+    "blocked_non_get_requests": 51,
+    "date": "2026-07-18",
+    "hashed_eligible_resources": 1643,
+    "media_font_occurrences": 608,
+    "method": "GET",
+    "mutating_requests": 0,
+    "network_responses": 1700,
+    "page_viewport_captures": 100,
+    "source_screenshot_sha256": [
+      "4f81ec89aead6271226520e02132368464743972c0d423d78172ad5f67069c29",
+      "0007f36c700346ab4b20596b6eba8f0443f2b55703a2164dc53100e624512f5b",
+      "4e98f3b8e458467886efe7c2feb25995705836a31bb9fd8d4cb7c7fec36cb1f2",
+      "5084da371f0d30df6277423146fc15c45c29945d7e93f4dab5bc2c767bc4c7ba",
+      "215ee58f8c383ceab250ecc68f7d42fb30a7d4934468f783f33a245a8f464fda",
+      "ee800a31aff31e0647bcbb9f5ae57b845461531c2a5fa3a2917b58b2d986bb55"
+    ],
+    "source_to_clone_review": [
+      {
+        "clone_capture_id": "desktop:best-sellers",
+        "review_checklist": [
+          "source category hierarchy, header, and responsive grid or list geometry",
+          "rank-two Samsung T7 identity, rating, reviews, image, and price",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "4f81ec89aead6271226520e02132368464743972c0d423d78172ad5f67069c29",
+        "source_state": "Best Sellers",
+        "source_viewport": "desktop"
+      },
+      {
+        "clone_capture_id": "desktop:target-product",
+        "review_checklist": [
+          "source product gallery, facts, variants, price, and buy-box hierarchy",
+          "quantity control and responsive Add to cart form remain reachable",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "0007f36c700346ab4b20596b6eba8f0443f2b55703a2164dc53100e624512f5b",
+        "source_state": "Samsung T7",
+        "source_viewport": "desktop"
+      },
+      {
+        "clone_capture_id": "desktop:empty-cart",
+        "review_checklist": [
+          "source layout hierarchy and responsive account controls",
+          "empty-cart artwork, spacing, and footer composition",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "4e98f3b8e458467886efe7c2feb25995705836a31bb9fd8d4cb7c7fec36cb1f2",
+        "source_state": "Empty cart",
+        "source_viewport": "desktop"
+      },
+      {
+        "clone_capture_id": "mobile:best-sellers",
+        "review_checklist": [
+          "source category hierarchy, header, and responsive grid or list geometry",
+          "rank-two Samsung T7 identity, rating, reviews, image, and price",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "5084da371f0d30df6277423146fc15c45c29945d7e93f4dab5bc2c767bc4c7ba",
+        "source_state": "Best Sellers",
+        "source_viewport": "mobile"
+      },
+      {
+        "clone_capture_id": "mobile:target-product",
+        "review_checklist": [
+          "source product gallery, facts, variants, price, and buy-box hierarchy",
+          "quantity control and responsive Add to cart form remain reachable",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "215ee58f8c383ceab250ecc68f7d42fb30a7d4934468f783f33a245a8f464fda",
+        "source_state": "Samsung T7",
+        "source_viewport": "mobile"
+      },
+      {
+        "clone_capture_id": "mobile:empty-cart",
+        "review_checklist": [
+          "source layout hierarchy and responsive account controls",
+          "empty-cart artwork, spacing, and footer composition",
+          "no clipped controls, overlap, broken media, or horizontal overflow"
+        ],
+        "source_screenshot_sha256": "ee800a31aff31e0647bcbb9f5ae57b845461531c2a5fa3a2917b58b2d986bb55",
+        "source_state": "Empty cart",
+        "source_viewport": "mobile"
+      }
+    ]
+  },
+  "verification": {
+    "browser_assertions": {
+      "passed": 85,
+      "total": 85
+    },
+    "cleanup": {
+      "browser_workspace_removed": true,
+      "canonical_port_released": true,
+      "database_artifacts_removed": true,
+      "owned_process_stopped": true,
+      "screenshot_staging_removed": true,
+      "server_log_removed": true,
+      "temporary_workspace_removed": true
+    },
+    "focused_tests": {
+      "passed": 53,
+      "total": 53
+    },
+    "lifecycle_assertions": {
+      "passed": 8,
+      "total": 8
+    },
+    "overall_assertions": {
+      "passed": 159,
+      "total": 159
+    },
+    "persistence": {
+      "same_database_restart_passed": true,
+      "same_database_restarts": 2,
+      "server_starts": 3,
+      "session_isolation_passed": true,
+      "sqlite_quick_check_passed": true
+    },
+    "persistence_assertions": {
+      "passed": 13,
+      "total": 13
+    },
+    "runtime": {
+      "expected_console_404s": 2,
+      "expected_document_404s": 2,
+      "external_runtime_requests": 0,
+      "page_errors": 0,
+      "request_failures": 0,
+      "same_origin_terminal_requests": 2,
+      "unexpected_console_errors": 0,
+      "unexpected_http_errors": 0
+    },
+    "screenshots": [
+      {
+        "bytes": 526631,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "2e29c9f91aebf2395d285b9b37abbbf89a4dac950ca337ac9c36cdb8a2ab9a7b",
+        "stage": "best-sellers",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 142833,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "18966564125e9c64689edc39d59aff703d0db2aa8d8afe541c62396ff4c99c62",
+        "stage": "boundary",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 122966,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "549a0f9d46758470afa84896b78d1f729aa9fd9f9362dc1bbc9a779d1fae7864",
+        "stage": "empty-cart",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 89628,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "53c056593c131fe51938281d6331536d36dd29058c214f0c09562461cbc33616",
+        "stage": "no-results",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 80297,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "a0e40c884e491e6dfc345a9afd99256188d8db811ca7d7fc5cd098cdfd42f630",
+        "stage": "not-found",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 146626,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "75be167bfe4f7de6e38cc8cf3077a121376bdb285060c2e4a26596b49c6a4194",
+        "stage": "populated-cart",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 181112,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "38340d8775c580088891903a2ce25360055ccc4c934b508e548af14c83fe35c2",
+        "stage": "search-results",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 281899,
+        "dimensions": {
+          "height": 900,
+          "width": 1365
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "212e597f16dc7df1d25d0e511e1da0fdab1603b8f9c0c1cc4113808401f05c85",
+        "stage": "target-product",
+        "viewport": "desktop"
+      },
+      {
+        "bytes": 129650,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "0a74b67d127384053d16c3e480e16291efc5702d22b5191fca24421423937f7b",
+        "stage": "best-sellers",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 60288,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "e5ab742339cd72968ceaae4aa6ff625e95de4f923e0c3e2906fee962fc93435a",
+        "stage": "boundary",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 73096,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "fb5f3b651de70eb64c09a48e1d41fec43e4c44c3d420612c69046847e0ee3a32",
+        "stage": "empty-cart",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 47702,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "9558175bc677ccb6aa9d9f82c58713c9986c6c8f9a98a97f8f5225160d7a94a1",
+        "stage": "no-results",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 50972,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "f04c8cb61d72cd4a35c7ce6b1072991637db88847e83eba2cc0ee0ff706a0034",
+        "stage": "not-found",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 65196,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "85996018360caed66735b8891b517a7ddeb133ab450326ef06d80d622ddf370e",
+        "stage": "populated-cart",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 77000,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "9af4bd259d47014de75dd9a79301211edc4f1b9b157a905008b7a1c99e6fc438",
+        "stage": "search-results",
+        "viewport": "mobile"
+      },
+      {
+        "bytes": 160419,
+        "dimensions": {
+          "height": 844,
+          "width": 390
+        },
+        "originalResolutionInspected": true,
+        "pixel_checks": {
+          "nonblank": true,
+          "varied_color": true
+        },
+        "removed": true,
+        "sha256": "0fc8303b8a775418858499c7103f389d9efe24154de0e0a388ec0de59e9ab822",
+        "stage": "target-product",
+        "viewport": "mobile"
+      }
+    ],
+    "site_model": {
+      "browser_viewports": [
+        "desktop",
+        "mobile"
+      ],
+      "ordinary_terminal_requests": 0,
+      "route_families_per_viewport": 11,
+      "scope": "public first-party daily-use semantics",
+      "task_contract_role": "mandatory regression subset"
+    }
+  }
+}

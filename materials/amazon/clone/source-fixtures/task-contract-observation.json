@@ -1,0 +1,108 @@
+{
+  "format": "clawbench-pro.amazon-task-contract-observation.v1",
+  "observed_at": "2026-07-17",
+  "access_boundary": "Anonymous public GET and response-source inspection only; no source form was submitted.",
+  "source_urls": {
+    "best_sellers": "https://us.amazon.com/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011",
+    "product_desktop": "https://us.amazon.com/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8",
+    "product_mobile": "https://us.amazon.com/gp/aw/d/B0874XN4D8",
+    "empty_cart": "https://www.amazon.com/gp/cart/view.html"
+  },
+  "task": {
+    "target_rank": 2,
+    "target_asin": "B0874XN4D8",
+    "target_quantity": 2,
+    "terminal_method": "POST",
+    "terminal_paths": {
+      "desktop": "/gp/product/handle-buy-box/ref=dp_start-bbf_1_glance",
+      "mobile": "/cart/add-to-cart/ref=mw_dp_buy_crt"
+    },
+    "terminal_content_type": "application/x-www-form-urlencoded",
+    "required_fields": {
+      "ASIN": "B0874XN4D8",
+      "quantity": "2"
+    },
+    "source_form_fields_observed": [
+      "ASIN",
+      "quantity",
+      "submit.add-to-cart",
+      "offerListingID",
+      "session-id"
+    ],
+    "source_sensitive_field_values_retained": false
+  },
+  "category_hierarchy": [
+    "Any Department",
+    "Computers & Accessories",
+    "Computer Accessories & Peripherals",
+    "Data Storage",
+    "External Solid State Drives"
+  ],
+  "best_sellers": [
+    {
+      "rank": 1,
+      "asin": "B08HN37XC1",
+      "title": "SANDISK 2TB Extreme Portable SSD (Old Model) - Up to 1050MB/s, USB-C, USB 3.2 Gen 2, IP65 Water and Dust Resistance",
+      "rating": 4.6,
+      "review_count": 91118,
+      "desktop_observed_price": "$269.75"
+    },
+    {
+      "rank": 2,
+      "asin": "B0874XN4D8",
+      "title": "Samsung T7 Portable SSD, 1TB External Solid State Drive, Speeds Up to 1,050MB/s, USB 3.2 Gen 2, Reliable Storage for Gaming, Students, Professionals, MU-PC1T0T/AM, Gray",
+      "rating": 4.7,
+      "review_count": 38068,
+      "desktop_observed_price": "$219.99"
+    },
+    {
+      "rank": 3,
+      "asin": "B0CHFSWM2P",
+      "title": "Samsung T9 Portable SSD 1TB, USB 3.2 Gen 2x2 External Solid State Drive, up to 2,000MB/s",
+      "rating": 4.6,
+      "review_count": 2888,
+      "desktop_observed_price": "$249.00"
+    },
+    {
+      "rank": 4,
+      "asin": "B0C5JQ68FY",
+      "title": "SANDISK 1TB Portable SSD - Up to 800MB/s, USB-C, USB 3.2 Gen 2",
+      "rating": 4.6
+    },
+    {
+      "rank": 5,
+      "asin": "B0BGKXX9TK",
+      "title": "SSK Portable SSD 500GB External Solid State Drive, up to 1050MB/s USB-C",
+      "rating": 4.5
+    },
+    {
+      "rank": 6,
+      "asin": "B08GV9M64L",
+      "title": "SANDISK 1TB Extreme PRO Portable SSD - Up to 2000MB/s, USB-C, IP65",
+      "rating": 4.5
+    }
+  ],
+  "target_product": {
+    "brand": "Samsung",
+    "capacity": "1 TB",
+    "color": "Gray",
+    "source_mobile_color_label": "Titan Gray",
+    "interface": "USB 3.0",
+    "connectivity": "USB",
+    "rating": 4.7,
+    "review_count": 38068,
+    "recent_sales_copy": "6K+ bought in past month",
+    "source_price_variance": {
+      "desktop_product_response": "EUR 192.18",
+      "mobile_product_response": "$219.99",
+      "reason": "The anonymous source responses applied different delivery geography and currency; the local fixture uses one deterministic geography."
+    },
+    "visible_actions": [
+      "Add to cart",
+      "Buy Now",
+      "Add to List",
+      "See more"
+    ],
+    "local_boundary": "Only Add to cart is stateful. Buy Now, sign-in, checkout, payment, delivery, returns, and list/account effects remain local no-effect boundaries."
+  }
+}

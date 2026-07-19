@@ -1,0 +1,66 @@
+{
+  "schema_version": "websitebench.smoke.v1",
+  "site_version": "1.0.0",
+  "seed": 1102,
+  "cases": [
+    {
+      "id": "catalog-search-cart",
+      "purpose": "Catalog, URL-backed search, product detail, and guest-cart persistence",
+      "steps": [
+        "Reset fixture 1102 at its declared controlled time",
+        "Open the home page and follow the first featured product",
+        "Add two units to the guest cart and refresh",
+        "Verify the same two units and subtotal remain",
+        "Search for a fixture-provided tag, filter by its category, and sort price ascending",
+        "Verify each visible result matches and result prices are ascending",
+        "Navigate Back and verify search state is restored"
+      ]
+    },
+    {
+      "id": "registration-verification-session",
+      "purpose": "Registration, local mailbox, verification, login, and session persistence",
+      "steps": [
+        "Register a new random email with a policy-compliant password",
+        "Verify the verification-sent message and one local mailbox message",
+        "Open its verification link and sign in",
+        "Refresh and verify the signed-in account remains visible",
+        "Log out and verify account pages require login"
+      ]
+    },
+    {
+      "id": "guest-cart-login-merge",
+      "purpose": "Account cart and guest cart merge exactly once",
+      "steps": [
+        "As a guest add two units of a product",
+        "In a separate signed-in session add one unit of the same product and log out",
+        "Return to the guest session and log in with that account",
+        "Verify the merged quantity is three or the declared stock/cap, whichever is lower",
+        "Refresh and verify the quantity did not merge a second time"
+      ]
+    },
+    {
+      "id": "checkout-order-cancel",
+      "purpose": "Checkout totals, payment behavior, persisted order, and atomic cancellation",
+      "steps": [
+        "Sign in with a fixture-provided verified account and add in-stock products",
+        "Attempt the decline test card and verify the cart and inventory are unchanged",
+        "Place a Standard order with the success test card",
+        "Verify subtotal, threshold shipping, 8.25 percent tax, total, and last four",
+        "Refresh the order detail and verify it remains Placed",
+        "Cancel within 30 controlled minutes and verify status Cancelled",
+        "Verify each purchased inventory quantity was restored exactly once"
+      ]
+    },
+    {
+      "id": "password-reset",
+      "purpose": "Generic reset request, one-time link, and old-session invalidation",
+      "steps": [
+        "Sign in with a fixture-provided verified account in two browser sessions",
+        "Request a password reset and open the local mailbox link",
+        "Set a new policy-compliant password",
+        "Verify both old sessions are rejected",
+        "Verify the old password fails, the new password succeeds, and the link cannot be reused"
+      ]
+    }
+  ]
+}

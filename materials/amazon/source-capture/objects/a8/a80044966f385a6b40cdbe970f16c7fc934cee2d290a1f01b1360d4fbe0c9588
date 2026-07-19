@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body {
+            font-family: "Arial";
+        }
+    </style>
+    <script type="text/javascript">
+    window.awsWafCookieDomainList = [];
+    window.gokuProps = {
+"key":"AQIDAHjcYu/GjX+QlghicBgQ/7bFaQZ+m5FKCMDnO+vTbNg96AHMZneRaWBqRvVxYFvpAr8xAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMPpIaCrrX8NMEVLb6AgEQgDsS66+BDTiXbKUVK0lJ0EpgwXqA25IwcCK696zfACZuZ5VI3VYD0f+5Bh9KLOF+PUs9aAmZHfH/pLkRHA==",
+          "iv":"A6xlSwC0AQAADCTB",
+          "context":"CHAY/GAhl1LRow/XjupVKOYBlQCx3rqkA7vqeyh/3m/dWblKcx0xiD03WxrtFm5BfVV2nGE4j1WtELEthXDphQ3OAfQlr1V8tTXm77jwjtAu7vGgukdD5ShVu3VFIj1FR7tFlGdPDyRAWBFuH6bF7r/0niTpeNiSpWSZgPV33gzWVlm98AYwB1K/xB5g0NRXxYp2FIXoZ/xG8kJ80jf9xOtKeos3eNO09SUeboYLjve+n0A/PDtY4JPLjcijtHZuMcFv0cY8aCtQffwZCVDiv5u7CU5iE2RB8q8zu7j5C/Axj9lmdIm+N3m/C0hz/NGUFGuZgCYN0aSYmbYU81i8ZRvugjpZlX74JFeImC4LoQl40q9dXv+DfRwqLVDgKeKxsBmL93sy"
+};
+    </script>
+    <script src="https://1c5c1ecf7303.7a63328c.eu-central-1.token.awswaf.com/1c5c1ecf7303/d6a7a58005ec/04c5ab18cd2d/challenge.js"></script>
+</head>
+<body>
+    <div id="challenge-container"></div>
+    <script type="text/javascript">
+        AwsWafIntegration.saveReferrer();
+        AwsWafIntegration.checkForceRefresh().then((forceRefresh) => {
+            if (forceRefresh) {
+                AwsWafIntegration.forceRefreshToken().then(() => {
+                    window.location.reload(true);
+                });
+            } else {
+                AwsWafIntegration.getToken().then(() => {
+                    window.location.reload(true);
+                });
+            }
+        });
+    </script>
+    <noscript>
+        <h1>JavaScript is disabled</h1>
+        In order to continue, we need to verify that you're not a robot.
+        This requires JavaScript. Enable JavaScript and then reload the page.
+    </noscript>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body {
+            font-family: "Arial";
+        }
+    </style>
+    <script type="text/javascript">
+    window.awsWafCookieDomainList = [];
+    window.gokuProps = {
+"key":"AQIDAHjcYu/GjX+QlghicBgQ/7bFaQZ+m5FKCMDnO+vTbNg96AHMZneRaWBqRvVxYFvpAr8xAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMPpIaCrrX8NMEVLb6AgEQgDsS66+BDTiXbKUVK0lJ0EpgwXqA25IwcCK696zfACZuZ5VI3VYD0f+5Bh9KLOF+PUs9aAmZHfH/pLkRHA==",
+          "iv":"A6xlYgC23AAAC/tV",
+          "context":"r70zs3YV1NGLXniMDIYcVXZO8XZbZsVQLkcTywDwIz9toAnj6m077QGc/pUzqMftBHBq1sx1Q9/QrhokQfOM76ee9QVMdw3Kng6ABmRQ0j7hnAtj4gskMkhH1xvJOYSg9YF+XMnrC642q3DU3ybr8ey/g5+ClwNv23IztA7JNAg8dQxsghEIsGOuJvPoawg4PqWZrIld1lEQSkxWVFyktrYPKUSqCSrLGVnVUHzFdmspAfq+TJhQscW+Pp6TKPStk0gCbaTsGg9+HATqcOS5aVu7pd1m0D+aGeGn+C9jHMZFzsu+pr3jOtBoeitwTXjJzuIbRx0E1JynZQwa2WOuVuP59rHetGlVne6ZRgEHrrjRwyJAc1ubjeGZZxIaOxV6mRYevTb8"
+};
+    </script>
+    <script src="https://1c5c1ecf7303.7a63328c.eu-central-1.token.awswaf.com/1c5c1ecf7303/d6a7a58005ec/04c5ab18cd2d/challenge.js"></script></head></html>

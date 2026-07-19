@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.visual-evidence.v1.json",
+  "title": "WebsiteBench visual evidence companion manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "item_key", "generated_at", "captures"],
+  "properties": {
+    "schema_version": {"const": "websitebench.visual-evidence.v1"},
+    "item_key": {"type": "string", "pattern": "^[a-z0-9]+(?:--[a-z0-9-]+)+$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "captures": {"type": "array", "items": {"$ref": "#/$defs/capture"}}
+  },
+  "$defs": {
+    "relative_path": {
+      "type": ["string", "null"],
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+    },
+    "sha": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checkpoint", "viewport", "source_image", "candidate_image",
+        "heatmap", "ignore_regions", "source_sha256", "candidate_sha256",
+        "capture_status", "evidence_reliability", "diagnostic_metrics"
+      ],
+      "properties": {
+        "checkpoint": {"type": "string", "minLength": 1},
+        "viewport": {"type": "string", "minLength": 1},
+        "source_image": {"$ref": "#/$defs/relative_path"},
+        "candidate_image": {"$ref": "#/$defs/relative_path"},
+        "heatmap": {"$ref": "#/$defs/relative_path"},
+        "ignore_regions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["x", "y", "width", "height"],
+            "properties": {
+              "x": {"type": "integer", "minimum": 0},
+              "y": {"type": "integer", "minimum": 0},
+              "width": {"type": "integer", "minimum": 1},
+              "height": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "source_sha256": {"$ref": "#/$defs/sha"},
+        "candidate_sha256": {"$ref": "#/$defs/sha"},
+        "capture_status": {"enum": ["pending", "captured", "partial", "blocked", "failed", "not_comparable"]},
+        "evidence_reliability": {"enum": ["reliable", "caution", "unavailable"]},
+        "diagnostic_metrics": {
+          "type": ["object", "null"],
+          "additionalProperties": {"type": "number"}
+        }
+      }
+    }
+  }
+}

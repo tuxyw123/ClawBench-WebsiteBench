@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ff4f3d">
+    <title>Idealist | Find nonprofit work</title>
+    <link rel="icon" href="/static/assets/idealist-mark.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="offline-banner" role="note">
+      <strong>Offline training replica</strong>
+      <span>No real employer delivery, email, upload, or identity verification occurs.</span>
+    </div>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/jobs" data-link aria-label="Idealist home">
+          <img src="/static/assets/idealist-mark.svg" alt="" width="42" height="42">
+          <span>Idealist</span>
+        </a>
+        <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" title="Menu">☰</button>
+        <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="/jobs" data-link>Jobs</a>
+          <button type="button" class="nav-boundary" data-boundary="post-job">Post a Job</button>
+          <button type="button" class="nav-boundary" data-boundary="learning">Volunteer</button>
+          <button type="button" class="nav-boundary" data-boundary="resources">Organizations</button>
+        </nav>
+        <div class="account-nav" id="account-nav"></div>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"><div class="loading-shell"><span class="spinner"></span><p>Loading local opportunities...</p></div></main>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <footer class="site-footer">
+      <div>
+        <strong>Idealist local</strong>
+        <p>A task-scoped nonprofit careers experience. All records stay on this device.</p>
+      </div>
+      <button type="button" data-boundary="support">Help &amp; support</button>
+      <span>© 2026 Local replica</span>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{% macro product_card(product) -%}
+<article class="product-card">
+  <a class="product-card__image" href="/products/{{ product.slug }}">
+    <img src="/media/{{ product.image.key }}.svg" alt="{{ product.title }}" loading="lazy">
+  </a>
+  <div class="product-card__body">
+    <p class="eyebrow">{{ product.brand }}</p>
+    <h3><a href="/products/{{ product.slug }}">{{ product.title }}</a></h3>
+    <p class="rating" aria-label="Rated {{ product.rating_basis_points|rating }} out of 5">
+      <span aria-hidden="true">★★★★★</span> {{ product.rating_basis_points|rating }}
+      <small>({{ product.review_count }})</small>
+    </p>
+    <div class="price-row">
+      <strong>{{ product.price_cents|money }}</strong>
+      {% if product.compare_at_cents %}<del>{{ product.compare_at_cents|money }}</del>{% endif %}
+    </div>
+    {% if product.inventory > 0 %}
+      <form action="/cart/add" method="post" class="inline-form" data-busy-form>
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="{{ current_path }}">
+        <button class="button button--small button--secondary" type="submit">Add to cart</button>
+      </form>
+    {% else %}
+      <p class="stock stock--out">Out of stock</p>
+    {% endif %}
+  </div>
+</article>
+{%- endmacro %}
+

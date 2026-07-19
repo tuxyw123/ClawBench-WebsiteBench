@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Sign in{% endblock %}
+{% block content %}
+<section class="login-shell">
+  <div class="login-panel">
+    <p class="eyebrow">Restricted research workspace</p>
+    <h1>Sign in to Clone Atlas</h1>
+    <p>Review corpus design, controlled evidence, and candidate runs in one protected workspace.</p>
+    {% if error %}<div class="alert danger" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" action="/login" class="stack-form">
+      <input type="hidden" name="csrf_token" value="{{ login_csrf }}">
+      <input type="hidden" name="next_path" value="{{ next_path }}">
+      <label>Username<input required name="username" autocomplete="username"></label>
+      <label>Password<input required type="password" name="password" autocomplete="current-password"></label>
+      <button class="primary" type="submit">Sign in</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

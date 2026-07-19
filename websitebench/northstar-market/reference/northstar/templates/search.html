@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "macros.html" import product_card with context %}
+{% block content %}
+<div class="page-hero page-hero--compact"><div class="shell"><p class="eyebrow">The full collection</p><h1>{% if query %}Results for “{{ query }}”{% elif category %}Shop {{ category|title }}{% else %}Shop all{% endif %}</h1><p>{{ count }} product{% if count != 1 %}s{% endif %}</p></div></div>
+<div class="shell search-layout">
+  <aside class="filters">
+    <h2>Categories</h2><a class="{% if not category %}active{% endif %}" href="/search?q={{ query|urlencode }}&sort={{ sort }}">All categories</a>
+    {% for item in categories %}<a class="{% if category == item.slug %}active{% endif %}" href="/search?q={{ query|urlencode }}&category={{ item.slug }}&sort={{ sort }}">{{ item.name }}</a>{% endfor %}
+  </aside>
+  <section class="results" aria-label="Product results">
+    <form class="sort-form" action="/search" method="get">
+      <input type="hidden" name="q" value="{{ query }}"><input type="hidden" name="category" value="{{ category }}">
+      <label for="sort">Sort by</label><select id="sort" name="sort" onchange="this.form.submit()">
+        <option value="featured" {% if sort == 'featured' %}selected{% endif %}>Featured</option>
+        <option value="price-asc" {% if sort == 'price-asc' %}selected{% endif %}>Price: Low to High</option>
+        <option value="price-desc" {% if sort == 'price-desc' %}selected{% endif %}>Price: High to Low</option>
+        <option value="rating" {% if sort == 'rating' %}selected{% endif %}>Customer Rating</option>
+      </select>
+    </form>
+    {% if products %}<div class="product-grid product-grid--results">{% for product in products %}{{ product_card(product) }}{% endfor %}</div>
+    {% else %}<div class="empty-state"><span aria-hidden="true">⌕</span><h2>No products found</h2><p>Try a broader search or clear the active category.</p><a class="button" href="/search">Clear search</a></div>{% endif %}
+    {% if pages > 1 %}<nav class="pagination" aria-label="Results pages">
+      {% for number in range(1, pages + 1) %}<a {% if number == page %}aria-current="page"{% endif %} href="/search?q={{ query|urlencode }}&category={{ category }}&sort={{ sort }}&page={{ number }}">{{ number }}</a>{% endfor %}
+    </nav>{% endif %}
+  </section>
+</div>
+{% endblock %}
+

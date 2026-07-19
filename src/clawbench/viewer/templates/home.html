@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Corpus overview{% endblock %}
+{% block content %}
+<div class="page">
+  <section class="hero">
+    <div><p class="eyebrow">WebsiteBench-first corpus inspection</p><h1>Clone task quality, <em>without a synthetic composite score.</em></h1><p>Inspect protocol completeness, task depth, visual evidence, human rubric decisions, and candidate results as distinct forms of evidence.</p><div class="hero-actions"><a class="primary button" href="/tasks">Open Task Atlas</a><a class="secondary button" href="/compare">Compare tasks</a></div></div>
+    <div class="stat-grid">
+      <article><strong>{{ summary.item_count }}</strong><span>Corpus items</span></article>
+      <article><strong>{{ summary.websitebench_count }}</strong><span>WebsiteBench</span></article>
+      <article><strong>{{ summary.legacy_count }}</strong><span>Legacy adapters</span></article>
+      <article><strong>{{ summary.official_run_count }}</strong><span>Official candidate runs</span></article>
+    </div>
+  </section>
+
+  {% if summary.readiness.missing or summary.readiness.invalid %}
+  <div class="alert warning"><strong>Evidence gaps remain.</strong> {{ summary.readiness.missing }} checks are missing and {{ summary.readiness.invalid }} are invalid. These are completeness states, not quality scores.</div>
+  {% endif %}
+
+  <section class="section-grid">
+    {% for field, distribution in summary.distributions.items() %}
+    <article class="panel"><div class="section-heading"><h2>{{ field|replace('_', ' ')|title }}</h2><span>{{ distribution|length }} groups</span></div><div class="bars">
+      {% for label, count in distribution.items() %}<div><span>{{ label }}</span><meter min="0" max="{{ summary.item_count }}" value="{{ count }}"></meter><strong>{{ count }}</strong></div>{% endfor %}
+    </div></article>
+    {% endfor %}
+  </section>
+
+  <section class="panel wide">
+    <div class="section-heading"><div><p class="eyebrow">Review matrix</p><h2>Task × QA dimension</h2></div><a href="/methodology">Rubric definitions →</a></div>
+    <div class="table-wrap"><table class="matrix"><thead><tr><th>Task</th><th>Protocol</th><th>Behavior</th><th>Visual</th><th>Reproducibility</th><th>Isolation</th><th>Diversity</th><th>Gate</th></tr></thead><tbody>
+      {% for item in items %}{% set review = reviews[item.key] %}<tr><th><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a><small>{{ item.source_type }}</small></th>
+        {% for name in ['protocol_observability','behavioral_depth','visual_interaction_coverage','reproducibility','isolation_asset_compliance','diversity_non_reskin'] %}<td><span class="state state-{{ review.dimensions[name].rating }}">{{ review.dimensions[name].rating|replace('_',' ') }}</span></td>{% endfor %}
+        <td><span class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</span></td></tr>{% endfor %}
+    </tbody></table></div>
+  </section>
+</div>
+{% endblock %}

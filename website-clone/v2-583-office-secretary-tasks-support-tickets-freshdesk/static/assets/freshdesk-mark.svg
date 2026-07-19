@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">Freshdesk local workspace</title>
+  <rect width="48" height="48" rx="8" fill="#25c16f"/>
+  <path d="M12 25a12 12 0 0 1 24 0v9a4 4 0 0 1-4 4h-5v-5h4v-8a7 7 0 0 0-14 0v8h4v5h-5a4 4 0 0 1-4-4z" fill="#fff"/>
+  <path d="M20 25a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0z" fill="#fff"/>
+</svg>

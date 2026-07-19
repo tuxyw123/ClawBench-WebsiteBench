@@ -1,0 +1,17 @@
+.git
+.env
+.env.*
+!.env.example
+.venv
+.pytest_cache
+.ruff_cache
+.mypy_cache
+**/__pycache__
+**/*.pyc
+models/models.yaml
+artifacts
+test-output
+test-output-*
+claw-bench-v2
+local-clones
+materials

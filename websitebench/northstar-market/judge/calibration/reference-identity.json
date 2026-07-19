@@ -1,0 +1,35 @@
+{
+  "schema_version": "websitebench.calibration.v1",
+  "site_id": "northstar-market",
+  "site_version": "1.0.0",
+  "executed_at": "2026-07-18T20:25:00Z",
+  "mode": "host-process-reference-identity",
+  "description": "Two independent reference application databases were evaluated as reference and candidate through Chromium using the complete private evaluator.",
+  "environment": {
+    "container_isolation": false,
+    "mailbox": "local service",
+    "playwright": "1.60.0",
+    "browser": "Chromium headless"
+  },
+  "result": {
+    "status": "passed",
+    "score": 100,
+    "dimensions": {
+      "visual": 20,
+      "interactions": 20,
+      "journeys": 40,
+      "robustness": 15,
+      "efficiency": 5
+    },
+    "journeys_passed": 8,
+    "journeys_total": 8,
+    "robustness_passed": 15,
+    "robustness_total": 15,
+    "visual_checkpoints": 12,
+    "hard_failures": []
+  },
+  "limitations": [
+    "This calibrates reference behavior, browser journeys, visual capture, scoring, and reporting logic.",
+    "It does not replace a Docker/Compose run of the isolated Agent, build service, or final candidate network sandbox."
+  ]
+}

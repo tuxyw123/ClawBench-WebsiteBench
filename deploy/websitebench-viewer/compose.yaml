@@ -1,0 +1,51 @@
+services:
+  viewer:
+    build:
+      context: ../..
+      dockerfile: deploy/websitebench-viewer/Dockerfile
+    restart: unless-stopped
+    environment:
+      CLAWBENCH_VIEWER_USERNAME_FILE: /run/secrets/viewer_username
+      CLAWBENCH_VIEWER_PASSWORD_HASH_FILE: /run/secrets/viewer_password_hash
+      CLAWBENCH_VIEWER_SESSION_SECRET_FILE: /run/secrets/viewer_session_secret
+      CLAWBENCH_VIEWER_TRUSTED_HOSTS_FILE: /run/secrets/viewer_trusted_hosts
+      CLAWBENCH_VIEWER_COOKIE_SECURE: "true"
+      CLAWBENCH_VIEWER_CLONE_ALLOWLIST: ${CLAWBENCH_VIEWER_CLONE_ALLOWLIST:-}
+    secrets:
+      - viewer_username
+      - viewer_password_hash
+      - viewer_session_secret
+      - viewer_trusted_hosts
+    volumes:
+      - viewer_data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8765/healthz', timeout=3)"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    depends_on:
+      viewer:
+        condition: service_healthy
+    command: ["tunnel", "--no-autoupdate", "run", "--token-file", "/run/secrets/cloudflare_tunnel_token"]
+    secrets:
+      - cloudflare_tunnel_token
+
+volumes:
+  viewer_data:
+
+secrets:
+  viewer_username:
+    external: true
+  viewer_password_hash:
+    external: true
+  viewer_session_secret:
+    external: true
+  viewer_trusted_hosts:
+    external: true
+  cloudflare_tunnel_token:
+    external: true

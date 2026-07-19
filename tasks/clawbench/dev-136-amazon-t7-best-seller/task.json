@@ -1,0 +1,45 @@
+{
+  "$schema": "../../../schemas/task.schema.json",
+  "split": "dev",
+  "metadata": {
+    "task_id": 900136,
+    "metaclass": "shopping",
+    "class": "retail",
+    "description": "Browse Amazon Best Sellers for external SSDs and add two units of the number-two Samsung T7 1TB Gray drive to the local cart.",
+    "sites_involved": [
+      "amazon.local"
+    ],
+    "platform": "amazon",
+    "clone_path": "materials/amazon/clone",
+    "server_command": "python3 materials/amazon/clone/server.py --host 127.0.0.1 --port 8153",
+    "verify_command": "python3 materials/amazon/clone/tools/verify_task.py",
+    "dev_only": true
+  },
+  "instruction": "Open http://host.docker.internal:8153/. On Amazon, browse Best Sellers in External Solid State Drives, open the #2 Samsung T7 Portable SSD 1TB in Gray, choose quantity 2, and add it to the cart.",
+  "eval_schema": {
+    "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8153/(gp/product/handle-buy-box/ref=dp_start-bbf_1_glance|cart/add-to-cart/ref=mw_dp_buy_crt)$",
+    "method": "POST",
+    "body": {
+      "ASIN": "B0874XN4D8",
+      "quantity": "2"
+    }
+  },
+  "step_schema": [
+    {
+      "name": "open_external_ssd_best_sellers",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8153/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011$",
+      "method": "GET"
+    },
+    {
+      "name": "open_rank_two_samsung_t7",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8153/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8$",
+      "method": "GET"
+    }
+  ],
+  "time_limit": 20,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "PASS only if the same local browser session first visits the External Solid State Drives Best Sellers page, then opens the rank-two Samsung T7 listing with ASIN B0874XN4D8, selects quantity 2, and sends exactly one successful form-encoded POST to the source-observed responsive Add to cart path (/gp/product/handle-buy-box/ref=dp_start-bbf_1_glance on desktop or /cart/add-to-cart/ref=mw_dp_buy_crt on mobile) with ASIN=B0874XN4D8 and quantity=2. The terminal request, local cart UI, request journal, and SQLite cart row must agree. Normal quantity-one or quantity-three cart actions do not complete this task. Reject another ASIN, another rank, another capacity or color, an out-of-order/direct/stale terminal injection, a duplicate task completion, any checkout/payment attempt, or any external Amazon/analytics request.",
+    "reference_solution": "Open Best Sellers, choose Computers & Accessories, Computer Accessories & Peripherals, Data Storage, External Solid State Drives, then open the #2 Samsung T7 Portable SSD 1TB in Gray. Set Quantity to 2 and select Add to cart. Confirm the local cart shows two Samsung T7 drives and stop before checkout."
+  }
+}

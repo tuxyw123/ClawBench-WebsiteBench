@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.viewer-review-export.v1.json",
+  "title": "WebsiteBench corpus viewer review export",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "exported_at", "reviews"],
+  "properties": {
+    "schema_version": {"const": "websitebench.viewer-review-export.v1"},
+    "exported_at": {"type": "string", "format": "date-time"},
+    "reviews": {
+      "type": "array",
+      "items": {"$ref": "https://clawbench.local/schemas/websitebench.viewer-review.v1.json"}
+    }
+  }
+}

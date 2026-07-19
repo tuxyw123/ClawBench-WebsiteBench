@@ -1,0 +1,1439 @@
+{
+  "schema_version": "websitebench.fixture.v1",
+  "fixture_id": "northstar-1101",
+  "seed": 1101,
+  "now": "2026-01-15T12:00:00Z",
+  "catalog": {
+    "categories": [
+      {
+        "id": "cat_outdoor",
+        "slug": "outdoor",
+        "name": "Outdoor & Trail",
+        "description": "Dependable gear for days beyond the pavement.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-outdoor-1101",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "cat_kitchen",
+        "slug": "kitchen",
+        "name": "Kitchen & Table",
+        "description": "Thoughtful tools for everyday cooking and gathering.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-kitchen-1101",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "cat_workspace",
+        "slug": "workspace",
+        "name": "Workspace",
+        "description": "Quietly capable essentials for focused work.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-workspace-1101",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "cat_home",
+        "slug": "home",
+        "name": "Home Comfort",
+        "description": "Soft textures and practical details for relaxed rooms.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-home-1101",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "cat_travel",
+        "slug": "travel",
+        "name": "Travel",
+        "description": "Compact companions for organized journeys.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-travel-1101",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "cat_wellness",
+        "slug": "wellness",
+        "name": "Wellness",
+        "description": "Simple equipment for movement, rest, and recovery.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-wellness-1101",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "cat_audio",
+        "slug": "audio",
+        "name": "Audio",
+        "description": "Personal listening made clear, comfortable, and portable.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-audio-1101",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "cat_everyday",
+        "slug": "everyday",
+        "name": "Everyday Carry",
+        "description": "Useful objects designed to earn a daily place.",
+        "image": {
+          "kind": "generated-svg",
+          "key": "category-everyday-1101",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      }
+    ],
+    "products": [
+      {
+        "id": "prod_44d01",
+        "sku": "NS-1101-001",
+        "slug": "ridgeline-daypack-44d01",
+        "title": "Ridgeline Daypack",
+        "brand": "Morrow Works",
+        "description": "The Ridgeline Daypack pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "ridgeline",
+          "daypack",
+          "northstar"
+        ],
+        "price_cents": 10399,
+        "compare_at_cents": null,
+        "inventory": 16,
+        "rating_basis_points": 452,
+        "review_count": 229,
+        "featured_rank": 1,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d01",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d02",
+        "sku": "NS-1101-002",
+        "slug": "drift-camp-mug-44d02",
+        "title": "Drift Camp Mug",
+        "brand": "Tandem House",
+        "description": "The Drift Camp Mug pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "drift",
+          "camp mug",
+          "northstar"
+        ],
+        "price_cents": 5699,
+        "compare_at_cents": null,
+        "inventory": 8,
+        "rating_basis_points": 396,
+        "review_count": 652,
+        "featured_rank": 2,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d02",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d03",
+        "sku": "NS-1101-003",
+        "slug": "solace-hammock-44d03",
+        "title": "Solace Hammock",
+        "brand": "Common North",
+        "description": "The Solace Hammock pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "solace",
+          "hammock",
+          "northstar"
+        ],
+        "price_cents": 5099,
+        "compare_at_cents": null,
+        "inventory": 26,
+        "rating_basis_points": 461,
+        "review_count": 161,
+        "featured_rank": 3,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d03",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d04",
+        "sku": "NS-1101-004",
+        "slug": "summit-trail-light-44d04",
+        "title": "Summit Trail Light",
+        "brand": "Rill Supply",
+        "description": "The Summit Trail Light pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "summit",
+          "trail light",
+          "northstar"
+        ],
+        "price_cents": 6899,
+        "compare_at_cents": 8599,
+        "inventory": 6,
+        "rating_basis_points": 460,
+        "review_count": 536,
+        "featured_rank": 4,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d04",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d05",
+        "sku": "NS-1101-005",
+        "slug": "pine-picnic-blanket-44d05",
+        "title": "Pine Picnic Blanket",
+        "brand": "Aster & Field",
+        "description": "The Pine Picnic Blanket pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "pine",
+          "picnic blanket",
+          "northstar"
+        ],
+        "price_cents": 8099,
+        "compare_at_cents": null,
+        "inventory": 22,
+        "rating_basis_points": 493,
+        "review_count": 740,
+        "featured_rank": 5,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d05",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d06",
+        "sku": "NS-1101-006",
+        "slug": "cairn-trekking-set-44d06",
+        "title": "Cairn Trekking Set",
+        "brand": "Morrow Works",
+        "description": "The Cairn Trekking Set pairs considered materials with an easy, durable design. Made for outdoor routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_outdoor",
+        "tags": [
+          "outdoor",
+          "cairn",
+          "trekking set",
+          "northstar"
+        ],
+        "price_cents": 6799,
+        "compare_at_cents": null,
+        "inventory": 9,
+        "rating_basis_points": 438,
+        "review_count": 64,
+        "featured_rank": 6,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d06",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d07",
+        "sku": "NS-1101-007",
+        "slug": "ember-pour-over-set-44d07",
+        "title": "Ember Pour-Over Set",
+        "brand": "Rill Supply",
+        "description": "The Ember Pour-Over Set pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "ember",
+          "pour-over set",
+          "northstar"
+        ],
+        "price_cents": 9199,
+        "compare_at_cents": null,
+        "inventory": 4,
+        "rating_basis_points": 495,
+        "review_count": 638,
+        "featured_rank": 7,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d07",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d08",
+        "sku": "NS-1101-008",
+        "slug": "field-prep-board-44d08",
+        "title": "Field Prep Board",
+        "brand": "Aster & Field",
+        "description": "The Field Prep Board pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "field",
+          "prep board",
+          "northstar"
+        ],
+        "price_cents": 10699,
+        "compare_at_cents": 13399,
+        "inventory": 3,
+        "rating_basis_points": 468,
+        "review_count": 831,
+        "featured_rank": 8,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d08",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d09",
+        "sku": "NS-1101-009",
+        "slug": "arc-chef-knife-44d09",
+        "title": "Arc Chef Knife",
+        "brand": "Morrow Works",
+        "description": "The Arc Chef Knife pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "arc",
+          "chef knife",
+          "northstar"
+        ],
+        "price_cents": 6499,
+        "compare_at_cents": null,
+        "inventory": 26,
+        "rating_basis_points": 411,
+        "review_count": 99,
+        "featured_rank": 9,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d09",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d0a",
+        "sku": "NS-1101-010",
+        "slug": "morrow-tea-kettle-44d0a",
+        "title": "Morrow Tea Kettle",
+        "brand": "Tandem House",
+        "description": "The Morrow Tea Kettle pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "morrow",
+          "tea kettle",
+          "northstar"
+        ],
+        "price_cents": 1899,
+        "compare_at_cents": null,
+        "inventory": 5,
+        "rating_basis_points": 432,
+        "review_count": 432,
+        "featured_rank": 10,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0a",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d0b",
+        "sku": "NS-1101-011",
+        "slug": "vale-storage-trio-44d0b",
+        "title": "Vale Storage Trio",
+        "brand": "Common North",
+        "description": "The Vale Storage Trio pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "vale",
+          "storage trio",
+          "northstar"
+        ],
+        "price_cents": 5099,
+        "compare_at_cents": null,
+        "inventory": 6,
+        "rating_basis_points": 475,
+        "review_count": 250,
+        "featured_rank": 11,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0b",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d0c",
+        "sku": "NS-1101-012",
+        "slug": "gather-serving-bowl-44d0c",
+        "title": "Gather Serving Bowl",
+        "brand": "Rill Supply",
+        "description": "The Gather Serving Bowl pairs considered materials with an easy, durable design. Made for kitchen routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_kitchen",
+        "tags": [
+          "kitchen",
+          "gather",
+          "serving bowl",
+          "northstar"
+        ],
+        "price_cents": 9699,
+        "compare_at_cents": 11899,
+        "inventory": 17,
+        "rating_basis_points": 405,
+        "review_count": 144,
+        "featured_rank": 12,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0c",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d0d",
+        "sku": "NS-1101-013",
+        "slug": "focus-task-lamp-44d0d",
+        "title": "Focus Task Lamp",
+        "brand": "Tandem House",
+        "description": "The Focus Task Lamp pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "focus",
+          "task lamp",
+          "northstar"
+        ],
+        "price_cents": 2599,
+        "compare_at_cents": null,
+        "inventory": 3,
+        "rating_basis_points": 480,
+        "review_count": 765,
+        "featured_rank": 13,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0d",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d0e",
+        "sku": "NS-1101-014",
+        "slug": "draft-notebook-set-44d0e",
+        "title": "Draft Notebook Set",
+        "brand": "Common North",
+        "description": "The Draft Notebook Set pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "draft",
+          "notebook set",
+          "northstar"
+        ],
+        "price_cents": 9099,
+        "compare_at_cents": null,
+        "inventory": 14,
+        "rating_basis_points": 498,
+        "review_count": 322,
+        "featured_rank": 14,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0e",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d0f",
+        "sku": "NS-1101-015",
+        "slug": "calm-desk-mat-44d0f",
+        "title": "Calm Desk Mat",
+        "brand": "Rill Supply",
+        "description": "The Calm Desk Mat pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "calm",
+          "desk mat",
+          "northstar"
+        ],
+        "price_cents": 8199,
+        "compare_at_cents": null,
+        "inventory": 12,
+        "rating_basis_points": 397,
+        "review_count": 416,
+        "featured_rank": 15,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d0f",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d10",
+        "sku": "NS-1101-016",
+        "slug": "studio-laptop-stand-44d10",
+        "title": "Studio Laptop Stand",
+        "brand": "Aster & Field",
+        "description": "The Studio Laptop Stand pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "studio",
+          "laptop stand",
+          "northstar"
+        ],
+        "price_cents": 13099,
+        "compare_at_cents": 15999,
+        "inventory": 18,
+        "rating_basis_points": 448,
+        "review_count": 432,
+        "featured_rank": 16,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d10",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d11",
+        "sku": "NS-1101-017",
+        "slug": "tidy-cable-kit-44d11",
+        "title": "Tidy Cable Kit",
+        "brand": "Morrow Works",
+        "description": "The Tidy Cable Kit pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "tidy",
+          "cable kit",
+          "northstar"
+        ],
+        "price_cents": 4399,
+        "compare_at_cents": null,
+        "inventory": 13,
+        "rating_basis_points": 489,
+        "review_count": 394,
+        "featured_rank": 17,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d11",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d12",
+        "sku": "NS-1101-018",
+        "slug": "axis-pen-cup-44d12",
+        "title": "Axis Pen Cup",
+        "brand": "Tandem House",
+        "description": "The Axis Pen Cup pairs considered materials with an easy, durable design. Made for workspace routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_workspace",
+        "tags": [
+          "workspace",
+          "axis",
+          "pen cup",
+          "northstar"
+        ],
+        "price_cents": 14199,
+        "compare_at_cents": null,
+        "inventory": 22,
+        "rating_basis_points": 413,
+        "review_count": 635,
+        "featured_rank": 18,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d12",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d13",
+        "sku": "NS-1101-019",
+        "slug": "cloud-knit-throw-44d13",
+        "title": "Cloud Knit Throw",
+        "brand": "Aster & Field",
+        "description": "The Cloud Knit Throw pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "cloud",
+          "knit throw",
+          "northstar"
+        ],
+        "price_cents": 10999,
+        "compare_at_cents": null,
+        "inventory": 12,
+        "rating_basis_points": 367,
+        "review_count": 385,
+        "featured_rank": 19,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d13",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d14",
+        "sku": "NS-1101-020",
+        "slug": "hearth-scent-warmer-44d14",
+        "title": "Hearth Scent Warmer",
+        "brand": "Morrow Works",
+        "description": "The Hearth Scent Warmer pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "hearth",
+          "scent warmer",
+          "northstar"
+        ],
+        "price_cents": 12299,
+        "compare_at_cents": 13699,
+        "inventory": 14,
+        "rating_basis_points": 361,
+        "review_count": 282,
+        "featured_rank": 20,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d14",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d15",
+        "sku": "NS-1101-021",
+        "slug": "dawn-linen-pillow-44d15",
+        "title": "Dawn Linen Pillow",
+        "brand": "Tandem House",
+        "description": "The Dawn Linen Pillow pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "dawn",
+          "linen pillow",
+          "northstar"
+        ],
+        "price_cents": 12999,
+        "compare_at_cents": null,
+        "inventory": 28,
+        "rating_basis_points": 360,
+        "review_count": 513,
+        "featured_rank": 21,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d15",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d16",
+        "sku": "NS-1101-022",
+        "slug": "still-bedside-tray-44d16",
+        "title": "Still Bedside Tray",
+        "brand": "Common North",
+        "description": "The Still Bedside Tray pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "still",
+          "bedside tray",
+          "northstar"
+        ],
+        "price_cents": 10999,
+        "compare_at_cents": null,
+        "inventory": 18,
+        "rating_basis_points": 486,
+        "review_count": 607,
+        "featured_rank": 22,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d16",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d17",
+        "sku": "NS-1101-023",
+        "slug": "grove-planter-pair-44d17",
+        "title": "Grove Planter Pair",
+        "brand": "Rill Supply",
+        "description": "The Grove Planter Pair pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "grove",
+          "planter pair",
+          "northstar"
+        ],
+        "price_cents": 10799,
+        "compare_at_cents": null,
+        "inventory": 5,
+        "rating_basis_points": 367,
+        "review_count": 66,
+        "featured_rank": 23,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d17",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d18",
+        "sku": "NS-1101-024",
+        "slug": "halo-table-light-44d18",
+        "title": "Halo Table Light",
+        "brand": "Aster & Field",
+        "description": "The Halo Table Light pairs considered materials with an easy, durable design. Made for home routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_home",
+        "tags": [
+          "home",
+          "halo",
+          "table light",
+          "northstar"
+        ],
+        "price_cents": 2399,
+        "compare_at_cents": 4499,
+        "inventory": 23,
+        "rating_basis_points": 399,
+        "review_count": 361,
+        "featured_rank": 24,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d18",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d19",
+        "sku": "NS-1101-025",
+        "slug": "waypoint-weekender-44d19",
+        "title": "Waypoint Weekender",
+        "brand": "Common North",
+        "description": "The Waypoint Weekender pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "waypoint",
+          "weekender",
+          "northstar"
+        ],
+        "price_cents": 3099,
+        "compare_at_cents": null,
+        "inventory": 4,
+        "rating_basis_points": 494,
+        "review_count": 331,
+        "featured_rank": 25,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d19",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d1a",
+        "sku": "NS-1101-026",
+        "slug": "roam-packing-cubes-44d1a",
+        "title": "Roam Packing Cubes",
+        "brand": "Rill Supply",
+        "description": "The Roam Packing Cubes pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "roam",
+          "packing cubes",
+          "northstar"
+        ],
+        "price_cents": 13399,
+        "compare_at_cents": null,
+        "inventory": 26,
+        "rating_basis_points": 363,
+        "review_count": 383,
+        "featured_rank": 26,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1a",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d1b",
+        "sku": "NS-1101-027",
+        "slug": "transit-tech-pouch-44d1b",
+        "title": "Transit Tech Pouch",
+        "brand": "Aster & Field",
+        "description": "The Transit Tech Pouch pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "transit",
+          "tech pouch",
+          "northstar"
+        ],
+        "price_cents": 13999,
+        "compare_at_cents": null,
+        "inventory": 15,
+        "rating_basis_points": 460,
+        "review_count": 370,
+        "featured_rank": 27,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1b",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d1c",
+        "sku": "NS-1101-028",
+        "slug": "atlas-bottle-44d1c",
+        "title": "Atlas Bottle",
+        "brand": "Morrow Works",
+        "description": "The Atlas Bottle pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "atlas",
+          "bottle",
+          "northstar"
+        ],
+        "price_cents": 8599,
+        "compare_at_cents": 9699,
+        "inventory": 21,
+        "rating_basis_points": 498,
+        "review_count": 524,
+        "featured_rank": 28,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1c",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d1d",
+        "sku": "NS-1101-029",
+        "slug": "nomad-sleep-mask-44d1d",
+        "title": "Nomad Sleep Mask",
+        "brand": "Tandem House",
+        "description": "The Nomad Sleep Mask pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "nomad",
+          "sleep mask",
+          "northstar"
+        ],
+        "price_cents": 13899,
+        "compare_at_cents": null,
+        "inventory": 23,
+        "rating_basis_points": 374,
+        "review_count": 581,
+        "featured_rank": 29,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1d",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d1e",
+        "sku": "NS-1101-030",
+        "slug": "gate-passport-folio-44d1e",
+        "title": "Gate Passport Folio",
+        "brand": "Common North",
+        "description": "The Gate Passport Folio pairs considered materials with an easy, durable design. Made for travel routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_travel",
+        "tags": [
+          "travel",
+          "gate",
+          "passport folio",
+          "northstar"
+        ],
+        "price_cents": 3699,
+        "compare_at_cents": null,
+        "inventory": 12,
+        "rating_basis_points": 422,
+        "review_count": 582,
+        "featured_rank": 30,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1e",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d1f",
+        "sku": "NS-1101-031",
+        "slug": "align-yoga-mat-44d1f",
+        "title": "Align Yoga Mat",
+        "brand": "Morrow Works",
+        "description": "The Align Yoga Mat pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "align",
+          "yoga mat",
+          "northstar"
+        ],
+        "price_cents": 11699,
+        "compare_at_cents": null,
+        "inventory": 4,
+        "rating_basis_points": 386,
+        "review_count": 621,
+        "featured_rank": 31,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d1f",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d20",
+        "sku": "NS-1101-032",
+        "slug": "recover-massage-set-44d20",
+        "title": "Recover Massage Set",
+        "brand": "Tandem House",
+        "description": "The Recover Massage Set pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "recover",
+          "massage set",
+          "northstar"
+        ],
+        "price_cents": 2399,
+        "compare_at_cents": 5299,
+        "inventory": 28,
+        "rating_basis_points": 467,
+        "review_count": 453,
+        "featured_rank": 32,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d20",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d21",
+        "sku": "NS-1101-033",
+        "slug": "flow-resistance-bands-44d21",
+        "title": "Flow Resistance Bands",
+        "brand": "Common North",
+        "description": "The Flow Resistance Bands pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "flow",
+          "resistance bands",
+          "northstar"
+        ],
+        "price_cents": 12999,
+        "compare_at_cents": null,
+        "inventory": 23,
+        "rating_basis_points": 364,
+        "review_count": 248,
+        "featured_rank": 33,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d21",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d22",
+        "sku": "NS-1101-034",
+        "slug": "breathe-meditation-cushion-44d22",
+        "title": "Breathe Meditation Cushion",
+        "brand": "Rill Supply",
+        "description": "The Breathe Meditation Cushion pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "breathe",
+          "meditation cushion",
+          "northstar"
+        ],
+        "price_cents": 8899,
+        "compare_at_cents": null,
+        "inventory": 10,
+        "rating_basis_points": 408,
+        "review_count": 125,
+        "featured_rank": 34,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d22",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d23",
+        "sku": "NS-1101-035",
+        "slug": "core-balance-board-44d23",
+        "title": "Core Balance Board",
+        "brand": "Aster & Field",
+        "description": "The Core Balance Board pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "core",
+          "balance board",
+          "northstar"
+        ],
+        "price_cents": 11899,
+        "compare_at_cents": null,
+        "inventory": 11,
+        "rating_basis_points": 453,
+        "review_count": 250,
+        "featured_rank": 35,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d23",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d24",
+        "sku": "NS-1101-036",
+        "slug": "rest-eye-pillow-44d24",
+        "title": "Rest Eye Pillow",
+        "brand": "Morrow Works",
+        "description": "The Rest Eye Pillow pairs considered materials with an easy, durable design. Made for wellness routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_wellness",
+        "tags": [
+          "wellness",
+          "rest",
+          "eye pillow",
+          "northstar"
+        ],
+        "price_cents": 2299,
+        "compare_at_cents": 4499,
+        "inventory": 20,
+        "rating_basis_points": 404,
+        "review_count": 473,
+        "featured_rank": 36,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d24",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d25",
+        "sku": "NS-1101-037",
+        "slug": "pulse-wireless-speaker-44d25",
+        "title": "Pulse Wireless Speaker",
+        "brand": "Rill Supply",
+        "description": "The Pulse Wireless Speaker pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "pulse",
+          "wireless speaker",
+          "northstar"
+        ],
+        "price_cents": 11199,
+        "compare_at_cents": null,
+        "inventory": 8,
+        "rating_basis_points": 450,
+        "review_count": 9,
+        "featured_rank": 37,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d25",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d26",
+        "sku": "NS-1101-038",
+        "slug": "quiet-over-ear-headphones-44d26",
+        "title": "Quiet Over-Ear Headphones",
+        "brand": "Aster & Field",
+        "description": "The Quiet Over-Ear Headphones pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "quiet",
+          "over-ear headphones",
+          "northstar"
+        ],
+        "price_cents": 4399,
+        "compare_at_cents": null,
+        "inventory": 8,
+        "rating_basis_points": 499,
+        "review_count": 856,
+        "featured_rank": 38,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d26",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d27",
+        "sku": "NS-1101-039",
+        "slug": "echo-mini-radio-44d27",
+        "title": "Echo Mini Radio",
+        "brand": "Morrow Works",
+        "description": "The Echo Mini Radio pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "echo",
+          "mini radio",
+          "northstar"
+        ],
+        "price_cents": 7099,
+        "compare_at_cents": null,
+        "inventory": 14,
+        "rating_basis_points": 384,
+        "review_count": 567,
+        "featured_rank": 39,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d27",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d28",
+        "sku": "NS-1101-040",
+        "slug": "tempo-earbuds-44d28",
+        "title": "Tempo Earbuds",
+        "brand": "Tandem House",
+        "description": "The Tempo Earbuds pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "tempo",
+          "earbuds",
+          "northstar"
+        ],
+        "price_cents": 13099,
+        "compare_at_cents": 15199,
+        "inventory": 21,
+        "rating_basis_points": 407,
+        "review_count": 401,
+        "featured_rank": 40,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d28",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d29",
+        "sku": "NS-1101-041",
+        "slug": "chord-desktop-speaker-44d29",
+        "title": "Chord Desktop Speaker",
+        "brand": "Common North",
+        "description": "The Chord Desktop Speaker pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "chord",
+          "desktop speaker",
+          "northstar"
+        ],
+        "price_cents": 7899,
+        "compare_at_cents": null,
+        "inventory": 27,
+        "rating_basis_points": 386,
+        "review_count": 254,
+        "featured_rank": 41,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d29",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d2a",
+        "sku": "NS-1101-042",
+        "slug": "signal-travel-case-44d2a",
+        "title": "Signal Travel Case",
+        "brand": "Rill Supply",
+        "description": "The Signal Travel Case pairs considered materials with an easy, durable design. Made for audio routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_audio",
+        "tags": [
+          "audio",
+          "signal",
+          "travel case",
+          "northstar"
+        ],
+        "price_cents": 5199,
+        "compare_at_cents": null,
+        "inventory": 18,
+        "rating_basis_points": 490,
+        "review_count": 123,
+        "featured_rank": 42,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2a",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      },
+      {
+        "id": "prod_44d2b",
+        "sku": "NS-1101-043",
+        "slug": "foundry-key-clip-44d2b",
+        "title": "Foundry Key Clip",
+        "brand": "Tandem House",
+        "description": "The Foundry Key Clip pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "foundry",
+          "key clip",
+          "northstar"
+        ],
+        "price_cents": 12099,
+        "compare_at_cents": null,
+        "inventory": 8,
+        "rating_basis_points": 431,
+        "review_count": 413,
+        "featured_rank": 43,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2b",
+          "background": "#E9EEE2",
+          "accent": "#657536"
+        }
+      },
+      {
+        "id": "prod_44d2c",
+        "sku": "NS-1101-044",
+        "slug": "slate-card-wallet-44d2c",
+        "title": "Slate Card Wallet",
+        "brand": "Common North",
+        "description": "The Slate Card Wallet pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "slate",
+          "card wallet",
+          "northstar"
+        ],
+        "price_cents": 11199,
+        "compare_at_cents": 12599,
+        "inventory": 18,
+        "rating_basis_points": 404,
+        "review_count": 778,
+        "featured_rank": 44,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2c",
+          "background": "#EEE8F4",
+          "accent": "#69508E"
+        }
+      },
+      {
+        "id": "prod_44d2d",
+        "sku": "NS-1101-045",
+        "slug": "beacon-pocket-torch-44d2d",
+        "title": "Beacon Pocket Torch",
+        "brand": "Rill Supply",
+        "description": "The Beacon Pocket Torch pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "beacon",
+          "pocket torch",
+          "northstar"
+        ],
+        "price_cents": 1499,
+        "compare_at_cents": null,
+        "inventory": 4,
+        "rating_basis_points": 471,
+        "review_count": 370,
+        "featured_rank": 45,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2d",
+          "background": "#E7EFEA",
+          "accent": "#1F6B55"
+        }
+      },
+      {
+        "id": "prod_44d2e",
+        "sku": "NS-1101-046",
+        "slug": "ledger-utility-pouch-44d2e",
+        "title": "Ledger Utility Pouch",
+        "brand": "Aster & Field",
+        "description": "The Ledger Utility Pouch pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "ledger",
+          "utility pouch",
+          "northstar"
+        ],
+        "price_cents": 7099,
+        "compare_at_cents": null,
+        "inventory": 16,
+        "rating_basis_points": 366,
+        "review_count": 443,
+        "featured_rank": 46,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2e",
+          "background": "#F4EBDD",
+          "accent": "#B45A32"
+        }
+      },
+      {
+        "id": "prod_44d2f",
+        "sku": "NS-1101-047",
+        "slug": "mark-roller-pen-44d2f",
+        "title": "Mark Roller Pen",
+        "brand": "Morrow Works",
+        "description": "The Mark Roller Pen pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "mark",
+          "roller pen",
+          "northstar"
+        ],
+        "price_cents": 1499,
+        "compare_at_cents": null,
+        "inventory": 15,
+        "rating_basis_points": 405,
+        "review_count": 460,
+        "featured_rank": 47,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d2f",
+          "background": "#E6EAF3",
+          "accent": "#364E8A"
+        }
+      },
+      {
+        "id": "prod_44d30",
+        "sku": "NS-1101-048",
+        "slug": "pivot-multi-tool-44d30",
+        "title": "Pivot Multi Tool",
+        "brand": "Tandem House",
+        "description": "The Pivot Multi Tool pairs considered materials with an easy, durable design. Made for everyday routines, it packs useful detail into a calm profile.",
+        "category_id": "cat_everyday",
+        "tags": [
+          "everyday",
+          "pivot",
+          "multi tool",
+          "northstar"
+        ],
+        "price_cents": 10699,
+        "compare_at_cents": 12899,
+        "inventory": 21,
+        "rating_basis_points": 385,
+        "review_count": 487,
+        "featured_rank": 48,
+        "image": {
+          "kind": "generated-svg",
+          "key": "product-44d30",
+          "background": "#F2E7EC",
+          "accent": "#8A3F63"
+        }
+      }
+    ]
+  },
+  "accounts": [
+    {
+      "id": "user_seed_1101_1",
+      "email": "shopper1.1101@example.test",
+      "password": "Northstar1101Test1",
+      "verified": true,
+      "full_name": "Ava Chen"
+    },
+    {
+      "id": "user_seed_1101_2",
+      "email": "shopper2.1101@example.test",
+      "password": "Northstar1101Test2",
+      "verified": true,
+      "full_name": "Mateo Rivera"
+    },
+    {
+      "id": "user_seed_1101_3",
+      "email": "shopper3.1101@example.test",
+      "password": "Northstar1101Test3",
+      "verified": true,
+      "full_name": "Priya Shah"
+    },
+    {
+      "id": "user_seed_1101_4",
+      "email": "shopper4.1101@example.test",
+      "password": "Northstar1101Test4",
+      "verified": true,
+      "full_name": "Noah Williams"
+    }
+  ],
+  "scenario": {
+    "kind": "exploration",
+    "content_salt": "northstar-content-1101",
+    "stock_one_product_id": null
+  }
+}

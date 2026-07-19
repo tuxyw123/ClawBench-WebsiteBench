@@ -1,0 +1,77 @@
+{
+  "$schema": "../../../claw-bench-v2/schemas/task.schema.json",
+  "split": "dev",
+  "metadata": {
+    "task_id": 900776,
+    "metaclass": "nonprofit-charity",
+    "class": "volunteer-signup",
+    "description": "Search local Idealist nonprofit jobs for a Washington, DC Program Manager role and complete a local application.",
+    "sites_involved": [
+      "host.docker.internal:8135"
+    ],
+    "platform": "idealist",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_task_id": 776,
+    "source_task_path": "test-cases/v2/v2-776-nonprofit-charity-volunteer-signup-idealist",
+    "clone_path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist",
+    "server_command": "python3 website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/server.py --host 0.0.0.0 --port 8135",
+    "verify_command": "python3 website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/tools/verify_task.py --clone http://127.0.0.1:8135",
+    "dev_only": true
+  },
+  "instruction": "Open http://host.docker.internal:8135/. Search for Program Manager jobs in Washington, DC, set Job type to Full Time and Organization type to Nonprofit, inspect the matching results, and select the deterministic Dumbarton Arts & Education Program Manager position. Create an applicant account with the assigned Alex Green identity and password Idealist!42, sign in, use the assigned Alex_Green_Resume.pdf profile resume, write a substantive cover letter tailored to Dumbarton Arts & Education and the Program Manager role, confirm the application is accurate, review it, and submit the local application.",
+  "eval_schema": {
+    "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8135/data/userdashboard/missing-info$",
+    "method": "POST",
+    "body": {
+      "firstName": "Alex",
+      "lastName": "Green",
+      "email": "alex.green.uoft@clawbench.cc",
+      "location": "Toronto, Ontario, Canada",
+      "resumeFileName": "Alex_Green_Resume.pdf",
+      "intent": "COMPLETE_IDEALIST_PROFILE"
+    }
+  },
+  "step_schema": [
+    {
+      "name": "register_alex_account",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8135/api/auth/register$",
+      "method": "POST",
+      "body": {
+        "accountType": "APPLICANT",
+        "firstName": "Alex",
+        "lastName": "Green",
+        "email": "alex.green.uoft@clawbench.cc",
+        "postalCode": "M5S 2H7",
+        "termsAccepted": true
+      }
+    },
+    {
+      "name": "save_reviewed_application",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8135/api/applications/draft$",
+      "method": "POST",
+      "body": {
+        "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+        "accuracyConfirmed": true
+      }
+    },
+    {
+      "name": "stage_local_application",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8135/api/applications/submit$",
+      "method": "POST",
+      "body": {
+        "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+        "accuracyConfirmed": true
+      }
+    }
+  ],
+  "time_limit": 30,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "PASS only when an authenticated local Alex Green applicant account exists, the exact Program Manager / Washington, DC / Full Time / Nonprofit search was recorded, the Dumbarton Arts & Education target listing was viewed, a substantive role-specific application with the assigned profile resume was reviewed, exactly one application row is SUBMITTED_LOCALLY with delivery NONE_LOCAL_REPLICA, the account profile_complete flag is 1, and exactly one successful application/json POST to /data/userdashboard/missing-info on port 8135 has the exact six-field terminal payload. The application payload, consumed draft, successful stage request, successful terminal request, My applications UI, /api/state, request journal, and SQLite rows must agree. Terminal capture or profile completion without the full application is insufficient. Reject another job/location/type/organization, weak or unrelated cover text, another identity/resume, malformed or stale/direct state, pending-only state, duplicate successful completion, unauthenticated state, or any real Idealist, employer, email, upload, identity, analytics, or advertising effect.",
+    "reference_solution": "Open the local replica, search Program Manager in Washington, DC with Full Time and Nonprofit selected, open the sole Dumbarton Arts & Education result, and apply. Register Alex Green using alex.green.uoft@clawbench.cc, M5S 2H7, and Idealist!42, accept the local terms, then sign in. Keep the assigned resume, write at least 180 characters that explicitly names Dumbarton Arts & Education and Program Manager, confirm accuracy, review, and submit. Confirm the completion screen and My applications show one Submitted locally application with no delivery."
+  }
+}

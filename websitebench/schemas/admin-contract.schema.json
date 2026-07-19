@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.admin.v1.json",
+  "title": "Web2Code2Web benchmark admin payloads",
+  "$defs": {
+    "utc_timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "health_response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "status"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "status": {"const": "ok"}
+      }
+    },
+    "reset_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "run_id", "seed", "now", "fixture_path"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+        "seed": {"type": "integer", "minimum": 0},
+        "now": {"$ref": "#/$defs/utc_timestamp"},
+        "fixture_path": {"type": "string", "pattern": "^/bench-fixtures/[A-Za-z0-9][A-Za-z0-9._-]*\\.json$"}
+      }
+    },
+    "reset_response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "status", "run_id", "seed", "now"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "status": {"const": "reset"},
+        "run_id": {"type": "string"},
+        "seed": {"type": "integer", "minimum": 0},
+        "now": {"$ref": "#/$defs/utc_timestamp"}
+      }
+    },
+    "clock_advance_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seconds"],
+      "properties": {
+        "seconds": {"type": "integer", "minimum": 0, "maximum": 2678400}
+      }
+    },
+    "clock_response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "now"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "now": {"$ref": "#/$defs/utc_timestamp"}
+      }
+    },
+    "state_response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "run_id", "seed", "now", "users", "products",
+        "guest_carts", "account_carts", "orders", "counters"
+      ],
+      "properties": {
+        "schema_version": {"const": "websitebench.state.v1"},
+        "run_id": {"type": "string"},
+        "seed": {"type": "integer", "minimum": 0},
+        "now": {"$ref": "#/$defs/utc_timestamp"},
+        "users": {"type": "array", "items": {"$ref": "#/$defs/state_user"}},
+        "products": {"type": "array", "items": {"$ref": "#/$defs/state_product"}},
+        "guest_carts": {"type": "array", "items": {"$ref": "#/$defs/state_guest_cart"}},
+        "account_carts": {"type": "array", "items": {"$ref": "#/$defs/state_account_cart"}},
+        "orders": {"type": "array", "items": {"$ref": "#/$defs/state_order"}},
+        "counters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sessions", "verification_tokens", "reset_tokens", "idempotency_records"],
+          "properties": {
+            "sessions": {"type": "integer", "minimum": 0},
+            "verification_tokens": {"type": "integer", "minimum": 0},
+            "reset_tokens": {"type": "integer", "minimum": 0},
+            "idempotency_records": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "state_user": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "email", "verified", "full_name"],
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "verified": {"type": "boolean"},
+        "full_name": {"type": "string"}
+      }
+    },
+    "state_product": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sku", "price_cents", "inventory"],
+      "properties": {
+        "id": {"type": "string"},
+        "sku": {"type": "string"},
+        "price_cents": {"type": "integer"},
+        "inventory": {"type": "integer", "minimum": 0}
+      }
+    },
+    "cart_line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_id", "quantity"],
+      "properties": {
+        "product_id": {"type": "string"},
+        "quantity": {"type": "integer", "minimum": 1, "maximum": 5}
+      }
+    },
+    "state_guest_cart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["device_key_digest", "lines"],
+      "properties": {
+        "device_key_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "lines": {"type": "array", "items": {"$ref": "#/$defs/cart_line"}}
+      }
+    },
+    "state_account_cart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["user_id", "lines"],
+      "properties": {
+        "user_id": {"type": "string"},
+        "lines": {"type": "array", "items": {"$ref": "#/$defs/cart_line"}}
+      }
+    },
+    "state_order": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "order_number", "user_id", "status", "placed_at", "cancelled_at",
+        "subtotal_cents", "shipping_cents", "tax_cents", "total_cents",
+        "shipping_method", "shipping_address", "card_last_four", "lines"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "order_number": {"type": "string"},
+        "user_id": {"type": "string"},
+        "status": {"enum": ["placed", "cancelled"]},
+        "placed_at": {"$ref": "#/$defs/utc_timestamp"},
+        "cancelled_at": {"anyOf": [{"$ref": "#/$defs/utc_timestamp"}, {"type": "null"}]},
+        "subtotal_cents": {"type": "integer", "minimum": 0},
+        "shipping_cents": {"type": "integer", "minimum": 0},
+        "tax_cents": {"type": "integer", "minimum": 0},
+        "total_cents": {"type": "integer", "minimum": 0},
+        "shipping_method": {"enum": ["standard", "express"]},
+        "shipping_address": {"$ref": "#/$defs/shipping_address"},
+        "card_last_four": {"type": "string", "pattern": "^[0-9]{4}$"},
+        "lines": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/order_line"}}
+      }
+    },
+    "shipping_address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_name", "line1", "line2", "city", "state", "zip_code"],
+      "properties": {
+        "full_name": {"type": "string"},
+        "line1": {"type": "string"},
+        "line2": {"type": "string"},
+        "city": {"type": "string"},
+        "state": {"type": "string", "pattern": "^[A-Z]{2}$"},
+        "zip_code": {"type": "string", "pattern": "^[0-9]{5}$"}
+      }
+    },
+    "order_line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_id", "sku", "title", "quantity", "unit_price_cents"],
+      "properties": {
+        "product_id": {"type": "string"},
+        "sku": {"type": "string"},
+        "title": {"type": "string"},
+        "quantity": {"type": "integer", "minimum": 1, "maximum": 5},
+        "unit_price_cents": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

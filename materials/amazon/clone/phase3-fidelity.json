@@ -1,0 +1,50 @@
+{
+  "format": "clawbench.amazon.phase3-fidelity.v1",
+  "gate": 3,
+  "sourceBaseline": {
+    "snapshotId": "amazon-en-us-new-york-20260718T060828Z",
+    "reportSha256": "a721b3e8d1a8ddf971fde6e7dcee00e5b22eaed64aef8ad00c0c4e32cf6828e0",
+    "networkPolicy": "frozen-evidence-only"
+  },
+  "cloneBaseline": {
+    "locale": "en-US",
+    "currency": "USD",
+    "deliveryRegion": "New York 10001"
+  },
+  "viewports": {
+    "desktop": {"width": 1365, "height": 900},
+    "desktop-compact": {"width": 1024, "height": 768},
+    "tablet": {"width": 768, "height": 1024},
+    "mobile": {"width": 390, "height": 844},
+    "mobile-small": {"width": 320, "height": 568}
+  },
+  "directVisualThresholds": {
+    "composite": 0.35,
+    "ssim": 0.18,
+    "edge_f1": 0.08,
+    "color_histogram": 0.55,
+    "normalized_mae_max": 0.5
+  },
+  "scenes": [
+    {"source": "storefront-home-live", "clonePath": "/", "mode": "unavailable", "ready": ".home-page", "minimum": 1, "reason": "Gate 1 source returned an HTTP 202 blank protection viewport."},
+    {"source": "storefront-department-drawer-live", "clonePath": "/", "action": "open-menu", "mode": "unavailable", "ready": "#menu-dialog[open]", "minimum": 1, "reason": "Gate 1 protected page could not paint the requested drawer."},
+    {"source": "storefront-search-autocomplete-live", "clonePath": "/", "action": "autocomplete", "mode": "unavailable", "ready": ".autocomplete-panel [role=option]", "minimum": 2, "reason": "Gate 1 protected page could not paint autocomplete."},
+    {"source": "all-departments-best-sellers-live", "clonePath": "/Best-Sellers/zgbs", "mode": "direct-visual", "ready": ".best-rails .product-rail", "minimum": 10},
+    {"source": "best-sellers-external-ssd-live", "clonePath": "/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011", "mode": "structural", "ready": ".ranked-product", "minimum": 6, "reason": "Source DOM was rich but viewport paint was incomplete."},
+    {"source": "portable-ssd-search-live", "clonePath": "/s?k=portable+ssd", "mode": "structural", "ready": ".search-result", "minimum": 6},
+    {"source": "portable-ssd-filtered-search-live", "clonePath": "/s?k=portable+ssd&i=computers&rh=n%3A1292110011&s=review-rank", "mode": "direct-visual", "ready": ".search-result", "minimum": 6},
+    {"source": "catalog-no-results-live", "clonePath": "/s?k=clawbench-impossible-product-9f3a8c", "mode": "structural", "ready": ".no-results", "minimum": 1},
+    {"source": "computers-category-live", "clonePath": "/Computers-Accessories/b/?node=541966", "mode": "direct-visual", "ready": ".computers-page", "minimum": 1},
+    {"source": "electronics-category-live", "clonePath": "/s?k=electronics&i=electronics", "mode": "structural", "ready": ".search-result", "minimum": 6},
+    {"source": "home-kitchen-category-live", "clonePath": "/s?k=home&i=home", "mode": "structural", "ready": ".search-result", "minimum": 6},
+    {"source": "books-category-live", "clonePath": "/s?k=books&i=books", "mode": "structural", "ready": ".search-result", "minimum": 6},
+    {"source": "todays-deals-live", "clonePath": "/gp/goldbox/", "mode": "structural", "ready": ".deals-grid .compact-card", "minimum": 20},
+    {"source": "samsung-t7-product-live-boundary", "clonePath": "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8", "mode": "unavailable", "ready": "[data-add-form]", "minimum": 1, "reason": "Live source viewport was a protection boundary; stable GET response render is mapped separately."},
+    {"source": "empty-cart-live", "clonePath": "/gp/cart/view.html", "mode": "direct-visual", "ready": ".empty-cart-content", "minimum": 1},
+    {"source": "account-entry-live", "clonePath": "/account", "mode": "direct-visual", "ready": ".account-card", "minimum": 12},
+    {"source": "orders-entry-live", "clonePath": "/account/orders", "mode": "structural", "ready": ".safe-panel", "minimum": 1, "reason": "Clone preserves the sign-in trajectory but does not request credentials."},
+    {"source": "lists-entry-live", "clonePath": "/hz/wishlist/ls", "mode": "structural", "ready": ".lists-page", "minimum": 1},
+    {"source": "not-found-live", "clonePath": "/clawbench-local-replica-source-evidence-not-found", "expectedStatus": 404, "mode": "structural", "ready": ".not-found", "minimum": 1, "reason": "Semantic 404 recovery is required; source imagery is not reused."},
+    {"source": "samsung-t7-product-response-render", "clonePath": "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8", "mode": "structural", "ready": "[data-add-form]", "minimum": 1, "reason": "Stable source GET render used a desktop-like internal layout at narrow screenshots; responsive trajectory is compared structurally."}
+  ]
+}

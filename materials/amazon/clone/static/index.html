@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Amazon.com</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/vendor/lucide.min.js" defer></script>
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div id="app">
+      <header id="site-header" class="site-header" aria-label="Amazon navigation"></header>
+      <main id="main-content" tabindex="-1">
+        <section class="initial-loading" aria-label="Loading Amazon">
+          <div class="skeleton skeleton-hero"></div>
+          <div class="skeleton-row">
+            <div class="skeleton skeleton-panel"></div>
+            <div class="skeleton skeleton-panel"></div>
+            <div class="skeleton skeleton-panel"></div>
+          </div>
+          <span class="sr-only">Loading</span>
+        </section>
+      </main>
+      <footer id="site-footer" class="site-footer"></footer>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <dialog id="boundary-dialog" class="boundary-dialog" aria-labelledby="boundary-title">
+      <button class="dialog-close icon-button" type="button" data-close-dialog title="Close" aria-label="Close">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+      <div class="boundary-icon" aria-hidden="true"><i data-lucide="shield-check"></i></div>
+      <h2 id="boundary-title">This action stops here</h2>
+      <p id="boundary-message"></p>
+      <p class="boundary-note">No account, address, or payment information is requested or stored.</p>
+      <button class="amazon-button amazon-button-primary boundary-return" type="button" data-close-dialog>Continue shopping</button>
+    </dialog>
+
+    <dialog id="menu-dialog" class="menu-dialog" aria-labelledby="menu-title">
+      <div class="menu-heading">
+        <h2 id="menu-title"><i data-lucide="circle-user-round" aria-hidden="true"></i> Hello, sign in</h2>
+        <button class="icon-button menu-close" type="button" data-close-menu title="Close menu" aria-label="Close menu">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <nav aria-label="All departments">
+        <h3>Shop by Department</h3>
+        <a href="/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011">Best Sellers</a>
+        <a href="/s?k=external+solid+state+drives">Computers &amp; Accessories</a>
+        <a href="/s?k=portable+ssd">Data Storage</a>
+        <a href="/gp/cart/view.html">Your Cart</a>
+      </nav>
+    </dialog>
+
+    <dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title">
+      <div class="filter-dialog-heading">
+        <h2 id="filter-title">Filters</h2>
+        <button class="icon-button" type="button" data-close-filters title="Close filters" aria-label="Close filters">
+          <i data-lucide="x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="filter-dialog-content"></div>
+      <button class="amazon-button amazon-button-primary filter-done" type="button" data-close-filters>Show results</button>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-message">JavaScript is required to display this storefront.</div>
+    </noscript>
+  </body>
+</html>

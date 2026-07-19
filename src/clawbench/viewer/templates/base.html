@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}Clone Atlas{% endblock %} · WebsiteBench</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+  <script defer src="{{ url_for('static', path='app.js') }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>Clone Atlas<small>Corpus QA viewer</small></span></a>
+    {% if session %}
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Task Atlas</a><a href="/compare">Compare</a><a href="/methodology">Methodology</a>
+      </nav>
+      <div class="header-actions"><a class="link-button" href="/api/reviews/export">Export</a><span class="profile-pill">{{ profile }}</span><form method="post" action="/logout"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link-button" type="submit">Sign out</button></form></div>
+    {% endif %}
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer><span>WebsiteBench Clone Atlas</span><span>Readiness, human QA, official scores, and legacy evidence stay separate.</span></footer>
+</body>
+</html>

@@ -1,0 +1,104 @@
+{
+  "format": "clawbench.amazon.phase2-journeys.v1",
+  "gate": 2,
+  "journeys": [
+    {
+      "id": "J01",
+      "name": "Storefront discovery",
+      "start": "/",
+      "trajectory": ["load SSR storefront", "inspect modules", "follow a product rail"],
+      "terminal": "product discovery only"
+    },
+    {
+      "id": "J02",
+      "name": "Department drawer",
+      "start": "/",
+      "trajectory": ["open All menu", "expand a department", "follow a category"],
+      "terminal": "category page"
+    },
+    {
+      "id": "J03",
+      "name": "Search autocomplete",
+      "start": "/",
+      "trajectory": ["focus search", "type a partial query", "choose a suggestion"],
+      "terminal": "search or product route"
+    },
+    {
+      "id": "J04",
+      "name": "Populated search",
+      "start": "/s?k=electronics&i=electronics",
+      "trajectory": ["load results", "inspect product cards", "open a result"],
+      "terminal": "product detail"
+    },
+    {
+      "id": "J05",
+      "name": "Search refine sort paginate",
+      "start": "/s?k=premium",
+      "trajectory": ["apply department facet", "sort by price or rating", "change page"],
+      "terminal": "refined results"
+    },
+    {
+      "id": "J06",
+      "name": "No-results recovery",
+      "start": "/s?k=clawbench-no-such-product",
+      "trajectory": ["observe no results", "follow Best Sellers recovery"],
+      "terminal": "Best Sellers root"
+    },
+    {
+      "id": "J07",
+      "name": "Best Sellers discovery",
+      "start": "/Best-Sellers/zgbs",
+      "trajectory": ["inspect department rails", "open External SSD ranking", "select rank 2"],
+      "terminal": "Samsung T7 product"
+    },
+    {
+      "id": "J08",
+      "name": "Task product gallery and variants",
+      "start": "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8",
+      "trajectory": ["change gallery state", "select variant", "choose quantity 2"],
+      "terminal": "ready to add"
+    },
+    {
+      "id": "J09",
+      "name": "Exact task add to cart",
+      "start": "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8",
+      "trajectory": ["submit exact form", "follow same-origin redirect", "verify quantity and subtotal"],
+      "terminal": "cart quantity 2 subtotal $439.98"
+    },
+    {
+      "id": "J10",
+      "name": "Generic product cart",
+      "start": "/Stainless-Steel-Water-Bottle/dp/B0D4BOTTLE",
+      "trajectory": ["choose quantity", "add to cart", "update quantity", "delete item"],
+      "terminal": "updated cart"
+    },
+    {
+      "id": "J11",
+      "name": "Save for later",
+      "start": "/gp/cart/view.html",
+      "trajectory": ["save a cart item", "inspect Saved for later", "move item to cart"],
+      "terminal": "item restored to cart"
+    },
+    {
+      "id": "J12",
+      "name": "Session-local list",
+      "start": "/Stainless-Steel-Water-Bottle/dp/B0D4BOTTLE",
+      "trajectory": ["add to List", "open Your Lists", "remove from List"],
+      "terminal": "empty local list"
+    },
+    {
+      "id": "J13",
+      "name": "History and deals rediscovery",
+      "start": "/hz/history",
+      "trajectory": ["inspect recently viewed", "open Today's Deals", "quick-add a deal"],
+      "terminal": "deal added locally"
+    },
+    {
+      "id": "J14",
+      "name": "Safe account and purchase boundaries",
+      "start": "/account",
+      "trajectory": ["open account boundary", "open orders", "attempt checkout", "visit unknown route"],
+      "terminal": "local no-effect boundary or 404"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "../../../claw-bench-v2/schemas/task.schema.json",
+  "split": "dev",
+  "metadata": {
+    "task_id": 900583,
+    "metaclass": "office-secretary-tasks",
+    "class": "customer-support",
+    "description": "Register a local free Freshdesk Sprout workspace and create a high-priority invoice dispute ticket assigned to Test Agent.",
+    "sites_involved": [
+      "host.docker.internal:8132"
+    ],
+    "platform": "freshdesk",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_task_id": 583,
+    "source_task_path": "test-cases/v2/v2-583-office-secretary-tasks-support-tickets-freshdesk",
+    "clone_path": "website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk",
+    "server_command": "python3 website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk/server.py --host 0.0.0.0 --port 8132",
+    "verify_command": "python3 website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk/tools/verify_task.py --clone http://127.0.0.1:8132",
+    "dev_only": true
+  },
+  "instruction": "Open http://host.docker.internal:8132/. Register a free Freshdesk Sprout workspace with the assigned Alex Green identity and password Freshdesk!42. Use the local verification code shown in the interface. Enter the agent dashboard and create a support ticket with subject exactly \"Invoice Dispute - Order #10042\" and description exactly \"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\" Set Type to Billing, Priority to High, Group to Support, assign Test Agent, and create the ticket.",
+  "eval_schema": {
+    "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/_/tickets$",
+    "method": "POST",
+    "body": {
+      "requester_id": 1001,
+      "subject": "Invoice Dispute - Order #10042",
+      "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+      "status": 2,
+      "priority": 3,
+      "source": 3,
+      "group_id": 3001,
+      "responder_id": 2002,
+      "type": "Billing"
+    }
+  },
+  "step_schema": [
+    {
+      "name": "register_local_account",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/auth/register$",
+      "method": "POST",
+      "body": {
+        "full_name": "Alex Green",
+        "email": "alex.green.uoft@clawbench.cc",
+        "accepted_terms": true
+      }
+    },
+    {
+      "name": "create_sprout_workspace",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/workspaces$",
+      "method": "POST",
+      "body": {
+        "plan": "Sprout"
+      }
+    },
+    {
+      "name": "save_ticket_draft",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/ticket-draft$",
+      "method": "POST",
+      "body": {
+        "subject": "Invoice Dispute - Order #10042",
+        "priority": 3,
+        "responder_id": 2002
+      }
+    }
+  ],
+  "time_limit": 30,
+  "extra_info": [],
+  "judge_context": {
+    "rubric": "PASS only when the assigned Alex Green local account is verified, an authenticated completed free Sprout workspace exists, and exactly one successful local application/json POST to /api/_/tickets on port 8132 contains exactly the nine specified fields and values: requester_id 1001, exact subject, exact meaningful discrepancy description, Open status 2, High priority 3, Phone source 3, Support group_id 3001, Test Agent responder_id 2002, and Billing type. The visible saved draft, terminal request, ticket detail, refresh state, successful terminal journal row, ticket event, and SQLite ticket must agree. Reject a changed subject or description, another priority/agent/group/requester/type, unsupported fields, unauthenticated or malformed attempts, validation-only state, duplicate successful creation, direct state injection, stale UI, or any external Freshdesk, Freshworks, identity, email, customer, team, integration, analytics, or advertising effect.",
+    "reference_solution": "Open the local replica, register Alex Green with alex.green.uoft@clawbench.cc and password Freshdesk!42, accept the local terms, use code 246810, create any valid local Sprout workspace name and address, and continue to the dashboard. Choose New ticket, keep requester Alex Green and source Phone, enter the exact supplied subject and description, select Billing, High, Support, and Test Agent, then create. Confirm ticket #1 shows Open, High, Billing, Support, and Test Agent after refresh."
+  }
+}

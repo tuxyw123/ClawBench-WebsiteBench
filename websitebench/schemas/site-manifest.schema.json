@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.site.v1.json",
+  "title": "Web2Code2Web site manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "site_id",
+    "display_name",
+    "site_version",
+    "family_id",
+    "split",
+    "difficulty",
+    "description",
+    "public",
+    "services",
+    "routes",
+    "seeds",
+    "tracks",
+    "agent_budget",
+    "pilot_agent",
+    "browser_policy",
+    "license"
+  ],
+  "properties": {
+    "schema_version": {"const": "websitebench.site.v1"},
+    "site_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "site_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "family_id": {"type": "string", "minLength": 1},
+    "split": {"enum": ["train", "validation", "test"]},
+    "difficulty": {"enum": ["simple", "medium", "hard"]},
+    "description": {"type": "string", "minLength": 1},
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "product_type",
+        "capability_tags",
+        "interaction_tags",
+        "roles",
+        "stateful_entities"
+      ],
+      "properties": {
+        "product_type": {"type": "string", "minLength": 1},
+        "capability_tags": {"$ref": "#/$defs/tags"},
+        "interaction_tags": {"$ref": "#/$defs/tags"},
+        "roles": {"$ref": "#/$defs/tags"},
+        "stateful_entities": {"$ref": "#/$defs/tags"}
+      }
+    },
+    "public": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prd",
+        "candidate_contract",
+        "task_schema",
+        "fixture_schema",
+        "admin_contract_schema",
+        "visual_checkpoints",
+        "smoke_cases",
+        "scoring",
+        "report_schema"
+      ],
+      "properties": {
+        "prd": {"$ref": "#/$defs/relative_path"},
+        "candidate_contract": {"$ref": "#/$defs/relative_path"},
+        "task_schema": {"$ref": "#/$defs/relative_path"},
+        "fixture_schema": {"$ref": "#/$defs/relative_path"},
+        "admin_contract_schema": {"$ref": "#/$defs/relative_path"},
+        "visual_checkpoints": {"$ref": "#/$defs/relative_path"},
+        "smoke_cases": {"$ref": "#/$defs/relative_path"},
+        "scoring": {"$ref": "#/$defs/relative_path"},
+        "report_schema": {"$ref": "#/$defs/relative_path"}
+      }
+    },
+    "services": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public_port", "admin_port", "mailbox_delivery_path", "mailbox_query_path"],
+      "properties": {
+        "public_port": {"const": 8080},
+        "admin_port": {"const": 8081},
+        "health_path": {"const": "/healthz"},
+        "mailbox_delivery_path": {"type": "string", "pattern": "^/"},
+        "mailbox_query_path": {"type": "string", "pattern": "^/"}
+      }
+    },
+    "routes": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^/"}
+    },
+    "seeds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public", "hidden", "concurrency"],
+      "properties": {
+        "public": {"$ref": "#/$defs/seed_list"},
+        "hidden": {"$ref": "#/$defs/seed_list"},
+        "concurrency": {"$ref": "#/$defs/seed_list"}
+      }
+    },
+    "tracks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core", "hitl"],
+      "properties": {
+        "core": {"$ref": "#/$defs/track"},
+        "hitl": {"$ref": "#/$defs/track"}
+      }
+    },
+    "agent_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wall_time_seconds", "token_budget", "browser_actions", "candidate_builds"],
+      "properties": {
+        "wall_time_seconds": {"type": "integer", "minimum": 1},
+        "token_budget": {"type": "integer", "minimum": 1},
+        "browser_actions": {"type": "integer", "minimum": 1},
+        "candidate_builds": {"type": "integer", "minimum": 1}
+      }
+    },
+    "pilot_agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["harness", "model", "thinking_level"],
+      "properties": {
+        "harness": {"const": "codex"},
+        "model": {"type": "string", "minLength": 1},
+        "thinking_level": {"type": "string", "minLength": 1}
+      }
+    },
+    "browser_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "version", "reference_access", "allowed", "denied"],
+      "properties": {
+        "engine": {"const": "browser-use"},
+        "version": {"type": "string", "minLength": 1},
+        "reference_access": {"enum": ["continuous", "exploration-only"]},
+        "allowed": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "denied": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "content", "assets", "trademarks"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1},
+        "content": {"type": "string", "minLength": 1},
+        "assets": {"type": "string", "minLength": 1},
+        "trademarks": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "$defs": {
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/).+"
+    },
+    "seed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "purpose", "fixture"],
+      "properties": {
+        "id": {"type": "integer", "minimum": 0},
+        "purpose": {"type": "string", "minLength": 1},
+        "fixture": {"$ref": "#/$defs/relative_path"}
+      }
+    },
+    "seed_list": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/seed"}
+    },
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "human_messages", "human_minutes", "human_file_edits"],
+      "properties": {
+        "enabled": {"const": true},
+        "human_messages": {"type": "integer", "minimum": 0},
+        "human_minutes": {"type": "integer", "minimum": 0},
+        "human_file_edits": {"type": "boolean"}
+      }
+    },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      }
+    }
+  }
+}

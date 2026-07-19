@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% from "macros.html" import product_card with context %}
+{% block content %}
+<section class="hero">
+  <div class="shell hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow eyebrow--light">The winter field guide</p>
+      <h1>Find your<br>true north.</h1>
+      <p>Well-made essentials for the places you go and the spaces you return to.</p>
+      <a class="button button--light" href="/search">Explore the collection</a>
+    </div>
+    <div class="hero__art" aria-hidden="true">
+      <span class="hero__sun"></span><span class="hero__ridge hero__ridge--one"></span><span class="hero__ridge hero__ridge--two"></span><span class="hero__star">✦</span>
+    </div>
+  </div>
+</section>
+<section class="section shell">
+  <div class="section-heading"><div><p class="eyebrow">Ways to wander</p><h2>Shop by category</h2></div><a href="/search">View all products →</a></div>
+  <div class="category-grid">
+    {% for category in categories %}
+      <a class="category-card" href="/search?category={{ category.slug }}">
+        <img src="/media/{{ category.image.key }}.svg" alt="">
+        <div><h3>{{ category.name }}</h3><p>{{ category.description }}</p></div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+<section class="section section--tint">
+  <div class="shell">
+    <div class="section-heading"><div><p class="eyebrow">Chosen for now</p><h2>Market favorites</h2></div></div>
+    <div class="product-grid">{% for product in featured %}{{ product_card(product) }}{% endfor %}</div>
+  </div>
+</section>
+<section class="values shell">
+  <div><span>01</span><h2>Purposeful</h2><p>Every product earns its place through useful details.</p></div>
+  <div><span>02</span><h2>Approachable</h2><p>Clear choices, honest test prices, no surprise fees.</p></div>
+  <div><span>03</span><h2>Ready to roam</h2><p>Designed around everyday movement and lasting use.</p></div>
+</section>
+{% endblock %}
+

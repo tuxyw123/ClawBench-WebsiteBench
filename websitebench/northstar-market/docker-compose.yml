@@ -1,0 +1,356 @@
+x-security: &service-security
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  init: true
+  restart: "no"
+
+services:
+  reference-app:
+    <<: *service-security
+    profiles: [corpus, build, judge]
+    build:
+      context: ../..
+      dockerfile: websitebench/northstar-market/reference/Dockerfile
+    environment:
+      PORT: "8080"
+      BENCH_ADMIN_PORT: "8081"
+      BENCH_ADMIN_TOKEN: ${BENCH_ADMIN_TOKEN:?required}
+      DATA_DIR: /data
+      BENCH_FIXTURE_DIR: /bench-fixtures
+      FIXTURE_SCHEMA_PATH: /bench-schemas/fixture.schema.json
+      INITIAL_FIXTURE: /bench-fixtures/1101.json
+      MAILBOX_API_URL: http://mailbox-delivery:8027
+      MAILBOX_DELIVERY_TOKEN: ${MAILBOX_DELIVERY_TOKEN:?required}
+      PUBLIC_SITE_URL: http://reference-app:8080
+    volumes:
+      - reference-data:/data
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=128m
+    networks:
+      reference-web:
+        aliases: [northstar-target]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: "1.5"
+
+  mailbox:
+    <<: *service-security
+    profiles: [corpus, build, judge]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/mailbox/Dockerfile
+    environment:
+      MAILBOX_PORT: "8025"
+      MAILBOX_ADMIN_PORT: "8026"
+      MAILBOX_DATA_DIR: /data
+      MAILBOX_DELIVERY_TOKEN: ${MAILBOX_DELIVERY_TOKEN:?required}
+      BENCH_ADMIN_TOKEN: ${BENCH_ADMIN_TOKEN:?required}
+    volumes:
+      - mailbox-data:/data
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    networks:
+      reference-web: {}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8025/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  mailbox-delivery:
+    <<: *service-security
+    profiles: [corpus, build, judge]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/mailbox/Dockerfile
+    command: [python, -m, benchmail.run_delivery]
+    environment:
+      MAILBOX_DELIVERY_PORT: "8027"
+      MAILBOX_DATA_DIR: /data
+      MAILBOX_DELIVERY_TOKEN: ${MAILBOX_DELIVERY_TOKEN:?required}
+    volumes:
+      - mailbox-data:/data
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    networks:
+      reference-web: {}
+      candidate-web: {}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8027/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"
+
+  rootless-buildkit:
+    image: docker:28.0.4-dind-rootless
+    profiles: [build]
+    user: "1000:1000"
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+      DOCKER_HOST: tcp://0.0.0.0:2375
+    command:
+      - dockerd
+      - --host=tcp://0.0.0.0:2375
+      - --host=unix:///run/user/1000/docker.sock
+      - --storage-driver=vfs
+      - --log-level=warn
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    cap_drop: [ALL]
+    cap_add: [SETUID, SETGID]
+    volumes:
+      - rootless-buildkit-data:/home/rootless/.local/share/docker
+      - ${RUN_DIR:?required}/public/fixtures:/bench-public-fixtures:ro
+      - ../schemas:/bench-schemas:ro
+    tmpfs:
+      - /tmp:rw,nosuid,size=512m
+      - /run:rw,nosuid,size=64m
+    networks:
+      build-egress: {}
+      candidate-web: {}
+    healthcheck:
+      test: [CMD, docker, --host, tcp://127.0.0.1:2375, info]
+      interval: 5s
+      timeout: 4s
+      retries: 36
+    deploy:
+      resources:
+        limits:
+          memory: 3G
+          cpus: "3.0"
+
+  candidate-builder:
+    <<: *service-security
+    profiles: [build]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/builder/Dockerfile
+    depends_on:
+      rootless-buildkit:
+        condition: service_healthy
+    environment:
+      BUILDER_TOKEN: ${BUILDER_TOKEN:?required}
+      BENCH_ADMIN_TOKEN: ${BENCH_ADMIN_TOKEN:?required}
+      MAILBOX_DELIVERY_TOKEN: ${MAILBOX_DELIVERY_TOKEN:?required}
+      CANDIDATE_WORKSPACE: /workspace/candidate
+      BUILDER_ARTIFACT_DIR: /artifacts/builds
+      CANDIDATE_BUILD_BUDGET: "20"
+      DOCKER_HOST: tcp://rootless-buildkit:2375
+      PREVIEW_FIXTURE_MOUNT: /bench-public-fixtures
+      PREVIEW_FIXTURE_SOURCE: /task/public/fixtures/1101.json
+      PREVIEW_SCHEMA_MOUNT: /bench-schemas
+      MAILBOX_API_URL: http://mailbox-delivery:8027
+      PUBLIC_MAILBOX_URL: http://mailbox:8025
+      PUBLIC_SITE_URL: http://rootless-buildkit:18080
+      RUN_ID: ${RUN_ID:?required}
+    volumes:
+      - ${RUN_DIR:?required}/candidate:/workspace/candidate
+      - ${RUN_DIR:?required}/builds:/artifacts/builds
+      - ${RUN_DIR:?required}/public:/task/public:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=128m
+    networks:
+      agent-control: {}
+      build-egress: {}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:7100/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    deploy:
+      resources:
+        limits:
+          memory: 768M
+          cpus: "1.0"
+
+  model-proxy:
+    <<: *service-security
+    profiles: [build]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/model-proxy/Dockerfile
+    environment:
+      MODEL_API_HOST: ${MODEL_API_HOST:?required}
+      MODEL_API_PORT: ${MODEL_API_PORT:?required}
+      MODEL_PROXY_PORT: "7200"
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m
+    networks:
+      model-egress: {}
+      internet-egress: {}
+    healthcheck:
+      test: [CMD, python, -c, "import socket; socket.create_connection(('127.0.0.1',7200),2).close()"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"
+
+  browser-gateway:
+    <<: *service-security
+    profiles: [build]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/browser-gateway/Dockerfile
+    depends_on:
+      reference-app:
+        condition: service_healthy
+      mailbox:
+        condition: service_healthy
+    environment:
+      GATEWAY_TOKEN: ${GATEWAY_TOKEN:?required}
+      REFERENCE_URL: http://reference-app:8080
+      PUBLIC_MAILBOX_URL: http://mailbox:8025
+      CANDIDATE_URL: http://rootless-buildkit:18080
+      BROWSER_ACTION_BUDGET: "1000"
+      GATEWAY_ARTIFACT_DIR: /artifacts/browser
+    volumes:
+      - ${RUN_DIR:?required}/browser:/artifacts/browser
+    tmpfs:
+      - /tmp:rw,nosuid,size=1g
+      - /home/gateway:rw,nosuid,size=256m
+    networks:
+      agent-control: {}
+      reference-web: {}
+      candidate-web: {}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:7000/healthz', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 36
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+
+  agent:
+    <<: *service-security
+    profiles: [build]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/agent/Dockerfile
+    depends_on:
+      browser-gateway:
+        condition: service_healthy
+      candidate-builder:
+        condition: service_healthy
+      model-proxy:
+        condition: service_healthy
+    environment:
+      BROWSER_GATEWAY_URL: http://browser-gateway:7000
+      BUILDER_URL: http://candidate-builder:7100
+      GATEWAY_TOKEN: ${GATEWAY_TOKEN:?required}
+      BUILDER_TOKEN: ${BUILDER_TOKEN:?required}
+      CODEX_API_KEY: ${OPENAI_API_KEY:?required}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      HTTP_PROXY: http://model-proxy:7200
+      HTTPS_PROXY: http://model-proxy:7200
+      http_proxy: http://model-proxy:7200
+      https_proxy: http://model-proxy:7200
+      NO_PROXY: browser-gateway,candidate-builder,localhost,127.0.0.1
+      TASK_PATH: /task/task.json
+      AGENT_ARTIFACT_DIR: /artifacts/agent
+    volumes:
+      - ${RUN_DIR:?required}/candidate:/workspace/candidate
+      - ${RUN_DIR:?required}/task.json:/task/task.json:ro
+      - ${RUN_DIR:?required}/public:/task/public:ro
+      - ${RUN_DIR:?required}/schemas:/task/schemas:ro
+      - ${RUN_DIR:?required}/agent:/artifacts/agent
+      - ${RUN_DIR:?required}/human-interventions.jsonl:/artifacts/human-interventions.jsonl:ro
+    tmpfs:
+      - /tmp:rw,nosuid,size=512m
+    networks:
+      agent-control: {}
+      model-egress: {}
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+
+  evaluator:
+    <<: *service-security
+    profiles: [judge]
+    build:
+      context: ../..
+      dockerfile: websitebench/services/evaluator/Dockerfile
+    depends_on:
+      reference-app:
+        condition: service_healthy
+      mailbox:
+        condition: service_healthy
+    environment:
+      BENCH_ADMIN_TOKEN: ${BENCH_ADMIN_TOKEN:?required}
+      REFERENCE_URL: http://reference-app:8080
+      REFERENCE_ADMIN_URL: http://reference-app:8081
+      CANDIDATE_URL: http://candidate-app:8080
+      CANDIDATE_ADMIN_URL: http://candidate-app:8081
+      MAILBOX_URL: http://mailbox:8025
+      MAILBOX_ADMIN_URL: http://mailbox:8026
+      BENCH_FIXTURE_DIR: /bench-fixtures
+      ARTIFACT_ROOT: /artifacts
+      SCORING_PATH: /task/public/scoring.json
+      VISUAL_PATH: /task/public/visual-checkpoints.json
+    volumes:
+      - ${RUN_DIR:?required}/eval:/artifacts/eval
+      - ${RUN_DIR:?required}/run-meta.json:/artifacts/run-meta.json:ro
+      - ${RUN_DIR:?required}/agent:/artifacts/agent:ro
+      - ${RUN_DIR:?required}/browser:/artifacts/browser:ro
+      - ${RUN_DIR:?required}/builds:/artifacts/builds:ro
+      - ${RUN_DIR:?required}/human-interventions.jsonl:/artifacts/human-interventions.jsonl:ro
+      - ${RUN_DIR:?required}/public:/task/public:ro
+      - ${RUN_DIR:?required}/schemas:/task/schemas:ro
+      - ./judge/fixtures:/bench-fixtures:ro
+      - ./public/fixtures/1101.json:/bench-fixtures/1101.json:ro
+      - ./public/fixtures/1102.json:/bench-fixtures/1102.json:ro
+    tmpfs:
+      - /tmp:rw,nosuid,size=1g
+      - /home/evaluator:rw,nosuid,size=256m
+    networks:
+      reference-web: {}
+      candidate-web: {}
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: "2.0"
+
+networks:
+  agent-control:
+    internal: true
+  reference-web:
+    internal: true
+  candidate-web:
+    internal: true
+  model-egress:
+    internal: true
+  build-egress: {}
+  internet-egress: {}
+
+volumes:
+  reference-data: {}
+  mailbox-data: {}
+  rootless-buildkit-data: {}

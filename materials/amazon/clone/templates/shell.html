@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-render="fastapi-ssr" data-route="{{ path }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="clawbench-catalog-size" content="{{ catalog_count }}">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/vendor/lucide.min.js" defer></script>
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div id="app">
+      <header id="site-header" class="site-header" aria-label="Amazon navigation">{{ header_markup | safe }}</header>
+      <main id="main-content" tabindex="-1" data-server-rendered="true">{{ main_markup | safe }}</main>
+      <footer id="site-footer" class="site-footer">{{ footer_markup | safe }}</footer>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <dialog id="boundary-dialog" class="boundary-dialog" aria-labelledby="boundary-title">
+      <button class="dialog-close icon-button" type="button" data-close-dialog aria-label="Close">×</button>
+      <div class="boundary-icon" aria-hidden="true">✓</div>
+      <h2 id="boundary-title">This action stops here</h2>
+      <p id="boundary-message"></p>
+      <p class="boundary-note">No account, address, or payment information is requested or stored.</p>
+      <button class="amazon-button amazon-button-primary boundary-return" type="button" data-close-dialog>Continue shopping</button>
+    </dialog>
+    <dialog id="menu-dialog" class="menu-dialog" aria-labelledby="menu-title">{{ drawer_markup | safe }}</dialog>
+    <dialog id="filter-dialog" class="filter-dialog" aria-labelledby="filter-title">
+      <div class="filter-dialog-heading"><h2 id="filter-title">Filters</h2><button class="icon-button" type="button" data-close-filters aria-label="Close filters">×</button></div>
+      <div class="filter-dialog-content"></div>
+      <button class="amazon-button amazon-button-primary filter-done" type="button" data-close-filters>Show results</button>
+    </dialog>
+    <noscript><div class="noscript-message">This server-rendered storefront supports navigation and search without JavaScript; enhanced cart controls require JavaScript.</div></noscript>
+  </body>
+</html>

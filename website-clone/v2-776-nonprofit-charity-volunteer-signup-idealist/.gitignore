@@ -1,0 +1,8 @@
+idealist.sqlite3
+idealist.sqlite3-shm
+idealist.sqlite3-wal
+verification-report.json
+.verification-artifacts/
+__pycache__/
+tools/__pycache__/
+*.pyc

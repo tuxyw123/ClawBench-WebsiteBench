@@ -1,0 +1,87 @@
+{
+  "$schema": "../../../claw-bench-v2/schemas/task.schema.json",
+  "split": "dev",
+  "metadata": {
+    "task_id": 900086,
+    "metaclass": "job-search-hr",
+    "class": "cv-autofill",
+    "description": "Open the attached CodePath Senior Software Engineer listing and apply using the assigned Alex Green resume and profile.",
+    "sites_involved": [
+      "host.docker.internal:8134"
+    ],
+    "platform": "greenhouse-codepath",
+    "common_info": {
+      "email_credentials": "credentials to use the assigned disposable email account",
+      "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+      "user_resume": "PDF resume with disposable email account injected"
+    },
+    "source_task_id": 86,
+    "source_task_path": "test-cases/v2/v2-086-job-search-hr-cv-autofill-greenhouse-meta",
+    "clone_path": "website-clone/v2-086-job-search-hr-cv-autofill-greenhouse-meta",
+    "server_command": "python3 website-clone/v2-086-job-search-hr-cv-autofill-greenhouse-meta/server.py --host 0.0.0.0 --port 8134",
+    "verify_command": "python3 website-clone/v2-086-job-search-hr-cv-autofill-greenhouse-meta/tools/verify_task.py --clone http://127.0.0.1:8134",
+    "dev_only": true
+  },
+  "instruction": "Use the attached job_links.json to open the exact CodePath Senior Software Engineer listing. Inspect the role, company, location, and requirements, then apply through the local Greenhouse flow using the assigned Alex Green resume and profile data. Review every extracted field and required answer before submitting the application.",
+  "eval_schema": {
+    "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8134/v1/boards/codepath/jobs/4526154007$",
+    "method": "POST",
+    "body": {
+      "first_name": "Alex",
+      "last_name": "Green",
+      "preferred_name": "Alex",
+      "email": "alex.green.uoft@clawbench.cc",
+      "country": "Canada",
+      "location": "Toronto, Ontario",
+      "resume": {
+        "file_name": "Alex_Green_Resume.pdf",
+        "source": "assigned_profile",
+        "parse_status": "complete"
+      },
+      "current_company": "Pinecrest Technologies Inc.",
+      "current_title": "Senior Software Engineer",
+      "highest_degree": "Doctor of Philosophy in Computer Science",
+      "years_experience": "23+",
+      "authorized_to_work": true,
+      "requires_sponsorship": false,
+      "future_opportunities": true,
+      "consent": true
+    }
+  },
+  "step_schema": [
+    {
+      "name": "open_exact_codepath_listing",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8134/api/boards/codepath/jobs/4526154007$",
+      "method": "GET"
+    },
+    {
+      "name": "save_resume_autofill",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8134/api/drafts/4526154007$",
+      "method": "POST",
+      "body": {
+        "job_id": "4526154007",
+        "step": 2
+      }
+    },
+    {
+      "name": "review_application",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8134/api/drafts/4526154007$",
+      "method": "POST",
+      "body": {
+        "job_id": "4526154007",
+        "step": 3
+      }
+    }
+  ],
+  "time_limit": 30,
+  "extra_info": [
+    {
+      "path": "extra_info/job_links.json",
+      "description": "Job posting URL(s) to apply to"
+    }
+  ],
+  "judge_context": {
+    "rubric": "PASS only when the agent opens the attached local URL for CodePath job 4526154007, inspects the Senior Software Engineer listing, uses the assigned Alex Green resume/profile, reviews all visible extracted identity, employment, education, experience, location, authorization, sponsorship, future-opportunity, and consent fields, and emits exactly one successful application/json POST to /v1/boards/codepath/jobs/4526154007 on port 8134 with exactly the specified payload. The reviewed step-3 draft, terminal request, confirmation/status UI, request journal, and SQLite application row must agree. Reject a different job or host/port/path, changed identity or resume fields, contradictory answers, missing consent, unsupported fields, an unreviewed or stale draft, duplicate success, direct state injection, validation-only state, or any real employer, Greenhouse, email, identity, analytics, or upload effect.",
+    "reference_solution": "Open the URL in extra_info/job_links.json and inspect the CodePath Senior Software Engineer role. Choose Apply for this job. Confirm Alex Green, alex.green.uoft@clawbench.cc, Canada, Toronto Ontario, Alex_Green_Resume.pdf, Senior Software Engineer at Pinecrest Technologies Inc., PhD in Computer Science, and 23+ years are visibly extracted. Keep Yes for Canadian work authorization, No for sponsorship, and future opportunities selected. Save and review, inspect the review page, accept the local certification, and submit. Confirm a local Submitted status and confirmation code."
+  }
+}
