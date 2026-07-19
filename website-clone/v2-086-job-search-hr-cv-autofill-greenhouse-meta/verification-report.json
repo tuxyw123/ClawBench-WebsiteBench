@@ -1,0 +1,644 @@
+{
+  "generated_at": "2026-07-12T19:22:21.325513+00:00",
+  "source_task": 86,
+  "dev_task": "dev-117",
+  "clone": "http://127.0.0.1:8134",
+  "port": 8134,
+  "result": "PASS",
+  "passed": 91,
+  "total": 91,
+  "checks": [
+    {
+      "name": "dev-117 validates against ClawBench-Pro task schema",
+      "passed": true
+    },
+    {
+      "name": "source task linkage is exact",
+      "passed": true
+    },
+    {
+      "name": "source attachment identifies exact target",
+      "passed": true
+    },
+    {
+      "name": "dev attachment preserves job semantics on local origin",
+      "passed": true
+    },
+    {
+      "name": "dev task references copied job attachment",
+      "passed": true
+    },
+    {
+      "name": "terminal matcher accepts all three local hosts",
+      "passed": true
+    },
+    {
+      "name": "terminal matcher rejects external host",
+      "passed": true
+    },
+    {
+      "name": "terminal matcher pins port and exact path",
+      "passed": true
+    },
+    {
+      "name": "terminal matcher body is exact expected payload",
+      "passed": true
+    },
+    {
+      "name": "health endpoint reports canonical port and job",
+      "passed": true
+    },
+    {
+      "name": "CSP restricts assets and connections to self",
+      "passed": true,
+      "detail": "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    },
+    {
+      "name": "static traversal is blocked",
+      "passed": true
+    },
+    {
+      "name": "desktop company page exposes mission and route to openings",
+      "passed": true
+    },
+    {
+      "name": "desktop company: same-origin images load",
+      "passed": true
+    },
+    {
+      "name": "desktop company: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "desktop company: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "desktop listing has exact role and company",
+      "passed": true
+    },
+    {
+      "name": "desktop listing exposes exact job id",
+      "passed": true
+    },
+    {
+      "name": "desktop listing shows remote regions and role details",
+      "passed": true
+    },
+    {
+      "name": "desktop listing has application action",
+      "passed": true
+    },
+    {
+      "name": "desktop listing: same-origin images load",
+      "passed": true
+    },
+    {
+      "name": "desktop listing: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "desktop listing: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "assigned resume is visible and parsed",
+      "passed": true
+    },
+    {
+      "name": "resume identity is autofilled",
+      "passed": true
+    },
+    {
+      "name": "resume career fields are autofilled",
+      "passed": true
+    },
+    {
+      "name": "required authorization answers are visible",
+      "passed": true
+    },
+    {
+      "name": "same-origin resume preview exposes extracted fields",
+      "passed": true
+    },
+    {
+      "name": "resume preview: same-origin images load",
+      "passed": true
+    },
+    {
+      "name": "autosave reports completed draft",
+      "passed": true,
+      "detail": "Saved just now"
+    },
+    {
+      "name": "draft refresh restores visible application",
+      "passed": true
+    },
+    {
+      "name": "required field validation is visible",
+      "passed": true
+    },
+    {
+      "name": "review shows identity, resume, and employer answers",
+      "passed": true
+    },
+    {
+      "name": "desktop review: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "desktop review: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "review requires explicit consent",
+      "passed": true
+    },
+    {
+      "name": "temporary terminal failure can be armed locally",
+      "passed": true
+    },
+    {
+      "name": "temporary submission failure exposes retry",
+      "passed": true
+    },
+    {
+      "name": "confirmation is local and visibly submitted",
+      "passed": true
+    },
+    {
+      "name": "desktop confirmation: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "desktop confirmation: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "confirmation persists after refresh",
+      "passed": true
+    },
+    {
+      "name": "status page agrees with submitted job",
+      "passed": true
+    },
+    {
+      "name": "exactly one successful source-style terminal request",
+      "passed": true
+    },
+    {
+      "name": "successful terminal URL and method are exact",
+      "passed": true
+    },
+    {
+      "name": "successful terminal content type is JSON",
+      "passed": true
+    },
+    {
+      "name": "successful terminal body is exact",
+      "passed": true
+    },
+    {
+      "name": "retry path records one 503 then one 201",
+      "passed": true
+    },
+    {
+      "name": "state stores exact submitted application",
+      "passed": true
+    },
+    {
+      "name": "state keeps all effects local",
+      "passed": true
+    },
+    {
+      "name": "state records exact listing view",
+      "passed": true
+    },
+    {
+      "name": "journal has one exact successful terminal row",
+      "passed": true
+    },
+    {
+      "name": "temporary failure is journaled before success",
+      "passed": true
+    },
+    {
+      "name": "SQLite application agrees with exact payload",
+      "passed": true
+    },
+    {
+      "name": "SQLite has one successful terminal journal row",
+      "passed": true,
+      "detail": 1
+    },
+    {
+      "name": "SQLite journal includes workflow and recovery attempts",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "name": "SQLite reviewed draft agrees with terminal payload",
+      "passed": true
+    },
+    {
+      "name": "duplicate submission is rejected",
+      "passed": true
+    },
+    {
+      "name": "duplicate leaves one application and one success",
+      "passed": true
+    },
+    {
+      "name": "mobile board exposes exact listing",
+      "passed": true
+    },
+    {
+      "name": "mobile board: same-origin images load",
+      "passed": true
+    },
+    {
+      "name": "mobile board: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile board: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "mobile listing keeps apply action visible",
+      "passed": true
+    },
+    {
+      "name": "mobile listing: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile listing: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "mobile application keeps resume and controls visible",
+      "passed": true
+    },
+    {
+      "name": "mobile application: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile application: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "mobile review keeps consent and submit visible",
+      "passed": true
+    },
+    {
+      "name": "mobile review: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile review: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "another browser session cannot read application",
+      "passed": true
+    },
+    {
+      "name": "isolated state has no external effects",
+      "passed": true
+    },
+    {
+      "name": "exact direct submit without reviewed draft is rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong identity terminal payload is rejected",
+      "passed": true
+    },
+    {
+      "name": "malformed terminal JSON is rejected",
+      "passed": true
+    },
+    {
+      "name": "unsupported terminal content type is rejected",
+      "passed": true,
+      "detail": 415
+    },
+    {
+      "name": "unsupported terminal field is rejected",
+      "passed": true
+    },
+    {
+      "name": "missing job API returns 404 recovery",
+      "passed": true
+    },
+    {
+      "name": "missing API returns 404",
+      "passed": true
+    },
+    {
+      "name": "unknown page returns real 404",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "404 page offers job-board recovery",
+      "passed": true
+    },
+    {
+      "name": "mobile 404: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile 404: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "employer boundary remains same-origin and local",
+      "passed": true
+    },
+    {
+      "name": "mobile local boundary: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile local boundary: visible controls stay inside viewport",
+      "passed": true
+    },
+    {
+      "name": "browser emitted no external runtime traffic",
+      "passed": true
+    },
+    {
+      "name": "browser emitted no page errors",
+      "passed": true
+    },
+    {
+      "name": "browser emitted no unexpected console errors",
+      "passed": true
+    }
+  ],
+  "terminal_requests": [
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "authorized_to_work": true,
+        "consent": true,
+        "country": "Canada",
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "email": "alex.green.uoft@clawbench.cc",
+        "first_name": "Alex",
+        "future_opportunities": true,
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "last_name": "Green",
+        "location": "Toronto, Ontario",
+        "preferred_name": "Alex",
+        "requires_sponsorship": false,
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "parse_status": "complete",
+          "source": "assigned_profile"
+        },
+        "years_experience": "23+"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "authorized_to_work": true,
+        "consent": true,
+        "country": "Canada",
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "email": "alex.green.uoft@clawbench.cc",
+        "first_name": "Alex",
+        "future_opportunities": true,
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "last_name": "Green",
+        "location": "Toronto, Ontario",
+        "preferred_name": "Alex",
+        "requires_sponsorship": false,
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "parse_status": "complete",
+          "source": "assigned_profile"
+        },
+        "years_experience": "23+"
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "first_name": "Alex",
+        "last_name": "Green",
+        "preferred_name": "Alex",
+        "email": "alex.green.uoft@clawbench.cc",
+        "country": "Canada",
+        "location": "Toronto, Ontario",
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "assigned_profile",
+          "parse_status": "complete"
+        },
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "years_experience": "23+",
+        "authorized_to_work": true,
+        "requires_sponsorship": false,
+        "future_opportunities": true,
+        "consent": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "first_name": "Alex",
+        "last_name": "Green",
+        "preferred_name": "Alex",
+        "email": "alex.green.uoft@clawbench.cc",
+        "country": "Canada",
+        "location": "Toronto, Ontario",
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "assigned_profile",
+          "parse_status": "complete"
+        },
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "years_experience": "23+",
+        "authorized_to_work": true,
+        "requires_sponsorship": false,
+        "future_opportunities": true,
+        "consent": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "first_name": "Not Alex",
+        "last_name": "Green",
+        "preferred_name": "Alex",
+        "email": "alex.green.uoft@clawbench.cc",
+        "country": "Canada",
+        "location": "Toronto, Ontario",
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "assigned_profile",
+          "parse_status": "complete"
+        },
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "years_experience": "23+",
+        "authorized_to_work": true,
+        "requires_sponsorship": false,
+        "future_opportunities": true,
+        "consent": true
+      }
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": "{bad-json"
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "text/plain",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": "x"
+    },
+    {
+      "url": "http://127.0.0.1:8134/v1/boards/codepath/jobs/4526154007",
+      "method": "POST",
+      "headers": {
+        "sec-ch-ua-platform": "\"Linux\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"148\", \"HeadlessChrome\";v=\"148\", \"Not/A)Brand\";v=\"99\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "body": {
+        "first_name": "Alex",
+        "last_name": "Green",
+        "preferred_name": "Alex",
+        "email": "alex.green.uoft@clawbench.cc",
+        "country": "Canada",
+        "location": "Toronto, Ontario",
+        "resume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "assigned_profile",
+          "parse_status": "complete"
+        },
+        "current_company": "Pinecrest Technologies Inc.",
+        "current_title": "Senior Software Engineer",
+        "highest_degree": "Doctor of Philosophy in Computer Science",
+        "years_experience": "23+",
+        "authorized_to_work": true,
+        "requires_sponsorship": false,
+        "future_opportunities": true,
+        "consent": true,
+        "unexpected": true
+      }
+    }
+  ],
+  "terminal_responses": [
+    503,
+    201,
+    409,
+    409,
+    422,
+    400,
+    415,
+    422
+  ],
+  "external_requests": [],
+  "page_errors": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 409 (Conflict)",
+    "Failed to load resource: the server responded with a status of 409 (Conflict)",
+    "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 415 (Unsupported Media Type)",
+    "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "unexpected_console_errors": [],
+  "screenshots": [
+    ".verification-artifacts/greenhouse-desktop-company.png",
+    ".verification-artifacts/greenhouse-desktop-confirmation.png",
+    ".verification-artifacts/greenhouse-desktop-listing.png",
+    ".verification-artifacts/greenhouse-desktop-review.png",
+    ".verification-artifacts/greenhouse-mobile-application.png",
+    ".verification-artifacts/greenhouse-mobile-board.png",
+    ".verification-artifacts/greenhouse-mobile-review.png"
+  ]
+}

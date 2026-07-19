@@ -1,0 +1,3502 @@
+{
+  "startedAt": "2026-07-12T19:29:50.552945+00:00",
+  "clone": "http://127.0.0.1:8135",
+  "db": "idealist.sqlite3",
+  "runs": {
+    "desktop": {
+      "visuals": {
+        "results": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 1070,
+          "controls": 16,
+          "badControls": [],
+          "images": 2,
+          "brokenImages": [],
+          "pixelMean": [
+            210.13,
+            207.48,
+            205.85
+          ],
+          "pixelVariation": 662,
+          "bytes": 98246,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-results.png"
+        },
+        "detail": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 1483,
+          "controls": 12,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            247.08,
+            243.94,
+            242.61
+          ],
+          "pixelVariation": 563,
+          "bytes": 141870,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-detail.png"
+        },
+        "application": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 1625,
+          "controls": 19,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            241.33,
+            240.5,
+            240.89
+          ],
+          "pixelVariation": 645,
+          "bytes": 125332,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-application.png"
+        },
+        "review": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 1270,
+          "controls": 13,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            245.35,
+            244.13,
+            243.91
+          ],
+          "pixelVariation": 650,
+          "bytes": 122324,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-review.png"
+        },
+        "completion": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 920,
+          "controls": 10,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            245.52,
+            244.16,
+            243.1
+          ],
+          "pixelVariation": 655,
+          "bytes": 75234,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-completion.png"
+        }
+      },
+      "terminal": [
+        {
+          "status": "request",
+          "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "method": "POST",
+          "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+          "contentType": "application/json"
+        },
+        {
+          "status": "request",
+          "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "method": "POST",
+          "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+          "contentType": "application/json"
+        }
+      ],
+      "state": {
+        "authenticated": true,
+        "account": {
+          "id": 1,
+          "email": "alex.green.uoft@clawbench.cc",
+          "first_name": "Alex",
+          "last_name": "Green",
+          "postal_code": "M5S 2H7",
+          "account_type": "APPLICANT",
+          "profile_complete": 1,
+          "created_at": "2026-07-12T19:29:52.838884+00:00"
+        },
+        "profileResume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "ASSIGNED_PROFILE",
+          "display_size": "84 KB",
+          "summary": "Alex Green - senior technology leader; local profile representation",
+          "created_at": "2026-07-12T19:29:52.838884+00:00"
+        },
+        "draft": null,
+        "applications": [
+          {
+            "id": 1,
+            "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              }
+            },
+            "status": "SUBMITTED_LOCALLY",
+            "delivery": "NONE_LOCAL_REPLICA",
+            "created_at": "2026-07-12T19:29:57.041885+00:00"
+          }
+        ],
+        "searches": [
+          {
+            "keywords": "Program Manager",
+            "location": "Washington, DC",
+            "employment": "Full Time",
+            "sector": "Nonprofit",
+            "result_keys": [
+              "dumbarton-arts-education-program-manager-washington-dc"
+            ],
+            "created_at": "2026-07-12T19:29:52.339997+00:00"
+          }
+        ],
+        "jobViews": [
+          {
+            "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+            "created_at": "2026-07-12T19:29:52.555011+00:00"
+          }
+        ],
+        "journal": [
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/register",
+            "content_type": "application/json",
+            "payload": {
+              "accountType": "APPLICANT",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "password": "[REDACTED]",
+              "postalCode": "M5S 2H7",
+              "termsAccepted": true
+            },
+            "status": 201,
+            "created_at": "2026-07-12T19:29:52.881611+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/x-www-form-urlencoded",
+            "payload": {
+              "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+              "csrfToken": "5c70f39caf0442de9037ec96e89bd676",
+              "email": "alex.green.uoft@clawbench.cc",
+              "json": "true",
+              "password": "[REDACTED]"
+            },
+            "status": 401,
+            "created_at": "2026-07-12T19:29:52.995174+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/x-www-form-urlencoded",
+            "payload": {
+              "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+              "csrfToken": "ae1e083ef10d43d0b9db5b0a5279eb89",
+              "email": "alex.green.uoft@clawbench.cc",
+              "json": "true",
+              "password": "[REDACTED]"
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:53.167644+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/applications/draft",
+            "content_type": "application/json",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dumbarton Arts & Education Program Manager",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              }
+            },
+            "status": 422,
+            "created_at": "2026-07-12T19:29:53.251397+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/applications/submit",
+            "content_type": "application/json",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              }
+            },
+            "status": 409,
+            "created_at": "2026-07-12T19:29:53.270047+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/applications/draft",
+            "content_type": "application/json",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              },
+              "revision": 1
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:55.194455+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/logout",
+            "content_type": "application/json",
+            "payload": {
+              "accountId": 1
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:55.854135+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/x-www-form-urlencoded",
+            "payload": {
+              "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+              "csrfToken": "ec564ba5980342f9902eb7e2628993bc",
+              "email": "alex.green.uoft@clawbench.cc",
+              "json": "true",
+              "password": "[REDACTED]"
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:56.501733+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/applications/draft",
+            "content_type": "application/json",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              },
+              "revision": 2
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:56.578760+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/api/applications/submit",
+            "content_type": "application/json",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "applicationId": 1,
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              }
+            },
+            "status": 201,
+            "created_at": "2026-07-12T19:29:57.045668+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/data/userdashboard/missing-info",
+            "content_type": "application/json",
+            "payload": {
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "intent": "COMPLETE_IDEALIST_PROFILE",
+              "lastName": "Green",
+              "location": "Toronto, Ontario, Canada",
+              "resumeFileName": "Alex_Green_Resume.pdf"
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:57.075290+00:00"
+          }
+        ],
+        "session": "eAKNz2c2vd"
+      },
+      "telemetry": {
+        "page_errors": [],
+        "console_errors": [
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)"
+        ],
+        "external_requests": [],
+        "local_requests": [
+          "http://127.0.0.1:8135/",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/reset",
+          "http://127.0.0.1:8135/jobs",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/jobs/dumbarton-arts-education-program-manager-washington-dc",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/auth/register",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/applications/draft",
+          "http://127.0.0.1:8135/api/applications/submit",
+          "http://127.0.0.1:8135/api/applications/draft",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/application/dumbarton-arts-education-program-manager-washington-dc",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/auth/logout",
+          "http://127.0.0.1:8135/application/dumbarton-arts-education-program-manager-washington-dc",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/applications/draft",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/applications/submit",
+          "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state"
+        ]
+      }
+    },
+    "mobile": {
+      "visuals": {
+        "results": {
+          "innerWidth": 390,
+          "scrollWidth": 390,
+          "bodyHeight": 1267,
+          "controls": 12,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            198.71,
+            188.82,
+            185.81
+          ],
+          "pixelVariation": 657,
+          "bytes": 51223,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-results.png"
+        },
+        "detail": {
+          "innerWidth": 390,
+          "scrollWidth": 390,
+          "bodyHeight": 2009,
+          "controls": 7,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            242.24,
+            229.76,
+            227.47
+          ],
+          "pixelVariation": 591,
+          "bytes": 64022,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail.png"
+        },
+        "detail_mobile": {
+          "innerWidth": 390,
+          "scrollWidth": 390,
+          "bodyHeight": 2009,
+          "controls": 7,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            242.24,
+            229.76,
+            227.47
+          ],
+          "pixelVariation": 591,
+          "bytes": 64022,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail-mobile.png"
+        },
+        "completion_mobile": {
+          "innerWidth": 390,
+          "scrollWidth": 390,
+          "bodyHeight": 1240,
+          "controls": 6,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            234.32,
+            233.91,
+            231.81
+          ],
+          "pixelVariation": 669,
+          "bytes": 48189,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-completion-mobile.png"
+        },
+        "my_applications": {
+          "innerWidth": 390,
+          "scrollWidth": 390,
+          "bodyHeight": 982,
+          "controls": 9,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            200.49,
+            199.1,
+            198.44
+          ],
+          "pixelVariation": 664,
+          "bytes": 52037,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-my-applications.png"
+        }
+      },
+      "state": {
+        "authenticated": true,
+        "account": {
+          "id": 1,
+          "email": "alex.green.uoft@clawbench.cc",
+          "first_name": "Alex",
+          "last_name": "Green",
+          "postal_code": "M5S 2H7",
+          "account_type": "APPLICANT",
+          "profile_complete": 1,
+          "created_at": "2026-07-12T19:29:52.838884+00:00"
+        },
+        "profileResume": {
+          "file_name": "Alex_Green_Resume.pdf",
+          "source": "ASSIGNED_PROFILE",
+          "display_size": "84 KB",
+          "summary": "Alex Green - senior technology leader; local profile representation",
+          "created_at": "2026-07-12T19:29:52.838884+00:00"
+        },
+        "draft": null,
+        "applications": [
+          {
+            "id": 1,
+            "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+            "payload": {
+              "accuracyConfirmed": true,
+              "applicant": {
+                "city": "Toronto",
+                "email": "alex.green.uoft@clawbench.cc",
+                "firstName": "Alex",
+                "lastName": "Green",
+                "province": "Ontario"
+              },
+              "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+              "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+              "resume": {
+                "fileName": "Alex_Green_Resume.pdf",
+                "source": "ASSIGNED_PROFILE"
+              }
+            },
+            "status": "SUBMITTED_LOCALLY",
+            "delivery": "NONE_LOCAL_REPLICA",
+            "created_at": "2026-07-12T19:29:57.041885+00:00"
+          }
+        ],
+        "searches": [
+          {
+            "keywords": "Program Manager",
+            "location": "Washington, DC",
+            "employment": "Full Time",
+            "sector": "Nonprofit",
+            "result_keys": [
+              "dumbarton-arts-education-program-manager-washington-dc"
+            ],
+            "created_at": "2026-07-12T19:29:58.668519+00:00"
+          }
+        ],
+        "jobViews": [
+          {
+            "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+            "created_at": "2026-07-12T19:29:58.803402+00:00"
+          }
+        ],
+        "journal": [
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/x-www-form-urlencoded",
+            "payload": {
+              "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+              "csrfToken": "a3a287ad4efb4410af429049d81695e7",
+              "email": "alex.green.uoft@clawbench.cc",
+              "json": "true",
+              "password": "[REDACTED]"
+            },
+            "status": 200,
+            "created_at": "2026-07-12T19:29:59.597157+00:00"
+          }
+        ],
+        "session": "6688QUTobM"
+      },
+      "telemetry": {
+        "page_errors": [],
+        "console_errors": [],
+        "external_requests": [],
+        "local_requests": [
+          "http://127.0.0.1:8135/jobs",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/jobs/dumbarton-arts-education-program-manager-washington-dc",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/user/login",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/state"
+        ]
+      }
+    },
+    "edges": {
+      "visuals": {
+        "search_error": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 900,
+          "controls": 10,
+          "badControls": [],
+          "images": 1,
+          "brokenImages": [],
+          "pixelMean": [
+            250.24,
+            248.83,
+            247.95
+          ],
+          "pixelVariation": 540,
+          "bytes": 49701,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-search-error.png"
+        },
+        "not_found": {
+          "innerWidth": 1365,
+          "scrollWidth": 1365,
+          "bodyHeight": 900,
+          "controls": 1,
+          "badControls": [],
+          "images": 0,
+          "brokenImages": [],
+          "pixelMean": [
+            253.64,
+            251.8,
+            250.72
+          ],
+          "pixelVariation": 554,
+          "bytes": 26146,
+          "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-not-found.png"
+        }
+      },
+      "state": {
+        "authenticated": false,
+        "account": null,
+        "profileResume": null,
+        "draft": null,
+        "applications": [],
+        "searches": [],
+        "jobViews": [],
+        "journal": [
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/json",
+            "payload": {},
+            "status": 400,
+            "created_at": "2026-07-12T19:30:00.409595+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/data/userdashboard/missing-info",
+            "content_type": "application/json",
+            "payload": {},
+            "status": 401,
+            "created_at": "2026-07-12T19:30:00.442232+00:00"
+          }
+        ],
+        "session": "ZQe3FpbdZQ"
+      },
+      "telemetry": {
+        "page_errors": [],
+        "console_errors": [
+          "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)",
+          "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+          "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+          "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        ],
+        "external_requests": [],
+        "local_requests": [
+          "http://127.0.0.1:8135/jobs",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/api/applications/submit",
+          "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "http://127.0.0.1:8135/api/state",
+          "http://127.0.0.1:8135/api/auth/register",
+          "http://127.0.0.1:8135/api/auth/sign-in",
+          "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "http://127.0.0.1:8135/jobs?keywords=Program+Manager&location=Boston&employment=Full+Time&sector=Nonprofit",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Boston&employment=Full+Time&sector=Nonprofit",
+          "http://127.0.0.1:8135/jobs",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/jobs?keywords=offline&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+          "http://127.0.0.1:8135/definitely-missing",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/server.py",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/local-boundary?for=external-employer",
+          "http://127.0.0.1:8135/static/styles.css",
+          "http://127.0.0.1:8135/static/app.js",
+          "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+          "http://127.0.0.1:8135/api/bootstrap",
+          "http://127.0.0.1:8135/api/boundary"
+        ]
+      }
+    }
+  },
+  "sqlite": {
+    "sessions": [
+      {
+        "token": "eAKNz2c2vd",
+        "account_id": 1,
+        "created_at": "2026-07-12T19:29:51.722244+00:00",
+        "updated_at": "2026-07-12T19:29:56.495705+00:00"
+      },
+      {
+        "token": "_2adNq64yB",
+        "account_id": null,
+        "created_at": "2026-07-12T19:29:57.406159+00:00",
+        "updated_at": "2026-07-12T19:29:57.406159+00:00"
+      },
+      {
+        "token": "6688QUTobM",
+        "account_id": 1,
+        "created_at": "2026-07-12T19:29:57.993235+00:00",
+        "updated_at": "2026-07-12T19:29:59.591461+00:00"
+      },
+      {
+        "token": "ZQe3FpbdZQ",
+        "account_id": 1,
+        "created_at": "2026-07-12T19:29:59.884688+00:00",
+        "updated_at": "2026-07-12T19:30:00.584219+00:00"
+      }
+    ],
+    "accounts": [
+      {
+        "id": 1,
+        "email": "alex.green.uoft@clawbench.cc",
+        "password_hash": "[REDACTED]",
+        "first_name": "Alex",
+        "last_name": "Green",
+        "postal_code": "M5S 2H7",
+        "account_type": "APPLICANT",
+        "profile_complete": 1,
+        "created_at": "2026-07-12T19:29:52.838884+00:00"
+      }
+    ],
+    "profile_resumes": [
+      {
+        "id": 1,
+        "account_id": 1,
+        "file_name": "Alex_Green_Resume.pdf",
+        "source": "ASSIGNED_PROFILE",
+        "display_size": "84 KB",
+        "summary": "Alex Green - senior technology leader; local profile representation",
+        "created_at": "2026-07-12T19:29:52.838884+00:00"
+      }
+    ],
+    "searches": [
+      {
+        "id": 1,
+        "session_token": "eAKNz2c2vd",
+        "keywords": "Program Manager",
+        "location": "Washington, DC",
+        "employment": "Full Time",
+        "sector": "Nonprofit",
+        "result_keys": [
+          "dumbarton-arts-education-program-manager-washington-dc"
+        ],
+        "created_at": "2026-07-12T19:29:52.339997+00:00"
+      },
+      {
+        "id": 2,
+        "session_token": "6688QUTobM",
+        "keywords": "Program Manager",
+        "location": "Washington, DC",
+        "employment": "Full Time",
+        "sector": "Nonprofit",
+        "result_keys": [
+          "dumbarton-arts-education-program-manager-washington-dc"
+        ],
+        "created_at": "2026-07-12T19:29:58.668519+00:00"
+      },
+      {
+        "id": 3,
+        "session_token": "ZQe3FpbdZQ",
+        "keywords": "Program Manager",
+        "location": "Boston",
+        "employment": "Full Time",
+        "sector": "Nonprofit",
+        "result_keys": [],
+        "created_at": "2026-07-12T19:30:00.658196+00:00"
+      }
+    ],
+    "job_views": [
+      {
+        "id": 1,
+        "session_token": "eAKNz2c2vd",
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "created_at": "2026-07-12T19:29:52.555011+00:00"
+      },
+      {
+        "id": 2,
+        "session_token": "6688QUTobM",
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "created_at": "2026-07-12T19:29:58.803402+00:00"
+      }
+    ],
+    "drafts": [],
+    "applications": [
+      {
+        "id": 1,
+        "account_id": 1,
+        "session_token": "eAKNz2c2vd",
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": "SUBMITTED_LOCALLY",
+        "delivery": "NONE_LOCAL_REPLICA",
+        "created_at": "2026-07-12T19:29:57.041885+00:00"
+      }
+    ],
+    "request_journal": [
+      {
+        "id": 1,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/auth/register",
+        "content_type": "application/json",
+        "payload": {
+          "accountType": "APPLICANT",
+          "email": "alex.green.uoft@clawbench.cc",
+          "firstName": "Alex",
+          "lastName": "Green",
+          "password": "[REDACTED]",
+          "postalCode": "M5S 2H7",
+          "termsAccepted": true
+        },
+        "status": 201,
+        "created_at": "2026-07-12T19:29:52.881611+00:00"
+      },
+      {
+        "id": 2,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/x-www-form-urlencoded",
+        "payload": {
+          "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "csrfToken": "5c70f39caf0442de9037ec96e89bd676",
+          "email": "alex.green.uoft@clawbench.cc",
+          "json": "true",
+          "password": "[REDACTED]"
+        },
+        "status": 401,
+        "created_at": "2026-07-12T19:29:52.995174+00:00"
+      },
+      {
+        "id": 3,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/x-www-form-urlencoded",
+        "payload": {
+          "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "csrfToken": "ae1e083ef10d43d0b9db5b0a5279eb89",
+          "email": "alex.green.uoft@clawbench.cc",
+          "json": "true",
+          "password": "[REDACTED]"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:53.167644+00:00"
+      },
+      {
+        "id": 4,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/applications/draft",
+        "content_type": "application/json",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dumbarton Arts & Education Program Manager",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": 422,
+        "created_at": "2026-07-12T19:29:53.251397+00:00"
+      },
+      {
+        "id": 5,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/applications/submit",
+        "content_type": "application/json",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": 409,
+        "created_at": "2026-07-12T19:29:53.270047+00:00"
+      },
+      {
+        "id": 6,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/applications/draft",
+        "content_type": "application/json",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          },
+          "revision": 1
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:55.194455+00:00"
+      },
+      {
+        "id": 7,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/auth/logout",
+        "content_type": "application/json",
+        "payload": {
+          "accountId": 1
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:55.854135+00:00"
+      },
+      {
+        "id": 8,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/x-www-form-urlencoded",
+        "payload": {
+          "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "csrfToken": "ec564ba5980342f9902eb7e2628993bc",
+          "email": "alex.green.uoft@clawbench.cc",
+          "json": "true",
+          "password": "[REDACTED]"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:56.501733+00:00"
+      },
+      {
+        "id": 9,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/applications/draft",
+        "content_type": "application/json",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          },
+          "revision": 2
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:56.578760+00:00"
+      },
+      {
+        "id": 10,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/api/applications/submit",
+        "content_type": "application/json",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "applicationId": 1,
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": 201,
+        "created_at": "2026-07-12T19:29:57.045668+00:00"
+      },
+      {
+        "id": 11,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/data/userdashboard/missing-info",
+        "content_type": "application/json",
+        "payload": {
+          "email": "alex.green.uoft@clawbench.cc",
+          "firstName": "Alex",
+          "intent": "COMPLETE_IDEALIST_PROFILE",
+          "lastName": "Green",
+          "location": "Toronto, Ontario, Canada",
+          "resumeFileName": "Alex_Green_Resume.pdf"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:57.075290+00:00"
+      },
+      {
+        "id": 12,
+        "session_token": "eAKNz2c2vd",
+        "method": "POST",
+        "endpoint": "/data/userdashboard/missing-info",
+        "content_type": "application/json",
+        "payload": {
+          "email": "alex.green.uoft@clawbench.cc",
+          "firstName": "Alex",
+          "intent": "COMPLETE_IDEALIST_PROFILE",
+          "lastName": "Green",
+          "location": "Toronto, Ontario, Canada",
+          "resumeFileName": "Alex_Green_Resume.pdf"
+        },
+        "status": 409,
+        "created_at": "2026-07-12T19:29:57.220625+00:00"
+      },
+      {
+        "id": 13,
+        "session_token": "6688QUTobM",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/x-www-form-urlencoded",
+        "payload": {
+          "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "csrfToken": "a3a287ad4efb4410af429049d81695e7",
+          "email": "alex.green.uoft@clawbench.cc",
+          "json": "true",
+          "password": "[REDACTED]"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:29:59.597157+00:00"
+      },
+      {
+        "id": 14,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/json",
+        "payload": {},
+        "status": 400,
+        "created_at": "2026-07-12T19:30:00.409595+00:00"
+      },
+      {
+        "id": 15,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/data/userdashboard/missing-info",
+        "content_type": "application/json",
+        "payload": {},
+        "status": 401,
+        "created_at": "2026-07-12T19:30:00.442232+00:00"
+      },
+      {
+        "id": 16,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/api/auth/register",
+        "content_type": "application/json",
+        "payload": {
+          "accountType": "APPLICANT",
+          "email": "alex.green.uoft@clawbench.cc",
+          "firstName": "Alex",
+          "lastName": "Green",
+          "password": "[REDACTED]",
+          "postalCode": "M5S 2H7",
+          "termsAccepted": true
+        },
+        "status": 409,
+        "created_at": "2026-07-12T19:30:00.519110+00:00"
+      },
+      {
+        "id": 17,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/api/auth/sign-in",
+        "content_type": "application/x-www-form-urlencoded",
+        "payload": {
+          "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "csrfToken": "0123456789abcdef",
+          "email": "alex.green.uoft@clawbench.cc",
+          "json": "true",
+          "password": "[REDACTED]"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:30:00.591226+00:00"
+      },
+      {
+        "id": 18,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/data/userdashboard/missing-info",
+        "content_type": "application/json",
+        "payload": {},
+        "status": 400,
+        "created_at": "2026-07-12T19:30:00.608770+00:00"
+      },
+      {
+        "id": 19,
+        "session_token": "ZQe3FpbdZQ",
+        "method": "POST",
+        "endpoint": "/api/boundary",
+        "content_type": "application/json",
+        "payload": {
+          "boundary": "external-employer"
+        },
+        "status": 200,
+        "created_at": "2026-07-12T19:30:03.134323+00:00"
+      }
+    ],
+    "boundary_events": [
+      {
+        "id": 1,
+        "session_token": "ZQe3FpbdZQ",
+        "boundary": "external-employer",
+        "created_at": "2026-07-12T19:30:03.128705+00:00"
+      }
+    ]
+  },
+  "finishedAt": "2026-07-12T19:30:03.710786+00:00",
+  "checks": [
+    {
+      "name": "global:task-schema-valid",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:source-task",
+      "passed": true,
+      "detail": {
+        "task_id": 776,
+        "metaclass": "nonprofit-charity",
+        "class": "volunteer-signup",
+        "description": "On Idealist, search for Program Manager positions at nonprofits in Washington DC, select a qualifying position and submit a job application",
+        "sites_involved": [
+          "idealist.org"
+        ],
+        "platform": "idealist",
+        "common_info": {
+          "email_credentials": "credentials to use the assigned disposable email account",
+          "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+          "user_resume": "PDF resume with disposable email account injected"
+        }
+      }
+    },
+    {
+      "name": "global:source-terminal-preserved",
+      "passed": true,
+      "detail": {
+        "url_pattern": "www\\.idealist\\.org/data/userdashboard/missing-info",
+        "method": "POST"
+      }
+    },
+    {
+      "name": "global:canonical-port",
+      "passed": true,
+      "detail": {
+        "clone": "http://127.0.0.1:8135",
+        "command": "python3 website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/server.py --host 0.0.0.0 --port 8135"
+      }
+    },
+    {
+      "name": "global:terminal-body-exact",
+      "passed": true,
+      "detail": {
+        "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8135/data/userdashboard/missing-info$",
+        "method": "POST",
+        "body": {
+          "firstName": "Alex",
+          "lastName": "Green",
+          "email": "alex.green.uoft@clawbench.cc",
+          "location": "Toronto, Ontario, Canada",
+          "resumeFileName": "Alex_Green_Resume.pdf",
+          "intent": "COMPLETE_IDEALIST_PROFILE"
+        }
+      }
+    },
+    {
+      "name": "global:matcher:localhost",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher:127.0.0.1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher:host.docker.internal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher-rejects:http://127.0.0.1:8134/data/userdashboard/missing-info",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher-rejects:http://idealist.org:8135/data/userdashboard/missing-info",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher-rejects:http://127.0.0.1:8135/data/userdashboard/missing-info/extra",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "global:matcher-rejects-get",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:title",
+      "passed": true,
+      "detail": "Idealist | Find nonprofit work"
+    },
+    {
+      "name": "desktop:offline-disclosure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:jobs-heading",
+      "passed": true,
+      "detail": "Find nonprofit jobs"
+    },
+    {
+      "name": "desktop:one-exact-result",
+      "passed": true,
+      "detail": "IDEAS INTO ACTION\n\nFind nonprofit jobs\n\nConnect with organizations working for stronger communities.\n\nKeywords\n\u2315\nLocation\n\u25cf\nJob type\nAny type\nFull Time\nPart Time\nContract\nOrganization type\nAny organization\nNonprofit\nConsulting\n\u2315\nSearch jobs\n\nOPPORTUNITIES\n\n1 matching job\nReset search\nKeywords: Program Manager\nLocation: Washington, DC\nEmployment: Full Time\nSector: Nonprofit\nDA\nProgram Manager\nDumbarton Arts & Education\n\u25cf Washington, DC\nOn-site\nFull Time\nNonprofit\nLead arts education programs, partnerships, operations, and impact measurement for the DC community.\nPublished 2026-07-08 \u00b7 Expires 2026-08-28\n\u2606\nQuick Apply\nSelect a job to see the details\n\nCompare the role, organization, requirements, and application method.\n\n\u2713\n\nLocal only"
+    },
+    {
+      "name": "desktop:rank-one-target",
+      "passed": true,
+      "detail": "DA\nProgram Manager\nDumbarton Arts & Education\n\u25cf Washington, DC\nOn-site\nFull Time\nNonprofit\nLead arts education programs, partnerships, operations, and impact measurement for the DC community.\nPublished 2026-07-08 \u00b7 Expires 2026-08-28\n\u2606\nQuick Apply"
+    },
+    {
+      "name": "desktop:search-state-exact",
+      "passed": true,
+      "detail": {
+        "keywords": "Program Manager",
+        "location": "Washington, DC",
+        "employment": "Full Time",
+        "sector": "Nonprofit",
+        "result_keys": [
+          "dumbarton-arts-education-program-manager-washington-dc"
+        ],
+        "created_at": "2026-07-12T19:29:52.339997+00:00"
+      }
+    },
+    {
+      "name": "desktop:results:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1070,
+        "controls": 16,
+        "badControls": [],
+        "images": 2,
+        "brokenImages": [],
+        "pixelMean": [
+          210.13,
+          207.48,
+          205.85
+        ],
+        "pixelVariation": 662,
+        "bytes": 98246,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-results.png"
+      }
+    },
+    {
+      "name": "desktop:results:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1070,
+        "controls": 16,
+        "badControls": [],
+        "images": 2,
+        "brokenImages": [],
+        "pixelMean": [
+          210.13,
+          207.48,
+          205.85
+        ],
+        "pixelVariation": 662,
+        "bytes": 98246,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-results.png"
+      }
+    },
+    {
+      "name": "desktop:results:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1070,
+        "controls": 16,
+        "badControls": [],
+        "images": 2,
+        "brokenImages": [],
+        "pixelMean": [
+          210.13,
+          207.48,
+          205.85
+        ],
+        "pixelVariation": 662,
+        "bytes": 98246,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-results.png"
+      }
+    },
+    {
+      "name": "desktop:results:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1070,
+        "controls": 16,
+        "badControls": [],
+        "images": 2,
+        "brokenImages": [],
+        "pixelMean": [
+          210.13,
+          207.48,
+          205.85
+        ],
+        "pixelVariation": 662,
+        "bytes": 98246,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-results.png"
+      }
+    },
+    {
+      "name": "desktop:detail-identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:detail-content",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:detail-journal",
+      "passed": true,
+      "detail": [
+        {
+          "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+          "created_at": "2026-07-12T19:29:52.555011+00:00"
+        }
+      ]
+    },
+    {
+      "name": "desktop:detail:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1483,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          247.08,
+          243.94,
+          242.61
+        ],
+        "pixelVariation": 563,
+        "bytes": 141870,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-detail.png"
+      }
+    },
+    {
+      "name": "desktop:detail:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1483,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          247.08,
+          243.94,
+          242.61
+        ],
+        "pixelVariation": 563,
+        "bytes": 141870,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-detail.png"
+      }
+    },
+    {
+      "name": "desktop:detail:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1483,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          247.08,
+          243.94,
+          242.61
+        ],
+        "pixelVariation": 563,
+        "bytes": 141870,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-detail.png"
+      }
+    },
+    {
+      "name": "desktop:detail:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1483,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          247.08,
+          243.94,
+          242.61
+        ],
+        "pixelVariation": 563,
+        "bytes": 141870,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-detail.png"
+      }
+    },
+    {
+      "name": "desktop:register-applicant-shape",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:assigned-profile-prefill",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:account-created",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:bad-signin-retry",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:bad-signin-not-authenticated",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:successful-signin",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:profile-resume-visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:weak-letter-rejected",
+      "passed": true,
+      "detail": {
+        "status": 422,
+        "body": {
+          "error": "Write a substantive cover letter tailored to Dumbarton Arts & Education and the Program Manager role (at least 180 characters)."
+        }
+      }
+    },
+    {
+      "name": "desktop:direct-stale-submit-rejected",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "body": {
+          "error": "Review and save the current application before submitting."
+        }
+      }
+    },
+    {
+      "name": "desktop:application:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1625,
+        "controls": 19,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          241.33,
+          240.5,
+          240.89
+        ],
+        "pixelVariation": 645,
+        "bytes": 125332,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-application.png"
+      }
+    },
+    {
+      "name": "desktop:application:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1625,
+        "controls": 19,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          241.33,
+          240.5,
+          240.89
+        ],
+        "pixelVariation": 645,
+        "bytes": 125332,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-application.png"
+      }
+    },
+    {
+      "name": "desktop:application:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1625,
+        "controls": 19,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          241.33,
+          240.5,
+          240.89
+        ],
+        "pixelVariation": 645,
+        "bytes": 125332,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-application.png"
+      }
+    },
+    {
+      "name": "desktop:application:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1625,
+        "controls": 19,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          241.33,
+          240.5,
+          240.89
+        ],
+        "pixelVariation": 645,
+        "bytes": 125332,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-application.png"
+      }
+    },
+    {
+      "name": "desktop:draft-exact",
+      "passed": true,
+      "detail": {
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "revision": 1,
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "updated_at": "2026-07-12T19:29:55.190728+00:00"
+      }
+    },
+    {
+      "name": "desktop:draft-refresh",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:logout-for-recovery",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": {
+          "ok": true
+        }
+      }
+    },
+    {
+      "name": "desktop:auth-recovery-draft",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:draft-revision-after-recovery",
+      "passed": true,
+      "detail": {
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "revision": 2,
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "updated_at": "2026-07-12T19:29:56.575684+00:00"
+      }
+    },
+    {
+      "name": "desktop:review-agrees",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:review:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1270,
+        "controls": 13,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.35,
+          244.13,
+          243.91
+        ],
+        "pixelVariation": 650,
+        "bytes": 122324,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-review.png"
+      }
+    },
+    {
+      "name": "desktop:review:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1270,
+        "controls": 13,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.35,
+          244.13,
+          243.91
+        ],
+        "pixelVariation": 650,
+        "bytes": 122324,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-review.png"
+      }
+    },
+    {
+      "name": "desktop:review:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1270,
+        "controls": 13,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.35,
+          244.13,
+          243.91
+        ],
+        "pixelVariation": 650,
+        "bytes": 122324,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-review.png"
+      }
+    },
+    {
+      "name": "desktop:review:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 1270,
+        "controls": 13,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.35,
+          244.13,
+          243.91
+        ],
+        "pixelVariation": 650,
+        "bytes": 122324,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-review.png"
+      }
+    },
+    {
+      "name": "desktop:one-terminal-request",
+      "passed": true,
+      "detail": [
+        {
+          "status": "request",
+          "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "method": "POST",
+          "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+          "contentType": "application/json"
+        },
+        {
+          "status": "request",
+          "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+          "method": "POST",
+          "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "desktop:terminal-path-method",
+      "passed": true,
+      "detail": {
+        "status": "request",
+        "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "method": "POST",
+        "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+        "contentType": "application/json"
+      }
+    },
+    {
+      "name": "desktop:terminal-json",
+      "passed": true,
+      "detail": {
+        "status": "request",
+        "url": "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "method": "POST",
+        "postData": "{\"firstName\":\"Alex\",\"lastName\":\"Green\",\"email\":\"alex.green.uoft@clawbench.cc\",\"location\":\"Toronto, Ontario, Canada\",\"resumeFileName\":\"Alex_Green_Resume.pdf\",\"intent\":\"COMPLETE_IDEALIST_PROFILE\"}",
+        "contentType": "application/json"
+      }
+    },
+    {
+      "name": "desktop:completion-no-effect",
+      "passed": true,
+      "detail": "\u2713\n\nAPPLICATION SAVED\n\nYour local application is complete\n\nYour application for Program Manager at Dumbarton Arts & Education is in My applications.\n\nAPPLICATION ID\nID-00001\nSTATUS\nSubmitted locally\nDELIVERY\nNone\nNo real-world effect\n\nThis offline replica did not contact Dumbarton Arts & Education, send an email, upload a file, or verify an identity.\n\nView My applications\nBack to job search"
+    },
+    {
+      "name": "desktop:completion:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 920,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.52,
+          244.16,
+          243.1
+        ],
+        "pixelVariation": 655,
+        "bytes": 75234,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-completion.png"
+      }
+    },
+    {
+      "name": "desktop:completion:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 920,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.52,
+          244.16,
+          243.1
+        ],
+        "pixelVariation": 655,
+        "bytes": 75234,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-completion.png"
+      }
+    },
+    {
+      "name": "desktop:completion:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 920,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.52,
+          244.16,
+          243.1
+        ],
+        "pixelVariation": 655,
+        "bytes": 75234,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-completion.png"
+      }
+    },
+    {
+      "name": "desktop:completion:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 920,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          245.52,
+          244.16,
+          243.1
+        ],
+        "pixelVariation": 655,
+        "bytes": 75234,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/desktop-completion.png"
+      }
+    },
+    {
+      "name": "desktop:one-application",
+      "passed": true,
+      "detail": [
+        {
+          "id": 1,
+          "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": "SUBMITTED_LOCALLY",
+          "delivery": "NONE_LOCAL_REPLICA",
+          "created_at": "2026-07-12T19:29:57.041885+00:00"
+        }
+      ]
+    },
+    {
+      "name": "desktop:application-payload-exact",
+      "passed": true,
+      "detail": {
+        "id": 1,
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": "SUBMITTED_LOCALLY",
+        "delivery": "NONE_LOCAL_REPLICA",
+        "created_at": "2026-07-12T19:29:57.041885+00:00"
+      }
+    },
+    {
+      "name": "desktop:application-status",
+      "passed": true,
+      "detail": {
+        "id": 1,
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": "SUBMITTED_LOCALLY",
+        "delivery": "NONE_LOCAL_REPLICA",
+        "created_at": "2026-07-12T19:29:57.041885+00:00"
+      }
+    },
+    {
+      "name": "desktop:one-successful-submit-journal",
+      "passed": true,
+      "detail": [
+        {
+          "method": "POST",
+          "endpoint": "/api/auth/register",
+          "content_type": "application/json",
+          "payload": {
+            "accountType": "APPLICANT",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "password": "[REDACTED]",
+            "postalCode": "M5S 2H7",
+            "termsAccepted": true
+          },
+          "status": 201,
+          "created_at": "2026-07-12T19:29:52.881611+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/auth/sign-in",
+          "content_type": "application/x-www-form-urlencoded",
+          "payload": {
+            "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+            "csrfToken": "5c70f39caf0442de9037ec96e89bd676",
+            "email": "alex.green.uoft@clawbench.cc",
+            "json": "true",
+            "password": "[REDACTED]"
+          },
+          "status": 401,
+          "created_at": "2026-07-12T19:29:52.995174+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/auth/sign-in",
+          "content_type": "application/x-www-form-urlencoded",
+          "payload": {
+            "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+            "csrfToken": "ae1e083ef10d43d0b9db5b0a5279eb89",
+            "email": "alex.green.uoft@clawbench.cc",
+            "json": "true",
+            "password": "[REDACTED]"
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:53.167644+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/applications/draft",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dumbarton Arts & Education Program Manager",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": 422,
+          "created_at": "2026-07-12T19:29:53.251397+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/applications/submit",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": 409,
+          "created_at": "2026-07-12T19:29:53.270047+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/applications/draft",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            },
+            "revision": 1
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:55.194455+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/auth/logout",
+          "content_type": "application/json",
+          "payload": {
+            "accountId": 1
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:55.854135+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/auth/sign-in",
+          "content_type": "application/x-www-form-urlencoded",
+          "payload": {
+            "callbackUrl": "/application/dumbarton-arts-education-program-manager-washington-dc",
+            "csrfToken": "ec564ba5980342f9902eb7e2628993bc",
+            "email": "alex.green.uoft@clawbench.cc",
+            "json": "true",
+            "password": "[REDACTED]"
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:56.501733+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/applications/draft",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            },
+            "revision": 2
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:56.578760+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/api/applications/submit",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "applicationId": 1,
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": 201,
+          "created_at": "2026-07-12T19:29:57.045668+00:00"
+        },
+        {
+          "method": "POST",
+          "endpoint": "/data/userdashboard/missing-info",
+          "content_type": "application/json",
+          "payload": {
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "intent": "COMPLETE_IDEALIST_PROFILE",
+            "lastName": "Green",
+            "location": "Toronto, Ontario, Canada",
+            "resumeFileName": "Alex_Green_Resume.pdf"
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:57.075290+00:00"
+        }
+      ]
+    },
+    {
+      "name": "desktop:terminal-journal-exact",
+      "passed": true,
+      "detail": [
+        {
+          "method": "POST",
+          "endpoint": "/data/userdashboard/missing-info",
+          "content_type": "application/json",
+          "payload": {
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "intent": "COMPLETE_IDEALIST_PROFILE",
+            "lastName": "Green",
+            "location": "Toronto, Ontario, Canada",
+            "resumeFileName": "Alex_Green_Resume.pdf"
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:57.075290+00:00"
+        }
+      ]
+    },
+    {
+      "name": "desktop:duplicate-rejected",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "body": {
+          "error": "This application was already completed.",
+          "applicationId": 1
+        }
+      }
+    },
+    {
+      "name": "desktop:duplicate-does-not-mutate",
+      "passed": true,
+      "detail": [
+        {
+          "id": 1,
+          "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": "SUBMITTED_LOCALLY",
+          "delivery": "NONE_LOCAL_REPLICA",
+          "created_at": "2026-07-12T19:29:57.041885+00:00"
+        }
+      ]
+    },
+    {
+      "name": "desktop:my-applications-agrees",
+      "passed": true,
+      "detail": "ALEX GREEN\n\nMy applications\n\nReview the information and documents saved with your local applications.\n\nApplications\n1\nProfile & resume\nSign out\n1 application\nFind more jobs\nDA\nSUBMITTED LOCALLY\nProgram Manager\n\nDumbarton Arts & Education \u00b7 Washington, DC\n\nSaved July 13, 2026\n\nView details"
+    },
+    {
+      "name": "desktop:application-details-agree",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "desktop:no-page-errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "desktop:no-unexpected-console-errors",
+      "passed": true,
+      "detail": {
+        "unexpected": [],
+        "expectedNegativeResponses": [
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)"
+        ]
+      }
+    },
+    {
+      "name": "desktop:no-external-network",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "desktop:local-assets-used",
+      "passed": true,
+      "detail": [
+        "http://127.0.0.1:8135/",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/reset",
+        "http://127.0.0.1:8135/jobs",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/jobs/dumbarton-arts-education-program-manager-washington-dc",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/auth/register",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/applications/draft",
+        "http://127.0.0.1:8135/api/applications/submit",
+        "http://127.0.0.1:8135/api/applications/draft",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/application/dumbarton-arts-education-program-manager-washington-dc",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/auth/logout",
+        "http://127.0.0.1:8135/application/dumbarton-arts-education-program-manager-washington-dc",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/applications/draft",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/applications/submit",
+        "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state"
+      ]
+    },
+    {
+      "name": "mobile:header-fits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:menu-operational",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:jobs-heading",
+      "passed": true,
+      "detail": "Find nonprofit jobs"
+    },
+    {
+      "name": "mobile:one-exact-result",
+      "passed": true,
+      "detail": "IDEAS INTO ACTION\n\nFind nonprofit jobs\n\nConnect with organizations working for stronger communities.\n\nKeywords\n\u2315\nLocation\n\u25cf\nJob type\nAny type\nFull Time\nPart Time\nContract\nOrganization type\nAny organization\nNonprofit\nConsulting\n\u2315\nSearch jobs\n\nOPPORTUNITIES\n\n1 matching job\nReset search\nKeywords: Program Manager\nLocation: Washington, DC\nEmployment: Full Time\nSector: Nonprofit\nDA\nProgram Manager\nDumbarton Arts & Education\n\u25cf Washington, DC\nOn-site\nFull Time\nNonprofit\nPublished 2026-07-08 \u00b7 Expires 2026-08-28\n\u2606\nQuick Apply"
+    },
+    {
+      "name": "mobile:rank-one-target",
+      "passed": true,
+      "detail": "DA\nProgram Manager\nDumbarton Arts & Education\n\u25cf Washington, DC\nOn-site\nFull Time\nNonprofit\nPublished 2026-07-08 \u00b7 Expires 2026-08-28\n\u2606\nQuick Apply"
+    },
+    {
+      "name": "mobile:search-state-exact",
+      "passed": true,
+      "detail": {
+        "keywords": "Program Manager",
+        "location": "Washington, DC",
+        "employment": "Full Time",
+        "sector": "Nonprofit",
+        "result_keys": [
+          "dumbarton-arts-education-program-manager-washington-dc"
+        ],
+        "created_at": "2026-07-12T19:29:58.668519+00:00"
+      }
+    },
+    {
+      "name": "mobile:results:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1267,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          198.71,
+          188.82,
+          185.81
+        ],
+        "pixelVariation": 657,
+        "bytes": 51223,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-results.png"
+      }
+    },
+    {
+      "name": "mobile:results:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1267,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          198.71,
+          188.82,
+          185.81
+        ],
+        "pixelVariation": 657,
+        "bytes": 51223,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-results.png"
+      }
+    },
+    {
+      "name": "mobile:results:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1267,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          198.71,
+          188.82,
+          185.81
+        ],
+        "pixelVariation": 657,
+        "bytes": 51223,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-results.png"
+      }
+    },
+    {
+      "name": "mobile:results:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1267,
+        "controls": 12,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          198.71,
+          188.82,
+          185.81
+        ],
+        "pixelVariation": 657,
+        "bytes": 51223,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-results.png"
+      }
+    },
+    {
+      "name": "mobile:detail-identity",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:detail-content",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:detail-journal",
+      "passed": true,
+      "detail": [
+        {
+          "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+          "created_at": "2026-07-12T19:29:58.803402+00:00"
+        }
+      ]
+    },
+    {
+      "name": "mobile:detail:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail.png"
+      }
+    },
+    {
+      "name": "mobile:detail:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail.png"
+      }
+    },
+    {
+      "name": "mobile:detail:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail.png"
+      }
+    },
+    {
+      "name": "mobile:detail:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail.png"
+      }
+    },
+    {
+      "name": "mobile:apply-visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:detail-mobile:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:detail-mobile:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:detail-mobile:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:detail-mobile:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 2009,
+        "controls": 7,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          242.24,
+          229.76,
+          227.47
+        ],
+        "pixelVariation": 591,
+        "bytes": 64022,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-detail-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:account-shared-by-credentials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:completion-responsive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile:completion-mobile:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1240,
+        "controls": 6,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          234.32,
+          233.91,
+          231.81
+        ],
+        "pixelVariation": 669,
+        "bytes": 48189,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-completion-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:completion-mobile:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1240,
+        "controls": 6,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          234.32,
+          233.91,
+          231.81
+        ],
+        "pixelVariation": 669,
+        "bytes": 48189,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-completion-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:completion-mobile:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1240,
+        "controls": 6,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          234.32,
+          233.91,
+          231.81
+        ],
+        "pixelVariation": 669,
+        "bytes": 48189,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-completion-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:completion-mobile:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 1240,
+        "controls": 6,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          234.32,
+          233.91,
+          231.81
+        ],
+        "pixelVariation": 669,
+        "bytes": 48189,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-completion-mobile.png"
+      }
+    },
+    {
+      "name": "mobile:my-applications",
+      "passed": true,
+      "detail": "ALEX GREEN\n\nMy applications\n\nReview the information and documents saved with your local applications.\n\nApplications\n1\nProfile & resume\nSign out\n1 application\nFind more jobs\nDA\nSUBMITTED LOCALLY\nProgram Manager\n\nDumbarton Arts & Education \u00b7 Washington, DC\n\nSaved July 13, 2026\n\nView details"
+    },
+    {
+      "name": "mobile:my-applications:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 982,
+        "controls": 9,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          200.49,
+          199.1,
+          198.44
+        ],
+        "pixelVariation": 664,
+        "bytes": 52037,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-my-applications.png"
+      }
+    },
+    {
+      "name": "mobile:my-applications:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 982,
+        "controls": 9,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          200.49,
+          199.1,
+          198.44
+        ],
+        "pixelVariation": 664,
+        "bytes": 52037,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-my-applications.png"
+      }
+    },
+    {
+      "name": "mobile:my-applications:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 982,
+        "controls": 9,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          200.49,
+          199.1,
+          198.44
+        ],
+        "pixelVariation": 664,
+        "bytes": 52037,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-my-applications.png"
+      }
+    },
+    {
+      "name": "mobile:my-applications:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 390,
+        "scrollWidth": 390,
+        "bodyHeight": 982,
+        "controls": 9,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          200.49,
+          199.1,
+          198.44
+        ],
+        "pixelVariation": 664,
+        "bytes": 52037,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/mobile-my-applications.png"
+      }
+    },
+    {
+      "name": "mobile:no-page-errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "mobile:no-unexpected-console-errors",
+      "passed": true,
+      "detail": {
+        "unexpected": [],
+        "expectedNegativeResponses": []
+      }
+    },
+    {
+      "name": "mobile:no-external-network",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "mobile:local-assets-used",
+      "passed": true,
+      "detail": [
+        "http://127.0.0.1:8135/jobs",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/jobs/dumbarton-arts-education-program-manager-washington-dc",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/user/login",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/state"
+      ]
+    },
+    {
+      "name": "edges:malformed-json",
+      "passed": true,
+      "detail": {
+        "status": 400,
+        "body": {
+          "error": "Request body must be valid JSON"
+        }
+      }
+    },
+    {
+      "name": "edges:unauthenticated-submit",
+      "passed": true,
+      "detail": {
+        "status": 401,
+        "body": {
+          "error": "Your session expired. Sign in and retry.",
+          "authRequired": true
+        }
+      }
+    },
+    {
+      "name": "edges:unauthenticated-terminal",
+      "passed": true,
+      "detail": {
+        "status": 401,
+        "body": {
+          "error": "Your session expired. Sign in and retry."
+        }
+      }
+    },
+    {
+      "name": "edges:session-isolation",
+      "passed": true,
+      "detail": {
+        "authenticated": false,
+        "account": null,
+        "profileResume": null,
+        "draft": null,
+        "applications": [],
+        "searches": [],
+        "jobViews": [],
+        "journal": [
+          {
+            "method": "POST",
+            "endpoint": "/api/auth/sign-in",
+            "content_type": "application/json",
+            "payload": {},
+            "status": 400,
+            "created_at": "2026-07-12T19:30:00.409595+00:00"
+          },
+          {
+            "method": "POST",
+            "endpoint": "/data/userdashboard/missing-info",
+            "content_type": "application/json",
+            "payload": {},
+            "status": 401,
+            "created_at": "2026-07-12T19:30:00.442232+00:00"
+          }
+        ],
+        "session": "ZQe3FpbdZQ"
+      }
+    },
+    {
+      "name": "edges:duplicate-account",
+      "passed": true,
+      "detail": {
+        "status": 409,
+        "body": {
+          "error": "An account already exists for this email. Sign in instead."
+        }
+      }
+    },
+    {
+      "name": "edges:sign-in-for-malformed-terminal",
+      "passed": true,
+      "detail": {
+        "status": 200,
+        "body": {
+          "ok": true,
+          "url": "/application/dumbarton-arts-education-program-manager-washington-dc",
+          "account": {
+            "email": "alex.green.uoft@clawbench.cc",
+            "name": "Alex Green"
+          }
+        }
+      }
+    },
+    {
+      "name": "edges:malformed-terminal",
+      "passed": true,
+      "detail": {
+        "status": 400,
+        "body": {
+          "error": "Request body must be valid JSON"
+        }
+      }
+    },
+    {
+      "name": "edges:empty-results",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "edges:retryable-search-error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "edges:search-error:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          250.24,
+          248.83,
+          247.95
+        ],
+        "pixelVariation": 540,
+        "bytes": 49701,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-search-error.png"
+      }
+    },
+    {
+      "name": "edges:search-error:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          250.24,
+          248.83,
+          247.95
+        ],
+        "pixelVariation": 540,
+        "bytes": 49701,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-search-error.png"
+      }
+    },
+    {
+      "name": "edges:search-error:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          250.24,
+          248.83,
+          247.95
+        ],
+        "pixelVariation": 540,
+        "bytes": 49701,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-search-error.png"
+      }
+    },
+    {
+      "name": "edges:search-error:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 10,
+        "badControls": [],
+        "images": 1,
+        "brokenImages": [],
+        "pixelMean": [
+          250.24,
+          248.83,
+          247.95
+        ],
+        "pixelVariation": 540,
+        "bytes": 49701,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-search-error.png"
+      }
+    },
+    {
+      "name": "edges:server-404",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "edges:404-security",
+      "passed": true,
+      "detail": {
+        "content-length": "630",
+        "content-security-policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 12 Jul 2026 19:30:01 GMT",
+        "permissions-policy": "camera=(), microphone=(), geolocation=()",
+        "referrer-policy": "no-referrer",
+        "server": "IdealistLocal/1.0 Python/3.11.11",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY"
+      }
+    },
+    {
+      "name": "edges:not-found:no-overflow",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 1,
+        "badControls": [],
+        "images": 0,
+        "brokenImages": [],
+        "pixelMean": [
+          253.64,
+          251.8,
+          250.72
+        ],
+        "pixelVariation": 554,
+        "bytes": 26146,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-not-found.png"
+      }
+    },
+    {
+      "name": "edges:not-found:controls-in-canvas",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 1,
+        "badControls": [],
+        "images": 0,
+        "brokenImages": [],
+        "pixelMean": [
+          253.64,
+          251.8,
+          250.72
+        ],
+        "pixelVariation": 554,
+        "bytes": 26146,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-not-found.png"
+      }
+    },
+    {
+      "name": "edges:not-found:images-loaded",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 1,
+        "badControls": [],
+        "images": 0,
+        "brokenImages": [],
+        "pixelMean": [
+          253.64,
+          251.8,
+          250.72
+        ],
+        "pixelVariation": 554,
+        "bytes": 26146,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-not-found.png"
+      }
+    },
+    {
+      "name": "edges:not-found:nonblank",
+      "passed": true,
+      "detail": {
+        "innerWidth": 1365,
+        "scrollWidth": 1365,
+        "bodyHeight": 900,
+        "controls": 1,
+        "badControls": [],
+        "images": 0,
+        "brokenImages": [],
+        "pixelMean": [
+          253.64,
+          251.8,
+          250.72
+        ],
+        "pixelVariation": 554,
+        "bytes": 26146,
+        "path": "website-clone/v2-776-nonprofit-charity-volunteer-signup-idealist/.verification-artifacts/edges-not-found.png"
+      }
+    },
+    {
+      "name": "edges:path-traversal-blocked",
+      "passed": true,
+      "detail": 404
+    },
+    {
+      "name": "edges:local-boundary",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "edges:no-page-errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "edges:no-unexpected-console-errors",
+      "passed": true,
+      "detail": {
+        "unexpected": [],
+        "expectedNegativeResponses": [
+          "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+          "Failed to load resource: the server responded with a status of 409 (Conflict)",
+          "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+          "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+          "Failed to load resource: the server responded with a status of 404 (Not Found)",
+          "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        ]
+      }
+    },
+    {
+      "name": "edges:no-external-network",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "edges:local-assets-used",
+      "passed": true,
+      "detail": [
+        "http://127.0.0.1:8135/jobs",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/api/applications/submit",
+        "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "http://127.0.0.1:8135/api/state",
+        "http://127.0.0.1:8135/api/auth/register",
+        "http://127.0.0.1:8135/api/auth/sign-in",
+        "http://127.0.0.1:8135/data/userdashboard/missing-info",
+        "http://127.0.0.1:8135/jobs?keywords=Program+Manager&location=Boston&employment=Full+Time&sector=Nonprofit",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/jobs?keywords=Program+Manager&location=Boston&employment=Full+Time&sector=Nonprofit",
+        "http://127.0.0.1:8135/jobs",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/jobs?keywords=offline&location=Washington%2C+DC&employment=Full+Time&sector=Nonprofit",
+        "http://127.0.0.1:8135/definitely-missing",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/server.py",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/local-boundary?for=external-employer",
+        "http://127.0.0.1:8135/static/styles.css",
+        "http://127.0.0.1:8135/static/app.js",
+        "http://127.0.0.1:8135/static/assets/idealist-mark.svg",
+        "http://127.0.0.1:8135/api/bootstrap",
+        "http://127.0.0.1:8135/api/boundary"
+      ]
+    },
+    {
+      "name": "sqlite:application-present",
+      "passed": true,
+      "detail": [
+        {
+          "id": 1,
+          "account_id": 1,
+          "session_token": "eAKNz2c2vd",
+          "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": "SUBMITTED_LOCALLY",
+          "delivery": "NONE_LOCAL_REPLICA",
+          "created_at": "2026-07-12T19:29:57.041885+00:00"
+        }
+      ]
+    },
+    {
+      "name": "sqlite:application-exact",
+      "passed": true,
+      "detail": {
+        "id": 1,
+        "account_id": 1,
+        "session_token": "eAKNz2c2vd",
+        "job_key": "dumbarton-arts-education-program-manager-washington-dc",
+        "payload": {
+          "accuracyConfirmed": true,
+          "applicant": {
+            "city": "Toronto",
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "lastName": "Green",
+            "province": "Ontario"
+          },
+          "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+          "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+          "resume": {
+            "fileName": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE"
+          }
+        },
+        "status": "SUBMITTED_LOCALLY",
+        "delivery": "NONE_LOCAL_REPLICA",
+        "created_at": "2026-07-12T19:29:57.041885+00:00"
+      }
+    },
+    {
+      "name": "sqlite:account-resume",
+      "passed": true,
+      "detail": {
+        "accounts": [
+          {
+            "id": 1,
+            "email": "alex.green.uoft@clawbench.cc",
+            "password_hash": "[REDACTED]",
+            "first_name": "Alex",
+            "last_name": "Green",
+            "postal_code": "M5S 2H7",
+            "account_type": "APPLICANT",
+            "profile_complete": 1,
+            "created_at": "2026-07-12T19:29:52.838884+00:00"
+          }
+        ],
+        "resumes": [
+          {
+            "id": 1,
+            "account_id": 1,
+            "file_name": "Alex_Green_Resume.pdf",
+            "source": "ASSIGNED_PROFILE",
+            "display_size": "84 KB",
+            "summary": "Alex Green - senior technology leader; local profile representation",
+            "created_at": "2026-07-12T19:29:52.838884+00:00"
+          }
+        ]
+      }
+    },
+    {
+      "name": "sqlite:successful-terminal",
+      "passed": true,
+      "detail": [
+        {
+          "id": 11,
+          "session_token": "eAKNz2c2vd",
+          "method": "POST",
+          "endpoint": "/data/userdashboard/missing-info",
+          "content_type": "application/json",
+          "payload": {
+            "email": "alex.green.uoft@clawbench.cc",
+            "firstName": "Alex",
+            "intent": "COMPLETE_IDEALIST_PROFILE",
+            "lastName": "Green",
+            "location": "Toronto, Ontario, Canada",
+            "resumeFileName": "Alex_Green_Resume.pdf"
+          },
+          "status": 200,
+          "created_at": "2026-07-12T19:29:57.075290+00:00"
+        }
+      ]
+    },
+    {
+      "name": "sqlite:one-successful-application",
+      "passed": true,
+      "detail": [
+        {
+          "id": 10,
+          "session_token": "eAKNz2c2vd",
+          "method": "POST",
+          "endpoint": "/api/applications/submit",
+          "content_type": "application/json",
+          "payload": {
+            "accuracyConfirmed": true,
+            "applicant": {
+              "city": "Toronto",
+              "email": "alex.green.uoft@clawbench.cc",
+              "firstName": "Alex",
+              "lastName": "Green",
+              "province": "Ontario"
+            },
+            "applicationId": 1,
+            "coverLetter": "Dear Dumbarton Arts & Education hiring team, I am applying for the Program Manager role because your commitment to arts access and education equity matches how I lead dependable, inclusive programs. In leading technical teams and mentoring colleagues, I have built clear plans, repeatable operations, thoughtful feedback practices, and calm communication across competing priorities. I would bring that same discipline to program schedules, community partnerships, budgets, and impact reporting while listening closely to teaching artists, families, and learners across Washington, DC. Sincerely, Alex Green",
+            "jobKey": "dumbarton-arts-education-program-manager-washington-dc",
+            "resume": {
+              "fileName": "Alex_Green_Resume.pdf",
+              "source": "ASSIGNED_PROFILE"
+            }
+          },
+          "status": 201,
+          "created_at": "2026-07-12T19:29:57.045668+00:00"
+        }
+      ]
+    },
+    {
+      "name": "sqlite:draft-consumed",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "summary": {
+    "passed": 141,
+    "failed": 0,
+    "total": 141
+  }
+}

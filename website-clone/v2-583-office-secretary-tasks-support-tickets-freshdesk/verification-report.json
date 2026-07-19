@@ -1,0 +1,2081 @@
+{
+  "api_edges": {
+    "isolatedTickets": 0,
+    "malformed": 400,
+    "missingApi": 404,
+    "missingTicket": 401,
+    "unauthorized": 401,
+    "unsupported": 415
+  },
+  "checks": [
+    {
+      "detail": [],
+      "name": "contract: dev-115 validates against task schema",
+      "passed": true
+    },
+    {
+      "name": "contract: source task id is 583",
+      "passed": true
+    },
+    {
+      "name": "contract: source terminal method preserved",
+      "passed": true
+    },
+    {
+      "name": "contract: source terminal suffix preserved",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "contract: exact body documented",
+      "passed": true
+    },
+    {
+      "name": "contract: canonical port 8132",
+      "passed": true
+    },
+    {
+      "detail": "http://localhost:8132/api/_/tickets",
+      "name": "contract: matcher accepts localhost",
+      "passed": true
+    },
+    {
+      "detail": "http://127.0.0.1:8132/api/_/tickets",
+      "name": "contract: matcher accepts 127.0.0.1",
+      "passed": true
+    },
+    {
+      "detail": "http://host.docker.internal:8132/api/_/tickets",
+      "name": "contract: matcher accepts host.docker.internal",
+      "passed": true
+    },
+    {
+      "name": "contract: matcher rejects https://freshdesk.com/api/_/tickets",
+      "passed": true
+    },
+    {
+      "name": "contract: matcher rejects http://127.0.0.1:8133/api/_/tickets",
+      "passed": true
+    },
+    {
+      "name": "contract: matcher rejects http://example.com:8132/api/_/tickets",
+      "passed": true
+    },
+    {
+      "name": "contract: matcher rejects http://127.0.0.1:8132/api/_/tickets/1",
+      "passed": true
+    },
+    {
+      "name": "desktop: signup first screen",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 1365
+      },
+      "name": "desktop signup: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop signup: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop signup: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop signup: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 81986,
+      "name": "desktop-signup: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "desktop: registration validation",
+      "passed": true
+    },
+    {
+      "name": "desktop: local terms error visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: registration created",
+      "passed": true
+    },
+    {
+      "name": "desktop: wrong code rejected",
+      "passed": true
+    },
+    {
+      "name": "desktop: verification remains local",
+      "passed": true
+    },
+    {
+      "name": "desktop: local email verified",
+      "passed": true
+    },
+    {
+      "name": "desktop: workspace validation",
+      "passed": true
+    },
+    {
+      "name": "desktop: Sprout workspace created",
+      "passed": true
+    },
+    {
+      "name": "desktop: agent dashboard entered",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 1365
+      },
+      "name": "desktop dashboard: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop dashboard: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop dashboard: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop dashboard: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 66290,
+      "name": "desktop-dashboard: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "desktop: required ticket fields validated",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:36.764515+00:00"
+      },
+      "name": "desktop: exact ticket draft persisted",
+      "passed": true
+    },
+    {
+      "name": "desktop: draft restored after refresh",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 1365
+      },
+      "name": "desktop ticket form: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket form: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket form: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket form: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 91331,
+      "name": "desktop-ticket-form: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "desktop: retryable terminal error",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "desktop: failed attempt still exact",
+      "passed": true
+    },
+    {
+      "name": "desktop: retry control visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: terminal request returned 201",
+      "passed": true
+    },
+    {
+      "detail": "POST",
+      "name": "desktop: terminal method POST",
+      "passed": true
+    },
+    {
+      "detail": "http://127.0.0.1:8132/api/_/tickets",
+      "name": "desktop: terminal path exact",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "desktop: terminal body exact",
+      "passed": true
+    },
+    {
+      "detail": "http://127.0.0.1:8132/api/_/tickets",
+      "name": "desktop: dev matcher accepts request",
+      "passed": true
+    },
+    {
+      "name": "desktop: detail subject visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: High visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: Test Agent visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: completed ticket persists after refresh",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 1365
+      },
+      "name": "desktop ticket detail: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket detail: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket detail: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop ticket detail: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 71528,
+      "name": "desktop-ticket-detail: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "detail": {
+        "created_at": "2026-07-12T19:10:38.024722+00:00",
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "id": 1,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:38.024722+00:00",
+        "workspace_id": 1
+      },
+      "name": "desktop: SQLite ticket matches terminal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "created_at": "2026-07-12T19:10:35.975878+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.109761+00:00",
+        "verified": 1
+      },
+      "name": "desktop: SQLite account is verified Alex",
+      "passed": true
+    },
+    {
+      "detail": {
+        "completed": 1,
+        "created_at": "2026-07-12T19:10:36.242907+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.242907+00:00"
+      },
+      "name": "desktop: SQLite workspace is Sprout",
+      "passed": true
+    },
+    {
+      "detail": [
+        503,
+        201
+      ],
+      "name": "desktop: one successful terminal journal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "desktop: successful journal body exact",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "desktop: creation event body exact",
+      "passed": true
+    },
+    {
+      "name": "desktop: edit surface populated",
+      "passed": true
+    },
+    {
+      "name": "desktop: resolve updates detail",
+      "passed": true
+    },
+    {
+      "name": "desktop: reopen restores Open",
+      "passed": true
+    },
+    {
+      "name": "desktop: invalid login rejected",
+      "passed": true
+    },
+    {
+      "name": "desktop: login recovery succeeds",
+      "passed": true
+    },
+    {
+      "name": "desktop: ticket survives login recovery",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate": 409,
+        "extra": 422
+      },
+      "name": "desktop: duplicate terminal rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate": 409,
+        "extra": 422
+      },
+      "name": "desktop: unsupported terminal field rejected",
+      "passed": true
+    },
+    {
+      "name": "desktop: ticket search finds target",
+      "passed": true
+    },
+    {
+      "name": "desktop: search empty recovery",
+      "passed": true
+    },
+    {
+      "name": "desktop: list error surface",
+      "passed": true
+    },
+    {
+      "name": "desktop: list retry succeeds",
+      "passed": true
+    },
+    {
+      "name": "desktop: missing ticket recovery",
+      "passed": true
+    },
+    {
+      "name": "desktop: general 404 recovery",
+      "passed": true
+    },
+    {
+      "name": "desktop: team boundary visible",
+      "passed": true
+    },
+    {
+      "name": "desktop: integration boundary visible",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 900,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 1365
+      },
+      "name": "desktop final detail: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop final detail: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop final detail: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop final detail: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 71528,
+      "name": "desktop-final-detail: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "detail": {
+        "boundaries": 4,
+        "successfulTerminalRequests": 1,
+        "terminalAttempts": 4,
+        "tickets": 1
+      },
+      "name": "desktop: exactly one durable ticket",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "created_at": "2026-07-12T19:10:35.976223+00:00",
+          "detail": "Verification code displayed locally; no email was sent.",
+          "id": 1,
+          "kind": "email_verification",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:36.242964+00:00",
+          "detail": "Workspace and Freshdesk subdomain were created only in local SQLite.",
+          "id": 2,
+          "kind": "workspace_provisioning",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:43.045070+00:00",
+          "detail": "Agent invitation simulated locally; no email invitation was sent.",
+          "id": 3,
+          "kind": "team",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:43.699520+00:00",
+          "detail": "Slack connection represented locally; no OAuth or external request occurred.",
+          "id": 4,
+          "kind": "integration",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        }
+      ],
+      "name": "desktop: explicit local boundaries journaled",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop: no external requests",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop: no page errors",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "desktop: no unexpected console errors",
+      "passed": true
+    },
+    {
+      "name": "mobile: signup first screen",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 390
+      },
+      "name": "mobile signup: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile signup: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile signup: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile signup: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 43952,
+      "name": "mobile-signup: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "mobile: registration validation",
+      "passed": true
+    },
+    {
+      "name": "mobile: local terms error visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: registration created",
+      "passed": true
+    },
+    {
+      "name": "mobile: wrong code rejected",
+      "passed": true
+    },
+    {
+      "name": "mobile: verification remains local",
+      "passed": true
+    },
+    {
+      "name": "mobile: local email verified",
+      "passed": true
+    },
+    {
+      "name": "mobile: workspace validation",
+      "passed": true
+    },
+    {
+      "name": "mobile: Sprout workspace created",
+      "passed": true
+    },
+    {
+      "name": "mobile: agent dashboard entered",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 390
+      },
+      "name": "mobile dashboard: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile dashboard: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile dashboard: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile dashboard: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 52493,
+      "name": "mobile-dashboard: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "mobile: required ticket fields validated",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:46.032205+00:00"
+      },
+      "name": "mobile: exact ticket draft persisted",
+      "passed": true
+    },
+    {
+      "name": "mobile: draft restored after refresh",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 390
+      },
+      "name": "mobile ticket form: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket form: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket form: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket form: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 76440,
+      "name": "mobile-ticket-form: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "name": "mobile: retryable terminal error",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "mobile: failed attempt still exact",
+      "passed": true
+    },
+    {
+      "name": "mobile: retry control visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: terminal request returned 201",
+      "passed": true
+    },
+    {
+      "detail": "POST",
+      "name": "mobile: terminal method POST",
+      "passed": true
+    },
+    {
+      "detail": "http://127.0.0.1:8132/api/_/tickets",
+      "name": "mobile: terminal path exact",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "mobile: terminal body exact",
+      "passed": true
+    },
+    {
+      "detail": "http://127.0.0.1:8132/api/_/tickets",
+      "name": "mobile: dev matcher accepts request",
+      "passed": true
+    },
+    {
+      "name": "mobile: detail subject visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: High visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: Test Agent visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: completed ticket persists after refresh",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 390
+      },
+      "name": "mobile ticket detail: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket detail: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket detail: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile ticket detail: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 54996,
+      "name": "mobile-ticket-detail: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "detail": {
+        "created_at": "2026-07-12T19:10:47.440805+00:00",
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "id": 1,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:47.440805+00:00",
+        "workspace_id": 1
+      },
+      "name": "mobile: SQLite ticket matches terminal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "created_at": "2026-07-12T19:10:45.268895+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.392171+00:00",
+        "verified": 1
+      },
+      "name": "mobile: SQLite account is verified Alex",
+      "passed": true
+    },
+    {
+      "detail": {
+        "completed": 1,
+        "created_at": "2026-07-12T19:10:45.525524+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.525524+00:00"
+      },
+      "name": "mobile: SQLite workspace is Sprout",
+      "passed": true
+    },
+    {
+      "detail": [
+        503,
+        201
+      ],
+      "name": "mobile: one successful terminal journal",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "mobile: successful journal body exact",
+      "passed": true
+    },
+    {
+      "detail": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "name": "mobile: creation event body exact",
+      "passed": true
+    },
+    {
+      "name": "mobile: edit surface populated",
+      "passed": true
+    },
+    {
+      "name": "mobile: resolve updates detail",
+      "passed": true
+    },
+    {
+      "name": "mobile: reopen restores Open",
+      "passed": true
+    },
+    {
+      "name": "mobile: invalid login rejected",
+      "passed": true
+    },
+    {
+      "name": "mobile: login recovery succeeds",
+      "passed": true
+    },
+    {
+      "name": "mobile: ticket survives login recovery",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate": 409,
+        "extra": 422
+      },
+      "name": "mobile: duplicate terminal rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "duplicate": 409,
+        "extra": 422
+      },
+      "name": "mobile: unsupported terminal field rejected",
+      "passed": true
+    },
+    {
+      "name": "mobile: ticket search finds target",
+      "passed": true
+    },
+    {
+      "name": "mobile: search empty recovery",
+      "passed": true
+    },
+    {
+      "name": "mobile: list error surface",
+      "passed": true
+    },
+    {
+      "name": "mobile: list retry succeeds",
+      "passed": true
+    },
+    {
+      "name": "mobile: missing ticket recovery",
+      "passed": true
+    },
+    {
+      "name": "mobile: general 404 recovery",
+      "passed": true
+    },
+    {
+      "name": "mobile: team boundary visible",
+      "passed": true
+    },
+    {
+      "name": "mobile: integration boundary visible",
+      "passed": true
+    },
+    {
+      "detail": {
+        "brokenImages": [],
+        "clipped": [],
+        "height": 844,
+        "overflow": 0,
+        "textOverflow": [],
+        "width": 390
+      },
+      "name": "mobile final detail: no horizontal document overflow",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile final detail: visible controls inside viewport",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile final detail: button labels fit",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile final detail: same-origin images loaded",
+      "passed": true
+    },
+    {
+      "detail": 54996,
+      "name": "mobile-final-detail: screenshot nonblank",
+      "passed": true
+    },
+    {
+      "detail": {
+        "boundaries": 4,
+        "successfulTerminalRequests": 1,
+        "terminalAttempts": 4,
+        "tickets": 1
+      },
+      "name": "mobile: exactly one durable ticket",
+      "passed": true
+    },
+    {
+      "detail": [
+        {
+          "created_at": "2026-07-12T19:10:45.269365+00:00",
+          "detail": "Verification code displayed locally; no email was sent.",
+          "id": 1,
+          "kind": "email_verification",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:45.525590+00:00",
+          "detail": "Workspace and Freshdesk subdomain were created only in local SQLite.",
+          "id": 2,
+          "kind": "workspace_provisioning",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:52.392872+00:00",
+          "detail": "Agent invitation simulated locally; no email invitation was sent.",
+          "id": 3,
+          "kind": "team",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:53.029882+00:00",
+          "detail": "Slack connection represented locally; no OAuth or external request occurred.",
+          "id": 4,
+          "kind": "integration",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        }
+      ],
+      "name": "mobile: explicit local boundaries journaled",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile: no external requests",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile: no page errors",
+      "passed": true
+    },
+    {
+      "detail": [],
+      "name": "mobile: no unexpected console errors",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: unauthenticated terminal rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: malformed terminal rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: unsupported content type rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: missing API is 404",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: unauthenticated missing ticket is 401",
+      "passed": true
+    },
+    {
+      "detail": {
+        "isolatedTickets": 0,
+        "malformed": 400,
+        "missingApi": 404,
+        "missingTicket": 401,
+        "unauthorized": 401,
+        "unsupported": 415
+      },
+      "name": "edge: session state isolated",
+      "passed": true
+    }
+  ],
+  "clone": "http://127.0.0.1:8132",
+  "database": "/tmp/freshdesk-verify.sqlite3",
+  "desktop": {
+    "adjacent": {
+      "final_path": "/a/tickets/1",
+      "ticket_id": 1
+    },
+    "artifacts": [
+      ".verification-artifacts/desktop-signup.png",
+      ".verification-artifacts/desktop-dashboard.png",
+      ".verification-artifacts/desktop-ticket-form.png",
+      ".verification-artifacts/desktop-ticket-detail.png",
+      ".verification-artifacts/desktop-final-detail.png"
+    ],
+    "database": {
+      "account": {
+        "created_at": "2026-07-12T19:10:35.975878+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.109761+00:00",
+        "verified": 1
+      },
+      "created_event": {
+        "created_at": "2026-07-12T19:10:38.024722+00:00",
+        "detail": {
+          "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+          "group_id": 3001,
+          "priority": 3,
+          "requester_id": 1001,
+          "responder_id": 2002,
+          "source": 3,
+          "status": 2,
+          "subject": "Invoice Dispute - Order #10042",
+          "type": "Billing"
+        },
+        "detail_json": "{\"description\": \"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\", \"group_id\": 3001, \"priority\": 3, \"requester_id\": 1001, \"responder_id\": 2002, \"source\": 3, \"status\": 2, \"subject\": \"Invoice Dispute - Order #10042\", \"type\": \"Billing\"}",
+        "event_type": "created",
+        "id": 1,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "ticket_id": 1
+      },
+      "successful_terminal": [
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:38.024916+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 2,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "payload_json": "{\"description\":\"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\",\"group_id\":3001,\"priority\":3,\"requester_id\":1001,\"responder_id\":2002,\"source\":3,\"status\":2,\"subject\":\"Invoice Dispute - Order #10042\",\"type\":\"Billing\"}",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 201,
+          "terminal": 1
+        }
+      ],
+      "terminal_statuses": [
+        503,
+        201
+      ],
+      "ticket": {
+        "created_at": "2026-07-12T19:10:38.024722+00:00",
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "id": 1,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:38.024722+00:00",
+        "workspace_id": 1
+      },
+      "ticket_matches_body": true,
+      "workspace": {
+        "completed": 1,
+        "created_at": "2026-07-12T19:10:36.242907+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.242907+00:00"
+      }
+    },
+    "final_state": {
+      "account": {
+        "created_at": "2026-07-12T19:10:35.975878+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.109761+00:00",
+        "verified": true
+      },
+      "boundaries": [
+        {
+          "created_at": "2026-07-12T19:10:35.976223+00:00",
+          "detail": "Verification code displayed locally; no email was sent.",
+          "id": 1,
+          "kind": "email_verification",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:36.242964+00:00",
+          "detail": "Workspace and Freshdesk subdomain were created only in local SQLite.",
+          "id": 2,
+          "kind": "workspace_provisioning",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:43.045070+00:00",
+          "detail": "Agent invitation simulated locally; no email invitation was sent.",
+          "id": 3,
+          "kind": "team",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        },
+        {
+          "created_at": "2026-07-12T19:10:43.699520+00:00",
+          "detail": "Slack connection represented locally; no OAuth or external request occurred.",
+          "id": 4,
+          "kind": "integration",
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3"
+        }
+      ],
+      "counts": {
+        "boundaries": 4,
+        "successfulTerminalRequests": 1,
+        "terminalAttempts": 4,
+        "tickets": 1
+      },
+      "events": [
+        {
+          "created_at": "2026-07-12T19:10:38.024722+00:00",
+          "detail": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "event_type": "created",
+          "id": 1,
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "ticket_id": 1
+        },
+        {
+          "created_at": "2026-07-12T19:10:38.825509+00:00",
+          "detail": {
+            "status": 4
+          },
+          "event_type": "updated",
+          "id": 2,
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "ticket_id": 1
+        },
+        {
+          "created_at": "2026-07-12T19:10:38.891741+00:00",
+          "detail": {
+            "status": 2
+          },
+          "event_type": "reopened",
+          "id": 3,
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "ticket_id": 1
+        }
+      ],
+      "fixtures": {
+        "agents": [
+          {
+            "id": 2002,
+            "name": "Test Agent",
+            "role": "Agent"
+          }
+        ],
+        "groups": [
+          {
+            "id": 3001,
+            "name": "Support"
+          }
+        ],
+        "requester": {
+          "company": "Pinecrest Technologies Inc.",
+          "email": "alex.green.uoft@clawbench.cc",
+          "id": 1001,
+          "name": "Alex Green"
+        }
+      },
+      "journal": [
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:37.956981+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 1,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 503,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:38.024916+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 2,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 201,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:38.825665+00:00",
+          "endpoint": "/api/_/tickets/1",
+          "id": 3,
+          "method": "PATCH",
+          "payload": {
+            "status": 4
+          },
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 200,
+          "terminal": false
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:39.649982+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 4,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 409,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:39.652992+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 5,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing",
+            "unexpected": true
+          },
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "status_code": 422,
+          "terminal": true
+        }
+      ],
+      "session": {
+        "authenticated": true,
+        "created_at": "2026-07-12T19:10:35.110196+00:00",
+        "fail_next_terminal": false,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:44.389217+00:00",
+        "verified": true
+      },
+      "signupDraft": null,
+      "ticketDraft": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:38.009529+00:00"
+      },
+      "tickets": [
+        {
+          "created_at": "2026-07-12T19:10:38.024722+00:00",
+          "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+          "group_id": 3001,
+          "id": 1,
+          "priority": 3,
+          "requester_id": 1001,
+          "responder_id": 2002,
+          "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+          "source": 3,
+          "status": 2,
+          "subject": "Invoice Dispute - Order #10042",
+          "type": "Billing",
+          "updated_at": "2026-07-12T19:10:38.891741+00:00",
+          "workspace_id": 1
+        }
+      ],
+      "workspace": {
+        "completed": true,
+        "created_at": "2026-07-12T19:10:36.242907+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "e29b659d551aa4dd5b3144c5f66736f3",
+        "updated_at": "2026-07-12T19:10:36.242907+00:00"
+      }
+    },
+    "lifecycle": {
+      "login": 200,
+      "wrong_login": 422
+    },
+    "signup": {
+      "artifact": ".verification-artifacts/desktop-signup.png",
+      "registration_status": 201,
+      "verification_status": 200,
+      "workspace": {
+        "domain": "pinecrest-support",
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "workspace_id": 1
+      }
+    },
+    "telemetry": {
+      "console_errors": [],
+      "external_requests": [],
+      "page_errors": []
+    },
+    "terminal": {
+      "body": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "form_artifact": ".verification-artifacts/desktop-ticket-form.png",
+      "id": 1,
+      "method": "POST",
+      "status": 201,
+      "ticket_id": 1,
+      "url": "http://127.0.0.1:8132/api/_/tickets"
+    },
+    "viewport": {
+      "height": 900,
+      "width": 1365
+    }
+  },
+  "generated_at": "2026-07-12T19:10:34.610603+00:00",
+  "mobile": {
+    "adjacent": {
+      "final_path": "/a/tickets/1",
+      "ticket_id": 1
+    },
+    "artifacts": [
+      ".verification-artifacts/mobile-signup.png",
+      ".verification-artifacts/mobile-dashboard.png",
+      ".verification-artifacts/mobile-ticket-form.png",
+      ".verification-artifacts/mobile-ticket-detail.png",
+      ".verification-artifacts/mobile-final-detail.png"
+    ],
+    "database": {
+      "account": {
+        "created_at": "2026-07-12T19:10:45.268895+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.392171+00:00",
+        "verified": 1
+      },
+      "created_event": {
+        "created_at": "2026-07-12T19:10:47.440805+00:00",
+        "detail": {
+          "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+          "group_id": 3001,
+          "priority": 3,
+          "requester_id": 1001,
+          "responder_id": 2002,
+          "source": 3,
+          "status": 2,
+          "subject": "Invoice Dispute - Order #10042",
+          "type": "Billing"
+        },
+        "detail_json": "{\"description\": \"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\", \"group_id\": 3001, \"priority\": 3, \"requester_id\": 1001, \"responder_id\": 2002, \"source\": 3, \"status\": 2, \"subject\": \"Invoice Dispute - Order #10042\", \"type\": \"Billing\"}",
+        "event_type": "created",
+        "id": 1,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "ticket_id": 1
+      },
+      "successful_terminal": [
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:47.440964+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 2,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "payload_json": "{\"description\":\"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\",\"group_id\":3001,\"priority\":3,\"requester_id\":1001,\"responder_id\":2002,\"source\":3,\"status\":2,\"subject\":\"Invoice Dispute - Order #10042\",\"type\":\"Billing\"}",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 201,
+          "terminal": 1
+        }
+      ],
+      "terminal_statuses": [
+        503,
+        201
+      ],
+      "ticket": {
+        "created_at": "2026-07-12T19:10:47.440805+00:00",
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "id": 1,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:47.440805+00:00",
+        "workspace_id": 1
+      },
+      "ticket_matches_body": true,
+      "workspace": {
+        "completed": 1,
+        "created_at": "2026-07-12T19:10:45.525524+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.525524+00:00"
+      }
+    },
+    "final_state": {
+      "account": {
+        "created_at": "2026-07-12T19:10:45.268895+00:00",
+        "email": "alex.green.uoft@clawbench.cc",
+        "full_name": "Alex Green",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.392171+00:00",
+        "verified": true
+      },
+      "boundaries": [
+        {
+          "created_at": "2026-07-12T19:10:45.269365+00:00",
+          "detail": "Verification code displayed locally; no email was sent.",
+          "id": 1,
+          "kind": "email_verification",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:45.525590+00:00",
+          "detail": "Workspace and Freshdesk subdomain were created only in local SQLite.",
+          "id": 2,
+          "kind": "workspace_provisioning",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:52.392872+00:00",
+          "detail": "Agent invitation simulated locally; no email invitation was sent.",
+          "id": 3,
+          "kind": "team",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        },
+        {
+          "created_at": "2026-07-12T19:10:53.029882+00:00",
+          "detail": "Slack connection represented locally; no OAuth or external request occurred.",
+          "id": 4,
+          "kind": "integration",
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475"
+        }
+      ],
+      "counts": {
+        "boundaries": 4,
+        "successfulTerminalRequests": 1,
+        "terminalAttempts": 4,
+        "tickets": 1
+      },
+      "events": [
+        {
+          "created_at": "2026-07-12T19:10:47.440805+00:00",
+          "detail": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "event_type": "created",
+          "id": 1,
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "ticket_id": 1
+        },
+        {
+          "created_at": "2026-07-12T19:10:48.376821+00:00",
+          "detail": {
+            "status": 4
+          },
+          "event_type": "updated",
+          "id": 2,
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "ticket_id": 1
+        },
+        {
+          "created_at": "2026-07-12T19:10:48.441483+00:00",
+          "detail": {
+            "status": 2
+          },
+          "event_type": "reopened",
+          "id": 3,
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "ticket_id": 1
+        }
+      ],
+      "fixtures": {
+        "agents": [
+          {
+            "id": 2002,
+            "name": "Test Agent",
+            "role": "Agent"
+          }
+        ],
+        "groups": [
+          {
+            "id": 3001,
+            "name": "Support"
+          }
+        ],
+        "requester": {
+          "company": "Pinecrest Technologies Inc.",
+          "email": "alex.green.uoft@clawbench.cc",
+          "id": 1001,
+          "name": "Alex Green"
+        }
+      },
+      "journal": [
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:47.369044+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 1,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 503,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:47.440964+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 2,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 201,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:48.377001+00:00",
+          "endpoint": "/api/_/tickets/1",
+          "id": 3,
+          "method": "PATCH",
+          "payload": {
+            "status": 4
+          },
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 200,
+          "terminal": false
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:49.289402+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 4,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing"
+          },
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 409,
+          "terminal": true
+        },
+        {
+          "content_type": "application/json",
+          "created_at": "2026-07-12T19:10:49.298601+00:00",
+          "endpoint": "/api/_/tickets",
+          "id": 5,
+          "method": "POST",
+          "payload": {
+            "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+            "group_id": 3001,
+            "priority": 3,
+            "requester_id": 1001,
+            "responder_id": 2002,
+            "source": 3,
+            "status": 2,
+            "subject": "Invoice Dispute - Order #10042",
+            "type": "Billing",
+            "unexpected": true
+          },
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "status_code": 422,
+          "terminal": true
+        }
+      ],
+      "session": {
+        "authenticated": true,
+        "created_at": "2026-07-12T19:10:44.438861+00:00",
+        "fail_next_terminal": false,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:53.911365+00:00",
+        "verified": true
+      },
+      "signupDraft": null,
+      "ticketDraft": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing",
+        "updated_at": "2026-07-12T19:10:47.426402+00:00"
+      },
+      "tickets": [
+        {
+          "created_at": "2026-07-12T19:10:47.440805+00:00",
+          "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+          "group_id": 3001,
+          "id": 1,
+          "priority": 3,
+          "requester_id": 1001,
+          "responder_id": 2002,
+          "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+          "source": 3,
+          "status": 2,
+          "subject": "Invoice Dispute - Order #10042",
+          "type": "Billing",
+          "updated_at": "2026-07-12T19:10:48.441483+00:00",
+          "workspace_id": 1
+        }
+      ],
+      "workspace": {
+        "completed": true,
+        "created_at": "2026-07-12T19:10:45.525524+00:00",
+        "domain": "pinecrest-support",
+        "id": 1,
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "session_id": "be950a2eb6fb43e0149d411dfcab1475",
+        "updated_at": "2026-07-12T19:10:45.525524+00:00"
+      }
+    },
+    "lifecycle": {
+      "login": 200,
+      "wrong_login": 422
+    },
+    "signup": {
+      "artifact": ".verification-artifacts/mobile-signup.png",
+      "registration_status": 201,
+      "verification_status": 200,
+      "workspace": {
+        "domain": "pinecrest-support",
+        "name": "Pinecrest Support",
+        "plan": "Sprout",
+        "workspace_id": 1
+      }
+    },
+    "telemetry": {
+      "console_errors": [],
+      "external_requests": [],
+      "page_errors": []
+    },
+    "terminal": {
+      "body": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "form_artifact": ".verification-artifacts/mobile-ticket-form.png",
+      "id": 1,
+      "method": "POST",
+      "status": 201,
+      "ticket_id": 1,
+      "url": "http://127.0.0.1:8132/api/_/tickets"
+    },
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "source_task": {
+    "$schema": "../../task.schema.json",
+    "eval_schema": {
+      "method": "POST",
+      "url_pattern": "freshdesk\\.com/api/_/tickets"
+    },
+    "extra_info": [],
+    "instruction": "Register a free Freshdesk Sprout account, create a new support ticket with subject \"Invoice Dispute - Order #10042\", describe a billing discrepancy, set priority to High, and assign to a test agent",
+    "metadata": {
+      "class": "customer-support",
+      "common_info": {
+        "email_credentials": "credentials to use the assigned disposable email account",
+        "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+        "user_resume": "PDF resume with disposable email account injected"
+      },
+      "description": "Register a free Freshdesk Sprout account, create a new support ticket with subject \"Invoice Dispute - Order #10042\", describe a billing discrepancy, set priority to High, and assign to a test agent",
+      "metaclass": "office-secretary-tasks",
+      "platform": "freshdesk",
+      "sites_involved": [
+        "freshdesk.com"
+      ],
+      "task_id": 583
+    },
+    "time_limit": 30
+  },
+  "summary": {
+    "failed": 0,
+    "passed": 173,
+    "total": 173
+  },
+  "task": {
+    "$schema": "../../../claw-bench-v2/schemas/task.schema.json",
+    "eval_schema": {
+      "body": {
+        "description": "The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.",
+        "group_id": 3001,
+        "priority": 3,
+        "requester_id": 1001,
+        "responder_id": 2002,
+        "source": 3,
+        "status": 2,
+        "subject": "Invoice Dispute - Order #10042",
+        "type": "Billing"
+      },
+      "method": "POST",
+      "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/_/tickets$"
+    },
+    "extra_info": [],
+    "instruction": "Open http://host.docker.internal:8132/. Register a free Freshdesk Sprout workspace with the assigned Alex Green identity and password Freshdesk!42. Use the local verification code shown in the interface. Enter the agent dashboard and create a support ticket with subject exactly \"Invoice Dispute - Order #10042\" and description exactly \"The invoice for Order #10042 includes a duplicate $125.00 service charge. Please review the billing discrepancy and issue a corrected invoice.\" Set Type to Billing, Priority to High, Group to Support, assign Test Agent, and create the ticket.",
+    "judge_context": {
+      "reference_solution": "Open the local replica, register Alex Green with alex.green.uoft@clawbench.cc and password Freshdesk!42, accept the local terms, use code 246810, create any valid local Sprout workspace name and address, and continue to the dashboard. Choose New ticket, keep requester Alex Green and source Phone, enter the exact supplied subject and description, select Billing, High, Support, and Test Agent, then create. Confirm ticket #1 shows Open, High, Billing, Support, and Test Agent after refresh.",
+      "rubric": "PASS only when the assigned Alex Green local account is verified, an authenticated completed free Sprout workspace exists, and exactly one successful local application/json POST to /api/_/tickets on port 8132 contains exactly the nine specified fields and values: requester_id 1001, exact subject, exact meaningful discrepancy description, Open status 2, High priority 3, Phone source 3, Support group_id 3001, Test Agent responder_id 2002, and Billing type. The visible saved draft, terminal request, ticket detail, refresh state, successful terminal journal row, ticket event, and SQLite ticket must agree. Reject a changed subject or description, another priority/agent/group/requester/type, unsupported fields, unauthenticated or malformed attempts, validation-only state, duplicate successful creation, direct state injection, stale UI, or any external Freshdesk, Freshworks, identity, email, customer, team, integration, analytics, or advertising effect."
+    },
+    "metadata": {
+      "class": "customer-support",
+      "clone_path": "website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk",
+      "common_info": {
+        "email_credentials": "credentials to use the assigned disposable email account",
+        "user_info": "alex_green_personal_info.json; the dummy user's personal information",
+        "user_resume": "PDF resume with disposable email account injected"
+      },
+      "description": "Register a local free Freshdesk Sprout workspace and create a high-priority invoice dispute ticket assigned to Test Agent.",
+      "dev_only": true,
+      "metaclass": "office-secretary-tasks",
+      "platform": "freshdesk",
+      "server_command": "python3 website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk/server.py --host 0.0.0.0 --port 8132",
+      "sites_involved": [
+        "host.docker.internal:8132"
+      ],
+      "source_task_id": 583,
+      "source_task_path": "test-cases/v2/v2-583-office-secretary-tasks-support-tickets-freshdesk",
+      "task_id": 900583,
+      "verify_command": "python3 website-clone/v2-583-office-secretary-tasks-support-tickets-freshdesk/tools/verify_task.py --clone http://127.0.0.1:8132"
+    },
+    "split": "dev",
+    "step_schema": [
+      {
+        "body": {
+          "accepted_terms": true,
+          "email": "alex.green.uoft@clawbench.cc",
+          "full_name": "Alex Green"
+        },
+        "method": "POST",
+        "name": "register_local_account",
+        "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/auth/register$"
+      },
+      {
+        "body": {
+          "plan": "Sprout"
+        },
+        "method": "POST",
+        "name": "create_sprout_workspace",
+        "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/workspaces$"
+      },
+      {
+        "body": {
+          "priority": 3,
+          "responder_id": 2002,
+          "subject": "Invoice Dispute - Order #10042"
+        },
+        "method": "POST",
+        "name": "save_ticket_draft",
+        "url_pattern": "^http://(localhost|127\\.0\\.0\\.1|host\\.docker\\.internal):8132/api/ticket-draft$"
+      }
+    ],
+    "time_limit": 30
+  }
+}
