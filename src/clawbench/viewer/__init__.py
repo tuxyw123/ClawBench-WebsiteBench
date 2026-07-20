@@ -1,4 +1,4 @@
-"""Server-rendered WebsiteBench corpus QA viewer."""
+"""Server-rendered Amazon WebsiteBench site and review workspace."""
 
 from .app import create_app
 from .discovery import CorpusIndex, discover_corpus

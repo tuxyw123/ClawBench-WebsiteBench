@@ -12,18 +12,36 @@ import http.client
 import json
 import math
 import re
+import secrets
+import sys
 import threading
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any, Iterator, Mapping
 from urllib.parse import parse_qs, quote, urlencode, urlsplit
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Form, Request
 from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+
+CLONE_ROOT = Path(__file__).resolve().parent
+if str(CLONE_ROOT) not in sys.path:
+    # The verification suite loads this file directly with importlib rather
+    # than importing ``materials`` as a package. Keep the adjacent adapter
+    # discoverable in both that mode and normal ``server.py`` execution.
+    sys.path.insert(0, str(CLONE_ROOT))
+
+from commerce_adapter import (  # noqa: E402
+    AUTH_COOKIE,
+    AmazonCommerceAdapter,
+    CommerceError,
+)
+from clawbench.web2code.commerce_contract import (  # noqa: E402
+    require_account_order_commerce,
+)
 
 
 SECURITY_HEADERS = {
@@ -105,6 +123,14 @@ def money(value: Any) -> str:
     except (TypeError, ValueError):
         number = 0.0
     return f"${number:,.2f}"
+
+
+def money_cents(value: Any) -> str:
+    try:
+        cents = int(value)
+    except (TypeError, ValueError):
+        cents = 0
+    return f"${cents / 100:,.2f}"
 
 
 def product_href(product: dict[str, Any], target_asin: str, product_path: str) -> str:
@@ -208,6 +234,8 @@ class SSRRenderer:
     ) -> str:
         session = bootstrap.get("session", {})
         delivery = e(session.get("delivery_label", "New York 10001"))
+        display_name = e(session.get("display_name") or "sign in")
+        account_line = f"Hello, {display_name}" if session.get("signed_in") else "Hello, sign in"
         count = int(bootstrap.get("cart", {}).get("total_quantity", 0))
         search_query = e(query.get("k", [""])[0])
         selected = query.get("i", ["all"])[0]
@@ -249,12 +277,12 @@ class SSRRenderer:
               <span>⌖</span><span><span class='nav-line-1'>Delivering to {delivery}</span><span class='nav-line-2'>Update location</span></span>
             </a>{search}
             <a class='nav-box nav-language' href='/local-boundary?kind=language' data-preference='language'>🇺🇸 EN</a>
-            <div class='account-wrap'><a class='nav-box account-trigger' href='/account'><span><span class='nav-line-1'>Hello, sign in</span><span class='nav-line-2'>Account &amp; Lists ▾</span></span></a></div>
+            <div class='account-wrap'><a class='nav-box account-trigger' href='/account'><span><span class='nav-line-1'>{account_line}</span><span class='nav-line-2'>Account &amp; Lists ▾</span></span></a></div>
             <a class='nav-box' href='/account/orders'><span><span class='nav-line-1'>Returns</span><span class='nav-line-2'>&amp; Orders</span></span></a>
             <a class='nav-box nav-cart' href='/gp/cart/view.html' aria-label='Cart with {count} items'><span aria-hidden='true'>🛒</span><span class='cart-count'>{count}</span><span>Cart</span></a>
           </div><nav class='nav-main' aria-label='Primary navigation'><button class='all-menu' type='button' data-open-menu>☰ All</button>{nav_links}</nav></div>
           <div class='mobile-nav'><div class='mobile-top'><button class='icon-button' type='button' data-open-menu aria-label='Open menu'>☰</button>
-            <a class='amazon-logo' href='/'>amazon</a><a class='mobile-signin' href='/account'>Sign in ›</a>
+            <a class='amazon-logo' href='/'>amazon</a><a class='mobile-signin' href='/account'>{display_name} ›</a>
             <a class='mobile-cart-link' href='/gp/cart/view.html' aria-label='Cart with {count} items'>🛒<span class='cart-count'>{count}</span></a>
           </div>{mobile_search}<a class='mobile-location' href='/local-boundary?kind=delivery' data-preference='delivery'>⌖ Delivering to {delivery} - Update location</a></div>
         """
@@ -762,9 +790,12 @@ def create_app(db_path: Path, legacy: Any) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> Iterator[None]:
         legacy.init_db(db_path)
+        commerce = AmazonCommerceAdapter(db_path, legacy.PRODUCT_INDEX)
+        require_account_order_commerce(commerce)
         bridge = LegacyBridge(legacy, db_path)
         bridge.start()
         app.state.bridge = bridge
+        app.state.commerce = commerce
         try:
             yield
         finally:
@@ -781,11 +812,670 @@ def create_app(db_path: Path, legacy: Any) -> FastAPI:
 
     @app.middleware("http")
     async def security_headers(request: Request, call_next: Any) -> Response:
+        device_session_id = request.cookies.get(legacy.SESSION_COOKIE)
+        auth_token = request.cookies.get(AUTH_COOKIE)
+        if device_session_id:
+            request.state.commerce_user = await run_in_threadpool(
+                request.app.state.commerce.reconcile_session,
+                device_session_id,
+                auth_token,
+            )
+        else:
+            request.state.commerce_user = None
         response = await call_next(request)
         for name, value in SECURITY_HEADERS.items():
             response.headers[name] = value
         response.headers["X-ClawBench-Render"] = "fastapi-ssr"
         return response
+
+    def safe_next(value: str, fallback: str = "/account") -> str:
+        return value if value.startswith("/") and not value.startswith("//") else fallback
+
+    def device_from_pair(pair: str | None) -> str | None:
+        if not pair or not pair.startswith(f"{legacy.SESSION_COOKIE}="):
+            return None
+        return pair.split("=", 1)[1]
+
+    async def commerce_state(
+        request: Request,
+    ) -> tuple[dict[str, Any], list[BridgeResponse], str, dict[str, Any] | None, str]:
+        bridge: LegacyBridge = request.app.state.bridge
+        first = await run_in_threadpool(
+            bridge.request,
+            "GET",
+            "/api/bootstrap",
+            headers=_forward_headers(request, bridge),
+        )
+        pair = _cookie_pair(first)
+        device_session_id = request.cookies.get(legacy.SESSION_COOKIE) or device_from_pair(pair)
+        if not device_session_id:
+            raise CommerceError("session_required", "Reload the page and try again.", status=403)
+        user = await run_in_threadpool(
+            request.app.state.commerce.reconcile_session,
+            device_session_id,
+            request.cookies.get(AUTH_COOKIE),
+        )
+        sources = [first]
+        current = first
+        if user is not None:
+            cookie = pair or f"{legacy.SESSION_COOKIE}={device_session_id}"
+            current = await run_in_threadpool(
+                bridge.request,
+                "GET",
+                "/api/bootstrap",
+                headers={"Cookie": cookie},
+            )
+            sources.append(current)
+        bootstrap = current.json() if current.status == 200 else {}
+        csrf_token = await run_in_threadpool(
+            request.app.state.commerce.csrf_token, device_session_id
+        )
+        if not csrf_token:
+            raise CommerceError("session_required", "Reload the page and try again.", status=403)
+        return bootstrap, sources, device_session_id, user, csrf_token
+
+    async def commerce_page(
+        request: Request,
+        *,
+        title: str,
+        content: str,
+        status: int = 200,
+        state: tuple[
+            dict[str, Any], list[BridgeResponse], str, dict[str, Any] | None, str
+        ]
+        | None = None,
+    ) -> HTMLResponse:
+        bootstrap, sources, _, _, _ = state or await commerce_state(request)
+        response = templates.TemplateResponse(
+            request=request,
+            name="shell.html",
+            context={
+                "title": title,
+                "path": request.url.path,
+                "server_owned": True,
+                "header_markup": renderer.header(bootstrap, {}),
+                "main_markup": content,
+                "footer_markup": renderer.footer(),
+                "drawer_markup": renderer.drawer(),
+                "catalog_count": len(renderer.products),
+            },
+            status_code=status,
+        )
+        for source in sources:
+            for value in source.header_values("set-cookie"):
+                response.headers.append("set-cookie", value)
+        return response
+
+    def form_error(error: CommerceError) -> str:
+        return (
+            f"<div class='commerce-error' role='alert'><strong>{e(error.message)}</strong>"
+            f"<small>Error: {e(error.code)}</small></div>"
+        )
+
+    def auth_form(
+        *,
+        heading: str,
+        action: str,
+        csrf_token: str,
+        fields: str,
+        submit: str,
+        error: CommerceError | None = None,
+        extra: str = "",
+    ) -> str:
+        return (
+            "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+            "<a class='amazon-logo commerce-auth-logo' href='/'>amazon</a>"
+            f"<h1>{e(heading)}</h1>{form_error(error) if error else ''}"
+            f"<form action='{e(action)}' method='post'>"
+            f"<input type='hidden' name='csrf_token' value='{e(csrf_token)}'>{fields}"
+            f"<button class='amazon-button amazon-button-primary' type='submit'>{e(submit)}</button>"
+            f"</form>{extra}</div></section>"
+        )
+
+    @app.api_route("/register", methods=["GET", "HEAD"], response_class=HTMLResponse)
+    async def register_page(request: Request) -> HTMLResponse:
+        state = await commerce_state(request)
+        csrf_token = state[4]
+        fields = (
+            "<label>Email<input type='email' name='email' autocomplete='email' required maxlength='254'></label>"
+            "<label>Password<input type='password' name='password' autocomplete='new-password' required minlength='10'></label>"
+            "<label>Re-enter password<input type='password' name='confirm_password' autocomplete='new-password' required minlength='10'></label>"
+        )
+        content = auth_form(
+            heading="Create account",
+            action="/register",
+            csrf_token=csrf_token,
+            fields=fields,
+            submit="Create your local account",
+            extra="<p>Already have an account? <a href='/login'>Sign in</a></p>",
+        )
+        return await commerce_page(
+            request, title="Create account - Amazon.com", content=content, state=state
+        )
+
+    @app.post("/register", response_class=HTMLResponse)
+    async def register_submit(
+        request: Request,
+        email: str = Form(""),
+        password: str = Form(""),
+        confirm_password: str = Form(""),
+        csrf_token: str = Form(""),
+    ) -> HTMLResponse:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        try:
+            await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+            token = await run_in_threadpool(
+                commerce.register, email, password, confirm_password
+            )
+        except CommerceError as error:
+            fields = (
+                f"<label>Email<input type='email' name='email' value='{e(email)}' autocomplete='email' required maxlength='254'></label>"
+                "<label>Password<input type='password' name='password' autocomplete='new-password' required minlength='10'></label>"
+                "<label>Re-enter password<input type='password' name='confirm_password' autocomplete='new-password' required minlength='10'></label>"
+            )
+            content = auth_form(
+                heading="Create account",
+                action="/register",
+                csrf_token=state[4],
+                fields=fields,
+                submit="Create your local account",
+                error=error,
+            )
+            return await commerce_page(
+                request,
+                title="Create account - Amazon.com",
+                content=content,
+                status=error.status,
+                state=state,
+            )
+        content = (
+            "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+            "<h1>Check your local verification link</h1>"
+            "<p>This offline benchmark does not send external email. Continue with the one-time local link below.</p>"
+            f"<a class='amazon-button amazon-button-primary' href='/verify?token={e(token)}'>Verify email</a>"
+            "</div></section>"
+        )
+        return await commerce_page(
+            request, title="Verify email - Amazon.com", content=content, state=state
+        )
+
+    @app.get("/verify", response_class=HTMLResponse)
+    async def verify_email(request: Request, token: str = "") -> HTMLResponse:
+        state = await commerce_state(request)
+        try:
+            await run_in_threadpool(request.app.state.commerce.verify, token)
+        except CommerceError as error:
+            content = (
+                "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+                f"<h1>Verification unavailable</h1>{form_error(error)}"
+                "<p><a href='/register'>Create a new account</a></p></div></section>"
+            )
+            return await commerce_page(
+                request,
+                title="Verification unavailable - Amazon.com",
+                content=content,
+                status=error.status,
+                state=state,
+            )
+        content = (
+            "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+            "<h1>Email verified</h1><p>Your local account is ready.</p>"
+            "<a class='amazon-button amazon-button-primary' href='/login'>Sign in</a>"
+            "</div></section>"
+        )
+        return await commerce_page(
+            request, title="Email verified - Amazon.com", content=content, state=state
+        )
+
+    @app.api_route("/login", methods=["GET", "HEAD"], response_class=HTMLResponse)
+    async def login_page(request: Request, next: str = "/account") -> HTMLResponse:
+        state = await commerce_state(request)
+        target = safe_next(next)
+        fields = (
+            f"<input type='hidden' name='next' value='{e(target)}'>"
+            "<label>Email<input type='email' name='email' autocomplete='email' required maxlength='254'></label>"
+            "<label>Password<input type='password' name='password' autocomplete='current-password' required></label>"
+        )
+        content = auth_form(
+            heading="Sign in",
+            action="/login",
+            csrf_token=state[4],
+            fields=fields,
+            submit="Sign in",
+            extra=(
+                "<p><a href='/forgot-password'>Forgot password?</a></p>"
+                "<hr><p>New customer?</p><a class='amazon-button' href='/register'>Create your local account</a>"
+            ),
+        )
+        return await commerce_page(
+            request, title="Amazon Sign-In", content=content, state=state
+        )
+
+    @app.post("/login")
+    async def login_submit(
+        request: Request,
+        email: str = Form(""),
+        password: str = Form(""),
+        csrf_token: str = Form(""),
+        next: str = Form("/account"),
+    ) -> Response:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        try:
+            await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+            token = await run_in_threadpool(
+                commerce.login, email, password, device=state[2]
+            )
+        except CommerceError as error:
+            fields = (
+                f"<input type='hidden' name='next' value='{e(safe_next(next))}'>"
+                f"<label>Email<input type='email' name='email' value='{e(email)}' autocomplete='email' required></label>"
+                "<label>Password<input type='password' name='password' autocomplete='current-password' required></label>"
+            )
+            content = auth_form(
+                heading="Sign in",
+                action="/login",
+                csrf_token=state[4],
+                fields=fields,
+                submit="Sign in",
+                error=error,
+            )
+            return await commerce_page(
+                request,
+                title="Amazon Sign-In",
+                content=content,
+                status=error.status,
+                state=state,
+            )
+        response = RedirectResponse(safe_next(next), status_code=303)
+        response.set_cookie(
+            AUTH_COOKIE,
+            token,
+            max_age=24 * 60 * 60,
+            httponly=True,
+            samesite="lax",
+            path="/",
+        )
+        return response
+
+    @app.post("/logout")
+    async def logout(
+        request: Request, csrf_token: str = Form("")
+    ) -> RedirectResponse:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+        await run_in_threadpool(
+            commerce.logout,
+            request.cookies.get(AUTH_COOKIE),
+            device=state[2],
+        )
+        response = RedirectResponse("/", status_code=303)
+        response.delete_cookie(AUTH_COOKIE, path="/")
+        return response
+
+    @app.api_route(
+        "/forgot-password", methods=["GET", "HEAD"], response_class=HTMLResponse
+    )
+    async def forgot_password_page(request: Request) -> HTMLResponse:
+        state = await commerce_state(request)
+        content = auth_form(
+            heading="Password assistance",
+            action="/forgot-password",
+            csrf_token=state[4],
+            fields="<label>Email<input type='email' name='email' autocomplete='email' required></label>",
+            submit="Continue",
+        )
+        return await commerce_page(
+            request, title="Password assistance - Amazon.com", content=content, state=state
+        )
+
+    @app.post("/forgot-password", response_class=HTMLResponse)
+    async def forgot_password_submit(
+        request: Request,
+        email: str = Form(""),
+        csrf_token: str = Form(""),
+    ) -> HTMLResponse:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        try:
+            await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+        except CommerceError as error:
+            return await commerce_page(
+                request,
+                title="Password assistance - Amazon.com",
+                content=form_error(error),
+                status=error.status,
+                state=state,
+            )
+        token = await run_in_threadpool(commerce.forgot_password, email)
+        local_link = (
+            f"<a class='amazon-button amazon-button-primary' href='/reset-password?token={e(token)}'>Reset password</a>"
+            if token
+            else ""
+        )
+        content = (
+            "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+            "<h1>Check your local recovery link</h1>"
+            "<p>If that account exists, a one-time local reset link is available in this benchmark.</p>"
+            f"{local_link}</div></section>"
+        )
+        return await commerce_page(
+            request, title="Password assistance - Amazon.com", content=content, state=state
+        )
+
+    @app.api_route(
+        "/reset-password", methods=["GET", "HEAD"], response_class=HTMLResponse
+    )
+    async def reset_password_page(request: Request, token: str = "") -> HTMLResponse:
+        state = await commerce_state(request)
+        fields = (
+            f"<input type='hidden' name='token' value='{e(token)}'>"
+            "<label>New password<input type='password' name='password' autocomplete='new-password' required minlength='10'></label>"
+            "<label>Re-enter password<input type='password' name='confirm_password' autocomplete='new-password' required minlength='10'></label>"
+        )
+        content = auth_form(
+            heading="Create a new password",
+            action="/reset-password",
+            csrf_token=state[4],
+            fields=fields,
+            submit="Save changes",
+        )
+        return await commerce_page(
+            request, title="Reset password - Amazon.com", content=content, state=state
+        )
+
+    @app.post("/reset-password", response_class=HTMLResponse)
+    async def reset_password_submit(
+        request: Request,
+        token: str = Form(""),
+        password: str = Form(""),
+        confirm_password: str = Form(""),
+        csrf_token: str = Form(""),
+    ) -> HTMLResponse:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        try:
+            await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+            await run_in_threadpool(
+                commerce.reset_password, token, password, confirm_password
+            )
+        except CommerceError as error:
+            fields = (
+                f"<input type='hidden' name='token' value='{e(token)}'>"
+                "<label>New password<input type='password' name='password' autocomplete='new-password' required minlength='10'></label>"
+                "<label>Re-enter password<input type='password' name='confirm_password' autocomplete='new-password' required minlength='10'></label>"
+            )
+            content = auth_form(
+                heading="Create a new password",
+                action="/reset-password",
+                csrf_token=state[4],
+                fields=fields,
+                submit="Save changes",
+                error=error,
+            )
+            return await commerce_page(
+                request,
+                title="Reset password - Amazon.com",
+                content=content,
+                status=error.status,
+                state=state,
+            )
+        response = await commerce_page(
+            request,
+            title="Password changed - Amazon.com",
+            content=(
+                "<section class='commerce-auth-page'><div class='commerce-auth-card'>"
+                "<h1>Password changed</h1><p>All previous local sessions were signed out.</p>"
+                "<a class='amazon-button amazon-button-primary' href='/login'>Sign in</a>"
+                "</div></section>"
+            ),
+            state=state,
+        )
+        response.delete_cookie(AUTH_COOKIE, path="/")
+        return response
+
+    @app.api_route("/account", methods=["GET", "HEAD"], response_class=HTMLResponse)
+    async def account(request: Request, mode: str = "") -> Response:
+        if mode == "register":
+            return RedirectResponse("/register", status_code=303)
+        state = await commerce_state(request)
+        user = state[3]
+        if user is None:
+            content = (
+                "<section class='account-page'><h1>Your Account</h1>"
+                "<div class='commerce-auth-card'><h2>Sign in to manage your local account</h2>"
+                "<a class='amazon-button amazon-button-primary' href='/login'>Sign in</a>"
+                "<a class='amazon-button' href='/register'>Create account</a></div></section>"
+            )
+        else:
+            _, cards = renderer.account_page()
+            profile = (
+                "<section class='commerce-profile'><h2>Local account</h2>"
+                f"<p>Signed in as <strong>{e(user['email'])}</strong></p>"
+                f"<form action='/logout' method='post'><input type='hidden' name='csrf_token' value='{e(state[4])}'>"
+                "<button class='amazon-button' type='submit'>Sign out</button></form></section>"
+            )
+            content = profile + cards
+        return await commerce_page(
+            request, title="Your Account", content=content, state=state
+        )
+
+    def checkout_markup(
+        bootstrap: dict[str, Any], csrf_token: str, *, error: CommerceError | None = None,
+        idempotency_key: str | None = None,
+    ) -> str:
+        cart = bootstrap.get("cart", {})
+        items = cart.get("items", [])
+        rows = "".join(
+            f"<li><span>{e(item['product'].get('short_title') or item['product'].get('title'))} × {int(item['quantity'])}</span>"
+            f"<strong>{money(item['subtotal'])}</strong></li>"
+            for item in items
+        )
+        key = idempotency_key or secrets.token_urlsafe(18)
+        return (
+            "<section class='commerce-checkout'><h1>Checkout</h1>"
+            f"{form_error(error) if error else ''}<div class='checkout-grid'>"
+            "<form action='/checkout' method='post' class='checkout-form'>"
+            f"<input type='hidden' name='csrf_token' value='{e(csrf_token)}'>"
+            f"<input type='hidden' name='idempotency_key' value='{e(key)}'>"
+            "<fieldset><legend>Shipping address</legend>"
+            "<label>Full name<input name='full_name' required maxlength='160'></label>"
+            "<label>Street address<input name='address_line' required maxlength='160'></label>"
+            "<label>City<input name='city' required maxlength='160'></label>"
+            "<label>ZIP Code<input name='postal_code' required maxlength='24'></label></fieldset>"
+            "<fieldset><legend>Test payment</legend>"
+            "<p>Use a local test card. The number is validated and never stored.</p>"
+            "<label>Card number<input name='card_number' inputmode='numeric' autocomplete='off' required></label></fieldset>"
+            "<button class='amazon-button amazon-button-primary' type='submit'>Place your local order</button></form>"
+            f"<aside class='checkout-summary'><h2>Order summary</h2><ul>{rows}</ul>"
+            f"<p>Subtotal <strong>{money(cart.get('subtotal', 0))}</strong></p></aside>"
+            "</div></section>"
+        )
+
+    @app.api_route("/checkout", methods=["GET", "HEAD"], response_class=HTMLResponse)
+    async def checkout_page(request: Request) -> Response:
+        state = await commerce_state(request)
+        if state[3] is None:
+            return RedirectResponse("/login?next=/checkout", status_code=303)
+        if not state[0].get("cart", {}).get("items"):
+            return RedirectResponse(legacy.CART_PATH, status_code=303)
+        return await commerce_page(
+            request,
+            title="Checkout - Amazon.com",
+            content=checkout_markup(state[0], state[4]),
+            state=state,
+        )
+
+    @app.post("/checkout")
+    async def checkout_submit(
+        request: Request,
+        csrf_token: str = Form(""),
+        idempotency_key: str = Form(""),
+        full_name: str = Form(""),
+        address_line: str = Form(""),
+        city: str = Form(""),
+        postal_code: str = Form(""),
+        card_number: str = Form(""),
+    ) -> Response:
+        state = await commerce_state(request)
+        commerce: AmazonCommerceAdapter = request.app.state.commerce
+        try:
+            await run_in_threadpool(commerce.require_csrf, state[2], csrf_token)
+            order = await run_in_threadpool(
+                commerce.checkout,
+                user=state[3],
+                device_session_id=state[2],
+                idempotency_key=idempotency_key,
+                card_number=card_number,
+                full_name=full_name,
+                address_line=address_line,
+                city=city,
+                postal_code=postal_code,
+            )
+        except CommerceError as error:
+            if error.code == "login_required":
+                return RedirectResponse("/login?next=/checkout", status_code=303)
+            return await commerce_page(
+                request,
+                title="Checkout - Amazon.com",
+                content=checkout_markup(
+                    state[0], state[4], error=error, idempotency_key=idempotency_key
+                ),
+                status=error.status,
+                state=state,
+            )
+        return RedirectResponse(f"/checkout/success/{order['number']}", status_code=303)
+
+    def order_markup(order: Mapping[str, Any], csrf_token: str, *, success: bool) -> str:
+        lines = "".join(
+            f"<li><span>{e(line['title'])} × {int(line['quantity'])}</span>"
+            f"<strong>{money_cents(int(line['unit_price_cents']) * int(line['quantity']))}</strong></li>"
+            for line in order["lines"]
+        )
+        cancel = (
+            f"<form action='/account/orders/{e(order['number'])}/cancel' method='post'>"
+            f"<input type='hidden' name='csrf_token' value='{e(csrf_token)}'>"
+            "<button class='amazon-button' type='submit'>Cancel order</button></form>"
+            if order["status"] == "placed"
+            else "<strong class='order-status cancelled'>Cancelled</strong>"
+        )
+        return (
+            "<section class='commerce-order'>"
+            f"<h1>{'Order placed' if success else 'Order details'}</h1>"
+            f"<p>Order <strong>{e(order['number'])}</strong> · {e(order['status'].title())}</p>"
+            f"<ul>{lines}</ul><p>Subtotal <strong>{money_cents(order['subtotal_cents'])}</strong></p>"
+            f"<p>Ship to {e(order['full_name'])}, {e(order['address_line'])}, {e(order['city'])} {e(order['postal_code'])}</p>"
+            f"{cancel}<p><a href='/account/orders'>View all orders</a></p></section>"
+        )
+
+    async def require_user_state(request: Request) -> tuple[
+        dict[str, Any], list[BridgeResponse], str, dict[str, Any], str
+    ] | None:
+        state = await commerce_state(request)
+        return state if state[3] is not None else None  # type: ignore[return-value]
+
+    @app.get("/checkout/success/{number}", response_class=HTMLResponse)
+    async def checkout_success(request: Request, number: str) -> Response:
+        state = await require_user_state(request)
+        if state is None:
+            return RedirectResponse("/login?next=/account/orders", status_code=303)
+        try:
+            order = await run_in_threadpool(
+                request.app.state.commerce.order_for, number, state[3]["id"]
+            )
+        except CommerceError as error:
+            return await commerce_page(
+                request,
+                title="Order not found - Amazon.com",
+                content=form_error(error),
+                status=error.status,
+                state=state,
+            )
+        return await commerce_page(
+            request,
+            title="Order placed - Amazon.com",
+            content=order_markup(order, state[4], success=True),
+            state=state,
+        )
+
+    @app.api_route(
+        "/account/orders", methods=["GET", "HEAD"], response_class=HTMLResponse
+    )
+    async def orders_page(request: Request) -> Response:
+        state = await commerce_state(request)
+        if state[3] is None:
+            content = (
+                "<section class='safe-page'><div class='safe-panel'><h1>Your Orders</h1>"
+                "<p>Sign in to view orders created in this local benchmark.</p>"
+                "<a class='amazon-button amazon-button-primary' href='/login?next=/account/orders'>Sign in</a>"
+                "</div></section>"
+            )
+        else:
+            orders = await run_in_threadpool(
+                request.app.state.commerce.orders_for, state[3]["id"]
+            )
+            cards = "".join(
+                f"<article class='order-card'><h2><a href='/account/orders/{e(order['number'])}'>{e(order['number'])}</a></h2>"
+                f"<p>{e(order['status'].title())} · {money_cents(order['total_cents'])}</p></article>"
+                for order in orders
+            ) or "<div class='history-empty'><h2>No orders yet</h2><p>Completed local checkouts will appear here.</p></div>"
+            content = f"<section class='orders-page'><h1>Your Orders</h1>{cards}</section>"
+        return await commerce_page(
+            request, title="Your Orders - Amazon.com", content=content, state=state
+        )
+
+    @app.get("/account/orders/{number}", response_class=HTMLResponse)
+    async def order_detail(request: Request, number: str) -> Response:
+        state = await require_user_state(request)
+        if state is None:
+            return RedirectResponse("/login?next=/account/orders", status_code=303)
+        try:
+            order = await run_in_threadpool(
+                request.app.state.commerce.order_for, number, state[3]["id"]
+            )
+        except CommerceError as error:
+            return await commerce_page(
+                request,
+                title="Order not found - Amazon.com",
+                content=(
+                    "<section class='commerce-order'><h1>Order not found</h1>"
+                    f"{form_error(error)}</section>"
+                ),
+                status=error.status,
+                state=state,
+            )
+        return await commerce_page(
+            request,
+            title=f"Order {number} - Amazon.com",
+            content=order_markup(order, state[4], success=False),
+            state=state,
+        )
+
+    @app.post("/account/orders/{number}/cancel")
+    async def cancel_order(
+        request: Request, number: str, csrf_token: str = Form("")
+    ) -> Response:
+        state = await require_user_state(request)
+        if state is None:
+            return RedirectResponse("/login?next=/account/orders", status_code=303)
+        try:
+            await run_in_threadpool(
+                request.app.state.commerce.require_csrf, state[2], csrf_token
+            )
+            await run_in_threadpool(
+                request.app.state.commerce.cancel, number, state[3]["id"]
+            )
+        except CommerceError as error:
+            return await commerce_page(
+                request,
+                title="Order update unavailable - Amazon.com",
+                content=form_error(error),
+                status=error.status,
+                state=state,
+            )
+        return RedirectResponse(f"/account/orders/{number}", status_code=303)
 
     @app.api_route(
         "/{path:path}",
@@ -827,6 +1517,7 @@ def create_app(db_path: Path, legacy: Any) -> FastAPI:
             context={
                 "title": title,
                 "path": pathname,
+                "server_owned": False,
                 "header_markup": renderer.header(bootstrap, query),
                 "main_markup": content,
                 "footer_markup": renderer.footer(),

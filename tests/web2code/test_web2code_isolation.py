@@ -10,10 +10,17 @@ from pathlib import Path
 
 import pytest
 
+from clawbench.web2code.attempts import AttemptJournal, AttemptStage
 from clawbench.web2code.policy import scan_candidate
 from clawbench.web2code.candidate import CandidateRuntime, safe_name
 from clawbench.web2code.hitl import HumanInterventionLog
-from clawbench.web2code.run import docker_ready, prepare_run, run_pilot
+from clawbench.web2code.run import (
+    _record_evaluator_failure,
+    _usage_facts,
+    docker_ready,
+    prepare_run,
+    run_pilot,
+)
 from clawbench.web2code.topology import TopologyValidationError, validate_compose_topology
 
 
@@ -299,6 +306,87 @@ def test_candidate_runtime_resource_parsing_and_scoped_names() -> None:
     assert CandidateRuntime.parse_memory("12.5MiB / 1GiB") == int(12.5 * 1024 * 1024)
     assert CandidateRuntime.parse_memory("800kB / 1GB") == 800_000
     assert safe_name("Northstar Core Run_01") == "northstar-core-run-01"
+
+
+def test_candidate_runtime_secrets_use_restricted_env_file(tmp_path: Path) -> None:
+    run_dir = tmp_path / "run"
+    run_dir.mkdir()
+    runtime = CandidateRuntime(run_dir=run_dir, project="secret-test")
+    path = runtime._runtime_environment_file(
+        {"BENCH_ADMIN_TOKEN": "admin-secret", "PORT": "8080"}
+    )
+    assert path.read_text(encoding="utf-8") == (
+        "BENCH_ADMIN_TOKEN=admin-secret\nPORT=8080\n"
+    )
+    assert path.stat().st_mode & 0o777 == 0o600
+    with pytest.raises(RuntimeError, match="contains a newline"):
+        runtime._runtime_environment_file({"BENCH_ADMIN_TOKEN": "secret\ninjected=true"})
+
+
+def test_host_usage_facts_are_derived_from_agent_browser_and_builder_artifacts(
+    tmp_path: Path,
+) -> None:
+    for name in ("agent", "browser", "builds"):
+        (tmp_path / name).mkdir()
+    (tmp_path / "agent" / "exit.json").write_text(
+        json.dumps({"input_tokens": 120, "output_tokens": 30, "tokens": 150})
+    )
+    (tmp_path / "browser" / "actions.jsonl").write_text("{}\n{}\n")
+    (tmp_path / "builds" / "final-image.json").write_text(
+        json.dumps({"builds_used": 3})
+    )
+    (tmp_path / "human-interventions.jsonl").write_text("{}\n")
+    assert _usage_facts(tmp_path) == {
+        "input_tokens": 120,
+        "output_tokens": 30,
+        "browser_actions": 2,
+        "candidate_builds": 3,
+        "human_messages": 1,
+        "human_minutes": 0,
+    }
+
+
+def test_result_construction_failure_is_attributed_to_evaluator_facts(tmp_path: Path) -> None:
+    run_dir = prepare_run(
+        site="foundry-wholesale",
+        track="core",
+        model="gpt-5.5-codex",
+        thinking_level="low",
+        output_root=tmp_path,
+    )
+    journal_path = next((run_dir / "attempts").glob("*.json"))
+    journal = AttemptJournal(journal_path)
+    for stage in (
+        AttemptStage.AGENT,
+        AttemptStage.CANDIDATE_FINALIZE,
+        AttemptStage.SOURCE_POLICY,
+        AttemptStage.CANDIDATE_BUILD,
+        AttemptStage.CANDIDATE_START,
+        AttemptStage.CANDIDATE_HEALTH,
+        AttemptStage.EVALUATOR,
+    ):
+        journal.transition(stage)
+    journal.transition(
+        AttemptStage.FACTS_VALIDATION,
+        facts_validation={"valid": True, "errors": []},
+    )
+    journal.transition(AttemptStage.HOST_SCORING)
+
+    assert (
+        _record_evaluator_failure(
+            run_dir,
+            "EVALUATOR_FACTS_INVALID",
+            "facts cannot produce result v1",
+            evaluator_exit=0,
+        )
+        == 3
+    )
+    persisted = journal.read()
+    assert persisted["outcome"]["kind"] == "evaluator_failed"
+    assert persisted["facts_validation"] == {
+        "valid": False,
+        "errors": ["facts cannot produce result v1"],
+    }
 
 
 def test_candidate_runtime_blocks_every_hard_source_policy_finding(tmp_path: Path) -> None:

@@ -13,10 +13,13 @@ into WebsiteBench Agent or Candidate containers.
 - `clone/`: independently authored offline Amazon-shaped local replica and its
   verification tools. Runtime assets are local/generated; see
   `clone/ASSET_ATTRIBUTION.md`.
+- `runtime-manifest.json`: canonical Amazon task path, clone entrypoint,
+  addresses, Viewer gateway path, and runtime-attestation file set.
 - `verification/gate2/`: browser regression review evidence.
 - `verification/gate3/`: final source-offline fidelity matrix, screenshots, and
   heatmaps.
-- `verification/gate4/`: approved BrowserUse source/clone trajectory evidence.
+- `verification/gate4/`: historically approved BrowserUse source/clone
+  trajectory evidence; the commerce fusion requires a fresh Gate sequence.
 - `../../tasks/clawbench/dev-136-amazon-t7-best-seller/`: associated ClawBench
   development task.
 
@@ -36,9 +39,14 @@ and are retained for private research/reproducibility. Review licensing and
 site terms before changing repository visibility or redistributing them.
 
 The authored clone itself contains attribution and a zero-external-request
-runtime policy. Start it from the repository root with:
+runtime policy. It combines the Amazon presentation/task engine with the
+shared commerce account/order Interface through a SQLite Adapter. Start the
+single canonical runtime from the repository root with:
 
 ```bash
 python materials/amazon/clone/server.py --host 127.0.0.1 --port 8153
 ```
 
+Then open `http://127.0.0.1:8153/`. In an authenticated internal Viewer, the
+same runtime is exposed at `/clone/benchmark--amazon/`. Both addresses and the
+command are declared in `runtime-manifest.json`.

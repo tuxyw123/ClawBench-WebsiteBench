@@ -1,0 +1,1391 @@
+{
+  "accounts": [
+    {
+      "email": "shopper1.1401@example.test",
+      "full_name": "Test Shopper 1",
+      "id": "user_harbor_pickup_1401_1",
+      "password": "Variant1401Test1!",
+      "verified": true
+    },
+    {
+      "email": "shopper2.1401@example.test",
+      "full_name": "Test Shopper 2",
+      "id": "user_harbor_pickup_1401_2",
+      "password": "Variant1401Test2!",
+      "verified": true
+    },
+    {
+      "email": "shopper3.1401@example.test",
+      "full_name": "Test Shopper 3",
+      "id": "user_harbor_pickup_1401_3",
+      "password": "Variant1401Test3!",
+      "verified": true
+    },
+    {
+      "email": "shopper4.1401@example.test",
+      "full_name": "Test Shopper 4",
+      "id": "user_harbor_pickup_1401_4",
+      "password": "Variant1401Test4!",
+      "verified": true
+    }
+  ],
+  "catalog": {
+    "categories": [
+      {
+        "description": "Browse the Produce collection and its variant-specific purchase rules.",
+        "id": "cat_produce",
+        "image": {
+          "accent": "#914496",
+          "background": "#db6b50",
+          "key": "category-produce-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Produce",
+        "slug": "produce"
+      },
+      {
+        "description": "Browse the Bakery collection and its variant-specific purchase rules.",
+        "id": "cat_bakery",
+        "image": {
+          "accent": "#d83265",
+          "background": "#2b514e",
+          "key": "category-bakery-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Bakery",
+        "slug": "bakery"
+      },
+      {
+        "description": "Browse the Pantry collection and its variant-specific purchase rules.",
+        "id": "cat_pantry",
+        "image": {
+          "accent": "#9f8b8a",
+          "background": "#49160b",
+          "key": "category-pantry-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Pantry",
+        "slug": "pantry"
+      },
+      {
+        "description": "Browse the Dairy collection and its variant-specific purchase rules.",
+        "id": "cat_dairy",
+        "image": {
+          "accent": "#b1ff68",
+          "background": "#8ca985",
+          "key": "category-dairy-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Dairy",
+        "slug": "dairy"
+      },
+      {
+        "description": "Browse the Prepared collection and its variant-specific purchase rules.",
+        "id": "cat_prepared",
+        "image": {
+          "accent": "#676592",
+          "background": "#4bd4e7",
+          "key": "category-prepared-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Prepared",
+        "slug": "prepared"
+      },
+      {
+        "description": "Browse the Beverages collection and its variant-specific purchase rules.",
+        "id": "cat_beverages",
+        "image": {
+          "accent": "#949453",
+          "background": "#9cdc0e",
+          "key": "category-beverages-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Beverages",
+        "slug": "beverages"
+      },
+      {
+        "description": "Browse the Household collection and its variant-specific purchase rules.",
+        "id": "cat_household",
+        "image": {
+          "accent": "#6737ac",
+          "background": "#7cdb34",
+          "key": "category-household-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Household",
+        "slug": "household"
+      },
+      {
+        "description": "Browse the Seasonal collection and its variant-specific purchase rules.",
+        "id": "cat_seasonal",
+        "image": {
+          "accent": "#a8166b",
+          "background": "#c6c265",
+          "key": "category-seasonal-1401",
+          "kind": "generated-svg"
+        },
+        "name": "Seasonal",
+        "slug": "seasonal"
+      }
+    ],
+    "products": [
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 1,
+        "id": "prod_harbor_pickup_01",
+        "image": {
+          "accent": "#77ec88",
+          "background": "#393a0b",
+          "key": "product-harbor_pickup_01-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 1642,
+        "rating_basis_points": 392,
+        "review_count": 506,
+        "sku": "HAR-1401-001",
+        "slug": "market-box-1",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 1"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 2,
+        "id": "prod_harbor_pickup_02",
+        "image": {
+          "accent": "#8b46fa",
+          "background": "#5b8f12",
+          "key": "product-harbor_pickup_02-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 1779,
+        "rating_basis_points": 399,
+        "review_count": 107,
+        "sku": "HAR-1401-002",
+        "slug": "sourdough-loaf-2",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 2"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 3,
+        "id": "prod_harbor_pickup_03",
+        "image": {
+          "accent": "#c5bd4f",
+          "background": "#a730e4",
+          "key": "product-harbor_pickup_03-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 23,
+        "price_cents": 1916,
+        "rating_basis_points": 406,
+        "review_count": 608,
+        "sku": "HAR-1401-003",
+        "slug": "pantry-bundle-3",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 3"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 4,
+        "id": "prod_harbor_pickup_04",
+        "image": {
+          "accent": "#8ea620",
+          "background": "#d55664",
+          "key": "product-harbor_pickup_04-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 24,
+        "price_cents": 2053,
+        "rating_basis_points": 413,
+        "review_count": 209,
+        "sku": "HAR-1401-004",
+        "slug": "cheese-board-4",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 4"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 5,
+        "id": "prod_harbor_pickup_05",
+        "image": {
+          "accent": "#456420",
+          "background": "#965694",
+          "key": "product-harbor_pickup_05-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 25,
+        "price_cents": 2190,
+        "rating_basis_points": 420,
+        "review_count": 710,
+        "sku": "HAR-1401-005",
+        "slug": "supper-kit-5",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 5"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 6,
+        "id": "prod_harbor_pickup_06",
+        "image": {
+          "accent": "#7f87bf",
+          "background": "#761420",
+          "key": "product-harbor_pickup_06-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 26,
+        "price_cents": 2327,
+        "rating_basis_points": 427,
+        "review_count": 311,
+        "sku": "HAR-1401-006",
+        "slug": "cold-brew-case-6",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 6"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 7,
+        "id": "prod_harbor_pickup_07",
+        "image": {
+          "accent": "#31dce8",
+          "background": "#9240f3",
+          "key": "product-harbor_pickup_07-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 27,
+        "price_cents": 2464,
+        "rating_basis_points": 434,
+        "review_count": 812,
+        "sku": "HAR-1401-007",
+        "slug": "cleaning-set-7",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 7"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 8,
+        "id": "prod_harbor_pickup_08",
+        "image": {
+          "accent": "#cc5093",
+          "background": "#a5deec",
+          "key": "product-harbor_pickup_08-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 28,
+        "price_cents": 2601,
+        "rating_basis_points": 441,
+        "review_count": 413,
+        "sku": "HAR-1401-008",
+        "slug": "picnic-basket-8",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 8"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 9,
+        "id": "prod_harbor_pickup_09",
+        "image": {
+          "accent": "#8d3379",
+          "background": "#3631e0",
+          "key": "product-harbor_pickup_09-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 29,
+        "price_cents": 2738,
+        "rating_basis_points": 448,
+        "review_count": 14,
+        "sku": "HAR-1401-009",
+        "slug": "market-box-9",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 9"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 10,
+        "id": "prod_harbor_pickup_10",
+        "image": {
+          "accent": "#aa2b07",
+          "background": "#8974a1",
+          "key": "product-harbor_pickup_10-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 30,
+        "price_cents": 2875,
+        "rating_basis_points": 455,
+        "review_count": 515,
+        "sku": "HAR-1401-010",
+        "slug": "sourdough-loaf-10",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 10"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 11,
+        "id": "prod_harbor_pickup_11",
+        "image": {
+          "accent": "#da9211",
+          "background": "#7bff77",
+          "key": "product-harbor_pickup_11-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 31,
+        "price_cents": 3012,
+        "rating_basis_points": 462,
+        "review_count": 116,
+        "sku": "HAR-1401-011",
+        "slug": "pantry-bundle-11",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 11"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 12,
+        "id": "prod_harbor_pickup_12",
+        "image": {
+          "accent": "#a65ab7",
+          "background": "#9532bf",
+          "key": "product-harbor_pickup_12-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 32,
+        "price_cents": 3149,
+        "rating_basis_points": 469,
+        "review_count": 617,
+        "sku": "HAR-1401-012",
+        "slug": "cheese-board-12",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 12"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 13,
+        "id": "prod_harbor_pickup_13",
+        "image": {
+          "accent": "#8780ce",
+          "background": "#3a246d",
+          "key": "product-harbor_pickup_13-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 3286,
+        "rating_basis_points": 476,
+        "review_count": 218,
+        "sku": "HAR-1401-013",
+        "slug": "supper-kit-13",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 13"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 14,
+        "id": "prod_harbor_pickup_14",
+        "image": {
+          "accent": "#8cb739",
+          "background": "#33eacd",
+          "key": "product-harbor_pickup_14-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 3423,
+        "rating_basis_points": 483,
+        "review_count": 719,
+        "sku": "HAR-1401-014",
+        "slug": "cold-brew-case-14",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 14"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 15,
+        "id": "prod_harbor_pickup_15",
+        "image": {
+          "accent": "#3be58a",
+          "background": "#9fec26",
+          "key": "product-harbor_pickup_15-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 3560,
+        "rating_basis_points": 490,
+        "review_count": 320,
+        "sku": "HAR-1401-015",
+        "slug": "cleaning-set-15",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 15"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 16,
+        "id": "prod_harbor_pickup_16",
+        "image": {
+          "accent": "#abbf4e",
+          "background": "#2d6a5d",
+          "key": "product-harbor_pickup_16-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 3697,
+        "rating_basis_points": 497,
+        "review_count": 821,
+        "sku": "HAR-1401-016",
+        "slug": "picnic-basket-16",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 16"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 17,
+        "id": "prod_harbor_pickup_17",
+        "image": {
+          "accent": "#4f7d17",
+          "background": "#333415",
+          "key": "product-harbor_pickup_17-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 3834,
+        "rating_basis_points": 353,
+        "review_count": 422,
+        "sku": "HAR-1401-017",
+        "slug": "market-box-17",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 17"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 18,
+        "id": "prod_harbor_pickup_18",
+        "image": {
+          "accent": "#4fa82b",
+          "background": "#ce7e79",
+          "key": "product-harbor_pickup_18-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 3971,
+        "rating_basis_points": 360,
+        "review_count": 23,
+        "sku": "HAR-1401-018",
+        "slug": "sourdough-loaf-18",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 18"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 19,
+        "id": "prod_harbor_pickup_19",
+        "image": {
+          "accent": "#71a755",
+          "background": "#acf281",
+          "key": "product-harbor_pickup_19-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 39,
+        "price_cents": 4108,
+        "rating_basis_points": 367,
+        "review_count": 524,
+        "sku": "HAR-1401-019",
+        "slug": "pantry-bundle-19",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 19"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 20,
+        "id": "prod_harbor_pickup_20",
+        "image": {
+          "accent": "#9040a1",
+          "background": "#c7b343",
+          "key": "product-harbor_pickup_20-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 40,
+        "price_cents": 4245,
+        "rating_basis_points": 374,
+        "review_count": 125,
+        "sku": "HAR-1401-020",
+        "slug": "cheese-board-20",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 20"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 21,
+        "id": "prod_harbor_pickup_21",
+        "image": {
+          "accent": "#b7264f",
+          "background": "#c49200",
+          "key": "product-harbor_pickup_21-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 12,
+        "price_cents": 4382,
+        "rating_basis_points": 381,
+        "review_count": 626,
+        "sku": "HAR-1401-021",
+        "slug": "supper-kit-21",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 21"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 22,
+        "id": "prod_harbor_pickup_22",
+        "image": {
+          "accent": "#489acd",
+          "background": "#8b54e8",
+          "key": "product-harbor_pickup_22-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 13,
+        "price_cents": 4519,
+        "rating_basis_points": 388,
+        "review_count": 227,
+        "sku": "HAR-1401-022",
+        "slug": "cold-brew-case-22",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 22"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 23,
+        "id": "prod_harbor_pickup_23",
+        "image": {
+          "accent": "#d28471",
+          "background": "#55e66b",
+          "key": "product-harbor_pickup_23-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 14,
+        "price_cents": 4656,
+        "rating_basis_points": 395,
+        "review_count": 728,
+        "sku": "HAR-1401-023",
+        "slug": "cleaning-set-23",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 23"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 24,
+        "id": "prod_harbor_pickup_24",
+        "image": {
+          "accent": "#457c68",
+          "background": "#6d5c9c",
+          "key": "product-harbor_pickup_24-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 15,
+        "price_cents": 4793,
+        "rating_basis_points": 402,
+        "review_count": 329,
+        "sku": "HAR-1401-024",
+        "slug": "picnic-basket-24",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 24"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 25,
+        "id": "prod_harbor_pickup_25",
+        "image": {
+          "accent": "#8d9e95",
+          "background": "#859438",
+          "key": "product-harbor_pickup_25-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 16,
+        "price_cents": 4930,
+        "rating_basis_points": 409,
+        "review_count": 830,
+        "sku": "HAR-1401-025",
+        "slug": "market-box-25",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 25"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 26,
+        "id": "prod_harbor_pickup_26",
+        "image": {
+          "accent": "#53bfef",
+          "background": "#30084b",
+          "key": "product-harbor_pickup_26-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 17,
+        "price_cents": 5067,
+        "rating_basis_points": 416,
+        "review_count": 431,
+        "sku": "HAR-1401-026",
+        "slug": "sourdough-loaf-26",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 26"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 27,
+        "id": "prod_harbor_pickup_27",
+        "image": {
+          "accent": "#26d7b2",
+          "background": "#d773e9",
+          "key": "product-harbor_pickup_27-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 18,
+        "price_cents": 5204,
+        "rating_basis_points": 423,
+        "review_count": 32,
+        "sku": "HAR-1401-027",
+        "slug": "pantry-bundle-27",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 27"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 28,
+        "id": "prod_harbor_pickup_28",
+        "image": {
+          "accent": "#93a549",
+          "background": "#9bcf3e",
+          "key": "product-harbor_pickup_28-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 19,
+        "price_cents": 5341,
+        "rating_basis_points": 430,
+        "review_count": 533,
+        "sku": "HAR-1401-028",
+        "slug": "cheese-board-28",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 28"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 29,
+        "id": "prod_harbor_pickup_29",
+        "image": {
+          "accent": "#9e85a6",
+          "background": "#d49878",
+          "key": "product-harbor_pickup_29-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 20,
+        "price_cents": 5478,
+        "rating_basis_points": 437,
+        "review_count": 134,
+        "sku": "HAR-1401-029",
+        "slug": "supper-kit-29",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 29"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 30,
+        "id": "prod_harbor_pickup_30",
+        "image": {
+          "accent": "#31f856",
+          "background": "#3bbee3",
+          "key": "product-harbor_pickup_30-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 5615,
+        "rating_basis_points": 444,
+        "review_count": 635,
+        "sku": "HAR-1401-030",
+        "slug": "cold-brew-case-30",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 30"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 31,
+        "id": "prod_harbor_pickup_31",
+        "image": {
+          "accent": "#b10187",
+          "background": "#b63b8f",
+          "key": "product-harbor_pickup_31-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 5752,
+        "rating_basis_points": 451,
+        "review_count": 236,
+        "sku": "HAR-1401-031",
+        "slug": "cleaning-set-31",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 31"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 32,
+        "id": "prod_harbor_pickup_32",
+        "image": {
+          "accent": "#84bdeb",
+          "background": "#3c9203",
+          "key": "product-harbor_pickup_32-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 23,
+        "price_cents": 5889,
+        "rating_basis_points": 458,
+        "review_count": 737,
+        "sku": "HAR-1401-032",
+        "slug": "picnic-basket-32",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 32"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 33,
+        "id": "prod_harbor_pickup_33",
+        "image": {
+          "accent": "#d77691",
+          "background": "#4f33fb",
+          "key": "product-harbor_pickup_33-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 24,
+        "price_cents": 6026,
+        "rating_basis_points": 465,
+        "review_count": 338,
+        "sku": "HAR-1401-033",
+        "slug": "market-box-33",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 33"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 34,
+        "id": "prod_harbor_pickup_34",
+        "image": {
+          "accent": "#3916b9",
+          "background": "#a78ca9",
+          "key": "product-harbor_pickup_34-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 25,
+        "price_cents": 6163,
+        "rating_basis_points": 472,
+        "review_count": 839,
+        "sku": "HAR-1401-034",
+        "slug": "sourdough-loaf-34",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 34"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 35,
+        "id": "prod_harbor_pickup_35",
+        "image": {
+          "accent": "#a763f9",
+          "background": "#9e744e",
+          "key": "product-harbor_pickup_35-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 26,
+        "price_cents": 6300,
+        "rating_basis_points": 479,
+        "review_count": 440,
+        "sku": "HAR-1401-035",
+        "slug": "pantry-bundle-35",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 35"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 36,
+        "id": "prod_harbor_pickup_36",
+        "image": {
+          "accent": "#389324",
+          "background": "#b57853",
+          "key": "product-harbor_pickup_36-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 27,
+        "price_cents": 6437,
+        "rating_basis_points": 486,
+        "review_count": 41,
+        "sku": "HAR-1401-036",
+        "slug": "cheese-board-36",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 36"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 37,
+        "id": "prod_harbor_pickup_37",
+        "image": {
+          "accent": "#46697c",
+          "background": "#7d8f82",
+          "key": "product-harbor_pickup_37-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 28,
+        "price_cents": 6574,
+        "rating_basis_points": 493,
+        "review_count": 542,
+        "sku": "HAR-1401-037",
+        "slug": "supper-kit-37",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 37"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 38,
+        "id": "prod_harbor_pickup_38",
+        "image": {
+          "accent": "#45ffcf",
+          "background": "#98eea2",
+          "key": "product-harbor_pickup_38-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 29,
+        "price_cents": 6711,
+        "rating_basis_points": 500,
+        "review_count": 143,
+        "sku": "HAR-1401-038",
+        "slug": "cold-brew-case-38",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 38"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 39,
+        "id": "prod_harbor_pickup_39",
+        "image": {
+          "accent": "#2d6ed8",
+          "background": "#20e701",
+          "key": "product-harbor_pickup_39-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 30,
+        "price_cents": 6848,
+        "rating_basis_points": 356,
+        "review_count": 644,
+        "sku": "HAR-1401-039",
+        "slug": "cleaning-set-39",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 39"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 40,
+        "id": "prod_harbor_pickup_40",
+        "image": {
+          "accent": "#42db82",
+          "background": "#88e2e0",
+          "key": "product-harbor_pickup_40-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 31,
+        "price_cents": 6985,
+        "rating_basis_points": 363,
+        "review_count": 245,
+        "sku": "HAR-1401-040",
+        "slug": "picnic-basket-40",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 40"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_produce",
+        "compare_at_cents": null,
+        "description": "A deterministic market box for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 41,
+        "id": "prod_harbor_pickup_41",
+        "image": {
+          "accent": "#c3a4ad",
+          "background": "#77ba15",
+          "key": "product-harbor_pickup_41-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 32,
+        "price_cents": 7122,
+        "rating_basis_points": 370,
+        "review_count": 746,
+        "sku": "HAR-1401-041",
+        "slug": "market-box-41",
+        "tags": [
+          "produce",
+          "market-box",
+          "harbor-pickup"
+        ],
+        "title": "Market Box 41"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_bakery",
+        "compare_at_cents": null,
+        "description": "A deterministic sourdough loaf for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 42,
+        "id": "prod_harbor_pickup_42",
+        "image": {
+          "accent": "#dda439",
+          "background": "#3f6877",
+          "key": "product-harbor_pickup_42-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 7259,
+        "rating_basis_points": 377,
+        "review_count": 347,
+        "sku": "HAR-1401-042",
+        "slug": "sourdough-loaf-42",
+        "tags": [
+          "bakery",
+          "sourdough-loaf",
+          "harbor-pickup"
+        ],
+        "title": "Sourdough Loaf 42"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_pantry",
+        "compare_at_cents": null,
+        "description": "A deterministic pantry bundle for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 43,
+        "id": "prod_harbor_pickup_43",
+        "image": {
+          "accent": "#5872fc",
+          "background": "#aef475",
+          "key": "product-harbor_pickup_43-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 7396,
+        "rating_basis_points": 384,
+        "review_count": 848,
+        "sku": "HAR-1401-043",
+        "slug": "pantry-bundle-43",
+        "tags": [
+          "pantry",
+          "pantry-bundle",
+          "harbor-pickup"
+        ],
+        "title": "Pantry Bundle 43"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_dairy",
+        "compare_at_cents": null,
+        "description": "A deterministic cheese board for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 44,
+        "id": "prod_harbor_pickup_44",
+        "image": {
+          "accent": "#c63bc6",
+          "background": "#2bf057",
+          "key": "product-harbor_pickup_44-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 7533,
+        "rating_basis_points": 391,
+        "review_count": 449,
+        "sku": "HAR-1401-044",
+        "slug": "cheese-board-44",
+        "tags": [
+          "dairy",
+          "cheese-board",
+          "harbor-pickup"
+        ],
+        "title": "Cheese Board 44"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_prepared",
+        "compare_at_cents": null,
+        "description": "A deterministic supper kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 45,
+        "id": "prod_harbor_pickup_45",
+        "image": {
+          "accent": "#55815a",
+          "background": "#661cee",
+          "key": "product-harbor_pickup_45-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 7670,
+        "rating_basis_points": 398,
+        "review_count": 50,
+        "sku": "HAR-1401-045",
+        "slug": "supper-kit-45",
+        "tags": [
+          "prepared",
+          "supper-kit",
+          "harbor-pickup"
+        ],
+        "title": "Supper Kit 45"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_beverages",
+        "compare_at_cents": null,
+        "description": "A deterministic cold brew case for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 46,
+        "id": "prod_harbor_pickup_46",
+        "image": {
+          "accent": "#631c93",
+          "background": "#d4c4f0",
+          "key": "product-harbor_pickup_46-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 7807,
+        "rating_basis_points": 405,
+        "review_count": 551,
+        "sku": "HAR-1401-046",
+        "slug": "cold-brew-case-46",
+        "tags": [
+          "beverages",
+          "cold-brew-case",
+          "harbor-pickup"
+        ],
+        "title": "Cold Brew Case 46"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_household",
+        "compare_at_cents": null,
+        "description": "A deterministic cleaning set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 47,
+        "id": "prod_harbor_pickup_47",
+        "image": {
+          "accent": "#62e3c6",
+          "background": "#3197d5",
+          "key": "product-harbor_pickup_47-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 7944,
+        "rating_basis_points": 412,
+        "review_count": 152,
+        "sku": "HAR-1401-047",
+        "slug": "cleaning-set-47",
+        "tags": [
+          "household",
+          "cleaning-set",
+          "harbor-pickup"
+        ],
+        "title": "Cleaning Set 47"
+      },
+      {
+        "brand": "Harbor Local",
+        "category_id": "cat_seasonal",
+        "compare_at_cents": null,
+        "description": "A deterministic picnic basket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 48,
+        "id": "prod_harbor_pickup_48",
+        "image": {
+          "accent": "#34643e",
+          "background": "#6e248e",
+          "key": "product-harbor_pickup_48-1401",
+          "kind": "generated-svg"
+        },
+        "inventory": 39,
+        "price_cents": 8081,
+        "rating_basis_points": 419,
+        "review_count": 653,
+        "sku": "HAR-1401-048",
+        "slug": "picnic-basket-48",
+        "tags": [
+          "seasonal",
+          "picnic-basket",
+          "harbor-pickup"
+        ],
+        "title": "Picnic Basket 48"
+      }
+    ]
+  },
+  "fixture_id": "harbor-pickup-1401",
+  "now": "2026-01-15T12:00:00Z",
+  "scenario": {
+    "content_salt": "harbor-pickup-content-1401",
+    "kind": "exploration",
+    "stock_one_product_id": null
+  },
+  "schema_version": "websitebench.fixture.v1",
+  "seed": 1401
+}

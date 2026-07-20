@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.trajectory-event.v1.json",
+  "title": "WebsiteBench offline trajectory event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "episode_id",
+    "event_id",
+    "sequence",
+    "timestamp",
+    "actor",
+    "kind",
+    "phase",
+    "summary",
+    "payload",
+    "artifact_refs",
+    "source"
+  ],
+  "properties": {
+    "schema_version": {"const": "websitebench.trajectory-event.v1"},
+    "episode_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"},
+    "event_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._:-]{2,159}$"},
+    "sequence": {"type": "integer", "minimum": 1},
+    "timestamp": {
+      "oneOf": [
+        {"type": "string", "format": "date-time"},
+        {"type": "null"}
+      ]
+    },
+    "actor": {
+      "enum": ["human", "agent", "human-agent", "tool", "system", "evaluator"]
+    },
+    "kind": {
+      "enum": [
+        "artifact",
+        "browser_action",
+        "build",
+        "checkpoint",
+        "code_change",
+        "decision",
+        "evaluation",
+        "intervention",
+        "message",
+        "observation",
+        "shell",
+        "test"
+      ]
+    },
+    "phase": {
+      "enum": [
+        "intake",
+        "source-observation",
+        "implementation",
+        "verification",
+        "evaluation",
+        "handoff"
+      ]
+    },
+    "summary": {"type": "string", "minLength": 1, "maxLength": 1000},
+    "payload": {"type": "object"},
+    "artifact_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^files/[A-Za-z0-9._/-]+$"
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture", "stream", "source_sequence"],
+      "properties": {
+        "capture": {"enum": ["recorded", "imported", "retrospective"]},
+        "stream": {"type": "string", "minLength": 1, "maxLength": 120},
+        "source_sequence": {"type": "integer", "minimum": 1},
+        "source_path": {
+          "oneOf": [
+            {"type": "string", "pattern": "^[A-Za-z0-9._/-]+$"},
+            {"type": "null"}
+          ]
+        }
+      }
+    }
+  }
+}

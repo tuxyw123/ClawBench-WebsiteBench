@@ -1,5 +1,10 @@
 # Verification
 
+> Historical record: the results below bind the pre-commerce-fusion runtime.
+> `materials/amazon/runtime-manifest.json` now defines the runtime fingerprint,
+> and the Viewer marks all retained Gates stale until new reports carry that
+> fingerprint and Gate 4 receives fresh approval.
+
 ## Gate 4 BrowserUse Live Trajectory Run
 
 - Date: `2026-07-18`
@@ -64,9 +69,11 @@ expected-error, and near-uniform source screenshots cannot be scored.
 The accepted private bundle is
 `materials/amazon/verification/gate3/` (private research evidence). Its
 `GATE3_REVIEW.md` links six side-by-side source/clone views and records the
-high-impact Phase 3 correction: `/account` now presents the source-shaped
+high-impact Phase 3 correction: `/account` presented the source-shaped
 anonymous 12-card **Your Account** dashboard instead of a single sign-in card.
-Sensitive account, address, payment, and service actions still stop locally.
+That historical boundary was later superseded by the local account/order
+Adapter; real identity, payment, email, and external service actions still stop
+locally.
 
 ## Gate 2 Regression Run
 

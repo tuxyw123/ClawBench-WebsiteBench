@@ -1,0 +1,38 @@
+schema_version: websitebench.variant.v1
+family_id: white-label-commerce-v1
+site_id: foundry-wholesale
+variant_id: foundry-wholesale
+site_version: 1.0.0
+display_name: Foundry Wholesale
+instruction: Reconstruct a wholesale storefront where authentication, case quantities, tiered line discounts, post-discount shipping thresholds, tax, token expiry, persistence, and cancellation rules are observable and enforced.
+catalog:
+  brand: Foundry Supply
+  categories: [Fasteners, Abrasives, Safety, Electrical, Plumbing, Tools, Packaging, Facility]
+  product_nouns: [Bolt Kit, Grinding Disc, Safety Glove, Cable Reel, Valve Set, Driver Bit, Shipping Carton, Floor Marker]
+  base_price_cents: 1899
+seeds:
+  public: 1301
+  hidden: 9301
+  concurrency: 9399
+policies:
+  quantity:
+    kind: wholesale_case
+    parameters: {login_required: true, case_size: 3, minimum: 3, maximum: 24}
+  pricing:
+    kind: tiered_line_discount
+    parameters:
+      tax_basis_points: 650
+      tiers:
+        - {minimum: 6, percent: 5}
+        - {minimum: 12, percent: 10}
+  inventory: {kind: checkout_decrement, parameters: {atomic: true}}
+  fulfillment: {kind: shipping, parameters: {standard_cents: 1200, free_threshold_cents: 25000, threshold_basis: discounted_subtotal}}
+  cancellation: {kind: window, parameters: {minutes: 120}}
+  token_lifetime: {kind: fixed, parameters: {verification_minutes: 45, reset_minutes: 90}}
+journeys: [catalog_observability, account_lifecycle, cart_inventory, checkout_concurrency, orders_terminal]
+assertions:
+  - {kind: rule_visible, journey: catalog_observability, parameters: {case_size: 3, minimum: 3, maximum: 24}}
+  - {kind: account_token_lifetime, journey: account_lifecycle, parameters: {verification_minutes: 45, reset_minutes: 90}}
+  - {kind: pricing_policy, journey: cart_inventory, parameters: {six_percent: 5, twelve_percent: 10, tax_basis_points: 650}}
+  - {kind: atomic_concurrency, journey: checkout_concurrency, parameters: {stock_floor: 0, idempotent: true}}
+  - {kind: cancellation_policy, journey: orders_terminal, parameters: {window_minutes: 120, restore_once: true}}

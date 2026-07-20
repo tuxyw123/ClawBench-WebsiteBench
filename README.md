@@ -17,7 +17,8 @@ agents.
 | --- | --- |
 | `websitebench/` | Public contracts, private reference, hidden judge, seeds, services, schemas, and Compose topology |
 | `src/clawbench/web2code/` | Host CLI, isolation policy, candidate runtime, scoring, and reporting |
-| `src/clawbench/viewer/` | Authenticated corpus-QA and result viewer |
+| `src/clawbench/viewer/` | Public Amazon benchmark site and authenticated review workspace |
+| `src/clawbench/trajectory/` | Sanitized human/Agent offline trajectory export and validation |
 | `tests/web2code/` | Contract, commerce, isolation, scoring, and reporting regression tests |
 | `tests/viewer/` | Viewer discovery, security, reviews, visual evidence, and browser tests |
 | `materials/amazon/` | Anonymous source capture, independently authored local clone, and selected gate evidence |
@@ -67,15 +68,39 @@ export CLAWBENCH_VIEWER_COOKIE_SECURE=false
 clawbench-viewer --repo-root . serve --profile internal
 ```
 
-The viewer keeps artifact readiness, human QA, official candidate scores, and
-diagnostic image metrics separate. Its three small legacy adapters are retained
-to prove that compatibility evidence cannot be mistaken for an official
-WebsiteBench score. Deployment guidance is in
+The Viewer presents only the Amazon benchmark: public validation outcomes,
+the 295-image Gate evidence registry, and explicitly published model runs.
+The `internal` profile adds an authenticated Amazon review editor, raw reports,
+and an allowlisted interactive clone; the `public` profile registers none of
+those backend routes. The corpus and compatibility-clone files remain in the
+repository but are not discovered by the Viewer. Publication metadata,
+bilingual UI behavior, and deployment guidance are documented in
 [`docs/websitebench-viewer.md`](docs/websitebench-viewer.md).
 
-## Historical Amazon material
+## Offline trajectory export
 
-Run the offline local replica from the repository root:
+Export the retained Amazon clone-building history as explicitly retrospective
+human/Agent provenance:
+
+```bash
+clawbench-trajectory export-clone materials/amazon/clone \
+  --task tasks/clawbench/dev-136-amazon-t7-best-seller/task.json \
+  --repo-root . \
+  --out artifacts/offline-trajectories/amazon-dev-136 \
+  --archive
+```
+
+The same CLI exports future live Web2Code run streams with `export-run` and
+validates schemas, hashes, artifact references, and credential hygiene with
+`validate`. See [`docs/offline-trajectory.md`](docs/offline-trajectory.md).
+
+## Fused Amazon calibration runtime
+
+The Amazon-shaped presentation, task-900136 request engine, and local account,
+checkout, and order subsystem now run as one SQLite-backed site. Its canonical
+paths and addresses live in
+[`materials/amazon/runtime-manifest.json`](materials/amazon/runtime-manifest.json).
+Run it from the repository root:
 
 ```bash
 python materials/amazon/clone/server.py --host 127.0.0.1 --port 8153
@@ -83,6 +108,8 @@ python materials/amazon/clone/server.py --host 127.0.0.1 --port 8153
 
 Then open `http://127.0.0.1:8153/`. The corresponding ClawBench task is
 [`tasks/clawbench/dev-136-amazon-t7-best-seller/task.json`](tasks/clawbench/dev-136-amazon-t7-best-seller/task.json).
+The scored task still ends after adding two target drives; registration,
+sign-in, checkout, and orders are additional interactive benchmark content.
 See [`materials/amazon/README.md`](materials/amazon/README.md) before using or
 redistributing source evidence.
 

@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "harness": "codex",
+    "model": "gpt-5.6-sol",
+    "thinking_level": "xhigh"
+  },
+  "browser_gateway": {
+    "reference_access": "continuous",
+    "tool_name": "controlled_browser",
+    "url": "http://browser-gateway:7000"
+  },
+  "budget": {
+    "browser_actions": 1000,
+    "candidate_builds": 20,
+    "token_budget": 2000000,
+    "wall_time_seconds": 28800
+  },
+  "candidate_workspace": "/workspace/candidate",
+  "family_id": "white-label-commerce-v1",
+  "instruction": "Reconstruct the observable Northstar commerce experience, including persistent accounts, carts, checkout, inventory, orders, controlled time, and documented boundary behavior.",
+  "issued_at": "2026-01-01T00:00:00Z",
+  "mailbox_url": "http://mailbox:8025",
+  "public_files": {
+    "candidate_contract": "/task/public/candidate-contract.md",
+    "manifest": "/task/public/manifest.yaml",
+    "prd": "/task/public/PRD.md",
+    "smoke_cases": "/task/public/public-smoke-cases.json"
+  },
+  "run_id": "template-northstar-market",
+  "schema_version": "websitebench.task.v2",
+  "site_id": "northstar-market",
+  "site_version": "1.0.0",
+  "target_url": "http://reference:8080",
+  "task_id": "northstar-market",
+  "track": "core",
+  "variant_id": "northstar-standard"
+}

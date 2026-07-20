@@ -15,7 +15,9 @@ The authored catalog contains exactly 200 products across 10 departments and
 navigation, autocomplete, catalog search/filter/sort/pagination, Best Sellers,
 category and deal discovery, generic and task product details, galleries,
 variants, offers, reviews, recently viewed items, lists, a multi-product cart,
-recovery states, responsive behavior, and local safety boundaries. Benchmark
+local registration and verification, sign-in, guest-cart migration, checkout,
+order history, cancellation, password reset, recovery states, responsive
+behavior, and local safety boundaries. Benchmark
 task routes and bodies remain exact. It does not redistribute source HTML, CSS,
 JavaScript, fonts, screenshots, or product photos and is not Amazon's
 production service.
@@ -29,10 +31,19 @@ python3 materials/amazon/clone/server.py \
   --host 127.0.0.1 --port 8153
 ```
 
+These values come from the canonical
+[`../runtime-manifest.json`](../runtime-manifest.json). The task adapter,
+verification tools, and authenticated Viewer gateway all read that manifest;
+change it instead of adding another Amazon path or port elsewhere.
+
 The default database is
 `materials/amazon/clone/amazon.sqlite3`. Use `--db PATH`
 for an isolated run. Open `http://127.0.0.1:8153/`; benchmark containers use
 `http://host.docker.internal:8153/`.
+
+The clone has no preset username or password. Choose **Create account**, enter
+local test credentials, and follow the one-time verification link rendered on
+the page. Nothing is emailed or sent outside the process.
 
 The verified task journey is:
 
@@ -57,15 +68,22 @@ The verified task journey is:
 | `/gp/cart/view.html` | Persistent cart, quantity update, delete, save for later, and move to cart. |
 | `/s?k=<query>` | Cross-catalog search with autocomplete/history, correction, facets, sorting, pagination, populated and no-results states. |
 | `/hz/wishlist/ls` and `/hz/history` | Session-local list CRUD and browsing history. |
-| `/account` and `/account/orders` | Distinct source-shaped public account/order boundaries. |
+| `/register`, `/verify`, `/login`, `/logout`, `/forgot-password`, and `/reset-password` | Local account lifecycle with hashed passwords, digest-only tokens, CSRF protection, and session revocation. Verification/reset links are displayed locally; no email is sent. |
+| `/account` and `/account/orders` | Signed-in local account and account-isolated order history; anonymous requests receive a sign-in surface. |
+| `/checkout` and `/checkout/success/<order>` | Local test checkout, inventory-backed idempotent order creation, and confirmation. Card data is validated in memory and never persisted. |
+| `/account/orders/<order>` and cancellation | Account-isolated order detail and bounded, idempotent local cancellation with inventory restoration. |
 | Unknown product/page routes | Source-shaped `404` recovery presentation. |
-| Checkout, Buy Now, identity, delivery, payment, and real order controls | Visible same-origin local no-effect boundary; no sensitive fields or external effect. |
+| Buy Now, real payment/email/delivery, and external order controls | Visible same-origin local no-effect boundary; no external effect. |
 
 State APIs provide session bootstrap, catalog search/suggestions, ordinary
 multi-product cart actions, list CRUD, preferences, cart update/delete,
-save-for-later/move-to-cart, and local boundary transitions. SQLite stores
+save-for-later/move-to-cart, and local boundary transitions. The Amazon
+presentation delegates account and order ownership to `AmazonCommerceAdapter`,
+the SQLite Implementation of the shared `AccountOrderCommerce` Interface also
+used by the white-label runtime. SQLite stores
 random private sessions, bounded search history, recently viewed products,
-lists, discovery evidence, cart and saved items, boundary events, and an
+lists, discovery evidence, cart and saved items, account projections,
+inventory, orders, boundary events, and an
 append-only request journal. State survives refresh and restart with the same
 database, while browser sessions remain isolated. The deterministic regional
 state is en-US, USD, and New York 10001.
@@ -81,6 +99,10 @@ product/variant. Quantity one or three remains a normal local cart action but
 is journaled as non-task activity. Wrong method, path, query, content type,
 ASIN, rank, variant, order, direct/cross-session submission, and duplicate task
 completion are rejected or isolated.
+
+Registration, checkout, and orders extend the interactive benchmark surface;
+they do not alter task `900136` or silently add scoring criteria. The scored
+journey still stops after confirming the quantity-two cart state.
 
 ## Verify
 
@@ -107,7 +129,7 @@ private desktop/mobile review screenshots. The regression verifier owns a
 temporary database, server, browser contexts, logs, and
 screenshots. In review mode it pauses before acceptance and requires the exact
 acknowledgement printed by the tool after all original-resolution screenshots
-have been inspected. The 2026-07-18 regression run passed `159/159`
+have been inspected. The retained 2026-07-18 pre-fusion regression run passed `159/159`
 assertions, reviewed 16 desktop/mobile task-state screenshots, exercised 11
 additional daily-use route families in each viewport, observed two exact
 same-origin terminal requests, made zero external runtime requests, and removed
@@ -136,16 +158,25 @@ manually reviewed. Gate 4 received explicit human approval on `2026-07-18`;
 the immutable run report retains its capture-time pending state and the bundle
 contains a separate `GATE4_APPROVAL.md` record.
 
+That approval is historical after the commerce fusion. The Viewer compares
+the current manifest fingerprint with the clone and Gate reports and marks all
+three Gates `stale` until the four verifiers are rerun and the new Gate 4
+report receives explicit approval. Retained metrics remain provenance, not a
+claim that the changed runtime is already approved.
+
 ## Runtime Boundary
 
 All runtime code and assets are same-origin and locally bundled. The public
 runtime architecture is `Browser → FastAPI SSR → loopback state engine →
-SQLite`. CSP and
+SQLite commerce adapter`. CSP and
 server-side validation prevent external forms, frames, media, connections, and
-sensitive browser capabilities. Login, identity, address, payment, checkout,
-order placement, delivery changes, email, and remote publication are not
-connected. Public capture sent no source mutation and retained no cookie,
-token, account, address, or payment value.
+sensitive browser capabilities. Account, address, test payment, checkout, and
+orders are local only. Passwords use salted scrypt hashes; verification, reset,
+and authenticated-session tokens are stored only as digests; raw card numbers
+are never stored. Delivery changes, email transmission, real payments, external
+order placement, and remote publication are not connected. Public source
+capture sent no mutation and retained no cookie, token, account, address, or
+payment value.
 
 See `SOURCE_EVIDENCE.md`, `ASSET_ATTRIBUTION.md`, `LIMITATIONS.md`, and
 `CODEX_TRAJECTORY.md` for provenance, visual decisions, allowed differences,

@@ -34,15 +34,30 @@ from playwright.sync_api import Browser, BrowserContext, Page, sync_playwright
 sys.dont_write_bytecode = True
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
-CLONE_ROOT = Path(__file__).resolve().parents[1]
-SERVER_PATH = CLONE_ROOT / "server.py"
-TASK_PATH = REPO_ROOT / "tasks/clawbench/dev-136-amazon-t7-best-seller/task.json"
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from clawbench.amazon_contract import (  # noqa: E402
+    AMAZON_ITEM_KEY,
+    AMAZON_RUNTIME_MANIFEST,
+    AMAZON_SITE_ID,
+    amazon_runtime_fingerprint,
+    load_amazon_runtime_contract,
+)
+
+
+RUNTIME_MANIFEST = load_amazon_runtime_contract(REPO_ROOT)
+RUNTIME = RUNTIME_MANIFEST["runtime"]
+CLONE_ROOT = REPO_ROOT / RUNTIME["clone_root"]
+SERVER_PATH = REPO_ROOT / RUNTIME["entrypoint"]
+TASK_PATH = REPO_ROOT / RUNTIME["task_path"]
 SCHEMA_PATH = REPO_ROOT / "schemas/task.schema.json"
 SOURCE_EVIDENCE_PATH = CLONE_ROOT / "SOURCE_EVIDENCE.md"
 REPORT_PATH = CLONE_ROOT / "verification-report.json"
 
 HOST = "127.0.0.1"
-CANONICAL_PORT = 8153
+CANONICAL_PORT = int(RUNTIME["canonical_port"])
 PORT = CANONICAL_PORT
 BASE_URL = f"http://{HOST}:{PORT}"
 SESSION_COOKIE = "amazon_local_session"
@@ -158,8 +173,8 @@ REVIEW_CHECKLISTS = {
         "no clipped controls, overlap, broken media, or horizontal overflow",
     ),
     "boundary": (
-        "local checkout boundary is conspicuous and cart state remains visible",
-        "return action and responsive dialog hierarchy are coherent",
+        "anonymous checkout reaches the local sign-in gate and cart state is preserved",
+        "sign-in and account creation controls remain local and responsive",
         "no clipped controls, overlap, broken media, or horizontal overflow",
     ),
     "not-found": (
@@ -179,24 +194,19 @@ EXPECTED_METADATA = {
     ),
     "sites_involved": ["amazon.local"],
     "platform": "amazon",
-    "clone_path": "materials/amazon/clone",
-    "server_command": (
-        "python3 materials/amazon/clone/server.py "
-        "--host 127.0.0.1 --port 8153"
-    ),
-    "verify_command": (
-        "python3 materials/amazon/clone/tools/verify_task.py"
-    ),
+    "benchmark_key": AMAZON_ITEM_KEY,
+    "site_id": AMAZON_SITE_ID,
+    "runtime_manifest": AMAZON_RUNTIME_MANIFEST.as_posix(),
     "dev_only": True,
 }
 EXPECTED_INSTRUCTION = (
-    "Open http://host.docker.internal:8153/. On Amazon, browse Best Sellers in "
+    f"Open {RUNTIME['container_url']}. On Amazon, browse Best Sellers in "
     "External Solid State Drives, open the #2 Samsung T7 Portable SSD 1TB in Gray, "
     "choose quantity 2, and add it to the cart."
 )
 EXPECTED_EVAL = {
     "url_pattern": (
-        r"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):8153/"
+        rf"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):{CANONICAL_PORT}/"
         r"(gp/product/handle-buy-box/ref=dp_start-bbf_1_glance|"
         r"cart/add-to-cart/ref=mw_dp_buy_crt)$"
     ),
@@ -207,7 +217,7 @@ EXPECTED_STEPS = [
     {
         "name": "open_external_ssd_best_sellers",
         "url_pattern": (
-            r"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):8153/"
+            rf"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):{CANONICAL_PORT}/"
             r"Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011$"
         ),
         "method": "GET",
@@ -215,7 +225,7 @@ EXPECTED_STEPS = [
     {
         "name": "open_rank_two_samsung_t7",
         "url_pattern": (
-            r"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):8153/"
+            rf"^http://(localhost|127\.0\.0\.1|host\.docker\.internal):{CANONICAL_PORT}/"
             r"SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8$"
         ),
         "method": "GET",
@@ -1899,19 +1909,19 @@ def run_browser_journey(
     checkout_link = visible_locator(page, 'a[href="/checkout"]')
     with page.expect_navigation(wait_until="load", timeout=15000):
         checkout_link.click()
-    page.locator("#boundary-dialog[open]").wait_for(state="visible", timeout=8000)
+    page.locator("form[action='/login']").wait_for(state="visible", timeout=8000)
     checks.add(
         "browser",
-        f"{viewport_name}: checkout opens a visible local no-effect boundary dialog",
-        "Checkout stops here" in page.locator("#boundary-dialog").inner_text()
-        and "Subtotal (2 items): $439.98" in page.locator(".cart-page").inner_text()
+        f"{viewport_name}: anonymous checkout reaches the local sign-in gate",
+        page.url.endswith("/login?next=/checkout")
+        and "Sign in" in page.locator("main").inner_text()
+        and "Create your local account" in page.locator("main").inner_text()
         and "Subtotal (2 items): $439.98" in cart_before_boundary,
     )
     captures.append(
         capture_screenshot(page, manager, checks, viewport_name, "boundary")
     )
-    with page.expect_navigation(wait_until="load", timeout=15000):
-        page.locator(".boundary-return").click()
+    goto_app(page, CART_PATH)
     page.locator(f'[data-cart-item="{TARGET_ASIN}"]').wait_for(
         state="visible", timeout=8000
     )
@@ -2308,30 +2318,7 @@ def runtime_totals(audits: list[RuntimeAudit]) -> dict[str, int]:
 
 
 def structural_sha256() -> str:
-    paths = {SCHEMA_PATH, SERVER_PATH}
-    paths.update(path for path in CLONE_ROOT.glob("*.md") if path.is_file())
-    for root in (
-        TASK_PATH.parent,
-        CLONE_ROOT / "source-fixtures",
-        CLONE_ROOT / "static",
-        CLONE_ROOT / "tools",
-    ):
-        paths.update(
-            path
-            for path in root.rglob("*")
-            if path.is_file()
-            and "__pycache__" not in path.parts
-            and path.suffix not in {".pyc", ".pyo"}
-        )
-
-    digest = hashlib.sha256()
-    for path in sorted(
-        paths, key=lambda candidate: candidate.relative_to(REPO_ROOT).as_posix()
-    ):
-        digest.update(path.relative_to(REPO_ROOT).as_posix().encode("utf-8"))
-        digest.update(b"\0")
-        digest.update(hashlib.sha256(path.read_bytes()).digest())
-    return digest.hexdigest()
+    return amazon_runtime_fingerprint(REPO_ROOT, RUNTIME_MANIFEST)
 
 
 def durable_screenshots(captures: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -2385,7 +2372,7 @@ def main(argv: list[str] | None = None) -> int:
         "--port",
         type=int,
         default=CANONICAL_PORT,
-        help="Local verification port; the task's canonical port remains 8153.",
+        help=f"Local verification port; canonical remains {CANONICAL_PORT}.",
     )
     args = parser.parse_args(argv)
     if not 1 <= args.port <= 65535:
@@ -2508,6 +2495,7 @@ def main(argv: list[str] | None = None) -> int:
                 "method": "POST",
                 "content_type": "application/x-www-form-urlencoded",
                 "structural_sha256": structural_sha256(),
+                "runtime_structural_sha256": structural_sha256(),
             },
             "source_observation": {
                 "date": RUN_DATE,

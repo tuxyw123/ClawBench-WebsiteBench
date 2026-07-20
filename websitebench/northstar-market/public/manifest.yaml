@@ -83,26 +83,6 @@ seeds:
     - id: 1102
       purpose: Public smoke tests
       fixture: public/fixtures/1102.json
-  hidden:
-    - id: 9101
-      purpose: Hidden functional variant A
-      fixture: judge/fixtures/9101.json
-    - id: 9102
-      purpose: Hidden functional variant B
-      fixture: judge/fixtures/9102.json
-    - id: 9103
-      purpose: Hidden functional variant C
-      fixture: judge/fixtures/9103.json
-    - id: 9104
-      purpose: Hidden functional variant D
-      fixture: judge/fixtures/9104.json
-    - id: 9105
-      purpose: Hidden functional variant E
-      fixture: judge/fixtures/9105.json
-  concurrency:
-    - id: 9199
-      purpose: Two-account atomic purchase of a stock-one product
-      fixture: judge/fixtures/9199.json
 
 tracks:
   core:

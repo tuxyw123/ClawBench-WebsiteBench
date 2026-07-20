@@ -1,0 +1,46 @@
+schema_version: websitebench.driver.v1
+site_id: ember-drop
+family_id: white-label-commerce-v1
+variant_id: ember-drop
+site_version: 1.0.0
+public_manifest: ember-drop/public/manifest.yaml
+compose: commerce-runtime/docker-compose.yml
+service_roles: {reference: target, mailbox_query: inbox, mailbox_delivery: delivery, build_daemon: buildd, candidate_builder: builder, browser_gateway: browser, model_proxy: model, agent: worker, evaluator: judge}
+networks: {agent_control: agent-control, reference_web: reference-web, candidate_web: candidate-web, model_egress: model-egress, build_egress: build-egress, internet_egress: internet-egress}
+urls: {target: "http://target:8080", mailbox: "http://inbox:8025", browser_gateway: "http://browser:7000", candidate: "http://candidate-app:8080"}
+environment:
+  candidate:
+    PORT: {type: integer, value: 8080, minimum: 1, maximum: 65535}
+    BENCH_ADMIN_PORT: {type: integer, value: 8081, minimum: 1, maximum: 65535}
+    DATA_DIR: {type: path, value: /data}
+    BENCH_FIXTURE_DIR: {type: path, value: /bench-fixtures}
+    FIXTURE_SCHEMA_PATH: {type: path, value: /bench-schemas/fixture.schema.json}
+    BENCH_CLOCK_MODE: {type: string, value: controlled}
+    MAILBOX_API_URL: {type: url, value: "http://delivery:8027"}
+    PUBLIC_MAILBOX_URL: {type: url, value: "http://inbox:8025"}
+    PUBLIC_SITE_URL: {type: url, value: "http://candidate-app:8080"}
+  host_secret_allowlist: [OPENAI_API_KEY]
+mounts:
+  - {source: commerce-runtime/reference, target: /opt/reference, kind: private_reference, read_only: true, roles: [reference]}
+  - {source: variants/white-label-commerce-v1/ember-drop.yaml, target: /task/variant.yaml, kind: private_variant, read_only: true, roles: [reference]}
+  - {source: ember-drop/judge/fixtures, target: /bench-fixtures, kind: private_fixture, read_only: true, roles: [reference, evaluator]}
+  - {source: commerce-runtime/judge/commerce_judge.py, target: /opt/evaluator/commerce_judge.py, kind: private_evaluator, read_only: true, roles: [evaluator]}
+  - {source: ember-drop/judge/assertions.json, target: /task/private/assertions.json, kind: private_assertions, read_only: true, roles: [evaluator]}
+  - {source: ember-drop/public, target: /task/public, kind: public, read_only: true, roles: [agent, browser_gateway, reference, evaluator]}
+candidate_runtime:
+  image_prefix: websitebench-final
+  container_prefix: wb-candidate
+  volume_prefix: wb-candidate-data
+  hostname: candidate-app
+  network_role: candidate_web
+  limits: {pids: 512, memory: 1g, cpus: 2, tmpfs: "/tmp:rw,noexec,nosuid,size=128m"}
+  health: {timeout_seconds: 60, accepted_states: [healthy, running]}
+  admin: {port_env: BENCH_ADMIN_PORT, token_env: BENCH_ADMIN_TOKEN}
+  fixture_mount: /bench-fixtures
+  schema_mount: /bench-schemas
+evaluator:
+  profile: judge
+  argv: [python, /opt/evaluator/commerce_judge.py]
+  environment: {BENCH_ADMIN_TOKEN: runtime-secret, REFERENCE_URL: "http://target:8080", REFERENCE_ADMIN_URL: "http://target:8081", CANDIDATE_URL: "http://candidate-app:8080", CANDIDATE_ADMIN_URL: "http://candidate-app:8081", MAILBOX_URL: "http://inbox:8025", MAILBOX_ADMIN_URL: "http://inbox:8026", BENCH_FIXTURE_DIR: /bench-fixtures, ASSERTIONS_PATH: /task/private/assertions.json, ARTIFACT_ROOT: /artifacts}
+  facts_path: /artifacts/eval/facts.json
+scoring: {policy: ember-drop/public/scoring.json, facts_schema: schemas/facts.schema.json, result_schema: schemas/report.schema.json}

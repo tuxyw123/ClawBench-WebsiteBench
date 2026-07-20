@@ -1,0 +1,1391 @@
+{
+  "accounts": [
+    {
+      "email": "shopper1.9201@example.test",
+      "full_name": "Test Shopper 1",
+      "id": "user_ember_drop_9201_1",
+      "password": "Variant9201Test1!",
+      "verified": true
+    },
+    {
+      "email": "shopper2.9201@example.test",
+      "full_name": "Test Shopper 2",
+      "id": "user_ember_drop_9201_2",
+      "password": "Variant9201Test2!",
+      "verified": true
+    },
+    {
+      "email": "shopper3.9201@example.test",
+      "full_name": "Test Shopper 3",
+      "id": "user_ember_drop_9201_3",
+      "password": "Variant9201Test3!",
+      "verified": true
+    },
+    {
+      "email": "shopper4.9201@example.test",
+      "full_name": "Test Shopper 4",
+      "id": "user_ember_drop_9201_4",
+      "password": "Variant9201Test4!",
+      "verified": true
+    }
+  ],
+  "catalog": {
+    "categories": [
+      {
+        "description": "Browse the Apparel collection and its variant-specific purchase rules.",
+        "id": "cat_apparel",
+        "image": {
+          "accent": "#dfb349",
+          "background": "#6be8d6",
+          "key": "category-apparel-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Apparel",
+        "slug": "apparel"
+      },
+      {
+        "description": "Browse the Footwear collection and its variant-specific purchase rules.",
+        "id": "cat_footwear",
+        "image": {
+          "accent": "#9d5570",
+          "background": "#c121b7",
+          "key": "category-footwear-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Footwear",
+        "slug": "footwear"
+      },
+      {
+        "description": "Browse the Prints collection and its variant-specific purchase rules.",
+        "id": "cat_prints",
+        "image": {
+          "accent": "#32ff0e",
+          "background": "#db7694",
+          "key": "category-prints-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Prints",
+        "slug": "prints"
+      },
+      {
+        "description": "Browse the Vinyl collection and its variant-specific purchase rules.",
+        "id": "cat_vinyl",
+        "image": {
+          "accent": "#28e77e",
+          "background": "#b0a9d4",
+          "key": "category-vinyl-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Vinyl",
+        "slug": "vinyl"
+      },
+      {
+        "description": "Browse the Accessories collection and its variant-specific purchase rules.",
+        "id": "cat_accessories",
+        "image": {
+          "accent": "#5530f5",
+          "background": "#5e593a",
+          "key": "category-accessories-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Accessories",
+        "slug": "accessories"
+      },
+      {
+        "description": "Browse the Home collection and its variant-specific purchase rules.",
+        "id": "cat_home",
+        "image": {
+          "accent": "#3cc426",
+          "background": "#cd1046",
+          "key": "category-home-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Home",
+        "slug": "home"
+      },
+      {
+        "description": "Browse the Collectibles collection and its variant-specific purchase rules.",
+        "id": "cat_collectibles",
+        "image": {
+          "accent": "#50ecf4",
+          "background": "#7445b3",
+          "key": "category-collectibles-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Collectibles",
+        "slug": "collectibles"
+      },
+      {
+        "description": "Browse the Collaborations collection and its variant-specific purchase rules.",
+        "id": "cat_collaborations",
+        "image": {
+          "accent": "#2ed4ab",
+          "background": "#6a0e5b",
+          "key": "category-collaborations-9201",
+          "kind": "generated-svg"
+        },
+        "name": "Collaborations",
+        "slug": "collaborations"
+      }
+    ],
+    "products": [
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 1,
+        "id": "prod_ember_drop_01",
+        "image": {
+          "accent": "#c54dc2",
+          "background": "#ba81c8",
+          "key": "product-ember_drop_01-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 20,
+        "price_cents": 4283,
+        "rating_basis_points": 491,
+        "review_count": 206,
+        "sku": "EMB-9201-001",
+        "slug": "logo-tee-1",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 1"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 2,
+        "id": "prod_ember_drop_02",
+        "image": {
+          "accent": "#be86a4",
+          "background": "#448d4a",
+          "key": "product-ember_drop_02-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 4420,
+        "rating_basis_points": 498,
+        "review_count": 407,
+        "sku": "EMB-9201-002",
+        "slug": "canvas-sneaker-2",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 2"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 3,
+        "id": "prod_ember_drop_03",
+        "image": {
+          "accent": "#a7ab28",
+          "background": "#9dbf24",
+          "key": "product-ember_drop_03-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 4557,
+        "rating_basis_points": 354,
+        "review_count": 608,
+        "sku": "EMB-9201-003",
+        "slug": "art-print-3",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 3"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 4,
+        "id": "prod_ember_drop_04",
+        "image": {
+          "accent": "#c8dc6d",
+          "background": "#92dc8f",
+          "key": "product-ember_drop_04-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 23,
+        "price_cents": 4694,
+        "rating_basis_points": 361,
+        "review_count": 809,
+        "sku": "EMB-9201-004",
+        "slug": "lp-set-4",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 4"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 5,
+        "id": "prod_ember_drop_05",
+        "image": {
+          "accent": "#3d5a03",
+          "background": "#69ee55",
+          "key": "product-ember_drop_05-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 24,
+        "price_cents": 4831,
+        "rating_basis_points": 368,
+        "review_count": 110,
+        "sku": "EMB-9201-005",
+        "slug": "utility-bag-5",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 5"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 6,
+        "id": "prod_ember_drop_06",
+        "image": {
+          "accent": "#dfee6a",
+          "background": "#a34840",
+          "key": "product-ember_drop_06-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 25,
+        "price_cents": 4968,
+        "rating_basis_points": 375,
+        "review_count": 311,
+        "sku": "EMB-9201-006",
+        "slug": "throw-blanket-6",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 6"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 7,
+        "id": "prod_ember_drop_07",
+        "image": {
+          "accent": "#8993d8",
+          "background": "#3985bc",
+          "key": "product-ember_drop_07-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 26,
+        "price_cents": 5105,
+        "rating_basis_points": 382,
+        "review_count": 512,
+        "sku": "EMB-9201-007",
+        "slug": "figure-7",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 7"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 8,
+        "id": "prod_ember_drop_08",
+        "image": {
+          "accent": "#51fe54",
+          "background": "#c26168",
+          "key": "product-ember_drop_08-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 27,
+        "price_cents": 5242,
+        "rating_basis_points": 389,
+        "review_count": 713,
+        "sku": "EMB-9201-008",
+        "slug": "studio-jacket-8",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 8"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 9,
+        "id": "prod_ember_drop_09",
+        "image": {
+          "accent": "#4ee81b",
+          "background": "#bb57d1",
+          "key": "product-ember_drop_09-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 28,
+        "price_cents": 5379,
+        "rating_basis_points": 396,
+        "review_count": 14,
+        "sku": "EMB-9201-009",
+        "slug": "logo-tee-9",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 9"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 10,
+        "id": "prod_ember_drop_10",
+        "image": {
+          "accent": "#9b4d02",
+          "background": "#de3225",
+          "key": "product-ember_drop_10-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 29,
+        "price_cents": 5516,
+        "rating_basis_points": 403,
+        "review_count": 215,
+        "sku": "EMB-9201-010",
+        "slug": "canvas-sneaker-10",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 10"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 11,
+        "id": "prod_ember_drop_11",
+        "image": {
+          "accent": "#69b63e",
+          "background": "#a0f306",
+          "key": "product-ember_drop_11-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 30,
+        "price_cents": 5653,
+        "rating_basis_points": 410,
+        "review_count": 416,
+        "sku": "EMB-9201-011",
+        "slug": "art-print-11",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 11"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 12,
+        "id": "prod_ember_drop_12",
+        "image": {
+          "accent": "#b79c7a",
+          "background": "#8ff5b0",
+          "key": "product-ember_drop_12-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 31,
+        "price_cents": 5790,
+        "rating_basis_points": 417,
+        "review_count": 617,
+        "sku": "EMB-9201-012",
+        "slug": "lp-set-12",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 12"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 13,
+        "id": "prod_ember_drop_13",
+        "image": {
+          "accent": "#5a3d23",
+          "background": "#4e4d86",
+          "key": "product-ember_drop_13-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 32,
+        "price_cents": 5927,
+        "rating_basis_points": 424,
+        "review_count": 818,
+        "sku": "EMB-9201-013",
+        "slug": "utility-bag-13",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 13"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 14,
+        "id": "prod_ember_drop_14",
+        "image": {
+          "accent": "#38d8ce",
+          "background": "#bb1d4f",
+          "key": "product-ember_drop_14-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 6064,
+        "rating_basis_points": 431,
+        "review_count": 119,
+        "sku": "EMB-9201-014",
+        "slug": "throw-blanket-14",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 14"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 15,
+        "id": "prod_ember_drop_15",
+        "image": {
+          "accent": "#2f8396",
+          "background": "#3302cb",
+          "key": "product-ember_drop_15-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 6201,
+        "rating_basis_points": 438,
+        "review_count": 320,
+        "sku": "EMB-9201-015",
+        "slug": "figure-15",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 15"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 16,
+        "id": "prod_ember_drop_16",
+        "image": {
+          "accent": "#900edd",
+          "background": "#361666",
+          "key": "product-ember_drop_16-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 6338,
+        "rating_basis_points": 445,
+        "review_count": 521,
+        "sku": "EMB-9201-016",
+        "slug": "studio-jacket-16",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 16"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 17,
+        "id": "prod_ember_drop_17",
+        "image": {
+          "accent": "#aacde2",
+          "background": "#7238fe",
+          "key": "product-ember_drop_17-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 6475,
+        "rating_basis_points": 452,
+        "review_count": 722,
+        "sku": "EMB-9201-017",
+        "slug": "logo-tee-17",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 17"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 18,
+        "id": "prod_ember_drop_18",
+        "image": {
+          "accent": "#d84e92",
+          "background": "#3d3ff3",
+          "key": "product-ember_drop_18-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 6612,
+        "rating_basis_points": 459,
+        "review_count": 23,
+        "sku": "EMB-9201-018",
+        "slug": "canvas-sneaker-18",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 18"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 19,
+        "id": "prod_ember_drop_19",
+        "image": {
+          "accent": "#2f19c5",
+          "background": "#9280fd",
+          "key": "product-ember_drop_19-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 6749,
+        "rating_basis_points": 466,
+        "review_count": 224,
+        "sku": "EMB-9201-019",
+        "slug": "art-print-19",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 19"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 20,
+        "id": "prod_ember_drop_20",
+        "image": {
+          "accent": "#845239",
+          "background": "#572022",
+          "key": "product-ember_drop_20-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 39,
+        "price_cents": 6886,
+        "rating_basis_points": 473,
+        "review_count": 425,
+        "sku": "EMB-9201-020",
+        "slug": "lp-set-20",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 20"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 21,
+        "id": "prod_ember_drop_21",
+        "image": {
+          "accent": "#3cba78",
+          "background": "#a1e24f",
+          "key": "product-ember_drop_21-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 40,
+        "price_cents": 7023,
+        "rating_basis_points": 480,
+        "review_count": 626,
+        "sku": "EMB-9201-021",
+        "slug": "utility-bag-21",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 21"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 22,
+        "id": "prod_ember_drop_22",
+        "image": {
+          "accent": "#b09e5f",
+          "background": "#46ef61",
+          "key": "product-ember_drop_22-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 12,
+        "price_cents": 7160,
+        "rating_basis_points": 487,
+        "review_count": 827,
+        "sku": "EMB-9201-022",
+        "slug": "throw-blanket-22",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 22"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 23,
+        "id": "prod_ember_drop_23",
+        "image": {
+          "accent": "#485a11",
+          "background": "#971e13",
+          "key": "product-ember_drop_23-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 13,
+        "price_cents": 7297,
+        "rating_basis_points": 494,
+        "review_count": 128,
+        "sku": "EMB-9201-023",
+        "slug": "figure-23",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 23"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 24,
+        "id": "prod_ember_drop_24",
+        "image": {
+          "accent": "#c8a0d1",
+          "background": "#5be4a6",
+          "key": "product-ember_drop_24-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 14,
+        "price_cents": 7434,
+        "rating_basis_points": 350,
+        "review_count": 329,
+        "sku": "EMB-9201-024",
+        "slug": "studio-jacket-24",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 24"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 25,
+        "id": "prod_ember_drop_25",
+        "image": {
+          "accent": "#562194",
+          "background": "#649239",
+          "key": "product-ember_drop_25-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 15,
+        "price_cents": 7571,
+        "rating_basis_points": 357,
+        "review_count": 530,
+        "sku": "EMB-9201-025",
+        "slug": "logo-tee-25",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 25"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 26,
+        "id": "prod_ember_drop_26",
+        "image": {
+          "accent": "#5f6802",
+          "background": "#aee10f",
+          "key": "product-ember_drop_26-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 16,
+        "price_cents": 7708,
+        "rating_basis_points": 364,
+        "review_count": 731,
+        "sku": "EMB-9201-026",
+        "slug": "canvas-sneaker-26",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 26"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 27,
+        "id": "prod_ember_drop_27",
+        "image": {
+          "accent": "#7cb472",
+          "background": "#75b0f4",
+          "key": "product-ember_drop_27-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 17,
+        "price_cents": 7845,
+        "rating_basis_points": 371,
+        "review_count": 32,
+        "sku": "EMB-9201-027",
+        "slug": "art-print-27",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 27"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 28,
+        "id": "prod_ember_drop_28",
+        "image": {
+          "accent": "#ba24b7",
+          "background": "#d77538",
+          "key": "product-ember_drop_28-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 18,
+        "price_cents": 7982,
+        "rating_basis_points": 378,
+        "review_count": 233,
+        "sku": "EMB-9201-028",
+        "slug": "lp-set-28",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 28"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 29,
+        "id": "prod_ember_drop_29",
+        "image": {
+          "accent": "#a7fc5e",
+          "background": "#d7553c",
+          "key": "product-ember_drop_29-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 19,
+        "price_cents": 8119,
+        "rating_basis_points": 385,
+        "review_count": 434,
+        "sku": "EMB-9201-029",
+        "slug": "utility-bag-29",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 29"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 30,
+        "id": "prod_ember_drop_30",
+        "image": {
+          "accent": "#536ef5",
+          "background": "#632a80",
+          "key": "product-ember_drop_30-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 20,
+        "price_cents": 8256,
+        "rating_basis_points": 392,
+        "review_count": 635,
+        "sku": "EMB-9201-030",
+        "slug": "throw-blanket-30",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 30"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 31,
+        "id": "prod_ember_drop_31",
+        "image": {
+          "accent": "#2e9b3b",
+          "background": "#cdb7cf",
+          "key": "product-ember_drop_31-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 8393,
+        "rating_basis_points": 399,
+        "review_count": 836,
+        "sku": "EMB-9201-031",
+        "slug": "figure-31",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 31"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 32,
+        "id": "prod_ember_drop_32",
+        "image": {
+          "accent": "#c7910b",
+          "background": "#269475",
+          "key": "product-ember_drop_32-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 8530,
+        "rating_basis_points": 406,
+        "review_count": 137,
+        "sku": "EMB-9201-032",
+        "slug": "studio-jacket-32",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 32"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 33,
+        "id": "prod_ember_drop_33",
+        "image": {
+          "accent": "#c2206e",
+          "background": "#cec8af",
+          "key": "product-ember_drop_33-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 23,
+        "price_cents": 8667,
+        "rating_basis_points": 413,
+        "review_count": 338,
+        "sku": "EMB-9201-033",
+        "slug": "logo-tee-33",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 33"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 34,
+        "id": "prod_ember_drop_34",
+        "image": {
+          "accent": "#3db76f",
+          "background": "#45ab99",
+          "key": "product-ember_drop_34-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 24,
+        "price_cents": 8804,
+        "rating_basis_points": 420,
+        "review_count": 539,
+        "sku": "EMB-9201-034",
+        "slug": "canvas-sneaker-34",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 34"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 35,
+        "id": "prod_ember_drop_35",
+        "image": {
+          "accent": "#413c27",
+          "background": "#53d7cd",
+          "key": "product-ember_drop_35-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 25,
+        "price_cents": 8941,
+        "rating_basis_points": 427,
+        "review_count": 740,
+        "sku": "EMB-9201-035",
+        "slug": "art-print-35",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 35"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 36,
+        "id": "prod_ember_drop_36",
+        "image": {
+          "accent": "#66e806",
+          "background": "#54917f",
+          "key": "product-ember_drop_36-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 26,
+        "price_cents": 9078,
+        "rating_basis_points": 434,
+        "review_count": 41,
+        "sku": "EMB-9201-036",
+        "slug": "lp-set-36",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 36"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 37,
+        "id": "prod_ember_drop_37",
+        "image": {
+          "accent": "#bdd783",
+          "background": "#5b2a20",
+          "key": "product-ember_drop_37-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 27,
+        "price_cents": 9215,
+        "rating_basis_points": 441,
+        "review_count": 242,
+        "sku": "EMB-9201-037",
+        "slug": "utility-bag-37",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 37"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 38,
+        "id": "prod_ember_drop_38",
+        "image": {
+          "accent": "#69f0ce",
+          "background": "#506b70",
+          "key": "product-ember_drop_38-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 28,
+        "price_cents": 9352,
+        "rating_basis_points": 448,
+        "review_count": 443,
+        "sku": "EMB-9201-038",
+        "slug": "throw-blanket-38",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 38"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 39,
+        "id": "prod_ember_drop_39",
+        "image": {
+          "accent": "#98c5cd",
+          "background": "#a24722",
+          "key": "product-ember_drop_39-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 29,
+        "price_cents": 9489,
+        "rating_basis_points": 455,
+        "review_count": 644,
+        "sku": "EMB-9201-039",
+        "slug": "figure-39",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 39"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 40,
+        "id": "prod_ember_drop_40",
+        "image": {
+          "accent": "#82ba03",
+          "background": "#5df775",
+          "key": "product-ember_drop_40-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 30,
+        "price_cents": 9626,
+        "rating_basis_points": 462,
+        "review_count": 845,
+        "sku": "EMB-9201-040",
+        "slug": "studio-jacket-40",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 40"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_apparel",
+        "compare_at_cents": null,
+        "description": "A deterministic logo tee for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 41,
+        "id": "prod_ember_drop_41",
+        "image": {
+          "accent": "#a43c4c",
+          "background": "#dd9aca",
+          "key": "product-ember_drop_41-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 31,
+        "price_cents": 9763,
+        "rating_basis_points": 469,
+        "review_count": 146,
+        "sku": "EMB-9201-041",
+        "slug": "logo-tee-41",
+        "tags": [
+          "apparel",
+          "logo-tee",
+          "ember-drop"
+        ],
+        "title": "Logo Tee 41"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_footwear",
+        "compare_at_cents": null,
+        "description": "A deterministic canvas sneaker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 42,
+        "id": "prod_ember_drop_42",
+        "image": {
+          "accent": "#cf0424",
+          "background": "#7a5e54",
+          "key": "product-ember_drop_42-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 32,
+        "price_cents": 9900,
+        "rating_basis_points": 476,
+        "review_count": 347,
+        "sku": "EMB-9201-042",
+        "slug": "canvas-sneaker-42",
+        "tags": [
+          "footwear",
+          "canvas-sneaker",
+          "ember-drop"
+        ],
+        "title": "Canvas Sneaker 42"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_prints",
+        "compare_at_cents": null,
+        "description": "A deterministic art print for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 43,
+        "id": "prod_ember_drop_43",
+        "image": {
+          "accent": "#3f9201",
+          "background": "#4b1505",
+          "key": "product-ember_drop_43-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 10037,
+        "rating_basis_points": 483,
+        "review_count": 548,
+        "sku": "EMB-9201-043",
+        "slug": "art-print-43",
+        "tags": [
+          "prints",
+          "art-print",
+          "ember-drop"
+        ],
+        "title": "Art Print 43"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_vinyl",
+        "compare_at_cents": null,
+        "description": "A deterministic lp set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 44,
+        "id": "prod_ember_drop_44",
+        "image": {
+          "accent": "#983a75",
+          "background": "#a8f6c6",
+          "key": "product-ember_drop_44-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 10174,
+        "rating_basis_points": 490,
+        "review_count": 749,
+        "sku": "EMB-9201-044",
+        "slug": "lp-set-44",
+        "tags": [
+          "vinyl",
+          "lp-set",
+          "ember-drop"
+        ],
+        "title": "LP Set 44"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_accessories",
+        "compare_at_cents": null,
+        "description": "A deterministic utility bag for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 45,
+        "id": "prod_ember_drop_45",
+        "image": {
+          "accent": "#b8ba3e",
+          "background": "#c34d7b",
+          "key": "product-ember_drop_45-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 10311,
+        "rating_basis_points": 497,
+        "review_count": 50,
+        "sku": "EMB-9201-045",
+        "slug": "utility-bag-45",
+        "tags": [
+          "accessories",
+          "utility-bag",
+          "ember-drop"
+        ],
+        "title": "Utility Bag 45"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_home",
+        "compare_at_cents": null,
+        "description": "A deterministic throw blanket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 46,
+        "id": "prod_ember_drop_46",
+        "image": {
+          "accent": "#38a5dd",
+          "background": "#ab3edb",
+          "key": "product-ember_drop_46-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 10448,
+        "rating_basis_points": 353,
+        "review_count": 251,
+        "sku": "EMB-9201-046",
+        "slug": "throw-blanket-46",
+        "tags": [
+          "home",
+          "throw-blanket",
+          "ember-drop"
+        ],
+        "title": "Throw Blanket 46"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collectibles",
+        "compare_at_cents": null,
+        "description": "A deterministic figure for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 47,
+        "id": "prod_ember_drop_47",
+        "image": {
+          "accent": "#4bcb08",
+          "background": "#2780c0",
+          "key": "product-ember_drop_47-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 10585,
+        "rating_basis_points": 360,
+        "review_count": 452,
+        "sku": "EMB-9201-047",
+        "slug": "figure-47",
+        "tags": [
+          "collectibles",
+          "figure",
+          "ember-drop"
+        ],
+        "title": "Figure 47"
+      },
+      {
+        "brand": "Ember Drop",
+        "category_id": "cat_collaborations",
+        "compare_at_cents": null,
+        "description": "A deterministic studio jacket for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 48,
+        "id": "prod_ember_drop_48",
+        "image": {
+          "accent": "#7acf5c",
+          "background": "#9b0f95",
+          "key": "product-ember_drop_48-9201",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 10722,
+        "rating_basis_points": 367,
+        "review_count": 653,
+        "sku": "EMB-9201-048",
+        "slug": "studio-jacket-48",
+        "tags": [
+          "collaborations",
+          "studio-jacket",
+          "ember-drop"
+        ],
+        "title": "Studio Jacket 48"
+      }
+    ]
+  },
+  "fixture_id": "ember-drop-9201",
+  "now": "2026-01-15T12:00:00Z",
+  "scenario": {
+    "content_salt": "ember-drop-content-9201",
+    "kind": "functional",
+    "stock_one_product_id": null
+  },
+  "schema_version": "websitebench.fixture.v1",
+  "seed": 9201
+}

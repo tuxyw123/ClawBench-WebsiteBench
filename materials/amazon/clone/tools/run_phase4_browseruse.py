@@ -18,14 +18,27 @@ import json
 import os
 import re
 import stat
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = ROOT.parents[2]
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from clawbench.amazon_contract import (  # noqa: E402
+    amazon_runtime_fingerprint,
+    load_amazon_runtime_contract,
+)
+
+
+RUNTIME_MANIFEST = load_amazon_runtime_contract(REPO_ROOT)
 CONTRACT_PATH = ROOT / "phase4-browseruse.json"
 REPORT_FORMAT = "clawbench.amazon.phase4-browseruse-report.v1"
 CONTRACT_FORMAT = "clawbench.amazon.phase4-browseruse.v1"
@@ -721,12 +734,12 @@ async def run_clone_search_account(
         await trace.screenshot("b02-refined-search")
 
         await trace.navigate("B03 clone account", urljoin(clone_origin, "/account"))
-        cards = await trace.find("B03 account cards", ".account-card", required=True)
-        match = re.search(r"Found (\d+) element", cards)
-        trace.require(
-            "B03 twelve account cards",
-            bool(match and int(match.group(1)) == 12),
-            cards[:500],
+        await trace.find(
+            "B03 local account entry", ".commerce-auth-card", required=True
+        )
+        await trace.find("B03 sign-in affordance", "a[href='/login']", required=True)
+        await trace.find(
+            "B03 account creation affordance", "a[href='/register']", required=True
         )
         await trace.click_link("B03 Your Orders", href_contains="/account/orders")
         await trace.find("B03 local orders boundary", ".safe-page", required=True)
@@ -1036,6 +1049,9 @@ async def run(args: argparse.Namespace) -> dict[str, Any]:
         "format": REPORT_FORMAT,
         "capturedAt": utc_now(),
         "contractSha256": hashlib.sha256(args.contract.read_bytes()).hexdigest(),
+        "runtimeStructuralSha256": amazon_runtime_fingerprint(
+            REPO_ROOT, RUNTIME_MANIFEST
+        ),
         "browserUse": contract["browserUse"],
         "sourceSafety": {
             **contract["sourceSafety"],

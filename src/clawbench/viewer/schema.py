@@ -16,6 +16,7 @@ SCHEMA_FILES = {
     "review": "viewer-review.schema.json",
     "review_export": "viewer-review-export.schema.json",
     "visual_evidence": "visual-evidence.schema.json",
+    "calibration": "calibration-result.schema.json",
 }
 
 

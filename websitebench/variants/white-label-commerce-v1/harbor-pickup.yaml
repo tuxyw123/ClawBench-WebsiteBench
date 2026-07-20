@@ -1,0 +1,30 @@
+schema_version: websitebench.variant.v1
+family_id: white-label-commerce-v1
+site_id: harbor-pickup
+variant_id: harbor-pickup
+site_version: 1.0.0
+display_name: Harbor Pickup
+instruction: Reconstruct a pickup-only store with mandatory store and slot selection, store-isolated inventory, shared slot capacity, atomic resource consumption, persistent orders, and cutoff-aware cancellation that restores both resources exactly once.
+catalog:
+  brand: Harbor Local
+  categories: [Produce, Bakery, Pantry, Dairy, Prepared, Beverages, Household, Seasonal]
+  product_nouns: [Market Box, Sourdough Loaf, Pantry Bundle, Cheese Board, Supper Kit, Cold Brew Case, Cleaning Set, Picnic Basket]
+  base_price_cents: 1599
+seeds:
+  public: 1401
+  hidden: 9401
+  concurrency: 9499
+policies:
+  quantity: {kind: store_stock, parameters: {minimum: 1, maximum: 12}}
+  pricing: {kind: standard, parameters: {tax_basis_points: 500}}
+  inventory: {kind: store_isolated, parameters: {atomic_with_slot_capacity: true}}
+  fulfillment: {kind: pickup_slots, parameters: {shipping_allowed: false, store_required: true, slot_required: true, slot_capacity: 2}}
+  cancellation: {kind: pickup_cutoff, parameters: {minimum_notice_minutes: 60, restore_inventory_once: true, restore_capacity_once: true}}
+  token_lifetime: {kind: fixed, parameters: {verification_minutes: 30, reset_minutes: 60}}
+journeys: [catalog_observability, account_lifecycle, cart_inventory, checkout_concurrency, orders_terminal]
+assertions:
+  - {kind: rule_visible, journey: catalog_observability, parameters: {shipping: false, store_required: true, slot_required: true}}
+  - {kind: account_token_lifetime, journey: account_lifecycle, parameters: {verification_minutes: 30, reset_minutes: 60}}
+  - {kind: inventory_policy, journey: cart_inventory, parameters: {scope: store}}
+  - {kind: fulfillment_policy, journey: checkout_concurrency, parameters: {atomic_inventory_and_capacity: true, shared_slot_capacity: 2}}
+  - {kind: cancellation_policy, journey: orders_terminal, parameters: {minimum_notice_minutes: 60, restore_once: true}}

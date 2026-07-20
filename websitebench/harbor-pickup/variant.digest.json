@@ -1,0 +1,24 @@
+{
+  "adapter_version": "white-label-commerce-v1.1",
+  "behavior_fingerprint": "2ca8802c77297abcde6ec7efbbf8b8ab0956ba04c42bf3bc4b414df1f8002a53",
+  "compiler_version": "websitebench.variant-compiler.v1",
+  "digest": "sha256:82edfd098828e5cdc2d8ab5a9df995c586eb6386f94b67ebe06696694da0f14e",
+  "files": {
+    "judge/assertions.json": "043613ac60efa34f1ab2c00c11b2422663f23686766d8d11a78aa998b484e63d",
+    "judge/fixtures/9401.json": "b4c13c1a90ce6a6826977bf7db77774654656cb1f5605e0632ee1f7465fecf2d",
+    "judge/fixtures/9499.json": "8439f9903eb8ff763c4cc6fd6a79c70e778962eb036658a59a38a61dc853b088",
+    "public/PRD.md": "4393ca39d11cb0829f123b9359b93e95f0966e8e06301ce33e26168b9ffe9ad9",
+    "public/candidate-contract.md": "96e3ecabc6568cc60fcd26db4d7a2a40e1c9693acded53d629119f5cd17bdfc0",
+    "public/fixtures/1401.json": "bb401e03db6533da6fca2e5def541c608168a837709fe2273d85564d46fed373",
+    "public/manifest.yaml": "e6eba3e942a5213dc6bdc286cae5a493fc459b472d89c745ac3d288a40e2c0c3",
+    "public/public-smoke-cases.json": "4d2d2997e895b5d94d0d8c54ececcddb1a1197fd79916769229847f0b0e21e38",
+    "public/scoring.json": "42c19f8a7afda643c0dc28d1a1f5c54fa32cdc07ed6b0f642e6361ea9899e90d",
+    "public/visual-checkpoints.json": "28f172b136d220b65eab89e31b0d40238b3c212c714f84d0fb43e5a55c7aba37",
+    "task.json": "65d24349654bb62c0397e6ee9c98ac21a33d1983896ee05e05a864977f879fee",
+    "variant.yaml": "84486edf58f01aa7e206cb647e9d6c805366a4941e5ecf2f47603269cd710811"
+  },
+  "schema_version": "websitebench.variant-lock.v1",
+  "semantic_spec_sha256": "0e94f8de2812807715f4ad11210b304d03a81109aed51fd8b2c020ab7e380d0e",
+  "site_id": "harbor-pickup",
+  "variant_id": "harbor-pickup"
+}

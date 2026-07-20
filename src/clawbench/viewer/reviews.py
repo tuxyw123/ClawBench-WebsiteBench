@@ -10,8 +10,9 @@ import threading
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any, Collection, Iterator
 
+from ..amazon_contract import AMAZON_ITEM_KEY
 from .schema import validation_errors
 
 try:
@@ -29,6 +30,7 @@ DIMENSIONS = (
     "diversity_non_reskin",
 )
 ITEM_KEY_RE = re.compile(r"^[a-z0-9]+(?:--[a-z0-9-]+)+$")
+DEFAULT_REVIEW_KEYS = frozenset({AMAZON_ITEM_KEY})
 
 
 class ReviewError(ValueError):
@@ -91,14 +93,23 @@ def _public_content_errors(review: dict[str, Any]) -> list[str]:
 
 
 class ReviewStore:
-    def __init__(self, root: Path, repo_root: Path) -> None:
+    def __init__(
+        self,
+        root: Path,
+        repo_root: Path,
+        *,
+        allowed_keys: Collection[str] | None = DEFAULT_REVIEW_KEYS,
+    ) -> None:
         self.root = root.resolve()
         self.repo_root = repo_root.resolve()
+        self.allowed_keys = frozenset(allowed_keys) if allowed_keys is not None else None
         self._thread_lock = threading.RLock()
 
     def _path(self, item_key: str) -> Path:
         if not ITEM_KEY_RE.fullmatch(item_key):
             raise ReviewError(f"invalid review item key: {item_key}")
+        if self.allowed_keys is not None and item_key not in self.allowed_keys:
+            raise ReviewError(f"review item is not enabled: {item_key}")
         return self.root / f"{item_key}.json"
 
     @contextmanager
@@ -132,7 +143,14 @@ class ReviewStore:
         if not self.root.is_dir():
             return []
         reviews = []
-        for path in sorted(self.root.glob("*.json")):
+        paths = (
+            [self.root / f"{key}.json" for key in sorted(self.allowed_keys)]
+            if self.allowed_keys is not None
+            else sorted(self.root.glob("*.json"))
+        )
+        for path in paths:
+            if not path.is_file():
+                continue
             review = self.load(path.stem)
             if review is None:
                 continue
@@ -217,6 +235,12 @@ class ReviewStore:
         keys = [review["item_key"] for review in reviews]
         if len(keys) != len(set(keys)):
             raise ReviewError("review import contains duplicate item keys")
+        if self.allowed_keys is not None:
+            unknown = sorted(set(keys) - self.allowed_keys)
+            if unknown:
+                raise ReviewError(
+                    "review import contains disabled item keys: " + ", ".join(unknown)
+                )
         public_errors = [
             error
             for review in reviews

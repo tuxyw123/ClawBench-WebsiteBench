@@ -44,14 +44,9 @@ def test_frozen_seed_and_track_policy() -> None:
     manifest = validate_site_contract(PUBLIC_ROOT / "manifest.yaml")
 
     assert [seed["id"] for seed in manifest["seeds"]["public"]] == [1101, 1102]
-    assert [seed["id"] for seed in manifest["seeds"]["hidden"]] == [
-        9101,
-        9102,
-        9103,
-        9104,
-        9105,
-    ]
-    assert [seed["id"] for seed in manifest["seeds"]["concurrency"]] == [9199]
+    assert set(manifest["seeds"]) == {"public"}
+    assert "9101" not in (PUBLIC_ROOT / "manifest.yaml").read_text(encoding="utf-8")
+    assert "9199" not in (PUBLIC_ROOT / "manifest.yaml").read_text(encoding="utf-8")
     assert manifest["tracks"]["core"]["human_messages"] == 0
     assert manifest["tracks"]["hitl"] == {
         "enabled": True,

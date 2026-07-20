@@ -1,0 +1,107 @@
+schema_version: websitebench.site.v1
+site_id: harbor-pickup
+display_name: Harbor Pickup
+site_version: 1.0.0
+family_id: white-label-commerce-v1
+split: validation
+difficulty: hard
+description: A compiled synthetic commerce variant with persistent accounts, carts,
+  checkout, inventory, orders, controlled time, and concurrency rules.
+taxonomy:
+  product_type: ecommerce-marketplace
+  capability_tags:
+  - account-lifecycle
+  - catalog-search
+  - checkout
+  - inventory
+  - order-management
+  - password-reset
+  - persistent-cart
+  interaction_tags:
+  - async-feedback
+  - form-validation
+  - responsive-navigation
+  roles:
+  - guest
+  - customer
+  stateful_entities:
+  - user
+  - session
+  - verification-token
+  - password-reset-token
+  - cart
+  - cart-item
+  - product
+  - inventory
+  - order
+  - order-item
+public:
+  prd: public/PRD.md
+  candidate_contract: public/candidate-contract.md
+  task_schema: ../schemas/task.schema.json
+  fixture_schema: ../schemas/fixture.schema.json
+  admin_contract_schema: ../schemas/admin-contract.schema.json
+  visual_checkpoints: public/visual-checkpoints.json
+  smoke_cases: public/public-smoke-cases.json
+  scoring: public/scoring.json
+  report_schema: ../schemas/report.schema.json
+services:
+  public_port: 8080
+  admin_port: 8081
+  health_path: /healthz
+  mailbox_delivery_path: /api/v1/messages
+  mailbox_query_path: /api/v1/inbox
+routes:
+- /
+- /search
+- /products/{slug}
+- /cart
+- /register
+- /verify
+- /login
+- /forgot-password
+- /reset-password
+- /checkout
+- /checkout/success/{order_number}
+- /account/orders
+- /account/orders/{order_number}
+seeds:
+  public:
+  - id: 1401
+    purpose: Agent exploration and scored public data
+    fixture: public/fixtures/1401.json
+tracks:
+  core:
+    enabled: true
+    human_messages: 0
+    human_minutes: 0
+    human_file_edits: false
+  hitl:
+    enabled: true
+    human_messages: 12
+    human_minutes: 90
+    human_file_edits: false
+agent_budget:
+  wall_time_seconds: 7200
+  token_budget: 400000
+  browser_actions: 400
+  candidate_builds: 10
+pilot_agent:
+  harness: codex
+  model: gpt-5.5-codex
+  thinking_level: xhigh
+browser_policy:
+  engine: browser-use
+  version: 0.12.6
+  reference_access: continuous
+  allowed:
+  - navigate and interact through the controlled browser
+  - observe visible rules and test the public seed
+  denied:
+  - raw HTML, source bundles, private fixtures, evaluator files, or general network
+    access
+license:
+  code: Apache-2.0
+  content: CC0-1.0 synthetic data
+  assets: CC0-1.0 generated artwork
+  trademarks: Harbor Pickup is a synthetic benchmark brand

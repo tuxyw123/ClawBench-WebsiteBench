@@ -1,0 +1,1391 @@
+{
+  "accounts": [
+    {
+      "email": "shopper1.9301@example.test",
+      "full_name": "Test Shopper 1",
+      "id": "user_foundry_wholesale_9301_1",
+      "password": "Variant9301Test1!",
+      "verified": true
+    },
+    {
+      "email": "shopper2.9301@example.test",
+      "full_name": "Test Shopper 2",
+      "id": "user_foundry_wholesale_9301_2",
+      "password": "Variant9301Test2!",
+      "verified": true
+    },
+    {
+      "email": "shopper3.9301@example.test",
+      "full_name": "Test Shopper 3",
+      "id": "user_foundry_wholesale_9301_3",
+      "password": "Variant9301Test3!",
+      "verified": true
+    },
+    {
+      "email": "shopper4.9301@example.test",
+      "full_name": "Test Shopper 4",
+      "id": "user_foundry_wholesale_9301_4",
+      "password": "Variant9301Test4!",
+      "verified": true
+    }
+  ],
+  "catalog": {
+    "categories": [
+      {
+        "description": "Browse the Fasteners collection and its variant-specific purchase rules.",
+        "id": "cat_fasteners",
+        "image": {
+          "accent": "#7aefc9",
+          "background": "#7223f9",
+          "key": "category-fasteners-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Fasteners",
+        "slug": "fasteners"
+      },
+      {
+        "description": "Browse the Abrasives collection and its variant-specific purchase rules.",
+        "id": "cat_abrasives",
+        "image": {
+          "accent": "#b6652b",
+          "background": "#827758",
+          "key": "category-abrasives-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Abrasives",
+        "slug": "abrasives"
+      },
+      {
+        "description": "Browse the Safety collection and its variant-specific purchase rules.",
+        "id": "cat_safety",
+        "image": {
+          "accent": "#de20fe",
+          "background": "#a16e40",
+          "key": "category-safety-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Safety",
+        "slug": "safety"
+      },
+      {
+        "description": "Browse the Electrical collection and its variant-specific purchase rules.",
+        "id": "cat_electrical",
+        "image": {
+          "accent": "#aebe8f",
+          "background": "#b44465",
+          "key": "category-electrical-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Electrical",
+        "slug": "electrical"
+      },
+      {
+        "description": "Browse the Plumbing collection and its variant-specific purchase rules.",
+        "id": "cat_plumbing",
+        "image": {
+          "accent": "#9696e6",
+          "background": "#4fb4b4",
+          "key": "category-plumbing-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Plumbing",
+        "slug": "plumbing"
+      },
+      {
+        "description": "Browse the Tools collection and its variant-specific purchase rules.",
+        "id": "cat_tools",
+        "image": {
+          "accent": "#312c0c",
+          "background": "#c5f1a2",
+          "key": "category-tools-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Tools",
+        "slug": "tools"
+      },
+      {
+        "description": "Browse the Packaging collection and its variant-specific purchase rules.",
+        "id": "cat_packaging",
+        "image": {
+          "accent": "#2c87a4",
+          "background": "#67afdc",
+          "key": "category-packaging-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Packaging",
+        "slug": "packaging"
+      },
+      {
+        "description": "Browse the Facility collection and its variant-specific purchase rules.",
+        "id": "cat_facility",
+        "image": {
+          "accent": "#94c1d3",
+          "background": "#6f72c8",
+          "key": "category-facility-9301",
+          "kind": "generated-svg"
+        },
+        "name": "Facility",
+        "slug": "facility"
+      }
+    ],
+    "products": [
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 1,
+        "id": "prod_foundry_wholesale_01",
+        "image": {
+          "accent": "#42e883",
+          "background": "#2be5a0",
+          "key": "product-foundry_wholesale_01-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 1985,
+        "rating_basis_points": 440,
+        "review_count": 306,
+        "sku": "FOU-9301-001",
+        "slug": "bolt-kit-1",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 1"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 2,
+        "id": "prod_foundry_wholesale_02",
+        "image": {
+          "accent": "#90700e",
+          "background": "#853d78",
+          "key": "product-foundry_wholesale_02-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 2122,
+        "rating_basis_points": 447,
+        "review_count": 607,
+        "sku": "FOU-9301-002",
+        "slug": "grinding-disc-2",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 2"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 3,
+        "id": "prod_foundry_wholesale_03",
+        "image": {
+          "accent": "#833678",
+          "background": "#72d85a",
+          "key": "product-foundry_wholesale_03-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 2259,
+        "rating_basis_points": 454,
+        "review_count": 8,
+        "sku": "FOU-9301-003",
+        "slug": "safety-glove-3",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 3"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 4,
+        "id": "prod_foundry_wholesale_04",
+        "image": {
+          "accent": "#baedc7",
+          "background": "#c133e7",
+          "key": "product-foundry_wholesale_04-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 2396,
+        "rating_basis_points": 461,
+        "review_count": 309,
+        "sku": "FOU-9301-004",
+        "slug": "cable-reel-4",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 4"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 5,
+        "id": "prod_foundry_wholesale_05",
+        "image": {
+          "accent": "#2e60fb",
+          "background": "#abb7c1",
+          "key": "product-foundry_wholesale_05-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 2533,
+        "rating_basis_points": 468,
+        "review_count": 610,
+        "sku": "FOU-9301-005",
+        "slug": "valve-set-5",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 5"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 6,
+        "id": "prod_foundry_wholesale_06",
+        "image": {
+          "accent": "#8cfc37",
+          "background": "#2138b2",
+          "key": "product-foundry_wholesale_06-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 2670,
+        "rating_basis_points": 475,
+        "review_count": 11,
+        "sku": "FOU-9301-006",
+        "slug": "driver-bit-6",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 6"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 7,
+        "id": "prod_foundry_wholesale_07",
+        "image": {
+          "accent": "#44995b",
+          "background": "#916e7c",
+          "key": "product-foundry_wholesale_07-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 39,
+        "price_cents": 2807,
+        "rating_basis_points": 482,
+        "review_count": 312,
+        "sku": "FOU-9301-007",
+        "slug": "shipping-carton-7",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 7"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 8,
+        "id": "prod_foundry_wholesale_08",
+        "image": {
+          "accent": "#c40695",
+          "background": "#bbc0c2",
+          "key": "product-foundry_wholesale_08-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 40,
+        "price_cents": 2944,
+        "rating_basis_points": 489,
+        "review_count": 613,
+        "sku": "FOU-9301-008",
+        "slug": "floor-marker-8",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 8"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 9,
+        "id": "prod_foundry_wholesale_09",
+        "image": {
+          "accent": "#b234fe",
+          "background": "#b6ff1e",
+          "key": "product-foundry_wholesale_09-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 12,
+        "price_cents": 3081,
+        "rating_basis_points": 496,
+        "review_count": 14,
+        "sku": "FOU-9301-009",
+        "slug": "bolt-kit-9",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 9"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 10,
+        "id": "prod_foundry_wholesale_10",
+        "image": {
+          "accent": "#6f8413",
+          "background": "#4b76f6",
+          "key": "product-foundry_wholesale_10-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 13,
+        "price_cents": 3218,
+        "rating_basis_points": 352,
+        "review_count": 315,
+        "sku": "FOU-9301-010",
+        "slug": "grinding-disc-10",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 10"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 11,
+        "id": "prod_foundry_wholesale_11",
+        "image": {
+          "accent": "#3877fc",
+          "background": "#49f164",
+          "key": "product-foundry_wholesale_11-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 14,
+        "price_cents": 3355,
+        "rating_basis_points": 359,
+        "review_count": 616,
+        "sku": "FOU-9301-011",
+        "slug": "safety-glove-11",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 11"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 12,
+        "id": "prod_foundry_wholesale_12",
+        "image": {
+          "accent": "#5be266",
+          "background": "#792e8a",
+          "key": "product-foundry_wholesale_12-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 15,
+        "price_cents": 3492,
+        "rating_basis_points": 366,
+        "review_count": 17,
+        "sku": "FOU-9301-012",
+        "slug": "cable-reel-12",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 12"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 13,
+        "id": "prod_foundry_wholesale_13",
+        "image": {
+          "accent": "#b1ee0e",
+          "background": "#5963ad",
+          "key": "product-foundry_wholesale_13-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 16,
+        "price_cents": 3629,
+        "rating_basis_points": 373,
+        "review_count": 318,
+        "sku": "FOU-9301-013",
+        "slug": "valve-set-13",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 13"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 14,
+        "id": "prod_foundry_wholesale_14",
+        "image": {
+          "accent": "#a19060",
+          "background": "#c34a38",
+          "key": "product-foundry_wholesale_14-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 17,
+        "price_cents": 3766,
+        "rating_basis_points": 380,
+        "review_count": 619,
+        "sku": "FOU-9301-014",
+        "slug": "driver-bit-14",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 14"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 15,
+        "id": "prod_foundry_wholesale_15",
+        "image": {
+          "accent": "#5f0ad6",
+          "background": "#a23663",
+          "key": "product-foundry_wholesale_15-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 18,
+        "price_cents": 3903,
+        "rating_basis_points": 387,
+        "review_count": 20,
+        "sku": "FOU-9301-015",
+        "slug": "shipping-carton-15",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 15"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 16,
+        "id": "prod_foundry_wholesale_16",
+        "image": {
+          "accent": "#39a855",
+          "background": "#6e1324",
+          "key": "product-foundry_wholesale_16-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 19,
+        "price_cents": 4040,
+        "rating_basis_points": 394,
+        "review_count": 321,
+        "sku": "FOU-9301-016",
+        "slug": "floor-marker-16",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 16"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 17,
+        "id": "prod_foundry_wholesale_17",
+        "image": {
+          "accent": "#547e6c",
+          "background": "#d5a478",
+          "key": "product-foundry_wholesale_17-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 20,
+        "price_cents": 4177,
+        "rating_basis_points": 401,
+        "review_count": 622,
+        "sku": "FOU-9301-017",
+        "slug": "bolt-kit-17",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 17"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 18,
+        "id": "prod_foundry_wholesale_18",
+        "image": {
+          "accent": "#297236",
+          "background": "#b8275b",
+          "key": "product-foundry_wholesale_18-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 4314,
+        "rating_basis_points": 408,
+        "review_count": 23,
+        "sku": "FOU-9301-018",
+        "slug": "grinding-disc-18",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 18"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 19,
+        "id": "prod_foundry_wholesale_19",
+        "image": {
+          "accent": "#cc705f",
+          "background": "#20ca4c",
+          "key": "product-foundry_wholesale_19-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 4451,
+        "rating_basis_points": 415,
+        "review_count": 324,
+        "sku": "FOU-9301-019",
+        "slug": "safety-glove-19",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 19"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 20,
+        "id": "prod_foundry_wholesale_20",
+        "image": {
+          "accent": "#755107",
+          "background": "#8e8d7c",
+          "key": "product-foundry_wholesale_20-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 23,
+        "price_cents": 4588,
+        "rating_basis_points": 422,
+        "review_count": 625,
+        "sku": "FOU-9301-020",
+        "slug": "cable-reel-20",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 20"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 21,
+        "id": "prod_foundry_wholesale_21",
+        "image": {
+          "accent": "#946c65",
+          "background": "#431326",
+          "key": "product-foundry_wholesale_21-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 24,
+        "price_cents": 4725,
+        "rating_basis_points": 429,
+        "review_count": 26,
+        "sku": "FOU-9301-021",
+        "slug": "valve-set-21",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 21"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 22,
+        "id": "prod_foundry_wholesale_22",
+        "image": {
+          "accent": "#c9c6c3",
+          "background": "#780cff",
+          "key": "product-foundry_wholesale_22-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 25,
+        "price_cents": 4862,
+        "rating_basis_points": 436,
+        "review_count": 327,
+        "sku": "FOU-9301-022",
+        "slug": "driver-bit-22",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 22"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 23,
+        "id": "prod_foundry_wholesale_23",
+        "image": {
+          "accent": "#22e4de",
+          "background": "#5786e0",
+          "key": "product-foundry_wholesale_23-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 26,
+        "price_cents": 4999,
+        "rating_basis_points": 443,
+        "review_count": 628,
+        "sku": "FOU-9301-023",
+        "slug": "shipping-carton-23",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 23"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 24,
+        "id": "prod_foundry_wholesale_24",
+        "image": {
+          "accent": "#3519bd",
+          "background": "#b241b0",
+          "key": "product-foundry_wholesale_24-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 27,
+        "price_cents": 5136,
+        "rating_basis_points": 450,
+        "review_count": 29,
+        "sku": "FOU-9301-024",
+        "slug": "floor-marker-24",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 24"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 25,
+        "id": "prod_foundry_wholesale_25",
+        "image": {
+          "accent": "#54879e",
+          "background": "#b53dc2",
+          "key": "product-foundry_wholesale_25-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 28,
+        "price_cents": 5273,
+        "rating_basis_points": 457,
+        "review_count": 330,
+        "sku": "FOU-9301-025",
+        "slug": "bolt-kit-25",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 25"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 26,
+        "id": "prod_foundry_wholesale_26",
+        "image": {
+          "accent": "#c9d99e",
+          "background": "#87f9e7",
+          "key": "product-foundry_wholesale_26-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 29,
+        "price_cents": 5410,
+        "rating_basis_points": 464,
+        "review_count": 631,
+        "sku": "FOU-9301-026",
+        "slug": "grinding-disc-26",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 26"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 27,
+        "id": "prod_foundry_wholesale_27",
+        "image": {
+          "accent": "#bf3f17",
+          "background": "#4cb2bd",
+          "key": "product-foundry_wholesale_27-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 30,
+        "price_cents": 5547,
+        "rating_basis_points": 471,
+        "review_count": 32,
+        "sku": "FOU-9301-027",
+        "slug": "safety-glove-27",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 27"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 28,
+        "id": "prod_foundry_wholesale_28",
+        "image": {
+          "accent": "#44b198",
+          "background": "#4154b0",
+          "key": "product-foundry_wholesale_28-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 31,
+        "price_cents": 5684,
+        "rating_basis_points": 478,
+        "review_count": 333,
+        "sku": "FOU-9301-028",
+        "slug": "cable-reel-28",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 28"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 29,
+        "id": "prod_foundry_wholesale_29",
+        "image": {
+          "accent": "#39cb25",
+          "background": "#404aeb",
+          "key": "product-foundry_wholesale_29-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 32,
+        "price_cents": 5821,
+        "rating_basis_points": 485,
+        "review_count": 634,
+        "sku": "FOU-9301-029",
+        "slug": "valve-set-29",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 29"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 30,
+        "id": "prod_foundry_wholesale_30",
+        "image": {
+          "accent": "#24ed5f",
+          "background": "#553ffc",
+          "key": "product-foundry_wholesale_30-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 33,
+        "price_cents": 5958,
+        "rating_basis_points": 492,
+        "review_count": 35,
+        "sku": "FOU-9301-030",
+        "slug": "driver-bit-30",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 30"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 31,
+        "id": "prod_foundry_wholesale_31",
+        "image": {
+          "accent": "#8bb1a2",
+          "background": "#dda8cc",
+          "key": "product-foundry_wholesale_31-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 34,
+        "price_cents": 6095,
+        "rating_basis_points": 499,
+        "review_count": 336,
+        "sku": "FOU-9301-031",
+        "slug": "shipping-carton-31",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 31"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 32,
+        "id": "prod_foundry_wholesale_32",
+        "image": {
+          "accent": "#c7c193",
+          "background": "#628005",
+          "key": "product-foundry_wholesale_32-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 35,
+        "price_cents": 6232,
+        "rating_basis_points": 355,
+        "review_count": 637,
+        "sku": "FOU-9301-032",
+        "slug": "floor-marker-32",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 32"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 33,
+        "id": "prod_foundry_wholesale_33",
+        "image": {
+          "accent": "#59a688",
+          "background": "#b20f93",
+          "key": "product-foundry_wholesale_33-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 36,
+        "price_cents": 6369,
+        "rating_basis_points": 362,
+        "review_count": 38,
+        "sku": "FOU-9301-033",
+        "slug": "bolt-kit-33",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 33"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 34,
+        "id": "prod_foundry_wholesale_34",
+        "image": {
+          "accent": "#b71784",
+          "background": "#a5ecbb",
+          "key": "product-foundry_wholesale_34-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 37,
+        "price_cents": 6506,
+        "rating_basis_points": 369,
+        "review_count": 339,
+        "sku": "FOU-9301-034",
+        "slug": "grinding-disc-34",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 34"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 35,
+        "id": "prod_foundry_wholesale_35",
+        "image": {
+          "accent": "#6bd9ee",
+          "background": "#27a91e",
+          "key": "product-foundry_wholesale_35-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 38,
+        "price_cents": 6643,
+        "rating_basis_points": 376,
+        "review_count": 640,
+        "sku": "FOU-9301-035",
+        "slug": "safety-glove-35",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 35"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 36,
+        "id": "prod_foundry_wholesale_36",
+        "image": {
+          "accent": "#ba07e6",
+          "background": "#6a7ec9",
+          "key": "product-foundry_wholesale_36-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 39,
+        "price_cents": 6780,
+        "rating_basis_points": 383,
+        "review_count": 41,
+        "sku": "FOU-9301-036",
+        "slug": "cable-reel-36",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 36"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 37,
+        "id": "prod_foundry_wholesale_37",
+        "image": {
+          "accent": "#bff824",
+          "background": "#c55596",
+          "key": "product-foundry_wholesale_37-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 40,
+        "price_cents": 6917,
+        "rating_basis_points": 390,
+        "review_count": 342,
+        "sku": "FOU-9301-037",
+        "slug": "valve-set-37",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 37"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 38,
+        "id": "prod_foundry_wholesale_38",
+        "image": {
+          "accent": "#6492e4",
+          "background": "#597dd0",
+          "key": "product-foundry_wholesale_38-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 12,
+        "price_cents": 7054,
+        "rating_basis_points": 397,
+        "review_count": 643,
+        "sku": "FOU-9301-038",
+        "slug": "driver-bit-38",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 38"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 39,
+        "id": "prod_foundry_wholesale_39",
+        "image": {
+          "accent": "#897929",
+          "background": "#591f29",
+          "key": "product-foundry_wholesale_39-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 13,
+        "price_cents": 7191,
+        "rating_basis_points": 404,
+        "review_count": 44,
+        "sku": "FOU-9301-039",
+        "slug": "shipping-carton-39",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 39"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 40,
+        "id": "prod_foundry_wholesale_40",
+        "image": {
+          "accent": "#26e293",
+          "background": "#6826db",
+          "key": "product-foundry_wholesale_40-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 14,
+        "price_cents": 7328,
+        "rating_basis_points": 411,
+        "review_count": 345,
+        "sku": "FOU-9301-040",
+        "slug": "floor-marker-40",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 40"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_fasteners",
+        "compare_at_cents": null,
+        "description": "A deterministic bolt kit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 41,
+        "id": "prod_foundry_wholesale_41",
+        "image": {
+          "accent": "#c903e1",
+          "background": "#9e81b8",
+          "key": "product-foundry_wholesale_41-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 15,
+        "price_cents": 7465,
+        "rating_basis_points": 418,
+        "review_count": 646,
+        "sku": "FOU-9301-041",
+        "slug": "bolt-kit-41",
+        "tags": [
+          "fasteners",
+          "bolt-kit",
+          "foundry-wholesale"
+        ],
+        "title": "Bolt Kit 41"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_abrasives",
+        "compare_at_cents": null,
+        "description": "A deterministic grinding disc for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 42,
+        "id": "prod_foundry_wholesale_42",
+        "image": {
+          "accent": "#75f98c",
+          "background": "#7d327b",
+          "key": "product-foundry_wholesale_42-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 16,
+        "price_cents": 7602,
+        "rating_basis_points": 425,
+        "review_count": 47,
+        "sku": "FOU-9301-042",
+        "slug": "grinding-disc-42",
+        "tags": [
+          "abrasives",
+          "grinding-disc",
+          "foundry-wholesale"
+        ],
+        "title": "Grinding Disc 42"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_safety",
+        "compare_at_cents": null,
+        "description": "A deterministic safety glove for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 43,
+        "id": "prod_foundry_wholesale_43",
+        "image": {
+          "accent": "#cd317b",
+          "background": "#3a9105",
+          "key": "product-foundry_wholesale_43-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 17,
+        "price_cents": 7739,
+        "rating_basis_points": 432,
+        "review_count": 348,
+        "sku": "FOU-9301-043",
+        "slug": "safety-glove-43",
+        "tags": [
+          "safety",
+          "safety-glove",
+          "foundry-wholesale"
+        ],
+        "title": "Safety Glove 43"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_electrical",
+        "compare_at_cents": null,
+        "description": "A deterministic cable reel for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 44,
+        "id": "prod_foundry_wholesale_44",
+        "image": {
+          "accent": "#35ad62",
+          "background": "#8bb6a2",
+          "key": "product-foundry_wholesale_44-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 18,
+        "price_cents": 7876,
+        "rating_basis_points": 439,
+        "review_count": 649,
+        "sku": "FOU-9301-044",
+        "slug": "cable-reel-44",
+        "tags": [
+          "electrical",
+          "cable-reel",
+          "foundry-wholesale"
+        ],
+        "title": "Cable Reel 44"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_plumbing",
+        "compare_at_cents": null,
+        "description": "A deterministic valve set for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 45,
+        "id": "prod_foundry_wholesale_45",
+        "image": {
+          "accent": "#888523",
+          "background": "#290deb",
+          "key": "product-foundry_wholesale_45-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 19,
+        "price_cents": 8013,
+        "rating_basis_points": 446,
+        "review_count": 50,
+        "sku": "FOU-9301-045",
+        "slug": "valve-set-45",
+        "tags": [
+          "plumbing",
+          "valve-set",
+          "foundry-wholesale"
+        ],
+        "title": "Valve Set 45"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_tools",
+        "compare_at_cents": null,
+        "description": "A deterministic driver bit for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 46,
+        "id": "prod_foundry_wholesale_46",
+        "image": {
+          "accent": "#2b235f",
+          "background": "#c3bce0",
+          "key": "product-foundry_wholesale_46-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 20,
+        "price_cents": 8150,
+        "rating_basis_points": 453,
+        "review_count": 351,
+        "sku": "FOU-9301-046",
+        "slug": "driver-bit-46",
+        "tags": [
+          "tools",
+          "driver-bit",
+          "foundry-wholesale"
+        ],
+        "title": "Driver Bit 46"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_packaging",
+        "compare_at_cents": null,
+        "description": "A deterministic shipping carton for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 47,
+        "id": "prod_foundry_wholesale_47",
+        "image": {
+          "accent": "#7748ca",
+          "background": "#ad6e93",
+          "key": "product-foundry_wholesale_47-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 21,
+        "price_cents": 8287,
+        "rating_basis_points": 460,
+        "review_count": 652,
+        "sku": "FOU-9301-047",
+        "slug": "shipping-carton-47",
+        "tags": [
+          "packaging",
+          "shipping-carton",
+          "foundry-wholesale"
+        ],
+        "title": "Shipping Carton 47"
+      },
+      {
+        "brand": "Foundry Supply",
+        "category_id": "cat_facility",
+        "compare_at_cents": null,
+        "description": "A deterministic floor marker for testing catalog, cart, checkout, inventory, persistence, and ordering behavior.",
+        "featured_rank": 48,
+        "id": "prod_foundry_wholesale_48",
+        "image": {
+          "accent": "#565431",
+          "background": "#26a493",
+          "key": "product-foundry_wholesale_48-9301",
+          "kind": "generated-svg"
+        },
+        "inventory": 22,
+        "price_cents": 8424,
+        "rating_basis_points": 467,
+        "review_count": 53,
+        "sku": "FOU-9301-048",
+        "slug": "floor-marker-48",
+        "tags": [
+          "facility",
+          "floor-marker",
+          "foundry-wholesale"
+        ],
+        "title": "Floor Marker 48"
+      }
+    ]
+  },
+  "fixture_id": "foundry-wholesale-9301",
+  "now": "2026-01-15T12:00:00Z",
+  "scenario": {
+    "content_salt": "foundry-wholesale-content-9301",
+    "kind": "functional",
+    "stock_one_product_id": null
+  },
+  "schema_version": "websitebench.fixture.v1",
+  "seed": 9301
+}

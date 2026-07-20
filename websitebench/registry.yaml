@@ -1,0 +1,25 @@
+schema_version: websitebench.registry.v1
+corpus_root: .
+families:
+  white-label-commerce-v1: validation
+sites:
+  ember-drop:
+    driver: drivers/ember-drop.driver.yaml
+    variant: variants/white-label-commerce-v1/ember-drop.yaml
+    family_id: white-label-commerce-v1
+    variant_id: ember-drop
+  foundry-wholesale:
+    driver: drivers/foundry-wholesale.driver.yaml
+    variant: variants/white-label-commerce-v1/foundry-wholesale.yaml
+    family_id: white-label-commerce-v1
+    variant_id: foundry-wholesale
+  harbor-pickup:
+    driver: drivers/harbor-pickup.driver.yaml
+    variant: variants/white-label-commerce-v1/harbor-pickup.yaml
+    family_id: white-label-commerce-v1
+    variant_id: harbor-pickup
+  northstar-market:
+    driver: drivers/northstar-market.driver.yaml
+    variant: variants/white-label-commerce-v1/northstar-standard.yaml
+    family_id: white-label-commerce-v1
+    variant_id: northstar-standard

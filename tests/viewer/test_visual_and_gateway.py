@@ -19,7 +19,8 @@ from clawbench.viewer.capture import (
     reviewability_for_status,
 )
 from clawbench.viewer.clone_process import CloneProcessManager
-from clawbench.viewer.evidence import EvidenceStore, decide_capture_status, file_sha256
+from clawbench.viewer.discovery import AMAZON_ITEM_KEY
+from clawbench.viewer.evidence import AmazonEvidenceRegistry, decide_capture_status
 from clawbench.viewer.gateway import (
     clone_public_path,
     parse_clone_request,
@@ -48,19 +49,42 @@ def test_capture_status_keeps_partial_and_diagnostic_states_explicit() -> None:
     ) == ("not_comparable", "unavailable")
 
 
-def test_evidence_resolver_rejects_unregistered_and_parent_paths(tmp_path: Path) -> None:
-    pil = pytest.importorskip("PIL.Image")
-    source = tmp_path / "source.png"
-    pil.new("RGB", (20, 20), "white").save(source)
-    store = EvidenceStore(tmp_path / "artifacts", REPO_ROOT)
-    manifest = store.upsert(
-        "websitebench--northstar-market", "home", "desktop", source_image=source
-    )
-    relative = manifest["captures"][0]["source_image"]
-    resolved = store.resolve("websitebench--northstar-market", relative)
-    assert file_sha256(resolved) == manifest["captures"][0]["source_sha256"]
+def test_amazon_evidence_registry_maps_all_images_and_rejects_unknown_ids() -> None:
+    registry = AmazonEvidenceRegistry(REPO_ROOT)
+    assert registry.count == 295
+    first = registry.records[0]
+    assert registry.resolve(first["id"]).is_file()
     with pytest.raises(FileNotFoundError):
-        store.resolve("websitebench--northstar-market", "../../source.png")
+        registry.resolve("../../source.png")
+    with pytest.raises(FileNotFoundError):
+        registry.resolve("not-registered")
+
+
+def test_amazon_evidence_registry_does_not_register_symlinked_images(tmp_path: Path) -> None:
+    evidence = tmp_path / "materials" / "amazon" / "verification" / "gate2"
+    evidence.mkdir(parents=True)
+    outside = tmp_path / "outside.png"
+    outside.write_bytes(b"not-an-image")
+    (evidence / "desktop-home.png").symlink_to(outside)
+    registry = AmazonEvidenceRegistry(tmp_path)
+    assert registry.count == 0
+    assert registry.rejected == ["gate2/desktop-home.png"]
+
+
+def test_amazon_evidence_registry_rejects_a_symlinked_registry_root(
+    tmp_path: Path,
+) -> None:
+    outside = tmp_path / "outside-evidence"
+    (outside / "gate2").mkdir(parents=True)
+    (outside / "gate2" / "desktop-home.png").write_bytes(b"not-an-image")
+    configured = tmp_path / "materials" / "amazon" / "verification"
+    configured.parent.mkdir(parents=True)
+    configured.symlink_to(outside, target_is_directory=True)
+    registry = AmazonEvidenceRegistry(tmp_path)
+    assert registry.count == 0
+    assert registry.rejected == [
+        "materials/amazon/verification: symlinked root"
+    ]
 
 
 def test_image_diagnostics_are_not_named_as_official_score(tmp_path: Path) -> None:
@@ -78,16 +102,16 @@ def test_image_diagnostics_are_not_named_as_official_score(tmp_path: Path) -> No
 
 
 def test_gateway_url_cookie_body_and_policy_rewrites() -> None:
-    key = "legacy--demo"
-    assert clone_public_path(key, "/login") == "/clone/legacy--demo/login"
-    assert parse_clone_request("/clone/legacy--demo/api?q=1") == (
+    key = AMAZON_ITEM_KEY
+    assert clone_public_path(key, "/login") == "/clone/benchmark--amazon/login"
+    assert parse_clone_request("/clone/benchmark--amazon/api?q=1") == (
         key,
         "/api?q=1",
     )
     html = b'<html><head><script src="/static/app.js"></script></head><body><form action="/save"></form></body></html>'
     rewritten = rewrite_clone_body(html, "text/html; charset=utf-8", key).decode()
-    assert 'src="/clone/legacy--demo/static/app.js"' in rewritten
-    assert 'action="/clone/legacy--demo/save"' in rewritten
+    assert 'src="/clone/benchmark--amazon/static/app.js"' in rewritten
+    assert 'action="/clone/benchmark--amazon/save"' in rewritten
     assert "window.fetch = (input, init)" in rewritten
     nonced = rewrite_clone_body(
         html,
@@ -103,14 +127,14 @@ def test_gateway_url_cookie_body_and_policy_rewrites() -> None:
             key,
         )
     )
-    assert payload["image"] == "/clone/legacy--demo/static/item.png"
+    assert payload["image"] == "/clone/benchmark--amazon/static/item.png"
     assert payload["route"] == "/cart"
-    assert rewrite_location("/login", key) == "/clone/legacy--demo/login"
+    assert rewrite_location("/login", key) == "/clone/benchmark--amazon/login"
     assert rewrite_set_cookie("sid=x; Path=/; HttpOnly", key) == (
-        "sid=x; Path=/clone/legacy--demo/; HttpOnly"
+        "sid=x; Path=/clone/benchmark--amazon/; HttpOnly"
     )
     assert rewrite_set_cookie("sid=x; Domain=127.0.0.1; Path=/", key) == (
-        "sid=x; Path=/clone/legacy--demo/"
+        "sid=x; Path=/clone/benchmark--amazon/"
     )
     assert not request_decision("POST", "https://example.com/write", {"example.com"}).allow
 
@@ -182,12 +206,12 @@ def test_clone_manager_does_not_proxy_an_unmanaged_process_on_declared_port() ->
     foreign = ThreadingHTTPServer(("127.0.0.1", 0), ForeignHandler)
     thread = threading.Thread(target=foreign.serve_forever, daemon=True)
     thread.start()
-    key = "legacy--gateway-collision"
-    clone_root = "website-clone/v2-086-job-search-hr-cv-autofill-greenhouse-meta"
+    key = AMAZON_ITEM_KEY
+    clone_root = "materials/amazon/clone"
     items = [
         {
             "key": key,
-            "source_type": "legacy",
+            "source_type": "benchmark",
             "internal": {
                 "clone_root": clone_root,
                 "local_host": f"host.docker.internal:{foreign.server_port}",

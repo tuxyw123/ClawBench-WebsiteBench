@@ -9,7 +9,6 @@ import os
 import re
 import time
 from dataclasses import dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Awaitable, Callable
 from urllib.parse import urlsplit
@@ -19,9 +18,26 @@ import numpy as np
 from PIL import Image
 from playwright.async_api import Browser, BrowserContext, Page, async_playwright
 
-from clawbench.web2code.reporting import build_result, validate_result, write_reports
-from clawbench.web2code.scoring import score_evaluation
 from clawbench.web2code.visual import apply_masks, checkpoint_similarity
+
+
+ROBUSTNESS_FACT_IDS = (
+    "registration-input-validation-does-not-throttle",
+    "email-or-device-throttle-five-minute-boundary",
+    "verification-expiry-tamper-and-single-use",
+    "reset-expiry-tamper-and-single-use",
+    "session-expiry-and-reset-invalidation",
+    "safe-next-path-and-no-open-redirect",
+    "cart-stock-and-five-unit-cap",
+    "cart-merge-is-retry-safe",
+    "declined-payment-is-side-effect-free",
+    "invalid-and-expired-test-card",
+    "atomic-all-or-nothing-stock-shortage",
+    "checkout-idempotency-under-retry",
+    "cancellation-boundary-and-repeat-safety",
+    "cross-account-order-is-404",
+    "concurrent-stock-one-purchase",
+)
 
 
 @dataclass(frozen=True)
@@ -661,10 +677,7 @@ class NorthstarJudge:
     async def robustness(
         self, journeys: list[dict[str, Any]]
     ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-        config = json.loads(
-            Path(os.environ.get("SCORING_PATH", "/task/public/scoring.json")).read_text()
-        )
-        groups = config["dimensions"]["robustness"]["groups"]
+        groups = ROBUSTNESS_FACT_IDS
         reference: dict[str, Any] = {}
         candidate: dict[str, Any] = {}
         for target, output in ((self.reference, reference), (self.candidate, candidate)):
@@ -1046,35 +1059,23 @@ def usage(artifact_root: Path) -> dict[str, Any]:
 async def async_main() -> int:
     artifact_root = Path(os.environ.get("ARTIFACT_ROOT", "/artifacts"))
     eval_dir = artifact_root / "eval"
-    started = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     judge = NorthstarJudge(eval_dir)
     facts = await judge.run()
+    facts["schema_version"] = "websitebench.facts.v1"
     facts["usage"] = usage(artifact_root)
     facts["versions"] = {
         "evaluator": "1.0.0",
         "browser-use": "0.12.6",
         "playwright": "1.60.0",
-        "protocol": "websitebench.result.v1",
+        "protocol": "websitebench.facts.v1",
     }
     (eval_dir / "facts.json").write_text(
         json.dumps(facts, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
-    scoring_path = Path(os.environ.get("SCORING_PATH", "/task/public/scoring.json"))
-    scoring = json.loads(scoring_path.read_text())
-    scored = score_evaluation(facts, scoring)
-    run_meta = json.loads((artifact_root / "run-meta.json").read_text())
-    run = {
-        "run_id": run_meta["run_id"],
-        "site_id": "northstar-market",
-        "site_version": run_meta["site_version"],
-        "track": run_meta["track"],
-        "started_at": started,
-        "finished_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-    }
-    result = build_result(run=run, scored=scored, facts=facts)
-    validate_result(result, "/task/schemas/report.schema.json")
-    write_reports(result, eval_dir)
-    return 0 if result["status"] == "passed" else 1
+    # The Judge is a fact producer only. The trusted host validates, scores,
+    # validates result v1, and writes both reports even when this process exits
+    # non-zero after producing schema-valid facts.
+    return 0
 
 
 def main() -> int:

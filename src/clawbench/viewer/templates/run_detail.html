@@ -1,17 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Run {{ run.run_id }}{% endblock %}
 {% block content %}
-<div class="page">
-  <a class="back-link" href="/tasks/{{ item.key }}">← {{ item.display_name }}</a>
-  <section class="run-hero"><div><p class="eyebrow">websitebench.result.v1</p><h1>{{ run.run_id }}</h1><p>{{ run.track }} track · {{ run.status }} · {{ run.finished_at }}</p></div><div class="official-score"><strong>{{ run.score }}</strong><span>Official / 100</span></div></section>
-  <div class="dimension-score-grid">{% for name, value in run.dimensions.items() %}<article><span>{{ name }}</span><strong>{{ value.score }} / {{ value.max_score }}</strong><meter min="0" max="{{ value.max_score }}" value="{{ value.score }}"></meter></article>{% endfor %}</div>
-  {% if run.details_withheld %}<div class="alert warning"><strong>Aggregate public result.</strong> Journey fixtures, failure reproduction, version details, and artifact paths are withheld from the public profile.</div>{% else %}
-  <section class="section-grid two"><article class="panel"><div class="section-heading"><h2>Journeys and seeds</h2></div><h3>Journey evidence</h3><div class="json-list">{% for journey in run.journeys %}<pre>{{ journey|tojson(indent=2) }}</pre>{% else %}<p class="muted">No journey rows.</p>{% endfor %}</div><h3>Seed evidence</h3><div class="json-list">{% for seed in run.seeds %}<pre>{{ seed|tojson(indent=2) }}</pre>{% else %}<p class="muted">No seed rows.</p>{% endfor %}</div></article>
-  <article class="panel"><div class="section-heading"><h2>Hard failures</h2></div>{% if run.hard_failures %}<div class="alert danger">{% for failure in run.hard_failures %}<pre>{{ failure|tojson(indent=2) }}</pre>{% endfor %}</div>{% else %}<div class="alert success">No hard failures reported.</div>{% endif %}<h3>Failures</h3>{% for failure in run.failures %}<pre>{{ failure|tojson(indent=2) }}</pre>{% else %}<p class="muted">No failures reported.</p>{% endfor %}</article></section>
-  {% endif %}
-  <section class="section-grid three"><article class="panel"><h2>Resources</h2><pre>{{ run.resources|tojson(indent=2) }}</pre></article><article class="panel"><h2>Network</h2><pre>{{ run.network|tojson(indent=2) }}</pre></article><article class="panel"><h2>Usage & versions</h2><pre>{{ {'usage':run.usage,'versions':run.versions}|tojson(indent=2) }}</pre></article></section>
-  {% if not run.details_withheld %}
-  <section class="panel"><div class="section-heading"><div><p class="eyebrow">Official evidence</p><h2>Evidence manifest</h2></div></div><pre>{{ run.evidence|tojson(indent=2) }}</pre></section>
-  {% endif %}
+{% set dimension_labels_zh = {'visual':'视觉','interactions':'交互','journeys':'旅程','robustness':'稳健性','efficiency':'效率'} %}
+{% set status_labels_zh = {'passed':'通过','failed':'失败','hard_failed':'严重失败','infrastructure_error':'基础设施错误'} %}
+<div class="page run-page">
+  <a class="back-link" href="{{ '/admin' if internal_run else '/leaderboard' }}"><span data-lang="en">← {{ 'Admin' if internal_run else 'Leaderboard' }}</span><span data-lang="zh">← {{ '后台' if internal_run else '排行榜' }}</span></a>
+  <section class="run-header panel">
+    <div>
+      <p class="section-label">WEBSITEBENCH.RESULT.V1</p>
+      <h1>{% if run.model %}{{ run.model }}{% else %}<span data-lang="en">Model metadata missing</span><span data-lang="zh">缺少模型元数据</span>{% endif %}</h1>
+      <p class="run-id">{{ run.run_id }}</p>
+      <div class="tag-row">
+        <span class="pill">{% if run.thinking_level %}{{ run.thinking_level }}{% else %}<span data-lang="en">thinking level missing</span><span data-lang="zh">缺少 thinking level</span>{% endif %}</span>
+        <span class="pill">{{ run.track }}</span>
+        <span class="pill status-{{ run.status }}"><span data-lang="en">{{ run.status }}</span><span data-lang="zh">{{ status_labels_zh.get(run.status, run.status) }}</span></span>
+        {% if internal_run %}<span class="pill status-{{ 'approved' if run.publishable else 'pending' }}"><span data-lang="en">{{ 'published' if run.publishable else 'internal only' }}</span><span data-lang="zh">{{ '已发布' if run.publishable else '仅内部' }}</span></span>{% endif %}
+      </div>
+    </div>
+    <div class="run-total"><strong>{{ run.score }}</strong><span><span data-lang="en">Total / 100</span><span data-lang="zh">总分 / 100</span></span></div>
+  </section>
+  <section class="dimension-grid">
+    {% for name,value in run.dimensions.items() %}<article><span><span data-lang="en">{{ name }}</span><span data-lang="zh">{{ dimension_labels_zh.get(name, name) }}</span></span><strong>{{ value.score }} <small>/ {{ value.max_score }}</small></strong><meter min="0" max="{{ value.max_score }}" value="{{ value.score }}">{{ value.score }}</meter><small><span data-lang="en">{{ value.passed }}/{{ value.total }} checks</span><span data-lang="zh">{{ value.passed }}/{{ value.total }} 项检查</span></small></article>{% endfor %}
+  </section>
+  {% if not internal_run %}<aside class="info-note"><strong><span data-lang="en">Aggregate public result.</span><span data-lang="zh">公开聚合结果。</span></strong> <span data-lang="en">Hidden journeys, failure reproduction, internal paths, version details, and the evidence manifest are withheld.</span><span data-lang="zh">隐藏旅程、失败复现、内部路径、版本细节与证据清单均不公开。</span></aside>{% endif %}
+  <section class="three-column"><article class="panel"><p class="section-label"><span data-lang="en">RESOURCES</span><span data-lang="zh">资源</span></p><pre>{{ run.resources|tojson(indent=2) }}</pre></article><article class="panel"><p class="section-label"><span data-lang="en">NETWORK</span><span data-lang="zh">网络</span></p><pre>{{ run.network|tojson(indent=2) }}</pre></article><article class="panel"><p class="section-label"><span data-lang="en">USAGE</span><span data-lang="zh">用量</span></p><pre>{{ run.usage|tojson(indent=2) }}</pre></article></section>
+  <section class="panel run-times"><div><span data-lang="en">Started</span><span data-lang="zh">开始</span><strong>{{ run.started_at }}</strong></div><div><span data-lang="en">Finished</span><span data-lang="zh">完成</span><strong>{{ run.finished_at }}</strong></div></section>
+  {% if internal_run %}<section class="two-column">
+    <article class="panel"><p class="section-label"><span data-lang="en">INTERNAL OUTCOMES</span><span data-lang="zh">内部结果</span></p><h2><span data-lang="en">Journeys, seeds, and failures</span><span data-lang="zh">旅程、种子与失败</span></h2><details><summary><span data-lang="en">Journeys ({{ run.journeys|length }})</span><span data-lang="zh">旅程（{{ run.journeys|length }}）</span></summary><pre>{{ run.journeys|tojson(indent=2) }}</pre></details><details><summary><span data-lang="en">Seeds ({{ run.seeds|length }})</span><span data-lang="zh">种子（{{ run.seeds|length }}）</span></summary><pre>{{ run.seeds|tojson(indent=2) }}</pre></details><details><summary><span data-lang="en">Hard failures ({{ run.hard_failures|length }})</span><span data-lang="zh">严重失败（{{ run.hard_failures|length }}）</span></summary><pre>{{ run.hard_failures|tojson(indent=2) }}</pre></details><details><summary><span data-lang="en">Failures ({{ run.failures|length }})</span><span data-lang="zh">失败（{{ run.failures|length }}）</span></summary><pre>{{ run.failures|tojson(indent=2) }}</pre></details></article>
+    <article class="panel"><p class="section-label"><span data-lang="en">INTERNAL MANIFESTS</span><span data-lang="zh">内部清单</span></p><h2><span data-lang="en">Evidence and versions</span><span data-lang="zh">证据与版本</span></h2><details open><summary><span data-lang="en">Evidence ({{ run.evidence|length }})</span><span data-lang="zh">证据（{{ run.evidence|length }}）</span></summary><pre>{{ run.evidence|tojson(indent=2) }}</pre></details><details><summary><span data-lang="en">Versions</span><span data-lang="zh">版本</span></summary><pre>{{ run.versions|tojson(indent=2) }}</pre></details><details><summary><span data-lang="en">Publication checks</span><span data-lang="zh">发布检查</span></summary><pre>{{ run.publication_errors|tojson(indent=2) }}</pre></details></article>
+  </section>{% endif %}
 </div>
 {% endblock %}

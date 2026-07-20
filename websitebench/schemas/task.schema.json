@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://clawbench.local/schemas/websitebench.task.v1.json",
+  "$id": "https://clawbench.local/schemas/websitebench.task.v2.json",
   "title": "Web2Code2Web agent task envelope",
   "type": "object",
   "additionalProperties": false,
@@ -10,7 +10,10 @@
     "candidate_workspace", "agent", "issued_at"
   ],
   "properties": {
-    "schema_version": {"const": "websitebench.task.v1"},
+    "schema_version": {"enum": ["websitebench.task.v1", "websitebench.task.v2"]},
+    "instruction": {"type": "string", "minLength": 1},
+    "family_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "variant_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
     "task_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "site_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
@@ -63,6 +66,15 @@
     },
     "issued_at": {"type": "string", "format": "date-time"}
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"schema_version": {"const": "websitebench.task.v2"}},
+        "required": ["schema_version"]
+      },
+      "then": {"required": ["instruction", "family_id", "variant_id"]}
+    }
+  ],
   "$defs": {
     "workspace_path": {
       "type": "string",

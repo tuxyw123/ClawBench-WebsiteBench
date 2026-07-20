@@ -1,0 +1,24 @@
+{
+  "adapter_version": "white-label-commerce-v1.1",
+  "behavior_fingerprint": "84391c01f026b2c72feaec04af14154a857ba83e7deb6856500ff768732acd6a",
+  "compiler_version": "websitebench.variant-compiler.v1",
+  "digest": "sha256:2876d094df0963f8bea79d7012934dfd699c21d2c66d9f0a8036e8000f72d7f8",
+  "files": {
+    "judge/assertions.json": "8a1cbe4e189e412889180b51923ad1a71d3d83e57ab5dbd368b8030161256a4e",
+    "judge/fixtures/9301.json": "95cbc3e1e9cc73d0bd4faa1c43439faf176eacd5aa78b1b192691478c4bb3af1",
+    "judge/fixtures/9399.json": "1958ef71ec58f0efe8f93e8381b43581167a50a86a477bf468aed177ad5b7f8a",
+    "public/PRD.md": "5a20b3e874b05cc0468a138a737d4593d112f43640a33257fe2a69470b99cffa",
+    "public/candidate-contract.md": "cc546d9f376ca61c23bd08494b64b75812bf7acede01839edfa6a023b702b585",
+    "public/fixtures/1301.json": "e32d4847eee67a57ff60e6c9cad549922e07e509baa695c568cf7eac309f4307",
+    "public/manifest.yaml": "0c8644ed99cefc25ade0af4919c496bf58ca353a4c4a9eab0ea4d49eb939e51c",
+    "public/public-smoke-cases.json": "539a2cab7769cd92bc56ad0cbabe2760cae86deb58190bcbf4085c07c8118a5a",
+    "public/scoring.json": "42c19f8a7afda643c0dc28d1a1f5c54fa32cdc07ed6b0f642e6361ea9899e90d",
+    "public/visual-checkpoints.json": "28f172b136d220b65eab89e31b0d40238b3c212c714f84d0fb43e5a55c7aba37",
+    "task.json": "6e32c50faf48998ee158fe92294ef5e935202690a093b360596c7b19a922c30d",
+    "variant.yaml": "baa617dc09b75da93e89dc07834b8a2b76007a200279500e13c09ac7472078d1"
+  },
+  "schema_version": "websitebench.variant-lock.v1",
+  "semantic_spec_sha256": "4a24c492df94e0c931ebf727284a3ff8ade479b414ecf6d8f6219c925217caf7",
+  "site_id": "foundry-wholesale",
+  "variant_id": "foundry-wholesale"
+}

@@ -1,0 +1,90 @@
+{
+  "assertions": [
+    {
+      "journey": "catalog_observability",
+      "kind": "rule_visible",
+      "parameters": {
+        "quantity_cap": 5
+      }
+    },
+    {
+      "journey": "account_lifecycle",
+      "kind": "account_token_lifetime",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    },
+    {
+      "journey": "cart_inventory",
+      "kind": "quantity_policy",
+      "parameters": {
+        "maximum": 5
+      }
+    },
+    {
+      "journey": "checkout_concurrency",
+      "kind": "atomic_concurrency",
+      "parameters": {
+        "stock_floor": 0
+      }
+    },
+    {
+      "journey": "orders_terminal",
+      "kind": "cancellation_policy",
+      "parameters": {
+        "window_minutes": 1440
+      }
+    }
+  ],
+  "journeys": [
+    "catalog_observability",
+    "account_lifecycle",
+    "cart_inventory",
+    "checkout_concurrency",
+    "orders_terminal"
+  ],
+  "policies": {
+    "cancellation": {
+      "kind": "window",
+      "parameters": {
+        "minutes": 1440
+      }
+    },
+    "fulfillment": {
+      "kind": "shipping",
+      "parameters": {
+        "free_threshold_cents": 7500,
+        "standard_cents": 799
+      }
+    },
+    "inventory": {
+      "kind": "checkout_decrement",
+      "parameters": {
+        "atomic": true
+      }
+    },
+    "pricing": {
+      "kind": "standard",
+      "parameters": {
+        "tax_basis_points": 825
+      }
+    },
+    "quantity": {
+      "kind": "standard_cap",
+      "parameters": {
+        "maximum": 5
+      }
+    },
+    "token_lifetime": {
+      "kind": "fixed",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    }
+  },
+  "schema_version": "websitebench.assertions.v1",
+  "site_id": "northstar-market",
+  "variant_id": "northstar-standard"
+}

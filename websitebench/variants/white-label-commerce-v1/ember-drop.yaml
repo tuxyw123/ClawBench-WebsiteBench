@@ -1,0 +1,30 @@
+schema_version: websitebench.variant.v1
+family_id: white-label-commerce-v1
+site_id: ember-drop
+variant_id: ember-drop
+site_version: 1.0.0
+display_name: Ember Drop
+instruction: Reconstruct a limited-release store with one-unit guest-device and account-lifetime limits, non-renewing inventory reservations, ownership transfer on login, decline-safe checkout, expiry release, persistence, and final-sale orders.
+catalog:
+  brand: Ember Drop
+  categories: [Apparel, Footwear, Prints, Vinyl, Accessories, Home, Collectibles, Collaborations]
+  product_nouns: [Logo Tee, Canvas Sneaker, Art Print, LP Set, Utility Bag, Throw Blanket, Figure, Studio Jacket]
+  base_price_cents: 4200
+seeds:
+  public: 1201
+  hidden: 9201
+  concurrency: 9299
+policies:
+  quantity: {kind: per_sku_limit, parameters: {limit: 1, guest_scope: device, account_scope: lifetime}}
+  pricing: {kind: standard, parameters: {tax_basis_points: 725}}
+  inventory: {kind: reservation, parameters: {ttl_minutes: 10, repeated_action_extends_ttl: false, login_merge: transfer, decline_preserves_active: true}}
+  fulfillment: {kind: shipping, parameters: {standard_cents: 900, free_threshold_cents: 0}}
+  cancellation: {kind: final_sale, parameters: {cancel_allowed: false}}
+  token_lifetime: {kind: fixed, parameters: {verification_minutes: 30, reset_minutes: 60}}
+journeys: [catalog_observability, account_lifecycle, cart_inventory, checkout_concurrency, orders_terminal]
+assertions:
+  - {kind: rule_visible, journey: catalog_observability, parameters: {per_sku_limit: 1, reservation_minutes: 10}}
+  - {kind: account_token_lifetime, journey: account_lifecycle, parameters: {verification_minutes: 30, reset_minutes: 60}}
+  - {kind: inventory_policy, journey: cart_inventory, parameters: {ttl_minutes: 10, extends: false, merge: transfer}}
+  - {kind: payment_decline_safe, journey: checkout_concurrency, parameters: {reservation_retained: true}}
+  - {kind: terminal_order, journey: orders_terminal, parameters: {state: final_sale, cancellable: false}}

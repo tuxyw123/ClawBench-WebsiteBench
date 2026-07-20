@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "harness": "codex",
+    "model": "gpt-5.5-codex",
+    "thinking_level": "xhigh"
+  },
+  "browser_gateway": {
+    "reference_access": "continuous",
+    "tool_name": "controlled_browser",
+    "url": "http://browser-gateway:7000"
+  },
+  "budget": {
+    "browser_actions": 400,
+    "candidate_builds": 10,
+    "token_budget": 400000,
+    "wall_time_seconds": 7200
+  },
+  "candidate_workspace": "/workspace/candidate",
+  "family_id": "white-label-commerce-v1",
+  "instruction": "Reconstruct a wholesale storefront where authentication, case quantities, tiered line discounts, post-discount shipping thresholds, tax, token expiry, persistence, and cancellation rules are observable and enforced.",
+  "issued_at": "2026-01-01T00:00:00Z",
+  "mailbox_url": "http://mailbox:8025",
+  "public_files": {
+    "candidate_contract": "/task/public/candidate-contract.md",
+    "manifest": "/task/public/manifest.yaml",
+    "prd": "/task/public/PRD.md",
+    "smoke_cases": "/task/public/public-smoke-cases.json"
+  },
+  "run_id": "template-foundry-wholesale",
+  "schema_version": "websitebench.task.v2",
+  "site_id": "foundry-wholesale",
+  "site_version": "1.0.0",
+  "target_url": "http://reference:8080",
+  "task_id": "foundry-wholesale",
+  "track": "core",
+  "variant_id": "foundry-wholesale"
+}

@@ -1,0 +1,99 @@
+{
+  "assertions": [
+    {
+      "journey": "catalog_observability",
+      "kind": "rule_visible",
+      "parameters": {
+        "shipping": false,
+        "slot_required": true,
+        "store_required": true
+      }
+    },
+    {
+      "journey": "account_lifecycle",
+      "kind": "account_token_lifetime",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    },
+    {
+      "journey": "cart_inventory",
+      "kind": "inventory_policy",
+      "parameters": {
+        "scope": "store"
+      }
+    },
+    {
+      "journey": "checkout_concurrency",
+      "kind": "fulfillment_policy",
+      "parameters": {
+        "atomic_inventory_and_capacity": true,
+        "shared_slot_capacity": 2
+      }
+    },
+    {
+      "journey": "orders_terminal",
+      "kind": "cancellation_policy",
+      "parameters": {
+        "minimum_notice_minutes": 60,
+        "restore_once": true
+      }
+    }
+  ],
+  "journeys": [
+    "catalog_observability",
+    "account_lifecycle",
+    "cart_inventory",
+    "checkout_concurrency",
+    "orders_terminal"
+  ],
+  "policies": {
+    "cancellation": {
+      "kind": "pickup_cutoff",
+      "parameters": {
+        "minimum_notice_minutes": 60,
+        "restore_capacity_once": true,
+        "restore_inventory_once": true
+      }
+    },
+    "fulfillment": {
+      "kind": "pickup_slots",
+      "parameters": {
+        "shipping_allowed": false,
+        "slot_capacity": 2,
+        "slot_required": true,
+        "store_required": true
+      }
+    },
+    "inventory": {
+      "kind": "store_isolated",
+      "parameters": {
+        "atomic_with_slot_capacity": true
+      }
+    },
+    "pricing": {
+      "kind": "standard",
+      "parameters": {
+        "tax_basis_points": 500
+      }
+    },
+    "quantity": {
+      "kind": "store_stock",
+      "parameters": {
+        "maximum": 12,
+        "minimum": 1
+      }
+    },
+    "token_lifetime": {
+      "kind": "fixed",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    }
+  },
+  "schema_version": "websitebench.assertions.v1",
+  "site_id": "harbor-pickup",
+  "variant_id": "harbor-pickup"
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.trajectory-bundle.v1.json",
+  "title": "WebsiteBench offline trajectory bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "episode_id",
+    "created_at",
+    "capture",
+    "task",
+    "actors",
+    "event_count",
+    "event_counts",
+    "artifacts",
+    "integrity",
+    "safety",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {"const": "websitebench.trajectory-bundle.v1"},
+    "bundle_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"},
+    "episode_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "capture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "completeness", "source_kind", "ordering"],
+      "properties": {
+        "mode": {"enum": ["live", "retrospective"]},
+        "completeness": {"enum": ["raw", "normalized", "curated", "partial"]},
+        "source_kind": {"enum": ["web2code-run", "clone-history"]},
+        "ordering": {"enum": ["global-time", "per-stream"]}
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "site_id", "site_version", "track", "instruction", "task_artifact"],
+      "properties": {
+        "task_id": {"type": ["string", "integer"]},
+        "site_id": {"type": ["string", "null"]},
+        "site_version": {"type": ["string", "null"]},
+        "track": {"type": ["string", "null"]},
+        "instruction": {"type": ["string", "null"]},
+        "task_artifact": {"type": "string", "pattern": "^files/[A-Za-z0-9._/-]+$"}
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "dirty"],
+      "properties": {
+        "commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "dirty": {"type": ["boolean", "null"]}
+      }
+    },
+    "actors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["human", "agent", "human-agent", "tool", "system", "evaluator"]}
+    },
+    "event_count": {"type": "integer", "minimum": 1},
+    "event_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "role", "media_type", "bytes", "sha256", "origin", "redactions"],
+        "properties": {
+          "path": {"type": "string", "pattern": "^(events\\.jsonl|files/[A-Za-z0-9._/-]+)$"},
+          "role": {"type": "string", "minLength": 1, "maxLength": 80},
+          "media_type": {"type": "string", "minLength": 1, "maxLength": 120},
+          "bytes": {"type": "integer", "minimum": 0},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "origin": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9._/-]+$"},
+          "redactions": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "checksum_file"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "checksum_file": {"const": "SHA256SUMS"}
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["secret_scan", "excluded"],
+      "properties": {
+        "secret_scan": {"const": "passed"},
+        "excluded": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    }
+  }
+}

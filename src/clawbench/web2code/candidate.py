@@ -10,7 +10,7 @@ import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 from .policy import scan_candidate
 
@@ -40,16 +40,91 @@ class CandidateLaunch:
     resources: dict[str, Any]
 
 
+@dataclass(frozen=True)
+class CandidateRuntimeConfig:
+    """All site/runtime values consumed by the trusted final launcher."""
+
+    image_prefix: str = "websitebench-final"
+    container_prefix: str = "wb-candidate"
+    volume_prefix: str = "wb-candidate-data"
+    hostname: str = "candidate-app"
+    network: str = "candidate-web"
+    private_fixture_sources: tuple[Path, ...] = ()
+    private_reference_sources: tuple[Path, ...] = ()
+    environment: tuple[tuple[str, str], ...] = ()
+    pids_limit: int = 512
+    memory: str = "1g"
+    cpus: float = 2.0
+    tmpfs: str = "/tmp:rw,noexec,nosuid,size=128m"
+    health_timeout_seconds: int = 60
+    accepted_states: tuple[str, ...] = ("healthy", "running")
+    fixture_mount: str = "/bench-fixtures"
+    schema_mount: str = "/bench-schemas"
+
+    @classmethod
+    def from_run_manifest(
+        cls,
+        manifest: Mapping[str, Any],
+        *,
+        corpus_root: Path,
+    ) -> "CandidateRuntimeConfig":
+        driver = manifest["driver"]
+        runtime = driver["candidate_runtime"]
+        networks = driver["networks"]
+        mounts = driver.get("mounts", [])
+        private_fixtures = tuple(
+            (corpus_root / mount["source"]).resolve()
+            for mount in mounts
+            if mount["kind"] == "private_fixture"
+        )
+        private_references = tuple(
+            (corpus_root / mount["source"]).resolve()
+            for mount in mounts
+            if mount["kind"] == "private_reference"
+        )
+        environment = tuple(
+            sorted((name, str(value).lower() if isinstance(value, bool) else str(value)) for name, value in manifest["candidate_environment"].items())
+        )
+        return cls(
+            image_prefix=runtime["image_prefix"],
+            container_prefix=runtime["container_prefix"],
+            volume_prefix=runtime["volume_prefix"],
+            hostname=runtime["hostname"],
+            network=networks[runtime["network_role"]],
+            private_fixture_sources=private_fixtures,
+            private_reference_sources=private_references,
+            environment=environment,
+            pids_limit=int(runtime["limits"]["pids"]),
+            memory=str(runtime["limits"]["memory"]),
+            cpus=float(runtime["limits"]["cpus"]),
+            tmpfs=str(runtime["limits"]["tmpfs"]),
+            health_timeout_seconds=int(runtime["health"]["timeout_seconds"]),
+            accepted_states=tuple(runtime["health"]["accepted_states"]),
+            fixture_mount=runtime["fixture_mount"],
+            schema_mount=runtime["schema_mount"],
+        )
+
+
 class CandidateRuntime:
-    def __init__(self, *, run_dir: Path, repository_root: Path, project: str) -> None:
+    def __init__(
+        self,
+        *,
+        run_dir: Path,
+        project: str,
+        config: CandidateRuntimeConfig | None = None,
+        repository_root: Path | None = None,
+    ) -> None:
         self.run_dir = run_dir.resolve()
-        self.repository_root = repository_root.resolve()
+        # ``repository_root`` remains accepted for task-v1 callers, but runtime
+        # behavior is exclusively configuration-driven.
+        del repository_root
+        self.config = config or CandidateRuntimeConfig()
         self.project = project
         self.candidate_root = self.run_dir / "candidate"
         name = safe_name(self.run_dir.name)
-        self.image = f"websitebench-final:{name}"
-        self.container = f"wb-candidate-{name}"
-        self.volume = f"wb-candidate-data-{name}"
+        self.image = f"{self.config.image_prefix}:{name}"
+        self.container = f"{self.config.container_prefix}-{name}"
+        self.volume = f"{self.config.volume_prefix}-{name}"
         self.log_path = self.run_dir / "eval" / "candidate-runtime.log"
         self._monitor_stop = threading.Event()
         self._monitor_thread: threading.Thread | None = None
@@ -112,15 +187,21 @@ class CandidateRuntime:
                     digest.update(chunk)
         return digest.hexdigest()
 
+    def _runtime_environment_file(self, values: Mapping[str, str]) -> Path:
+        destination = self.run_dir / "candidate-runtime.env"
+        lines = []
+        for key, value in sorted(values.items()):
+            if "\n" in value or "\r" in value:
+                raise RuntimeError(f"candidate runtime environment {key} contains a newline")
+            lines.append(f"{key}={value}\n")
+        destination.write_text("".join(lines), encoding="utf-8")
+        destination.chmod(0o600)
+        return destination
+
     def build_and_start(self) -> CandidateLaunch:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
-        findings = scan_candidate(
-            self.candidate_root,
-            private_reference=self.repository_root
-            / "websitebench"
-            / "northstar-market"
-            / "reference",
-        )
+        private_reference = self.config.private_reference_sources[0] if self.config.private_reference_sources else None
+        findings = scan_candidate(self.candidate_root, private_reference=private_reference)
         (self.run_dir / "eval" / "source-policy.json").write_text(
             json.dumps([finding.to_dict() for finding in findings], indent=2) + "\n",
             encoding="utf-8",
@@ -167,9 +248,26 @@ class CandidateRuntime:
         self.command(["docker", "volume", "rm", self.volume])
         self.command(["docker", "volume", "create", self.volume], check=True)
         values = read_env(self.run_dir / "secrets.env")
-        fixture_root = self.repository_root / "websitebench" / "northstar-market" / "judge" / "fixtures"
         public_fixture_root = self.run_dir / "public" / "fixtures"
-        schema_root = self.repository_root / "websitebench" / "schemas"
+        schema_root = self.run_dir / "schemas"
+        mounts: list[str] = []
+        for index, source in enumerate(self.config.private_fixture_sources):
+            destination = self.config.fixture_mount if index == 0 else f"{self.config.fixture_mount}/private-{index}"
+            mounts.extend(["--mount", f"type=bind,src={source},dst={destination},readonly"])
+        for fixture in sorted(public_fixture_root.glob("*.json")):
+            mounts.extend(
+                [
+                    "--mount",
+                    f"type=bind,src={fixture},dst={self.config.fixture_mount}/{fixture.name},readonly",
+                ]
+            )
+        mounts.extend(
+            ["--mount", f"type=bind,src={schema_root},dst={self.config.schema_mount},readonly"]
+        )
+        runtime_environment = dict(self.config.environment)
+        runtime_environment.setdefault("BENCH_ADMIN_TOKEN", values["BENCH_ADMIN_TOKEN"])
+        runtime_environment.setdefault("MAILBOX_DELIVERY_TOKEN", values["MAILBOX_DELIVERY_TOKEN"])
+        runtime_environment_path = self._runtime_environment_file(runtime_environment)
         create = self.command(
             [
                 "docker",
@@ -177,49 +275,22 @@ class CandidateRuntime:
                 "--name",
                 self.container,
                 "--hostname",
-                "candidate-app",
+                self.config.hostname,
                 "--network",
                 "none",
                 "--read-only",
                 "--cap-drop=ALL",
                 "--security-opt=no-new-privileges",
-                "--pids-limit=512",
-                "--memory=1g",
-                "--cpus=2",
+                f"--pids-limit={self.config.pids_limit}",
+                f"--memory={self.config.memory}",
+                f"--cpus={self.config.cpus}",
                 "--tmpfs",
-                "/tmp:rw,noexec,nosuid,size=128m",
+                self.config.tmpfs,
                 "--mount",
                 f"type=volume,src={self.volume},dst=/data",
-                "--mount",
-                f"type=bind,src={fixture_root},dst=/bench-fixtures,readonly",
-                "--mount",
-                f"type=bind,src={public_fixture_root / '1101.json'},dst=/bench-fixtures/1101.json,readonly",
-                "--mount",
-                f"type=bind,src={public_fixture_root / '1102.json'},dst=/bench-fixtures/1102.json,readonly",
-                "--mount",
-                f"type=bind,src={schema_root},dst=/bench-schemas,readonly",
-                "--env",
-                "PORT=8080",
-                "--env",
-                "BENCH_ADMIN_PORT=8081",
-                "--env",
-                f"BENCH_ADMIN_TOKEN={values['BENCH_ADMIN_TOKEN']}",
-                "--env",
-                "DATA_DIR=/data",
-                "--env",
-                "BENCH_FIXTURE_DIR=/bench-fixtures",
-                "--env",
-                "FIXTURE_SCHEMA_PATH=/bench-schemas/fixture.schema.json",
-                "--env",
-                "BENCH_CLOCK_MODE=controlled",
-                "--env",
-                "MAILBOX_API_URL=http://mailbox-delivery:8027",
-                "--env",
-                f"MAILBOX_DELIVERY_TOKEN={values['MAILBOX_DELIVERY_TOKEN']}",
-                "--env",
-                "PUBLIC_MAILBOX_URL=http://mailbox:8025",
-                "--env",
-                "PUBLIC_SITE_URL=http://candidate-app:8080",
+                *mounts,
+                "--env-file",
+                str(runtime_environment_path),
                 self.image,
             ],
             check=True,
@@ -231,15 +302,15 @@ class CandidateRuntime:
                 "network",
                 "connect",
                 "--alias",
-                "candidate-app",
-                f"{self.project}_candidate-web",
+                self.config.hostname,
+                f"{self.project}_{self.config.network}",
                 self.container,
             ],
             check=True,
         )
         startup_started = time.monotonic()
         self.command(["docker", "start", self.container], check=True)
-        deadline = time.monotonic() + 60
+        deadline = time.monotonic() + self.config.health_timeout_seconds
         status = ""
         while time.monotonic() < deadline:
             inspect = self.command(
@@ -253,7 +324,7 @@ class CandidateRuntime:
                 timeout=10,
             )
             status = inspect.stdout.strip()
-            if status in {"healthy", "running"}:
+            if status in set(self.config.accepted_states):
                 break
             if status in {"unhealthy", "exited", "dead"}:
                 raise RuntimeError(f"candidate failed startup health: {status}")

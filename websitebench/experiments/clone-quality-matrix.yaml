@@ -1,0 +1,47 @@
+schema_version: websitebench.experiment.v1
+experiment_id: C001-clone-quality-matrix
+mode: exploration
+official_matrix:
+  sites: [foundry-wholesale, ember-drop, harbor-pickup]
+  model: gpt-5.5-codex
+  reasoning_efforts: [xhigh, high, medium, low]
+  track: core
+  repetitions: 1
+  concurrency: 2
+  journeys: [catalog_observability, account_lifecycle, cart_inventory, checkout_concurrency, orders_terminal]
+  seeds:
+    foundry-wholesale: {public: 1301, hidden: 9301}
+    ember-drop: {public: 1201, hidden: 9201}
+    harbor-pickup: {public: 1401, hidden: 9401}
+  budget:
+    wall_time_seconds: 7200
+    token_budget: 400000
+    browser_actions: 400
+    candidate_builds: 10
+  retries:
+    candidate_failed: 0
+    transient_evaluator_failed: 1
+    allowlisted_infrastructure_error: 2
+    backoff_seconds: [5, 30]
+  expected_jobs: 12
+  expected_journey_seed_executions: 120
+  primary_metric: exact_journey_seed_pass_rate
+calibration:
+  benchmark_id: amazon-136
+  registered_site: false
+  model: gpt-5.5-codex
+  reasoning_efforts: [xhigh, high, medium, low]
+  repetitions: 1
+  time_limit_seconds: 1200
+  official_score: false
+hitl:
+  generate_jobs: false
+  follow_up_issue: 8
+go_no_go:
+  terminal_core_jobs: 12
+  xhigh_exact_pass_rate: {minimum: 0.40, maximum: 0.90}
+  effort_spread_minimum_percentage_points: 15
+  public_hidden_gap_maximum_percentage_points: 20
+  reject_variant_all_zero_or_all_perfect: true
+  require_four_valid_calibrations: true
+  require_xhigh_calibration_mandatory_pass: true

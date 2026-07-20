@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Amazon benchmark{% endblock %}
+{% block content %}
+<div class="page">
+  <section class="page-hero compact-hero"><p class="section-label"><span data-lang="en">BENCHMARK / AMAZON</span><span data-lang="zh">基准 / AMAZON</span></p><h1><span data-lang="en">A reconstruction task grounded in observable behavior.</span><span data-lang="zh">以可观察行为为基础的重建任务。</span></h1><p><span data-lang="en">A deterministic local retail surface is tested against an exact terminal contract and a wider set of responsive, stateful browser journeys.</span><span data-lang="zh">确定性的本地零售站既要满足精确的终态合约，也要通过更广泛的响应式、有状态浏览器旅程。</span></p></section>
+
+  <section class="panel task-contract">
+    <div class="section-heading"><div><p class="section-label"><span data-lang="en">TASK DEFINITION</span><span data-lang="zh">任务定义</span></p><h2><span data-lang="en">Discover, verify, add exactly two</span><span data-lang="zh">发现、核对并准确加入两件</span></h2></div><span class="pill">ID {{ item.task_id }}</span></div>
+    <blockquote><span data-lang="en">{{ item.instruction }}</span><span data-lang="zh">{{ item.instruction_zh }}</span></blockquote>
+    <dl class="contract-grid">
+      <div><dt><span data-lang="en">Target</span><span data-lang="zh">目标</span></dt><dd>ASIN {{ item.task_contract.target.asin }}</dd></div>
+      <div><dt><span data-lang="en">Required rank</span><span data-lang="zh">指定排名</span></dt><dd>#{{ item.task_contract.target.rank }}</dd></div>
+      <div><dt><span data-lang="en">Quantity</span><span data-lang="zh">数量</span></dt><dd>{{ item.task_contract.target.quantity }}</dd></div>
+      <div><dt><span data-lang="en">Terminal method</span><span data-lang="zh">终态方法</span></dt><dd>{{ item.task_contract.method }}</dd></div>
+      <div><dt><span data-lang="en">Local port</span><span data-lang="zh">本地端口</span></dt><dd>{{ item.task_contract.canonical_port }}</dd></div>
+      <div><dt><span data-lang="en">Time limit</span><span data-lang="zh">时间限制</span></dt><dd><span data-lang="en">{{ item.task_contract.time_limit }}s</span><span data-lang="zh">{{ item.task_contract.time_limit }} 秒</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="gate-section"><div class="section-heading"><div><p class="section-label"><span data-lang="en">VALIDATION HISTORY</span><span data-lang="zh">验证历史</span></p><h2><span data-lang="en">Three retained gates with runtime attestation</span><span data-lang="zh">三道保留 Gate 与运行时证明</span></h2></div></div>
+    {% if item.metrics.gate4_status == 'stale' %}<aside class="validation-notice status-stale"><strong><span data-lang="en">Historical, not current approval.</span><span data-lang="zh">这是历史批准，不是当前批准。</span></strong> <span data-lang="en">The commerce fusion changed attested runtime files. Report metrics remain visible as provenance, and every gate is marked stale until it is rerun against the current fingerprint.</span><span data-lang="zh">电商融合改变了受证明的运行时文件。报告指标继续作为来源记录展示，但在按当前指纹重跑之前，每道 Gate 均标记为需重验。</span></aside>{% endif %}
+    <ol class="gate-timeline">{% for gate in item.gates %}<li><div class="gate-number">0{{ gate.number }}</div><article><div><div class="gate-meta"><span class="pill status-{{ gate.status }}"><span data-lang="en">{{ gate.status }}</span><span data-lang="zh">{{ gate.status_zh }}</span></span><time>{{ gate.date }}</time></div><h3><span data-lang="en">{{ gate.title }}</span><span data-lang="zh">{{ gate.title_zh }}</span></h3></div><p><span data-lang="en">{{ gate.summary }}</span><span data-lang="zh">{{ gate.summary_zh }}</span></p></article></li>{% endfor %}</ol>
+  </section>
+
+  <section class="metric-section"><div class="section-heading"><div><p class="section-label"><span data-lang="en">VERIFIED OUTCOMES</span><span data-lang="zh">验证成果</span></p><h2><span data-lang="en">What the retained reports establish</span><span data-lang="zh">现有报告能够证明什么</span></h2></div></div>
+    <div class="metric-grid benchmark-metrics">
+      <article><strong>{{ item.metrics.regression_assertions.passed }}/{{ item.metrics.regression_assertions.total }}</strong><span data-lang="en">Regression assertions</span><span data-lang="zh">回归断言</span></article>
+      <article><strong>{{ item.metrics.browser_journeys.passed }}/{{ item.metrics.browser_journeys.total }}</strong><span data-lang="en">Daily-use journeys</span><span data-lang="zh">日常使用旅程</span></article>
+      <article><strong>{{ item.metrics.semantic_checks.passed }}/{{ item.metrics.semantic_checks.total }}</strong><span data-lang="en">Semantic checks</span><span data-lang="zh">语义检查</span></article>
+      <article><strong>{{ item.metrics.stability_checks.passed }}/{{ item.metrics.stability_checks.total }}</strong><span data-lang="en">Two-frame stability</span><span data-lang="zh">双帧稳定性</span></article>
+      <article><strong>{{ item.metrics.direct_visual_checks.passed }}/{{ item.metrics.direct_visual_checks.total }}</strong><span data-lang="en">Eligible visual checks</span><span data-lang="zh">合格视觉检查</span></article>
+      <article><strong>{{ item.metrics.browseruse_trajectories.passed }}/{{ item.metrics.browseruse_trajectories.total }}</strong><span data-lang="en">Paired trajectories</span><span data-lang="zh">配对轨迹</span></article>
+    </div>
+  </section>
+
+  <section class="panel calibration-section">
+    <div class="section-heading"><div><p class="section-label"><span data-lang="en">CALIBRATION — UNRANKED</span><span data-lang="zh">校准 — 不参与排名</span></p><h2><span data-lang="en">Amazon-136 harness checks</span><span data-lang="zh">Amazon-136 Harness 检查</span></h2></div></div>
+    <p><span data-lang="en">These public checks calibrate the legacy 20-minute browser harness across reasoning efforts. They are not WebsiteBench scores, do not use /100, and never enter the official leaderboard.</span><span data-lang="zh">这些公开检查用于校准旧版 20 分钟浏览器 Harness 的不同推理档位。它们不是 WebsiteBench 分数，不使用 /100，也不进入官方排行榜。</span></p>
+    {% if item.calibrations %}
+    <div class="table-wrap"><table><thead><tr><th><span data-lang="en">Effort</span><span data-lang="zh">推理档</span></th><th><span data-lang="en">Outcome</span><span data-lang="zh">结果</span></th><th><span data-lang="en">Steps</span><span data-lang="zh">步骤</span></th><th>Tokens</th><th><span data-lang="en">Actions</span><span data-lang="zh">动作</span></th><th><span data-lang="en">Elapsed</span><span data-lang="zh">耗时</span></th><th>Harness</th></tr></thead><tbody>
+      {% for row in item.calibrations %}<tr><td>{{ row.reasoning_effort }}</td><td><span class="pill status-{{ row.status|lower }}">{{ row.status }}</span></td><td>{{ row.steps.passed }}/{{ row.steps.total }} ({{ '%.0f'|format(row.steps.pass_rate * 100) }}%)</td><td>{{ row.usage.input_tokens + row.usage.output_tokens }}</td><td>{{ row.usage.browser_actions }}</td><td>{{ '%.1f'|format(row.elapsed_seconds) }}s</td><td>{% if row.harness_error %}{{ row.harness_error.code }}{% else %}OK{% endif %}</td></tr>{% endfor %}
+    </tbody></table></div>
+    {% else %}
+    <div class="empty-state"><p><span data-lang="en">No calibration runs published yet.</span><span data-lang="zh">尚未发布校准运行。</span></p></div>
+    {% endif %}
+  </section>
+
+  <section class="two-column">
+    <article class="panel"><p class="section-label"><span data-lang="en">SCOPE</span><span data-lang="zh">范围</span></p><h2><span data-lang="en">Beyond the mandatory journey</span><span data-lang="zh">不止强制旅程</span></h2><ul class="clean-list"><li><span data-lang="en">Storefront, departments, categories, deals, and Best Sellers</span><span data-lang="zh">首页、部门、品类、优惠与畅销榜</span></li><li><span data-lang="en">Search, autocomplete, facets, sorting, and recovery states</span><span data-lang="zh">搜索、自动补全、筛选、排序与恢复状态</span></li><li><span data-lang="en">Registration, verification, sign-in, reset, and guest-cart migration</span><span data-lang="zh">注册、验证、登录、重置与游客购物车迁移</span></li><li><span data-lang="en">Local checkout, order history, cancellation, persistence, and account isolation</span><span data-lang="zh">本地结账、订单历史、取消、持久化与账号隔离</span></li><li><span data-lang="en">Desktop, tablet, mobile, and compact responsive states</span><span data-lang="zh">桌面、平板、移动与紧凑响应式状态</span></li></ul></article>
+    <article class="panel"><p class="section-label"><span data-lang="en">LIMITS</span><span data-lang="zh">限制</span></p><h2><span data-lang="en">What the local runtime does not claim</span><span data-lang="zh">本地运行时不意味着什么</span></h2><ul class="clean-list"><li><span data-lang="en">No pixel identity or full production-catalog equivalence</span><span data-lang="zh">不宣称像素完全一致或等同完整生产目录</span></li><li><span data-lang="en">Direct visual checks cover only source-eligible states</span><span data-lang="zh">直接视觉检查仅覆盖源站可用状态</span></li><li><span data-lang="en">Accounts, verification links, payment validation, and orders are local simulations only</span><span data-lang="zh">账号、验证链接、支付校验与订单都只是本地模拟</span></li><li><span data-lang="en">No raw passwords, tokens, card numbers, real payment, email delivery, or external order placement</span><span data-lang="zh">不保存明文密码、令牌或卡号，不进行真实支付、邮件投递或外部下单</span></li><li><span data-lang="en">The five paired trajectories are a scoped historical behavioral sample</span><span data-lang="zh">五条配对轨迹是有边界的历史行为样本</span></li></ul></article>
+  </section>
+</div>
+{% endblock %}

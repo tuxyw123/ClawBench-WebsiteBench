@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.registry.v1.json",
+  "title": "WebsiteBench site and family registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "corpus_root", "families", "sites"],
+  "properties": {
+    "schema_version": {"const": "websitebench.registry.v1"},
+    "corpus_root": {"$ref": "#/$defs/path"},
+    "families": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {"enum": ["train", "validation", "test"]}
+    },
+    "sites": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["driver", "variant", "family_id", "variant_id"],
+        "properties": {
+          "driver": {"$ref": "#/$defs/path"},
+          "variant": {"$ref": "#/$defs/path"},
+          "family_id": {"$ref": "#/$defs/id"},
+          "variant_id": {"$ref": "#/$defs/id"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)",
+      "not": {"pattern": "(?:^|/)\\.\\.(?:/|$)"}
+    }
+  }
+}
