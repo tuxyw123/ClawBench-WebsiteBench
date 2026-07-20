@@ -32,6 +32,9 @@ dev = [
 [project.scripts]
 clawbench-web2code = "clawbench.web2code.run:main"
 clawbench-viewer = "clawbench.viewer.cli:main"
+clawbench-trajectory = "clawbench.trajectory.cli:main"
+clawbench-variant = "clawbench.web2code.variants:main"
+clawbench-batch = "clawbench.web2code.batch:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clawbench"]
@@ -59,4 +62,3 @@ target-version = "py311"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-

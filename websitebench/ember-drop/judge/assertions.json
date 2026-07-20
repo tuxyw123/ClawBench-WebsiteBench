@@ -1,0 +1,99 @@
+{
+  "assertions": [
+    {
+      "journey": "catalog_observability",
+      "kind": "rule_visible",
+      "parameters": {
+        "per_sku_limit": 1,
+        "reservation_minutes": 10
+      }
+    },
+    {
+      "journey": "account_lifecycle",
+      "kind": "account_token_lifetime",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    },
+    {
+      "journey": "cart_inventory",
+      "kind": "inventory_policy",
+      "parameters": {
+        "extends": false,
+        "merge": "transfer",
+        "ttl_minutes": 10
+      }
+    },
+    {
+      "journey": "checkout_concurrency",
+      "kind": "payment_decline_safe",
+      "parameters": {
+        "reservation_retained": true
+      }
+    },
+    {
+      "journey": "orders_terminal",
+      "kind": "terminal_order",
+      "parameters": {
+        "cancellable": false,
+        "state": "final_sale"
+      }
+    }
+  ],
+  "journeys": [
+    "catalog_observability",
+    "account_lifecycle",
+    "cart_inventory",
+    "checkout_concurrency",
+    "orders_terminal"
+  ],
+  "policies": {
+    "cancellation": {
+      "kind": "final_sale",
+      "parameters": {
+        "cancel_allowed": false
+      }
+    },
+    "fulfillment": {
+      "kind": "shipping",
+      "parameters": {
+        "free_threshold_cents": 0,
+        "standard_cents": 900
+      }
+    },
+    "inventory": {
+      "kind": "reservation",
+      "parameters": {
+        "decline_preserves_active": true,
+        "login_merge": "transfer",
+        "repeated_action_extends_ttl": false,
+        "ttl_minutes": 10
+      }
+    },
+    "pricing": {
+      "kind": "standard",
+      "parameters": {
+        "tax_basis_points": 725
+      }
+    },
+    "quantity": {
+      "kind": "per_sku_limit",
+      "parameters": {
+        "account_scope": "lifetime",
+        "guest_scope": "device",
+        "limit": 1
+      }
+    },
+    "token_lifetime": {
+      "kind": "fixed",
+      "parameters": {
+        "reset_minutes": 60,
+        "verification_minutes": 30
+      }
+    }
+  },
+  "schema_version": "websitebench.assertions.v1",
+  "site_id": "ember-drop",
+  "variant_id": "ember-drop"
+}

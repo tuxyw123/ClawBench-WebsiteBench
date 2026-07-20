@@ -1,0 +1,76 @@
+schema_version: websitebench.driver.v1
+site_id: northstar-market
+family_id: white-label-commerce-v1
+variant_id: northstar-standard
+site_version: 1.0.0
+public_manifest: northstar-market/public/manifest.yaml
+compose: northstar-market/docker-compose.yml
+service_roles:
+  reference: reference-app
+  mailbox_query: mailbox
+  mailbox_delivery: mailbox-delivery
+  build_daemon: rootless-buildkit
+  candidate_builder: candidate-builder
+  browser_gateway: browser-gateway
+  model_proxy: model-proxy
+  agent: agent
+  evaluator: evaluator
+networks:
+  agent_control: agent-control
+  reference_web: reference-web
+  candidate_web: candidate-web
+  model_egress: model-egress
+  build_egress: build-egress
+  internet_egress: internet-egress
+urls:
+  target: http://reference-app:8080
+  mailbox: http://mailbox:8025
+  browser_gateway: http://browser-gateway:7000
+  candidate: http://candidate-app:8080
+environment:
+  candidate:
+    PORT: {type: integer, value: 8080, minimum: 1, maximum: 65535}
+    BENCH_ADMIN_PORT: {type: integer, value: 8081, minimum: 1, maximum: 65535}
+    DATA_DIR: {type: path, value: /data}
+    BENCH_FIXTURE_DIR: {type: path, value: /bench-fixtures}
+    FIXTURE_SCHEMA_PATH: {type: path, value: /bench-schemas/fixture.schema.json}
+    BENCH_CLOCK_MODE: {type: string, value: controlled}
+    MAILBOX_API_URL: {type: url, value: "http://mailbox-delivery:8027"}
+    PUBLIC_MAILBOX_URL: {type: url, value: "http://mailbox:8025"}
+    PUBLIC_SITE_URL: {type: url, value: "http://candidate-app:8080"}
+  host_secret_allowlist: [OPENAI_API_KEY]
+mounts:
+  - {source: northstar-market/reference, target: /opt/reference, kind: private_reference, read_only: true, roles: [reference]}
+  - {source: northstar-market/judge/fixtures, target: /bench-fixtures, kind: private_fixture, read_only: true, roles: [evaluator]}
+  - {source: northstar-market/judge/northstar_judge.py, target: /opt/clawbench/northstar_judge.py, kind: private_evaluator, read_only: true, roles: [evaluator]}
+  - {source: northstar-market/public, target: /task/public, kind: public, read_only: true, roles: [agent, browser_gateway, reference, evaluator]}
+candidate_runtime:
+  image_prefix: websitebench-final
+  container_prefix: wb-candidate
+  volume_prefix: wb-candidate-data
+  hostname: candidate-app
+  network_role: candidate_web
+  limits: {pids: 512, memory: 1g, cpus: 2, tmpfs: "/tmp:rw,noexec,nosuid,size=128m"}
+  health: {timeout_seconds: 60, accepted_states: [healthy, running]}
+  admin: {port_env: BENCH_ADMIN_PORT, token_env: BENCH_ADMIN_TOKEN}
+  fixture_mount: /bench-fixtures
+  schema_mount: /bench-schemas
+evaluator:
+  profile: judge
+  argv: []
+  environment:
+    BENCH_ADMIN_TOKEN: runtime-secret
+    REFERENCE_URL: http://reference-app:8080
+    REFERENCE_ADMIN_URL: http://reference-app:8081
+    CANDIDATE_URL: http://candidate-app:8080
+    CANDIDATE_ADMIN_URL: http://candidate-app:8081
+    MAILBOX_URL: http://mailbox:8025
+    MAILBOX_ADMIN_URL: http://mailbox:8026
+    BENCH_FIXTURE_DIR: /bench-fixtures
+    ARTIFACT_ROOT: /artifacts
+    VISUAL_PATH: /task/public/visual-checkpoints.json
+  facts_path: /artifacts/eval/facts.json
+scoring:
+  policy: northstar-market/public/scoring.json
+  facts_schema: schemas/facts.schema.json
+  result_schema: schemas/report.schema.json

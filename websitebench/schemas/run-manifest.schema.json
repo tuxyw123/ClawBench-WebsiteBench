@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.run-manifest.v1.json",
+  "title": "Immutable trusted WebsiteBench run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "site_id", "family_id", "variant_id", "split", "site_version", "registry_digest", "driver", "manifest", "candidate_environment", "execution_seeds", "host_secret_names", "inputs", "digest"],
+  "properties": {
+    "schema_version": {"const": "websitebench.run-manifest.v1"},
+    "site_id": {"type": "string"},
+    "family_id": {"type": "string"},
+    "variant_id": {"type": "string"},
+    "split": {"enum": ["train", "validation", "test"]},
+    "site_version": {"type": "string"},
+    "registry_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "driver": {"type": "object"},
+    "manifest": {"type": "object"},
+    "candidate_environment": {"type": "object"},
+    "execution_seeds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public", "hidden", "concurrency"],
+      "properties": {
+        "public": {"type": "integer", "minimum": 0},
+        "hidden": {"type": "integer", "minimum": 0},
+        "concurrency": {"type": "integer", "minimum": 0}
+      }
+    },
+    "host_secret_names": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["path", "sha256", "bytes"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  }
+}

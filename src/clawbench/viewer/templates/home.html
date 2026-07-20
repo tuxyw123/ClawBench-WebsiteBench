@@ -1,36 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Corpus overview{% endblock %}
+{% block title %}Amazon reconstruction benchmark{% endblock %}
 {% block content %}
-<div class="page">
-  <section class="hero">
-    <div><p class="eyebrow">WebsiteBench-first corpus inspection</p><h1>Clone task quality, <em>without a synthetic composite score.</em></h1><p>Inspect protocol completeness, task depth, visual evidence, human rubric decisions, and candidate results as distinct forms of evidence.</p><div class="hero-actions"><a class="primary button" href="/tasks">Open Task Atlas</a><a class="secondary button" href="/compare">Compare tasks</a></div></div>
-    <div class="stat-grid">
-      <article><strong>{{ summary.item_count }}</strong><span>Corpus items</span></article>
-      <article><strong>{{ summary.websitebench_count }}</strong><span>WebsiteBench</span></article>
-      <article><strong>{{ summary.legacy_count }}</strong><span>Legacy adapters</span></article>
-      <article><strong>{{ summary.official_run_count }}</strong><span>Official candidate runs</span></article>
+<div class="page home-page">
+  <section class="hero-panel">
+    <div class="hero-copy">
+      <p class="section-label"><span data-lang="en">ONE-SITE RECONSTRUCTION BENCHMARK</span><span data-lang="zh">单站重建基准</span></p>
+      <h1><span data-lang="en">Build the behavior,<br>then prove it.</span><span data-lang="zh">重建真实行为，<br>再用证据证明。</span></h1>
+      <p class="hero-lede"><span data-lang="en">WebsiteBench evaluates a local Amazon retail reconstruction across browser behavior, visual fidelity, safety, and reproducibility—without presenting validation checks as model scores.</span><span data-lang="zh">WebsiteBench 从浏览器行为、视觉保真、安全性与可复现性评估本地 Amazon 零售站重建，并明确区分验证检查与模型成绩。</span></p>
+      <div class="button-row"><a class="button primary" href="/benchmark/amazon"><span data-lang="en">Explore benchmark</span><span data-lang="zh">查看基准</span></a><a class="button secondary" href="/leaderboard"><span data-lang="en">View leaderboard</span><span data-lang="zh">查看排行榜</span></a></div>
+    </div>
+    <div class="hero-art"><img src="/static/amazon-benchmark-hero.webp" alt="Friendly 3D building robot reconstructing a generic ecommerce page" data-alt-en="Friendly 3D building robot reconstructing a generic ecommerce page" data-alt-zh="友好的 3D 建造机器人正在重建通用电商页面" width="1200" height="900"></div>
+  </section>
+
+  {% if item.metrics.gate4_status == 'stale' %}
+  <aside class="validation-notice status-stale" role="status"><strong><span data-lang="en">Revalidation required.</span><span data-lang="zh">需要重新验证。</span></strong> <span data-lang="en">The retained Gate metrics describe the pre-fusion runtime. Account, checkout, and order capabilities are now covered by new contract tests, while Gates 2–4 must be rerun before the historical approval becomes current again.</span><span data-lang="zh">现存 Gate 指标描述的是融合前的运行时。账号、结账与订单能力已由新的契约测试覆盖，但仍需重跑 Gate 2–4，历史批准才能重新成为当前批准。</span></aside>
+  {% endif %}
+
+  <section class="metric-section" aria-labelledby="validated-heading">
+    <div class="section-heading"><div><p class="section-label"><span data-lang="en">RETAINED VALIDATION RECORD</span><span data-lang="zh">保留的验证记录</span></p><h2 id="validated-heading"><span data-lang="en">Evidence before rankings</span><span data-lang="zh">先有证据，再谈排名</span></h2></div><a href="/benchmark/amazon"><span data-lang="en">See gate history →</span><span data-lang="zh">查看 Gate 历史 →</span></a></div>
+    <div class="metric-grid">
+      <article><strong>{{ item.metrics.regression_assertions.passed }}/{{ item.metrics.regression_assertions.total }}</strong><span data-lang="en">Regression assertions</span><span data-lang="zh">回归断言</span></article>
+      <article><strong>{{ item.metrics.browser_journeys.passed }}/{{ item.metrics.browser_journeys.total }}</strong><span data-lang="en">Browser journeys</span><span data-lang="zh">浏览器旅程</span></article>
+      <article><strong>{{ item.metrics.semantic_checks.passed }}/{{ item.metrics.semantic_checks.total }}</strong><span data-lang="en">Semantic & stability checks</span><span data-lang="zh">语义与稳定性检查</span></article>
+      <article><strong>{{ item.metrics.direct_visual_checks.passed }}/{{ item.metrics.direct_visual_checks.total }}</strong><span data-lang="en">Direct visual checks</span><span data-lang="zh">直接视觉检查</span></article>
+      <article><strong>{{ item.metrics.browseruse_trajectories.passed }}/{{ item.metrics.browseruse_trajectories.total }}</strong><span data-lang="en">BrowserUse trajectories</span><span data-lang="zh">BrowserUse 轨迹</span></article>
+      <article class="approval-metric status-{{ item.metrics.gate4_status }}"><strong><span class="status-dot" aria-hidden="true"></span>{% if item.metrics.gate4_status == 'approved' %}<span data-lang="en">Approved</span><span data-lang="zh">已批准</span>{% elif item.metrics.gate4_status == 'stale' %}<span data-lang="en">Revalidation due</span><span data-lang="zh">需要重验</span>{% else %}<span data-lang="en">{{ item.metrics.gate4_status }}</span><span data-lang="zh">{{ item.metrics.gate4_status }}</span>{% endif %}</strong><span data-lang="en">Gate 4 current status</span><span data-lang="zh">Gate 4 当前状态</span></article>
     </div>
   </section>
 
-  {% if summary.readiness.missing or summary.readiness.invalid %}
-  <div class="alert warning"><strong>Evidence gaps remain.</strong> {{ summary.readiness.missing }} checks are missing and {{ summary.readiness.invalid }} are invalid. These are completeness states, not quality scores.</div>
-  {% endif %}
-
-  <section class="section-grid">
-    {% for field, distribution in summary.distributions.items() %}
-    <article class="panel"><div class="section-heading"><h2>{{ field|replace('_', ' ')|title }}</h2><span>{{ distribution|length }} groups</span></div><div class="bars">
-      {% for label, count in distribution.items() %}<div><span>{{ label }}</span><meter min="0" max="{{ summary.item_count }}" value="{{ count }}"></meter><strong>{{ count }}</strong></div>{% endfor %}
-    </div></article>
-    {% endfor %}
+  <section class="leaderboard-preview panel">
+    <div class="section-heading"><div><p class="section-label"><span data-lang="en">MODEL RESULTS</span><span data-lang="zh">模型结果</span></p><h2><span data-lang="en">Leaderboard</span><span data-lang="zh">排行榜</span></h2></div><a href="/leaderboard"><span data-lang="en">Full leaderboard →</span><span data-lang="zh">完整排行榜 →</span></a></div>
+    {% if leaderboard %}
+    <div class="table-wrap"><table><thead><tr><th><span data-lang="en">Model / config</span><span data-lang="zh">模型 / 配置</span></th><th><span data-lang="en">Track</span><span data-lang="zh">赛道</span></th><th><span data-lang="en">Score</span><span data-lang="zh">总分</span></th><th><span data-lang="en">Visual</span><span data-lang="zh">视觉</span></th><th><span data-lang="en">Completed</span><span data-lang="zh">完成时间</span></th></tr></thead><tbody>{% for run in leaderboard %}<tr><th><a href="/runs/{{ run.run_id }}">{{ run.model }}</a><small>{{ run.thinking_level }}</small></th><td><span class="pill">{{ run.track }}</span></td><td class="score">{{ run.score }}</td><td>{{ run.visual }}</td><td><time>{{ run.finished_at }}</time></td></tr>{% endfor %}</tbody></table></div>
+    {% else %}<div class="empty-state" data-empty-leaderboard><span class="empty-icon">∅</span><h3><span data-lang="en">No published runs yet</span><span data-lang="zh">暂无已发布 Run</span></h3><p><span data-lang="en">Validated benchmark infrastructure is ready. Scores appear only after a schema-valid Amazon run is explicitly published with complete model metadata.</span><span data-lang="zh">基准基础设施已完成验证。只有 schema 有效、模型元数据完整且明确发布的 Amazon run 才会显示成绩。</span></p></div>{% endif %}
   </section>
 
-  <section class="panel wide">
-    <div class="section-heading"><div><p class="eyebrow">Review matrix</p><h2>Task × QA dimension</h2></div><a href="/methodology">Rubric definitions →</a></div>
-    <div class="table-wrap"><table class="matrix"><thead><tr><th>Task</th><th>Protocol</th><th>Behavior</th><th>Visual</th><th>Reproducibility</th><th>Isolation</th><th>Diversity</th><th>Gate</th></tr></thead><tbody>
-      {% for item in items %}{% set review = reviews[item.key] %}<tr><th><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a><small>{{ item.source_type }}</small></th>
-        {% for name in ['protocol_observability','behavioral_depth','visual_interaction_coverage','reproducibility','isolation_asset_compliance','diversity_non_reskin'] %}<td><span class="state state-{{ review.dimensions[name].rating }}">{{ review.dimensions[name].rating|replace('_',' ') }}</span></td>{% endfor %}
-        <td><span class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</span></td></tr>{% endfor %}
-    </tbody></table></div>
+  <section class="evidence-preview">
+    <div class="section-heading"><div><p class="section-label"><span data-lang="en">VISUAL RECORD</span><span data-lang="zh">视觉记录</span></p><h2><span data-lang="en">Selected evidence</span><span data-lang="zh">精选证据</span></h2></div><a href="/evidence"><span data-lang="en">Browse all {{ item.evidence.count }} images →</span><span data-lang="zh">浏览全部 {{ item.evidence.count }} 张图片 →</span></a></div>
+    <div class="evidence-strip">{% for row in featured_evidence %}<a class="evidence-tile" href="/evidence?gate={{ row.gate }}&type={{ row.type }}"><div class="evidence-image"><img loading="lazy" src="{{ row.url }}" alt="{{ row.caption }}" data-alt-en="{{ row.caption }}" data-alt-zh="{{ row.caption_zh }}"></div><div><span class="pill"><span data-lang="en">G{{ row.gate }} · {{ row.type }}</span><span data-lang="zh">G{{ row.gate }} · {{ row.type_zh }}</span></span><p><span data-lang="en">{{ row.caption }}</span><span data-lang="zh">{{ row.caption_zh }}</span></p></div></a>{% endfor %}</div>
   </section>
+
+  <section class="benchmark-intro panel split-panel"><div><p class="section-label"><span data-lang="en">WHAT IS MEASURED</span><span data-lang="zh">评估内容</span></p><h2><span data-lang="en">One scored task, one fused commerce surface</span><span data-lang="zh">一个评分任务，一个融合的电商能力面</span></h2></div><div><p><span data-lang="en">The scored journey still discovers the number-two external SSD and commits exactly one quantity-two cart action. The same Amazon runtime now also supports local registration, verification, sign-in, guest-cart migration, checkout, orders, cancellation, and password reset. These extensions are functional benchmark content, but are not silently added to the current score.</span><span data-lang="zh">评分旅程仍要求发现排名第二的外置 SSD，并准确提交一次数量为二的购物车操作。同一 Amazon 运行时现已支持本地注册、验证、登录、游客购物车迁移、结账、订单、取消与密码重置；这些扩展是可操作的 benchmark 内容，但不会被悄悄计入当前分数。</span></p><a class="text-link" href="/methodology"><span data-lang="en">Read the methodology →</span><span data-lang="zh">阅读方法说明 →</span></a></div></section>
 </div>
 {% endblock %}

@@ -4,21 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token }}">
-  <title>{% block title %}Clone Atlas{% endblock %} · WebsiteBench</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
-  <script defer src="{{ url_for('static', path='app.js') }}"></script>
+  <title>{% block title %}Amazon benchmark{% endblock %} · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main"><span data-lang="en">Skip to content</span><span data-lang="zh">跳到正文</span></a>
   <header class="site-header">
-    <a class="brand" href="/"><span class="brand-mark">WB</span><span>Clone Atlas<small>Corpus QA viewer</small></span></a>
-    {% if session %}
-      <nav aria-label="Primary navigation">
-        <a href="/">Overview</a><a href="/tasks">Task Atlas</a><a href="/compare">Compare</a><a href="/methodology">Methodology</a>
+    <div class="site-header-inner">
+      <a class="brand" href="/" aria-label="WebsiteBench home" data-aria-label-en="WebsiteBench home" data-aria-label-zh="WebsiteBench 首页"><span class="brand-dot" aria-hidden="true"></span><span>./WebsiteBench</span></a>
+      <nav class="nav-links" aria-label="Primary navigation" data-aria-label-en="Primary navigation" data-aria-label-zh="主导航">
+        <a href="/leaderboard"><span data-lang="en">Leaderboard</span><span data-lang="zh">排行榜</span></a>
+        <a href="/benchmark/amazon">Amazon</a>
+        <a href="/evidence"><span data-lang="en">Evidence</span><span data-lang="zh">证据</span></a>
+        <a href="/methodology"><span data-lang="en">Methodology</span><span data-lang="zh">方法</span></a>
       </nav>
-      <div class="header-actions"><a class="link-button" href="/api/reviews/export">Export</a><span class="profile-pill">{{ profile }}</span><form method="post" action="/logout"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="link-button" type="submit">Sign out</button></form></div>
-    {% endif %}
+      <div class="header-actions">
+        <button id="language-toggle" class="text-button language-toggle" type="button" data-language-toggle aria-label="Switch to Chinese">
+          <span data-lang="en">中文</span><span data-lang="zh">EN</span>
+        </button>
+        {% if profile == 'internal' %}
+          {% if session %}<a class="admin-link" href="/admin"><span data-lang="en">Admin</span><span data-lang="zh">后台</span></a>
+          <form method="post" action="/logout"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button class="text-button" type="submit"><span data-lang="en">Sign out</span><span data-lang="zh">退出</span></button></form>
+          {% else %}<a class="admin-link" href="/login"><span data-lang="en">Admin</span><span data-lang="zh">后台</span></a>{% endif %}
+        {% endif %}
+      </div>
+    </div>
   </header>
-  <main>{% block content %}{% endblock %}</main>
-  <footer><span>WebsiteBench Clone Atlas</span><span>Readiness, human QA, official scores, and legacy evidence stay separate.</span></footer>
+  <main id="main">{% block content %}{% endblock %}</main>
+  <footer class="site-footer">
+    <div><strong>./WebsiteBench</strong><span data-lang="en">A public benchmark record with a protected review workspace.</span><span data-lang="zh">公开基准记录与受保护的审核工作区。</span></div>
+    <p><span data-lang="en">Source-site names, screenshots, and public content remain the property of their respective owners. Review terms before redistribution.</span><span data-lang="zh">源站名称、截图及公开内容的权利归各自所有者所有；再分发前请审查相关条款。</span></p>
+  </footer>
 </body>
 </html>

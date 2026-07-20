@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.facts.v1.json",
+  "title": "Unscored WebsiteBench judge facts and evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "journeys", "hard_failures", "failures", "evidence", "seeds", "versions"],
+  "properties": {
+    "schema_version": {"const": "websitebench.facts.v1"},
+    "visual": {"type": "array", "items": {"$ref": "#/$defs/visual_fact"}},
+    "interactions": {"type": "array", "items": {"$ref": "#/$defs/pass_fact"}},
+    "journeys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "seed", "terminal_passed", "checkpoints"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "seed": {"type": "integer"},
+          "terminal_passed": {"type": "boolean"},
+          "checkpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "passed", "expected", "actual", "evidence_ids"],
+              "properties": {
+                "id": {"type": "string"}, "passed": {"type": "boolean"},
+                "expected": {}, "actual": {},
+                "evidence_ids": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "robustness": {"type": "array", "items": {"$ref": "#/$defs/pass_fact"}},
+    "efficiency": {
+      "type": "object",
+      "propertyNames": {"pattern": "^[a-z][a-z0-9_]*$"},
+      "additionalProperties": {"type": "number", "minimum": 0}
+    },
+    "hard_failures": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["code", "message", "evidence_ids"],
+        "properties": {
+          "code": {"type": "string", "pattern": "^[A-Z0-9_]+$"},
+          "message": {"type": "string", "minLength": 1},
+          "evidence_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "failures": {"type": "array", "items": {"$ref": "#/$defs/failure"}},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "seeds": {"type": "array", "items": {"$ref": "#/$defs/seed_result"}},
+    "resources": {"$ref": "#/$defs/resources"},
+    "network": {"$ref": "#/$defs/network"},
+    "usage": {"$ref": "#/$defs/usage"},
+    "versions": {"type": "object", "additionalProperties": {"type": "string"}}
+  },
+  "$defs": {
+    "pass_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "passed"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "passed": {"type": "boolean"}
+      }
+    },
+    "visual_fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "similarity"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "similarity": {"type": "number", "minimum": 0, "maximum": 1},
+        "passed": {"type": "boolean"},
+        "ssim": {"type": "number", "minimum": 0, "maximum": 1},
+        "edge_f1": {"type": "number", "minimum": 0, "maximum": 1},
+        "color_histogram": {"type": "number", "minimum": 0, "maximum": 1},
+        "text": {"type": "number", "minimum": 0, "maximum": 1},
+        "geometry": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "severity", "summary", "expected", "actual", "reproduction", "evidence_ids"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "category": {
+          "enum": [
+            "build", "startup", "visual", "interaction", "authentication",
+            "session", "cart", "checkout", "order", "inventory", "time",
+            "persistence", "concurrency", "security", "anti_cheat", "efficiency"
+          ]
+        },
+        "severity": {"enum": ["hard_fail", "critical", "major", "minor"]},
+        "summary": {"type": "string", "minLength": 1},
+        "expected": {},
+        "actual": {},
+        "reproduction": {"type": "array", "items": {"type": "string"}},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "path", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["screenshot", "action_log", "network_log", "state", "build_log", "test_log", "diff"]},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "seed_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed", "purpose", "reset_passed", "tests_passed", "tests_total"],
+      "properties": {
+        "seed": {"type": "integer"},
+        "purpose": {"type": "string", "minLength": 1},
+        "reset_passed": {"type": "boolean"},
+        "tests_passed": {"type": "integer", "minimum": 0},
+        "tests_total": {"type": "integer", "minimum": 0}
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["build_seconds", "startup_seconds", "image_bytes", "source_bytes", "peak_memory_bytes", "p95_latency_ms"],
+      "properties": {
+        "build_seconds": {"type": "number", "minimum": 0},
+        "startup_seconds": {"type": "number", "minimum": 0},
+        "image_bytes": {"type": "integer", "minimum": 0},
+        "source_bytes": {"type": "integer", "minimum": 0},
+        "peak_memory_bytes": {"type": "integer", "minimum": 0},
+        "p95_latency_ms": {"type": "number", "minimum": 0}
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_requests", "blocked_requests", "reference_requests", "internet_requests"],
+      "properties": {
+        "runtime_requests": {"type": "integer", "minimum": 0},
+        "blocked_requests": {"type": "integer", "minimum": 0},
+        "reference_requests": {"type": "integer", "minimum": 0},
+        "internet_requests": {"type": "integer", "minimum": 0}
+      }
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_tokens", "output_tokens", "browser_actions", "candidate_builds", "human_messages", "human_minutes"],
+      "properties": {
+        "input_tokens": {"type": "integer", "minimum": 0},
+        "output_tokens": {"type": "integer", "minimum": 0},
+        "browser_actions": {"type": "integer", "minimum": 0},
+        "candidate_builds": {"type": "integer", "minimum": 0},
+        "human_messages": {"type": "integer", "minimum": 0},
+        "human_minutes": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

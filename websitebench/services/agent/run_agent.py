@@ -17,7 +17,7 @@ def run_turn(
     *,
     timeout_seconds: float,
     token_budget_remaining: int,
-) -> tuple[int, str | None, int, bool]:
+) -> tuple[int, str | None, int, int, bool]:
     process = subprocess.Popen(
         command,
         cwd="/workspace/candidate",
@@ -27,7 +27,8 @@ def run_turn(
         bufsize=1,
     )
     thread_id = None
-    used_tokens = 0
+    input_tokens = 0
+    output_tokens = 0
     exhausted = False
     deadline = time.monotonic() + timeout_seconds
     assert process.stdout is not None
@@ -51,10 +52,9 @@ def run_turn(
                 thread_id = event.get("thread_id")
             if event.get("type") == "turn.completed":
                 usage = event.get("usage", {})
-                used_tokens = int(usage.get("input_tokens", 0)) + int(
-                    usage.get("output_tokens", 0)
-                )
-                if used_tokens >= token_budget_remaining:
+                input_tokens = int(usage.get("input_tokens", 0))
+                output_tokens = int(usage.get("output_tokens", 0))
+                if input_tokens + output_tokens >= token_budget_remaining:
                     process.terminate()
                     exhausted = True
                     break
@@ -66,7 +66,7 @@ def run_turn(
     except subprocess.TimeoutExpired:
         process.kill()
         return_code = process.wait()
-    return return_code, thread_id, used_tokens, exhausted
+    return return_code, thread_id, input_tokens, output_tokens, exhausted
 
 
 def main() -> int:
@@ -90,16 +90,18 @@ def main() -> int:
     ]
     started = time.monotonic()
     token_budget = int(task["budget"]["token_budget"])
-    total_tokens = 0
+    total_input_tokens = 0
+    total_output_tokens = 0
     messages_path = artifacts / "agent-messages.jsonl"
     with messages_path.open("w", encoding="utf-8") as output:
-        return_code, thread_id, used, exhausted = run_turn(
+        return_code, thread_id, used_input, used_output, exhausted = run_turn(
             [*base_command, prompt],
             output,
             timeout_seconds=task["budget"]["wall_time_seconds"],
             token_budget_remaining=token_budget,
         )
-        total_tokens += used
+        total_input_tokens += used_input
+        total_output_tokens += used_output
         if task["track"] == "hitl" and return_code == 0 and not exhausted and thread_id:
             intervention_path = artifacts.parent / "human-interventions.jsonl"
             processed = 0
@@ -120,7 +122,7 @@ def main() -> int:
                 intervention = records[processed]
                 processed += 1
                 remaining_time = max(1, task["budget"]["wall_time_seconds"] - (time.monotonic() - started))
-                return_code, resumed_thread, used, exhausted = run_turn(
+                return_code, resumed_thread, used_input, used_output, exhausted = run_turn(
                     [
                         *base_command,
                         "resume",
@@ -129,9 +131,12 @@ def main() -> int:
                     ],
                     output,
                     timeout_seconds=remaining_time,
-                    token_budget_remaining=max(1, token_budget - total_tokens),
+                    token_budget_remaining=max(
+                        1, token_budget - total_input_tokens - total_output_tokens
+                    ),
                 )
-                total_tokens += used
+                total_input_tokens += used_input
+                total_output_tokens += used_output
                 thread_id = resumed_thread or thread_id
                 if return_code or exhausted or intervention.get("final"):
                     break
@@ -140,7 +145,9 @@ def main() -> int:
             {
                 "exit_code": return_code,
                 "thread_id": thread_id,
-                "tokens": total_tokens,
+                "input_tokens": total_input_tokens,
+                "output_tokens": total_output_tokens,
+                "tokens": total_input_tokens + total_output_tokens,
                 "budget_exhausted": exhausted,
             }
         )

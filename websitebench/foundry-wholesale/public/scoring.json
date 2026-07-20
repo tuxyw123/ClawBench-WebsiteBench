@@ -1,0 +1,101 @@
+{
+  "dimensions": {
+    "efficiency": {
+      "aggregation": "one point per satisfied target",
+      "max_score": 5,
+      "targets": {
+        "clean_build_seconds": {
+          "operator": "<=",
+          "value": 600
+        },
+        "image_bytes": {
+          "operator": "<=",
+          "value": 1610612736
+        },
+        "p95_latency_ms_at_10_concurrent": {
+          "operator": "<=",
+          "value": 1000
+        },
+        "peak_memory_bytes": {
+          "operator": "<=",
+          "value": 1073741824
+        },
+        "source_bytes": {
+          "operator": "<=",
+          "value": 52428800
+        }
+      }
+    },
+    "interactions": {
+      "aggregation": "passed assertions divided by total assertions times max_score",
+      "groups": [
+        "catalog_observability",
+        "account_lifecycle",
+        "cart_inventory",
+        "checkout_concurrency",
+        "orders_terminal"
+      ],
+      "max_score": 20
+    },
+    "journeys": {
+      "aggregation": "sum execution score divided by 50 times 40",
+      "aggregation_kind": "normalized-executions-v1",
+      "execution_count": 10,
+      "execution_score_total": 50,
+      "journey_max_score": 5,
+      "journeys": [
+        "catalog_observability",
+        "account_lifecycle",
+        "cart_inventory",
+        "checkout_concurrency",
+        "orders_terminal"
+      ],
+      "max_score": 40,
+      "terminal_failure_cap": 2.5
+    },
+    "robustness": {
+      "aggregation": "one point per passing group",
+      "groups": [
+        "rule-01",
+        "rule-02",
+        "rule-03",
+        "rule-04",
+        "rule-05",
+        "rule-06",
+        "rule-07",
+        "rule-08",
+        "rule-09",
+        "rule-10",
+        "rule-11",
+        "rule-12",
+        "rule-13",
+        "rule-14",
+        "rule-15"
+      ],
+      "max_score": 15
+    },
+    "visual": {
+      "aggregation": "mean checkpoint similarity times max_score",
+      "checkpoint_file": "visual-checkpoints.json",
+      "checkpoint_metrics": {
+        "color_histogram": 0.15,
+        "edge_f1": 0.2,
+        "geometry": 0.15,
+        "ssim": 0.3,
+        "text": 0.2
+      },
+      "max_score": 20
+    }
+  },
+  "hard_failure_score": 0,
+  "hard_failures": [
+    "candidate-build-failed",
+    "candidate-startup-failed",
+    "runtime-reference-request",
+    "runtime-internet-request",
+    "private-source-copy",
+    "privileged-runtime"
+  ],
+  "schema_version": "websitebench.scoring.v1",
+  "site_version": "1.0.0"
+}

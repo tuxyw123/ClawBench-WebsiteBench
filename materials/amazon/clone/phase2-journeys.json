@@ -95,10 +95,10 @@
     },
     {
       "id": "J14",
-      "name": "Safe account and purchase boundaries",
+      "name": "Local account and purchase safety",
       "start": "/account",
-      "trajectory": ["open account boundary", "open orders", "attempt checkout", "visit unknown route"],
-      "terminal": "local no-effect boundary or 404"
+      "trajectory": ["open local account entry", "open account-isolated orders entry", "verify anonymous checkout sign-in gate", "visit unknown route"],
+      "terminal": "local sign-in gate or 404"
     }
   ]
 }

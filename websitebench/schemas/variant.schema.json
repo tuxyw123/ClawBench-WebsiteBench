@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.variant.v1.json",
+  "title": "Declarative white-label commerce variant",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "family_id", "site_id", "variant_id", "site_version", "display_name", "instruction", "catalog", "seeds", "policies", "journeys", "assertions"],
+  "properties": {
+    "schema_version": {"const": "websitebench.variant.v1"},
+    "family_id": {"const": "white-label-commerce-v1"},
+    "site_id": {"$ref": "#/$defs/id"},
+    "variant_id": {"$ref": "#/$defs/id"},
+    "site_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "instruction": {"type": "string", "minLength": 20},
+    "golden_source": {"$ref": "#/$defs/id"},
+    "catalog": {
+      "type": "object", "additionalProperties": false,
+      "required": ["brand", "categories", "product_nouns", "base_price_cents"],
+      "properties": {
+        "brand": {"type": "string", "minLength": 1},
+        "categories": {"type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 2}},
+        "product_nouns": {"type": "array", "minItems": 8, "uniqueItems": true, "items": {"type": "string", "minLength": 2}},
+        "base_price_cents": {"type": "integer", "minimum": 100}
+      }
+    },
+    "seeds": {
+      "type": "object", "additionalProperties": false,
+      "required": ["public", "hidden", "concurrency"],
+      "properties": {
+        "public": {"type": "integer", "minimum": 1},
+        "hidden": {"type": "integer", "minimum": 1},
+        "concurrency": {"type": "integer", "minimum": 1}
+      }
+    },
+    "policies": {
+      "type": "object", "additionalProperties": false,
+      "required": ["quantity", "pricing", "inventory", "fulfillment", "cancellation", "token_lifetime"],
+      "properties": {
+        "quantity": {"$ref": "#/$defs/policy"},
+        "pricing": {"$ref": "#/$defs/policy"},
+        "inventory": {"$ref": "#/$defs/policy"},
+        "fulfillment": {"$ref": "#/$defs/policy"},
+        "cancellation": {"$ref": "#/$defs/policy"},
+        "token_lifetime": {"$ref": "#/$defs/policy"}
+      }
+    },
+    "journeys": {
+      "type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true,
+      "items": {"enum": ["catalog_observability", "account_lifecycle", "cart_inventory", "checkout_concurrency", "orders_terminal"]}
+    },
+    "assertions": {
+      "type": "array", "minItems": 5,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["kind", "journey", "parameters"],
+        "properties": {
+          "kind": {"enum": ["rule_visible", "account_token_lifetime", "quantity_policy", "pricing_policy", "inventory_policy", "fulfillment_policy", "payment_decline_safe", "idempotent_checkout", "atomic_concurrency", "order_isolation", "cancellation_policy", "terminal_order"]},
+          "journey": {"enum": ["catalog_observability", "account_lifecycle", "cart_inventory", "checkout_concurrency", "orders_terminal"]},
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null"]}
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "parameters"],
+      "properties": {
+        "kind": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {"type": ["string", "number", "integer", "boolean", "null", "array", "object"]}
+        }
+      }
+    }
+  }
+}

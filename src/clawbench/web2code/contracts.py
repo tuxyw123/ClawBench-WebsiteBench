@@ -218,10 +218,28 @@ def validate_site_contract(
                 )
             )
         journey = dimensions.get("journeys", {})
-        if len(journey.get("journeys", [])) * journey.get("journey_max_score", 0) != journey.get(
-            "max_score"
-        ):
-            problems.append(ContractProblem("scoring.dimensions.journeys", "journey points do not add up"))
+        aggregation_kind = journey.get("aggregation_kind", "sum-journeys-v1")
+        if aggregation_kind == "sum-journeys-v1":
+            if len(journey.get("journeys", [])) * journey.get("journey_max_score", 0) != journey.get(
+                "max_score"
+            ):
+                problems.append(ContractProblem("scoring.dimensions.journeys", "journey points do not add up"))
+        elif aggregation_kind == "normalized-executions-v1":
+            expected_total = len(journey.get("journeys", [])) * 2 * journey.get("journey_max_score", 0)
+            if journey.get("execution_score_total") != expected_total:
+                problems.append(
+                    ContractProblem(
+                        "scoring.dimensions.journeys.execution_score_total",
+                        f"must equal five journeys times two seeds ({expected_total})",
+                    )
+                )
+        else:
+            problems.append(
+                ContractProblem(
+                    "scoring.dimensions.journeys.aggregation_kind",
+                    f"unsupported aggregation kind {aggregation_kind!r}",
+                )
+            )
         robustness = dimensions.get("robustness", {})
         if len(robustness.get("groups", [])) != robustness.get("max_score"):
             problems.append(

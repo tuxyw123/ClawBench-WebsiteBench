@@ -9,6 +9,7 @@ import mimetypes
 import re
 import secrets
 import sqlite3
+import sys
 import time
 from contextlib import closing, contextmanager
 from datetime import datetime, timezone
@@ -21,6 +22,17 @@ from urllib.parse import parse_qs, parse_qsl, unquote, urlsplit
 
 
 ROOT = Path(__file__).resolve().parent
+REPO_ROOT = ROOT.parents[2]
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from clawbench.amazon_contract import (  # noqa: E402
+    load_amazon_runtime_contract,
+)
+
+
+RUNTIME = load_amazon_runtime_contract(REPO_ROOT)["runtime"]
 STATIC_ROOT = ROOT / "static"
 SITE_CATALOG_PATH = STATIC_ROOT / "site-catalog.json"
 DEFAULT_DB = ROOT / "amazon.sqlite3"
@@ -295,6 +307,9 @@ def init_db(path: Path) -> None:
                 delivery_label TEXT NOT NULL DEFAULT 'New York 10001',
                 currency TEXT NOT NULL DEFAULT 'USD',
                 signed_in INTEGER NOT NULL DEFAULT 0 CHECK (signed_in IN (0, 1)),
+                user_id TEXT,
+                account_email TEXT,
+                csrf_token TEXT NOT NULL,
                 created_at TEXT NOT NULL,
                 last_seen_at TEXT NOT NULL
             );
@@ -395,6 +410,19 @@ def init_db(path: Path) -> None:
             CREATE INDEX IF NOT EXISTS idx_wishlist_session_time
                 ON wishlist(session_id, added_at_epoch DESC, id DESC);
             """
+        )
+        session_columns = {
+            str(row[1]) for row in db.execute("PRAGMA table_info(sessions)").fetchall()
+        }
+        if "user_id" not in session_columns:
+            db.execute("ALTER TABLE sessions ADD COLUMN user_id TEXT")
+        if "account_email" not in session_columns:
+            db.execute("ALTER TABLE sessions ADD COLUMN account_email TEXT")
+        if "csrf_token" not in session_columns:
+            db.execute("ALTER TABLE sessions ADD COLUMN csrf_token TEXT")
+        db.execute(
+            "UPDATE sessions SET csrf_token = lower(hex(randomblob(24))) "
+            "WHERE csrf_token IS NULL OR csrf_token = ''"
         )
         result = db.execute("PRAGMA quick_check").fetchone()
         if not result or result[0] != "ok":
@@ -587,8 +615,11 @@ class AmazonHandler(BaseHTTPRequestHandler):
             token = secrets.token_urlsafe(32)
             try:
                 db.execute(
-                    "INSERT INTO sessions (id, created_at, last_seen_at) VALUES (?, ?, ?)",
-                    (token, now, now),
+                    """
+                    INSERT INTO sessions (id, csrf_token, created_at, last_seen_at)
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (token, secrets.token_hex(24), now, now),
                 )
             except sqlite3.IntegrityError:
                 continue
@@ -608,7 +639,7 @@ class AmazonHandler(BaseHTTPRequestHandler):
         if session_id is not None:
             session = db.execute(
                 """
-                SELECT delivery_label, currency, signed_in
+                SELECT delivery_label, currency, signed_in, account_email, csrf_token
                 FROM sessions WHERE id = ?
                 """,
                 (session_id,),
@@ -619,6 +650,13 @@ class AmazonHandler(BaseHTTPRequestHandler):
             ),
             "currency": str(session["currency"]) if session else "USD",
             "signed_in": bool(session["signed_in"]) if session else False,
+            "email": str(session["account_email"]) if session and session["account_email"] else None,
+            "display_name": (
+                str(session["account_email"]).split("@", 1)[0]
+                if session and session["account_email"]
+                else None
+            ),
+            "csrf_token": str(session["csrf_token"]) if session else None,
             "language": "en-US",
         }
 
@@ -1869,7 +1907,7 @@ def port_number(value: str) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the local Amazon task backend.")
     parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=port_number, default=8153)
+    parser.add_argument("--port", type=port_number, default=RUNTIME["canonical_port"])
     parser.add_argument("--db", type=Path, default=DEFAULT_DB)
     args = parser.parse_args()
     if args.host not in ALLOWED_BIND_HOSTS:

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.attempt.v1.json",
+  "title": "WebsiteBench persisted attempt journal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "attempt_id", "run_id", "job_id", "attempt_number", "stage", "created_at", "updated_at", "events", "process_exits", "facts_validation", "outcome"],
+  "properties": {
+    "schema_version": {"const": "websitebench.attempt.v1"},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "attempt_number": {"type": "integer", "minimum": 1},
+    "stage": {"enum": ["prepared", "agent", "candidate_finalize", "source_policy", "candidate_build", "candidate_start", "candidate_health", "evaluator", "facts_validation", "host_scoring", "result_validation", "finalized", "terminal"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "events": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["sequence", "stage", "timestamp", "evidence"],
+        "properties": {
+          "sequence": {"type": "integer", "minimum": 1},
+          "stage": {"$ref": "#/$defs/stage"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "evidence": {"type": "object"}
+        }
+      }
+    },
+    "process_exits": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["process", "exit_code"],
+        "properties": {
+          "process": {"type": "string", "minLength": 1},
+          "exit_code": {"type": ["integer", "null"]}
+        }
+      }
+    },
+    "facts_validation": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["valid", "errors"],
+          "properties": {
+            "valid": {"type": "boolean"},
+            "errors": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      ]
+    },
+    "outcome": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "reason_code", "stage", "message", "retry", "result_ref", "facts_valid"],
+          "properties": {
+            "kind": {"enum": ["scored", "candidate_failed", "evaluator_failed", "infrastructure_error"]},
+            "reason_code": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+            "stage": {"$ref": "#/$defs/stage"},
+            "message": {"type": "string", "minLength": 1},
+            "retry": {"$ref": "#/$defs/retry"},
+            "result_ref": {"type": ["string", "null"]},
+            "facts_valid": {"type": ["boolean", "null"]}
+          }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "stage": {"enum": ["prepared", "agent", "candidate_finalize", "source_policy", "candidate_build", "candidate_start", "candidate_health", "evaluator", "facts_validation", "host_scoring", "result_validation", "finalized", "terminal"]},
+    "retry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["retryable", "maximum_attempts", "retry_number", "delay_seconds", "retry_at"],
+      "properties": {
+        "retryable": {"type": "boolean"},
+        "maximum_attempts": {"type": "integer", "minimum": 1, "maximum": 3},
+        "retry_number": {"type": "integer", "minimum": 1},
+        "delay_seconds": {"type": ["integer", "null"], "enum": [5, 30, null]},
+        "retry_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}

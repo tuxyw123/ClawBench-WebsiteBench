@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-render="fastapi-ssr" data-route="{{ path }}">
+<html lang="en" data-render="fastapi-ssr" data-route="{{ path }}" data-server-owned="{{ 'true' if server_owned else 'false' }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
       <div class="boundary-icon" aria-hidden="true">✓</div>
       <h2 id="boundary-title">This action stops here</h2>
       <p id="boundary-message"></p>
-      <p class="boundary-note">No account, address, or payment information is requested or stored.</p>
+      <p class="boundary-note">External accounts, payments, and order placement remain disabled; local benchmark state stays on this server.</p>
       <button class="amazon-button amazon-button-primary boundary-return" type="button" data-close-dialog>Continue shopping</button>
     </dialog>
     <dialog id="menu-dialog" class="menu-dialog" aria-labelledby="menu-title">{{ drawer_markup | safe }}</dialog>

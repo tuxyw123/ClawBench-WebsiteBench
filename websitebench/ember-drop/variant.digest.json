@@ -1,0 +1,24 @@
+{
+  "adapter_version": "white-label-commerce-v1.1",
+  "behavior_fingerprint": "590b95333ed200443fe4e3f64c13332bd58b35028b3955a92469d2e595822a2a",
+  "compiler_version": "websitebench.variant-compiler.v1",
+  "digest": "sha256:1d4cc5a2151c9a9b1effe5df649386380c101bed7f86d1498b81b03d999e99c4",
+  "files": {
+    "judge/assertions.json": "763dfcbb4bf7f32d45b35a447c2cdbb4106ebc5cb1cbc57eda1f7d6691ad9046",
+    "judge/fixtures/9201.json": "8d065c44e34fb781924e2b1fae9c7ed26c46acd46930a2d8f88a7fd089190a1f",
+    "judge/fixtures/9299.json": "3623958cd8f1c0a5a9b1b468e4fc4f28fed59218e722c155b0ae0a4e1b721fb6",
+    "public/PRD.md": "e33013f89ac108a90c26b061ce1ccbf7419120a00445f0780e7b57a735370cb2",
+    "public/candidate-contract.md": "b387b1b766184cc187cf464e7ac10914d93e830b5293b1ecd537894fd7b2a192",
+    "public/fixtures/1201.json": "6f460ec162c0d7964e1a7a011a52953d4d27e4b1e4ec07ba360c8e8d1dbdc144",
+    "public/manifest.yaml": "205e3437270fa66045f1940b5362ce1f5d0e99b31a51196a6622779ec58f338e",
+    "public/public-smoke-cases.json": "a835fd2e6c18ecf734abe0f0517095f3e41357bac6f2108bac3cabdcddb2cf8a",
+    "public/scoring.json": "42c19f8a7afda643c0dc28d1a1f5c54fa32cdc07ed6b0f642e6361ea9899e90d",
+    "public/visual-checkpoints.json": "28f172b136d220b65eab89e31b0d40238b3c212c714f84d0fb43e5a55c7aba37",
+    "task.json": "6bf48f822e238c7098cc1f2532e47191d6ecb51333c2e446b17ca895696b5741",
+    "variant.yaml": "9b6aec1e8fa80208cab27af6336c24caf1e9d2cd78aae08d2bf5ceb955f10dc2"
+  },
+  "schema_version": "websitebench.variant-lock.v1",
+  "semantic_spec_sha256": "25cdfac5dadef034e194557870c758dad734acfe8ed49013c947e0001bb56618",
+  "site_id": "ember-drop",
+  "variant_id": "ember-drop"
+}

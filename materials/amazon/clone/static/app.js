@@ -1017,7 +1017,7 @@
   }
 
   function boundaryKind(pathname) {
-    if (pathname.startsWith('/checkout')) return pathname.includes('payment') ? 'payment' : 'checkout';
+    if (pathname.startsWith('/checkout/payment')) return 'payment';
     if (pathname.startsWith('/buy-now')) return 'buy-now';
     if (pathname.startsWith('/local-boundary')) return new URLSearchParams(window.location.search).get('kind') || 'service';
     return '';
@@ -1221,7 +1221,7 @@
     if (boundaryDialog.open) boundaryDialog.close();
     const kind = boundaryKind(window.location.pathname);
     if (!kind) return;
-    const destination = kind === 'checkout' || kind === 'payment' ? CART_PATH : kind === 'buy-now' ? PRODUCT_PATH : '/';
+    const destination = kind === 'payment' ? CART_PATH : kind === 'buy-now' ? PRODUCT_PATH : '/';
     window.location.assign(destination);
   }
 
@@ -1492,6 +1492,13 @@
   }
 
   async function init() {
+    // Authentication, checkout, and order pages are rendered by the commerce
+    // adapter.  Re-running the catalogue renderer here would replace their
+    // forms with the historical external-boundary placeholder.
+    if (document.documentElement.dataset.serverOwned === 'true') {
+      createIcons();
+      return;
+    }
     renderHeader();
     renderFooter();
     renderDrawer();

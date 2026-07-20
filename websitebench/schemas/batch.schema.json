@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/websitebench.batch.v1.json",
+  "title": "Immutable WebsiteBench batch plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "selectors", "dimensions", "frozen_inputs", "jobs", "digest"],
+  "properties": {
+    "schema_version": {"const": "websitebench.batch.v1"},
+    "selectors": {
+      "type": "object", "additionalProperties": false,
+      "required": ["site_ids", "family_id", "split", "resolved_site_ids"],
+      "properties": {
+        "site_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "family_id": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/id"}]},
+        "split": {"type": ["string", "null"], "enum": ["train", "validation", "test", null]},
+        "resolved_site_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}}
+      },
+      "oneOf": [
+        {"properties": {"site_ids": {"minItems": 1}, "family_id": {"type": "null"}, "split": {"type": "null"}}},
+        {"properties": {"site_ids": {"maxItems": 0}, "family_id": {"type": "string"}, "split": {"type": "null"}}},
+        {"properties": {"site_ids": {"maxItems": 0}, "family_id": {"type": "null"}, "split": {"type": "string"}}}
+      ]
+    },
+    "dimensions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["models", "thinking_levels", "tracks", "repetitions", "concurrency"],
+      "properties": {
+        "models": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "thinking_levels": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["xhigh", "high", "medium", "low"]}},
+        "tracks": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["core", "hitl"]}},
+        "repetitions": {"type": "integer", "minimum": 1},
+        "concurrency": {"type": "integer", "minimum": 1, "maximum": 8}
+      }
+    },
+    "frozen_inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["registry_digest", "run_manifests", "prompt_sha256", "code_commit", "source_tree_sha256", "compose_inputs", "image_inputs", "budgets", "public_inputs"],
+      "properties": {
+        "registry_digest": {"$ref": "#/$defs/sha"},
+        "run_manifests": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/digest"}},
+        "prompt_sha256": {"$ref": "#/$defs/sha"},
+        "code_commit": {"type": "string", "minLength": 1},
+        "source_tree_sha256": {"$ref": "#/$defs/sha"},
+        "compose_inputs": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/sha"}},
+        "image_inputs": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object"}},
+        "budgets": {"$ref": "#/$defs/budgets"},
+        "public_inputs": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sha"}}}
+      }
+    },
+    "jobs": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["job_id", "ordinal", "site_id", "model", "thinking_level", "track", "repetition", "executions"],
+        "properties": {
+          "job_id": {"type": "string", "pattern": "^job-[0-9a-f]{20}$"},
+          "ordinal": {"type": "integer", "minimum": 0},
+          "site_id": {"$ref": "#/$defs/id"},
+          "model": {"type": "string", "minLength": 1},
+          "thinking_level": {"enum": ["xhigh", "high", "medium", "low"]},
+          "track": {"enum": ["core", "hitl"]},
+          "repetition": {"type": "integer", "minimum": 1},
+          "executions": {
+            "type": "array", "minItems": 10, "maxItems": 10,
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["execution_id", "journey_id", "seed", "visibility", "max_score"],
+              "properties": {
+                "execution_id": {"type": "string", "minLength": 1},
+                "journey_id": {"enum": ["catalog_observability", "account_lifecycle", "cart_inventory", "checkout_concurrency", "orders_terminal"]},
+                "seed": {"type": "integer", "minimum": 0},
+                "visibility": {"enum": ["public", "hidden"]},
+                "max_score": {"const": 5}
+              }
+            }
+          }
+        }
+      }
+    },
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "budgets": {
+      "type": "object", "additionalProperties": false,
+      "required": ["wall_time_seconds", "token_budget", "browser_actions", "candidate_builds"],
+      "properties": {
+        "wall_time_seconds": {"type": "integer", "minimum": 1},
+        "token_budget": {"type": "integer", "minimum": 1},
+        "browser_actions": {"type": "integer", "minimum": 1},
+        "candidate_builds": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "checkpoints": [
+    {
+      "id": "home-desktop",
+      "route": "/",
+      "state": "catalog-ready",
+      "viewport": "desktop"
+    }
+  ],
+  "comparison": {
+    "color_histogram": 0.15,
+    "edge_f1": 0.2,
+    "geometry": 0.15,
+    "ssim": 0.3,
+    "text": 0.2
+  },
+  "schema_version": "websitebench.visual.v1",
+  "site_version": "1.0.0",
+  "viewports": {
+    "desktop": {
+      "device_scale_factor": 1,
+      "height": 1000,
+      "width": 1440
+    },
+    "mobile": {
+      "device_scale_factor": 1,
+      "height": 844,
+      "width": 390
+    }
+  }
+}

@@ -21,7 +21,19 @@ from playwright.sync_api import BrowserContext, Page, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SERVER = ROOT / "server.py"
+REPO_ROOT = ROOT.parents[2]
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from clawbench.amazon_contract import (  # noqa: E402
+    amazon_runtime_fingerprint,
+    load_amazon_runtime_contract,
+)
+
+
+RUNTIME_MANIFEST = load_amazon_runtime_contract(REPO_ROOT)
+SERVER = REPO_ROOT / RUNTIME_MANIFEST["runtime"]["entrypoint"]
 TARGET_ASIN = "B0874XN4D8"
 GENERIC_ASIN = "B0D4BOTTLE"
 BEST_SELLERS = "/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011"
@@ -278,20 +290,30 @@ def run_desktop(
     before = audit.assertions
     page.goto(origin + "/account")
     settled(page)
-    page.locator("[data-boundary=account]").click()
-    audit.check(page.locator("#boundary-dialog").evaluate("node => node.open"), "J14 account boundary")
-    page.locator("[data-close-dialog]").first.click()
+    audit.check(
+        page.locator(".commerce-auth-card").count() == 1
+        and page.locator("a[href='/login']").count() >= 1
+        and page.locator("a[href='/register']").count() >= 1,
+        "J14 local account entry",
+    )
     page.goto(origin + "/account/orders")
     settled(page)
-    audit.check("Your Orders" in page.locator("main").inner_text(), "J14 orders boundary")
+    audit.check(
+        "Your Orders" in page.locator("main").inner_text()
+        and page.locator("a[href^='/login?next=/account/orders']").count() == 1,
+        "J14 account-isolated orders entry",
+    )
     page.goto(origin + "/checkout")
     settled(page)
-    page.locator("#boundary-dialog").wait_for(state="visible")
-    audit.check(page.locator("#boundary-dialog").evaluate("node => node.open"), "J14 checkout boundary")
+    audit.check(
+        page.url.endswith("/login?next=/checkout")
+        and page.locator("form[action='/login']").count() == 1,
+        "J14 anonymous checkout sign-in gate",
+    )
     page.goto(origin + "/unknown/page")
     settled(page)
     audit.check(page.locator(".not-found").count() == 1, "J14 404 recovery")
-    audit.journey("J14", "Safe account and purchase boundaries", before)
+    audit.journey("J14", "Local account and purchase safety", before)
 
     storage_state = context.storage_state()
     page.close()
@@ -378,6 +400,9 @@ def main() -> int:
         report = {
             "format": "clawbench.amazon.phase2-browser-verification.v1",
             "gate": 2,
+            "runtimeStructuralSha256": amazon_runtime_fingerprint(
+                REPO_ROOT, RUNTIME_MANIFEST
+            ),
             "catalog": {"products": 200, "departments": 10, "categories": 20},
             "journeys": audit.journeys,
             "journeyCount": len(audit.journeys),

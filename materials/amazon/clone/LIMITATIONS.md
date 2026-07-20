@@ -8,13 +8,14 @@
 - Ads, sponsored placements, tracking, telemetry, production personalization,
   challenge artwork, and third-party services are omitted. First-party related
   items and ordinary recommendation rails remain as deterministic local data.
-- Account creation, production login, identity, addresses, real orders, returns,
-  delivery changes, payment, Buy Now, checkout, and order placement are not
-  connected. Visible controls stop at conspicuous same-origin no-effect dialogs
-  and request no real account, address, password, or payment information.
-- Cart, saved-for-later, list, recent-view, and search-history state are local
-  SQLite records. They survive refresh and same-database restart, but never
-  create a production cart, account, or order.
+- Account creation, verification, login, addresses, checkout, and orders are
+  local simulations backed by the same SQLite database as the task cart.
+  Passwords and account tokens are not stored raw, and card numbers are never
+  persisted. There is no real identity proof, email delivery, payment,
+  production order, return, delivery change, or Buy Now connection.
+- Cart, saved-for-later, list, recent-view, search-history, account, inventory,
+  and order state are local SQLite records. They survive refresh and
+  same-database restart, but never create a production cart, account, or order.
 - `static/assets/ssd-sprite.png` is an original generated approximation rather
   than the copyrighted source product photography. It preserves catalog
   silhouette, crop, background, and visual weight, but visible material and
@@ -55,7 +56,8 @@
   not full pixel identity or production-catalog equivalence.
 - Gate 4 BrowserUse interaction comparison passed all five declared paired
   trajectories and received explicit human approval on `2026-07-18`, but it is
-  a scoped behavioral sample rather than exhaustive coverage of Amazon.
+  a scoped historical sample from before the commerce fusion. Runtime
+  attestation now marks it stale until Gates 2–4 are rerun and reapproved.
 - The live anonymous source resolved to Los Angeles 90060 while the clone keeps
   the frozen New York 10001/USD fixture. Changing the source region would
   require a write and was therefore not attempted. Live ranking prices also

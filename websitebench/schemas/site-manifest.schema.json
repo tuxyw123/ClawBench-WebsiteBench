@@ -97,11 +97,9 @@
     "seeds": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["public", "hidden", "concurrency"],
+      "required": ["public"],
       "properties": {
-        "public": {"$ref": "#/$defs/seed_list"},
-        "hidden": {"$ref": "#/$defs/seed_list"},
-        "concurrency": {"$ref": "#/$defs/seed_list"}
+        "public": {"$ref": "#/$defs/seed_list"}
       }
     },
     "tracks": {

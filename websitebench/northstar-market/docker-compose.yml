@@ -5,6 +5,26 @@ x-security: &service-security
   init: true
   restart: "no"
 
+x-websitebench:
+  roles:
+    reference: reference-app
+    mailbox_query: mailbox
+    mailbox_delivery: mailbox-delivery
+    build_daemon: rootless-buildkit
+    candidate_builder: candidate-builder
+    browser_gateway: browser-gateway
+    model_proxy: model-proxy
+    agent: agent
+    evaluator: evaluator
+  networks:
+    agent_control: agent-control
+    reference_web: reference-web
+    candidate_web: candidate-web
+    model_egress: model-egress
+    build_egress: build-egress
+    internet_egress: internet-egress
+  public_fixtures: [1101, 1102]
+
 services:
   reference-app:
     <<: *service-security
@@ -25,6 +45,7 @@ services:
       PUBLIC_SITE_URL: http://reference-app:8080
     volumes:
       - reference-data:/data
+      - ${REFERENCE_SOURCE_DIR:?required}:/opt/reference:ro
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=128m
     networks:
@@ -312,10 +333,10 @@ services:
       MAILBOX_ADMIN_URL: http://mailbox:8026
       BENCH_FIXTURE_DIR: /bench-fixtures
       ARTIFACT_ROOT: /artifacts
-      SCORING_PATH: /task/public/scoring.json
       VISUAL_PATH: /task/public/visual-checkpoints.json
     volumes:
       - ${RUN_DIR:?required}/eval:/artifacts/eval
+      - ${EVALUATOR_SOURCE_PATH:?required}:/opt/clawbench/northstar_judge.py:ro
       - ${RUN_DIR:?required}/run-meta.json:/artifacts/run-meta.json:ro
       - ${RUN_DIR:?required}/agent:/artifacts/agent:ro
       - ${RUN_DIR:?required}/browser:/artifacts/browser:ro

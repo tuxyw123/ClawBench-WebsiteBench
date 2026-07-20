@@ -84,11 +84,11 @@
       ],
       "clone": [
         "open Your Account",
-        "inspect twelve-card dashboard",
+        "inspect local sign-in and account-creation affordances",
         "open Your Orders",
         "verify local sign-in-required boundary with no external navigation"
       ],
-      "mutationPolicy": "clone-local-boundary-only"
+      "mutationPolicy": "read-only-both"
     },
     {
       "id": "B04",

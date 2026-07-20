@@ -1,0 +1,35 @@
+{
+  "schema_version": "websitebench.amazon-runtime.v1",
+  "item_key": "benchmark--amazon",
+  "site_id": "amazon",
+  "runtime": {
+    "task_path": "tasks/clawbench/dev-136-amazon-t7-best-seller/task.json",
+    "clone_root": "materials/amazon/clone",
+    "entrypoint": "materials/amazon/clone/server.py",
+    "server_command": "python3 materials/amazon/clone/server.py --host 127.0.0.1 --port 8153",
+    "verify_command": "python3 materials/amazon/clone/tools/verify_task.py",
+    "canonical_port": 8153,
+    "local_url": "http://127.0.0.1:8153/",
+    "container_url": "http://host.docker.internal:8153/",
+    "viewer_path": "/clone/benchmark--amazon/"
+  },
+  "attestation": {
+    "files": [
+      "schemas/task.schema.json",
+      "tasks/clawbench/dev-136-amazon-t7-best-seller/task.json",
+      "materials/amazon/clone/server.py",
+      "materials/amazon/clone/fastapi_app.py",
+      "materials/amazon/clone/commerce_adapter.py",
+      "src/clawbench/web2code/commerce_contract.py",
+      "materials/amazon/clone/phase2-journeys.json",
+      "materials/amazon/clone/phase3-fidelity.json",
+      "materials/amazon/clone/phase4-browseruse.json"
+    ],
+    "trees": [
+      "materials/amazon/clone/source-fixtures",
+      "materials/amazon/clone/static",
+      "materials/amazon/clone/templates",
+      "materials/amazon/clone/tools"
+    ]
+  }
+}

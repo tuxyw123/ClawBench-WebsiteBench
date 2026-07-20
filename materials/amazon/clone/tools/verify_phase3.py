@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import os
 import re
 import signal
@@ -26,22 +25,27 @@ from playwright.sync_api import Page, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SUITE_ROOT = ROOT.parents[1]
-SRC_ROOT = SUITE_ROOT / "src"
+REPO_ROOT = ROOT.parents[2]
+SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from clawbench_pro.viewer.metrics import (  # noqa: E402
+from clawbench.amazon_contract import (  # noqa: E402
+    amazon_runtime_fingerprint,
+    load_amazon_runtime_contract,
+)
+from clawbench.viewer.metrics import (  # noqa: E402
     analyze_visual_content,
     compare_images,
     compare_stability,
 )
 
 
+RUNTIME_MANIFEST = load_amazon_runtime_contract(REPO_ROOT)
 FORMAT = "clawbench.amazon.phase3-fidelity-report.v1"
 SOURCE_FORMAT = "clawbench-pro.public-source-observation.v2"
 CONFIG = ROOT / "phase3-fidelity.json"
-SERVER = ROOT / "server.py"
+SERVER = REPO_ROOT / RUNTIME_MANIFEST["runtime"]["entrypoint"]
 TOKEN_RE = re.compile(r"[a-z0-9]+")
 STOPWORDS = {
     "a",
@@ -544,6 +548,9 @@ def run_capture(
     report = {
         "format": FORMAT,
         "gate": 3,
+        "runtimeStructuralSha256": amazon_runtime_fingerprint(
+            REPO_ROOT, RUNTIME_MANIFEST
+        ),
         "capturedAt": datetime.now(timezone.utc).isoformat(),
         "sourceBaseline": {
             **config["sourceBaseline"],

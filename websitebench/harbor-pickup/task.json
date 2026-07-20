@@ -1,0 +1,37 @@
+{
+  "agent": {
+    "harness": "codex",
+    "model": "gpt-5.5-codex",
+    "thinking_level": "xhigh"
+  },
+  "browser_gateway": {
+    "reference_access": "continuous",
+    "tool_name": "controlled_browser",
+    "url": "http://browser-gateway:7000"
+  },
+  "budget": {
+    "browser_actions": 400,
+    "candidate_builds": 10,
+    "token_budget": 400000,
+    "wall_time_seconds": 7200
+  },
+  "candidate_workspace": "/workspace/candidate",
+  "family_id": "white-label-commerce-v1",
+  "instruction": "Reconstruct a pickup-only store with mandatory store and slot selection, store-isolated inventory, shared slot capacity, atomic resource consumption, persistent orders, and cutoff-aware cancellation that restores both resources exactly once.",
+  "issued_at": "2026-01-01T00:00:00Z",
+  "mailbox_url": "http://mailbox:8025",
+  "public_files": {
+    "candidate_contract": "/task/public/candidate-contract.md",
+    "manifest": "/task/public/manifest.yaml",
+    "prd": "/task/public/PRD.md",
+    "smoke_cases": "/task/public/public-smoke-cases.json"
+  },
+  "run_id": "template-harbor-pickup",
+  "schema_version": "websitebench.task.v2",
+  "site_id": "harbor-pickup",
+  "site_version": "1.0.0",
+  "target_url": "http://reference:8080",
+  "task_id": "harbor-pickup",
+  "track": "core",
+  "variant_id": "harbor-pickup"
+}

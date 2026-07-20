@@ -1,4 +1,4 @@
-"""Command-line entry point for the WebsiteBench Clone Atlas."""
+"""Command-line entry point for the Amazon WebsiteBench Viewer."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .auth import AuthSettings, hash_password
-from .discovery import discover_corpus, public_leak_findings
+from .discovery import AMAZON_ITEM_KEY, discover_corpus, public_leak_findings
 from .evidence import EvidenceStore
 from .reviews import ReviewStore
 
@@ -32,10 +32,7 @@ def _root(args: argparse.Namespace) -> Path:
 
 def _validate(args: argparse.Namespace) -> int:
     try:
-        index = discover_corpus(
-            _root(args), profile=args.profile,
-            public_allowlist=Path(args.public_allowlist) if args.public_allowlist else None,
-        )
+        index = discover_corpus(_root(args), profile=args.profile)
         value = index.as_dict()
     except (OSError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
@@ -46,24 +43,24 @@ def _validate(args: argparse.Namespace) -> int:
         if any(check["status"] == "invalid" for check in item["readiness"])
     ]
     leaks = public_leak_findings(value) if args.profile == "public" else []
+    invalid_runs = index.invalid_runs if args.profile == "internal" else []
+    failed = bool(invalid or leaks or invalid_runs)
     result = {
-        "status": "valid" if not invalid and not leaks else "invalid",
+        "status": "invalid" if failed else "valid",
         "profile": args.profile,
         "items": len(index.items),
         "official_runs": len(index.runs),
         "invalid_items": invalid,
+        "invalid_runs": invalid_runs,
         "public_leaks": leaks,
     }
     print(json.dumps(result, indent=2, ensure_ascii=False))
-    return 1 if invalid or leaks else 0
+    return 1 if failed else 0
 
 
 def _index(args: argparse.Namespace) -> int:
     try:
-        index = discover_corpus(
-            _root(args), profile=args.profile,
-            public_allowlist=Path(args.public_allowlist) if args.public_allowlist else None,
-        )
+        index = discover_corpus(_root(args), profile=args.profile)
         value = index.as_dict()
     except (OSError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
@@ -73,20 +70,8 @@ def _index(args: argparse.Namespace) -> int:
 
 
 def _declared_checkpoints(root: Path, item: dict[str, Any]) -> list[tuple[str, str]]:
-    if item["source_type"] == "websitebench":
-        manifest_path = root / item["internal"]["manifest_path"]
-        import yaml
-
-        manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
-        checkpoint_path = manifest_path.parent.parent / manifest["public"]["visual_checkpoints"]
-        value = json.loads(checkpoint_path.read_text(encoding="utf-8"))
-        return [(row["id"], row["viewport"]) for row in value.get("checkpoints", [])]
-    output = []
-    for value in item.get("legacy_screenshots", []):
-        stem = Path(value).stem
-        viewport = "mobile" if "mobile" in stem.lower() else "desktop"
-        output.append((stem, viewport))
-    return output
+    del root, item
+    return []
 
 
 def _capture(args: argparse.Namespace) -> int:
@@ -116,18 +101,10 @@ def _capture(args: argparse.Namespace) -> int:
                 comparable=not args.not_comparable,
             )
         else:
-            rows = _declared_checkpoints(root, item)
-            if not rows:
-                raise ValueError("item has no declared or explicit visual checkpoints")
-            manifest = None
-            for number, (checkpoint, viewport) in enumerate(rows):
-                candidate = None
-                if item["source_type"] == "legacy":
-                    candidate = root / item["legacy_screenshots"][number]
-                manifest = store.upsert(
-                    args.item, checkpoint, viewport, candidate_image=candidate
-                )
-            assert manifest is not None
+            raise ValueError(
+                "Amazon public evidence is read from its fixed gate registry; "
+                "provide explicit source/candidate images for a private companion"
+            )
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(str(exc), file=sys.stderr)
         return 1
@@ -142,7 +119,7 @@ def _capture(args: argparse.Namespace) -> int:
 
 def _serve(args: argparse.Namespace) -> int:
     try:
-        settings = AuthSettings.from_env()
+        settings = AuthSettings.from_env() if args.profile == "internal" else None
         from .app import create_app
         import uvicorn
 
@@ -152,7 +129,6 @@ def _serve(args: argparse.Namespace) -> int:
             settings=settings,
             review_root=Path(args.reviews).resolve() if args.reviews else None,
             evidence_root=Path(args.artifacts).resolve() if args.artifacts else None,
-            public_allowlist=Path(args.public_allowlist) if args.public_allowlist else None,
         )
     except (OSError, ValueError) as exc:
         print(str(exc), file=sys.stderr)
@@ -182,6 +158,7 @@ def _export_reviews(args: argparse.Namespace) -> int:
         if args.reviews
         else root / "artifacts" / "websitebench-viewer" / "reviews",
         root,
+        allowed_keys={AMAZON_ITEM_KEY},
     )
     try:
         value = store.export(public_only=args.public_only)
@@ -201,7 +178,6 @@ def build_parser() -> argparse.ArgumentParser:
         command = subparsers.add_parser(name)
         command.add_argument("--repo-root", default=argparse.SUPPRESS)
         command.add_argument("--profile", choices=("internal", "public"), default="internal")
-        command.add_argument("--public-allowlist")
         if name == "index":
             command.add_argument("--out")
         command.set_defaults(function=function)
@@ -225,7 +201,6 @@ def build_parser() -> argparse.ArgumentParser:
     serve.add_argument("--port", type=int, default=8765)
     serve.add_argument("--reviews")
     serve.add_argument("--artifacts")
-    serve.add_argument("--public-allowlist")
     serve.set_defaults(function=_serve)
 
     password = subparsers.add_parser("hash-password")

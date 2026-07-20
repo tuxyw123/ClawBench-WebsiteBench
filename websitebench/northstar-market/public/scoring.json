@@ -33,6 +33,7 @@
     },
     "journeys": {
       "max_score": 40,
+      "aggregation_kind": "sum-journeys-v1",
       "aggregation": "sum of eight journey scores",
       "journey_max_score": 5,
       "terminal_failure_cap": 2.5,

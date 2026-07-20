@@ -1,0 +1,110 @@
+{
+  "assertions": [
+    {
+      "journey": "catalog_observability",
+      "kind": "rule_visible",
+      "parameters": {
+        "case_size": 3,
+        "maximum": 24,
+        "minimum": 3
+      }
+    },
+    {
+      "journey": "account_lifecycle",
+      "kind": "account_token_lifetime",
+      "parameters": {
+        "reset_minutes": 90,
+        "verification_minutes": 45
+      }
+    },
+    {
+      "journey": "cart_inventory",
+      "kind": "pricing_policy",
+      "parameters": {
+        "six_percent": 5,
+        "tax_basis_points": 650,
+        "twelve_percent": 10
+      }
+    },
+    {
+      "journey": "checkout_concurrency",
+      "kind": "atomic_concurrency",
+      "parameters": {
+        "idempotent": true,
+        "stock_floor": 0
+      }
+    },
+    {
+      "journey": "orders_terminal",
+      "kind": "cancellation_policy",
+      "parameters": {
+        "restore_once": true,
+        "window_minutes": 120
+      }
+    }
+  ],
+  "journeys": [
+    "catalog_observability",
+    "account_lifecycle",
+    "cart_inventory",
+    "checkout_concurrency",
+    "orders_terminal"
+  ],
+  "policies": {
+    "cancellation": {
+      "kind": "window",
+      "parameters": {
+        "minutes": 120
+      }
+    },
+    "fulfillment": {
+      "kind": "shipping",
+      "parameters": {
+        "free_threshold_cents": 25000,
+        "standard_cents": 1200,
+        "threshold_basis": "discounted_subtotal"
+      }
+    },
+    "inventory": {
+      "kind": "checkout_decrement",
+      "parameters": {
+        "atomic": true
+      }
+    },
+    "pricing": {
+      "kind": "tiered_line_discount",
+      "parameters": {
+        "tax_basis_points": 650,
+        "tiers": [
+          {
+            "minimum": 6,
+            "percent": 5
+          },
+          {
+            "minimum": 12,
+            "percent": 10
+          }
+        ]
+      }
+    },
+    "quantity": {
+      "kind": "wholesale_case",
+      "parameters": {
+        "case_size": 3,
+        "login_required": true,
+        "maximum": 24,
+        "minimum": 3
+      }
+    },
+    "token_lifetime": {
+      "kind": "fixed",
+      "parameters": {
+        "reset_minutes": 90,
+        "verification_minutes": 45
+      }
+    }
+  },
+  "schema_version": "websitebench.assertions.v1",
+  "site_id": "foundry-wholesale",
+  "variant_id": "foundry-wholesale"
+}

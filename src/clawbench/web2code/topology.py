@@ -1,12 +1,37 @@
-"""Static validation of Web2Code2Web Compose trust boundaries."""
+"""Role-based validation of WebsiteBench Compose trust boundaries."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 
 import yaml
+
+
+ROLE_KEYS = frozenset(
+    {
+        "reference",
+        "mailbox_query",
+        "mailbox_delivery",
+        "build_daemon",
+        "candidate_builder",
+        "browser_gateway",
+        "model_proxy",
+        "agent",
+        "evaluator",
+    }
+)
+NETWORK_KEYS = frozenset(
+    {
+        "agent_control",
+        "reference_web",
+        "candidate_web",
+        "model_egress",
+        "build_egress",
+        "internet_egress",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -21,156 +46,138 @@ class TopologyProblem:
 class TopologyValidationError(ValueError):
     def __init__(self, problems: list[TopologyProblem]) -> None:
         self.problems = tuple(problems)
-        super().__init__("invalid WebsiteBench topology:\n" + "\n".join(f"- {p}" for p in problems))
+        super().__init__("invalid WebsiteBench topology:\n" + "\n".join(f"- {problem}" for problem in problems))
 
 
-def _networks(service: dict[str, Any]) -> set[str]:
-    networks = service.get("networks", {})
-    if isinstance(networks, list):
-        return set(networks)
-    if isinstance(networks, dict):
-        return set(networks)
+def _networks(service: Mapping[str, Any]) -> set[str]:
+    value = service.get("networks", {})
+    if isinstance(value, (list, dict)):
+        return set(value)
     return set()
 
 
-def _volume_text(service: dict[str, Any]) -> str:
+def _volume_text(service: Mapping[str, Any]) -> str:
     return "\n".join(str(item) for item in service.get("volumes", []))
 
 
-def validate_compose_topology(path: Path | str) -> dict[str, Any]:
+def _mapping(
+    document: Mapping[str, Any],
+    roles: Mapping[str, str] | None,
+    network_roles: Mapping[str, str] | None,
+) -> tuple[dict[str, str], dict[str, str], list[Any]]:
+    extension = document.get("x-websitebench", {})
+    configured_roles = dict(roles or extension.get("roles", {}))
+    configured_networks = dict(network_roles or extension.get("networks", {}))
+    public_fixtures = list(extension.get("public_fixtures", []))
+    return configured_roles, configured_networks, public_fixtures
+
+
+def validate_compose_topology(
+    path: Path | str,
+    *,
+    roles: Mapping[str, str] | None = None,
+    network_roles: Mapping[str, str] | None = None,
+) -> dict[str, Any]:
+    """Validate topology by semantic role, independent of concrete names."""
+
     path = Path(path)
-    with path.open(encoding="utf-8") as stream:
-        document = yaml.safe_load(stream)
-    problems: list[TopologyProblem] = []
+    try:
+        document = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError) as exc:
+        raise TopologyValidationError([TopologyProblem(str(path), str(exc))]) from exc
     if not isinstance(document, dict):
         raise TopologyValidationError([TopologyProblem(str(path), "must contain a mapping")])
+    problems: list[TopologyProblem] = []
     services = document.get("services", {})
     networks = document.get("networks", {})
-    required_services = {
-        "reference-app",
-        "mailbox",
-        "mailbox-delivery",
-        "rootless-buildkit",
-        "candidate-builder",
-        "browser-gateway",
-        "model-proxy",
-        "agent",
-        "evaluator",
-    }
-    missing_services = required_services - set(services)
-    if missing_services:
-        problems.append(TopologyProblem("services", f"missing {sorted(missing_services)}"))
-    required_networks = {
-        "agent-control",
-        "reference-web",
-        "candidate-web",
-        "model-egress",
-        "build-egress",
-        "internet-egress",
-    }
-    missing_networks = required_networks - set(networks)
-    if missing_networks:
-        problems.append(TopologyProblem("networks", f"missing {sorted(missing_networks)}"))
-    for name in ("agent-control", "reference-web", "candidate-web", "model-egress"):
-        if name in networks and networks[name].get("internal") is not True:
-            problems.append(TopologyProblem(f"networks.{name}", "must be internal"))
-    if "agent" in services:
-        agent_networks = _networks(services["agent"])
-        if agent_networks != {"agent-control", "model-egress"}:
-            problems.append(
-                TopologyProblem(
-                    "services.agent.networks",
-                    f"must be agent-control + model-egress only, got {sorted(agent_networks)}",
-                )
-            )
-        agent_mounts = _volume_text(services["agent"]).casefold()
-        for forbidden in (
-            "reference/",
-            "judge/",
-            "bench-fixtures",
-            "browser",
-            "docker.sock",
-            "secrets.env",
-            "required}:/artifacts",
-        ):
-            if forbidden in agent_mounts:
-                problems.append(TopologyProblem("services.agent.volumes", f"contains {forbidden}"))
-    if "browser-gateway" in services:
-        gateway_networks = _networks(services["browser-gateway"])
-        expected = {"agent-control", "reference-web", "candidate-web"}
-        if gateway_networks != expected:
-            problems.append(
-                TopologyProblem(
-                    "services.browser-gateway.networks",
-                    f"must be {sorted(expected)}, got {sorted(gateway_networks)}",
-                )
-            )
-        mounts = _volume_text(services["browser-gateway"]).casefold()
-        if "candidate:/workspace" in mounts or "reference/" in mounts or "judge/" in mounts:
-            problems.append(TopologyProblem("services.browser-gateway.volumes", "leaks source workspace"))
-    if "reference-app" in services:
-        reference_networks = _networks(services["reference-app"])
-        if reference_networks != {"reference-web"}:
-            problems.append(TopologyProblem("services.reference-app.networks", "crosses trust boundary"))
-    if "mailbox" in services and _networks(services["mailbox"]) != {"reference-web"}:
+    role_map, network_map, public_fixtures = _mapping(document, roles, network_roles)
+
+    missing_roles = ROLE_KEYS - set(role_map)
+    extra_roles = set(role_map) - ROLE_KEYS
+    if missing_roles or extra_roles:
+        problems.append(
+            TopologyProblem("x-websitebench.roles", f"missing={sorted(missing_roles)}, extra={sorted(extra_roles)}")
+        )
+    missing_network_roles = NETWORK_KEYS - set(network_map)
+    extra_network_roles = set(network_map) - NETWORK_KEYS
+    if missing_network_roles or extra_network_roles:
         problems.append(
             TopologyProblem(
-                "services.mailbox.networks",
-                "query mailbox must be reachable only from reference-web",
+                "x-websitebench.networks",
+                f"missing={sorted(missing_network_roles)}, extra={sorted(extra_network_roles)}",
             )
         )
-    if "mailbox-delivery" in services:
-        delivery_networks = _networks(services["mailbox-delivery"])
-        if delivery_networks != {"reference-web", "candidate-web"}:
+    missing_services = set(role_map.values()) - set(services)
+    if missing_services:
+        problems.append(TopologyProblem("services", f"missing role targets {sorted(missing_services)}"))
+    missing_networks = set(network_map.values()) - set(networks)
+    if missing_networks:
+        problems.append(TopologyProblem("networks", f"missing role targets {sorted(missing_networks)}"))
+    if problems:
+        raise TopologyValidationError(problems)
+
+    def service(role: str) -> tuple[str, Mapping[str, Any]]:
+        name = role_map[role]
+        return name, services[name]
+
+    def expected_networks(role: str, expected_roles: set[str]) -> None:
+        name, value = service(role)
+        expected = {network_map[item] for item in expected_roles}
+        actual = _networks(value)
+        if actual != expected:
             problems.append(
                 TopologyProblem(
-                    "services.mailbox-delivery.networks",
-                    "delivery mailbox must bridge reference-web + candidate-web only",
+                    f"services.{name}.networks",
+                    f"role {role} requires {sorted(expected)}, got {sorted(actual)}",
                 )
             )
-    if "rootless-buildkit" in services and "reference-web" in _networks(services["rootless-buildkit"]):
-        problems.append(TopologyProblem("services.rootless-buildkit.networks", "can reach reference"))
-    if "candidate-builder" in services:
-        builder_networks = _networks(services["candidate-builder"])
-        if builder_networks != {"agent-control", "build-egress"}:
+
+    for role in ("agent_control", "reference_web", "candidate_web", "model_egress"):
+        name = network_map[role]
+        if networks[name].get("internal") is not True:
+            problems.append(TopologyProblem(f"networks.{name}", f"{role} must be internal"))
+
+    expected_networks("agent", {"agent_control", "model_egress"})
+    expected_networks("browser_gateway", {"agent_control", "reference_web", "candidate_web"})
+    expected_networks("reference", {"reference_web"})
+    expected_networks("mailbox_query", {"reference_web"})
+    expected_networks("mailbox_delivery", {"reference_web", "candidate_web"})
+    expected_networks("candidate_builder", {"agent_control", "build_egress"})
+    expected_networks("model_proxy", {"model_egress", "internet_egress"})
+    expected_networks("evaluator", {"reference_web", "candidate_web"})
+
+    build_name, build_service = service("build_daemon")
+    if network_map["reference_web"] in _networks(build_service):
+        problems.append(TopologyProblem(f"services.{build_name}.networks", "build daemon can reach reference"))
+
+    agent_name, agent_service = service("agent")
+    agent_mounts = _volume_text(agent_service).casefold()
+    for forbidden in ("reference/", "judge/", "bench-fixtures", "docker.sock", "secrets.env"):
+        if forbidden in agent_mounts:
+            problems.append(TopologyProblem(f"services.{agent_name}.volumes", f"contains {forbidden}"))
+
+    browser_name, browser_service = service("browser_gateway")
+    browser_mounts = _volume_text(browser_service).casefold()
+    if "reference/" in browser_mounts or "judge/" in browser_mounts or "docker.sock" in browser_mounts:
+        problems.append(TopologyProblem(f"services.{browser_name}.volumes", "leaks a private workspace"))
+
+    evaluator_name, evaluator_service = service("evaluator")
+    evaluator_mounts = _volume_text(evaluator_service)
+    for fixture in public_fixtures:
+        marker = f"/bench-fixtures/{fixture}.json"
+        if marker not in evaluator_mounts:
             problems.append(
                 TopologyProblem(
-                    "services.candidate-builder.networks",
-                    "must be agent-control + build-egress only",
+                    f"services.{evaluator_name}.volumes",
+                    f"must mount declared public fixture {fixture}",
                 )
             )
-    if "model-proxy" in services:
-        proxy_networks = _networks(services["model-proxy"])
-        if proxy_networks != {"model-egress", "internet-egress"}:
-            problems.append(
-                TopologyProblem(
-                    "services.model-proxy.networks",
-                    "must be model-egress + internet-egress only",
-                )
-            )
-    if "evaluator" in services:
-        evaluator_networks = _networks(services["evaluator"])
-        if evaluator_networks != {"reference-web", "candidate-web"}:
-            problems.append(
-                TopologyProblem(
-                    "services.evaluator.networks",
-                    "must be reference-web + candidate-web only",
-                )
-            )
-        evaluator_mounts = _volume_text(services["evaluator"])
-        for seed in (1101, 1102):
-            if f"/bench-fixtures/{seed}.json" not in evaluator_mounts:
-                problems.append(
-                    TopologyProblem(
-                        "services.evaluator.volumes",
-                        f"must mount public fixture {seed} for visual evaluation",
-                    )
-                )
-    for name, service in services.items():
-        service_text = yaml.safe_dump(service).casefold()
-        if service.get("privileged") is True:
+
+    for name, value in services.items():
+        service_text = yaml.safe_dump(value).casefold()
+        if value.get("privileged") is True:
             problems.append(TopologyProblem(f"services.{name}.privileged", "must not be privileged"))
-        if service.get("network_mode") == "host":
+        if value.get("network_mode") == "host":
             problems.append(TopologyProblem(f"services.{name}.network_mode", "host mode is forbidden"))
         if "/var/run/docker.sock" in service_text:
             problems.append(TopologyProblem(f"services.{name}", "host Docker socket is forbidden"))

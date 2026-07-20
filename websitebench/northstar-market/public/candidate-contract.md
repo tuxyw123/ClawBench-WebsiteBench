@@ -91,9 +91,9 @@ Request body follows `websitebench.reset-request.v1`:
 {
   "schema_version": 1,
   "run_id": "run-identifier",
-  "seed": 9101,
+  "seed": 1101,
   "now": "2026-01-15T12:00:00Z",
-  "fixture_path": "/bench-fixtures/9101.json"
+  "fixture_path": "/bench-fixtures/1101.json"
 }
 ```
 
@@ -108,7 +108,7 @@ separate privileged orchestration step. The app returns:
   "schema_version": 1,
   "status": "reset",
   "run_id": "run-identifier",
-  "seed": 9101,
+  "seed": 1101,
   "now": "2026-01-15T12:00:00Z"
 }
 ```

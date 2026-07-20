@@ -1,4 +1,4 @@
-"""Explicit-allowlist, on-demand lifecycle for local legacy clone processes."""
+"""Explicit-allowlist, on-demand lifecycle for the Amazon review clone."""
 
 from __future__ import annotations
 
@@ -14,6 +14,8 @@ import threading
 import time
 from pathlib import Path
 from typing import Any
+
+from ..amazon_contract import AMAZON_ITEM_KEY
 
 
 class CloneGatewayError(RuntimeError):
@@ -39,9 +41,10 @@ class CloneProcessManager:
     def is_allowed(self, item_key: str) -> bool:
         item = self.items.get(item_key)
         return bool(
-            item_key in self.allowlist
+            item_key == AMAZON_ITEM_KEY
+            and item_key in self.allowlist
             and item
-            and item.get("source_type") == "legacy"
+            and item.get("source_type") == "benchmark"
             and item.get("internal", {}).get("server_command")
         )
 

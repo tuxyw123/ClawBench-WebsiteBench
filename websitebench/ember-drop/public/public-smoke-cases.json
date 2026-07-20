@@ -1,0 +1,32 @@
+{
+  "cases": [
+    {
+      "id": "catalog_observability",
+      "journey_kind": "catalog_observability",
+      "mandatory": true
+    },
+    {
+      "id": "account_lifecycle",
+      "journey_kind": "account_lifecycle",
+      "mandatory": true
+    },
+    {
+      "id": "cart_inventory",
+      "journey_kind": "cart_inventory",
+      "mandatory": true
+    },
+    {
+      "id": "checkout_concurrency",
+      "journey_kind": "checkout_concurrency",
+      "mandatory": true
+    },
+    {
+      "id": "orders_terminal",
+      "journey_kind": "orders_terminal",
+      "mandatory": true
+    }
+  ],
+  "schema_version": "websitebench.smoke.v1",
+  "seed": 1201,
+  "site_version": "1.0.0"
+}

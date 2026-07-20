@@ -41,7 +41,8 @@
       "properties": {
         "kind": {"enum": ["exploration", "smoke", "functional", "concurrency"]},
         "content_salt": {"type": "string", "minLength": 1},
-        "stock_one_product_id": {"type": ["string", "null"], "pattern": "^prod_[a-z0-9_]+$"}
+        "stock_one_product_id": {"type": ["string", "null"], "pattern": "^prod_[a-z0-9_]+$"},
+        "slot_capacity_override": {"type": "integer", "minimum": 1}
       }
     }
   },

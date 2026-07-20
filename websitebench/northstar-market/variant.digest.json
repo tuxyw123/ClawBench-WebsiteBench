@@ -1,0 +1,24 @@
+{
+  "adapter_version": "white-label-commerce-v1.1",
+  "behavior_fingerprint": "6204e19f86bd315a31849fd8c161fcc86d0b2ee83517d7b0ac3be6802cfb8692",
+  "compiler_version": "websitebench.variant-compiler.v1",
+  "digest": "sha256:02687a3549c064ec69a8c4d39dc582bb244ca7cb2b7155ac93206c0562821f29",
+  "files": {
+    "judge/assertions.json": "4f67749bf750115350657196a468d5942df940694d872dd53341dbffdd5856e0",
+    "judge/fixtures/9101.json": "f02ff531b26ce89090f33cd602543a68da20e854ee05945b85fec2b8d856ae54",
+    "judge/fixtures/9199.json": "aef145c2330c9a02c2e094c3df31625af8d82b498df64ad76b8cb0caf08cbfb1",
+    "public/PRD.md": "04be00614ea658cebd0bb3bd04a40c50cba0d7432be970df2f2e6db505dba075",
+    "public/candidate-contract.md": "e40bfa1cd53af2ea71a51879502dab3608e083972887094a7ee04c8d88b6fe24",
+    "public/fixtures/1101.json": "286094d076b86de661cc1e84ede6d56e48210c93a42c2835c02cef4ac686af19",
+    "public/manifest.yaml": "ca32b75ec8ed385ac59911ddb488aae2d85489ac1034800afd4483f05bbef9d5",
+    "public/public-smoke-cases.json": "5944b48ed67155ef043ebbd2af193b64f96986325390e0560db47d66a2003d47",
+    "public/scoring.json": "29740e7439d81b8706ba840fbd884c4dc7344e632f0a87785af0e53fa44e85af",
+    "public/visual-checkpoints.json": "7feee96e175b334f39085448e368dacaa07563b24355d228104b7efd00eb092f",
+    "task.json": "5f153ff5a6645644050f552bb055dc9f073df86ac957838df70600a5e54d69dd",
+    "variant.yaml": "0be1b910fcf50445ce2cf11690a66b589581d5797596047b135e65813deacbb1"
+  },
+  "schema_version": "websitebench.variant-lock.v1",
+  "semantic_spec_sha256": "e219d555ae4405d9caa32e2e07061f47b230ef2871312ee6f45bf2f05ad6e058",
+  "site_id": "northstar-market",
+  "variant_id": "northstar-standard"
+}

@@ -1,5 +1,10 @@
 # CODEX Trajectory: Amazon Dev Pilot 136
 
+> This is a retrospective record of the original pre-fusion implementation.
+> The later commerce fusion intentionally supersedes its account and checkout
+> boundary decisions; current behavior and canonical addresses are documented
+> in `README.md` and `../runtime-manifest.json`.
+
 ## Checkpoint
 
 - Record date: `2026-07-17`.
