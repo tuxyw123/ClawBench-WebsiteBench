@@ -1,0 +1,430 @@
+{
+  "schema": "amazon-home-standard-rail-capture.v1",
+  "capturedAt": "2026-07-21T10:23:13.644Z",
+  "sourceUrl": "https://www.amazon.com/",
+  "captureContext": {
+    "desktopUserAgentNarrowWindow": true,
+    "document": {
+      "height": 5610,
+      "width": 1000
+    },
+    "interpretation": "Narrow-window desktop-UA observation, not a mobile-UA page capture.",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "rail": {
+    "itemCount": 19,
+    "items": [
+      {
+        "asin": "B01M16WBW1",
+        "canonicalHref": "/dp/B01M16WBW1",
+        "cardDimensions": {
+          "height": 210,
+          "width": 170
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 160
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B01M16WBW1.jpg",
+          "bytes": 5632,
+          "sha256": "4dcb72aa0b1255b6fd1d1d2b57e89878bdeb1d63aae39f4c52e4410d4990793c"
+        },
+        "ordinal": 0,
+        "sourceHref": "/Queen-Size-Piece-Sheet-Set/dp/B01M16WBW1/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Queen Size 4 Piece Sheet Set - Comfy Breathable & Cooling Sheets - Hotel Luxury Bed Sheets for Women & Men - Deep..."
+      },
+      {
+        "asin": "B0154ASID6",
+        "canonicalHref": "/dp/B0154ASID6",
+        "cardDimensions": {
+          "height": 210,
+          "width": 210
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 200
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61KCbJGpAFL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0154ASID6.jpg",
+          "bytes": 2965,
+          "sha256": "b5cb139fba553cbc5dba2b6b7291694f2b89bcee9ffee58c21562a94d5020434"
+        },
+        "ordinal": 1,
+        "sourceHref": "/Amazon-Basics-Microfiber-Lightweight-Wrinkle-free/dp/B0154ASID6/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Amazon Basics Lightweight Super Soft Breathable Wrinkle-Resistant Microfiber 4-Piece Bed Sheet Set with 14-Inch Deep..."
+      },
+      {
+        "asin": "B085DTZQNZ",
+        "canonicalHref": "/dp/B085DTZQNZ",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 58
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B085DTZQNZ.jpg",
+          "bytes": 2274,
+          "sha256": "71ae8f199282a92f9cec2e056bc47c7b7bc3676edd88436377b3f24640dd9dd0"
+        },
+        "ordinal": 2,
+        "sourceHref": "/Owala-Insulated-Stainless-Steel-Push-Button-24-Ounce/dp/B085DTZQNZ/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Owala FreeSip Insulated Stainless Steel Water Bottle with Straw, BPA-Free Sports Water Bottle, Great for Travel, 24 Oz,..."
+      },
+      {
+        "asin": "B0BQR2BQYZ",
+        "canonicalHref": "/dp/B0BQR2BQYZ",
+        "cardDimensions": {
+          "height": 210,
+          "width": 170
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 160
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71Si2QlAb3L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0BQR2BQYZ.jpg",
+          "bytes": 5914,
+          "sha256": "c1b4398541490ecbba82b5b41545907ef7529c84c79d971bde2193008381bb01"
+        },
+        "ordinal": 3,
+        "sourceHref": "/upsimples-Picture-Display-Pictures-Without/dp/B0BQR2BQYZ/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "upsimples 11x14 Picture Frame, Display Pictures 8x10 with Mat or 11x14 Without Mat, Wall Hanging Photo Frame, Black, 1 Pack"
+      },
+      {
+        "asin": "B00FXNABPI",
+        "canonicalHref": "/dp/B00FXNABPI",
+        "cardDimensions": {
+          "height": 210,
+          "width": 280
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 359
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/617+Wg+p7WL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B00FXNABPI.jpg",
+          "bytes": 13029,
+          "sha256": "fe1c52f1c6ea61ce008685213ea0291acc17fa0949c898cebdc2589b7370f55a"
+        },
+        "ordinal": 4,
+        "sourceHref": "/Amazon-Basics-Non-Slip-Clothes-Hangers/dp/B00FXNABPI/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Amazon Basics Slim Velvet Non-Slip Space Saving Suit Clothes Hangers for Closet Organization, Black/Silver, 30-Pack"
+      },
+      {
+        "asin": "B08CRPWQHB",
+        "canonicalHref": "/dp/B08CRPWQHB",
+        "cardDimensions": {
+          "height": 210,
+          "width": 210
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 200
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71kHwy9jklL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B08CRPWQHB.jpg",
+          "bytes": 8184,
+          "sha256": "1e1813d103f687a028301a408be0224787c863456a38297a80058a36fdc5aae9"
+        },
+        "ordinal": 5,
+        "sourceHref": "/BigFoot-Shower-Curtain-Liner-Compatible/dp/B08CRPWQHB/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "BigFoot Clear Shower Curtain - 72x72 Odorless Plastic with Magnets, Washable Long Bathroom Curtain - Premium PEVA..."
+      },
+      {
+        "asin": "B0D97YVVQ2",
+        "canonicalHref": "/dp/B0D97YVVQ2",
+        "cardDimensions": {
+          "height": 210,
+          "width": 210
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 200
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61HjMmGgC2L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0D97YVVQ2.jpg",
+          "bytes": 8257,
+          "sha256": "9fda1bd423f49cbd6a29ee8f0a6dc1b50ffdf0ed5ba4e61d7875407cc17bdb5d"
+        },
+        "ordinal": 6,
+        "sourceHref": "/Portable-Handheld-PlayHot-Personal-Rechargeable/dp/B0D97YVVQ2/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "PlayHot Portable Handheld Turbo Fan, 5 Gear Wind, USB-C Rechargeable Fan, Up to 12 Working Hours, 3 IN 1 Hand Fans with..."
+      },
+      {
+        "asin": "B0CFGYFCYL",
+        "canonicalHref": "/dp/B0CFGYFCYL",
+        "cardDimensions": {
+          "height": 210,
+          "width": 210
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 200
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/914ufIDbM1L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0CFGYFCYL.jpg",
+          "bytes": 15913,
+          "sha256": "673bee5b1a4afd82cb7f4a3deeb87f4ee3d7d4973db405c4b765bf11e9d272f0"
+        },
+        "ordinal": 7,
+        "sourceHref": "/OLANLY-Bathroom-Absorbent-Chenille-Non-Slip/dp/B0CFGYFCYL/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "OLANLY Bathroom Rugs 30x20, Extra Soft Absorbent Chenille Bath Rugs, Rubber Backing Quick Dry, Machine Washable Bath..."
+      },
+      {
+        "asin": "B001R1RXUG",
+        "canonicalHref": "/dp/B001R1RXUG",
+        "cardDimensions": {
+          "height": 210,
+          "width": 206
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 196
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71lylM-9P4L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B001R1RXUG.jpg",
+          "bytes": 9361,
+          "sha256": "cf027d4578cbc87da6164d158fa415cb8dbff37de4bc42f66c74ce9277009fde"
+        },
+        "ordinal": 8,
+        "sourceHref": "/Honeywell-HT-900-TurboForce-Circulator-Black/dp/B001R1RXUG/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Honeywell TurboForce Air Circulator, Small Tabletop Fan, Quiet Personal Fan for Home or Office, 3 Speeds, 90 Degree..."
+      },
+      {
+        "asin": "B088BZTYFP",
+        "canonicalHref": "/dp/B088BZTYFP",
+        "cardDimensions": {
+          "height": 210,
+          "width": 280
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 306
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71KuGgYip5L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B088BZTYFP.jpg",
+          "bytes": 9855,
+          "sha256": "1fe4d5025e7bd6f815b7f930c41a881b4936cf0d1e6b105184f163d7e57edf4a"
+        },
+        "ordinal": 9,
+        "sourceHref": "/AmazonBasics-Merv-Furnace-Air-Filter/dp/B088BZTYFP/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Amazon Basics 16x20x1 Air Filter 6-Pack, MERV 8 AC Furnace Filters, Allergy Control, Removes Dust, Lint and Pollen,..."
+      },
+      {
+        "asin": "B09MKPDJRT",
+        "canonicalHref": "/dp/B09MKPDJRT",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 136
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71gv46SSzvL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B09MKPDJRT.jpg",
+          "bytes": 3943,
+          "sha256": "c2422bdd907c71918c3cf5e4897c6d5b7307666020d761a259c1deab8e7f672d"
+        },
+        "ordinal": 10,
+        "sourceHref": "/Dreo-Velocity-Oscillating-Bladeless-DR-HTF007/dp/B09MKPDJRT/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "DREO Tower Fan for Bedroom, 2026 Upgraded DC Motor, 28ft/s High Velocity, 20dB Ultra Quiet Standing Fan, 8 Speeds 4..."
+      },
+      {
+        "asin": "B0DGF616XN",
+        "canonicalHref": "/dp/B0DGF616XN",
+        "cardDimensions": {
+          "height": 210,
+          "width": 188
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 178
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71izg8Ai-KL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0DGF616XN.jpg",
+          "bytes": 10390,
+          "sha256": "22667163d94b2b835ec27d425d3b369ec5a708d6edfa54c1d9f4544f50019a1b"
+        },
+        "ordinal": 11,
+        "sourceHref": "/Comfortable-Handles-Durable-Clothes-Supplies/dp/B0DGF616XN/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "6 Pack Extra Heavy Duty Large Moving Bags with Strong Zipper & Comfortable Handles, Sturdy & Durable Clothes Storage..."
+      },
+      {
+        "asin": "B09GTRVJQM",
+        "canonicalHref": "/dp/B09GTRVJQM",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 111
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71wGv7Fh2AL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B09GTRVJQM.jpg",
+          "bytes": 6711,
+          "sha256": "c5b301640a487225058ba3ec156a97f057dc3e5bb422fe077f29cf83a7e02a3a"
+        },
+        "ordinal": 12,
+        "sourceHref": "/LEVOIT-Purifiers-Freshener-Core-Mini/dp/B09GTRVJQM/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "LEVOIT Air Purifiers for Bedroom Home Dorm, AHAM VERIFIDE, 3-in-1 Filter Cleaner With Aroma Pad, Filters Smoke,..."
+      },
+      {
+        "asin": "B00NX0WXQI",
+        "canonicalHref": "/dp/B00NX0WXQI",
+        "cardDimensions": {
+          "height": 210,
+          "width": 187
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 177
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71tGN2LBhrL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B00NX0WXQI.jpg",
+          "bytes": 6477,
+          "sha256": "5247ff6670cfa194227e242d33b79a7113dd1c70cb4dade9ce4ea58b148b2549"
+        },
+        "ordinal": 13,
+        "sourceHref": "/Queen-Size-Sheet-Set-Pillowcases/dp/B00NX0WXQI/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Queen Size Sheet Set – 4 Piece Bed Sheets, Soft and Breathable Microfiber, Includes 1 Fitted Sheet, 1 Flat Sheet and 2..."
+      },
+      {
+        "asin": "B0CP9YB3Q4",
+        "canonicalHref": "/dp/B0CP9YB3Q4",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 92
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0CP9YB3Q4.jpg",
+          "bytes": 2194,
+          "sha256": "35559b27f92060e3a54ab68689122fb8cd56b8afe2586c57310f50468c0e2c57"
+        },
+        "ordinal": 14,
+        "sourceHref": "/STANLEY-Flowstate-3-Position-Compatible-Insulated/dp/B0CP9YB3Q4/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "STANLEY Quencher H2.0 Tumbler with Handle and Straw 30 oz | Flowstate 3-Position Lid | Cup Holder Compatible for Travel..."
+      },
+      {
+        "asin": "B0113UZJE2",
+        "canonicalHref": "/dp/B0113UZJE2",
+        "cardDimensions": {
+          "height": 210,
+          "width": 161
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 151
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/91YrLTBnMcL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B0113UZJE2.jpg",
+          "bytes": 6757,
+          "sha256": "239ab67ee21391ab4439ebc3f9d07452b383137452e2513aac592d8979b0a044"
+        },
+        "ordinal": 15,
+        "sourceHref": "/Etekcity-Multifunction-Stainless-Batteries-Included/dp/B0113UZJE2/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Etekcity Food Kitchen Scale, Digital Grams and Ounces, 11lb | Tare function, ideal for baking, weight loss, keto, meal..."
+      },
+      {
+        "asin": "B082314NFL",
+        "canonicalHref": "/dp/B082314NFL",
+        "cardDimensions": {
+          "height": 210,
+          "width": 211
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 201
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71CN9PCYTtL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B082314NFL.jpg",
+          "bytes": 10997,
+          "sha256": "46b98b7f8204b7148f532a66151fb8b90e8469da6881a5c7636c6e993086d11c"
+        },
+        "ordinal": 16,
+        "sourceHref": "/Zulay-Stronger-Titanium-Stand-Included/dp/B082314NFL/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "Zulay Kitchen Milk Frother Handheld Electric Whisk – Frother Wand with 2 Duracell Batteries, Durable Drink Mixer, Coffee..."
+      },
+      {
+        "asin": "B07VVK39F7",
+        "canonicalHref": "/dp/B07VVK39F7",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 112
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71t-9BTIg9L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B07VVK39F7.jpg",
+          "bytes": 5882,
+          "sha256": "fa36c91b4a94912a83bce65cd2a37e4f56095605be4d1a115a97b0e6c848b9d2"
+        },
+        "ordinal": 17,
+        "sourceHref": "/LEVOIT-Purifier-Home-Allergies-Pets/dp/B07VVK39F7/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "LEVOIT Air Purifier for Home Pets Hair Allergies in Bedroom, Covers Up to 1073 ft² by 56W High Torque Motor, AHAM..."
+      },
+      {
+        "asin": "B086WNKLTM",
+        "canonicalHref": "/dp/B086WNKLTM",
+        "cardDimensions": {
+          "height": 210,
+          "width": 209
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 199
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/91ZpAfw57OL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-home-kitchen/B086WNKLTM.jpg",
+          "bytes": 14197,
+          "sha256": "b86b5f8bb9e3940642fcf218da7a44ec5e8dc839197a2ae6ae0c60b547064aca"
+        },
+        "ordinal": 18,
+        "sourceHref": "/TICONN-Zippers-Carrying-Handles-Heavy-Duty/dp/B086WNKLTM/?_encoding=UTF8&pd_rd_w=9Eexu&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_1055398",
+        "title": "TICONN 6 Pack Extra Large Moving Bags Heavy Duty with Zippers & Carrying Handles, Durable Storage Bags Moving Boxes for..."
+      }
+    ],
+    "present": true,
+    "rect": {
+      "height": 282,
+      "left": 20,
+      "top": 1534,
+      "width": 960
+    },
+    "title": "Best Sellers in Home & Kitchen"
+  },
+  "remoteRuntimePolicy": "forbidden"
+}

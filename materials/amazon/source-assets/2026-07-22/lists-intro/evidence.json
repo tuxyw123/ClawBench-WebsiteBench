@@ -1,0 +1,32 @@
+{
+  "schema": "amazon-lists-intro-evidence.v1",
+  "capture_date": "2026-07-22",
+  "marketplace": "amazon.com",
+  "locale": "en-US",
+  "currency": "USD",
+  "authentication_state": "anonymous",
+  "requested_route": "/hz/wishlist/ls",
+  "observed_final_route": "/hz/wishlist/intro",
+  "current_dom_observation": {
+    "tabs": ["Your Lists", "Your Friends"],
+    "heading": "Lists & Registries",
+    "list_benefits": [
+      "Stay organized",
+      "Shop with friends",
+      "Save money"
+    ],
+    "primary_action": "Sign In",
+    "sections": ["Gift Registries", "Other lists", "Get Help"]
+  },
+  "historical_geometry_evidence": [
+    "materials/amazon/source-capture/source-lists-entry-live-desktop.png",
+    "materials/amazon/source-capture/source-lists-entry-live-desktop-full.png",
+    "materials/amazon/source-capture/source-lists-entry-live-desktop-compact.png",
+    "materials/amazon/source-capture/source-lists-entry-live-tablet.png",
+    "materials/amazon/source-capture/source-lists-entry-live-mobile.png",
+    "materials/amazon/source-capture/source-lists-entry-live-mobile-small.png"
+  ],
+  "asset_url_provenance": "URLs were retained by the five-viewport lists-entry-live source capture and fetched again from the same Amazon-controlled URLs on 2026-07-22.",
+  "asset_manifest": "manifest.json",
+  "asset_verifier": "verify_assets.py"
+}

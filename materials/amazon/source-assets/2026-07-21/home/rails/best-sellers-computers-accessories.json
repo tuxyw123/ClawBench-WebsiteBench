@@ -1,0 +1,388 @@
+{
+  "schema": "amazon-home-standard-rail-capture.v1",
+  "capturedAt": "2026-07-21T10:23:13.644Z",
+  "sourceUrl": "https://www.amazon.com/",
+  "captureContext": {
+    "desktopUserAgentNarrowWindow": true,
+    "document": {
+      "height": 5610,
+      "width": 1000
+    },
+    "interpretation": "Narrow-window desktop-UA observation, not a mobile-UA page capture.",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "rail": {
+    "itemCount": 17,
+    "items": [
+      {
+        "asin": "B0BJPXXM7D",
+        "canonicalHref": "/dp/B0BJPXXM7D",
+        "cardDimensions": {
+          "height": 210,
+          "width": 208
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 198
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71Km-MVfzvL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0BJPXXM7D.jpg",
+          "bytes": 9085,
+          "sha256": "65f522360894f442128cb8a2f55cda26732721f9bb6e4889b067e2fcb252ed60"
+        },
+        "ordinal": 0,
+        "sourceHref": "/Ailun-Protector-Generation-Compatible-Sensitive/dp/B0BJPXXM7D/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Ailun Screen Protector for iPad 11th A16 2025 [11 Inch] / 10th Generation 2022 [10.9 Inch], Tempered Glass [Face ID &..."
+      },
+      {
+        "asin": "B01A6BPAN4",
+        "canonicalHref": "/dp/B01A6BPAN4",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 122
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/817IVLm70oL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B01A6BPAN4.jpg",
+          "bytes": 4888,
+          "sha256": "a8a615a70ee187b3f76225fc8bddcaf7fde7d815587e93d374457f8eb8a89f8e"
+        },
+        "ordinal": 1,
+        "sourceHref": "/JanSport-Classic-Mainstream-Student-Backpack/dp/B01A6BPAN4/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "JanSport Cool Backpack, with 15-inch Laptop Sleeve - Large Computer Bag Rucksack with 2 Compartments, Ergonomic Straps,..."
+      },
+      {
+        "asin": "B0FY6G1RFK",
+        "canonicalHref": "/dp/B0FY6G1RFK",
+        "cardDimensions": {
+          "height": 210,
+          "width": 198
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 188
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61bIDEtowdL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0FY6G1RFK.jpg",
+          "bytes": 8585,
+          "sha256": "e72b4c97da70950cbc36786657d574485872af9e5ec005cfe24faa16cb903ff1"
+        },
+        "ordinal": 2,
+        "sourceHref": "/Miracase-iPhone-Case-Military-Grade-Black/dp/B0FY6G1RFK/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Miracase for iPhone 16e case & iPhone 17e Case for MagSafe [with 2×9H+ Screen Protectors] TOP Military-Grade Protection..."
+      },
+      {
+        "asin": "B07K74LDCH",
+        "canonicalHref": "/dp/B07K74LDCH",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 134
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51wX5vhTB4L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B07K74LDCH.jpg",
+          "bytes": 3844,
+          "sha256": "8187b10adf46b4269b25a5ac64926f1c17271145f4d7949460ac9e5791cd2543"
+        },
+        "ordinal": 3,
+        "sourceHref": "/JanSport-Big-Student-Backpack-Black/dp/B07K74LDCH/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "JanSport Laptop Backpack - Computer Bag with 2 Compartments, Ergonomic Shoulder Straps, 15” Laptop Sleeve, Haul Handle -..."
+      },
+      {
+        "asin": "B0B8STRJYJ",
+        "canonicalHref": "/dp/B0B8STRJYJ",
+        "cardDimensions": {
+          "height": 210,
+          "width": 224
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 214
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51IFiSD+kCL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0B8STRJYJ.jpg",
+          "bytes": 4699,
+          "sha256": "6a9b7f606c82cf46302a3ac4f1d17cb499ab67425bc6ea019786b1662c6ff2f1"
+        },
+        "ordinal": 4,
+        "sourceHref": "/MoKo-Generation-Stand-Translucent-Support/dp/B0B8STRJYJ/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "MoKo for iPad (A16) 11th Generation Case 11 Inch 2025, iPad 10th Generation Case 10.9 Inch 2022, Slim Stand Hard PC..."
+      },
+      {
+        "asin": "B01N6M1Y9N",
+        "canonicalHref": "/dp/B01N6M1Y9N",
+        "cardDimensions": {
+          "height": 210,
+          "width": 280
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 284
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71CRaMOcDvL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B01N6M1Y9N.jpg",
+          "bytes": 4868,
+          "sha256": "4fee80ec1d7e0e47f1eac2e1edbab1dcbac3da9631072c823626f91e1445581d"
+        },
+        "ordinal": 5,
+        "sourceHref": "/MOSISO-Polyester-Vertical-Repellent-Compatible/dp/B01N6M1Y9N/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "MOSISO Laptop Case 13.3 inch, 13-13.3 inch Laptop Sleeve Compatible with MacBook Air/Pro 13/Pro 14 M5 M4 M3 M2 M1, HP..."
+      },
+      {
+        "asin": "B0BDKJFRX4",
+        "canonicalHref": "/dp/B0BDKJFRX4",
+        "cardDimensions": {
+          "height": 210,
+          "width": 225
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 215
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71iZhpB2FpL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0BDKJFRX4.jpg",
+          "bytes": 8777,
+          "sha256": "702c8a1836b4010b853416c48a3a17b4610b00e85e84407127c81c26748bfad2"
+        },
+        "ordinal": 6,
+        "sourceHref": "/ProCase-iPad-11th-10th-10-9/dp/B0BDKJFRX4/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "ProCase 2 Pcs Screen Protector for iPad A16 2025 11th Generation 11 Inch/iPad 10th 2022 10.9 Inch, Tempered Glass Film..."
+      },
+      {
+        "asin": "B07XY28FZG",
+        "canonicalHref": "/dp/B07XY28FZG",
+        "cardDimensions": {
+          "height": 210,
+          "width": 222
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 212
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51HbD2W7FtL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B07XY28FZG.jpg",
+          "bytes": 3539,
+          "sha256": "55dc3b50a3726bc43e4da64be0abf510338770b9685f211c16e550dfd29644f1"
+        },
+        "ordinal": 7,
+        "sourceHref": "/ProCase-Generation-Stand-Protective-Black/dp/B07XY28FZG/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "ProCase for iPad 9th/ 8th/ 7th Generation Case 10.2 Inch (2021/2020/2019 Release), 10.2 iPad Case 9th/ 8th/ 7th Gen..."
+      },
+      {
+        "asin": "B0BKL7KD6Y",
+        "canonicalHref": "/dp/B0BKL7KD6Y",
+        "cardDimensions": {
+          "height": 210,
+          "width": 214
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 204
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71K00r5z4iL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0BKL7KD6Y.jpg",
+          "bytes": 9610,
+          "sha256": "5436ee162799602ae5fd5fecab84c0793c0fe4621c835668b787787bcd6b658e"
+        },
+        "ordinal": 8,
+        "sourceHref": "/SPARIN-Compatible-iPad-10th-2022/dp/B0BKL7KD6Y/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "SPARIN Screen Protector for iPad A16 2025 11th (11 Inch) /10th Generation 2022 (10.9 Inch), 2 Pack Tempered Glass for..."
+      },
+      {
+        "asin": "B0CHJR142G",
+        "canonicalHref": "/dp/B0CHJR142G",
+        "cardDimensions": {
+          "height": 210,
+          "width": 218
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 208
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71cBfxUjyYL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0CHJR142G.jpg",
+          "bytes": 6270,
+          "sha256": "fc3ef88e7e393293ac89598e439fb47e46b010ed0c525b5ccd0e2031e2379a1b"
+        },
+        "ordinal": 9,
+        "sourceHref": "/Nelko-P21-Bluetooth-Templates-Organizing/dp/B0CHJR142G/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Nelko Label Maker Machine with Tape, P21 Bluetooth Label Printer, Wireless Mini Label Makers with Multiple Templates for..."
+      },
+      {
+        "asin": "B08HV3MPFD",
+        "canonicalHref": "/dp/B08HV3MPFD",
+        "cardDimensions": {
+          "height": 210,
+          "width": 177
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 167
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51xCw9RKssL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B08HV3MPFD.jpg",
+          "bytes": 4525,
+          "sha256": "8c0dd51c24da78fa708e7bac3c09b417a9b5a4a145c33af283efdc92e108915f"
+        },
+        "ordinal": 10,
+        "sourceHref": "/Phomemo-Bluetooth-Smartphone-Organization-Rechargeable/dp/B08HV3MPFD/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Phomemo Label Maker, D30 Bluetooth Mini Label Maker Machine with Tape, Small Label Makers, Multiple Templates Fonts Icon..."
+      },
+      {
+        "asin": "B0B9NNWXVP",
+        "canonicalHref": "/dp/B0B9NNWXVP",
+        "cardDimensions": {
+          "height": 210,
+          "width": 271
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 261
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81Q9vMNUOyL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0B9NNWXVP.jpg",
+          "bytes": 18087,
+          "sha256": "ba9d39433e8cbce54c51124f21813291820cee656f0e1ee0bc6660583b825811"
+        },
+        "ordinal": 11,
+        "sourceHref": "/MNN-Portable-15-6inch-Ultra-Slim-Speakers/dp/B0B9NNWXVP/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "MNN Portable Monitor 15.6inch FHD 1080P 60Hz USB C HDMI Gaming Ultra-Slim IPS Display w/Smart Cover & Speakers,HDR..."
+      },
+      {
+        "asin": "B0B1HJ666G",
+        "canonicalHref": "/dp/B0B1HJ666G",
+        "cardDimensions": {
+          "height": 210,
+          "width": 209
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 199
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/51QXqomzfdL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0B1HJ666G.jpg",
+          "bytes": 2950,
+          "sha256": "05409abd3f1308f95d0f3d329c30cc31c55e6bb609e5ace5a2a6de94040f3b7f"
+        },
+        "ordinal": 12,
+        "sourceHref": "/Mac-Book-Pro-Charger-Cable%EF%BC%887-2ft/dp/B0B1HJ666G/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Mac Book Pro Charger - 118W USB C Charger Fast Charger Compatible with MacBook Pro/Air, M1 M2 M3 M4 M5, ipad Pro,..."
+      },
+      {
+        "asin": "B0FX2MQRXC",
+        "canonicalHref": "/dp/B0FX2MQRXC",
+        "cardDimensions": {
+          "height": 210,
+          "width": 184
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 174
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81sFJ958GeL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0FX2MQRXC.jpg",
+          "bytes": 15721,
+          "sha256": "7f0b8cf71639858a21246162d270c9c16d19c3450fbbb931d390e349ea3a568e"
+        },
+        "ordinal": 13,
+        "sourceHref": "/LOVEVOOK-Backpack-Capacity-Computer-Waterproof/dp/B0FX2MQRXC/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "LOVEVOOK Laptop Backpack for Women with Pouch Pocket for Large Capacity Cup,15.6 Inch Laptop Computer Bag Travel..."
+      },
+      {
+        "asin": "B0CH9WTYYG",
+        "canonicalHref": "/dp/B0CH9WTYYG",
+        "cardDimensions": {
+          "height": 210,
+          "width": 206
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 196
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/512L0kFUpWL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0CH9WTYYG.jpg",
+          "bytes": 4566,
+          "sha256": "6cf00fab53ad8ffd929990859f89a8d7bdbcfb10b34ad74df21a751e07239438"
+        },
+        "ordinal": 14,
+        "sourceHref": "/iPhone-Charger-Fast-Charging-Certified/dp/B0CH9WTYYG/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "iPhone 17 16 15 Charger Fast Charging 10FT - 20W USB C Charger Block with 10FT Type C to C Cable Compatible with iPhone..."
+      },
+      {
+        "asin": "B0BRRPP5KH",
+        "canonicalHref": "/dp/B0BRRPP5KH",
+        "cardDimensions": {
+          "height": 210,
+          "width": 203
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 193
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71CkCu-9qlL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0BRRPP5KH.jpg",
+          "bytes": 8323,
+          "sha256": "6397d37ffddadf6f10874529f3033360429a3c23fef820fa38d8d7e86fcdc6d4"
+        },
+        "ordinal": 15,
+        "sourceHref": "/Lamicall-Car-Headrest-Tablet-Holder/dp/B0BRRPP5KH/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "Lamicall Car Headrest Tablet Holder - [3 in 1 Extension Arm] Adjustable Tablet Car Mount for Back Seat, Gifts Road Trip..."
+      },
+      {
+        "asin": "B0CT4HT3CM",
+        "canonicalHref": "/dp/B0CT4HT3CM",
+        "cardDimensions": {
+          "height": 210,
+          "width": 180
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 170
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71V7+wqHfcL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-computers-accessories/B0CT4HT3CM.jpg",
+          "bytes": 6294,
+          "sha256": "23da762d3aefcc55392787b0eacf18d3ef0517d6347e8687892d51fd49c8fb75"
+        },
+        "ordinal": 16,
+        "sourceHref": "/BAGSMART-College-Backpack-Quilted-Water-Resistant/dp/B0CT4HT3CM/?_encoding=UTF8&pd_rd_w=ustgv&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_541966",
+        "title": "BAGSMART College Laptop Backpack, Travel Backpack for Women, Quilted Casual Daypack, Water-Resistant Bookbag for 15.6..."
+      }
+    ],
+    "present": true,
+    "rect": {
+      "height": 282,
+      "left": 20,
+      "top": 2577,
+      "width": 960
+    },
+    "title": "Best Sellers in Computers & Accessories"
+  },
+  "remoteRuntimePolicy": "forbidden"
+}

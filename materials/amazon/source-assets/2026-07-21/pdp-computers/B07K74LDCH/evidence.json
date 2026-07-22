@@ -1,0 +1,96 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B07K74LDCH",
+  "market_context": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "identity": {
+    "asin": "B07K74LDCH",
+    "title": "JanSport Laptop Backpack - Computer Bag with 2 Compartments, Ergonomic Shoulder Straps, 15” Laptop Sleeve, Haul Handle - Black",
+    "byline": "Visit the JanSport Store"
+  },
+  "taxonomy": {
+    "breadcrumbs": [
+      "Electronics",
+      "Computers & Accessories",
+      "Laptop Accessories",
+      "Bags, Cases & Sleeves",
+      "Backpacks"
+    ]
+  },
+  "social_proof": {
+    "rating": "4.7",
+    "review_count": 19909,
+    "bought": "5K+ bought in past month"
+  },
+  "offers": {
+    "selected_size": "One Size",
+    "selection_axis": "Color",
+    "source_reported_color_option_count": 61,
+    "color": [
+      {"value": "Black", "price_text": "$57.63", "price_minor": 5763, "availability": "In Stock"},
+      {"value": "Bad Bows", "price_text": "$62.00", "price_minor": 6200, "availability": "featured offer captured"},
+      {"value": "Blue Dusk", "price_text": "$49.99", "price_minor": 4999, "availability": "Only 4 left in stock - order soon."},
+      {"value": "Camo Illusion", "price_text": "$50.24", "price_minor": 5024, "availability": "featured offer captured"},
+      {"value": "Digital Fuchsia", "price_text": "$62.00", "price_minor": 6200, "availability": "featured offer captured"},
+      {"value": "Faded Sage", "price_text": "$62.00", "price_minor": 6200, "availability": "featured offer captured"},
+      {"value": "Flutter By Purple", "price_text": "$62.00", "price_minor": 6200, "availability": "featured offer captured"},
+      {"value": "Grounded Grey", "price_text": "$40.23", "price_minor": 4023, "availability": "featured offer captured"},
+      {"value": "Lavender Ash", "price_text": "$54.99", "price_minor": 5499, "availability": "Only 2 left in stock - order soon."},
+      {"value": "Navy", "price_text": "$60.30", "price_minor": 6030, "availability": "featured offer captured"},
+      {"value": "Pastel Lilac", "price_text": "$61.99", "price_minor": 6199, "availability": "featured offer captured"},
+      {"value": "Pink Ice", "price_text": "$61.99", "price_minor": 6199, "availability": "featured offer captured"},
+      {"value": "Surreal Spots", "price_text": "$62.00", "price_minor": 6200, "availability": "featured offer captured"}
+    ],
+    "unrevealed_no_featured_offer_count": 48,
+    "unrevealed_option_labels_captured": false,
+    "selected_offer": {
+      "price_text": "$57.63",
+      "price_minor": 5763,
+      "list_price_text": "$62.00",
+      "list_price_minor": 6200
+    }
+  },
+  "fulfillment": {
+    "shipping_copy": "$15.70 Shipping to Singapore",
+    "delivery_copy": "$15.70 delivery Thursday, July 30",
+    "fastest_delivery_copy": "Fastest delivery Tuesday, July 28",
+    "availability": "In Stock",
+    "ships_from": "Amazon",
+    "sold_by": "Zappos",
+    "returns": "30-day refund / replacement"
+  },
+  "specs": [
+    ["Brand", "JanSport"],
+    ["Color", "Black"],
+    ["Size", "One Size"]
+  ],
+  "about": [
+    "Two compartments.",
+    "15-inch laptop sleeve.",
+    "Ergonomic S-curve shoulder straps and a padded back panel.",
+    "Haul handle.",
+    "Front organizer pocket.",
+    "Side bottle pocket.",
+    "Adjustable strap.",
+    "Lifetime warranty with a repair-or-replace claim."
+  ],
+  "review_snapshot": {
+    "histogram_captured": false,
+    "individual_review_cards_captured": false
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/51wX5vhTB4L._AC_SL1200_.jpg",
+      "local_path": "pdp-computers/B07K74LDCH/main.jpg",
+      "bytes": 43572,
+      "sha256": "d20ed538741751c977c449b18271597a4b07806398d6a80e15ef185baf00fd88",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 737, "height": 1102}
+    }
+  }
+}

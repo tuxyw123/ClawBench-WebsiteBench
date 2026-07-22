@@ -54,13 +54,38 @@ def test_evidence_resolver_rejects_unregistered_and_parent_paths(tmp_path: Path)
     pil.new("RGB", (20, 20), "white").save(source)
     store = EvidenceStore(tmp_path / "artifacts", REPO_ROOT)
     manifest = store.upsert(
-        "websitebench--northstar-market", "home", "desktop", source_image=source
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket", "home", "desktop", source_image=source
     )
     relative = manifest["captures"][0]["source_image"]
-    resolved = store.resolve("websitebench--northstar-market", relative)
+    resolved = store.resolve("legacy--dev-115-freshdesk-invoice-dispute-ticket", relative)
     assert file_sha256(resolved) == manifest["captures"][0]["source_sha256"]
     with pytest.raises(FileNotFoundError):
-        store.resolve("websitebench--northstar-market", "../../source.png")
+        store.resolve("legacy--dev-115-freshdesk-invoice-dispute-ticket", "../../source.png")
+
+
+def test_visual_evidence_can_be_isolated_per_model_run(tmp_path: Path) -> None:
+    pil = pytest.importorskip("PIL.Image")
+    first = tmp_path / "first.png"
+    second = tmp_path / "second.png"
+    pil.new("RGB", (20, 20), "white").save(first)
+    pil.new("RGB", (20, 20), "black").save(second)
+    store = EvidenceStore(tmp_path / "artifacts", REPO_ROOT)
+    one = store.upsert(
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket", "home", "desktop",
+        run_id="model-one", source_image=first,
+    )
+    two = store.upsert(
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket", "home", "desktop",
+        run_id="model-two", source_image=second,
+    )
+    assert one["run_id"] == "model-one"
+    assert two["run_id"] == "model-two"
+    assert store.manifest_path("legacy--dev-115-freshdesk-invoice-dispute-ticket", "model-one") != store.manifest_path(
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket", "model-two"
+    )
+    assert store.resolve(
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket", one["captures"][0]["source_image"], "model-one"
+    ).is_file()
 
 
 def test_image_diagnostics_are_not_named_as_official_score(tmp_path: Path) -> None:

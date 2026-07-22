@@ -1,0 +1,1153 @@
+{
+  "schema": "amazon-home-rails-fixture.v1",
+  "rails": [
+    {
+      "key": "related-items",
+      "title": "Related to items you've viewed",
+      "assetSubdir": "personalized",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B0CHFSWM2P",
+          "title": "Samsung T9 Portable SSD 1TB, USB 3.2 Gen 2x2 External Solid State Drive, Seq. Read Speeds Up to 2,000MB/s for Gaming,...",
+          "href": "/dp/B0CHFSWM2P",
+          "imagePath": "personalized/B0CHFSWM2P.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B08HN37XC1",
+          "title": "SANDISK 2TB Extreme Portable SSD (Old Model) - Up to 1050MB/s, USB-C, USB 3.2 Gen 2, IP65 Water and Dust Resistance,...",
+          "href": "/dp/B08HN37XC1",
+          "imagePath": "personalized/B08HN37XC1.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B0874XN4D8",
+          "title": "Samsung T7 Portable SSD, 1TB External Solid State Drive, Speeds Up to 1,050MB/s, USB 3.2 Gen 2, Reliable Storage for...",
+          "href": "/dp/B0874XN4D8",
+          "imagePath": "personalized/B0874XN4D8.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B07CRG94G3",
+          "title": "Seagate Portable 2TB External Hard Drive HDD — USB 3.0 for PC, Mac, PlayStation, & Xbox -1-Year Rescue Service (STGX2000400)",
+          "href": "/dp/B07CRG94G3",
+          "imagePath": "personalized/B07CRG94G3.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B0F332MNX7",
+          "title": "Crucial X10 2TB Portable SSD, Up to 2,100MB/s, USB 3.2 USB-C, External Solid State Drive, Compatible with Windows, Mac &...",
+          "href": "/dp/B0F332MNX7",
+          "imagePath": "personalized/B0F332MNX7.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B0C5JQ68FY",
+          "title": "SANDISK 1TB Portable SSD - Up to 800MB/s, USB-C, USB 3.2 Gen 2, Updated Firmware - External Solid State Drive -...",
+          "href": "/dp/B0C5JQ68FY",
+          "imagePath": "personalized/B0C5JQ68FY.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B0BGL4SHY8",
+          "title": "SSK Portable SSD 1TB External Solid State Drives, up to 1050MB/s USB C SSD External Hard Drive USB 3.2 Gen2 for iPhone...",
+          "href": "/dp/B0BGL4SHY8",
+          "imagePath": "personalized/B0BGL4SHY8.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B06W55K9N6",
+          "title": "WD 2TB Elements Portable External Hard Drive for Windows, USB 3.2 Gen 1/USB 3.0 for PC & Mac, Plug and Play Ready -...",
+          "href": "/dp/B06W55K9N6",
+          "imagePath": "personalized/B06W55K9N6.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B081SVSNVB",
+          "title": "Yinke Hard Case for SanDisk Extreme Pro/SanDisk Extreme Portable External SSD 500GB 1TB 2TB, Travel Case Protective...",
+          "href": "/dp/B081SVSNVB",
+          "imagePath": "personalized/B081SVSNVB.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B085L6TQ2S",
+          "title": "ProCase Hard Carrying Case for Samsung T7 Portable SSD -Black | Fits Samsung T7/T7 Touch SSD, 2 Cable Ties, Shockproof...",
+          "href": "/dp/B085L6TQ2S",
+          "imagePath": "personalized/B085L6TQ2S.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B0CKMWP1KH",
+          "title": "Lacdo Hard Carrying Case for Samsung T9 Portable Solid State Drives 1TB 2TB 4TB USB 3.2 External SSD Hard EVA Shockproof...",
+          "href": "/dp/B0CKMWP1KH",
+          "imagePath": "personalized/B0CKMWP1KH.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B0C4KKYF6Y",
+          "title": "Case for SanDisk Extreme Portable SSD & Extreme PRO, Hard Shell Protective Storage Bag with Carabiner, Fits 1TB 2TB 4TB...",
+          "href": "/dp/B0C4KKYF6Y",
+          "imagePath": "personalized/B0C4KKYF6Y.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B08BZ7Y8C7",
+          "title": "ProCase Hard Carrying Case for Samsung T7 Portable SSD -Black | Fits Samsung T7/T7 Touch SSD, Silicone Cover Included,...",
+          "href": "/dp/B08BZ7Y8C7",
+          "imagePath": "personalized/B08BZ7Y8C7.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B01MSSJ32J",
+          "title": "LaCie Rugged USB-C, 4TB, Portable External Hard Drive, Drop, Shock, Dust, Rain Resistant, for Mac & PC (STFR4000800) |...",
+          "href": "/dp/B01MSSJ32J",
+          "imagePath": "personalized/B01MSSJ32J.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B0DX68TWW4",
+          "title": "Amazon Basics Portable External SSD, 2TB, 2000MB/s Speeds, USB 3.2 Gen 2, IP65 Water & Dust Resistant, Black",
+          "href": "/dp/B0DX68TWW4",
+          "imagePath": "personalized/B0DX68TWW4.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B08F27QGHX",
+          "title": "Western Digital 1TB My Passport SSD Portable External Solid State Drive, Gray, Sturdy and Blazing Fast, Password...",
+          "href": "/dp/B08F27QGHX",
+          "imagePath": "personalized/B08F27QGHX.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "B0CMDJXZ19",
+          "title": "Samsung T5 EVO Portable SSD 4TB, USB 3.2 Gen 1 External Solid State Drive, Seq. Read Speeds Up to 460MB/s for Gaming and...",
+          "href": "/dp/B0CMDJXZ19",
+          "imagePath": "personalized/B0CMDJXZ19.jpg"
+        },
+        {
+          "ordinal": 17,
+          "asin": "B0FV7VF5BQ",
+          "title": "UnionSine 1TB Ultra Slim Portable External Hard Drive HDD-USB 3.0 for PC, Mac, Laptop, PS4, Xbox one, Xbox 360-(Black)",
+          "href": "/dp/B0FV7VF5BQ",
+          "imagePath": "personalized/B0FV7VF5BQ.jpg"
+        },
+        {
+          "ordinal": 18,
+          "asin": "B0DP35XJFQ",
+          "title": "SANDISK 1TB Creator Pro Portable SSD - Up to 2000MB/s, for Laptops and Computers, USB-C, USB 3.2 Gen 2x2, IP65 Water and...",
+          "href": "/dp/B0DP35XJFQ",
+          "imagePath": "personalized/B0DP35XJFQ.jpg"
+        },
+        {
+          "ordinal": 19,
+          "asin": "B0CN6G33CW",
+          "title": "Case Compatible with Samsung T9/ T7/ T7 Shield Portable SSD 1TB 2TB 4TB External Hard Drive, Storage Travel Carrying...",
+          "href": "/dp/B0CN6G33CW",
+          "imagePath": "personalized/B0CN6G33CW.jpg"
+        },
+        {
+          "ordinal": 20,
+          "asin": "B0F9VY82J1",
+          "title": "GWCASE Hard Case for SanDisk Extreme Portable External Solid State Drive | Protective Storage Bag Fits for SanDisk...",
+          "href": "/dp/B0F9VY82J1",
+          "imagePath": "personalized/B0F9VY82J1.jpg"
+        },
+        {
+          "ordinal": 21,
+          "asin": "B0C9WGS6MC",
+          "title": "Crucial X10 Pro 2TB Portable SSD, Up to 2100MB/s Read, 2000MB/s Write, USB 3.2 USB-C, External Solid State Drive,...",
+          "href": "/dp/B0C9WGS6MC",
+          "imagePath": "personalized/B0C9WGS6MC.jpg"
+        },
+        {
+          "ordinal": 22,
+          "asin": "B0CRYY9THJ",
+          "title": "PAIYULE Carrying Case for Samsung T9/T7/T7 Shield Portable SSD 4TB 2TB 1TB, Hard Travel Storage Holder for USB External...",
+          "href": "/dp/B0CRYY9THJ",
+          "imagePath": "personalized/B0CRYY9THJ.jpg"
+        },
+        {
+          "ordinal": 23,
+          "asin": "B0DG16HCWB",
+          "title": "Lexar 2TB Professional Go Portable SSD, Supports Apple 4K 60fps ProRes, Up to 1050MB/s, USB 3.2 Gen 2, Rugged, IP65,...",
+          "href": "/dp/B0DG16HCWB",
+          "imagePath": "personalized/B0DG16HCWB.jpg"
+        },
+        {
+          "ordinal": 24,
+          "asin": "B09ZRD38D8",
+          "title": "Western Digital 1TB P40 Game Drive SSD - Up to 2,000MB/s, RGB Lighting, Portable External Solid State Drive , Compatible...",
+          "href": "/dp/B09ZRD38D8",
+          "imagePath": "personalized/B09ZRD38D8.jpg"
+        }
+      ]
+    },
+    {
+      "key": "best-sellers-home-kitchen",
+      "title": "Best Sellers in Home & Kitchen",
+      "assetSubdir": "rails/best-sellers-home-kitchen",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B01M16WBW1",
+          "title": "Queen Size 4 Piece Sheet Set - Comfy Breathable & Cooling Sheets - Hotel Luxury Bed Sheets for Women & Men - Deep...",
+          "href": "/dp/B01M16WBW1",
+          "imagePath": "rails/best-sellers-home-kitchen/B01M16WBW1.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B0154ASID6",
+          "title": "Amazon Basics Lightweight Super Soft Breathable Wrinkle-Resistant Microfiber 4-Piece Bed Sheet Set with 14-Inch Deep...",
+          "href": "/dp/B0154ASID6",
+          "imagePath": "rails/best-sellers-home-kitchen/B0154ASID6.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B085DTZQNZ",
+          "title": "Owala FreeSip Insulated Stainless Steel Water Bottle with Straw, BPA-Free Sports Water Bottle, Great for Travel, 24 Oz,...",
+          "href": "/dp/B085DTZQNZ",
+          "imagePath": "rails/best-sellers-home-kitchen/B085DTZQNZ.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B0BQR2BQYZ",
+          "title": "upsimples 11x14 Picture Frame, Display Pictures 8x10 with Mat or 11x14 Without Mat, Wall Hanging Photo Frame, Black, 1 Pack",
+          "href": "/dp/B0BQR2BQYZ",
+          "imagePath": "rails/best-sellers-home-kitchen/B0BQR2BQYZ.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B00FXNABPI",
+          "title": "Amazon Basics Slim Velvet Non-Slip Space Saving Suit Clothes Hangers for Closet Organization, Black/Silver, 30-Pack",
+          "href": "/dp/B00FXNABPI",
+          "imagePath": "rails/best-sellers-home-kitchen/B00FXNABPI.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B08CRPWQHB",
+          "title": "BigFoot Clear Shower Curtain - 72x72 Odorless Plastic with Magnets, Washable Long Bathroom Curtain - Premium PEVA...",
+          "href": "/dp/B08CRPWQHB",
+          "imagePath": "rails/best-sellers-home-kitchen/B08CRPWQHB.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B0D97YVVQ2",
+          "title": "PlayHot Portable Handheld Turbo Fan, 5 Gear Wind, USB-C Rechargeable Fan, Up to 12 Working Hours, 3 IN 1 Hand Fans with...",
+          "href": "/dp/B0D97YVVQ2",
+          "imagePath": "rails/best-sellers-home-kitchen/B0D97YVVQ2.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B0CFGYFCYL",
+          "title": "OLANLY Bathroom Rugs 30x20, Extra Soft Absorbent Chenille Bath Rugs, Rubber Backing Quick Dry, Machine Washable Bath...",
+          "href": "/dp/B0CFGYFCYL",
+          "imagePath": "rails/best-sellers-home-kitchen/B0CFGYFCYL.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B001R1RXUG",
+          "title": "Honeywell TurboForce Air Circulator, Small Tabletop Fan, Quiet Personal Fan for Home or Office, 3 Speeds, 90 Degree...",
+          "href": "/dp/B001R1RXUG",
+          "imagePath": "rails/best-sellers-home-kitchen/B001R1RXUG.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B088BZTYFP",
+          "title": "Amazon Basics 16x20x1 Air Filter 6-Pack, MERV 8 AC Furnace Filters, Allergy Control, Removes Dust, Lint and Pollen,...",
+          "href": "/dp/B088BZTYFP",
+          "imagePath": "rails/best-sellers-home-kitchen/B088BZTYFP.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B09MKPDJRT",
+          "title": "DREO Tower Fan for Bedroom, 2026 Upgraded DC Motor, 28ft/s High Velocity, 20dB Ultra Quiet Standing Fan, 8 Speeds 4...",
+          "href": "/dp/B09MKPDJRT",
+          "imagePath": "rails/best-sellers-home-kitchen/B09MKPDJRT.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B0DGF616XN",
+          "title": "6 Pack Extra Heavy Duty Large Moving Bags with Strong Zipper & Comfortable Handles, Sturdy & Durable Clothes Storage...",
+          "href": "/dp/B0DGF616XN",
+          "imagePath": "rails/best-sellers-home-kitchen/B0DGF616XN.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B09GTRVJQM",
+          "title": "LEVOIT Air Purifiers for Bedroom Home Dorm, AHAM VERIFIDE, 3-in-1 Filter Cleaner With Aroma Pad, Filters Smoke,...",
+          "href": "/dp/B09GTRVJQM",
+          "imagePath": "rails/best-sellers-home-kitchen/B09GTRVJQM.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B00NX0WXQI",
+          "title": "Queen Size Sheet Set – 4 Piece Bed Sheets, Soft and Breathable Microfiber, Includes 1 Fitted Sheet, 1 Flat Sheet and 2...",
+          "href": "/dp/B00NX0WXQI",
+          "imagePath": "rails/best-sellers-home-kitchen/B00NX0WXQI.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B0CP9YB3Q4",
+          "title": "STANLEY Quencher H2.0 Tumbler with Handle and Straw 30 oz | Flowstate 3-Position Lid | Cup Holder Compatible for Travel...",
+          "href": "/dp/B0CP9YB3Q4",
+          "imagePath": "rails/best-sellers-home-kitchen/B0CP9YB3Q4.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B0113UZJE2",
+          "title": "Etekcity Food Kitchen Scale, Digital Grams and Ounces, 11lb | Tare function, ideal for baking, weight loss, keto, meal...",
+          "href": "/dp/B0113UZJE2",
+          "imagePath": "rails/best-sellers-home-kitchen/B0113UZJE2.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "B082314NFL",
+          "title": "Zulay Kitchen Milk Frother Handheld Electric Whisk – Frother Wand with 2 Duracell Batteries, Durable Drink Mixer, Coffee...",
+          "href": "/dp/B082314NFL",
+          "imagePath": "rails/best-sellers-home-kitchen/B082314NFL.jpg"
+        },
+        {
+          "ordinal": 17,
+          "asin": "B07VVK39F7",
+          "title": "LEVOIT Air Purifier for Home Pets Hair Allergies in Bedroom, Covers Up to 1073 ft² by 56W High Torque Motor, AHAM...",
+          "href": "/dp/B07VVK39F7",
+          "imagePath": "rails/best-sellers-home-kitchen/B07VVK39F7.jpg"
+        },
+        {
+          "ordinal": 18,
+          "asin": "B086WNKLTM",
+          "title": "TICONN 6 Pack Extra Large Moving Bags Heavy Duty with Zippers & Carrying Handles, Durable Storage Bags Moving Boxes for...",
+          "href": "/dp/B086WNKLTM",
+          "imagePath": "rails/best-sellers-home-kitchen/B086WNKLTM.jpg"
+        }
+      ]
+    },
+    {
+      "key": "top-sellers-toys",
+      "title": "Top Sellers in Toys for you",
+      "assetSubdir": "rails/top-sellers-toys",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B0BG6B2D4D",
+          "title": "Safari Ltd. Okapi Figure - Realistic 5\" Wildlife Model - Educational Toy for Boys, Girls, and Kids Ages 3+",
+          "href": "/dp/B0BG6B2D4D",
+          "imagePath": "rails/top-sellers-toys/B0BG6B2D4D.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B0GGTJCVR5",
+          "title": "BITZEE Aquarium Interactive Fish Tank Toy & Digital Pet, Ages 5+ | Nurture 30 Virtual Fish, Reacts to Touch, Customize...",
+          "href": "/dp/B0GGTJCVR5",
+          "imagePath": "rails/top-sellers-toys/B0GGTJCVR5.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B071V91LGC",
+          "title": "Vault X 9 Pocket Zip Trading Card Binder 360 Cards Exo-Tec (Black) | Holds 360 standard-size TCG cards in 20...",
+          "href": "/dp/B071V91LGC",
+          "imagePath": "rails/top-sellers-toys/B071V91LGC.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B0GMQMZ96P",
+          "title": "LeapFrog Disney and Pixar Toy Story 5 Explore and Learn Lilypad",
+          "href": "/dp/B0GMQMZ96P",
+          "imagePath": "rails/top-sellers-toys/B0GMQMZ96P.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B0GW2DK37Q",
+          "title": "Pokémon TCG: First Partner Illustration Collection —Series 2",
+          "href": "/dp/B0GW2DK37Q",
+          "imagePath": "rails/top-sellers-toys/B0GW2DK37Q.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B0GHMCL7SN",
+          "title": "Play-Doh Blooms Meadow Flower Bouquet Making Kit | Floral Crafts for Adults & Teens, DIY Relaxing Home Décor Set",
+          "href": "/dp/B0GHMCL7SN",
+          "imagePath": "rails/top-sellers-toys/B0GHMCL7SN.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B0H63D57Q4",
+          "title": "Mini Brands Really Works Vinyl Capsule Series 1 (2 Pack) by ZURU - 8 Playable Mini Vinyl Records & 2 Surprise Accessory,...",
+          "href": "/dp/B0H63D57Q4",
+          "imagePath": "rails/top-sellers-toys/B0H63D57Q4.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B0GR6N18F6",
+          "title": "Pokémon TCG: Mega Evolution—Chaos Rising Elite Trainer Box",
+          "href": "/dp/B0GR6N18F6",
+          "imagePath": "rails/top-sellers-toys/B0GR6N18F6.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B0BNW3DFYR",
+          "title": "Vault X 12 Pocket XL Zip Trading Card Binder 624 Cards Exo-Tec (Black) | Holds 624 standard-size TCG cards in 26...",
+          "href": "/dp/B0BNW3DFYR",
+          "imagePath": "rails/top-sellers-toys/B0BNW3DFYR.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B0G8W9DWF9",
+          "title": "Mattel Disney Descendants: Wicked Wonderland, Stack & Reveal Toy, Stackable Surprise Small Dolls, Inspired by the Movie...",
+          "href": "/dp/B0G8W9DWF9",
+          "imagePath": "rails/top-sellers-toys/B0G8W9DWF9.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B0H6H4PL4G",
+          "title": "Magic: The Gathering | Star Trek Commander Deck Bundle",
+          "href": "/dp/B0H6H4PL4G",
+          "imagePath": "rails/top-sellers-toys/B0H6H4PL4G.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B0FSH8S6DJ",
+          "title": "Asmodee Marvel Champions The Card Game Civil War Expansion - New Villainous Heroes & Customizable Scenarios, Cooperative...",
+          "href": "/dp/B0FSH8S6DJ",
+          "imagePath": "rails/top-sellers-toys/B0FSH8S6DJ.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B0GXJ8CSTY",
+          "title": "Pokémon TCG: Mega Greninja ex Premium Collection",
+          "href": "/dp/B0GXJ8CSTY",
+          "imagePath": "rails/top-sellers-toys/B0GXJ8CSTY.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B0GRX2L4RM",
+          "title": "Bookshelf by Alley Cat Games | Ages 8+ | 2-4 Players | Cooperative Stacking Game | Skill & Balance Card and Book Tower...",
+          "href": "/dp/B0GRX2L4RM",
+          "imagePath": "rails/top-sellers-toys/B0GRX2L4RM.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B0GYTRYV7P",
+          "title": "Pokémon TCG: Mega Evolution—Pitch Black Booster Bundle",
+          "href": "/dp/B0GYTRYV7P",
+          "imagePath": "rails/top-sellers-toys/B0GYTRYV7P.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B0GFGDP1PQ",
+          "title": "Clickeez Series 1 Hello Kitty & Friends 7-Pack | 7 Collectible Character Keyboard Keys Click and Clack | Create Your Own...",
+          "href": "/dp/B0GFGDP1PQ",
+          "imagePath": "rails/top-sellers-toys/B0GFGDP1PQ.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "B0GHN2RCNT",
+          "title": "Clickeez Series 1 Hello Kitty & Friends 3-Pack | 3 Collectible Character Keyboard Keys Click and Clack | Create Your Own...",
+          "href": "/dp/B0GHN2RCNT",
+          "imagePath": "rails/top-sellers-toys/B0GHN2RCNT.jpg"
+        },
+        {
+          "ordinal": 17,
+          "asin": "B0FK1PTMTP",
+          "title": "Barbie Signature Doll, Miley Cyrus Posable Collectible in Faux Leather Outfit with Hood and Heels | Faux Leather Outfit,...",
+          "href": "/dp/B0FK1PTMTP",
+          "imagePath": "rails/top-sellers-toys/B0FK1PTMTP.jpg"
+        },
+        {
+          "ordinal": 18,
+          "asin": "B0H1K5HTFT",
+          "title": "Super7 Visionaries Reaction+ Wave 01 - Leoric Action Figure",
+          "href": "/dp/B0H1K5HTFT",
+          "imagePath": "rails/top-sellers-toys/B0H1K5HTFT.jpg"
+        },
+        {
+          "ordinal": 19,
+          "asin": "B002LHA064",
+          "title": "Rhode Island Novelty 5 Inch Puffer Balls Set of 6",
+          "href": "/dp/B002LHA064",
+          "imagePath": "rails/top-sellers-toys/B002LHA064.jpg"
+        },
+        {
+          "ordinal": 20,
+          "asin": "B0FV9YLH5K",
+          "title": "Magical Athlete Board Game - Race a Baby Against a Banana",
+          "href": "/dp/B0FV9YLH5K",
+          "imagePath": "rails/top-sellers-toys/B0FV9YLH5K.jpg"
+        },
+        {
+          "ordinal": 21,
+          "asin": "B0FM3KLGRS",
+          "title": "TuyuBEE 40FT H Track Lighting Rails Kit White H Type Track Rails with Floating Canopy Connector, End Caps, Live End Feed...",
+          "href": "/dp/B0FM3KLGRS",
+          "imagePath": "rails/top-sellers-toys/B0FM3KLGRS.jpg"
+        },
+        {
+          "ordinal": 22,
+          "asin": "B0DMMJCNY2",
+          "title": "McFarlane Toys- Spawn QMx Q-Fig 3.5\" Posed Figure Blind Box",
+          "href": "/dp/B0DMMJCNY2",
+          "imagePath": "rails/top-sellers-toys/B0DMMJCNY2.jpg"
+        },
+        {
+          "ordinal": 23,
+          "asin": "B0FJMQG9K3",
+          "title": "Star Wars™ Micro Galaxy Squadron Qui-Gon Jinn's Jedi Starfighter Mystery Bundle - 3-Inch and 2.5-Inch Vehicles with...",
+          "href": "/dp/B0FJMQG9K3",
+          "imagePath": "rails/top-sellers-toys/B0FJMQG9K3.jpg"
+        },
+        {
+          "ordinal": 24,
+          "asin": "B09MSKRJVB",
+          "title": "Vault X Exact Fit Sleeves (500 Pack) Perfect Inner Sleeves for Trading Cards, Clear",
+          "href": "/dp/B09MSKRJVB",
+          "imagePath": "rails/top-sellers-toys/B09MSKRJVB.jpg"
+        },
+        {
+          "ordinal": 25,
+          "asin": "B0FY7316FN",
+          "title": "Beyblade X Clip & Rip Launcher with Takara Tomy Attack Type Top Right-Spinning Top Toy, Battling Tops Game Toys, Ages 8+",
+          "href": "/dp/B0FY7316FN",
+          "imagePath": "rails/top-sellers-toys/B0FY7316FN.jpg"
+        }
+      ]
+    },
+    {
+      "key": "best-sellers-computers-accessories",
+      "title": "Best Sellers in Computers & Accessories",
+      "assetSubdir": "rails/best-sellers-computers-accessories",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B0BJPXXM7D",
+          "title": "Ailun Screen Protector for iPad 11th A16 2025 [11 Inch] / 10th Generation 2022 [10.9 Inch], Tempered Glass [Face ID &...",
+          "href": "/dp/B0BJPXXM7D",
+          "imagePath": "rails/best-sellers-computers-accessories/B0BJPXXM7D.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B01A6BPAN4",
+          "title": "JanSport Cool Backpack, with 15-inch Laptop Sleeve - Large Computer Bag Rucksack with 2 Compartments, Ergonomic Straps,...",
+          "href": "/dp/B01A6BPAN4",
+          "imagePath": "rails/best-sellers-computers-accessories/B01A6BPAN4.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B0FY6G1RFK",
+          "title": "Miracase for iPhone 16e case & iPhone 17e Case for MagSafe [with 2×9H+ Screen Protectors] TOP Military-Grade Protection...",
+          "href": "/dp/B0FY6G1RFK",
+          "imagePath": "rails/best-sellers-computers-accessories/B0FY6G1RFK.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B07K74LDCH",
+          "title": "JanSport Laptop Backpack - Computer Bag with 2 Compartments, Ergonomic Shoulder Straps, 15” Laptop Sleeve, Haul Handle -...",
+          "href": "/dp/B07K74LDCH",
+          "imagePath": "rails/best-sellers-computers-accessories/B07K74LDCH.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B0B8STRJYJ",
+          "title": "MoKo for iPad (A16) 11th Generation Case 11 Inch 2025, iPad 10th Generation Case 10.9 Inch 2022, Slim Stand Hard PC...",
+          "href": "/dp/B0B8STRJYJ",
+          "imagePath": "rails/best-sellers-computers-accessories/B0B8STRJYJ.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B01N6M1Y9N",
+          "title": "MOSISO Laptop Case 13.3 inch, 13-13.3 inch Laptop Sleeve Compatible with MacBook Air/Pro 13/Pro 14 M5 M4 M3 M2 M1, HP...",
+          "href": "/dp/B01N6M1Y9N",
+          "imagePath": "rails/best-sellers-computers-accessories/B01N6M1Y9N.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B0BDKJFRX4",
+          "title": "ProCase 2 Pcs Screen Protector for iPad A16 2025 11th Generation 11 Inch/iPad 10th 2022 10.9 Inch, Tempered Glass Film...",
+          "href": "/dp/B0BDKJFRX4",
+          "imagePath": "rails/best-sellers-computers-accessories/B0BDKJFRX4.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B07XY28FZG",
+          "title": "ProCase for iPad 9th/ 8th/ 7th Generation Case 10.2 Inch (2021/2020/2019 Release), 10.2 iPad Case 9th/ 8th/ 7th Gen...",
+          "href": "/dp/B07XY28FZG",
+          "imagePath": "rails/best-sellers-computers-accessories/B07XY28FZG.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B0BKL7KD6Y",
+          "title": "SPARIN Screen Protector for iPad A16 2025 11th (11 Inch) /10th Generation 2022 (10.9 Inch), 2 Pack Tempered Glass for...",
+          "href": "/dp/B0BKL7KD6Y",
+          "imagePath": "rails/best-sellers-computers-accessories/B0BKL7KD6Y.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B0CHJR142G",
+          "title": "Nelko Label Maker Machine with Tape, P21 Bluetooth Label Printer, Wireless Mini Label Makers with Multiple Templates for...",
+          "href": "/dp/B0CHJR142G",
+          "imagePath": "rails/best-sellers-computers-accessories/B0CHJR142G.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B08HV3MPFD",
+          "title": "Phomemo Label Maker, D30 Bluetooth Mini Label Maker Machine with Tape, Small Label Makers, Multiple Templates Fonts Icon...",
+          "href": "/dp/B08HV3MPFD",
+          "imagePath": "rails/best-sellers-computers-accessories/B08HV3MPFD.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B0B9NNWXVP",
+          "title": "MNN Portable Monitor 15.6inch FHD 1080P 60Hz USB C HDMI Gaming Ultra-Slim IPS Display w/Smart Cover & Speakers,HDR...",
+          "href": "/dp/B0B9NNWXVP",
+          "imagePath": "rails/best-sellers-computers-accessories/B0B9NNWXVP.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B0B1HJ666G",
+          "title": "Mac Book Pro Charger - 118W USB C Charger Fast Charger Compatible with MacBook Pro/Air, M1 M2 M3 M4 M5, ipad Pro,...",
+          "href": "/dp/B0B1HJ666G",
+          "imagePath": "rails/best-sellers-computers-accessories/B0B1HJ666G.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B0FX2MQRXC",
+          "title": "LOVEVOOK Laptop Backpack for Women with Pouch Pocket for Large Capacity Cup,15.6 Inch Laptop Computer Bag Travel...",
+          "href": "/dp/B0FX2MQRXC",
+          "imagePath": "rails/best-sellers-computers-accessories/B0FX2MQRXC.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B0CH9WTYYG",
+          "title": "iPhone 17 16 15 Charger Fast Charging 10FT - 20W USB C Charger Block with 10FT Type C to C Cable Compatible with iPhone...",
+          "href": "/dp/B0CH9WTYYG",
+          "imagePath": "rails/best-sellers-computers-accessories/B0CH9WTYYG.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B0BRRPP5KH",
+          "title": "Lamicall Car Headrest Tablet Holder - [3 in 1 Extension Arm] Adjustable Tablet Car Mount for Back Seat, Gifts Road Trip...",
+          "href": "/dp/B0BRRPP5KH",
+          "imagePath": "rails/best-sellers-computers-accessories/B0BRRPP5KH.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "B0CT4HT3CM",
+          "title": "BAGSMART College Laptop Backpack, Travel Backpack for Women, Quilted Casual Daypack, Water-Resistant Bookbag for 15.6...",
+          "href": "/dp/B0CT4HT3CM",
+          "imagePath": "rails/best-sellers-computers-accessories/B0CT4HT3CM.jpg"
+        }
+      ]
+    },
+    {
+      "key": "best-sellers-books",
+      "title": "Best Sellers in Books",
+      "assetSubdir": "rails/best-sellers-books",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "168281808X",
+          "title": "Threshing Day (Wing and Claw Collection) (The Empyrean)",
+          "href": "/dp/168281808X",
+          "imagePath": "rails/best-sellers-books/168281808X.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "1668236516",
+          "title": "Theo of Golden: A Novel",
+          "href": "/dp/1668236516",
+          "imagePath": "rails/best-sellers-books/1668236516.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "0393356256",
+          "title": "The Odyssey",
+          "href": "/dp/0393356256",
+          "imagePath": "rails/best-sellers-books/0393356256.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B0GQ2VXKY7",
+          "title": "The Killer Isn't Alice: The 46,600 Suspect Murder Mystery Puzzle",
+          "href": "/dp/B0GQ2VXKY7",
+          "imagePath": "rails/best-sellers-books/B0GQ2VXKY7.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "059380421X",
+          "title": "Yesteryear: A GMA Book Club Pick: A Novel",
+          "href": "/dp/059380421X",
+          "imagePath": "rails/best-sellers-books/059380421X.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "1954118813",
+          "title": "The Calamity Club: A Novel",
+          "href": "/dp/1954118813",
+          "imagePath": "rails/best-sellers-books/1954118813.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "0593135229",
+          "title": "Project Hail Mary: A Novel",
+          "href": "/dp/0593135229",
+          "imagePath": "rails/best-sellers-books/0593135229.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "0063511630",
+          "title": "Whistler: A Novel",
+          "href": "/dp/0063511630",
+          "imagePath": "rails/best-sellers-books/0063511630.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "0140268863",
+          "title": "The Odyssey",
+          "href": "/dp/0140268863",
+          "imagePath": "rails/best-sellers-books/0140268863.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "0316259187",
+          "title": "The Five-Star Weekend",
+          "href": "/dp/0316259187",
+          "imagePath": "rails/best-sellers-books/0316259187.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "0399226907",
+          "title": "The Very Hungry Caterpillar",
+          "href": "/dp/0399226907",
+          "imagePath": "rails/best-sellers-books/0399226907.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "1401971369",
+          "title": "The Let Them Theory: A Life-Changing Tool That Millions of People Can't Stop Talking About",
+          "href": "/dp/1401971369",
+          "imagePath": "rails/best-sellers-books/1401971369.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "0593798430",
+          "title": "The Correspondent: A Novel",
+          "href": "/dp/0593798430",
+          "imagePath": "rails/best-sellers-books/0593798430.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "1775293939",
+          "title": "The Deal: Now an Original Series on Amazon Prime (Off-Campus, 1)",
+          "href": "/dp/1775293939",
+          "imagePath": "rails/best-sellers-books/1775293939.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "1775293947",
+          "title": "The Mistake: Now an Original Series on Amazon Prime (Off-Campus, 2)",
+          "href": "/dp/1775293947",
+          "imagePath": "rails/best-sellers-books/1775293947.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "1558585362",
+          "title": "The Rainbow Fish",
+          "href": "/dp/1558585362",
+          "imagePath": "rails/best-sellers-books/1558585362.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "0805047905",
+          "title": "Brown Bear, Brown Bear, What Do You See?: 50th Anniversary Edition",
+          "href": "/dp/0805047905",
+          "imagePath": "rails/best-sellers-books/0805047905.jpg"
+        },
+        {
+          "ordinal": 17,
+          "asin": "0593820282",
+          "title": "The Dungeon Anarchist's Cookbook (Dungeon Crawler Carl)",
+          "href": "/dp/0593820282",
+          "imagePath": "rails/best-sellers-books/0593820282.jpg"
+        },
+        {
+          "ordinal": 18,
+          "asin": "4861522471",
+          "title": "A Dictionary Of Color Combinations Vol 1 (Japanese Edition)",
+          "href": "/dp/4861522471",
+          "imagePath": "rails/best-sellers-books/4861522471.jpg"
+        },
+        {
+          "ordinal": 19,
+          "asin": "1775293955",
+          "title": "The Score: Now an Original Series on Amazon Prime (Off-Campus, 3)",
+          "href": "/dp/1775293955",
+          "imagePath": "rails/best-sellers-books/1775293955.jpg"
+        },
+        {
+          "ordinal": 20,
+          "asin": "0857197681",
+          "title": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+          "href": "/dp/0857197681",
+          "imagePath": "rails/best-sellers-books/0857197681.jpg"
+        },
+        {
+          "ordinal": 21,
+          "asin": "1589255518",
+          "title": "I Love You to the Moon and Back",
+          "href": "/dp/1589255518",
+          "imagePath": "rails/best-sellers-books/1589255518.jpg"
+        },
+        {
+          "ordinal": 22,
+          "asin": "1454961791",
+          "title": "Murdoku: 80 Murder Mystery Logic Puzzles",
+          "href": "/dp/1454961791",
+          "imagePath": "rails/best-sellers-books/1454961791.jpg"
+        },
+        {
+          "ordinal": 23,
+          "asin": "0735211299",
+          "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+          "href": "/dp/0735211299",
+          "imagePath": "rails/best-sellers-books/0735211299.jpg"
+        },
+        {
+          "ordinal": 24,
+          "asin": "0778801314",
+          "title": "Ball Complete Book of Home Preserving",
+          "href": "/dp/0778801314",
+          "imagePath": "rails/best-sellers-books/0778801314.jpg"
+        },
+        {
+          "ordinal": 25,
+          "asin": "9387779262",
+          "title": "My First Library: Boxset of 10 Board Books for Kids",
+          "href": "/dp/9387779262",
+          "imagePath": "rails/best-sellers-books/9387779262.jpg"
+        }
+      ]
+    },
+    {
+      "key": "top-picks-singapore",
+      "title": "Top picks for Singapore",
+      "assetSubdir": "top-picks-singapore",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B0CSD1FT18",
+          "title": "byACRE Nordic Pioneer Aluminium Rollator Walker, 5.9 kg, Glacier Green | Aluminium Walker With Seat For Seniors,...",
+          "href": "/dp/B0CSD1FT18",
+          "imagePath": "top-picks-singapore/B0CSD1FT18.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B0G1MQYHRD",
+          "title": "ASUS Ascent GX10 AI Supercomputer, DGX Spark, NVIDIA GB10 Superchip, 128GB LPDDR5x, 1TB PCIe Gen4 NVMe SSD, Wi-Fi 7 &...",
+          "href": "/dp/B0G1MQYHRD",
+          "imagePath": "top-picks-singapore/B0G1MQYHRD.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B00FLYWNYQ",
+          "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker, Slow Cooker, Rice, Steamer, Sauté, Yogurt Maker, Warmer & Sterilizer,...",
+          "href": "/dp/B00FLYWNYQ",
+          "imagePath": "top-picks-singapore/B00FLYWNYQ.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B0FTP511BW",
+          "title": "REVLON ColorSilk After Color Care Mask, Vegan Keratin Hair Treatment, Bond Repair for Damaged Hair, For All Hair Colors...",
+          "href": "/dp/B0FTP511BW",
+          "imagePath": "top-picks-singapore/B0FTP511BW.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B0C9SWH3RC",
+          "title": "Nugget Ice Maker Countertop, Silonn Chewable Pellet Ice Machine with Self-Cleanin Function, 36lbs/24H Portable Ice...",
+          "href": "/dp/B0C9SWH3RC",
+          "imagePath": "top-picks-singapore/B0C9SWH3RC.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B0DP3JV2WB",
+          "title": "Kodiak Cakes Granola, Honey Oat, High Protein, 100% Whole Grains (Pack of 5 pouches)",
+          "href": "/dp/B0DP3JV2WB",
+          "imagePath": "top-picks-singapore/B0DP3JV2WB.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B0DXZW363G",
+          "title": "BUILDCURE FM – Fast-Setting Floor Repair Mortar, Cold-Resistant Concrete & Asphalt Patch, High-Strength (7,250 psi),...",
+          "href": "/dp/B0DXZW363G",
+          "imagePath": "top-picks-singapore/B0DXZW363G.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B0DKQ4RF3B",
+          "title": "Naturfi Organic- Insulin Plant Capsules (Costus Igneus), USDA Organic | 100% Natural Supplement, 90 Veggie Caps (1 Month...",
+          "href": "/dp/B0DKQ4RF3B",
+          "imagePath": "top-picks-singapore/B0DKQ4RF3B.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B0FTPYT2H3",
+          "title": "REVLON ColorSilk After Color Conditioner for Color Treated Hair, Moisturizing & Strengthening Bond Repair with Vegan...",
+          "href": "/dp/B0FTPYT2H3",
+          "imagePath": "top-picks-singapore/B0FTPYT2H3.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B0DKTVC9CR",
+          "title": "Gain Flings Laundry Detergent Pacs, 102 Count, Original Scent, with Odor Defense, concentrated laundry soap pacs",
+          "href": "/dp/B0DKTVC9CR",
+          "imagePath": "top-picks-singapore/B0DKTVC9CR.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B0FBPZ3RSB",
+          "title": "OLIPOP Prebiotic Soda Pop, Strawberry Vanilla, Pantry Pack Packed with Prebiotics, Fiber, and Botanicals, Gluten Free,...",
+          "href": "/dp/B0FBPZ3RSB",
+          "imagePath": "top-picks-singapore/B0FBPZ3RSB.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B0FJH6XRS3",
+          "title": "CamelBak Crayola Chug Insulated Stainless Steel Water Bottle, Cold Retention Design with Spill Resistant Chug Lid for...",
+          "href": "/dp/B0FJH6XRS3",
+          "imagePath": "top-picks-singapore/B0FJH6XRS3.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B07799WY99",
+          "title": "Differin Acne Face Wash, 5% Benzoyl Peroxide Daily Cleanser, 4oz | Gentle Acne Cleanser, Clears Breakouts, Sensitive...",
+          "href": "/dp/B07799WY99",
+          "imagePath": "top-picks-singapore/B07799WY99.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B003NMMVJ0",
+          "title": "L'Oréal Professionnel Paris Styling Pomade For Men - Medium Hold and Matte Finish, Styling Cream For All Hair Types",
+          "href": "/dp/B003NMMVJ0",
+          "imagePath": "top-picks-singapore/B003NMMVJ0.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B0DQPBR1RN",
+          "title": "Ekkovision EKKO Weight Lifting Straps With Cuffed D Ring, Wrist Support for Men, Heavy Duty Thick Comfortable Lifting...",
+          "href": "/dp/B0DQPBR1RN",
+          "imagePath": "top-picks-singapore/B0DQPBR1RN.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B09BQD3YDY",
+          "title": "Cosori Stainless Steel Electric Kettle, Plastic-Free Interior, 1.5L, Black | Cool-Touch Double-Wall, Auto Shut-Off,...",
+          "href": "/dp/B09BQD3YDY",
+          "imagePath": "top-picks-singapore/B09BQD3YDY.jpg"
+        },
+        {
+          "ordinal": 16,
+          "asin": "B0CG7DPXGW",
+          "title": "Tea Tree Special Shampoo, Deep Cleans, Refreshes Scalp, Especially Oily Hair, For All Hair Types",
+          "href": "/dp/B0CG7DPXGW",
+          "imagePath": "top-picks-singapore/B0CG7DPXGW.jpg"
+        },
+        {
+          "ordinal": 17,
+          "asin": "B0CLH89X2K",
+          "title": "Cherry KC 200 MX, Wired Mechanical Office Keyboard, Modern Design with Elegant Aluminum Surface, USB-A Connection, MX2A...",
+          "href": "/dp/B0CLH89X2K",
+          "imagePath": "top-picks-singapore/B0CLH89X2K.jpg"
+        },
+        {
+          "ordinal": 18,
+          "asin": "B0FPF5QRV6",
+          "title": "QPlay Toddler Bike Stroller for Baby 10 Months to 6 Years Old, 8-in-1 Foldable Stroller Bike for Toddlers 3-5 Boys &...",
+          "href": "/dp/B0FPF5QRV6",
+          "imagePath": "top-picks-singapore/B0FPF5QRV6.jpg"
+        },
+        {
+          "ordinal": 19,
+          "asin": "B0007ZF4OA",
+          "title": "HotHands Hand Warmers - Long Lasting Safe Natural Odorless Air Activated Warmers - Up to 10 Hours of Heat",
+          "href": "/dp/B0007ZF4OA",
+          "imagePath": "top-picks-singapore/B0007ZF4OA.jpg"
+        },
+        {
+          "ordinal": 20,
+          "asin": "B000052Y5Q",
+          "title": "Metamucil 4-in-1 Psyllium Husk GLP-1 Friendly Fiber Supplement, Sugar-Free, 72 teaspoons, Orange Flavored, Daily Fiber...",
+          "href": "/dp/B000052Y5Q",
+          "imagePath": "top-picks-singapore/B000052Y5Q.jpg"
+        },
+        {
+          "ordinal": 21,
+          "asin": "B0GT2JP76J",
+          "title": "AOC 27\" Gaming Monitor QHD 240Hz QD OLED G-SYNC Compatible 0.03ms, Q27GAZDV | 2560×1440 Computer Monitor, True Black...",
+          "href": "/dp/B0GT2JP76J",
+          "imagePath": "top-picks-singapore/B0GT2JP76J.jpg"
+        },
+        {
+          "ordinal": 22,
+          "asin": "B0FWBPFL4S",
+          "title": "Blackview Laptop Screen Extender, 1.3lbs Ultra-Light & 0.17\" Ultra-Slim, 14\" FHD 1080P IPS Portable Laptop Monitor...",
+          "href": "/dp/B0FWBPFL4S",
+          "imagePath": "top-picks-singapore/B0FWBPFL4S.jpg"
+        },
+        {
+          "ordinal": 23,
+          "asin": "B0G31J12SG",
+          "title": "Shark CryoGlow LED Face Mask with Under-Eye Cooling, Anti-Ageing & Blemish Repair, Red & Blue LED, Infrared Light...",
+          "href": "/dp/B0G31J12SG",
+          "imagePath": "top-picks-singapore/B0G31J12SG.jpg"
+        },
+        {
+          "ordinal": 24,
+          "asin": "B0DX2GJ1YR",
+          "title": "Samsung SSD 9100 PRO 4TB, PCIe 5.0x4 M.2 2280, Seq. Read Speeds Up to 14,800MB/s, Best for AI Computing, Gaming, and...",
+          "href": "/dp/B0DX2GJ1YR",
+          "imagePath": "top-picks-singapore/B0DX2GJ1YR.jpg"
+        },
+        {
+          "ordinal": 25,
+          "asin": "B0FKNGRQVR",
+          "title": "uoozii 24\" | 5 Pounds Highland Cow Weighted Stuffed Animals with Removable Unscented Microwavable Pouch, Cute Coolable...",
+          "href": "/dp/B0FKNGRQVR",
+          "imagePath": "top-picks-singapore/B0FKNGRQVR.jpg"
+        },
+        {
+          "ordinal": 26,
+          "asin": "B0DK5VM9W2",
+          "title": "Nexxus Hy-Volume Cloud Foam Hair Foam for Lift and Volume For Flat & Limp Hair Hair Styling Foam Powered by Magnitube...",
+          "href": "/dp/B0DK5VM9W2",
+          "imagePath": "top-picks-singapore/B0DK5VM9W2.jpg"
+        },
+        {
+          "ordinal": 27,
+          "asin": "B0FY6T2FG6",
+          "title": "Pipishell 26″ Solid Pine Wood Shoe Rack Bench with Soft Cushion, 2 Tiers Shoe Storage Organizer with Lift-Top Storage...",
+          "href": "/dp/B0FY6T2FG6",
+          "imagePath": "top-picks-singapore/B0FY6T2FG6.jpg"
+        }
+      ]
+    },
+    {
+      "key": "best-sellers-beauty-personal-care",
+      "title": "Best Sellers in Beauty & Personal Care",
+      "assetSubdir": "rails/best-sellers-beauty-personal-care",
+      "items": [
+        {
+          "ordinal": 0,
+          "asin": "B09541P9WH",
+          "title": "Amazon Basics Double-Tipped Cotton Swabs for Personal Hygiene and Baby Care, Cotton, Versatile, Baby Safe, 500 Count",
+          "href": "/dp/B09541P9WH",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B09541P9WH.jpg"
+        },
+        {
+          "ordinal": 1,
+          "asin": "B074PVTPBW",
+          "title": "Mighty Patch Hero Cosmetics Original Nighttime Acne Pimple Patches, 36 Ct | #1 Hydrocolloid Acne Patches, Shrinking Zits...",
+          "href": "/dp/B074PVTPBW",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B074PVTPBW.jpg"
+        },
+        {
+          "ordinal": 2,
+          "asin": "B00U2VQZDS",
+          "title": "Neutrogena Makeup Remover Micellar Wipes for Face Daily Gently Removes Oil Dirt and Waterproof Makeup in a Simple Fully...",
+          "href": "/dp/B00U2VQZDS",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B00U2VQZDS.jpg"
+        },
+        {
+          "ordinal": 3,
+          "asin": "B0B2RM68G2",
+          "title": "BIODANCE Bio-Collagen Real Deep Mask, Hydrating Overnight Hydrogel Face Mask, Pore Minimizing, Elasticity, Plumping,...",
+          "href": "/dp/B0B2RM68G2",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B0B2RM68G2.jpg"
+        },
+        {
+          "ordinal": 4,
+          "asin": "B09542G9ZN",
+          "title": "Amazon Basics Hypoallergenic Cotton Rounds for Makeup Removal and Skincare, 100 Count, 1 Pack",
+          "href": "/dp/B09542G9ZN",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B09542G9ZN.jpg"
+        },
+        {
+          "ordinal": 5,
+          "asin": "B07PBXXNCY",
+          "title": "Clean Skin Club Clean Towels XL®, 100% USDA Biobased Face Towel, Disposable Face Towelette, Eczema Association Accepted,...",
+          "href": "/dp/B07PBXXNCY",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B07PBXXNCY.jpg"
+        },
+        {
+          "ordinal": 6,
+          "asin": "B00F1U0YB4",
+          "title": "Mrs. Meyer's Clean Day, Hand Soap Refill, Lemon Verbena Scent, 33 Fl Oz",
+          "href": "/dp/B00F1U0YB4",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B00F1U0YB4.jpg"
+        },
+        {
+          "ordinal": 7,
+          "asin": "B08H3JPH74",
+          "title": "Maybelline Lash Sensational Sky High Washable Mascara Makeup, Volumizing, Lengthening, Defining, Curling, Multiplying,...",
+          "href": "/dp/B08H3JPH74",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B08H3JPH74.jpg"
+        },
+        {
+          "ordinal": 8,
+          "asin": "B09HHDHXWX",
+          "title": "Amazon Basics Gentle & Mild Clear Liquid Hand Soap Refill, Triclosan-Free, Dermatologist-Tested, pH Balanced,...",
+          "href": "/dp/B09HHDHXWX",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B09HHDHXWX.jpg"
+        },
+        {
+          "ordinal": 9,
+          "asin": "B0DK4Y2YP3",
+          "title": "celimax The Vita A Retinal Shot Tightening Booster | 0.1% Retinal, 3% Matryxyl, High-Strength Retinoid for Anti-Aging,...",
+          "href": "/dp/B0DK4Y2YP3",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B0DK4Y2YP3.jpg"
+        },
+        {
+          "ordinal": 10,
+          "asin": "B0BXTS6L35",
+          "title": "Amazon Basics Epsom Salt Soak, Unscented, Magnesium Sulfate USP, Muscle and Feet Relaxation, Resealable Bag, 3 Pound",
+          "href": "/dp/B0BXTS6L35",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B0BXTS6L35.jpg"
+        },
+        {
+          "ordinal": 11,
+          "asin": "B002MSN3QQ",
+          "title": "EltaMD UV Clear Face Sunscreen SPF, Oil-Free Sunscreen with Zinc Oxide, Dermatologist Recommended",
+          "href": "/dp/B002MSN3QQ",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B002MSN3QQ.jpg"
+        },
+        {
+          "ordinal": 12,
+          "asin": "B07GB3NVN1",
+          "title": "Native Deodorant Contains Naturally Derived Ingredients, 72 Hour Odor Control, Deodorant for Women and Men, Aluminum...",
+          "href": "/dp/B07GB3NVN1",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B07GB3NVN1.jpg"
+        },
+        {
+          "ordinal": 13,
+          "asin": "B0GHMZXX8Y",
+          "title": "medicube PDRN Pink Collagen Volume Multi Balm Stick | Volufiline, PDRN, NAD, Collagen | Face & Body Balm for Under-Eyes,...",
+          "href": "/dp/B0GHMZXX8Y",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B0GHMZXX8Y.jpg"
+        },
+        {
+          "ordinal": 14,
+          "asin": "B000H3I2JG",
+          "title": "Revlon ColorStay Pencil Waterproof Eyeliner, Smudge-Proof, Eye Makeup with Built-In Sharpener, Long-Lasting, Matte...",
+          "href": "/dp/B000H3I2JG",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B000H3I2JG.jpg"
+        },
+        {
+          "ordinal": 15,
+          "asin": "B0DG4WXBCF",
+          "title": "MEDITHERAPY Retinal Skin Booster Serum 5.07 fl oz | Retinaldehyde, Niacinamide, Cica | Korean Hydrating Face & Body...",
+          "href": "/dp/B0DG4WXBCF",
+          "imagePath": "rails/best-sellers-beauty-personal-care/B0DG4WXBCF.jpg"
+        }
+      ]
+    }
+  ]
+}

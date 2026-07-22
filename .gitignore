@@ -28,3 +28,6 @@ candidate/
 secrets.env
 human-interventions.jsonl
 
+# Per-site offline-clone harness runtime state
+.clone-harness/
+

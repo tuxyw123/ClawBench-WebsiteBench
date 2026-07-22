@@ -1,0 +1,111 @@
+{
+  "schema": "amazon-source-pdp-evidence.v1",
+  "capturedAt": "2026-07-21T10:57:06.494Z",
+  "requestedUrl": "https://www.amazon.com/dp/B01M16WBW1",
+  "finalUrl": "https://www.amazon.com/dp/B01M16WBW1?th=1",
+  "canonicalUrl": "https://www.amazon.com/Queen-Size-Piece-Sheet-Set/dp/B01M16WBW1",
+  "marketContext": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "deliveryCountry": "Singapore",
+    "currency": "USD"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "documentWidth": 1265,
+    "documentHeight": 11584
+  },
+  "identity": {
+    "asin": "B01M16WBW1",
+    "title": "Queen Size 4 Piece Sheet Set - Comfy Breathable & Cooling Sheets - Hotel Luxury Bed Sheets for Women & Men - Deep Pockets, Easy-Fit, Extra Soft and Wrinkle Free Sheets - White Oeko-Tex Bed Sheet Set",
+    "byline": "Visit the CGK Unlimited Store",
+    "brand": "CGK Unlimited"
+  },
+  "taxonomy": {
+    "breadcrumbs": [
+      "Home & Kitchen",
+      "Bedding",
+      "Sheets & Pillowcases",
+      "Sheet & Pillowcase Sets"
+    ]
+  },
+  "offer": {
+    "priceText": "$21.24",
+    "priceMinor": 2124,
+    "listPriceText": "$29.99",
+    "listPriceMinor": 2999,
+    "savingsText": "-29%",
+    "discountPercent": 29,
+    "dealBadge": "Limited time deal",
+    "shippingCopy": "No Import Charges & $12.74 Shipping to Singapore",
+    "deliveryCopy": "$12.74 delivery Monday, July 27",
+    "availability": "In Stock"
+  },
+  "socialProof": {
+    "ratingText": "4.5 out of 5 stars",
+    "rating": "4.5",
+    "reviewCountText": "(447,592)",
+    "reviewCount": 447592,
+    "badge": "Amazon's Choice",
+    "bought": "20K+ bought in past month"
+  },
+  "fulfillment": {
+    "shipsFrom": "Amazon",
+    "soldBy": "CGK Unlimited",
+    "returns": "30-day refund / replacement",
+    "giftOptions": "Available at checkout"
+  },
+  "productOverview": [
+    ["Size", "Queen"],
+    ["Material", "Polyester"],
+    ["Color", "01 - White"],
+    ["Pattern", "Solid"],
+    ["Brand", "CGK Unlimited"]
+  ],
+  "about": [
+    "4 PIECE BED SHEET SET: 2 pillow cases and a flat sheet and fitted sheet. Flat Sheet (102”x 90”) Fitted Sheet (80”x 60”) 2 Pillow Cases (20” x 30”).",
+    "DEEP POCKETS/ EASY FIT: They fit mattresses up to around 16 inches deep. If your mattress is smaller than 16 inches it will fit just fine. A lot of mattresses are pretty big these days and we feel this is a good universal size that fits most mattresses.",
+    "FEEL THE DIFFERENCE: If you're looking for very soft sheets you have found them! They're breathable, cool and super silky soft. The comfort of these sheets will have you coming back! They're softer than Egyptian cotton and organic cotton sheets! Best for any room in your house - bedroom, guest room, RV, vacation home. Great gift idea for everyone.",
+    "HIGHEST QUALITY BRUSHED MICROFIBER: A lighter difference. A softer, finer touch. These are made of the highest quality double brushed microfiber yarns. The virtually weightless wonder of CGK Unlimited sheets will have you coming back for more. Linger in your dreams.",
+    "GREAT SHEETS FOR THE PRICE! These are some of the softest and most affordable sheets you’ll find. Great bang for your buck as far as comfort and softness and unlike many other very expensive sheets & materials, these CGK Bed Sheets will give you comfort and softness at a reasonable price."
+  ],
+  "media": {
+    "mainImageObserved": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SL1500_.jpg",
+      "naturalWidth": 1200,
+      "naturalHeight": 1500,
+      "renderedWidth": 339.8984375,
+      "renderedHeight": 425
+    },
+    "galleryMoreText": "3+",
+    "videoText": "7 VIDEOS",
+    "visibleThumbnailUrls": [
+      "https://m.media-amazon.com/images/I/41k5T2gtCCL._AC_US100_.jpg",
+      "https://m.media-amazon.com/images/I/414CYIk-EQL._AC_US100_.jpg",
+      "https://m.media-amazon.com/images/I/412aOlh-z1L._AC_US100_.jpg",
+      "https://m.media-amazon.com/images/I/41U4C2ppwpL._AC_US100_.jpg",
+      "https://m.media-amazon.com/images/I/41v7r7-W7oL._AC_US100_.jpg",
+      "https://m.media-amazon.com/images/I/41w4hoTgOjL._AC_US100_.jpg"
+    ],
+    "videoThumbnailSourceUrl": "https://m.media-amazon.com/images/I/4122vKBw+AL.SS125_PKplay-button-mb-image-grid-small_.jpg",
+    "gallery": [
+      {"ordinal": 1, "variant": "MAIN", "physicalId": "61o6SkL3DOL", "sourceUrl": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-01.jpg", "bytes": 105760, "sha256": "1df0a7caa253fe56da55d95568e564531ff27fb273e1d223131dc2da9f4d1c0f", "width": 1200, "height": 1500},
+      {"ordinal": 2, "variant": "PT01", "physicalId": "61m4Kuy7aaL", "sourceUrl": "https://m.media-amazon.com/images/I/61m4Kuy7aaL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-02.jpg", "bytes": 101396, "sha256": "7817dccf4802a9e9cf4352bb61e187a76f9a517f723805da565acecd184c663b", "width": 1500, "height": 1500},
+      {"ordinal": 3, "variant": "PT02", "physicalId": "61U3kAZqNBL", "sourceUrl": "https://m.media-amazon.com/images/I/61U3kAZqNBL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-03.jpg", "bytes": 100273, "sha256": "91fd1b6cf333de622b403f8125d79386b157d46e320a63361bc7fa7ea44b469d", "width": 1500, "height": 1500},
+      {"ordinal": 4, "variant": "PT03", "physicalId": "71tlm22qSzL", "sourceUrl": "https://m.media-amazon.com/images/I/71tlm22qSzL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-04.jpg", "bytes": 142797, "sha256": "8517f9dfc479447c346afade44544203412c54b74187eda809ede83ea89eb324", "width": 1500, "height": 1500},
+      {"ordinal": 5, "variant": "PT04", "physicalId": "71tPTuJGItL", "sourceUrl": "https://m.media-amazon.com/images/I/71tPTuJGItL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-05.jpg", "bytes": 133704, "sha256": "0b53b5561f32a8736a8bf131c545faf3c9b058d90abc3df21de8a315f94f9128", "width": 1500, "height": 1500},
+      {"ordinal": 6, "variant": "PT05", "physicalId": "61rypL82D0L", "sourceUrl": "https://m.media-amazon.com/images/I/61rypL82D0L._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-06.jpg", "bytes": 85424, "sha256": "7bdf90bedab996df6088459a0df6e52366d5b439b58d13269258c8dba54f63ac", "width": 1500, "height": 1500},
+      {"ordinal": 7, "variant": "PT06", "physicalId": "61g1JbCvGPL", "sourceUrl": "https://m.media-amazon.com/images/I/61g1JbCvGPL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-07.jpg", "bytes": 97613, "sha256": "3f2474db6824486ff8cdde7ec91c1534e5b424fb8181a812c453dbab3a1d2750", "width": 1500, "height": 1500},
+      {"ordinal": 8, "variant": "PT07", "physicalId": "71Q8iaE3ebL", "sourceUrl": "https://m.media-amazon.com/images/I/71Q8iaE3ebL._AC_SL1500_.jpg", "localPath": "pdp-home/B01M16WBW1/gallery-08.jpg", "bytes": 137038, "sha256": "d875d98b6e5c7bea0b0dd796572911bd1116ffce108254ad9efffae7e9ac7d6b", "width": 1500, "height": 1500}
+    ],
+    "videoThumbnail": {"localPath": "pdp-home/B01M16WBW1/video-thumb.jpg", "bytes": 2610, "sha256": "023381005c234821192e03b8d507b7d7d5f7469bed0003184dd2e05e1e946f03", "width": 125, "height": 125}
+  },
+  "topGeometry": {
+    "root": {"x": 0, "y": 99, "width": 1265, "height": 10431.7890625},
+    "imageBlock": {"x": 18, "y": 206, "width": 553.046875, "height": 620.453125},
+    "center": {"x": 589.484375, "y": 206, "width": 387.515625, "height": 2023.6875},
+    "buybox": {"x": 1003, "y": 206, "width": 244, "height": 663.5},
+    "title": {"x": 589.484375, "y": 207, "width": 372.8671875, "height": 222}
+  }
+}

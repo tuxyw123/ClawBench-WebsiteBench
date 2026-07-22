@@ -1,0 +1,149 @@
+{
+  "schema": "amazon-source-current-search-commerce.v2",
+  "captured_on": "2026-07-22",
+  "marketplace": "amazon.com",
+  "session": {
+    "authenticated": false,
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "commerce_card_followup": {
+    "capture_kind": "direct-browser-search-cards-with-add-to-cart",
+    "source_queries": [
+      "https://www.amazon.com/s?k=best+sellers",
+      "https://www.amazon.com/s?k=best+sellers&i=computers-intl-ship"
+    ],
+    "retained_count": 20,
+    "department_counts": {
+      "books": 6,
+      "beauty-personal-care": 6,
+      "home-kitchen": 2,
+      "toys-games": 1,
+      "computers": 5
+    },
+    "retained_asins": [
+      "B0GRFWYP37",
+      "B0DPGNGRCC",
+      "B0CGL336B7",
+      "1481215663",
+      "0345483448",
+      "1524797677",
+      "B091NJQ29P",
+      "B014E2D6BY",
+      "B0B2RM68G2",
+      "B093TSRPQM",
+      "B09MFMCTRK",
+      "B0B5HN65QQ",
+      "B0725WFLMB",
+      "B072F54342",
+      "B081RJ8DW1",
+      "B0DX6RVJF7",
+      "B0D1CRYR8C",
+      "B0D9V8R5X9",
+      "B0DBVH4ZBT",
+      "B0C49PMJMW"
+    ],
+    "normalized_fixture": "../../clone/fixtures/search-commerce-current-2026-07-22.json",
+    "evidence_boundary": "Only the displayed default card offer is transactional; no PDP, variant, inventory, list-price, seller, delivery, or returns facts are inferred."
+  },
+  "capture_kind": "direct-browser-dom-controls",
+  "default_search": {
+    "canonical_query": "k=portable+ssd",
+    "document_title": "Amazon.com : portable ssd",
+    "result_summary": "1-16 of over 6,000 results for portable ssd",
+    "sort_choices": [
+      {"label": "Featured", "value": "relevanceblender"},
+      {"label": "Price: Low to High", "value": "price-asc-rank"},
+      {"label": "Price: High to Low", "value": "price-desc-rank"},
+      {"label": "Avg. Customer Review", "value": "review-rank"},
+      {"label": "Newest Arrivals", "value": "date-desc-rank"},
+      {"label": "Best Sellers", "value": "exact-aware-popularity-rank"}
+    ],
+    "refinement_groups_observed": [
+      "Popular Shopping Ideas",
+      "Hard Drive Size",
+      "Storage Capacity",
+      "Customer Reviews",
+      "Brands",
+      "Price",
+      "Deals & Discounts",
+      "Data Transfer Rate",
+      "Connectivity Technology",
+      "Condition",
+      "Features",
+      "Read Speed",
+      "Top Brands",
+      "Seller",
+      "Color",
+      "Compatibility",
+      "Specific Uses",
+      "Premium Brands",
+      "Hard Drive Type",
+      "Installation"
+    ],
+    "brand_values_observed": [
+      "Samsung",
+      "Sandisk",
+      "Crucial",
+      "Seagate",
+      "Lexar",
+      "Western Digital",
+      "ORICO"
+    ],
+    "pager": {
+      "selected_page": 1,
+      "linked_pages": [2, 3],
+      "next_page": 2
+    }
+  },
+  "samsung_refinement": {
+    "stable_query_shape": "k=portable+ssd&rh=p_123%3A46655",
+    "source_control_name": "Apply Samsung filter to narrow results",
+    "result_summary": "1-16 of 66 results",
+    "sample_asins": [
+      "B0874XN4D8",
+      "B0874XWW23",
+      "B0CHFS9K14",
+      "B0CHFSWM2P",
+      "B09VLK9W3S"
+    ]
+  },
+  "price_ascending": {
+    "source_sort_value": "price-asc-rank",
+    "known_price_samples_usd": [
+      {"asin": "B0874XN4D8", "display": "$219.79"},
+      {"asin": "B0CHFSWM2P", "display": "$239.99"},
+      {"asin": "B09SBJJ4JW", "display": "$349.99"}
+    ],
+    "boundary": "Live values are observation-only and are not imported as clone offer quotes."
+  },
+  "page_2": {
+    "stable_query_shape": "k=portable+ssd&page=2",
+    "selected_page": 2,
+    "previous_page": 1,
+    "linked_pages": [1, 3],
+    "next_page": 3,
+    "sample_asins": [
+      "B0F3368QFL",
+      "B0CGW18S6Y",
+      "B0FDQL138C",
+      "B0GCGSKMMP"
+    ]
+  },
+  "implementation_scope": {
+    "supported_from_direct_evidence": [
+      "server-owned GET refinement links",
+      "sort selection",
+      "page links with Previous and Next",
+      "query-state preservation"
+    ],
+    "not_claimed": [
+      "source result-count parity",
+      "source ranking parity",
+      "complete source facet coverage",
+      "mobile filter drawer",
+      "new offer eligibility",
+      "live source prices as frozen clone quotes"
+    ]
+  }
+}

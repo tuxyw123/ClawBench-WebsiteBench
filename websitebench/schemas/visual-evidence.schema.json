@@ -8,6 +8,7 @@
   "properties": {
     "schema_version": {"const": "websitebench.visual-evidence.v1"},
     "item_key": {"type": "string", "pattern": "^[a-z0-9]+(?:--[a-z0-9-]+)+$"},
+    "run_id": {"type": "string", "minLength": 1},
     "generated_at": {"type": "string", "format": "date-time"},
     "captures": {"type": "array", "items": {"$ref": "#/$defs/capture"}}
   },

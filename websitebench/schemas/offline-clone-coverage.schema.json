@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.coverage.v1.json",
+  "title": "ClawBench offline clone coverage ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "dimensions"],
+  "properties": {
+    "schema_version": {"const": "offline-clone.coverage.v1"},
+    "status": {"enum": ["draft", "frozen"]},
+    "dimensions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/dimension"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "frozen"}},
+        "required": ["status"]
+      },
+      "then": {"properties": {"dimensions": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-z0-9]+(?:[._:-][a-z0-9]+)*$"
+    },
+    "item_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^\\S+$"
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "unit",
+        "category",
+        "required_evidence_kinds",
+        "required_items",
+        "satisfied_items"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug"},
+        "label": {"type": "string", "minLength": 1, "maxLength": 160},
+        "unit": {"$ref": "#/$defs/slug"},
+        "category": {"$ref": "#/$defs/slug"},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "required_evidence_kinds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "visual",
+              "browser",
+              "network",
+              "migration",
+              "independent-audit",
+              "full-suite"
+            ]
+          }
+        },
+        "required_items": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/item_id"}
+        },
+        "satisfied_items": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/item_id"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"required_items": {"maxItems": 0}},
+            "required": ["required_items"]
+          },
+          "then": {"required": ["rationale"]}
+        },
+        {
+          "if": {
+            "properties": {"required_items": {"minItems": 1}},
+            "required": ["required_items"]
+          },
+          "then": {
+            "properties": {"required_evidence_kinds": {"minItems": 1}}
+          },
+          "else": {
+            "properties": {"required_evidence_kinds": {"maxItems": 0}}
+          }
+        }
+      ]
+    }
+  }
+}

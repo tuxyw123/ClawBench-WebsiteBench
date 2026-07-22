@@ -9,6 +9,7 @@ from pytest import MonkeyPatch
 from clawbench.viewer.app import create_app
 from clawbench.viewer.auth import AuthSettings, LoginLimiter, hash_password
 from clawbench.viewer.reviews import DIMENSIONS
+from clawbench.viewer.publish import publish_static_site
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -106,7 +107,9 @@ def test_auth_redirect_security_headers_and_core_pages(tmp_path: Path) -> None:
         for path in (
             "/",
             "/tasks",
-            "/tasks/websitebench--northstar-market",
+            "/tasks/legacy--dev-115-freshdesk-invoice-dispute-ticket",
+            "/models",
+            "/results",
             "/compare",
             "/methodology",
         ):
@@ -115,15 +118,15 @@ def test_auth_redirect_security_headers_and_core_pages(tmp_path: Path) -> None:
             assert "default-src 'self'" in response.headers["content-security-policy"]
             assert response.headers["x-frame-options"] == "DENY"
         tasks = client.get("/tasks").text
-        assert tasks.count("data-task-row") == 4
-        assert "Official / 100" in tasks or "No candidate result" in tasks
-        assert "Legacy verifier" in tasks
+        assert tasks.count("data-task-row") == 3
+        assert "Model runs" in tasks
+        assert "Legacy checks" in tasks
 
 
 def test_review_csrf_revision_and_export(tmp_path: Path) -> None:
     with TestClient(application(tmp_path)) as client:
         csrf = login(client)
-        key = "websitebench--northstar-market"
+        key = "legacy--dev-115-freshdesk-invoice-dispute-ticket"
         assert client.put(f"/api/reviews/{key}", json=review_body()).status_code == 403
         saved = client.put(
             f"/api/reviews/{key}",
@@ -146,7 +149,7 @@ def test_review_csrf_revision_and_export(tmp_path: Path) -> None:
 def test_public_profile_disables_writes_gateway_and_artifacts(tmp_path: Path) -> None:
     with TestClient(application(tmp_path, profile="public")) as client:
         csrf = login(client)
-        key = "websitebench--northstar-market"
+        key = "legacy--dev-115-freshdesk-invoice-dispute-ticket"
         response = client.put(
             f"/api/reviews/{key}",
             json=review_body(),
@@ -157,7 +160,7 @@ def test_public_profile_disables_writes_gateway_and_artifacts(tmp_path: Path) ->
         assert client.get(f"/artifacts/{key}/anything.png").status_code == 404
 
 
-def test_compare_caps_selection_at_four(tmp_path: Path) -> None:
+def test_compare_deduplicates_and_ignores_unknown_items(tmp_path: Path) -> None:
     app = application(tmp_path)
     with TestClient(app) as client:
         login(client)
@@ -166,12 +169,30 @@ def test_compare_caps_selection_at_four(tmp_path: Path) -> None:
         too_many = client.get(
             "/compare", params=[("items", key) for key in [*keys, keys[0]]]
         )
-        # De-duplication keeps this at four.
+        # De-duplication keeps the selection within the comparison cap.
         assert too_many.status_code == 200
         assert client.get(
             "/compare",
             params=[("items", key) for key in [*keys, "missing--one"]],
-        ).status_code == 400
+        ).status_code == 200
+
+
+def test_public_static_publish_includes_scalable_catalog_routes(tmp_path: Path) -> None:
+    output = tmp_path / "site"
+    manifest = publish_static_site(REPO_ROOT, output)
+    assert manifest["items"] == 0
+    assert (output / "index.html").is_file()
+    assert (output / "tasks" / "index.html").is_file()
+    assert (output / "models" / "index.html").is_file()
+    assert (output / "results" / "index.html").is_file()
+    html = (output / "index.html").read_text(encoding="utf-8")
+    assert "Website × model matrix" in html
+    assert 'name="csrf-token" content=""' in html
+    assert 'href="/static/styles.css"' in html
+    assert 'src="/static/app.js"' in html
+    assert 'property="og:image" content="/static/og.png"' in html
+    assert "http://testserver" not in html
+    assert "Sign out" not in html
 
 
 def test_internal_gateway_requires_auth_and_rewrites_clone_response(

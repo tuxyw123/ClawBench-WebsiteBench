@@ -276,7 +276,8 @@ def create_app(
             "home.html",
             _template_context(
                 request, index=index, auth=auth, summary=data["summary"], items=index.items,
-                reviews=item_reviews,
+                reviews=item_reviews, categories=index.categories, models=index.models,
+                evaluation_matrix=index.evaluation_matrix,
             ),
         )
 
@@ -309,6 +310,58 @@ def create_app(
             _template_context(
                 request, index=index, auth=auth, item=item, review=current_review(item),
                 visual=visual, gateway_allowed=clone_manager.is_allowed(item_key),
+            ),
+        )
+
+    @app.get("/models", response_class=HTMLResponse)
+    async def models_page(request: Request) -> Response:
+        session = require_page(request)
+        if isinstance(session, RedirectResponse):
+            return session
+        return templates.TemplateResponse(
+            request,
+            "models.html",
+            _template_context(
+                request,
+                index=index,
+                auth=auth,
+                models=index.models,
+                site_count=sum(item["source_type"] == "websitebench" for item in index.items),
+            ),
+        )
+
+    @app.get("/models/{model_key}", response_class=HTMLResponse)
+    async def model_detail(request: Request, model_key: str) -> Response:
+        session = require_page(request)
+        if isinstance(session, RedirectResponse):
+            return session
+        model = index.model_by_key(model_key)
+        if model is None:
+            raise HTTPException(404, "model result group not found")
+        runs = []
+        for run in model["runs"]:
+            item = next(item for item in index.items if item["site_id"] == run["site_id"])
+            runs.append({"run": run, "item": item})
+        return templates.TemplateResponse(
+            request,
+            "model_detail.html",
+            _template_context(request, index=index, auth=auth, model=model, runs=runs),
+        )
+
+    @app.get("/results", response_class=HTMLResponse)
+    async def results_page(request: Request) -> Response:
+        session = require_page(request)
+        if isinstance(session, RedirectResponse):
+            return session
+        return templates.TemplateResponse(
+            request,
+            "results.html",
+            _template_context(
+                request,
+                index=index,
+                auth=auth,
+                models=index.models,
+                matrix=index.evaluation_matrix,
             ),
         )
 
@@ -349,10 +402,19 @@ def create_app(
         if run is None:
             raise HTTPException(404, "valid websitebench.result.v1 run not found")
         item = next(item for item in index.items if run in item["official_runs"])
+        run_visual = evidence.load(item["key"], run_id) if profile == "internal" else None
+        visual = (
+            run_visual or evidence.load(item["key"]) or item.get("visual_evidence")
+            if profile == "internal"
+            else item.get("visual_evidence")
+        )
         return templates.TemplateResponse(
             request,
             "run_detail.html",
-            _template_context(request, index=index, auth=auth, run=run, item=item),
+            _template_context(
+                request, index=index, auth=auth, run=run, item=item, visual=visual,
+                visual_run_specific=run_visual is not None,
+            ),
         )
 
     @app.get("/methodology", response_class=HTMLResponse)
@@ -433,6 +495,23 @@ def create_app(
         except (ReviewError, AttributeError, json.JSONDecodeError) as exc:
             raise HTTPException(422, str(exc)) from exc
         return JSONResponse({"imported": len(imported)})
+
+    @app.get("/artifacts/{item_key}/runs/{run_id}/{artifact_path:path}")
+    async def run_artifact(
+        request: Request, item_key: str, run_id: str, artifact_path: str
+    ) -> Response:
+        require_api(request)
+        item = index.by_key(item_key)
+        run = index.run_by_id(run_id)
+        if item is None or run is None or run not in item["official_runs"]:
+            raise HTTPException(404, "run artifact not found")
+        if profile == "public":
+            raise HTTPException(404, "artifact not published")
+        try:
+            path = evidence.resolve(item_key, artifact_path, run_id)
+        except (FileNotFoundError, ValueError):
+            raise HTTPException(404, "run artifact not found") from None
+        return FileResponse(path)
 
     @app.get("/artifacts/{item_key}/{artifact_path:path}")
     async def artifact(request: Request, item_key: str, artifact_path: str) -> Response:

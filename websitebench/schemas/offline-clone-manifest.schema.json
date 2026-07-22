@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.manifest.v1.json",
+  "title": "ClawBench offline clone harness manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "site_id",
+    "display_name",
+    "state_model",
+    "source",
+    "scope",
+    "paths",
+    "gates"
+  ],
+  "properties": {
+    "schema_version": {"const": "offline-clone.manifest.v1"},
+    "site_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {"type": "string", "minLength": 1, "maxLength": 160},
+    "state_model": {"enum": ["stateful", "stateless"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origins", "baseline", "capture_policy"],
+      "properties": {
+        "origins": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "format": "uri", "pattern": "^https?://"}
+        },
+        "baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["locale", "auth_state"],
+          "properties": {
+            "locale": {"type": "string", "minLength": 2, "maxLength": 40},
+            "currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+            "delivery_region": {"type": ["string", "null"], "maxLength": 160},
+            "timezone": {"type": ["string", "null"], "maxLength": 80},
+            "auth_state": {"enum": ["anonymous", "authenticated", "mixed"]},
+            "tenant": {"type": ["string", "null"], "maxLength": 160},
+            "workspace": {"type": ["string", "null"], "maxLength": 160},
+            "role": {"type": ["string", "null"], "maxLength": 160},
+            "capabilities": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1, "maxLength": 160}
+            },
+            "feature_flags": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "string", "minLength": 1, "maxLength": 160}
+            },
+            "user_agent": {"type": ["string", "null"], "maxLength": 1000},
+            "viewport": {
+              "oneOf": [
+                {"type": "null"},
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["width", "height"],
+                  "properties": {
+                    "width": {"type": "integer", "minimum": 1, "maximum": 32768},
+                    "height": {"type": "integer", "minimum": 1, "maximum": 32768},
+                    "device_scale_factor": {"type": "number", "exclusiveMinimum": 0, "maximum": 16}
+                  }
+                }
+              ]
+            },
+            "capture_id": {"type": ["string", "null"], "minLength": 1, "maxLength": 200}
+          }
+        },
+        "capture_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["safe_methods", "runtime_remote_requests"],
+          "properties": {
+            "safe_methods": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"enum": ["GET", "HEAD"]}
+            },
+            "runtime_remote_requests": {"const": "forbidden"}
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "invariants",
+        "routes",
+        "journeys",
+        "checkpoints",
+        "claims",
+        "coverage"
+      ],
+      "properties": {
+        "purpose": {"$ref": "#/$defs/relative_path"},
+        "invariants": {"$ref": "#/$defs/relative_path"},
+        "routes": {"$ref": "#/$defs/relative_path"},
+        "journeys": {"$ref": "#/$defs/relative_path"},
+        "checkpoints": {"$ref": "#/$defs/relative_path"},
+        "claims": {"$ref": "#/$defs/relative_path"},
+        "coverage": {"$ref": "#/$defs/relative_path"}
+      }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_root",
+        "candidate_excludes",
+        "asset_manifest",
+        "artifact_root",
+        "state_file",
+        "trajectory_file"
+      ],
+      "properties": {
+        "candidate_root": {"$ref": "#/$defs/relative_path"},
+        "candidate_excludes": {
+          "type": "array",
+          "uniqueItems": true,
+          "maxItems": 100,
+          "items": {"$ref": "#/$defs/relative_path"}
+        },
+        "asset_manifest": {"$ref": "#/$defs/relative_path"},
+        "artifact_root": {"$ref": "#/$defs/relative_path"},
+        "state_file": {"$ref": "#/$defs/relative_path"},
+        "trajectory_file": {"$ref": "#/$defs/relative_path"}
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "wall_time_seconds": {"type": "integer", "minimum": 1},
+        "token_budget": {"type": "integer", "minimum": 1},
+        "browser_actions": {"type": "integer", "minimum": 1},
+        "asset_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "assets", "frontend", "backend", "release"],
+      "properties": {
+        "source": {"$ref": "#/$defs/gate"},
+        "assets": {"$ref": "#/$defs/gate"},
+        "frontend": {"$ref": "#/$defs/gate"},
+        "backend": {"$ref": "#/$defs/gate"},
+        "release": {"$ref": "#/$defs/release_gate"}
+      }
+    }
+  },
+  "$defs": {
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+"
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "argv"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "argv": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1, "maxLength": 4096}
+        },
+        "cwd": {"$ref": "#/$defs/relative_path"},
+        "timeout_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400,
+          "default": 600
+        }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "commands"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/relative_path"}
+        },
+        "commands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/command"}
+        }
+      }
+    },
+    "acceptance_evidence_declaration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "producer_command_id"],
+      "properties": {
+        "path": {
+          "allOf": [
+            {"$ref": "#/$defs/relative_path"},
+            {"pattern": "\\.json$"}
+          ]
+        },
+        "producer_command_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "release_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inputs", "commands", "evidence"],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/relative_path"}
+        },
+        "commands": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/command"}
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "visual",
+            "browser",
+            "network",
+            "migration",
+            "independent-audit",
+            "full-suite"
+          ],
+          "properties": {
+            "visual": {"$ref": "#/$defs/acceptance_evidence_declaration"},
+            "browser": {"$ref": "#/$defs/acceptance_evidence_declaration"},
+            "network": {"$ref": "#/$defs/acceptance_evidence_declaration"},
+            "migration": {"$ref": "#/$defs/acceptance_evidence_declaration"},
+            "independent-audit": {"$ref": "#/$defs/acceptance_evidence_declaration"},
+            "full-suite": {"$ref": "#/$defs/acceptance_evidence_declaration"}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B071V91LGC",
+  "market_context": {"marketplace": "amazon.com", "delivery_country": "Singapore", "currency": "USD"},
+  "identity": {
+    "asin": "B071V91LGC",
+    "title": "Vault X 9 Pocket Zip Trading Card Binder 360 Cards Exo-Tec (Black) | Holds 360 standard-size TCG cards in 20 side-loading 9-pocket pages. Padded, water-resistant Exo-Tec cover.",
+    "byline": "Visit the Vault X Store"
+  },
+  "social_proof": {"rating": "4.8", "review_count": 8730, "badge": "Amazon's Choice", "bought": "7K+ bought in past month"},
+  "offers": {
+    "selection_axis": "Color",
+    "color": [
+      {"value": "Black", "price_text": "$29.99", "price_minor": 2999, "availability": "In Stock"},
+      {"value": "Green", "price_text": "$29.99", "price_minor": 2999, "availability": "Only 12 left in stock - order soon."},
+      {"value": "Pink", "price_text": "$31.99", "price_minor": 3199, "availability": "featured offer captured"},
+      {"value": "Purple", "price_text": "$31.99", "price_minor": 3199, "availability": "featured offer captured"},
+      {"value": "Red", "price_text": "$29.99", "price_minor": 2999, "availability": "Only 3 left in stock - order soon."}
+    ],
+    "source_reported_option_count": 6,
+    "unrevealed_no_featured_offer_count": 1
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $10.13 Shipping to Singapore",
+    "delivery_copy": "$10.13 delivery Monday, July 27",
+    "availability": "In Stock",
+    "ships_from": "Amazon",
+    "sold_by": "Vault X Ltd",
+    "returns": "FREE 30-day refund/replacement"
+  },
+  "review_snapshot": {"individual_review_cards_captured": false},
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/81DWixeO-fL._AC_SL1500_.jpg",
+      "local_path": "pdp-toys/B071V91LGC/main.jpg",
+      "bytes": 226593,
+      "sha256": "5f1148b27b1b390ac1f7f09ae0d8f384450c88394831938985cfa042ceb1576f",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1233, "height": 1500}
+    }
+  }
+}

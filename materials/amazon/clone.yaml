@@ -1,0 +1,350 @@
+schema_version: offline-clone.manifest.v1
+site_id: amazon-shopping-mainline
+display_name: Amazon offline shopping-mainline worked example
+state_model: stateful
+source:
+  origins:
+    - https://www.amazon.com/
+  baseline:
+    locale: en-US
+    currency: USD
+    delivery_region: Singapore
+    timezone: Asia/Singapore
+    auth_state: mixed
+  capture_policy:
+    safe_methods:
+      - GET
+      - HEAD
+    runtime_remote_requests: forbidden
+scope:
+  purpose: scope/purpose.json
+  invariants: scope/invariants.json
+  routes: scope/routes.json
+  journeys: scope/journeys.json
+  checkpoints: scope/checkpoints.json
+  claims: scope/claims.jsonl
+  coverage: scope/coverage.json
+paths:
+  candidate_root: clone
+  candidate_excludes:
+    - .runtime
+    - runtime
+  asset_manifest: source-assets/offline-clone-manifest.json
+  artifact_root: artifacts/offline-clone
+  state_file: .clone-harness/state.json
+  trajectory_file: .clone-harness/trajectory.jsonl
+gates:
+  source:
+    inputs:
+      - scope/purpose.json
+      - scope/invariants.json
+      - scope/routes.json
+      - scope/journeys.json
+      - scope/checkpoints.json
+      - scope/claims.jsonl
+      - scope/coverage.json
+      - source-assets/offline-clone-manifest.json
+      - source-assets/2026-07-21
+      - source-assets/2026-07-22
+      - source-assets/2026-07-22/search-commerce/visual-goldens/desktop-home-1365x900.png
+      - source-assets/2026-07-22/search-commerce/visual-goldens/desktop-search-portable-ssd-1365x900.png
+      - tools/offline_clone_gate.py
+    commands:
+      - id: validate-shopping-scope
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - source
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 60
+  assets:
+    inputs:
+      - source-assets/offline-clone-manifest.json
+      - source-assets/2026-07-21
+      - source-assets/2026-07-22
+      - tools/offline_clone_gate.py
+      - clone/auth_views.py
+      - clone/browse_breadth.py
+      - clone/deals_catalog.py
+      - clone/home_catalog.py
+      - clone/local_smtp_inbox.py
+      - clone/mail_transport.py
+      - clone/payment_methods.py
+      - clone/product_options.py
+      - clone/render.py
+      - clone/run_local.py
+      - clone/review_catalog.py
+      - clone/review_store.py
+      - clone/search_catalog.py
+      - clone/search_commerce.py
+      - clone/search_suggestions.py
+      - clone/server.py
+      - clone/specialty_store.py
+      - clone/specialty_views.py
+      - clone/store.py
+      - clone/wishlist_store.py
+      - clone/wishlist_views.py
+      - clone/schema.sql
+      - clone/fixtures
+      - clone/static
+    commands:
+      - id: verify-base-assets
+        argv:
+          - "{python}"
+          - source-assets/2026-07-21/verify_manifest.py
+        cwd: .
+        timeout_seconds: 180
+      - id: verify-deals-assets
+        argv:
+          - "{python}"
+          - source-assets/2026-07-22/deals-current/verify_assets.py
+        cwd: .
+        timeout_seconds: 60
+      - id: verify-lists-assets
+        argv:
+          - "{python}"
+          - source-assets/2026-07-22/lists-intro/verify_assets.py
+        cwd: .
+        timeout_seconds: 60
+      - id: verify-search-storage-backfill
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - search-backfill
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 60
+      - id: audit-local-static-references
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - static-offline
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 60
+  frontend:
+    inputs:
+      - clone/auth_views.py
+      - clone/browse_breadth.py
+      - clone/deals_catalog.py
+      - clone/home_catalog.py
+      - clone/local_smtp_inbox.py
+      - clone/mail_transport.py
+      - clone/payment_methods.py
+      - clone/product_options.py
+      - clone/render.py
+      - clone/run_local.py
+      - clone/review_catalog.py
+      - clone/review_store.py
+      - clone/search_catalog.py
+      - clone/search_commerce.py
+      - clone/search_suggestions.py
+      - clone/server.py
+      - clone/specialty_store.py
+      - clone/specialty_views.py
+      - clone/store.py
+      - clone/wishlist_store.py
+      - clone/wishlist_views.py
+      - clone/schema.sql
+      - clone/static
+      - clone/fixtures
+      - clone/tests
+    commands:
+      - id: verify-primary-frontend-families
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - -v
+          - tests.test_home_frontend
+          - tests.test_search_frontend
+          - tests.test_deals
+        cwd: clone
+        timeout_seconds: 600
+      - id: verify-frontend-interactions
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - -v
+          - tests.test_auth_frontend
+          - tests.test_shopping_entrypoints
+          - tests.test_specialty_surfaces
+        cwd: clone
+        timeout_seconds: 600
+  backend:
+    inputs:
+      - clone/auth_views.py
+      - clone/browse_breadth.py
+      - clone/deals_catalog.py
+      - clone/home_catalog.py
+      - clone/local_smtp_inbox.py
+      - clone/mail_transport.py
+      - clone/payment_methods.py
+      - clone/product_options.py
+      - clone/render.py
+      - clone/run_local.py
+      - clone/review_catalog.py
+      - clone/review_store.py
+      - clone/search_catalog.py
+      - clone/search_commerce.py
+      - clone/search_suggestions.py
+      - clone/server.py
+      - clone/specialty_store.py
+      - clone/specialty_views.py
+      - clone/store.py
+      - clone/wishlist_store.py
+      - clone/wishlist_views.py
+      - clone/schema.sql
+      - clone/fixtures
+      - clone/static
+      - clone/tests
+    commands:
+      - id: verify-variant-cart-compare
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - -v
+          - tests.test_product_options
+          - tests.test_product_option_compatibility
+          - tests.test_cart_backend
+          - tests.test_compare_backend
+        cwd: clone
+        timeout_seconds: 1200
+      - id: verify-identity-and-reviews
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - -v
+          - tests.test_auth_backend
+          - tests.test_review_store
+          - tests.test_review_integration
+        cwd: clone
+        timeout_seconds: 1200
+      - id: verify-checkout-and-external-adapters
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - -v
+          - tests.test_checkout_backend
+          - tests.test_payment_methods
+          - tests.test_mail_transport
+        cwd: clone
+        timeout_seconds: 1800
+      - id: verify-order-lifecycle
+        argv:
+          - "{python}"
+          - -m
+          - unittest
+          - discover
+          - -v
+          - -s
+          - tests
+          - -p
+          - test_order_lifecycle.py
+        cwd: clone
+        timeout_seconds: 1800
+  release:
+    inputs:
+      - scope
+      - source-assets/offline-clone-manifest.json
+      - source-assets/2026-07-21
+      - source-assets/2026-07-22
+      - tools/offline_clone_gate.py
+      - tools/offline_clone_independent_audit.py
+      - clone/auth_views.py
+      - clone/browse_breadth.py
+      - clone/deals_catalog.py
+      - clone/home_catalog.py
+      - clone/local_smtp_inbox.py
+      - clone/mail_transport.py
+      - clone/payment_methods.py
+      - clone/product_options.py
+      - clone/render.py
+      - clone/run_local.py
+      - clone/review_catalog.py
+      - clone/review_store.py
+      - clone/search_catalog.py
+      - clone/search_commerce.py
+      - clone/search_suggestions.py
+      - clone/server.py
+      - clone/specialty_store.py
+      - clone/specialty_views.py
+      - clone/store.py
+      - clone/wishlist_store.py
+      - clone/wishlist_views.py
+      - clone/schema.sql
+      - clone/fixtures
+      - clone/static
+      - clone/tests
+    commands:
+      - id: visual-acceptance
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - visual-acceptance
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 600
+      - id: browser-smoke
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - browser-smoke
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 900
+      - id: migration-copy
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - migration-copy
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 1200
+      - id: independent-audit
+        argv:
+          - "{python}"
+          - tools/offline_clone_independent_audit.py
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 300
+      - id: full-suite
+        argv:
+          - "{python}"
+          - tools/offline_clone_gate.py
+          - full-suite
+          - --site-root
+          - "{site_dir}"
+        cwd: .
+        timeout_seconds: 3600
+    evidence:
+      visual:
+        path: artifacts/offline-clone/acceptance/visual.json
+        producer_command_id: visual-acceptance
+      browser:
+        path: artifacts/offline-clone/acceptance/browser.json
+        producer_command_id: browser-smoke
+      network:
+        path: artifacts/offline-clone/acceptance/network.json
+        producer_command_id: browser-smoke
+      migration:
+        path: artifacts/offline-clone/acceptance/migration.json
+        producer_command_id: migration-copy
+      independent-audit:
+        path: artifacts/offline-clone/acceptance/independent-audit.json
+        producer_command_id: independent-audit
+      full-suite:
+        path: artifacts/offline-clone/acceptance/full-suite.json
+        producer_command_id: full-suite

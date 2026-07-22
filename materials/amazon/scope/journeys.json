@@ -1,0 +1,52 @@
+{
+  "schema_version": "offline-clone.journeys.v1",
+  "journeys": [
+    {
+      "id": "shopping.success",
+      "kind": "success",
+      "priority": "p0",
+      "status": "frozen",
+      "actor": "anonymous shopper becoming a verified local account",
+      "steps": [
+        "discover a quoted product through home, search, a department, or Deals",
+        "open the local PDP and choose a complete source-quoted option combination",
+        "add multiple sibling variants without overwriting either cart line",
+        "sign in or register and verify the local email flow",
+        "select an owned address and supported delivery option",
+        "choose an approved local sandbox card or bank method",
+        "place the order once with server re-quotation and idempotency",
+        "refresh order history and progress the local shipment to delivered",
+        "create or update a local review whose Verified Purchase flag is server-derived"
+      ]
+    },
+    {
+      "id": "shopping.failure",
+      "kind": "failure",
+      "priority": "p0",
+      "status": "frozen",
+      "actor": "shopper encountering invalid or stale input",
+      "steps": [
+        "see option values with no reachable quote disabled before selection",
+        "have forged ASIN, option, quantity, owner, and cross-origin mutations rejected",
+        "receive a deterministic declined sandbox payment without an order or funds claim",
+        "have stale cart or checkout state re-quoted and reconciled instead of silently committed",
+        "retry a duplicate place-order action without creating a second order"
+      ]
+    },
+    {
+      "id": "shopping.recovery",
+      "kind": "recovery",
+      "priority": "p0",
+      "status": "frozen",
+      "actor": "shopper recovering identity, payment, or post-order state",
+      "steps": [
+        "enter an unknown sign-in email and continue through registration",
+        "verify the email locally or exercise bounded SMTP delivery and retry states",
+        "request password recovery without account enumeration",
+        "switch from declined card to an approved sandbox method",
+        "cancel before fulfillment or request a return after simulated delivery",
+        "refresh and observe durable cancelled, returned, or refunded state"
+      ]
+    }
+  ]
+}

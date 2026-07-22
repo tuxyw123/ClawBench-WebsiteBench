@@ -1,0 +1,46 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B0BQR2BQYZ",
+  "market_context": {"marketplace": "amazon.com", "delivery_country": "Singapore", "currency": "USD"},
+  "identity": {
+    "asin": "B0BQR2BQYZ",
+    "title": "upsimples 11x14 Picture Frame, Display Pictures 8x10 with Mat or 11x14 Without Mat, Wall Hanging Photo Frame, Black, 1 Pack",
+    "byline": "Visit the upsimples Store"
+  },
+  "social_proof": {"rating": "4.5", "review_count": 41071, "badge": "Amazon's Choice", "bought": "10K+ bought in past month"},
+  "offers": {
+    "selected_size": "11x14",
+    "source_size_option_count": 80,
+    "selection_axis": "Color",
+    "color": [
+      {"value": "Black", "price_minor": 629}, {"value": "Blue", "price_minor": 899},
+      {"value": "Bronze", "price_minor": 899}, {"value": "Brown", "price_minor": 899},
+      {"value": "Gold", "price_minor": 849}, {"value": "Gray", "price_minor": 899},
+      {"value": "Green", "price_minor": 899}, {"value": "Hot Pink", "price_minor": 809},
+      {"value": "Metallic Gray", "price_minor": 809}, {"value": "Natural Style", "price_minor": 809},
+      {"value": "Orange", "price_minor": 899}, {"value": "Pink", "price_minor": 899},
+      {"value": "Purple", "price_minor": 899}, {"value": "Red", "price_minor": 899},
+      {"value": "Rustic Brown", "price_minor": 899}, {"value": "Rustic White", "price_minor": 899},
+      {"value": "Silver", "price_minor": 899}, {"value": "White", "price_minor": 809},
+      {"value": "Yellow", "price_minor": 899}
+    ],
+    "selected_offer": {"price_text": "$6.29", "price_minor": 629, "typical_price_text": "$6.99", "typical_price_minor": 699}
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $10.12 Shipping to Singapore",
+    "delivery_copy": "$10.12 delivery Monday, July 27",
+    "availability": "In Stock"
+  },
+  "review_snapshot": {"individual_review_cards_captured": false},
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/71Si2QlAb3L._AC_SL1500_.jpg",
+      "local_path": "pdp-home/B0BQR2BQYZ/main.jpg",
+      "bytes": 115679,
+      "sha256": "4456de61594399393bf25717b530666aa6741c36b8b03078de68fc7ff290b829",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1199, "height": 1500}
+    }
+  }
+}

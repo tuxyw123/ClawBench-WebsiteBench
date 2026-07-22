@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ model.display_name }}{% endblock %}
+{% block content %}
+<div class="page">
+  <a class="back-link" href="/models">← All models</a>
+  <section class="run-hero model-hero"><div><p class="eyebrow">{{ model.provider or 'Model evaluation' }}</p><h1>{{ model.display_name }}</h1><p>{{ model.model_id }}{% if model.harness %} · {{ model.harness }}{% endif %}{% if model.reasoning_effort %} · {{ model.reasoning_effort }} reasoning{% endif %}</p></div><div class="official-score"><strong>{{ model.average_score }}</strong><span>Average / 100</span></div></section>
+  <div class="dimension-score-grid">{% for name, score in model.dimensions.items() %}<article><span>{{ name }}</span><strong>{{ score }}</strong><meter min="0" max="{{ 40 if name == 'journeys' else 20 if name in ['visual','interactions'] else 15 if name == 'robustness' else 5 }}" value="{{ score }}"></meter></article>{% endfor %}</div>
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">Per-site evidence</p><h2>Runs across offline websites</h2></div><span>{{ model.run_count }} reports</span></div><div class="table-wrap"><table><thead><tr><th>Website</th><th>Category</th><th>Track</th><th>Status</th><th>Score</th><th>Finished</th></tr></thead><tbody>{% for row in runs %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a></th><td>{{ (row.item.product_type or 'Uncategorized')|replace('-', ' ')|title }}</td><td>{{ row.run.track }}</td><td><span class="state state-{{ row.run.status }}">{{ row.run.status|replace('_',' ') }}</span></td><td><a href="/runs/{{ row.run.run_id }}"><strong>{{ row.run.score }} / 100</strong></a></td><td>{{ row.run.finished_at }}</td></tr>{% endfor %}</tbody></table></div></section>
+</div>
+{% endblock %}

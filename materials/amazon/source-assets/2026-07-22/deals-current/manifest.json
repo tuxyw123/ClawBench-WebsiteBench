@@ -1,0 +1,129 @@
+{
+  "schema": "amazon-deals-asset-manifest.v1",
+  "snapshot_id": "amazon-com-goldbox-default-cards-2026-07-22",
+  "source_evidence": "evidence.json",
+  "runtime_fixture": "materials/amazon/clone/fixtures/deals-current-2026-07-22.json",
+  "asset_count": 10,
+  "assets": [
+    {
+      "asin": "B01LYNW421",
+      "filename": "B01LYNW421-card.avif",
+      "source_asset_path": "images/B01LYNW421-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B01LYNW421-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/61XtBANZuJL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 9128,
+      "width": 452,
+      "height": 443,
+      "mime_type": "image/avif",
+      "sha256": "e17c6d577658d1417a2fbc822a22d4202965ba4683bdc9eeaa7555a4522ed4b4"
+    },
+    {
+      "asin": "B095CN96JS",
+      "filename": "B095CN96JS-card.avif",
+      "source_asset_path": "images/B095CN96JS-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B095CN96JS-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/71OrNzZA+JL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 16027,
+      "width": 452,
+      "height": 390,
+      "mime_type": "image/avif",
+      "sha256": "309df4872bb92d2e6043219231a37d236b0c3d825affabd3073cda3d851e9233"
+    },
+    {
+      "asin": "B0BVZFQ4DF",
+      "filename": "B0BVZFQ4DF-card.avif",
+      "source_asset_path": "images/B0BVZFQ4DF-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B0BVZFQ4DF-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/510+fa1wg7L._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 3648,
+      "width": 295,
+      "height": 452,
+      "mime_type": "image/avif",
+      "sha256": "f7cd2b5865f5d410bc2422b7a3d1d6b1fa26ef31fe7a986f9cf1df0062c57835"
+    },
+    {
+      "asin": "B06X9M6CW7",
+      "filename": "B06X9M6CW7-card.avif",
+      "source_asset_path": "images/B06X9M6CW7-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B06X9M6CW7-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/61F0TWLh0FL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 13250,
+      "width": 362,
+      "height": 452,
+      "mime_type": "image/avif",
+      "sha256": "e087a9eb98be496a34cf74d8e1b2b0b71cd689a114aa1bc3f69975bf1bd269c0"
+    },
+    {
+      "asin": "B0C1GP88C4",
+      "filename": "B0C1GP88C4-card.avif",
+      "source_asset_path": "images/B0C1GP88C4-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B0C1GP88C4-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/714COr20AQL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 11806,
+      "width": 406,
+      "height": 452,
+      "mime_type": "image/avif",
+      "sha256": "c471042d32c51146d4d1ca0922321b1f7b416895f6332dd0b53fa1e90ddbd054"
+    },
+    {
+      "asin": "B0BV241H3F",
+      "filename": "B0BV241H3F-card.avif",
+      "source_asset_path": "images/B0BV241H3F-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B0BV241H3F-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/81+oQBvBR-L._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 30948,
+      "width": 303,
+      "height": 452,
+      "mime_type": "image/avif",
+      "sha256": "50e65e06f94c0cc4f64de2e02099fabbd451d6ffcbc99c4c2e132b6dfe2a6175"
+    },
+    {
+      "asin": "B0DQDQVTT3",
+      "filename": "B0DQDQVTT3-card.avif",
+      "source_asset_path": "images/B0DQDQVTT3-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B0DQDQVTT3-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/71aFnr3iJXL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 11005,
+      "width": 327,
+      "height": 452,
+      "mime_type": "image/avif",
+      "sha256": "53fae9ffaaf860e825196dfcfe70758c688271f5844759e0f3eec08a37654e80"
+    },
+    {
+      "asin": "B09BWFX1L6",
+      "filename": "B09BWFX1L6-card.avif",
+      "source_asset_path": "images/B09BWFX1L6-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B09BWFX1L6-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/71v-pTar1AL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 15637,
+      "width": 452,
+      "height": 421,
+      "mime_type": "image/avif",
+      "sha256": "5d74a241755b405b4cda350797a995f65bc70af3eb43362c8b64dc04132ea443"
+    },
+    {
+      "asin": "B00EINBSEW",
+      "filename": "B00EINBSEW-card.avif",
+      "source_asset_path": "images/B00EINBSEW-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B00EINBSEW-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/61hiruVCYbL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 19562,
+      "width": 452,
+      "height": 314,
+      "mime_type": "image/avif",
+      "sha256": "78b060ed9c272ef440d7e1a515a9808ea718dd3037192dee25b28d854089a0cc"
+    },
+    {
+      "asin": "B0FBSQX5T3",
+      "filename": "B0FBSQX5T3-card.avif",
+      "source_asset_path": "images/B0FBSQX5T3-card.avif",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/deals/B0FBSQX5T3-card.avif",
+      "source_url": "https://m.media-amazon.com/images/I/71eB-UOefsL._AC_FMavif_SF452,452_QL58_.jpg?aicid=discounts-widgets-horizonte",
+      "bytes": 20687,
+      "width": 452,
+      "height": 449,
+      "mime_type": "image/avif",
+      "sha256": "ca3752f693b24195f5d0e152f0cd6713853368d07ed0133ffe9a31f26dd068fc"
+    }
+  ]
+}

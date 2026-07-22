@@ -1,5 +1,0 @@
-{% extends "base.html" %}
-{% block content %}<section class="auth-shell"><div class="auth-card"><p class="eyebrow">Welcome back</p><h1>Sign in</h1><p>Continue to your cart and order history.</p>
-{% if error %}<div class="alert alert--error" role="alert">{{ error }}{% if unverified %} <a href="/register">Send another verification link</a>{% endif %}</div>{% endif %}
-<form method="post" class="stack-form" data-busy-form><input type="hidden" name="next" value="{{ next }}"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" value="{{ email or '' }}" required><label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required><div class="form-row"><label class="check-label"><input type="checkbox"> Keep me signed in</label><a href="/forgot-password">Forgot password?</a></div><button class="button button--wide" type="submit">Sign in</button></form><p class="auth-switch">New to Northstar? <a href="/register">Create an account</a></p></div></section>{% endblock %}
-

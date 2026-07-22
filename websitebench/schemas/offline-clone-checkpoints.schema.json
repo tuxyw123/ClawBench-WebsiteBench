@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.checkpoints.v1.json",
+  "title": "ClawBench offline clone frozen visual checkpoints",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "status", "viewports", "checkpoints"],
+  "properties": {
+    "schema_version": {"const": "offline-clone.checkpoints.v1"},
+    "status": {"enum": ["draft", "frozen"]},
+    "viewports": {"type": "object"},
+    "checkpoints": {
+      "type": "array",
+      "maxItems": 10000,
+      "items": {"$ref": "#/$defs/checkpoint"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "frozen"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "checkpoints": {
+            "minItems": 1,
+            "contains": {
+              "type": "object",
+              "required": ["visual_contract"]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-z0-9]+(?:[._:-][a-z0-9]+)*$"
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1, "maximum": 32768},
+        "height": {"type": "integer", "minimum": 1, "maximum": 32768}
+      }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "width", "height"],
+      "properties": {
+        "x": {"type": "integer", "minimum": 0, "maximum": 32767},
+        "y": {"type": "integer", "minimum": 0, "maximum": 32767},
+        "width": {"type": "integer", "minimum": 1, "maximum": 32768},
+        "height": {"type": "integer", "minimum": 1, "maximum": 32768}
+      }
+    },
+    "visual_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_artifact_path",
+        "source_artifact_sha256",
+        "viewport",
+        "comparison_region",
+        "metric",
+        "threshold"
+      ],
+      "properties": {
+        "source_artifact_path": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "source_artifact_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "viewport": {"$ref": "#/$defs/size"},
+        "comparison_region": {"$ref": "#/$defs/region"},
+        "metric": {"const": "pixel-mae-similarity-v1"},
+        "threshold": {"type": "number", "exclusiveMinimum": 0, "maximum": 1}
+      }
+    },
+    "checkpoint": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "visual_contract": {"$ref": "#/$defs/visual_contract"}
+      }
+    }
+  }
+}

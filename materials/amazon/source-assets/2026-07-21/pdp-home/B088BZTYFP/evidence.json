@@ -1,0 +1,97 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B088BZTYFP",
+  "market_context": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "identity": {
+    "asin": "B088BZTYFP",
+    "title": "Amazon Basics 16x20x1 Air Filter 6-Pack, MERV 8 AC Furnace Filters, Allergy Control, Removes Dust, Lint and Pollen, Electrostatic (Actual Size: 15.75\" x 19.75\" x 0.75\")"
+  },
+  "taxonomy": {
+    "breadcrumbs": [
+      "Home & Kitchen",
+      "Heating, Cooling & Air Quality",
+      "Parts & Accessories",
+      "Air Conditioner Parts & Accessories",
+      "Filters"
+    ]
+  },
+  "social_proof": {
+    "rating": "4.6",
+    "review_count": 17115,
+    "badge": "#1 Best Seller",
+    "bought": "10K+ bought in past month"
+  },
+  "offers": {
+    "selected_pattern_name": "16x20x1",
+    "pattern_name": [
+      "12x12x1",
+      "14x14x1",
+      "14x20x1",
+      "14x25x1",
+      "16x20x1",
+      "16x25x1",
+      "20x20x1",
+      "20x25x1",
+      "20x30x1"
+    ],
+    "selected_style": "Merv 8",
+    "source_reported_style_option_count": 3,
+    "style": [
+      {"value": "Merv 8", "price_text": "$27.85", "price_minor": 2785, "availability": "In Stock"},
+      {"value": "Merv 5", "price_text": "$27.85", "price_minor": 2785, "availability": "featured offer captured"},
+      {"value": "Merv 11", "availability": "No featured offer"}
+    ],
+    "transaction_scope": "Only 16x20x1 with Merv 8 or Merv 5 has a captured transaction quote.",
+    "selected_offer": {
+      "price_text": "$27.85",
+      "price_minor": 2785,
+      "unit_price_text": "$4.64/count"
+    }
+  },
+  "fulfillment": {
+    "shipping_copy": "$30.50 Shipping to Singapore",
+    "delivery_copy": "$30.50 delivery Monday, July 27",
+    "availability": "In Stock",
+    "ships_from": "Amazon.com",
+    "sold_by": "Amazon.com",
+    "returns": "FREE 30-day return"
+  },
+  "specs": [
+    ["Brand", "Amazon Basics"],
+    ["Material", "Mesh"],
+    ["Product Dimensions", "19.75\"L x 15.75\"W x 0.75\"Th"],
+    ["MERV Rating", "8"],
+    ["Compatible Device", "Furnace"],
+    ["Item Weight", "2.58 pounds"],
+    ["Number of Items", "6"],
+    ["Construction", "Pleated"]
+  ],
+  "about": [
+    "Captures lint, dust, and pollen.",
+    "Helps improve furnace efficiency.",
+    "Beverage-board frame with wire-mesh support.",
+    "Electrostatically charged synthetic material captures particles down to 3 microns.",
+    "Six-pack; replace every 60–90 days for up to 12 months of use.",
+    "Actual dimensions are 15.75 x 19.75 x 0.75 inches."
+  ],
+  "review_snapshot": {
+    "histogram_captured": false,
+    "individual_review_cards_captured": false
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/71KuGgYip5L._SL1500_.jpg",
+      "local_path": "pdp-home/B088BZTYFP/main.jpg",
+      "bytes": 106480,
+      "sha256": "f0beee107905764d8cd5eb6e59e42f5fefd97b11cb86bd5a8c02ba59fe474566",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1500, "height": 980}
+    }
+  }
+}

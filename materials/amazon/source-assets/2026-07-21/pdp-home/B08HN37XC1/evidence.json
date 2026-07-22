@@ -1,0 +1,136 @@
+{
+  "schema": "amazon-source-pdp-evidence.v1",
+  "capturedAt": "2026-07-21T12:40:51.413Z",
+  "requestedUrl": "https://www.amazon.com/dp/B08HN37XC1",
+  "finalUrl": "https://www.amazon.com/dp/B08HN37XC1?th=1",
+  "canonicalUrl": "https://www.amazon.com/SanDisk-2TB-Extreme-Portable-SDSSDE61-2T00-G25/dp/B08HN37XC1",
+  "marketContext": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "deliveryCountry": "Singapore",
+    "currency": "USD"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "documentWidth": 1265
+  },
+  "identity": {
+    "asin": "B08HN37XC1",
+    "title": "SANDISK 2TB Extreme Portable SSD (Old Model) - Up to 1050MB/s, USB-C, USB 3.2 Gen 2, IP65 Water and Dust Resistance, Updated Firmware - External Solid State Drive - SDSSDE61-2T00-G25 | 2TB Nvme Portable SSD, Up to 1050MB per S Read, 1000MB per S Write, IP65 Water and Dust, 3m Drop, 5-Yr Warranty",
+    "byline": "Visit the Sandisk Store",
+    "brand": "SanDisk"
+  },
+  "taxonomy": {
+    "breadcrumbs": ["Electronics", "Computers & Accessories", "Data Storage", "External Solid State Drives"]
+  },
+  "offer": {
+    "priceText": "$316.99",
+    "priceMinor": 31699,
+    "shippingCopy": "$41.38 Shipping & Import Charges to Singapore",
+    "deliveryCopy": "$12.23 delivery Monday, July 27",
+    "availability": "In Stock",
+    "otherSellersCopy": "New (11) from $306.99 + $6.86 shipping"
+  },
+  "socialProof": {
+    "ratingText": "4.6 out of 5 stars",
+    "rating": "4.6",
+    "reviewCountText": "(91,231)",
+    "reviewCount": 91231,
+    "badge": "#1 Best Seller in External Solid State Drives",
+    "bought": "5K+ bought in past month"
+  },
+  "fulfillment": {
+    "shipsFrom": "Amazon",
+    "soldBy": "Sales For You",
+    "returns": "30-day refund / replacement",
+    "support": "Product support included",
+    "sellerCertification": "Minority-Owned Business"
+  },
+  "options": [
+    {"label": "Style", "selected": "Old Model", "values": ["New Model", "Old Model"]},
+    {"label": "Capacity", "selected": "2TB", "values": ["0.5TB", "1TB", "2TB", "4TB", "8TB"]},
+    {"label": "Color", "selected": "Black", "values": ["Black", "Monterey", "Sky Blue"]}
+  ],
+  "specs": [
+    ["Digital Storage Capacity", "2 TB"],
+    ["Hard Disk Interface", "eSATA"],
+    ["Connectivity Technology", "USB"],
+    ["Brand", "Sandisk"],
+    ["Special Feature", "Dust Resistant, Water Resistant, Portable, Hardware Encryption"],
+    ["Hard Disk Form Factor", "2.5 Inches"],
+    ["Hard Disk Description", "Solid State Drive"],
+    ["Compatible Devices", "Desktop, Laptop, Tablet"],
+    ["Installation Type", "Not Specified"],
+    ["Color", "Black"]
+  ],
+  "about": [
+    "Get NVMe solid state performance with up to 1050MB/s read and 1000MB/s write speeds in a portable, high-capacity drive(1) (Based on internal testing; performance may be lower depending on host device & other factors. 1MB=1,000,000 bytes.)",
+    "Up to 3-meter drop protection and IP65 water and dust resistance mean this tough drive can take a beating(3) (Previously rated for 2-meter drop protection and IP55 rating. Now qualified for the higher, stated specs.)",
+    "Use the handy carabiner loop to secure it to your belt loop or backpack for extra peace of mind.",
+    "Help keep private content private with the included password protection featuring 256‐bit AES hardware encryption.(3)",
+    "Easily manage files and automatically free up space with the SanDisk Memory Zone app.(5). Non-Operating Temperature -20°C to 85°C"
+  ],
+  "media": {
+    "topPromo": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/21DX0E62GJL.png",
+      "localPath": "pdp-home/B08HN37XC1/top-promo.png",
+      "alt": "Shop top categories that ship internationally",
+      "bytes": 5626,
+      "sha256": "5c949f71e930c0c15be11ab306ea3483a0b41d1cd39cc9e506214b501c31c7d2",
+      "width": 649,
+      "height": 45,
+      "renderedWidth": 650,
+      "renderedHeight": 45
+    },
+    "brandLogo": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/21tVJT0ERTL.jpg",
+      "localPath": "pdp-home/B08HN37XC1/brand-logo.jpg",
+      "bytes": 5112,
+      "sha256": "29a07f708e3f167dba6420c19fb78aa004767769abab322bad32fb66d972cbe5",
+      "width": 108,
+      "height": 108,
+      "renderedWidth": 36,
+      "renderedHeight": 36
+    },
+    "mainImageObserved": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/61zuR3UMnWL._AC_SL1500_.jpg",
+      "naturalWidth": 652,
+      "naturalHeight": 1500,
+      "renderedWidth": 165.1,
+      "renderedHeight": 380
+    },
+    "visibleThumbnailCount": 6,
+    "videoCount": 8,
+    "videoThumbnail": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/A1z3-j52jqL.SS40_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+      "localPath": "pdp-home/B08HN37XC1/video-thumb.jpg",
+      "bytes": 777,
+      "sha256": "b9a56c031194fda089e147ca5240f65d0f4fc03407608fd0a55bc1c6aae31d9b",
+      "width": 40,
+      "height": 40
+    },
+    "gallery": [
+      {"ordinal": 1, "variant": "MAIN", "physicalId": "61zuR3UMnWL", "sourceUrl": "https://m.media-amazon.com/images/I/61zuR3UMnWL._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-01.jpg", "bytes": 108175, "sha256": "a6e247cbb07ac99c41b6b5c13e1e66fe58d59a2c983ed13655c7758cfde86aa3", "width": 652, "height": 1500},
+      {"ordinal": 2, "variant": "PT01", "physicalId": "91PI6x20OEL", "sourceUrl": "https://m.media-amazon.com/images/I/91PI6x20OEL._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-02.jpg", "bytes": 354473, "sha256": "789cf07511e20838d2e4261244ae46bc8b7b25383712f8788619a5fb05de577e", "width": 1500, "height": 1500},
+      {"ordinal": 3, "variant": "PT02", "physicalId": "71GvvYz62nL", "sourceUrl": "https://m.media-amazon.com/images/I/71GvvYz62nL._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-03.jpg", "bytes": 145845, "sha256": "ac1e2fcc034cfe8318f90007f39081cb7a0e3a08334ac3432a3124ab9d6018fc", "width": 1500, "height": 1478},
+      {"ordinal": 4, "variant": "PT03", "physicalId": "81p0I13BFhL", "sourceUrl": "https://m.media-amazon.com/images/I/81p0I13BFhL._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-04.jpg", "bytes": 441917, "sha256": "feaa81446771244a68d8641ea3c0718c31d241c60bcb40bdc1322396abc3815e", "width": 1500, "height": 1500},
+      {"ordinal": 5, "variant": "PT04", "physicalId": "9174GKmYJ1L", "sourceUrl": "https://m.media-amazon.com/images/I/9174GKmYJ1L._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-05.jpg", "bytes": 314914, "sha256": "bd43f618878f18d9d128a4e93428cc4d785ca39c71d8d095d7aaa5dc52ce2834", "width": 1500, "height": 1500},
+      {"ordinal": 6, "variant": "PT05", "physicalId": "81y6qtKDZXL", "sourceUrl": "https://m.media-amazon.com/images/I/81y6qtKDZXL._AC_SL1500_.jpg", "localPath": "pdp-home/B08HN37XC1/gallery-06.jpg", "bytes": 363584, "sha256": "97107afbf88e14599c8aa7447fad99fef08a401fe48d8ea39ae292d610bfb3e6", "width": 1500, "height": 1500}
+    ],
+    "colorSwatches": [
+      {"name": "Black", "sourceUrl": "https://m.media-amazon.com/images/I/4183AIBZozL._SS64_.jpg", "localPath": "pdp-home/B08HN37XC1/color-black.jpg", "bytes": 896, "sha256": "123d94fe9b644742c3a4831844ce2529a20d4d83b068f7cabbe911d71a2cbad9", "width": 64, "height": 64},
+      {"name": "Monterey", "sourceUrl": "https://m.media-amazon.com/images/I/41F0LwCmDJL._SS64_.jpg", "localPath": "pdp-home/B08HN37XC1/color-monterey.jpg", "bytes": 937, "sha256": "8f4ce4a223967438d1f784f8acb6f569def676299ede639c5c2ebc207f452652", "width": 64, "height": 64},
+      {"name": "Sky Blue", "sourceUrl": "https://m.media-amazon.com/images/I/41vwlb-TMDL._SS64_.jpg", "localPath": "pdp-home/B08HN37XC1/color-sky-blue.jpg", "bytes": 772, "sha256": "5f75bab5846d6422bbdef84803d517e7e582c1da4452de00f8b197ebe85412c0", "width": 64, "height": 64}
+    ]
+  },
+  "topGeometry": {
+    "root": {"x": 0, "y": 99, "width": 1265},
+    "topPromo": {"x": 307.5, "y": 99, "width": 650, "height": 45},
+    "imageBlock": {"x": 18, "y": 206, "width": 424.4, "height": 380, "derivation": "left edge, center-column x, and observed main-image bounds"},
+    "mainImage": {"x": 169.3, "y": 206, "width": 165.1, "height": 380},
+    "centerStart": {"x": 460.4, "y": 206},
+    "brandLogo": {"x": 460.4, "y": 206, "width": 36, "height": 36},
+    "thumbnailTopPositions": [211, 261, 311, 361, 411, 461, 511]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "offline-clone.invariants.v1",
+  "status": "frozen",
+  "invariants": [
+    {
+      "id": "assets.local-only.closed",
+      "priority": "p0",
+      "statement": "In the evaluated default local-only release profile, every required browser/resource asset is local, declared, byte-verified, and reached by a successful browser request; browser/resource remote requests are forbidden, while the opt-in SMTP adapter is an uncertified external-effect boundary.",
+      "journey_ids": ["shopping.success", "shopping.failure", "shopping.recovery"],
+      "positive_test_refs": [
+        "clone/tests/test_contract.py::PublicJourneyTests.test_browser_http_sequence_and_public_admin_isolation"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_home_frontend.py::HomeFrontendTests.test_home_runtime_resources_do_not_use_remote_http_urls"
+      ],
+      "coverage_dimension_ids": [
+        "required-runtime-asset-paths",
+        "p0-network-invariants"
+      ]
+    },
+    {
+      "id": "variants.complete-quote.identity",
+      "priority": "p0",
+      "statement": "Only source-quoted complete option combinations are purchasable, incompatible options are disabled, and sibling selections retain distinct line identities through cart, checkout, order, compare, and review.",
+      "journey_ids": ["shopping.success", "shopping.failure"],
+      "positive_test_refs": [
+        "clone/tests/test_checkout_backend.py::CheckoutBackendTests.test_checkout_and_order_preserve_two_variants_of_the_same_asin"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_cart_backend.py::CartBackendTests.test_partial_forged_and_non_evidenced_option_fields_are_rejected"
+      ],
+      "coverage_dimension_ids": [
+        "purchasable-products",
+        "comparable-products",
+        "p0-full-suite-invariants"
+      ]
+    },
+    {
+      "id": "identity.verification.recovery",
+      "priority": "p0",
+      "statement": "An unknown sign-in identifier continues to registration, registration requires local verification, and recovery has an explicit local or SMTP-adapter outcome without claiming real delivery when SMTP is absent.",
+      "journey_ids": ["shopping.success", "shopping.recovery"],
+      "positive_test_refs": [
+        "clone/tests/test_auth_backend.py::AuthBackendTests.test_wrong_password_is_rejected_and_unknown_account_moves_to_prefilled_registration",
+        "clone/tests/test_auth_backend.py::AuthBackendTests.test_configured_smtp_delivers_registration_and_recovery_codes"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_auth_backend.py::AuthBackendTests.test_expired_and_replaced_registration_codes_cannot_be_used",
+        "clone/tests/test_auth_backend.py::AuthBackendTests.test_password_recovery_identifier_response_is_uniform_and_never_mails_unknown_address"
+      ],
+      "coverage_dimension_ids": ["p0-browser-invariants"]
+    },
+    {
+      "id": "checkout.retry.idempotent",
+      "priority": "p0",
+      "statement": "Declined payment is retryable, approved retry reaches review, and repeated placement cannot create duplicate orders.",
+      "journey_ids": ["shopping.success", "shopping.failure", "shopping.recovery"],
+      "positive_test_refs": [
+        "clone/tests/test_checkout_backend.py::CheckoutBackendTests.test_declined_sandbox_card_can_be_retried_with_bank_method"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_checkout_backend.py::CheckoutBackendTests.test_place_order_snapshots_items_clears_active_cart_and_is_idempotent"
+      ],
+      "coverage_dimension_ids": ["p0-browser-invariants"]
+    },
+    {
+      "id": "orders.lifecycle.monotone",
+      "priority": "p0",
+      "statement": "Order, cancellation, delivery, return, and refund transitions follow the local monotone state model and preserve immutable placement facts.",
+      "journey_ids": ["shopping.success", "shopping.failure", "shopping.recovery"],
+      "positive_test_refs": [
+        "clone/tests/test_order_lifecycle.py::OrderLifecycleTests.test_delivered_return_validation_ownership_and_refund_are_exactly_once"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_order_lifecycle.py::OrderLifecycleTests.test_admin_shipping_requires_capability_and_enforces_exact_sequence",
+        "clone/tests/test_order_lifecycle.py::OrderLifecycleTests.test_idempotency_key_cannot_be_reused_across_order_action_types"
+      ],
+      "coverage_dimension_ids": ["p0-browser-invariants"]
+    },
+    {
+      "id": "migration.copy-only",
+      "priority": "p0",
+      "statement": "Migration acceptance operates only on disposable legacy database copies created by tests; the served runtime database is never opened, copied, fingerprinted, or mutated by the harness.",
+      "journey_ids": ["shopping.success", "shopping.failure", "shopping.recovery"],
+      "positive_test_refs": [
+        "clone/tests/test_cart_backend.py::CartBackendTests.test_pre_option_database_is_migrated_without_rebuilding_user_tables",
+        "clone/tests/test_order_lifecycle.py::OrderLifecycleTests.test_legacy_placed_order_migrates_without_rewriting_placement_facts"
+      ],
+      "negative_test_refs": [
+        "clone/tests/test_cart_backend.py::CartBackendTests.test_legacy_line_identity_constraints_migrate_without_cart_data_loss",
+        "clone/tests/test_checkout_backend.py::CheckoutBackendTests.test_payment_schema_migration_preserves_legacy_order_and_adds_declines"
+      ],
+      "coverage_dimension_ids": ["p0-migration-invariants"]
+    },
+    {
+      "id": "evidence.denominators.separate",
+      "priority": "p1",
+      "statement": "Asset, product breadth, purchasability, review, comparison, visual checkpoint, and journey denominators remain separate, and inferred or unavailable evidence is never presented as current-direct source fidelity.",
+      "journey_ids": [],
+      "positive_test_refs": [],
+      "negative_test_refs": [],
+      "coverage_dimension_ids": []
+    },
+    {
+      "id": "scope.shopping-mainline.bounded",
+      "priority": "p1",
+      "statement": "Shopping-adjacent entry points receive bounded local destinations while Prime Video and other non-shopping ecosystems remain explicit placeholders rather than fabricated deep clones.",
+      "journey_ids": [],
+      "positive_test_refs": [],
+      "negative_test_refs": [],
+      "coverage_dimension_ids": []
+    }
+  ]
+}

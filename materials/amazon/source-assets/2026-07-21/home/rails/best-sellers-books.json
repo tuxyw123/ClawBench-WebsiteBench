@@ -1,0 +1,577 @@
+{
+  "schema": "amazon-home-standard-rail-capture.v1",
+  "capturedAt": "2026-07-21T10:23:13.644Z",
+  "sourceUrl": "https://www.amazon.com/",
+  "captureContext": {
+    "desktopUserAgentNarrowWindow": true,
+    "document": {
+      "height": 5610,
+      "width": 1000
+    },
+    "interpretation": "Narrow-window desktop-UA observation, not a mobile-UA page capture.",
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  "rail": {
+    "itemCount": 26,
+    "items": [
+      {
+        "asin": "168281808X",
+        "canonicalHref": "/dp/168281808X",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 109
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/911TynawjkL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/168281808X.jpg",
+          "bytes": 8236,
+          "sha256": "e1e0a02d07ae6dafcafbe8ba1217e9e04c9815dd07544d56f62235c36c14b0f7"
+        },
+        "ordinal": 0,
+        "sourceHref": "/Threshing-Wing-Claw-Collection-Empyrean/dp/168281808X/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Threshing Day (Wing and Claw Collection) (The Empyrean)"
+      },
+      {
+        "asin": "1668236516",
+        "canonicalHref": "/dp/1668236516",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 132
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81P0NvoRrWL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1668236516.jpg",
+          "bytes": 4085,
+          "sha256": "1842020e3e97989de6bcbbcc2c7624b9772a63228b21e24a12779099f128d715"
+        },
+        "ordinal": 1,
+        "sourceHref": "/Theo-Golden-Novel-Allen-Levi/dp/1668236516/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Theo of Golden: A Novel"
+      },
+      {
+        "asin": "0393356256",
+        "canonicalHref": "/dp/0393356256",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 137
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71rp7o5oTnL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0393356256.jpg",
+          "bytes": 8654,
+          "sha256": "0e88b0ae4f621193e6eef031916a66fdf6456413c9ad0ebf0c3006f94c7130d2"
+        },
+        "ordinal": 2,
+        "sourceHref": "/Odyssey-Homer/dp/0393356256/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Odyssey"
+      },
+      {
+        "asin": "B0GQ2VXKY7",
+        "canonicalHref": "/dp/B0GQ2VXKY7",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61pmJdlAMmL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/B0GQ2VXKY7.jpg",
+          "bytes": 9889,
+          "sha256": "c82163411891d94bcf229fe1a90b0f46eab39d45792014ae336581f2e879962f"
+        },
+        "ordinal": 3,
+        "sourceHref": "/Killer-Isnt-Alice-Suspect-Mystery/dp/B0GQ2VXKY7/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Killer Isn't Alice: The 46,600 Suspect Murder Mystery Puzzle"
+      },
+      {
+        "asin": "059380421X",
+        "canonicalHref": "/dp/059380421X",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 135
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/7169bZ6hrNL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/059380421X.jpg",
+          "bytes": 6679,
+          "sha256": "b9597d01339eb4127067c5257c8c4d8fc804d9a609744165286a7a0ac892c160"
+        },
+        "ordinal": 4,
+        "sourceHref": "/Yesteryear-Novel-Caro-Claire-Burke/dp/059380421X/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Yesteryear: A GMA Book Club Pick: A Novel"
+      },
+      {
+        "asin": "1954118813",
+        "canonicalHref": "/dp/1954118813",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81pFuCA04TL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1954118813.jpg",
+          "bytes": 12032,
+          "sha256": "8e54832a4c65a1c2498876c42eb898949dd9cfef8f83b17b33e61ce319f5e67a"
+        },
+        "ordinal": 5,
+        "sourceHref": "/Calamity-Club-Novel-Kathryn-Stockett/dp/1954118813/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Calamity Club: A Novel"
+      },
+      {
+        "asin": "0593135229",
+        "canonicalHref": "/dp/0593135229",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 130
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/916k6hSv0pL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0593135229.jpg",
+          "bytes": 9289,
+          "sha256": "6987db2ca7d9763092a4521c6d45a51849018d373f663239fdcfdf67edc41d04"
+        },
+        "ordinal": 6,
+        "sourceHref": "/Project-Hail-Mary-Andy-Weir/dp/0593135229/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Project Hail Mary: A Novel"
+      },
+      {
+        "asin": "0063511630",
+        "canonicalHref": "/dp/0063511630",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 132
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81D4ATVRKPL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0063511630.jpg",
+          "bytes": 7655,
+          "sha256": "4f0e86bd7a9c7a442d77664c1c44fc8389df7584c336e0e3e282f0413b084d6a"
+        },
+        "ordinal": 7,
+        "sourceHref": "/Whistler-Novel-Ann-Patchett/dp/0063511630/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Whistler: A Novel"
+      },
+      {
+        "asin": "0140268863",
+        "canonicalHref": "/dp/0140268863",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81g0AATkO9L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0140268863.jpg",
+          "bytes": 9979,
+          "sha256": "d12b7aec06aacfeb9732c17ddb0ea35845159cdb61c82a4c3e90acf0ca30089f"
+        },
+        "ordinal": 8,
+        "sourceHref": "/Odyssey-Homer/dp/0140268863/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Odyssey"
+      },
+      {
+        "asin": "0316259187",
+        "canonicalHref": "/dp/0316259187",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71L9RAwj3QL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0316259187.jpg",
+          "bytes": 10769,
+          "sha256": "3b27a21894c5b5bb9e5bbfd15174241d433041223f3f4019e8afc7753d6f3193"
+        },
+        "ordinal": 9,
+        "sourceHref": "/Five-Star-Weekend-Elin-Hilderbrand/dp/0316259187/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Five-Star Weekend"
+      },
+      {
+        "asin": "0399226907",
+        "canonicalHref": "/dp/0399226907",
+        "cardDimensions": {
+          "height": 210,
+          "width": 280
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 285
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81qsstEtrgL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0399226907.jpg",
+          "bytes": 14619,
+          "sha256": "7812885f9591728a25d4b16b226469bbc9343cc9bb891221dcde07338f6bcb13"
+        },
+        "ordinal": 10,
+        "sourceHref": "/Very-Hungry-Caterpillar-Eric-Carle/dp/0399226907/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Very Hungry Caterpillar"
+      },
+      {
+        "asin": "1401971369",
+        "canonicalHref": "/dp/1401971369",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 132
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/91ZVf3kNrcL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1401971369.jpg",
+          "bytes": 12014,
+          "sha256": "615ac65212eaa68439af1a1042a11b07cf331810181c2a738c2f2627c0e1b30c"
+        },
+        "ordinal": 11,
+        "sourceHref": "/Let-Them-Theory-Life-Changing-Millions/dp/1401971369/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Let Them Theory: A Life-Changing Tool That Millions of People Can't Stop Talking About"
+      },
+      {
+        "asin": "0593798430",
+        "canonicalHref": "/dp/0593798430",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81PndgdGCXL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0593798430.jpg",
+          "bytes": 5663,
+          "sha256": "7d2aa8cd1098d19c9b6701795588cf0842ba18fda514855c281f8588131ba703"
+        },
+        "ordinal": 12,
+        "sourceHref": "/Correspondent-Novel-Virginia-Evans/dp/0593798430/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Correspondent: A Novel"
+      },
+      {
+        "asin": "1775293939",
+        "canonicalHref": "/dp/1775293939",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/813twfPlzhL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1775293939.jpg",
+          "bytes": 8815,
+          "sha256": "74d28a003b803bdf567c10005b9fac1a2b51dd529d2181cc303d0cbc78baf6f3"
+        },
+        "ordinal": 13,
+        "sourceHref": "/Deal-Off-Campus-Elle-Kennedy/dp/1775293939/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Deal: Now an Original Series on Amazon Prime (Off-Campus, 1)"
+      },
+      {
+        "asin": "1775293947",
+        "canonicalHref": "/dp/1775293947",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/811M8UKz6cL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1775293947.jpg",
+          "bytes": 8948,
+          "sha256": "004355b8b28f26cd9997db7fde9f1128f2ae5308f34516ac02eaadefe75c7c13"
+        },
+        "ordinal": 14,
+        "sourceHref": "/Mistake-Off-Campus-Elle-Kennedy/dp/1775293947/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Mistake: Now an Original Series on Amazon Prime (Off-Campus, 2)"
+      },
+      {
+        "asin": "1558585362",
+        "canonicalHref": "/dp/1558585362",
+        "cardDimensions": {
+          "height": 210,
+          "width": 210
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 200
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81YNkSjQ+XL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1558585362.jpg",
+          "bytes": 11108,
+          "sha256": "56a099ac37cc2799c2a154052d051db4ce768e7faa063d389e42ebe01a16a896"
+        },
+        "ordinal": 15,
+        "sourceHref": "/Rainbow-Fish-Marcus-Pfister/dp/1558585362/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Rainbow Fish"
+      },
+      {
+        "asin": "0805047905",
+        "canonicalHref": "/dp/0805047905",
+        "cardDimensions": {
+          "height": 210,
+          "width": 161
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 151
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81kZ3Gl3WKL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0805047905.jpg",
+          "bytes": 11699,
+          "sha256": "df7713af539731f1298c50c65ca9a104e96dbbf1cc32082e78e3814cd28c25f8"
+        },
+        "ordinal": 16,
+        "sourceHref": "/Brown-Bear-What-You-See/dp/0805047905/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Brown Bear, Brown Bear, What Do You See?: 50th Anniversary Edition"
+      },
+      {
+        "asin": "0593820282",
+        "canonicalHref": "/dp/0593820282",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 132
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/819qGxineEL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0593820282.jpg",
+          "bytes": 11192,
+          "sha256": "fcec747c47e3fb8feacc0c9b3eee412e459f3e0b7c9f21baa77c8270be3d3b70"
+        },
+        "ordinal": 17,
+        "sourceHref": "/Dungeon-Anarchists-Cookbook-Crawler-Carl/dp/0593820282/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Dungeon Anarchist's Cookbook (Dungeon Crawler Carl)"
+      },
+      {
+        "asin": "4861522471",
+        "canonicalHref": "/dp/4861522471",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 141
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/61CCq+e0vWL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/4861522471.jpg",
+          "bytes": 4667,
+          "sha256": "13c82343fc971a77ffeb13835b5e43e0fb5b8ab6fd770a3abd7c026bcc779701"
+        },
+        "ordinal": 18,
+        "sourceHref": "/Dictionary-Color-Combinations-Various/dp/4861522471/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "A Dictionary Of Color Combinations Vol 1 (Japanese Edition)"
+      },
+      {
+        "asin": "1775293955",
+        "canonicalHref": "/dp/1775293955",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81RN-v3p+wL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1775293955.jpg",
+          "bytes": 9183,
+          "sha256": "4087499f983bde349655be6089ba504096bfd6ba8ab92e6dbe0c205f90e57d47"
+        },
+        "ordinal": 19,
+        "sourceHref": "/Score-Off-Campus-Elle-Kennedy/dp/1775293955/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Score: Now an Original Series on Amazon Prime (Off-Campus, 3)"
+      },
+      {
+        "asin": "0857197681",
+        "canonicalHref": "/dp/0857197681",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 129
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71si36sM1BL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0857197681.jpg",
+          "bytes": 7529,
+          "sha256": "45668f6217f2f4ce236dc1eb00b0aac4a73905d17858f3ff47dedc479a384780"
+        },
+        "ordinal": 20,
+        "sourceHref": "/Psychology-Money-Timeless-lessons-happiness/dp/0857197681/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "The Psychology of Money: Timeless lessons on wealth, greed, and happiness"
+      },
+      {
+        "asin": "1589255518",
+        "canonicalHref": "/dp/1589255518",
+        "cardDimensions": {
+          "height": 210,
+          "width": 204
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 194
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81mpSoJzv4L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1589255518.jpg",
+          "bytes": 12318,
+          "sha256": "1d81ebeec17b3b54f9ff35fd912fac524cb00037fa98a659f4df193665e77baa"
+        },
+        "ordinal": 21,
+        "sourceHref": "/I-Love-You-Moon-Back/dp/1589255518/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "I Love You to the Moon and Back"
+      },
+      {
+        "asin": "1454961791",
+        "canonicalHref": "/dp/1454961791",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81qlULQ48yL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/1454961791.jpg",
+          "bytes": 10811,
+          "sha256": "032e83db6a5c3963e1c23618fb41a921e364831a06e83c6748fe6379cda0c0e4"
+        },
+        "ordinal": 22,
+        "sourceHref": "/Murdoku-Murder-Mystery-Logic-Puzzles/dp/1454961791/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Murdoku: 80 Murder Mystery Logic Puzzles"
+      },
+      {
+        "asin": "0735211299",
+        "canonicalHref": "/dp/0735211299",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 133
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/81kg51XRc1L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0735211299.jpg",
+          "bytes": 8632,
+          "sha256": "9106620ebe29d30be15e89c16550ba49b30c057fc7e14dc7ce7f713afee515a2"
+        },
+        "ordinal": 23,
+        "sourceHref": "/Atomic-Habits-Proven-Build-Break/dp/0735211299/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones"
+      },
+      {
+        "asin": "0778801314",
+        "canonicalHref": "/dp/0778801314",
+        "cardDimensions": {
+          "height": 210,
+          "width": 155
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 140
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71cMY5jsc1L._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/0778801314.jpg",
+          "bytes": 11486,
+          "sha256": "d47019166998bcb09d07fa394479d6d527046cabc7310cb5a948c47b1488cf6a"
+        },
+        "ordinal": 24,
+        "sourceHref": "/Ball-Complete-Book-Home-Preserving/dp/0778801314/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "Ball Complete Book of Home Preserving"
+      },
+      {
+        "asin": "9387779262",
+        "canonicalHref": "/dp/9387779262",
+        "cardDimensions": {
+          "height": 210,
+          "width": 244
+        },
+        "image": {
+          "naturalDimensions": {
+            "height": 200,
+            "width": 234
+          },
+          "sourceUrl": "https://m.media-amazon.com/images/I/71RPFp7+gfL._AC_SY200_.jpg",
+          "localRelativePath": "home/rails/best-sellers-books/9387779262.jpg",
+          "bytes": 16740,
+          "sha256": "edb13f3c9ac40479da53bf635663e3dd853f7475cc620d20f868bb08e528d7d2"
+        },
+        "ordinal": 25,
+        "sourceHref": "/My-First-Library-Boxset-Board/dp/9387779262/?_encoding=UTF8&pd_rd_w=uEgoP&content-id=amzn1.sym.9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_p=9929d3ab-edb7-4ef5-a232-26d90f828fa5&pf_rd_r=JZC65ZE41X19WQN25E0F&pd_rd_wg=lvCiA&pd_rd_r=9fa1eefc-dbf0-4548-9f79-3f830d30c48b&ref_=pd_hp_d_btf_crs_zg_bs_283155",
+        "title": "My First Library: Boxset of 10 Board Books for Kids"
+      }
+    ],
+    "present": true,
+    "rect": {
+      "height": 282,
+      "left": 20,
+      "top": 3319,
+      "width": 960
+    },
+    "title": "Best Sellers in Books"
+  },
+  "remoteRuntimePolicy": "forbidden"
+}

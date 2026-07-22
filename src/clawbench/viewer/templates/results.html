@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Evaluation matrix{% endblock %}
+{% block content %}
+<div class="page">
+  <section class="page-heading"><div><p class="eyebrow">Comparable evidence</p><h1>Evaluation matrix</h1><p>Each cell is the latest valid run for one model on one offline website. Open a cell to inspect source-versus-clone evidence and failures.</p></div></section>
+  {% if models and matrix %}<div class="table-wrap panel"><table class="result-matrix full-matrix"><thead><tr><th>Offline website</th><th>Category</th>{% for model in models %}<th><a href="/models/{{ model.model_key }}">{{ model.display_name }}</a><small>{{ model.run_count }} runs</small></th>{% endfor %}</tr></thead><tbody>{% for row in matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a></th><td>{{ (row.item.product_type or 'Uncategorized')|replace('-', ' ')|title }}</td>{% for cell in row.cells %}<td>{% if cell.run %}<a class="matrix-score" href="/runs/{{ cell.run.run_id }}"><strong>{{ cell.run.score }}</strong><span>{{ cell.run.status|replace('_',' ') }}</span><small>V {{ cell.run.dimensions.visual.score }} · I {{ cell.run.dimensions.interactions.score }} · J {{ cell.run.dimensions.journeys.score }}</small></a>{% else %}<span class="matrix-empty">Not run</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state benchmark-empty"><strong>No comparable model runs yet.</strong><p>The matrix will expand in both directions as offline websites and model reports are added.</p></div>{% endif %}
+</div>
+{% endblock %}

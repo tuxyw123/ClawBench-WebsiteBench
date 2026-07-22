@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.acceptance-evidence.v1.json",
+  "title": "ClawBench offline clone release acceptance evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "kind",
+    "producer_command_id",
+    "gate_attempt_id",
+    "manifest_sha256",
+    "generated_at",
+    "status",
+    "summary",
+    "metrics",
+    "boundaries",
+    "verified_coverage",
+    "raw_artifacts"
+  ],
+  "properties": {
+    "schema_version": {"const": "offline-clone.acceptance-evidence.v1"},
+    "kind": {
+      "enum": [
+        "visual",
+        "browser",
+        "network",
+        "migration",
+        "independent-audit",
+        "full-suite"
+      ]
+    },
+    "producer_command_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "gate_attempt_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["passed", "not_applicable"]},
+    "summary": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/metric_value"},
+      "required": ["checks_total", "checks_passed", "checks_failed"],
+      "minProperties": 3,
+      "maxProperties": 100,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(?:_[a-z0-9]+)*$",
+        "maxLength": 100
+      },
+      "properties": {
+        "checks_total": {"type": "integer", "minimum": 0},
+        "checks_passed": {"type": "integer", "minimum": 0},
+        "checks_failed": {"type": "integer", "minimum": 0},
+        "stateful": {"type": "boolean"},
+        "checkpoints_total": {"type": "integer", "minimum": 0},
+        "checkpoints_passed": {"type": "integer", "minimum": 0},
+        "checkpoints_failed": {"type": "integer", "minimum": 0},
+        "journeys_total": {"type": "integer", "minimum": 0},
+        "journeys_passed": {"type": "integer", "minimum": 0},
+        "journeys_failed": {"type": "integer", "minimum": 0},
+        "requests_total": {"type": "integer", "minimum": 0},
+        "forbidden_remote_requests": {"type": "integer", "minimum": 0},
+        "network_failures": {"type": "integer", "minimum": 0},
+        "migration_scenarios_total": {"type": "integer", "minimum": 0},
+        "migration_scenarios_passed": {"type": "integer", "minimum": 0},
+        "migration_scenarios_failed": {"type": "integer", "minimum": 0},
+        "copies_tested": {"type": "integer", "minimum": 0},
+        "schema_checks": {"type": "integer", "minimum": 0},
+        "data_checks": {"type": "integer", "minimum": 0},
+        "findings_total": {"type": "integer", "minimum": 0},
+        "blocking_findings": {"type": "integer", "minimum": 0},
+        "tests_discovered": {"type": "integer", "minimum": 0},
+        "tests_passed": {"type": "integer", "minimum": 0},
+        "tests_failed": {"type": "integer", "minimum": 0},
+        "reviewer_method": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "independence_boundary": {"type": "string", "minLength": 1, "maxLength": 1000}
+      }
+    },
+    "reviewer_method": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "independence_boundary": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "boundaries": {
+      "type": "array",
+      "maxItems": 100,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 2000}
+    },
+    "verified_coverage": {
+      "type": "array",
+      "maxItems": 500,
+      "items": {"$ref": "#/$defs/verified_dimension"}
+    },
+    "raw_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {"$ref": "#/$defs/raw_artifact"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "not_applicable"}},
+        "required": ["status"]
+      },
+      "then": {
+        "required": ["reason"],
+        "properties": {
+          "kind": {"const": "migration"},
+          "metrics": {
+            "required": ["stateful"],
+            "properties": {"stateful": {"const": false}}
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {"kind": {"const": "migration"}},
+          "required": ["kind"]
+        }
+      },
+      "then": {"properties": {"status": {"const": "passed"}}}
+    },
+    {
+      "if": {
+        "properties": {"kind": {"const": "independent-audit"}},
+        "required": ["kind"]
+      },
+      "then": {"required": ["reviewer_method", "independence_boundary"]}
+    },
+    {
+      "if": {"properties": {"kind": {"const": "visual"}}, "required": ["kind"]},
+      "then": {
+        "properties": {
+          "metrics": {
+            "required": ["checkpoints_total", "checkpoints_passed", "checkpoints_failed"]
+          },
+          "raw_artifacts": {
+            "allOf": [
+              {"contains": {"properties": {"role": {"const": "source-screenshot"}}, "required": ["role"]}},
+              {"contains": {"properties": {"role": {"const": "clone-screenshot"}}, "required": ["role"]}},
+              {"contains": {"properties": {"role": {"const": "visual-diff"}}, "required": ["role"]}}
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"kind": {"const": "browser"}}, "required": ["kind"]},
+      "then": {
+        "properties": {
+          "metrics": {"required": ["journeys_total", "journeys_passed", "journeys_failed"]},
+          "raw_artifacts": {
+            "contains": {"properties": {"role": {"const": "browser-trace"}}, "required": ["role"]}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"kind": {"const": "network"}}, "required": ["kind"]},
+      "then": {
+        "properties": {
+          "metrics": {"required": ["requests_total", "forbidden_remote_requests", "network_failures"]},
+          "raw_artifacts": {
+            "contains": {"properties": {"role": {"const": "network-log"}}, "required": ["role"]}
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"kind": {"const": "migration"}, "status": {"const": "passed"}},
+        "required": ["kind", "status"]
+      },
+      "then": {
+        "properties": {
+          "metrics": {
+            "required": [
+              "stateful",
+              "migration_scenarios_total",
+              "migration_scenarios_passed",
+              "migration_scenarios_failed",
+              "copies_tested",
+              "schema_checks",
+              "data_checks"
+            ],
+            "properties": {
+              "stateful": {"const": true},
+              "copies_tested": {"minimum": 1},
+              "schema_checks": {"minimum": 1},
+              "data_checks": {"minimum": 1}
+            }
+          },
+          "raw_artifacts": {
+            "allOf": [
+              {"contains": {"properties": {"role": {"const": "pre-state"}}, "required": ["role"]}},
+              {"contains": {"properties": {"role": {"const": "post-state"}}, "required": ["role"]}},
+              {"contains": {"properties": {"role": {"const": "migration-log"}}, "required": ["role"]}}
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"kind": {"const": "migration"}, "status": {"const": "not_applicable"}},
+        "required": ["kind", "status"]
+      },
+      "then": {
+        "properties": {
+          "raw_artifacts": {
+            "contains": {"properties": {"role": {"const": "state-inventory"}}, "required": ["role"]}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"kind": {"const": "independent-audit"}}, "required": ["kind"]},
+      "then": {
+        "properties": {
+          "metrics": {"required": ["findings_total", "blocking_findings", "reviewer_method", "independence_boundary"]},
+          "raw_artifacts": {
+            "contains": {"properties": {"role": {"const": "audit-report"}}, "required": ["role"]}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"kind": {"const": "full-suite"}}, "required": ["kind"]},
+      "then": {
+        "properties": {
+          "metrics": {"required": ["tests_discovered", "tests_passed", "tests_failed"]},
+          "raw_artifacts": {
+            "contains": {"properties": {"role": {"const": "test-result"}}, "required": ["role"]}
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "metric_scalar": {
+      "oneOf": [
+        {"type": "number"},
+        {"type": "boolean"},
+        {"type": "string", "maxLength": 1000},
+        {"type": "null"}
+      ]
+    },
+    "metric_value": {
+      "oneOf": [
+        {"$ref": "#/$defs/metric_scalar"},
+        {
+          "type": "array",
+          "maxItems": 100,
+          "items": {"$ref": "#/$defs/metric_scalar"}
+        }
+      ]
+    },
+    "verified_dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension_id", "items"],
+      "properties": {
+        "dimension_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[a-z0-9]+(?:[._:-][a-z0-9]+)*$"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 10000,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "pattern": "^\\S+$"
+          }
+        }
+      }
+    },
+    "raw_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "bytes",
+        "media_type",
+        "role",
+        "subject_ids",
+        "contains_user_data",
+        "sanitization_method"
+      ],
+      "properties": {
+        "path": {"type": "string", "minLength": 1, "maxLength": 1000},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "media_type": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9!#$&^_.+-]*/[a-z0-9][a-z0-9!#$&^_.+-]*$",
+          "maxLength": 200
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "pattern": "^[a-z0-9]+(?:[._:-][a-z0-9]+)*$"
+        },
+        "subject_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "maxItems": 10000,
+          "items": {"type": "string", "minLength": 1, "maxLength": 500, "pattern": "^\\S+$"}
+        },
+        "contains_user_data": {"const": false},
+        "sanitization_method": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        }
+      }
+    }
+  }
+}

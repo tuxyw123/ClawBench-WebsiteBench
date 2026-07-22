@@ -1,0 +1,140 @@
+{
+  "schema": "amazon-lists-intro-asset-manifest.v1",
+  "snapshot_id": "amazon-com-lists-intro-2026-07-22",
+  "source_evidence": "evidence.json",
+  "asset_count": 12,
+  "assets": [
+    {
+      "filename": "desktop-banner.jpg",
+      "source_asset_path": "desktop-banner.jpg",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/desktop-banner.jpg",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/registry/YourList/Desktop_Banner_3x._CB606316121_.jpg",
+      "bytes": 232660,
+      "width": 5184,
+      "height": 1080,
+      "mime_type": "image/jpeg",
+      "sha256": "fd69fb3672b0a649cdd355b189f59f4edee03a9a005bdf1bfca2be1ddea901db"
+    },
+    {
+      "filename": "stay-organized.png",
+      "source_asset_path": "stay-organized.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/stay-organized.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/registry/YourList/Stay_organized_2x.png",
+      "bytes": 9395,
+      "width": 180,
+      "height": 180,
+      "mime_type": "image/png",
+      "sha256": "ca6e6a893dc1bbaf5bfafea5abe0bbf1a418936a33e7052925d444b9c8526301"
+    },
+    {
+      "filename": "shop-with-friends.png",
+      "source_asset_path": "shop-with-friends.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/shop-with-friends.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/registry/YourList/Shop_with_friends_4x.png",
+      "bytes": 11260,
+      "width": 360,
+      "height": 360,
+      "mime_type": "image/png",
+      "sha256": "27fee252cc16b7e364466c19fc442e9b1638180d729a53f23a2c86fa31ac3bc6"
+    },
+    {
+      "filename": "save-money.png",
+      "source_asset_path": "save-money.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/save-money.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/registry/YourList/Save_money_2x.png",
+      "bytes": 2644,
+      "width": 180,
+      "height": 180,
+      "mime_type": "image/png",
+      "sha256": "eab782131d53687256c9c10a36eef320c2fba1cde01dc6973b565030f76b44ed"
+    },
+    {
+      "filename": "wedding-registry.jpg",
+      "source_asset_path": "wedding-registry.jpg",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/wedding-registry.jpg",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/2021/Gift_List_Registry/gift/wedding_registry_238x238.jpg",
+      "bytes": 13902,
+      "width": 238,
+      "height": 238,
+      "mime_type": "image/jpeg",
+      "sha256": "46152febfab1c36ed54c605b96d4fa36f4dace0724c6fe60112f34065d1417d9"
+    },
+    {
+      "filename": "baby-registry.jpg",
+      "source_asset_path": "baby-registry.jpg",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/baby-registry.jpg",
+      "source_url": "https://m.media-amazon.com/images/G/01/baby/registry/v2/dsk/homepage/Babysquare.jpg",
+      "bytes": 9596,
+      "width": 238,
+      "height": 238,
+      "mime_type": "image/jpeg",
+      "sha256": "5a947a46455dc3e0274a8af73269da1ff8d292832f848cb362c8938346ca8934"
+    },
+    {
+      "filename": "custom-gift.jpg",
+      "source_asset_path": "custom-gift.jpg",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/custom-gift.jpg",
+      "source_url": "https://m.media-amazon.com/images/G/01/img18/home/2021/Gift_List_Registry/gift/custom_gift_238x238.jpg",
+      "bytes": 11897,
+      "width": 238,
+      "height": 238,
+      "mime_type": "image/jpeg",
+      "sha256": "1ab5792398c7046051aef425974650ebf3aa6a2a703ce035d8445d8d1df2d326"
+    },
+    {
+      "filename": "alexa-shopping-list.jpg",
+      "source_asset_path": "alexa-shopping-list.jpg",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/alexa-shopping-list.jpg",
+      "source_url": "https://m.media-amazon.com/images/G/01/gno/programs/logos/HM_AlexaShoppingList._CB640691293_._SY200_.jpg",
+      "bytes": 1648,
+      "width": 80,
+      "height": 80,
+      "mime_type": "image/jpeg",
+      "sha256": "5688586f7c810ad252fb66c3fffce6ec1203e427d03dc6c1c12edb6ea5560538"
+    },
+    {
+      "filename": "mobile-list-icon.png",
+      "source_asset_path": "mobile-list-icon.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/mobile-list-icon.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/wishlist/list_icon_mobile._CB458180717_.png",
+      "bytes": 733,
+      "width": 100,
+      "height": 100,
+      "mime_type": "image/png",
+      "sha256": "36e2be93b69e6b4bdb6a3cb00cc00e48d7237eb2824e6db7bd8a6ec23768bef1"
+    },
+    {
+      "filename": "mobile-gift-icon.png",
+      "source_asset_path": "mobile-gift-icon.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/mobile-gift-icon.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/wishlist/gift_icon._CB458180717_.png",
+      "bytes": 1660,
+      "width": 300,
+      "height": 300,
+      "mime_type": "image/png",
+      "sha256": "e60c5994364cae2088c3c611183f88ca1db004cb66231d00a7f1145f3055a157"
+    },
+    {
+      "filename": "mobile-baby-registry.png",
+      "source_asset_path": "mobile-baby-registry.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/mobile-baby-registry.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/wishlist/intro/babyreg-2x._CB485971282_.png",
+      "bytes": 20286,
+      "width": 160,
+      "height": 160,
+      "mime_type": "image/png",
+      "sha256": "492d74e95b9a574874c5e62d34215a993b9e81928c965b5f2d1dd59e98db7a1c"
+    },
+    {
+      "filename": "mobile-wedding-registry.png",
+      "source_asset_path": "mobile-wedding-registry.png",
+      "runtime_asset_path": "/static/assets/source-current/2026-07-22/lists-intro/mobile-wedding-registry.png",
+      "source_url": "https://m.media-amazon.com/images/G/01/wishlist/intro/weddingreg-2x._CB485932946_.png",
+      "bytes": 28293,
+      "width": 160,
+      "height": 160,
+      "mime_type": "image/png",
+      "sha256": "e4d3652f535218efb02143d0d3ed199c5c12e47fa8f989065ce1da2befab6305"
+    }
+  ]
+}

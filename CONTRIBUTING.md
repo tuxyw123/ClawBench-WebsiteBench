@@ -1,28 +1,27 @@
-# Contributing benchmark items
+# Contributing offline clones
 
-New WebsiteBench items must preserve the same public/private boundary as
-Northstar Market:
+New clone work should follow the resource-first workflow documented in
+[`docs/offline-clone-harness.md`](docs/offline-clone-harness.md):
 
-1. Put agent-visible contracts, PRD, smoke cases, fixtures, scoring, and visual
-   checkpoints under `websitebench/<site>/public/`.
-2. Keep the reference implementation and hidden judge outside `public/`.
-3. Declare every public artifact in `public/manifest.yaml` and validate it
-   against `websitebench/schemas/site-manifest.schema.json`.
-4. Provide deterministic seed/reset behavior, health checks, controlled time,
-   account isolation, and concurrency-safe state transitions.
-5. Add contract, behavior, topology, scoring, and report tests.
-6. Do not expose reference source, hidden fixtures, container sockets, raw
-   network bodies, browser profiles, or per-run secrets to the Agent.
-7. Version behavior changes and recalibrate reference identity before release.
+1. Freeze the site's purpose, core journeys, semantic invariants, and explicit
+   non-goals before implementation.
+2. Capture a stable source baseline and close the required local resource set.
+3. Build and visually verify the frontend route/state matrix before expanding
+   backend behavior.
+4. Implement only the backend semantics needed by the frozen journeys, with
+   server-side validation and deterministic reset behavior.
+5. Iterate through evidence-backed functional and visual gates. Reports must
+   distinguish directly compared, structural-only, unavailable, and inferred
+   states.
+6. Keep credentials, user data, browser profiles, runtime databases, and
+   generated artifacts out of Git.
+7. Document source ownership, redistribution limits, simulations, and known
+   fidelity gaps without overstating completion.
 
 Run before committing:
 
 ```bash
-clawbench-web2code validate --site northstar-market
 ruff check src tests websitebench
-python -m pytest tests/web2code tests/viewer -q
+python -m pytest tests/offline_clone tests/viewer -q
+python -m pytest materials/amazon/clone/tests -q
 ```
-
-The complete protocol and gate history are in `WebsiteBench.md` and
-`websitebench/northstar-market/GATE_W*.md`.
-

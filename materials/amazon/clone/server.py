@@ -1,1906 +1,4038 @@
-#!/usr/bin/env python3
-"""Production local backend for the Amazon public-retail replica."""
-
 from __future__ import annotations
 
 import argparse
+import hashlib
+import ipaddress
 import json
 import mimetypes
+import os
 import re
 import secrets
-import sqlite3
-import time
-from contextlib import closing, contextmanager
-from datetime import datetime, timezone
-from http import HTTPStatus
-from http.cookies import CookieError, SimpleCookie
+import signal
+import sys
+import threading
+from dataclasses import replace
+from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from typing import Any, Iterator
-from urllib.parse import parse_qs, parse_qsl, unquote, urlsplit
+from typing import Any, Mapping
+from urllib.parse import parse_qs, parse_qsl, unquote, urlencode, urlsplit
+
+import auth_views
+import render as views
+import specialty_store as specialty
+import specialty_views
+import wishlist_store as wishlist
+import wishlist_views
+from browse_breadth import load_browse_breadth
+from deals_catalog import build_deals_view, load_deals_catalog
+from home_catalog import load_home_product_catalog
+from mail_transport import (
+    SMTPConfig,
+    load_local_inbox_url,
+    load_smtp_config,
+    send_smtp_message,
+    smtp_error_summary,
+    smtp_public_summary,
+)
+from product_options import UNAVAILABLE_SELECTION_COPY
+from review_catalog import render_reviews_section
+from review_store import (
+    ReviewAuthenticationRequired,
+    ReviewNotFound,
+    ReviewPermissionDenied,
+    ReviewValidationError,
+)
+from search_catalog import (
+    SearchRequest,
+    SearchValidationError,
+    build_search_hit,
+    candidate_search_hits,
+    is_portable_ssd_contract_query,
+    parse_search_request,
+    refine_search_hits,
+)
+from search_suggestions import (
+    SearchSuggestionValidationError,
+    build_suggestion_corpus,
+    parse_suggestion_request,
+    suggest_search_terms,
+)
+from store import (
+    AddressInUse,
+    AddressNotFound,
+    AddressRevisionConflict,
+    BEST_SELLERS_PATH,
+    CART_LINE_ID_PATTERN,
+    COMPARE_LINE_ID_PATTERN,
+    MAIL_LOCAL_ONLY,
+    MAIL_SMTP_PENDING,
+    PDP_PATH,
+    SUPPORTED_DELIVERY_COUNTRY_CODES,
+    TARGET_ASIN,
+    TERMINAL_PATHS,
+    CheckoutReconciliationRequired,
+    ContractError,
+    OrderActionTokenInvalid,
+    OrderNotFound,
+    OrderStateConflict,
+    ReturnNotFound,
+    Store,
+    normalize_email,
+)
 
 
 ROOT = Path(__file__).resolve().parent
-STATIC_ROOT = ROOT / "static"
-SITE_CATALOG_PATH = STATIC_ROOT / "site-catalog.json"
-DEFAULT_DB = ROOT / "amazon.sqlite3"
-SESSION_COOKIE = "amazon_local_session"
-ALLOWED_BIND_HOSTS = {"127.0.0.1", "localhost", "0.0.0.0"}
-BEST_SELLERS_PATH = "/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011"
-PRODUCT_PATH = "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8"
-MOBILE_PRODUCT_PATH = "/gp/aw/d/B0874XN4D8"
-CART_PATH = "/gp/cart/view.html"
-TARGET_ASIN = "B0874XN4D8"
-TERMINAL_PATHS = {
-    "/gp/product/handle-buy-box/ref=dp_start-bbf_1_glance",
-    "/cart/add-to-cart/ref=mw_dp_buy_crt",
+STATIC_ROOT = (ROOT / "static").resolve()
+FIXTURE_ROOT = (ROOT / "fixtures").resolve()
+SCHEMA_PATH = ROOT / "schema.sql"
+DEFAULT_DB = ROOT / "runtime" / "amazon.sqlite3"
+SESSION_COOKIE = "amazon_clone_session"
+FLOW_COOKIE = "amazon_clone_flow"
+SESSION_BYTES = 32
+# A 10,000-character review body is a supported domain value.  URL-encoded
+# non-ASCII text can use up to twelve bytes per Unicode scalar (four UTF-8
+# bytes, each percent-encoded), so keep the transport limit above that bound.
+MAX_FORM_BYTES = 128 * 1024
+MAX_ADMIN_BYTES = 64 * 1024
+PDP_ROUTE = re.compile(r"^/([^/]+)/dp/([A-Z0-9]{10})$")
+BARE_PDP_ROUTE = re.compile(r"^/dp/([A-Z0-9]{10})$")
+PRODUCT_REVIEWS_ROUTE = re.compile(r"^/product-reviews/([A-Z0-9]{10})$")
+PRODUCT_REVIEW_HELPFUL_ROUTE = re.compile(
+    r"^/product-reviews/([A-Z0-9]{10})/helpful$"
+)
+HOME_PRODUCT_CATALOG = load_home_product_catalog(FIXTURE_ROOT)
+SEARCH_SUGGESTION_CORPUS = build_suggestion_corpus(HOME_PRODUCT_CATALOG)
+BROWSE_BREADTH = load_browse_breadth(FIXTURE_ROOT)
+SEARCH_DEPARTMENT_SUPPLEMENTS = (
+    *BROWSE_BREADTH["department_commerce_supplements"],
+    *BROWSE_BREADTH["search_commerce_cards"],
+)
+SEARCH_COMMERCE_PRODUCT_CATALOG = {
+    str(product["asin"]): product
+    for product in BROWSE_BREADTH["search_commerce_cards"]
 }
-APP_ROUTES = {
-    "/",
-    BEST_SELLERS_PATH,
-    "/Best-Sellers/zgbs",
-    "/Best-Sellers/zgbs/",
-    PRODUCT_PATH,
-    MOBILE_PRODUCT_PATH,
-    CART_PATH,
-    "/s",
-    "/gp/goldbox",
-    "/gp/goldbox/",
-    "/account",
-    "/account/orders",
-    "/hz/wishlist",
-    "/hz/wishlist/ls",
-    "/hz/history",
-    "/checkout",
-    "/checkout/payment",
-    "/buy-now",
-    "/local-boundary",
+PORTABLE_SEARCH_ORDER = (
+    "B08HN37XC1",
+    "B08GTYFC37",
+    "B0F6NKYDTY",
+    "B0BGKXX9TK",
+    "B0874XN4D8",
+    "B0C5JQ68FY",
+    "B08GV9M64L",
+    "B09VLK9W3S",
+    "B0CHFSWM2P",
+)
+DEALS_CATALOG = load_deals_catalog(
+    FIXTURE_ROOT, BROWSE_BREADTH["verified_offers"]
+)
+DEALS_PRODUCT_CATALOG = {
+    str(product["asin"]): product for product in DEALS_CATALOG
 }
-COMPUTERS_CATEGORY_PATHS = {
-    "/b",
-    "/b/",
-    "/Computers-Accessories/b",
-    "/Computers-Accessories/b/",
-    "/computers-pc-hardware-accessories-add-ons/b",
-    "/computers-pc-hardware-accessories-add-ons/b/",
-}
-DISCOVERY_TTL_SECONDS = 30 * 60
-SEARCH_HISTORY_LIMIT = 10
-RECENT_VIEWS_LIMIT = 10
-SUGGESTION_LIMIT = 8
-MAX_BODY_BYTES = 16 * 1024
-SESSION_TOKEN_RE = re.compile(r"[A-Za-z0-9_-]{43}\Z")
-ASIN_RE = re.compile(r"[A-Z0-9]{10}\Z")
-GENERIC_ASIN_RE = re.compile(r"[A-Z0-9]{10,11}\Z")
-GENERIC_PDP_RE = re.compile(r"/[^/]+/dp/([A-Z0-9]{10,11})/?\Z")
-FORM_PERCENT_RE = re.compile(r"%(?![0-9A-Fa-f]{2})")
-
-PRODUCTS: list[dict[str, Any]] = [
+AUTH_PATHS = frozenset({"/ap/signin", "/ap/register", "/ap/forgotpassword", "/ap/cvf/verify"})
+AUTH_SIGNOUT_PATH = "/ap/signout"
+ADDRESS_BOOK_PATH = "/a/addresses"
+ADDRESS_ADD_PATH = "/a/addresses/add"
+ADDRESS_EDIT_PATH = "/a/addresses/edit"
+ADDRESS_CREATE_PATH = "/a/addresses/create"
+ADDRESS_UPDATE_PATH = "/a/addresses/update"
+ADDRESS_DELETE_PATH = "/a/addresses/delete"
+ADDRESS_DEFAULT_PATH = "/a/addresses/set-default"
+ADDRESS_BOOK_POST_PATHS = frozenset(
     {
-        "rank": 1,
-        "asin": "B08HN37XC1",
-        "title": "SANDISK 2TB Extreme Portable SSD (Old Model) - Up to 1050MB/s, USB-C, USB 3.2 Gen 2, IP65 Water and Dust Resistance",
-        "short_title": "SANDISK 2TB Extreme Portable SSD",
-        "rating": 4.6,
-        "reviews": 91118,
-        "price": 269.75,
-        "old_price": 299.99,
-        "bought": "10K+ bought in past month",
-        "capacity": "2 TB",
-        "color": "Black",
-        "interface": "USB 3.2 Gen 2",
-        "connectivity": "USB-C",
-        "bullets": ["Up to 1050MB/s", "IP65 water and dust resistance"],
-        "sprite_index": 0,
-    },
-    {
-        "rank": 2,
-        "asin": "B0874XN4D8",
-        "title": "Samsung T7 Portable SSD, 1TB External Solid State Drive, Speeds Up to 1,050MB/s, USB 3.2 Gen 2, Reliable Storage for Gaming, Students, Professionals, MU-PC1T0T/AM, Gray",
-        "short_title": "Samsung T7 Portable SSD, 1TB External Solid State Drive",
-        "rating": 4.7,
-        "reviews": 38068,
-        "price": 219.99,
-        "old_price": 274.99,
-        "bought": "5K+ bought in past month",
-        "capacity": "1 TB",
-        "color": "Titan Gray",
-        "interface": "USB 3.0",
-        "connectivity": "USB",
-        "bullets": [
-            "MADE FOR THE MAKERS: Create, explore, and store with fast, durable portable storage.",
-            "SHARE IDEAS IN A FLASH: PCIe NVMe technology supports read and write speeds up to 1,050/1,000 MB/s.",
-            "ALWAYS MAKE THE SAVE: Compact design with capacity for working files, photographs, and game data.",
-            "ADAPTS TO EVERY NEED: Broad compatibility across computers, phones, cameras, and consoles.",
-            "HI RESOLUTION VIDEO RECORDING: Record high-resolution video directly to portable storage on supported devices.",
-        ],
-        "sprite_index": 1,
-    },
-    {
-        "rank": 3,
-        "asin": "B0CHFSWM2P",
-        "title": "Samsung T9 Portable SSD 1TB, USB 3.2 Gen 2x2 External Solid State Drive, up to 2,000MB/s",
-        "short_title": "Samsung T9 Portable SSD 1TB",
-        "rating": 4.6,
-        "reviews": 2888,
-        "price": 249.00,
-        "old_price": 289.99,
-        "bought": "2K+ bought in past month",
-        "capacity": "1 TB",
-        "color": "Black",
-        "interface": "USB 3.2 Gen 2x2",
-        "connectivity": "USB-C",
-        "bullets": ["Up to 2,000MB/s", "Dynamic thermal guard"],
-        "sprite_index": 2,
-    },
-    {
-        "rank": 4,
-        "asin": "B0C5JQ68FY",
-        "title": "SANDISK 1TB Portable SSD - Up to 800MB/s, USB-C, USB 3.2 Gen 2",
-        "short_title": "SANDISK 1TB Portable SSD",
-        "rating": 4.6,
-        "reviews": 13477,
-        "price": 139.77,
-        "old_price": 159.99,
-        "bought": "3K+ bought in past month",
-        "capacity": "1 TB",
-        "color": "Black",
-        "interface": "USB 3.2 Gen 2",
-        "connectivity": "USB-C",
-        "bullets": ["Up to 800MB/s", "Compact portable design"],
-        "sprite_index": 3,
-    },
-    {
-        "rank": 5,
-        "asin": "B0BGKXX9TK",
-        "title": "SSK Portable SSD 500GB External Solid State Drive, up to 1050MB/s USB-C",
-        "short_title": "SSK Portable SSD 500GB",
-        "rating": 4.5,
-        "reviews": 4560,
-        "price": 78.62,
-        "old_price": 89.99,
-        "bought": "1K+ bought in past month",
-        "capacity": "500 GB",
-        "color": "Black",
-        "interface": "USB 3.2 Gen 2",
-        "connectivity": "USB-C",
-        "bullets": ["Up to 1050MB/s", "Phone and computer compatible"],
-        "sprite_index": 4,
-    },
-    {
-        "rank": 6,
-        "asin": "B08GV9M64L",
-        "title": "SANDISK 1TB Extreme PRO Portable SSD - Up to 2000MB/s, USB-C, IP65",
-        "short_title": "SANDISK 1TB Extreme PRO Portable SSD",
-        "rating": 4.5,
-        "reviews": 9874,
-        "price": 183.45,
-        "old_price": 229.99,
-        "bought": "1K+ bought in past month",
-        "capacity": "1 TB",
-        "color": "Black",
-        "interface": "USB 3.2 Gen 2x2",
-        "connectivity": "USB-C",
-        "bullets": ["Up to 2000MB/s", "Forged aluminum chassis"],
-        "sprite_index": 5,
-    },
-]
-
-# Amazon exposes these ranked drives under Computers & Accessories even though
-# the broader storefront navigation calls the owning department Electronics.
-# Keep both facets so search/refinement trajectories do not lose the six task
-# products after selecting the source-equivalent category.
-for _task_product in PRODUCTS:
-    _task_product.setdefault("department", "Electronics")
-    _task_product.setdefault("category", "Computers & Accessories")
-
-
-def load_site_catalog(path: Path = SITE_CATALOG_PATH) -> dict[str, Any]:
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
-        raise RuntimeError(f"Could not load site catalog: {path}") from error
-    if not isinstance(payload, dict):
-        raise RuntimeError("site-catalog.json must contain an object")
-    products = payload.get("products")
-    trending = payload.get("trendingSearches")
-    if not isinstance(products, list) or not isinstance(trending, list):
-        raise RuntimeError(
-            "site-catalog.json must contain products and trendingSearches lists"
-        )
-    required = {
-        "asin",
-        "slug",
-        "title",
-        "short_title",
-        "brand",
-        "department",
-        "category",
-        "price",
-        "rating",
-        "reviews",
-        "bullets",
+        ADDRESS_CREATE_PATH,
+        ADDRESS_UPDATE_PATH,
+        ADDRESS_DELETE_PATH,
+        ADDRESS_DEFAULT_PATH,
     }
-    seen: set[str] = set()
-    for product in products:
-        if not isinstance(product, dict) or required.difference(product):
-            raise RuntimeError("site-catalog.json contains an incomplete product")
-        asin = product.get("asin")
-        if (
-            not isinstance(asin, str)
-            or not GENERIC_ASIN_RE.fullmatch(asin)
-            or asin in seen
-        ):
-            raise RuntimeError(
-                "site-catalog.json product ASINs must be unique and valid"
-            )
-        if not isinstance(product.get("bullets"), list):
-            raise RuntimeError(f"site-catalog.json product {asin} has invalid bullets")
-        seen.add(asin)
-    if any(not isinstance(term, str) or not term.strip() for term in trending):
-        raise RuntimeError(
-            "site-catalog.json trendingSearches must contain non-empty strings"
-        )
-    return payload
-
-
-SITE_CATALOG = load_site_catalog()
-GENERIC_PRODUCTS: list[dict[str, Any]] = SITE_CATALOG["products"]
-TRENDING_SEARCHES: tuple[str, ...] = tuple(SITE_CATALOG["trendingSearches"])
-TASK_PRODUCT_INDEX = {product["asin"]: product for product in PRODUCTS}
-GENERIC_PRODUCT_INDEX = {product["asin"]: product for product in GENERIC_PRODUCTS}
-PRODUCT_INDEX = {**GENERIC_PRODUCT_INDEX, **TASK_PRODUCT_INDEX}
-ALL_PRODUCTS = PRODUCTS + [
-    product for product in GENERIC_PRODUCTS if product["asin"] not in TASK_PRODUCT_INDEX
-]
-BOUNDARY_KINDS = {
-    "account",
-    "list",
-    "checkout",
-    "payment",
-    "buy-now",
-    "delivery",
-    "language",
-    "returns",
-    "service",
+)
+ADDRESS_FORM_NAMES = frozenset(
+    {
+        "fullName",
+        "addressLine1",
+        "addressLine2",
+        "city",
+        "state",
+        "postalCode",
+        "countryCode",
+        "phoneNumber",
+    }
+)
+CART_MUTATION_PATHS = frozenset(
+    {
+        "/gp/buy/now",
+        "/gp/cart/add.html",
+        "/gp/cart/update.html",
+        "/gp/cart/delete.html",
+        "/gp/cart/save-for-later.html",
+        "/gp/cart/move-to-cart.html",
+    }
+)
+BUY_NOW_PATH = "/gp/buy/now"
+BUY_NOW_CONTINUE_PATH = "/gp/buy/now/continue"
+CHECKOUT_START_PATH = "/gp/buy/spc/handlers/display.html"
+CHECKOUT_ADDRESS_PATH = "/gp/buy/addressselect/handlers/display.html"
+CHECKOUT_DELIVERY_PATH = "/gp/buy/shipoptionselect/handlers/display.html"
+CHECKOUT_PAYMENT_PATH = "/gp/buy/payselect/handlers/display.html"
+PLACE_ORDER_PATH = "/gp/buy/place-order"
+ORDER_DETAIL_PATH = "/gp/your-account/order-details"
+ORDER_EMAIL_RETRY_PATH = "/gp/your-account/order-email/retry"
+ORDER_CANCEL_PATH = "/gp/your-account/order-cancel"
+RETURN_CREATE_PATH = "/gp/your-account/returns/create"
+RETURN_DETAIL_PATH = "/gp/your-account/returns/details"
+COMPARE_PATH = "/gp/compare"
+COMPARE_MUTATION_PATHS = frozenset(
+    {"/gp/compare/add", "/gp/compare/remove", "/gp/compare/clear"}
+)
+CHECKOUT_STAGE_ORDER = {
+    "CART_READY": 0,
+    "ADDRESS_SELECTED": 1,
+    "DELIVERY_SELECTED": 2,
+    "PAYMENT_SELECTED": 3,
+    "PLACED": 4,
+}
+ASIN_PATTERN = re.compile(r"^[A-Z0-9]{10}$")
+PROTECTED_ACCOUNT_PATHS = frozenset(
+    {"/gp/css/homepage.html", "/gp/css/order-history"}
+)
+WISHLIST_POST_PATHS = frozenset(
+    {
+        wishlist_views.WISHLIST_CREATE_PATH,
+        wishlist_views.WISHLIST_RENAME_PATH,
+        wishlist_views.WISHLIST_DELETE_PATH,
+        wishlist_views.WISHLIST_ADD_ITEM_PATH,
+        wishlist_views.WISHLIST_REMOVE_ITEM_PATH,
+        wishlist_views.WISHLIST_MOVE_TO_CART_PATH,
+    }
+)
+WISHLIST_FRIENDS_PATH = "/hz/wishlist/your-friends"
+SITE_DIRECTORY_PATH = "/gp/site-directory"
+DELIVERY_PREFERENCE_PATH = "/gp/delivery/ajax/address-change.html"
+SEARCH_SUGGESTIONS_PATH = "/search/suggestions"
+LANGUAGE_PREFERENCE_PATH = "/customer-preferences/edit"
+CUSTOMER_SERVICE_PATH = "/gp/help/customer/display.html"
+CUSTOMER_SERVICE_NODE = "508510"
+SHIPPING_POLICIES_NODE = "468520"
+RETURNS_REPLACEMENTS_NODE = "201819200"
+GIFT_CARDS_PATH = specialty.GIFT_CARDS_PATH
+SPECIALTY_POST_PATHS = frozenset(
+    {
+        specialty.GIFT_CARD_PREVIEW_PATH,
+        specialty.GIFT_CARD_REDEEM_PATH,
+        specialty.SELL_DRAFT_PATH,
+        specialty.REGISTRY_CREATE_PATH,
+    }
+)
+PUBLIC_NAVIGATION_LANDINGS: dict[
+    str, tuple[str, str, tuple[tuple[str, str], ...]]
+] = {
+    LANGUAGE_PREFERENCE_PATH: (
+        "Language preferences",
+        "This local snapshot is available in English (United States). Continue browsing or visit customer service.",
+        (
+            ("Continue in English", "/"),
+            ("Browse books", "/s?k=books"),
+            ("Visit Customer Service", "/gp/help/customer/display.html?nodeId=508510"),
+        ),
+    ),
+    DELIVERY_PREFERENCE_PATH: (
+        "Choose your delivery location",
+        "The current storefront is showing products for delivery to Singapore. A checkout address can be selected when placing an order.",
+        (
+            ("Browse Singapore picks", "/s?k=top+picks+singapore"),
+            ("View your cart", "/gp/cart/view.html"),
+            ("Visit Customer Service", "/gp/help/customer/display.html?nodeId=508510"),
+        ),
+    ),
 }
 
 
-class RequestError(ValueError):
-    def __init__(
-        self,
-        status: HTTPStatus,
-        message: str,
-        outcome: str = "rejected",
-    ) -> None:
-        super().__init__(message)
-        self.status = status
-        self.outcome = outcome
+def digest(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="milliseconds")
+def json_bytes(payload: Any) -> bytes:
+    return json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
 
 
-def init_db(path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with closing(sqlite3.connect(path, timeout=10)) as db, db:
-        db.execute("PRAGMA journal_mode = WAL")
-        db.execute("PRAGMA foreign_keys = ON")
-        db.execute("PRAGMA synchronous = FULL")
-        db.executescript(
-            """
-            CREATE TABLE IF NOT EXISTS sessions (
-                id TEXT PRIMARY KEY,
-                delivery_label TEXT NOT NULL DEFAULT 'New York 10001',
-                currency TEXT NOT NULL DEFAULT 'USD',
-                signed_in INTEGER NOT NULL DEFAULT 0 CHECK (signed_in IN (0, 1)),
-                created_at TEXT NOT NULL,
-                last_seen_at TEXT NOT NULL
-            );
+def compare_entry_product(
+    store: Store,
+    product: dict[str, Any] | Mapping[str, Any],
+    *,
+    eligible_asins: frozenset[str] | None = None,
+) -> dict[str, Any]:
+    """Annotate a rendered product from the server-owned compare registry."""
 
-            CREATE TABLE IF NOT EXISTS discovery (
-                session_id TEXT NOT NULL,
-                path TEXT NOT NULL,
-                kind TEXT NOT NULL CHECK (kind IN ('best_sellers', 'product')),
-                asin TEXT,
-                viewed_at TEXT NOT NULL,
-                viewed_at_epoch REAL NOT NULL,
-                PRIMARY KEY (session_id, path),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS cart (
-                session_id TEXT NOT NULL,
-                asin TEXT NOT NULL,
-                quantity INTEGER NOT NULL CHECK (quantity BETWEEN 1 AND 3),
-                updated_at TEXT NOT NULL,
-                PRIMARY KEY (session_id, asin),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS saved (
-                session_id TEXT NOT NULL,
-                asin TEXT NOT NULL,
-                quantity INTEGER NOT NULL CHECK (quantity BETWEEN 1 AND 3),
-                saved_at TEXT NOT NULL,
-                PRIMARY KEY (session_id, asin),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS boundaries (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id TEXT NOT NULL,
-                kind TEXT NOT NULL,
-                path TEXT NOT NULL,
-                created_at TEXT NOT NULL,
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS request_journal (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id TEXT NOT NULL,
-                method TEXT NOT NULL,
-                path TEXT NOT NULL,
-                status INTEGER NOT NULL,
-                outcome TEXT NOT NULL,
-                asin TEXT,
-                quantity INTEGER,
-                timestamp TEXT NOT NULL,
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS search_history (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id TEXT NOT NULL,
-                query TEXT NOT NULL,
-                normalized_query TEXT NOT NULL,
-                searched_at TEXT NOT NULL,
-                searched_at_epoch REAL NOT NULL,
-                UNIQUE (session_id, normalized_query),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS recent_views (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id TEXT NOT NULL,
-                asin TEXT NOT NULL,
-                path TEXT NOT NULL,
-                viewed_at TEXT NOT NULL,
-                viewed_at_epoch REAL NOT NULL,
-                UNIQUE (session_id, asin),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE TABLE IF NOT EXISTS wishlist (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id TEXT NOT NULL,
-                asin TEXT NOT NULL,
-                added_at TEXT NOT NULL,
-                added_at_epoch REAL NOT NULL,
-                UNIQUE (session_id, asin),
-                FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
-            );
-
-            CREATE INDEX IF NOT EXISTS idx_discovery_session_time
-                ON discovery(session_id, viewed_at_epoch);
-            CREATE INDEX IF NOT EXISTS idx_boundaries_session
-                ON boundaries(session_id, id);
-            CREATE INDEX IF NOT EXISTS idx_request_journal_session
-                ON request_journal(session_id, id);
-            CREATE INDEX IF NOT EXISTS idx_search_history_session_time
-                ON search_history(session_id, searched_at_epoch DESC, id DESC);
-            CREATE INDEX IF NOT EXISTS idx_recent_views_session_time
-                ON recent_views(session_id, viewed_at_epoch DESC, id DESC);
-            CREATE INDEX IF NOT EXISTS idx_wishlist_session_time
-                ON wishlist(session_id, added_at_epoch DESC, id DESC);
-            """
-        )
-        result = db.execute("PRAGMA quick_check").fetchone()
-        if not result or result[0] != "ok":
-            raise sqlite3.DatabaseError(f"SQLite integrity check failed: {result}")
-
-
-@contextmanager
-def database(path: Path, *, write: bool) -> Iterator[sqlite3.Connection]:
-    db = sqlite3.connect(path, timeout=2, isolation_level=None)
-    try:
-        db.row_factory = sqlite3.Row
-        db.execute("PRAGMA foreign_keys = ON")
-        db.execute("PRAGMA busy_timeout = 2000")
-        db.execute("BEGIN IMMEDIATE" if write else "BEGIN")
-        yield db
-        db.execute("COMMIT")
-    except BaseException:
-        if db.in_transaction:
-            db.execute("ROLLBACK")
-        raise
-    finally:
-        db.close()
-
-
-def add_journal(
-    db: sqlite3.Connection,
-    session_id: str,
-    method: str,
-    path: str,
-    status: int,
-    outcome: str,
-    asin: str | None = None,
-    quantity: int | None = None,
-) -> None:
-    db.execute(
-        """
-        INSERT INTO request_journal
-            (session_id, method, path, status, outcome, asin, quantity, timestamp)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        (session_id, method, path, status, outcome, asin, quantity, utc_now()),
+    rendered = dict(product)
+    asin = str(rendered.get("asin") or "")
+    eligible = asin in (
+        eligible_asins
+        if eligible_asins is not None
+        else store.compare_eligible_asins()
     )
+    rendered["compare_eligible"] = eligible
+    if eligible:
+        rendered["default_selected_options"] = store.default_product_options(asin)
+    return rendered
 
 
-class AmazonThreadingServer(ThreadingHTTPServer):
-    daemon_threads = True
+def product_for_pdp(store: Store, asin: str) -> dict[str, Any] | None:
+    """Prefer newer direct PDP evidence without changing frozen search records."""
+
+    home_product = HOME_PRODUCT_CATALOG.get(asin)
+    product: dict[str, Any] | None = None
+    if home_product is not None and home_product.get("evidence_tier") == "pdp-direct":
+        product = dict(home_product)
+    else:
+        task_product = store.product(asin)
+        if task_product is not None:
+            product = task_product
+        else:
+            commerce_offer = store.commerce_offer(asin)
+            if (
+                commerce_offer is not None
+                and commerce_offer.get("evidence_class") == "direct-deals-card"
+            ):
+                deals_product = DEALS_PRODUCT_CATALOG.get(asin)
+                if deals_product is not None:
+                    # Transaction identity comes from commerce_offers; card-only
+                    # presentation facts retain their narrower Deals evidence fields.
+                    product = {**commerce_offer, **dict(deals_product)}
+            elif (
+                commerce_offer is not None
+                and commerce_offer.get("evidence_class") == "direct-search-card"
+            ):
+                search_product = SEARCH_COMMERCE_PRODUCT_CATALOG.get(asin)
+                if search_product is not None:
+                    product = {**commerce_offer, **dict(search_product)}
+            elif home_product is not None:
+                product = dict(home_product)
+    return compare_entry_product(store, product) if product is not None else None
+
+
+def compare_product_for_view(
+    store: Store, compare_item: dict[str, Any]
+) -> dict[str, Any]:
+    """Keep rich presentation while making the resolved line quote authoritative."""
+
+    asin = str(compare_item.get("asin") or "")
+    presentation = product_for_pdp(store, asin) or {}
+    return {**presentation, **compare_item, "compare_eligible": True}
+
+
+def review_product_source_scope(store: Store, asin: str) -> str | None:
+    """Return the server-owned product scope that authorizes local reviews."""
+
+    if asin in HOME_PRODUCT_CATALOG:
+        return "home_snapshot"
+    if store.product(asin) is not None:
+        return "catalog_product"
+    if store.commerce_offer(asin) is not None:
+        return "commerce_offer"
+    return None
+
+
+def valid_account_email(value: str) -> str | None:
+    normalized = normalize_email(value)
+    if not normalized or len(normalized) > 254 or normalized.count("@") != 1:
+        return None
+    local, domain = normalized.split("@", 1)
+    if not local or not domain or any(character.isspace() or ord(character) < 32 for character in normalized):
+        return None
+    return normalized
+
+
+def clean_display_name(value: str) -> str | None:
+    cleaned = " ".join(value.strip().split())
+    if not cleaned or len(cleaned) > 128 or any(ord(character) < 32 for character in cleaned):
+        return None
+    return cleaned
+
+
+def clean_checkout_text(
+    value: str, *, maximum: int, required: bool = True
+) -> str | None:
+    cleaned = " ".join(value.strip().split())
+    if required and not cleaned:
+        return None
+    if len(cleaned) > maximum or any(ord(character) < 32 for character in cleaned):
+        return None
+    return cleaned
+
+
+def normalized_address_fields(fields: dict[str, str]) -> dict[str, str] | None:
+    """Map one strict browser address form to the store's canonical fields."""
+
+    if not ADDRESS_FORM_NAMES.issubset(fields):
+        return None
+    address = {
+        "full_name": clean_checkout_text(fields["fullName"], maximum=128),
+        "address_line1": clean_checkout_text(
+            fields["addressLine1"], maximum=200
+        ),
+        "address_line2": clean_checkout_text(
+            fields["addressLine2"], maximum=200, required=False
+        ),
+        "city": clean_checkout_text(fields["city"], maximum=100),
+        "state_region": clean_checkout_text(fields["state"], maximum=100),
+        "postal_code": clean_checkout_text(fields["postalCode"], maximum=32),
+        "country_code": fields["countryCode"].strip().upper(),
+        "phone": clean_checkout_text(
+            fields["phoneNumber"], maximum=32, required=False
+        ),
+    }
+    if (
+        any(value is None for value in address.values())
+        or str(address["country_code"]) not in SUPPORTED_DELIVERY_COUNTRY_CODES
+    ):
+        return None
+    return {name: str(value) for name, value in address.items()}
+
+
+def review_query_parameters(query: dict[str, list[str]]) -> tuple[int | None, str]:
+    """Parse the two public review controls without accepting ambiguous values."""
+
+    star_values = query.get("reviewStar", [])
+    sort_values = query.get("reviewSort", [])
+    if len(star_values) > 1 or len(sort_values) > 1:
+        raise ReviewValidationError("review filters must have one value")
+    star: int | None = None
+    if star_values:
+        if re.fullmatch(r"[1-5]", star_values[0]) is None:
+            raise ReviewValidationError("reviewStar must be 1 through 5")
+        star = int(star_values[0])
+    sort = sort_values[0] if sort_values else "recent"
+    if sort not in {"recent", "helpful"}:
+        raise ReviewValidationError("reviewSort must be recent or helpful")
+    return star, sort
+
+
+class ReusableThreadingHTTPServer(ThreadingHTTPServer):
     allow_reuse_address = True
+    daemon_threads = True
 
-    def __init__(self, address: tuple[str, int], db_path: Path) -> None:
-        self.db_path = db_path
-        super().__init__(address, AmazonHandler)
+    def handle_error(self, request: Any, client_address: Any) -> None:
+        """Do not log tracebacks for ordinary clients closing keep-alive sockets."""
+
+        error = sys.exc_info()[1]
+        if isinstance(
+            error, (BrokenPipeError, ConnectionAbortedError, ConnectionResetError)
+        ):
+            return
+        super().handle_error(request, client_address)
 
 
-class AmazonHandler(BaseHTTPRequestHandler):
-    server_version = "AmazonLocalEvaluation/1.0"
-    sys_version = ""
+def dispatch_mail_delivery(
+    store: Store,
+    config: SMTPConfig,
+    delivery: dict[str, Any],
+) -> bool:
+    """Atomically claim and asynchronously deliver one durable SMTP job."""
+
+    kind = str(delivery["kind"])
+    email_id = int(delivery["email_id"])
+    claim_token = store.claim_mail_delivery(kind, email_id)
+    if claim_token is None:
+        return False
+
+    def deliver() -> None:
+        try:
+            send_smtp_message(
+                config,
+                recipient=str(delivery["recipient"]),
+                subject=str(delivery["subject"]),
+                body=str(delivery["body"]),
+            )
+        except Exception as exc:
+            store.mark_mail_delivery(
+                kind,
+                email_id,
+                claim_token=claim_token,
+                sent=False,
+                error_summary=smtp_error_summary(exc),
+            )
+        else:
+            store.mark_mail_delivery(
+                kind,
+                email_id,
+                claim_token=claim_token,
+                sent=True,
+            )
+
+    worker = threading.Thread(
+        target=deliver,
+        name=f"amazon-clone-mail-{kind}-{email_id}",
+        daemon=True,
+    )
+    try:
+        worker.start()
+    except RuntimeError as exc:
+        store.mark_mail_delivery(
+            kind,
+            email_id,
+            claim_token=claim_token,
+            sent=False,
+            error_summary=smtp_error_summary(exc),
+        )
+        return False
+    return True
+
+
+def wishlist_selection_query(
+    query: dict[str, list[str]],
+) -> tuple[str, dict[str, str]] | None:
+    """Parse one strict, duplicate-free ASIN plus complete option selection."""
+
+    if not query or len(query) > 16 or "ASIN" not in query:
+        return None
+    fields: dict[str, str] = {}
+    for name, values in query.items():
+        if len(values) != 1:
+            return None
+        if name != "ASIN" and (
+            not name.startswith("option.") or not name.removeprefix("option.")
+        ):
+            return None
+        fields[name] = values[0]
+    asin = fields.pop("ASIN", "")
+    if ASIN_PATTERN.fullmatch(asin) is None:
+        return None
+    return asin, {
+        name.removeprefix("option."): value
+        for name, value in fields.items()
+    }
+
+
+class PublicHandler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
-    _pending_cookie: str | None = None
+    store: Store
+    smtp_config: SMTPConfig | None = None
+    local_inbox_url: str | None = None
+    server_version = "AmazonClone/0.1"
 
-    @property
-    def db_path(self) -> Path:
-        return self.server.db_path  # type: ignore[attr-defined]
-
-    def handle_one_request(self) -> None:
-        self._pending_cookie = None
-        super().handle_one_request()
-
-    def send_common_headers(self) -> None:
-        self.send_header("Cache-Control", "no-store, max-age=0")
-        self.send_header("Pragma", "no-cache")
-        self.send_header(
-            "Content-Security-Policy",
-            "default-src 'self'; img-src 'self' data:; style-src 'self' "
-            "'unsafe-inline'; script-src 'self'; connect-src 'self'; "
-            "frame-src 'none'; object-src 'none'; base-uri 'none'; "
-            "form-action 'self'; frame-ancestors 'none'",
+    def log_message(self, format_string: str, *args: Any) -> None:
+        safe_path = self.path
+        if urlsplit(self.path).path.startswith("/ap/"):
+            safe_path = urlsplit(self.path).path
+        message = format_string % args
+        if safe_path != self.path:
+            message = message.replace(self.path, safe_path)
+        sys.stdout.write(
+            json.dumps(
+                {
+                    "stream": "public",
+                    "client": self.client_address[0],
+                    "method": self.command,
+                    "path": safe_path,
+                    "message": message,
+                },
+                ensure_ascii=False,
+            )
+            + "\n"
         )
-        self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
-        self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("X-Frame-Options", "DENY")
-        self.send_header("Cross-Origin-Opener-Policy", "same-origin")
-        self.send_header("Cross-Origin-Resource-Policy", "same-origin")
-        self.send_header(
-            "Permissions-Policy",
-            "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
-        )
-        if self._pending_cookie:
-            self.send_header("Set-Cookie", self._pending_cookie)
-        if self.close_connection:
-            self.send_header("Connection", "close")
+        sys.stdout.flush()
 
-    def send_bytes(
+    def _security_headers(self) -> dict[str, str]:
+        return {
+            "Content-Security-Policy": (
+                "default-src 'self'; img-src 'self' data:; style-src 'self'; "
+                "script-src 'self'; connect-src 'self'; form-action 'self'; "
+                "frame-ancestors 'none'; base-uri 'self'"
+            ),
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+            "X-Content-Type-Options": "nosniff",
+            "X-Frame-Options": "DENY",
+            "Cache-Control": "no-store",
+        }
+
+    def _send(
         self,
-        body: bytes,
-        content_type: str,
-        status: HTTPStatus = HTTPStatus.OK,
+        status: int,
+        body: bytes = b"",
+        *,
+        content_type: str = "text/html; charset=utf-8",
         headers: dict[str, str] | None = None,
+        cookies: list[str] | None = None,
     ) -> None:
         self.send_response(status)
-        self.send_header("Content-Type", content_type)
+        all_headers = self._security_headers()
+        if headers:
+            all_headers.update(headers)
+        all_headers["Content-Type"] = content_type
+        all_headers["Content-Length"] = str(len(body))
+        for key, value in all_headers.items():
+            self.send_header(key, value)
+        for cookie in cookies or []:
+            self.send_header("Set-Cookie", cookie)
+        self.end_headers()
+        if self.command != "HEAD" and body:
+            try:
+                self.wfile.write(body)
+            except (BrokenPipeError, ConnectionAbortedError, ConnectionResetError):
+                # Browsers routinely cancel in-flight static responses when a
+                # tab navigates or closes.  The response is already committed,
+                # so treat that peer disconnect as a normal end of connection
+                # instead of letting socketserver print a misleading traceback.
+                self.close_connection = True
+
+    def _send_html(
+        self,
+        status: int,
+        html: str,
+        *,
+        cookies: list[str] | None = None,
+        headers: dict[str, str] | None = None,
+    ) -> None:
+        self._send(status, html.encode("utf-8"), cookies=cookies, headers=headers)
+
+    def _request_cookies(self) -> SimpleCookie[str]:
+        jar: SimpleCookie[str] = SimpleCookie()
+        raw = self.headers.get("Cookie", "")
+        if raw:
+            try:
+                jar.load(raw)
+            except Exception:
+                pass
+        return jar
+
+    def _session(self) -> tuple[str, str, list[str]]:
+        jar = self._request_cookies()
+        morsel = jar.get(SESSION_COOKIE)
+        token = morsel.value if morsel and len(morsel.value) >= 32 else secrets.token_urlsafe(SESSION_BYTES)
+        session_digest = digest(token)
+        self.store.ensure_session(session_digest)
+        cookies: list[str] = []
+        if morsel is None or morsel.value != token:
+            cookies.append(f"{SESSION_COOKIE}={token}; Path=/; HttpOnly; SameSite=Lax")
+        return token, session_digest, cookies
+
+    def _rotate_authenticated_session(
+        self, session_digest: str, cookies: list[str]
+    ) -> str:
+        token = secrets.token_urlsafe(SESSION_BYTES)
+        new_session_digest = digest(token)
+        self.store.rotate_authenticated_session(session_digest, new_session_digest)
+        cookies[:] = [
+            f"{SESSION_COOKIE}={token}; Path=/; HttpOnly; SameSite=Lax"
+        ]
+        return new_session_digest
+
+    def _mail_mode(self) -> str:
+        return MAIL_SMTP_PENDING if self.smtp_config is not None else MAIL_LOCAL_ONLY
+
+    def _auth_mail_status(
+        self, session_digest: str, purpose: str
+    ) -> dict[str, Any] | None:
+        if purpose == "password-reset":
+            pending = self.store.pending_password_reset(session_digest)
+            if pending is not None and pending.get("verified"):
+                status = self.store.password_reset_mail_status(session_digest)
+                if (
+                    self.smtp_config is None
+                    and status is not None
+                    and status.get("status") in {"SMTP_PENDING", "SMTP_FAILED"}
+                ):
+                    return {
+                        "status": MAIL_LOCAL_ONLY,
+                        "delivery_attempts": status.get("delivery_attempts", 0),
+                        "can_retry": False,
+                    }
+                return status
+            # Before OTP verification, known and unknown identifiers expose
+            # exactly the same neutral surface.  SMTP outcome and Retry are
+            # intentionally unavailable until identity ownership is proven.
+            return {
+                "status": "QUEUED",
+                "delivery_attempts": 0,
+                "can_retry": False,
+            }
+        status = self.store.registration_mail_status(session_digest)
+        if (
+            self.smtp_config is None
+            and status is not None
+            and status.get("status") in {"SMTP_PENDING", "SMTP_FAILED"}
+        ):
+            return {
+                "status": MAIL_LOCAL_ONLY,
+                "delivery_attempts": status.get("delivery_attempts", 0),
+                "can_retry": False,
+            }
+        return status
+
+    def _public_order_mail_state(self, order: dict[str, Any]) -> dict[str, Any]:
+        email = order.get("email")
+        if (
+            self.smtp_config is None
+            and isinstance(email, dict)
+            and email.get("status") in {"SMTP_PENDING", "SMTP_FAILED"}
+        ):
+            return {
+                **order,
+                "email": {
+                    **email,
+                    "status": MAIL_LOCAL_ONLY,
+                    "is_simulation": True,
+                    "can_retry": False,
+                },
+            }
+        return order
+
+    def _dispatch_mail(self, delivery: dict[str, Any] | None) -> None:
+        """Attempt configured SMTP asynchronously so reset responses stay uniform."""
+
+        config = self.smtp_config
+        if delivery is None or config is None:
+            return
+        dispatch_mail_delivery(self.store, config, delivery)
+
+    def _flow_digest(self) -> str:
+        morsel = self._request_cookies().get(FLOW_COOKIE)
+        return digest(morsel.value) if morsel else ""
+
+    def _referer(self) -> str:
+        return self.headers.get("Referer", "")
+
+    def _same_origin_path(self, raw_url: str, expected_path: str) -> bool:
+        parsed = urlsplit(raw_url)
+        return bool(
+            parsed.scheme in {"http", "https"}
+            and parsed.netloc == self.headers.get("Host", "")
+            and parsed.path == expected_path
+        )
+
+    def _terminal_source_is_canonical(self) -> bool:
+        referer_ok = self._same_origin_path(self._referer(), PDP_PATH)
+        origin = self.headers.get("Origin", "")
+        if not origin:
+            return referer_ok
+        parsed = urlsplit(origin)
+        return referer_ok and parsed.scheme in {"http", "https"} and parsed.netloc == self.headers.get("Host", "")
+
+    def _form_fields(self, raw_body: bytes) -> dict[str, str] | None:
+        media_type = self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
+        if media_type != "application/x-www-form-urlencoded":
+            return None
+        try:
+            pairs = parse_qsl(
+                raw_body.decode("utf-8"),
+                keep_blank_values=True,
+                strict_parsing=True,
+                max_num_fields=16,
+            )
+        except (UnicodeDecodeError, ValueError):
+            return None
+        fields: dict[str, str] = {}
+        for name, value in pairs:
+            if name in fields:
+                return None
+            fields[name] = value
+        return fields
+
+    def _auth_post_origin_is_safe(self) -> bool:
+        origin = self.headers.get("Origin", "")
+        candidate = origin or self.headers.get("Referer", "")
+        if not candidate:
+            return False
+        parsed = urlsplit(candidate)
+        return (
+            parsed.scheme in {"http", "https"}
+            and parsed.netloc == self.headers.get("Host", "")
+        )
+
+    def _serve_static(self, path: str) -> None:
+        relative = unquote(path.removeprefix("/static/"))
+        candidate = (STATIC_ROOT / relative).resolve()
+        if STATIC_ROOT not in candidate.parents or not candidate.is_file():
+            self._send(404, b"Not Found", content_type="text/plain; charset=utf-8")
+            return
+        content_type = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
+        self._send(
+            200,
+            candidate.read_bytes(),
+            content_type=content_type,
+            headers={"Cache-Control": "no-cache"},
+        )
+
+    def _send_product_page(
+        self,
+        product: dict[str, Any],
+        *,
+        cart_count: int,
+        flow_ready: bool,
+        account_name: str | None,
+        session_digest: str,
+        query: dict[str, list[str]],
+        path: str,
+        cookies: list[str],
+    ) -> None:
+        product = {
+            **compare_entry_product(self.store, product),
+            "default_selected_options": self.store.default_product_options(
+                str(product["asin"])
+            ),
+            "option_quote_matrix": self.store.product_option_quotes(
+                str(product["asin"])
+            ),
+            "option_unavailable_copy": UNAVAILABLE_SELECTION_COPY,
+        }
+        try:
+            review_star, review_sort = review_query_parameters(query)
+        except ReviewValidationError as exc:
+            self._send_html(
+                400,
+                views.error_page(str(exc), cart_count, 400),
+                cookies=cookies,
+            )
+            return
+        review_kwargs: dict[str, Any] = {
+            "local_reviews": self.store.reviews_for_session(
+                session_digest, product["asin"], sort=review_sort
+            ),
+            "review_star": review_star,
+            "review_sort": review_sort,
+            "review_base_path": path,
+        }
+        page = views.product_page(
+            product,
+            cart_count,
+            flow_ready,
+            account_name,
+            **review_kwargs,
+        )
+        self._send_html(200, page, cookies=cookies)
+
+    def _render_search_view(
+        self,
+        search_request: SearchRequest,
+        cart_count: int,
+        account_name: str | None,
+    ) -> str:
+        """Build one evidence-aware search page from the appropriate candidate set."""
+
+        if is_portable_ssd_contract_query(search_request.query):
+            products: list[dict[str, Any]] = []
+            frozen_by_asin = {
+                str(product["asin"]): product for product in self.store.products()
+            }
+            for asin in PORTABLE_SEARCH_ORDER:
+                source_product = frozen_by_asin[asin]
+                product = dict(source_product)
+                # The frozen products come from the directly observed External
+                # SSD ranking/search surface, so Computers is an evidenced
+                # department identity rather than a title-based inference.
+                product["placements"] = [
+                    {
+                        "railKey": "best-sellers-computers-accessories",
+                        "railTitle": "Computers & Accessories",
+                    }
+                ]
+                default_options = self.store.default_product_options(product["asin"])
+                product["default_selected_options"] = default_options
+                for quote in self.store.product_option_quotes(product["asin"]):
+                    if quote.get("selected_options") == default_options:
+                        product["availability"] = quote.get("display_availability")
+                        break
+                products.append(product)
+            products.extend(
+                dict(product)
+                for product in BROWSE_BREADTH["portable_ssd_supplement"]
+            )
+            total_candidates = len(products)
+            candidates = [
+                build_search_hit(
+                    product,
+                    relevance=total_candidates - index,
+                    source_index=index,
+                )
+                for index, product in enumerate(products)
+            ]
+        else:
+            candidates = candidate_search_hits(
+                search_request,
+                HOME_PRODUCT_CATALOG,
+                SEARCH_DEPARTMENT_SUPPLEMENTS,
+            )
+
+        eligible_asins = self.store.compare_eligible_asins()
+        candidates = [
+            replace(
+                hit,
+                product=compare_entry_product(
+                    self.store,
+                    hit.product,
+                    eligible_asins=eligible_asins,
+                ),
+            )
+            for hit in candidates
+        ]
+
+        search_page = refine_search_hits(search_request, candidates, page_size=16)
+        available_brands = tuple(
+            dict.fromkeys(
+                hit.brand
+                for hit in candidates
+                if hit.brand is not None
+                and (
+                    search_request.department == "aps"
+                    or search_request.department in hit.departments
+                )
+            )
+        )
+        return views.evidence_aware_search_page(
+            search_page,
+            cart_count,
+            account_name,
+            available_brands=available_brands,
+        )
+
+    def do_HEAD(self) -> None:
+        self.do_GET()
+
+    def do_GET(self) -> None:
+        request = urlsplit(self.path)
+        path = request.path or "/"
+        try:
+            query = parse_qs(
+                request.query, keep_blank_values=True, max_num_fields=64
+            )
+        except ValueError:
+            self._send(
+                400,
+                b"Too many query parameters.",
+                content_type="text/plain; charset=utf-8",
+            )
+            return
+
+        if path.startswith("/static/"):
+            self._serve_static(path)
+            return
+        if path.startswith("/__bench/"):
+            self._send(404, b"Not Found", content_type="text/plain; charset=utf-8")
+            return
+        if path == "/robots.txt":
+            self._send(200, b"User-agent: *\nDisallow: /__bench/\n", content_type="text/plain; charset=utf-8")
+            return
+
+        _, session_digest, cookies = self._session()
+        cart_count = self.store.cart_count(session_digest)
+        current_account = self.store.account_for_session(session_digest)
+        account_name = (
+            str(current_account["display_name"]) if current_account is not None else None
+        )
+        referer = self._referer()
+
+        if path == SEARCH_SUGGESTIONS_PATH:
+            try:
+                suggestion_request = parse_suggestion_request(request.query)
+                suggestions = suggest_search_terms(
+                    suggestion_request, SEARCH_SUGGESTION_CORPUS
+                )
+            except SearchSuggestionValidationError as exc:
+                self.store.record_read_route(
+                    session_digest,
+                    "SEARCH_SUGGESTIONS",
+                    path,
+                    referer,
+                    status=400,
+                )
+                self._send(
+                    400,
+                    json_bytes({"error": str(exc)}),
+                    content_type="application/json; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            self.store.record_read_route(
+                session_digest, "SEARCH_SUGGESTIONS", path, referer
+            )
+            self._send(
+                200,
+                json_bytes(
+                    {
+                        "department": suggestion_request.department,
+                        "query": suggestion_request.query,
+                        "suggestions": [
+                            {
+                                "department": suggestion.department,
+                                "kind": suggestion.kind,
+                                "value": suggestion.value,
+                            }
+                            for suggestion in suggestions
+                        ],
+                    }
+                ),
+                content_type="application/json; charset=utf-8",
+                cookies=cookies,
+            )
+            return
+
+        if path == AUTH_SIGNOUT_PATH:
+            self._send(
+                405,
+                b"Sign out requires POST.",
+                content_type="text/plain; charset=utf-8",
+                headers={"Allow": "POST"},
+                cookies=cookies,
+            )
+            return
+
+        if path in {"/", "/ref=nav_logo"}:
+            self.store.record_read_route(session_digest, "HOME", path, referer)
+            page = views.home_page(self.store.products(), cart_count, account_name)
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == "/Best-Sellers/zgbs":
+            self.store.record_read_route(session_digest, "BEST_SELLERS_ROOT", path, referer)
+            page = views.best_sellers_root(self.store.products(), cart_count, account_name)
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == BEST_SELLERS_PATH:
+            self.store.record_best_sellers(session_digest, path, referer)
+            page = views.external_ssd_best_sellers(self.store.ranking(), cart_count, account_name)
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == PDP_PATH:
+            capability = secrets.token_urlsafe(SESSION_BYTES)
+            flow_ready = self.store.record_pdp(
+                session_digest,
+                path,
+                referer,
+                digest(capability),
+                self._same_origin_path(referer, BEST_SELLERS_PATH),
+            )
+            if flow_ready:
+                cookies.append(f"{FLOW_COOKIE}={capability}; Path=/; HttpOnly; SameSite=Lax")
+            product = self.store.product(TARGET_ASIN)
+            assert product is not None
+            self._send_product_page(
+                product,
+                cart_count=cart_count,
+                flow_ready=flow_ready,
+                account_name=account_name,
+                session_digest=session_digest,
+                query=query,
+                path=path,
+                cookies=cookies,
+            )
+            return
+
+        if path == f"/gp/aw/d/{TARGET_ASIN}":
+            self.store.record_read_route(session_digest, "TARGET_PDP_MOBILE_ALIAS", path, referer)
+            product = self.store.product(TARGET_ASIN)
+            assert product is not None
+            self._send_product_page(
+                product,
+                cart_count=cart_count,
+                flow_ready=False,
+                account_name=account_name,
+                session_digest=session_digest,
+                query=query,
+                path=path,
+                cookies=cookies,
+            )
+            return
+
+        bare_product_match = BARE_PDP_ROUTE.fullmatch(path)
+        if bare_product_match:
+            asin = bare_product_match.group(1)
+            product = product_for_pdp(self.store, asin)
+            if product is not None:
+                self.store.record_read_route(session_digest, "HOME_PRODUCT_DETAIL", path, referer)
+                self._send_product_page(
+                    product,
+                    cart_count=cart_count,
+                    flow_ready=False,
+                    account_name=account_name,
+                    session_digest=session_digest,
+                    query=query,
+                    path=path,
+                    cookies=cookies,
+                )
+                return
+
+        product_match = PDP_ROUTE.fullmatch(path)
+        if product_match:
+            slug, asin = product_match.groups()
+            product = product_for_pdp(self.store, asin)
+            if product is not None and product["slug"] == slug:
+                self.store.record_read_route(session_digest, "PRODUCT_DETAIL", path, referer)
+                self._send_product_page(
+                    product,
+                    cart_count=cart_count,
+                    flow_ready=False,
+                    account_name=account_name,
+                    session_digest=session_digest,
+                    query=query,
+                    path=path,
+                    cookies=cookies,
+                )
+                return
+
+        product_reviews_match = PRODUCT_REVIEWS_ROUTE.fullmatch(path)
+        if product_reviews_match:
+            asin = product_reviews_match.group(1)
+            product = product_for_pdp(self.store, asin)
+            if product is None:
+                self.store.record_read_route(
+                    session_digest, "PRODUCT_REVIEWS_NOT_FOUND", path, referer, status=404
+                )
+                self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+                return
+            try:
+                review_star, review_sort = review_query_parameters(query)
+                local_reviews = self.store.reviews_for_session(
+                    session_digest, asin, sort=review_sort
+                )
+            except ReviewValidationError as exc:
+                self._send_html(
+                    400,
+                    views.error_page(str(exc), cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            review_html = render_reviews_section(
+                asin,
+                local_reviews,
+                star=review_star,
+                sort=review_sort,
+                account_name=account_name,
+                base_path=path,
+                product_label=str(product["title"]),
+            )
+            self.store.record_read_route(
+                session_digest, "PRODUCT_REVIEWS", path, referer
+            )
+            self._send_html(
+                200,
+                views.product_reviews_page(
+                    product, review_html, cart_count, account_name
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path in {"/s", "/s/ref=nb_sb_noss"}:
+            try:
+                search_request = parse_search_request(request.query)
+                page = self._render_search_view(
+                    search_request, cart_count, account_name
+                )
+            except SearchValidationError as exc:
+                self.store.record_read_route(
+                    session_digest, "SEARCH", path, referer, status=400
+                )
+                self._send_html(
+                    400,
+                    views.error_page(str(exc), cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            self.store.record_read_route(session_digest, "SEARCH", path, referer)
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == "/gp/cart/view.html":
+            self.store.record_read_route(session_digest, "CART", path, referer)
+            lines = self.store.cart(session_digest)
+            saved_lines = self.store.saved_cart(session_digest)
+            page = views.cart_page(
+                lines,
+                self.store.cart_count(session_digest),
+                account_name,
+                saved_lines=saved_lines,
+            )
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == COMPARE_PATH:
+            compare_products = [
+                compare_product_for_view(self.store, item)
+                for item in self.store.compare_items(session_digest)
+            ]
+            error = (query.get("error") or [None])[0]
+            self.store.record_read_route(session_digest, "COMPARE", path, referer)
+            self._send_html(
+                200,
+                views.compare_page(compare_products, cart_count, account_name, error),
+                cookies=cookies,
+            )
+            return
+
+        if path == SITE_DIRECTORY_PATH:
+            self.store.record_read_route(session_digest, "SITE_DIRECTORY", path, referer)
+            page = views.site_directory_page(
+                list(BROWSE_BREADTH["rail_sections"]),
+                cart_count,
+                account_name,
+            )
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == "/gp/goldbox/":
+            self.store.record_read_route(session_digest, "TODAYS_DEALS", path, referer)
+            self._send_html(
+                200,
+                views.deals_page(
+                    build_deals_view(DEALS_CATALOG, query),
+                    cart_count,
+                    account_name,
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == GIFT_CARDS_PATH:
+            self.store.record_read_route(session_digest, "GIFT_CARDS", path, referer)
+            self._send_html(
+                200,
+                specialty_views.gift_cards_page(cart_count, account_name),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.GIFT_CARD_PREVIEW_PATH:
+            preview_values = query.get("previewID")
+            preview = (
+                specialty.gift_card_preview(
+                    self.store, session_digest, preview_values[0]
+                )
+                if set(query) == {"previewID"}
+                and preview_values is not None
+                and len(preview_values) == 1
+                else None
+            )
+            if preview is None:
+                self.store.record_read_route(
+                    session_digest, "GIFT_CARD_PREVIEW_NOT_FOUND", path, referer, status=404
+                )
+                self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+                return
+            self.store.record_read_route(
+                session_digest, "GIFT_CARD_PREVIEW", path, referer
+            )
+            self._send_html(
+                200,
+                specialty_views.gift_card_preview_page(
+                    preview, cart_count, account_name
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path in {
+            specialty.GIFT_CARD_BALANCE_PATH,
+            specialty.GIFT_CARD_REDEEM_PATH,
+        }:
+            status_values = query.get("status")
+            if query and not (
+                set(query) == {"status"} and status_values == ["not-applied"]
+            ):
+                self.store.record_read_route(
+                    session_digest, "GIFT_CARD_BALANCE_INVALID", path, referer, status=400
+                )
+                self._send_html(
+                    400,
+                    views.error_page("Check the request and try again.", cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            balance = specialty.gift_card_balance(self.store, session_digest)
+            self.store.record_read_route(
+                session_digest, "GIFT_CARD_BALANCE", path, referer
+            )
+            self._send_html(
+                200,
+                specialty_views.gift_card_balance_page(
+                    balance,
+                    cart_count,
+                    account_name,
+                    redemption_result=status_values == ["not-applied"],
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.SELL_PATH:
+            drafts = specialty.seller_drafts(self.store, session_digest)
+            self.store.record_read_route(session_digest, "SELL", path, referer)
+            self._send_html(
+                200,
+                specialty_views.sell_page(drafts, cart_count, account_name),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.SELL_DRAFT_PATH:
+            draft_values = query.get("draftID")
+            draft = (
+                specialty.seller_draft(self.store, session_digest, draft_values[0])
+                if set(query) == {"draftID"}
+                and draft_values is not None
+                and len(draft_values) == 1
+                else None
+            )
+            if draft is None:
+                self.store.record_read_route(
+                    session_digest, "SELL_DRAFT_NOT_FOUND", path, referer, status=404
+                )
+                self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+                return
+            self.store.record_read_route(session_digest, "SELL_DRAFT", path, referer)
+            self._send_html(
+                200,
+                specialty_views.seller_draft_page(draft, cart_count, account_name),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.REGISTRY_PATH:
+            own_registries = specialty.registries(self.store, session_digest)
+            self.store.record_read_route(session_digest, "REGISTRY", path, referer)
+            self._send_html(
+                200,
+                specialty_views.registry_page(
+                    own_registries, cart_count, account_name
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.REGISTRY_SEARCH_PATH:
+            search_values = query.get("query")
+            if not (
+                set(query) == {"query"}
+                and search_values is not None
+                and len(search_values) == 1
+            ):
+                self.store.record_read_route(
+                    session_digest, "REGISTRY_SEARCH_INVALID", path, referer, status=400
+                )
+                self._send_html(
+                    400,
+                    views.error_page("Check the search and try again.", cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            try:
+                normalized_query, results = specialty.search_registries(
+                    self.store, session_digest, search_values[0]
+                )
+            except specialty.SpecialtyValidationError:
+                self.store.record_read_route(
+                    session_digest, "REGISTRY_SEARCH_INVALID", path, referer, status=400
+                )
+                self._send_html(
+                    400,
+                    views.error_page("Check the search and try again.", cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            self.store.record_read_route(session_digest, "REGISTRY_SEARCH", path, referer)
+            self._send_html(
+                200,
+                specialty_views.registry_search_page(
+                    normalized_query, results, cart_count, account_name
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.REGISTRY_DETAIL_PATH:
+            registry_values = query.get("registryID")
+            registry = (
+                specialty.registry(self.store, session_digest, registry_values[0])
+                if set(query) == {"registryID"}
+                and registry_values is not None
+                and len(registry_values) == 1
+                else None
+            )
+            if registry is None:
+                self.store.record_read_route(
+                    session_digest, "REGISTRY_DETAIL_NOT_FOUND", path, referer, status=404
+                )
+                self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+                return
+            self.store.record_read_route(
+                session_digest, "REGISTRY_DETAIL", path, referer
+            )
+            self._send_html(
+                200,
+                specialty_views.registry_detail_page(
+                    registry, cart_count, account_name
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == specialty.PRIME_VIDEO_PATH:
+            self.store.record_read_route(
+                session_digest, "PRIME_VIDEO_PLACEHOLDER", path, referer
+            )
+            self._send_html(
+                200,
+                specialty_views.prime_video_page(cart_count, account_name),
+                cookies=cookies,
+            )
+            return
+
+        if path == CUSTOMER_SERVICE_PATH:
+            node_id = (query.get("nodeId") or [CUSTOMER_SERVICE_NODE])[0].strip()
+            if node_id == SHIPPING_POLICIES_NODE:
+                route_key = "SHIPPING_POLICIES"
+                page = views.shipping_policies_page(cart_count, account_name)
+            elif node_id == RETURNS_REPLACEMENTS_NODE:
+                route_key = "RETURNS_REPLACEMENTS"
+                page = views.returns_replacements_page(cart_count, account_name)
+            else:
+                route_key = "CUSTOMER_SERVICE"
+                help_query = (query.get("help_keywords") or [""])[0].strip()
+                page = views.customer_service_page(
+                    cart_count,
+                    account_name,
+                    help_query=help_query,
+                )
+            self.store.record_read_route(session_digest, route_key, path, referer)
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path in PUBLIC_NAVIGATION_LANDINGS:
+            title, copy, links = PUBLIC_NAVIGATION_LANDINGS[path]
+            self.store.record_read_route(session_digest, "PUBLIC_NAVIGATION", path, referer)
+            self._send_html(
+                200,
+                views.navigation_landing_page(
+                    title,
+                    copy,
+                    links,
+                    cart_count,
+                    account_name,
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path in AUTH_PATHS:
+            self.store.record_read_route(session_digest, "AUTH_FRONTEND", path, referer)
+            if path == "/ap/cvf/verify":
+                purpose = (query.get("purpose") or ["registration"])[0]
+                pending = (
+                    self.store.pending_password_reset(session_digest)
+                    if purpose == "password-reset"
+                    else self.store.pending_registration(session_digest)
+                )
+                self._send_html(
+                    200,
+                    auth_views.verification_page(
+                        query,
+                        masked_destination=(pending or {}).get("masked_email"),
+                        mail_delivery_mode=(
+                            "SMTP" if self.smtp_config is not None else "LOCAL_ONLY"
+                        ),
+                        mail_delivery=self._auth_mail_status(
+                            session_digest, purpose
+                        ),
+                        local_inbox_url=self.local_inbox_url,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            if path == "/ap/forgotpassword" and (
+                (query.get("stage") or [""])[0].lower() == "reset-password"
+            ):
+                pending_reset = self.store.pending_password_reset(session_digest)
+                if not pending_reset or not pending_reset["verified"]:
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": "/ap/forgotpassword"},
+                        cookies=cookies,
+                    )
+                    return
+            self._send_html(200, auth_views.page_for(path, query), cookies=cookies)
+            return
+
+        if path in {ADDRESS_BOOK_PATH, ADDRESS_ADD_PATH, ADDRESS_EDIT_PATH}:
+            if current_account is None:
+                return_target = path
+                if path == ADDRESS_EDIT_PATH and request.query:
+                    return_target += "?" + request.query
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": return_target}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            if path == ADDRESS_BOOK_PATH:
+                status_values = query.get("status", [])
+                status = (
+                    status_values[0]
+                    if len(status_values) == 1
+                    and status_values[0]
+                    in {"added", "updated", "deleted", "default"}
+                    else None
+                )
+                self.store.record_read_route(
+                    session_digest, "ADDRESS_BOOK", path, referer
+                )
+                self._send_html(
+                    200,
+                    views.address_book_page(
+                        self.store.addresses_for_session(session_digest),
+                        cart_count,
+                        account_name or "Customer",
+                        status=status,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            if path == ADDRESS_ADD_PATH:
+                self._send_html(
+                    200,
+                    views.address_form_page(
+                        None, cart_count, account_name or "Customer"
+                    ),
+                    cookies=cookies,
+                )
+                return
+            address_values = query.get("addressID", [])
+            address = (
+                self.store.address_for_session(
+                    session_digest, address_values[0]
+                )
+                if len(address_values) == 1
+                else None
+            )
+            if address is None:
+                self._send_html(
+                    404, views.not_found_page(cart_count), cookies=cookies
+                )
+                return
+            self._send_html(
+                200,
+                views.address_form_page(
+                    address, cart_count, account_name or "Customer"
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == BUY_NOW_CONTINUE_PATH:
+            if current_account is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": BUY_NOW_CONTINUE_PATH}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            try:
+                checkout = self.store.resume_buy_now(session_digest)
+            except ContractError:
+                self._send_html(
+                    409,
+                    views.error_page(
+                        "This Buy Now offer is no longer available. Return to the product page and choose it again.",
+                        cart_count,
+                        409,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            if checkout is None:
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": "/gp/cart/view.html"},
+                    cookies=cookies,
+                )
+                return
+            self._send(
+                303,
+                b"",
+                headers={"Location": CHECKOUT_ADDRESS_PATH},
+                cookies=cookies,
+            )
+            return
+
+        if path in {
+            CHECKOUT_ADDRESS_PATH,
+            CHECKOUT_DELIVERY_PATH,
+            CHECKOUT_PAYMENT_PATH,
+            CHECKOUT_START_PATH,
+        }:
+            if current_account is None:
+                location = "/ap/signin?" + urlencode({"openid.return_to": path})
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            checkout = self.store.reconcile_checkout(session_digest)
+            if path == CHECKOUT_ADDRESS_PATH and checkout is None:
+                try:
+                    checkout = self.store.start_checkout(session_digest)
+                except ContractError:
+                    self._send(303, b"", headers={"Location": "/gp/cart/view.html"}, cookies=cookies)
+                    return
+            if checkout is None:
+                self._send(303, b"", headers={"Location": CHECKOUT_ADDRESS_PATH}, cookies=cookies)
+                return
+            stage = CHECKOUT_STAGE_ORDER.get(str(checkout.get("status")), -1)
+            if str(checkout.get("status")) == "PLACED" and checkout.get("order_id"):
+                location = ORDER_DETAIL_PATH + "?" + urlencode({"orderID": checkout["order_id"]})
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            reconciliation_reason = str(
+                checkout.get("reconciliation_reason") or ""
+            )
+            notice_values = query.get("notice", [])
+            notice = (
+                notice_values[0]
+                if len(notice_values) == 1
+                and notice_values[0]
+                in {
+                    "cart-changed",
+                    "unsupported-delivery-country",
+                    "payment-declined",
+                }
+                else ""
+            )
+            if (
+                path == CHECKOUT_START_PATH
+                and reconciliation_reason == "cart-changed"
+                and stage >= CHECKOUT_STAGE_ORDER["DELIVERY_SELECTED"]
+            ):
+                location = CHECKOUT_PAYMENT_PATH + "?" + urlencode(
+                    {"notice": "cart-changed"}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            if (
+                reconciliation_reason == "unsupported-delivery-country"
+                and path != CHECKOUT_ADDRESS_PATH
+            ):
+                location = CHECKOUT_ADDRESS_PATH + "?" + urlencode(
+                    {"notice": "unsupported-delivery-country"}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            if reconciliation_reason:
+                checkout = {**checkout, "notice": reconciliation_reason}
+            elif notice:
+                checkout = {**checkout, "notice": notice}
+            checkout_item_count = sum(
+                int(item.get("quantity", 0))
+                for item in checkout.get("items", [])
+                if isinstance(item, dict)
+            )
+            if path == CHECKOUT_ADDRESS_PATH:
+                page = views.checkout_address_page(checkout, checkout_item_count, account_name or "Customer")
+            elif path == CHECKOUT_DELIVERY_PATH:
+                if stage < CHECKOUT_STAGE_ORDER["ADDRESS_SELECTED"]:
+                    self._send(303, b"", headers={"Location": CHECKOUT_ADDRESS_PATH}, cookies=cookies)
+                    return
+                page = views.checkout_delivery_page(checkout, checkout_item_count, account_name or "Customer")
+            elif path == CHECKOUT_PAYMENT_PATH:
+                if stage < CHECKOUT_STAGE_ORDER["DELIVERY_SELECTED"]:
+                    self._send(303, b"", headers={"Location": CHECKOUT_DELIVERY_PATH}, cookies=cookies)
+                    return
+                page = views.checkout_payment_page(checkout, checkout_item_count, account_name or "Customer")
+            else:
+                if stage < CHECKOUT_STAGE_ORDER["PAYMENT_SELECTED"]:
+                    fallback = (
+                        CHECKOUT_PAYMENT_PATH
+                        if stage >= CHECKOUT_STAGE_ORDER["DELIVERY_SELECTED"]
+                        else CHECKOUT_DELIVERY_PATH
+                        if stage >= CHECKOUT_STAGE_ORDER["ADDRESS_SELECTED"]
+                        else CHECKOUT_ADDRESS_PATH
+                    )
+                    self._send(303, b"", headers={"Location": fallback}, cookies=cookies)
+                    return
+                page = views.checkout_review_page(checkout, checkout_item_count, account_name or "Customer")
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == ORDER_DETAIL_PATH:
+            if current_account is None:
+                location = "/ap/signin?" + urlencode({"openid.return_to": path})
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            order_values = query.get("orderID", [])
+            order = (
+                self.store.order_for_session(session_digest, order_values[0])
+                if len(order_values) == 1
+                else None
+            )
+            if order is None:
+                self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+                return
+            order = self._public_order_mail_state(order)
+            self._send_html(
+                200,
+                views.order_confirmation_page(order, cart_count, account_name or "Customer"),
+                cookies=cookies,
+            )
+            return
+
+        if path in {RETURN_CREATE_PATH, RETURN_DETAIL_PATH}:
+            if current_account is None:
+                return_target = path + ("?" + request.query if request.query else "")
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": return_target}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            if path == RETURN_CREATE_PATH:
+                order_values = query.get("orderID", [])
+                order = (
+                    self.store.order_for_session(session_digest, order_values[0])
+                    if len(order_values) == 1
+                    else None
+                )
+                if order is None:
+                    self._send_html(
+                        404, views.not_found_page(cart_count), cookies=cookies
+                    )
+                    return
+                existing_return = order.get("return_request")
+                if isinstance(existing_return, dict):
+                    location = RETURN_DETAIL_PATH + "?" + urlencode(
+                        {"returnID": existing_return["return_request_id"]}
+                    )
+                    self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                    return
+                if not order.get("can_return"):
+                    self._send_html(
+                        409,
+                        views.error_page(
+                            "This simulated order is not eligible for a return request in its current state.",
+                            cart_count,
+                            409,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                self._send_html(
+                    200,
+                    views.return_request_page(
+                        order, cart_count, account_name or "Customer"
+                    ),
+                    cookies=cookies,
+                )
+                return
+            return_values = query.get("returnID", [])
+            order = (
+                self.store.return_for_session(session_digest, return_values[0])
+                if len(return_values) == 1
+                else None
+            )
+            if order is None:
+                self._send_html(
+                    404, views.not_found_page(cart_count), cookies=cookies
+                )
+                return
+            self._send_html(
+                200,
+                views.return_details_page(
+                    order, cart_count, account_name or "Customer"
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path == wishlist_views.WISHLIST_INTRO_PATH:
+            if current_account is not None:
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": wishlist_views.WISHLIST_INDEX_PATH},
+                    cookies=cookies,
+                )
+                return
+            self.store.record_read_route(
+                session_digest, "WISHLIST_INTRO", path, referer
+            )
+            self._send_html(
+                200,
+                wishlist_views.wishlist_intro_page(cart_count),
+                cookies=cookies,
+            )
+            return
+
+        if path == WISHLIST_FRIENDS_PATH:
+            if current_account is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": WISHLIST_FRIENDS_PATH}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            self.store.record_read_route(
+                session_digest, "WISHLIST_FRIENDS_BOUNDARY", path, referer
+            )
+            self._send_html(
+                200,
+                views.navigation_landing_page(
+                    "Your Friends' Lists",
+                    "Shared-list invitations are outside this local shopping clone. Your private Lists and Registry shopping remain available.",
+                    (
+                        ("Open Your Lists", wishlist_views.WISHLIST_INDEX_PATH),
+                        ("Open Gift Registries", "/gp/browse.html?node=16115931011"),
+                    ),
+                    cart_count,
+                    account_name,
+                ),
+                cookies=cookies,
+            )
+            return
+
+        if path in {
+            wishlist_views.WISHLIST_INDEX_PATH,
+            wishlist_views.WISHLIST_ADD_CHOOSER_PATH,
+        }:
+            if current_account is None:
+                return_target = path + (f"?{request.query}" if request.query else "")
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": return_target}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+
+            if path == wishlist_views.WISHLIST_ADD_CHOOSER_PATH:
+                selection_query = wishlist_selection_query(query)
+                if selection_query is None:
+                    self._send(
+                        400,
+                        b"Malformed Add to List request",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                asin, requested_options = selection_query
+                try:
+                    product, selected_options = (
+                        wishlist.product_selection_for_wishlist(
+                            self.store, asin, requested_options
+                        )
+                    )
+                    wishlists = wishlist.lists_for_session(
+                        self.store, session_digest
+                    )
+                except wishlist.WishlistAuthenticationRequired:
+                    return_target = path + (
+                        f"?{request.query}" if request.query else ""
+                    )
+                    location = "/ap/signin?" + urlencode(
+                        {"openid.return_to": return_target}
+                    )
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": location},
+                        cookies=cookies,
+                    )
+                    return
+                except wishlist.WishlistNotFound:
+                    self._send_html(
+                        404, views.not_found_page(cart_count), cookies=cookies
+                    )
+                    return
+                except wishlist.WishlistValidationError as exc:
+                    self._send_html(
+                        400,
+                        views.error_page(str(exc), cart_count, 400),
+                        cookies=cookies,
+                    )
+                    return
+                self.store.record_read_route(
+                    session_digest, "WISHLIST_ADD_CHOOSER", path, referer
+                )
+                self._send_html(
+                    200,
+                    wishlist_views.wishlist_add_chooser_page(
+                        product,
+                        selected_options,
+                        wishlists,
+                        cart_count,
+                        account_name or "Customer",
+                    ),
+                    cookies=cookies,
+                )
+                return
+
+            if set(query) - {"listID", "status"} or any(
+                len(values) != 1 for values in query.values()
+            ):
+                self._send(
+                    400,
+                    b"Malformed Wishlist request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            status_messages = {
+                "created": "List created.",
+                "renamed": "List renamed.",
+                "deleted": "List deleted.",
+                "added": "Added to List.",
+                "already-added": "This item was already on the List.",
+                "removed": "Item removed from List.",
+            }
+            status_values = query.get("status", [])
+            status_token = status_values[0] if status_values else ""
+            if status_token and status_token not in status_messages:
+                self._send(
+                    400,
+                    b"Malformed Wishlist status",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            try:
+                wishlists = wishlist.lists_for_session(
+                    self.store, session_digest
+                )
+                list_values = query.get("listID", [])
+                if list_values:
+                    selected_list = wishlist.list_for_session(
+                        self.store, session_digest, list_values[0]
+                    )
+                    page = wishlist_views.wishlist_detail_page(
+                        selected_list,
+                        wishlists,
+                        cart_count,
+                        account_name or "Customer",
+                        status=status_messages.get(status_token, ""),
+                    )
+                    route_kind = "WISHLIST_DETAIL"
+                else:
+                    page = wishlist_views.wishlist_index_page(
+                        wishlists,
+                        cart_count,
+                        account_name or "Customer",
+                        status=status_messages.get(status_token, ""),
+                    )
+                    route_kind = "WISHLIST_INDEX"
+            except wishlist.WishlistAuthenticationRequired:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": wishlist_views.WISHLIST_INDEX_PATH}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            except wishlist.WishlistNotFound:
+                self._send_html(
+                    404, views.not_found_page(cart_count), cookies=cookies
+                )
+                return
+            except wishlist.WishlistValidationError as exc:
+                self._send_html(
+                    400,
+                    views.error_page(str(exc), cart_count, 400),
+                    cookies=cookies,
+                )
+                return
+            self.store.record_read_route(
+                session_digest, route_kind, path, referer
+            )
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        if path == "/gp/css/order-history" and current_account is not None:
+            orders = [
+                self._public_order_mail_state(order)
+                for order in self.store.orders_for_session(session_digest)
+            ]
+            self.store.record_read_route(session_digest, "ORDERS", path, referer)
+            self._send_html(
+                200,
+                views.order_history_page(orders, cart_count, account_name or "Customer"),
+                cookies=cookies,
+            )
+            return
+
+        if path in PROTECTED_ACCOUNT_PATHS:
+            if current_account is None:
+                location = "/ap/signin?" + urlencode({"openid.return_to": path})
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            self.store.record_read_route(session_digest, "ACCOUNT", path, referer)
+            self._send_html(200, views.account_page(current_account, cart_count), cookies=cookies)
+            return
+
+        if path.startswith(("/electronics-store/", "/computer-pc-", "/External-Solid-State-Drives/")):
+            self.store.record_read_route(session_digest, "CATEGORY", path, referer)
+            page = self._render_search_view(
+                parse_search_request("k=portable+ssd&i=computers"),
+                cart_count,
+                account_name,
+            )
+            self._send_html(200, page, cookies=cookies)
+            return
+
+        self.store.record_read_route(session_digest, "NOT_FOUND", path, referer, status=404)
+        self._send_html(404, views.not_found_page(cart_count), cookies=cookies)
+
+    def do_POST(self) -> None:
+        request = urlsplit(self.path)
+        path = request.path
+        query = parse_qs(request.query, keep_blank_values=True)
+        _, session_digest, cookies = self._session()
+        try:
+            content_length = int(self.headers.get("Content-Length", "0") or "0")
+        except ValueError:
+            self._send(400, b"Invalid Content-Length", content_type="text/plain; charset=utf-8", cookies=cookies)
+            return
+        if content_length < 0 or content_length > MAX_FORM_BYTES:
+            # The request body has deliberately not been consumed.  Close this
+            # HTTP/1.1 connection so those bytes cannot be parsed as a second
+            # request after the 413 response.
+            self.close_connection = True
+            self._send_html(
+                413,
+                views.error_page("The form submission was too large.", self.store.cart_count(session_digest), 413),
+                cookies=cookies,
+                headers={"Connection": "close"},
+            )
+            return
+        raw_body = self.rfile.read(content_length)
+
+        if path == AUTH_SIGNOUT_PATH:
+            if not self._auth_post_origin_is_safe():
+                self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            self.store.sign_out(session_digest)
+            cookies.append(f"{SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0")
+            self._send(
+                303,
+                b"",
+                headers={"Location": "/"},
+                cookies=cookies,
+            )
+            return
+
+        if path in SPECIALTY_POST_PATHS:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            fields = self._form_fields(raw_body)
+            expected_fields = {
+                specialty.GIFT_CARD_PREVIEW_PATH: {
+                    "design",
+                    "amount",
+                    "recipientKind",
+                },
+                specialty.GIFT_CARD_REDEEM_PATH: {"claimCode"},
+                specialty.SELL_DRAFT_PATH: {
+                    "title",
+                    "category",
+                    "condition",
+                    "price",
+                    "quantity",
+                    "description",
+                },
+                specialty.REGISTRY_CREATE_PATH: {
+                    "registryType",
+                    "ownerName",
+                    "registryName",
+                    "eventDate",
+                },
+            }[path]
+            if query or fields is None or set(fields) != expected_fields:
+                self._send_html(
+                    400,
+                    views.error_page("Check the fields and try again.", self.store.cart_count(session_digest), 400),
+                    cookies=cookies,
+                )
+                return
+            try:
+                if path == specialty.GIFT_CARD_PREVIEW_PATH:
+                    result = specialty.create_gift_card_preview(
+                        self.store,
+                        session_digest,
+                        fields["design"],
+                        fields["amount"],
+                        fields["recipientKind"],
+                    )
+                    location = specialty.GIFT_CARD_PREVIEW_PATH + "?" + urlencode(
+                        {"previewID": int(result["preview_id"])}
+                    )
+                elif path == specialty.GIFT_CARD_REDEEM_PATH:
+                    specialty.redeem_gift_card(
+                        self.store, session_digest, fields["claimCode"]
+                    )
+                    location = specialty.GIFT_CARD_BALANCE_PATH + "?" + urlencode(
+                        {"status": "not-applied"}
+                    )
+                elif path == specialty.SELL_DRAFT_PATH:
+                    result = specialty.save_seller_draft(
+                        self.store, session_digest, fields
+                    )
+                    location = specialty.SELL_DRAFT_PATH + "?" + urlencode(
+                        {"draftID": int(result["draft_id"])}
+                    )
+                else:
+                    result = specialty.create_registry(
+                        self.store, session_digest, fields
+                    )
+                    location = specialty.REGISTRY_DETAIL_PATH + "?" + urlencode(
+                        {"registryID": int(result["registry_id"])}
+                    )
+            except specialty.SpecialtyValidationError:
+                self._send_html(
+                    400,
+                    views.error_page("Check the fields and try again.", self.store.cart_count(session_digest), 400),
+                    cookies=cookies,
+                )
+                return
+            self._send(303, b"", headers={"Location": location}, cookies=cookies)
+            return
+
+        if path in AUTH_PATHS:
+            fields = self._form_fields(raw_body)
+            if not self._auth_post_origin_is_safe():
+                self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+
+            if path == "/ap/signin":
+                if fields is not None and "email" in fields and "password" not in fields:
+                    email = valid_account_email(fields["email"])
+                    if email is None:
+                        self._send_html(
+                            400,
+                            auth_views.signin_page(
+                                query, "There was a problem with your sign-in. Please try again."
+                            ),
+                            cookies=cookies,
+                        )
+                        return
+                    return_to = auth_views.safe_return_target(
+                        {"openid.return_to": [fields.get("openid.return_to", "")]}
+                    )
+                    if not self.store.account_exists(email):
+                        registration_query = {"email": email}
+                        if return_to:
+                            registration_query["openid.return_to"] = return_to
+                        self._send(
+                            303,
+                            b"",
+                            headers={
+                                "Location": "/ap/register?"
+                                + urlencode(registration_query)
+                            },
+                            cookies=cookies,
+                        )
+                        return
+                    self.store.begin_signin(session_digest, email, return_to)
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": "/ap/signin?stage=password"},
+                        cookies=cookies,
+                    )
+                    return
+
+                if fields is not None and "password" in fields and "email" not in fields:
+                    password = fields["password"]
+                    if 1 <= len(password) <= 1024:
+                        authenticated, return_to = self.store.authenticate_session(
+                            session_digest, password
+                        )
+                    else:
+                        authenticated, return_to = False, None
+                    if authenticated:
+                        self._rotate_authenticated_session(session_digest, cookies)
+                        self._send(
+                            303,
+                            b"",
+                            headers={"Location": return_to or "/"},
+                            cookies=cookies,
+                        )
+                        return
+                    self._send_html(
+                        401,
+                        auth_views.signin_page(
+                            {"stage": ["password"]},
+                            "Your email or password is incorrect.",
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+
+                self._send_html(
+                    400,
+                    auth_views.signin_page(
+                        query, "There was a problem with your sign-in. Please try again."
+                    ),
+                    cookies=cookies,
+                )
+                return
+
+            if path == "/ap/register":
+                return_to = auth_views.safe_return_target(
+                    {"openid.return_to": [(fields or {}).get("openid.return_to", "")]}
+                )
+                email = valid_account_email((fields or {}).get("email", ""))
+                display_name = clean_display_name((fields or {}).get("customerName", ""))
+                password = (fields or {}).get("password", "")
+                password_check = (fields or {}).get("passwordCheck", "")
+                valid = bool(
+                    fields is not None
+                    and email is not None
+                    and display_name is not None
+                    and 6 <= len(password) <= 1024
+                    and password == password_check
+                )
+                pending = bool(
+                    valid
+                    and self.store.begin_registration(
+                        session_digest,
+                        email or "",
+                        display_name or "",
+                        password,
+                        return_to,
+                        mail_mode=self._mail_mode(),
+                    )
+                )
+                if pending:
+                    self._dispatch_mail(
+                        self.store.registration_delivery(session_digest)
+                    )
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": "/ap/cvf/verify?purpose=registration"},
+                        cookies=cookies,
+                    )
+                    return
+                page_query: dict[str, list[str]] = {}
+                if return_to:
+                    page_query["openid.return_to"] = [return_to]
+                if email is not None and not valid:
+                    page_query["email"] = [email]
+                self._send_html(
+                    400,
+                    auth_views.register_page(
+                        page_query,
+                        "We couldn't create your account. Check your details and try again.",
+                    ),
+                    cookies=cookies,
+                )
+                return
+
+            if path == "/ap/cvf/verify":
+                purpose_values = query.get("purpose", [])
+                if len(purpose_values) > 1 or (
+                    purpose_values
+                    and purpose_values[0] not in {"registration", "password-reset"}
+                ):
+                    self._send(
+                        400,
+                        b"Malformed verification purpose",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                purpose = purpose_values[0] if purpose_values else "registration"
+                purpose_query = {"purpose": [purpose]}
+                delivery_mode = (
+                    "SMTP" if self.smtp_config is not None else "LOCAL_ONLY"
+                )
+
+                if purpose == "password-reset":
+                    if fields == {"action": "retry-delivery"}:
+                        pending_reset = self.store.pending_password_reset(
+                            session_digest
+                        )
+                        queued = bool(
+                            self.smtp_config is not None
+                            and pending_reset is not None
+                            and pending_reset.get("verified")
+                            and self.store.retry_password_reset_mail(
+                                session_digest
+                            )
+                        )
+                        delivery = (
+                            self.store.password_reset_delivery(session_digest)
+                            if queued
+                            else None
+                        )
+                        # Unknown, foreign, exhausted, and successfully queued
+                        # flows share one response contract.
+                        self._send(
+                            303,
+                            b"",
+                            headers={
+                                "Location": "/ap/cvf/verify?purpose=password-reset"
+                            },
+                            cookies=cookies,
+                        )
+                        self._dispatch_mail(delivery)
+                        return
+                    if fields == {"action": "resend"}:
+                        queued = self.store.resend_password_reset_code(
+                            session_digest, mail_mode=self._mail_mode()
+                        )
+                        delivery = (
+                            self.store.password_reset_delivery(session_digest)
+                            if queued
+                            else None
+                        )
+                        # Missing, decoy, throttled, and queued flows use the
+                        # same public response to avoid account enumeration.
+                        self._send(
+                            303,
+                            b"",
+                            headers={
+                                "Location": "/ap/cvf/verify?purpose=password-reset"
+                            },
+                            cookies=cookies,
+                        )
+                        self._dispatch_mail(delivery)
+                        return
+
+                    code = (fields or {}).get("code", "").strip()
+                    if set(fields or {}) != {"code"} or not re.fullmatch(
+                        r"[0-9]{6}", code
+                    ):
+                        reset_result = "invalid"
+                    else:
+                        reset_result = self.store.verify_password_reset_code(
+                            session_digest, code
+                        )
+                    if reset_result == "verified":
+                        self._send(
+                            303,
+                            b"",
+                            headers={
+                                "Location": "/ap/forgotpassword?stage=reset-password"
+                            },
+                            cookies=cookies,
+                        )
+                        return
+                    reset_errors = {
+                        "invalid": "The verification code you entered is not valid.",
+                        "expired": "That verification code has expired. Request a new code.",
+                        "locked": "Too many incorrect attempts. Request a new code.",
+                        "missing": "Start password assistance again to request a new code.",
+                        "used": "That verification code has already been used.",
+                    }
+                    self._send_html(
+                        410 if reset_result == "expired" else 400,
+                        auth_views.verification_page(
+                            purpose_query,
+                            error=reset_errors.get(
+                                reset_result,
+                                "We couldn't verify that code. Try again.",
+                            ),
+                            mail_delivery_mode=delivery_mode,
+                            mail_delivery=self._auth_mail_status(
+                                session_digest, purpose
+                            ),
+                            local_inbox_url=self.local_inbox_url,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+
+                if fields == {"action": "retry-delivery"}:
+                    queued = bool(
+                        self.smtp_config is not None
+                        and self.store.retry_registration_mail(session_digest)
+                    )
+                    if queued:
+                        self._dispatch_mail(
+                            self.store.registration_delivery(session_digest)
+                        )
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": "/ap/cvf/verify?purpose=registration"},
+                        cookies=cookies,
+                    )
+                    return
+
+                if fields == {"action": "resend"}:
+                    if self.store.resend_registration_code(
+                        session_digest, mail_mode=self._mail_mode()
+                    ):
+                        self._dispatch_mail(
+                            self.store.registration_delivery(session_digest)
+                        )
+                        self._send(
+                            303,
+                            b"",
+                            headers={"Location": "/ap/cvf/verify?purpose=registration"},
+                            cookies=cookies,
+                        )
+                        return
+                    self._send_html(
+                        400,
+                        auth_views.verification_page(
+                            purpose_query,
+                            error="Start account creation again to request a new code.",
+                            mail_delivery_mode=delivery_mode,
+                            mail_delivery=self._auth_mail_status(
+                                session_digest, purpose
+                            ),
+                            local_inbox_url=self.local_inbox_url,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+
+                code = (fields or {}).get("code", "").strip()
+                if set(fields or {}) != {"code"} or not re.fullmatch(r"[0-9]{6}", code):
+                    result, return_to = "invalid", None
+                else:
+                    result, return_to = self.store.verify_registration_code(
+                        session_digest, code
+                    )
+                if result == "verified":
+                    self._rotate_authenticated_session(session_digest, cookies)
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": return_to or "/"},
+                        cookies=cookies,
+                    )
+                    return
+
+                pending_registration = self.store.pending_registration(session_digest)
+                error_messages = {
+                    "invalid": "The verification code you entered is not valid.",
+                    "expired": "That verification code has expired. Request a new code.",
+                    "locked": "Too many incorrect attempts. Request a new code.",
+                    "missing": "Start account creation again to request a new code.",
+                    "duplicate": "We couldn't create your account. Sign in or try again.",
+                }
+                status = 410 if result == "expired" else 400
+                self._send_html(
+                    status,
+                    auth_views.verification_page(
+                        purpose_query,
+                        masked_destination=(pending_registration or {}).get(
+                            "masked_email"
+                        ),
+                        error=error_messages.get(
+                            result, "We couldn't verify that code. Try again."
+                        ),
+                        mail_delivery_mode=delivery_mode,
+                        mail_delivery=self._auth_mail_status(
+                            session_digest, purpose
+                        ),
+                        local_inbox_url=self.local_inbox_url,
+                    ),
+                    cookies=cookies,
+                )
+                return
+
+            if path == "/ap/forgotpassword":
+                if fields is not None and "email" in fields and not {
+                    "password",
+                    "passwordCheck",
+                }.intersection(fields):
+                    if set(fields) not in (
+                        {"email"},
+                        {"email", "openid.return_to"},
+                    ):
+                        email = None
+                    else:
+                        email = valid_account_email(fields.get("email", ""))
+                    if email is None:
+                        self._send_html(
+                            400,
+                            auth_views.forgot_password_page(
+                                {},
+                                "We couldn't process that request. Check the email address and try again.",
+                            ),
+                            cookies=cookies,
+                        )
+                        return
+                    return_to = auth_views.safe_return_target(
+                        {
+                            "openid.return_to": [
+                                fields.get("openid.return_to", "")
+                            ]
+                        }
+                    )
+                    self.store.begin_password_reset(
+                        session_digest,
+                        email,
+                        return_to,
+                        mail_mode=self._mail_mode(),
+                    )
+                    delivery = self.store.password_reset_delivery(session_digest)
+                    # This response is identical whether or not an account was
+                    # found; only a database-backed account can receive mail.
+                    self._send(
+                        303,
+                        b"",
+                        headers={
+                            "Location": "/ap/cvf/verify?purpose=password-reset"
+                        },
+                        cookies=cookies,
+                    )
+                    self._dispatch_mail(delivery)
+                    return
+
+                if fields is not None and set(fields) == {
+                    "password",
+                    "passwordCheck",
+                }:
+                    password = fields["password"]
+                    password_check = fields["passwordCheck"]
+                    if not (
+                        6 <= len(password) <= 1024 and password == password_check
+                    ):
+                        self._send_html(
+                            400,
+                            auth_views.forgot_password_page(
+                                {"stage": ["reset-password"]},
+                                "Passwords must match and contain at least 6 characters.",
+                            ),
+                            cookies=cookies,
+                        )
+                        return
+                    reset_result, return_to = self.store.complete_password_reset(
+                        session_digest, password
+                    )
+                    if reset_result == "reset":
+                        self._rotate_authenticated_session(session_digest, cookies)
+                        self._send(
+                            303,
+                            b"",
+                            headers={"Location": return_to or "/"},
+                            cookies=cookies,
+                        )
+                        return
+                    self._send_html(
+                        410 if reset_result == "expired" else 400,
+                        auth_views.forgot_password_page(
+                            {"stage": ["reset-password"]},
+                            "This password reset is no longer valid. Start again.",
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+
+                self._send_html(
+                    400,
+                    auth_views.forgot_password_page(
+                        {}, "We couldn't process that password assistance request."
+                    ),
+                    cookies=cookies,
+                )
+                return
+
+            self._send(
+                400,
+                b"Malformed authentication request",
+                content_type="text/plain; charset=utf-8",
+                cookies=cookies,
+            )
+            return
+
+        if path in WISHLIST_POST_PATHS:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            if query:
+                self._send(
+                    400,
+                    b"Malformed Wishlist request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            if self.store.account_for_session(session_digest) is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": wishlist_views.WISHLIST_INDEX_PATH}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            fields = self._form_fields(raw_body)
+            valid_shape = False
+            selected_options: dict[str, str] = {}
+            if fields is not None:
+                expected_fields = {
+                    wishlist_views.WISHLIST_CREATE_PATH: {"listName"},
+                    wishlist_views.WISHLIST_RENAME_PATH: {
+                        "listID",
+                        "listName",
+                    },
+                    wishlist_views.WISHLIST_DELETE_PATH: {"listID"},
+                    wishlist_views.WISHLIST_REMOVE_ITEM_PATH: {
+                        "listID",
+                        "itemID",
+                    },
+                    wishlist_views.WISHLIST_MOVE_TO_CART_PATH: {
+                        "listID",
+                        "itemID",
+                        "quantity",
+                    },
+                }
+                if path == wishlist_views.WISHLIST_ADD_ITEM_PATH:
+                    base_fields = {"listID", "ASIN"}
+                    option_fields = {
+                        name
+                        for name in fields
+                        if name.startswith("option.")
+                        and name.removeprefix("option.")
+                    }
+                    valid_shape = bool(
+                        base_fields.issubset(fields)
+                        and set(fields) == base_fields | option_fields
+                    )
+                    if valid_shape:
+                        selected_options = {
+                            name.removeprefix("option."): fields[name]
+                            for name in option_fields
+                        }
+                else:
+                    valid_shape = set(fields) == expected_fields[path]
+                    if (
+                        path == wishlist_views.WISHLIST_MOVE_TO_CART_PATH
+                        and fields.get("quantity") != "1"
+                    ):
+                        valid_shape = False
+            if not valid_shape or fields is None:
+                self._send(
+                    400,
+                    b"Malformed Wishlist request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+
+            try:
+                if path == wishlist_views.WISHLIST_CREATE_PATH:
+                    created_list = wishlist.create_list(
+                        self.store, session_digest, fields["listName"]
+                    )
+                    location = wishlist_views.WISHLIST_INDEX_PATH + "?" + urlencode(
+                        {
+                            "listID": created_list["list_id"],
+                            "status": "created",
+                        }
+                    )
+                elif path == wishlist_views.WISHLIST_RENAME_PATH:
+                    renamed_list = wishlist.rename_list(
+                        self.store,
+                        session_digest,
+                        fields["listID"],
+                        fields["listName"],
+                    )
+                    location = wishlist_views.WISHLIST_INDEX_PATH + "?" + urlencode(
+                        {
+                            "listID": renamed_list["list_id"],
+                            "status": "renamed",
+                        }
+                    )
+                elif path == wishlist_views.WISHLIST_DELETE_PATH:
+                    wishlist.delete_list(
+                        self.store, session_digest, fields["listID"]
+                    )
+                    location = wishlist_views.WISHLIST_INDEX_PATH + "?" + urlencode(
+                        {"status": "deleted"}
+                    )
+                elif path == wishlist_views.WISHLIST_ADD_ITEM_PATH:
+                    result = wishlist.add_item(
+                        self.store,
+                        session_digest,
+                        fields["listID"],
+                        fields["ASIN"],
+                        selected_options,
+                    )
+                    location = wishlist_views.WISHLIST_INDEX_PATH + "?" + urlencode(
+                        {
+                            "listID": fields["listID"],
+                            "status": (
+                                "added" if result["created"] else "already-added"
+                            ),
+                        }
+                    )
+                elif path == wishlist_views.WISHLIST_REMOVE_ITEM_PATH:
+                    wishlist.remove_item(
+                        self.store,
+                        session_digest,
+                        fields["listID"],
+                        fields["itemID"],
+                    )
+                    location = wishlist_views.WISHLIST_INDEX_PATH + "?" + urlencode(
+                        {"listID": fields["listID"], "status": "removed"}
+                    )
+                else:
+                    item = wishlist.item_for_move_to_cart(
+                        self.store,
+                        session_digest,
+                        fields["listID"],
+                        fields["itemID"],
+                    )
+                    self.store.add_cart_item(
+                        session_digest,
+                        item["asin"],
+                        fields["quantity"],
+                        item["selected_options"],
+                    )
+                    try:
+                        wishlist.remove_item(
+                            self.store,
+                            session_digest,
+                            item["list_id"],
+                            item["item_id"],
+                        )
+                    except wishlist.WishlistNotFound:
+                        # The cart mutation already succeeded.  A concurrent
+                        # removal must not turn that success into a retry that
+                        # can double the quantity.
+                        pass
+                    location = "/gp/cart/view.html"
+            except wishlist.WishlistAuthenticationRequired:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": wishlist_views.WISHLIST_INDEX_PATH}
+                )
+            except wishlist.WishlistNotFound:
+                self._send_html(
+                    404,
+                    views.not_found_page(self.store.cart_count(session_digest)),
+                    cookies=cookies,
+                )
+                return
+            except wishlist.WishlistValidationError as exc:
+                self._send_html(
+                    400,
+                    views.error_page(
+                        str(exc), self.store.cart_count(session_digest), 400
+                    ),
+                    cookies=cookies,
+                )
+                return
+            except (wishlist.WishlistConflict, ContractError) as exc:
+                self._send_html(
+                    409,
+                    views.error_page(
+                        str(exc), self.store.cart_count(session_digest), 409
+                    ),
+                    cookies=cookies,
+                )
+                return
+            self._send(
+                303, b"", headers={"Location": location}, cookies=cookies
+            )
+            return
+
+        if path in ADDRESS_BOOK_POST_PATHS:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            account = self.store.account_for_session(session_digest)
+            if account is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": ADDRESS_BOOK_PATH}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            fields = self._form_fields(raw_body)
+            make_default = False
+            address: dict[str, str] | None = None
+            if path == ADDRESS_CREATE_PATH:
+                allowed = ADDRESS_FORM_NAMES | {"makeDefault"}
+                valid_shape = bool(
+                    fields is not None
+                    and ADDRESS_FORM_NAMES.issubset(fields)
+                    and set(fields).issubset(allowed)
+                )
+            elif path == ADDRESS_UPDATE_PATH:
+                allowed = ADDRESS_FORM_NAMES | {
+                    "addressId",
+                    "addressRevision",
+                    "makeDefault",
+                }
+                valid_shape = bool(
+                    fields is not None
+                    and (ADDRESS_FORM_NAMES | {"addressId", "addressRevision"}).issubset(fields)
+                    and set(fields).issubset(allowed)
+                )
+            else:
+                valid_shape = bool(
+                    fields is not None
+                    and set(fields) == {"addressId", "addressRevision"}
+                )
+            if not valid_shape or (
+                fields is not None
+                and "makeDefault" in fields
+                and fields["makeDefault"] != "1"
+            ):
+                self._send(
+                    400,
+                    b"Malformed address request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            assert fields is not None
+            if path in {ADDRESS_CREATE_PATH, ADDRESS_UPDATE_PATH}:
+                address = normalized_address_fields(fields)
+                if address is None:
+                    self._send(
+                        400,
+                        b"Invalid address",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                make_default = fields.get("makeDefault") == "1"
+            try:
+                if path == ADDRESS_CREATE_PATH:
+                    assert address is not None
+                    self.store.create_address(
+                        session_digest,
+                        address,
+                        make_default=make_default,
+                    )
+                    status_label = "added"
+                elif path == ADDRESS_UPDATE_PATH:
+                    assert address is not None
+                    self.store.update_address(
+                        session_digest,
+                        fields["addressId"],
+                        fields["addressRevision"],
+                        address,
+                        make_default=make_default,
+                    )
+                    status_label = "updated"
+                elif path == ADDRESS_DEFAULT_PATH:
+                    self.store.set_default_address(
+                        session_digest,
+                        fields["addressId"],
+                        fields["addressRevision"],
+                    )
+                    status_label = "default"
+                else:
+                    self.store.delete_address(
+                        session_digest,
+                        fields["addressId"],
+                        fields["addressRevision"],
+                    )
+                    status_label = "deleted"
+            except AddressNotFound:
+                self._send(
+                    404,
+                    b"Not Found",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            except (AddressRevisionConflict, AddressInUse) as exc:
+                message = (
+                    "This address is currently selected by an active checkout. Choose another checkout address before deleting it."
+                    if isinstance(exc, AddressInUse)
+                    else "This address changed in another request. Review the latest version and try again."
+                )
+                self._send_html(
+                    409,
+                    views.address_book_page(
+                        self.store.addresses_for_session(session_digest),
+                        self.store.cart_count(session_digest),
+                        str(account["display_name"]),
+                        error=message,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            except ContractError:
+                self._send(
+                    400,
+                    b"Invalid address request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            self._send(
+                303,
+                b"",
+                headers={
+                    "Location": ADDRESS_BOOK_PATH
+                    + "?"
+                    + urlencode({"status": status_label})
+                },
+                cookies=cookies,
+            )
+            return
+
+        if path in {ORDER_CANCEL_PATH, RETURN_CREATE_PATH}:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            account = self.store.account_for_session(session_digest)
+            if account is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": "/gp/css/order-history"}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            fields = self._form_fields(raw_body)
+            required = (
+                {"orderID", "idempotencyKey", "actionToken"}
+                if path == ORDER_CANCEL_PATH
+                else {
+                    "orderID",
+                    "reasonCode",
+                    "customerNote",
+                    "idempotencyKey",
+                    "actionToken",
+                }
+            )
+            if (
+                fields is None
+                or set(fields) != required
+                or re.fullmatch(r"[1-9][0-9]{0,18}", fields.get("orderID", ""))
+                is None
+                or re.fullmatch(
+                    r"[A-Za-z0-9_-]{20,128}", fields.get("idempotencyKey", "")
+                )
+                is None
+                or re.fullmatch(r"[0-9a-f]{64}", fields.get("actionToken", ""))
+                is None
+            ):
+                self._send(
+                    400,
+                    b"Malformed order action",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            try:
+                if path == ORDER_CANCEL_PATH:
+                    order = self.store.cancel_order(
+                        session_digest,
+                        fields["orderID"],
+                        fields["idempotencyKey"],
+                        fields["actionToken"],
+                    )
+                    location = ORDER_DETAIL_PATH + "?" + urlencode(
+                        {"orderID": order["order_id"]}
+                    )
+                else:
+                    order = self.store.create_return_request(
+                        session_digest,
+                        fields["orderID"],
+                        fields["reasonCode"],
+                        fields["customerNote"],
+                        fields["idempotencyKey"],
+                        fields["actionToken"],
+                    )
+                    request_payload = order.get("return_request")
+                    if not isinstance(request_payload, dict):
+                        raise OrderStateConflict("return request was not created")
+                    location = RETURN_DETAIL_PATH + "?" + urlencode(
+                        {"returnID": request_payload["return_request_id"]}
+                    )
+            except OrderActionTokenInvalid:
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            except OrderNotFound:
+                self._send(
+                    404,
+                    b"Not Found",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            except OrderStateConflict as exc:
+                self._send_html(
+                    409,
+                    views.error_page(str(exc), self.store.cart_count(session_digest), 409),
+                    cookies=cookies,
+                )
+                return
+            except ContractError as exc:
+                self._send(
+                    400,
+                    str(exc).encode("utf-8"),
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            self._send(303, b"", headers={"Location": location}, cookies=cookies)
+            return
+
+        review_post_match = PRODUCT_REVIEWS_ROUTE.fullmatch(path)
+        helpful_post_match = PRODUCT_REVIEW_HELPFUL_ROUTE.fullmatch(path)
+        if review_post_match or helpful_post_match:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            asin = (review_post_match or helpful_post_match).group(1)
+            product = product_for_pdp(self.store, asin)
+            source_scope = review_product_source_scope(self.store, asin)
+            if product is None or source_scope is None:
+                self._send(
+                    404,
+                    b"Not Found",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            self.store.register_review_product(asin, source_scope)
+            fields = self._form_fields(raw_body)
+            destination = f"/product-reviews/{asin}#customerReviews"
+
+            if review_post_match:
+                if self.store.account_for_session(session_digest) is None:
+                    signin_location = "/ap/signin?" + urlencode(
+                        {"openid.return_to": f"/product-reviews/{asin}#reviewComposer"}
+                    )
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": signin_location},
+                        cookies=cookies,
+                    )
+                    return
+                if (
+                    fields is None
+                    or set(fields) != {"rating", "headline", "body"}
+                    or re.fullmatch(r"[1-5]", fields.get("rating", "")) is None
+                ):
+                    self._send(
+                        400,
+                        b"Malformed review request",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                try:
+                    self.store.upsert_review(
+                        session_digest,
+                        asin,
+                        int(fields["rating"]),
+                        fields["headline"],
+                        fields["body"],
+                    )
+                except ReviewAuthenticationRequired:
+                    signin_location = "/ap/signin?" + urlencode(
+                        {"openid.return_to": f"/product-reviews/{asin}#reviewComposer"}
+                    )
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": signin_location},
+                        cookies=cookies,
+                    )
+                    return
+                except ReviewValidationError as exc:
+                    self._send(
+                        400,
+                        str(exc).encode("utf-8"),
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                except ReviewPermissionDenied:
+                    self._send(
+                        403,
+                        b"Forbidden",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                except ReviewNotFound:
+                    self._send(
+                        404,
+                        b"Not Found",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+            else:
+                if (
+                    fields is None
+                    or set(fields) != {"reviewId"}
+                    or re.fullmatch(r"[1-9][0-9]*", fields.get("reviewId", "")) is None
+                ):
+                    self._send(
+                        400,
+                        b"Malformed helpful request",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                try:
+                    self.store.toggle_review_helpful(
+                        session_digest, asin, fields["reviewId"]
+                    )
+                except ReviewValidationError as exc:
+                    self._send(
+                        400,
+                        str(exc).encode("utf-8"),
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                except ReviewPermissionDenied:
+                    self._send(
+                        403,
+                        b"You cannot mark your own review as helpful.",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+                except ReviewNotFound:
+                    self._send(
+                        404,
+                        b"Not Found",
+                        content_type="text/plain; charset=utf-8",
+                        cookies=cookies,
+                    )
+                    return
+
+            self._send(
+                303,
+                b"",
+                headers={"Location": destination},
+                cookies=cookies,
+            )
+            return
+
+        if path == ORDER_EMAIL_RETRY_PATH:
+            if not self._auth_post_origin_is_safe():
+                self._send(
+                    403,
+                    b"Forbidden",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            fields = self._form_fields(raw_body)
+            if (
+                query
+                or fields is None
+                or set(fields) != {"orderID"}
+                or re.fullmatch(r"[1-9][0-9]*", fields["orderID"]) is None
+            ):
+                self._send(
+                    400,
+                    b"Malformed order email retry request",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            if self.store.account_for_session(session_digest) is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": ORDER_DETAIL_PATH}
+                )
+                self._send(
+                    303, b"", headers={"Location": location}, cookies=cookies
+                )
+                return
+            order_id = fields["orderID"]
+            if self.store.order_for_session(session_digest, order_id) is None:
+                self._send(
+                    404,
+                    b"Not Found",
+                    content_type="text/plain; charset=utf-8",
+                    cookies=cookies,
+                )
+                return
+            if (
+                self.smtp_config is not None
+                and self.store.retry_order_mail(session_digest, order_id)
+            ):
+                self._dispatch_mail(self.store.order_mail_delivery(order_id))
+            location = ORDER_DETAIL_PATH + "?" + urlencode({"orderID": order_id})
+            self._send(
+                303, b"", headers={"Location": location}, cookies=cookies
+            )
+            return
+
+        checkout_post_paths = {
+            CHECKOUT_START_PATH,
+            CHECKOUT_ADDRESS_PATH,
+            CHECKOUT_DELIVERY_PATH,
+            CHECKOUT_PAYMENT_PATH,
+            PLACE_ORDER_PATH,
+        }
+        if path in checkout_post_paths:
+            # Preserve the frozen benchmark's explicit nonterminal rejection.
+            if path == CHECKOUT_START_PATH and raw_body:
+                self.store.record_rejected_post(
+                    session_digest,
+                    path,
+                    self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower(),
+                    raw_body,
+                )
+                self._send(404, b"Not Found", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            if not self._auth_post_origin_is_safe():
+                self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            account = self.store.account_for_session(session_digest)
+            if account is None:
+                location = "/ap/signin?" + urlencode(
+                    {"openid.return_to": CHECKOUT_ADDRESS_PATH}
+                )
+                self._send(303, b"", headers={"Location": location}, cookies=cookies)
+                return
+            fields = self._form_fields(raw_body)
+
+            if path == CHECKOUT_START_PATH:
+                if fields != {}:
+                    self._send(400, b"Malformed checkout request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                try:
+                    checkout = self.store.start_checkout(session_digest)
+                except ContractError:
+                    self._send_html(
+                        409,
+                        views.error_page(
+                            "Your cart is empty or checkout cannot be started.",
+                            self.store.cart_count(session_digest),
+                            409,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                destination = CHECKOUT_ADDRESS_PATH
+                if (
+                    checkout.get("reconciliation_reason") == "cart-changed"
+                    and checkout.get("status") == "DELIVERY_SELECTED"
+                ):
+                    destination = CHECKOUT_PAYMENT_PATH + "?" + urlencode(
+                        {"notice": "cart-changed"}
+                    )
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": destination},
+                    cookies=cookies,
+                )
+                return
+
+            if path == CHECKOUT_ADDRESS_PATH:
+                if fields is not None and set(fields) == {"addressSelection"}:
+                    selection_match = re.fullmatch(
+                        r"([1-9][0-9]*):([1-9][0-9]*)",
+                        fields["addressSelection"],
+                    )
+                    if selection_match is None:
+                        self._send(
+                            400,
+                            b"Malformed address selection",
+                            content_type="text/plain; charset=utf-8",
+                            cookies=cookies,
+                        )
+                        return
+                    try:
+                        self.store.select_checkout_address(
+                            session_digest,
+                            selection_match.group(1),
+                            selection_match.group(2),
+                        )
+                    except ContractError:
+                        self._send(
+                            409,
+                            b"Checkout address conflict",
+                            content_type="text/plain; charset=utf-8",
+                            cookies=cookies,
+                        )
+                        return
+                    self._send(
+                        303,
+                        b"",
+                        headers={"Location": CHECKOUT_DELIVERY_PATH},
+                        cookies=cookies,
+                    )
+                    return
+                allowed = ADDRESS_FORM_NAMES | {"makeDefault"}
+                if (
+                    fields is None
+                    or not ADDRESS_FORM_NAMES.issubset(fields)
+                    or not set(fields).issubset(allowed)
+                    or (
+                        "makeDefault" in fields
+                        and fields["makeDefault"] != "1"
+                    )
+                ):
+                    self._send(400, b"Malformed address", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                address = normalized_address_fields(fields)
+                if address is None:
+                    self._send(400, b"Invalid address", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                try:
+                    self.store.save_checkout_address(
+                        session_digest,
+                        address,
+                        make_default=fields.get("makeDefault") == "1",
+                    )
+                except ContractError:
+                    self._send(409, b"Checkout state conflict", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                self._send(303, b"", headers={"Location": CHECKOUT_DELIVERY_PATH}, cookies=cookies)
+                return
+
+            if path == CHECKOUT_DELIVERY_PATH:
+                if fields is None or set(fields) != {"deliveryOption"}:
+                    self._send(400, b"Malformed delivery option", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                try:
+                    self.store.select_delivery(session_digest, fields["deliveryOption"])
+                except ContractError:
+                    self._send(409, b"Checkout state conflict", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                self._send(303, b"", headers={"Location": CHECKOUT_PAYMENT_PATH}, cookies=cookies)
+                return
+
+            if path == CHECKOUT_PAYMENT_PATH:
+                if fields is None or set(fields) != {"paymentMethod"}:
+                    self._send(400, b"Malformed payment method", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                try:
+                    checkout = self.store.select_test_payment(
+                        session_digest, fields["paymentMethod"]
+                    )
+                except ContractError:
+                    self._send(409, b"Checkout state conflict", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                payment_attempt = checkout.get("payment_attempt")
+                destination = (
+                    CHECKOUT_PAYMENT_PATH
+                    + "?"
+                    + urlencode({"notice": "payment-declined"})
+                    if isinstance(payment_attempt, dict)
+                    and payment_attempt.get("status") == "DECLINED"
+                    else CHECKOUT_START_PATH
+                )
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": destination},
+                    cookies=cookies,
+                )
+                return
+
+            if fields is None or set(fields) != {"idempotencyKey"} or not re.fullmatch(
+                r"[A-Za-z0-9_-]{20,160}", fields.get("idempotencyKey", "")
+            ):
+                self._send(400, b"Malformed place-order request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            try:
+                order = self.store.place_order(
+                    session_digest,
+                    fields["idempotencyKey"],
+                    mail_mode=self._mail_mode(),
+                )
+            except CheckoutReconciliationRequired as exc:
+                destination = (
+                    CHECKOUT_ADDRESS_PATH
+                    if exc.reason == "unsupported-delivery-country"
+                    else CHECKOUT_PAYMENT_PATH
+                ) + "?" + urlencode({"notice": exc.reason})
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": destination},
+                    cookies=cookies,
+                )
+                return
+            except ContractError:
+                self._send(409, b"Checkout state conflict", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            self._dispatch_mail(
+                self.store.order_mail_delivery(order["order_id"])
+            )
+            location = ORDER_DETAIL_PATH + "?" + urlencode({"orderID": order["order_id"]})
+            self._send(303, b"", headers={"Location": location}, cookies=cookies)
+            return
+
+        if path in COMPARE_MUTATION_PATHS:
+            if not self._auth_post_origin_is_safe():
+                self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            fields = self._form_fields(raw_body)
+            if path == "/gp/compare/clear":
+                if fields != {}:
+                    self._send(400, b"Malformed compare request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                self.store.clear_compare(session_digest)
+                self._send(303, b"", headers={"Location": COMPARE_PATH}, cookies=cookies)
+                return
+            if path == "/gp/compare/remove":
+                if fields is None or set(fields) != {"compareLineID"}:
+                    self._send(400, b"Malformed compare request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                compare_line_id = fields["compareLineID"]
+                if COMPARE_LINE_ID_PATTERN.fullmatch(compare_line_id) is None:
+                    self._send(400, b"Malformed compare request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                if not self.store.remove_compare(session_digest, compare_line_id):
+                    self._send(409, b"Compare item not found", content_type="text/plain; charset=utf-8", cookies=cookies)
+                    return
+                self._send(303, b"", headers={"Location": COMPARE_PATH}, cookies=cookies)
+                return
+
+            option_field_names = {
+                name for name in fields or {} if name.startswith("option.")
+            }
+            if (
+                fields is None
+                or "ASIN" not in fields
+                or set(fields) != {"ASIN"} | option_field_names
+                or any(not name.removeprefix("option.") for name in option_field_names)
+            ):
+                self._send(400, b"Malformed compare request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            asin = fields["ASIN"]
+            if ASIN_PATTERN.fullmatch(asin) is None:
+                self._send(400, b"Malformed compare request", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            if asin not in self.store.compare_eligible_asins():
+                self._send(404, b"Not Found", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            expected_option_names = {
+                f"option.{group['label']}"
+                for group in self.store.product_option_spec(asin)
+            }
+            if option_field_names and option_field_names != expected_option_names:
+                self._send(400, b"Malformed compare options", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            selected_options = (
+                {
+                    name.removeprefix("option."): fields[name]
+                    for name in option_field_names
+                }
+                if option_field_names
+                else None
+            )
+            try:
+                result = self.store.add_compare(
+                    session_digest, asin, selected_options
+                )
+            except ContractError:
+                self._send(400, b"Invalid compare options", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            if result in {"full", "incompatible"}:
+                products = [
+                    compare_product_for_view(self.store, item)
+                    for item in self.store.compare_items(session_digest)
+                ]
+                account = self.store.account_for_session(session_digest)
+                name = str(account["display_name"]) if account else None
+                message = (
+                    "You can compare up to four products at a time."
+                    if result == "full"
+                    else "Choose products from the same source-backed product family."
+                )
+                self._send_html(
+                    409,
+                    views.compare_page(
+                        products,
+                        self.store.cart_count(session_digest),
+                        name,
+                        message,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            self._send(303, b"", headers={"Location": COMPARE_PATH}, cookies=cookies)
+            return
+
+        if path in CART_MUTATION_PATHS:
+            if not self._auth_post_origin_is_safe():
+                self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
+                return
+            fields = self._form_fields(raw_body)
+            is_product_mutation = path in {BUY_NOW_PATH, "/gp/cart/add.html"}
+            needs_quantity = path in {
+                BUY_NOW_PATH,
+                "/gp/cart/add.html",
+                "/gp/cart/update.html",
+            }
+            if is_product_mutation:
+                base_names = {"ASIN", "quantity"}
+            elif needs_quantity:
+                base_names = {"lineID", "quantity"}
+            else:
+                base_names = {"lineID"}
+            option_field_names = (
+                {name for name in fields or {} if name.startswith("option.")}
+                if is_product_mutation
+                else set()
+            )
+            if fields is None or set(fields) != base_names | option_field_names:
+                self._send_html(
+                    400,
+                    views.error_page(
+                        "The cart request was incomplete or malformed.",
+                        self.store.cart_count(session_digest),
+                        400,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            asin = ""
+            line_id = ""
+            selected_options: dict[str, str] | None = None
+            if is_product_mutation:
+                asin = fields["ASIN"]
+                if ASIN_PATTERN.fullmatch(asin) is None:
+                    self._send_html(
+                        400,
+                        views.error_page(
+                            "The selected item identifier is invalid.",
+                            self.store.cart_count(session_digest),
+                            400,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                if self.store.commerce_offer(asin) is None:
+                    self._send_html(
+                        404,
+                        views.error_page(
+                            "That item has no verified offer in this local marketplace snapshot.",
+                            self.store.cart_count(session_digest),
+                            404,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                option_spec = self.store.product_option_spec(asin)
+                expected_option_names = {
+                    f"option.{group['label']}" for group in option_spec
+                }
+                if option_field_names and option_field_names != expected_option_names:
+                    self._send_html(
+                        400,
+                        views.error_page(
+                            "Choose one captured value for every available product option.",
+                            self.store.cart_count(session_digest),
+                            400,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                selected_options = (
+                    {
+                        name.removeprefix("option."): fields[name]
+                        for name in option_field_names
+                    }
+                    if option_field_names
+                    else None
+                )
+            else:
+                line_id = fields["lineID"]
+                if CART_LINE_ID_PATTERN.fullmatch(line_id) is None:
+                    self._send_html(
+                        400,
+                        views.error_page(
+                            "The cart line identity is invalid.",
+                            self.store.cart_count(session_digest),
+                            400,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+            quantity = 1
+            if needs_quantity:
+                raw_quantity = fields["quantity"]
+                if not re.fullmatch(r"(?:[1-9]|[12][0-9]|30)", raw_quantity):
+                    self._send_html(
+                        400,
+                        views.error_page(
+                            "Choose a quantity from 1 through 30.",
+                            self.store.cart_count(session_digest),
+                            400,
+                        ),
+                        cookies=cookies,
+                    )
+                    return
+                quantity = int(raw_quantity)
+            try:
+                buy_now_result: dict[str, Any] | None = None
+                if path == BUY_NOW_PATH:
+                    buy_now_result = self.store.begin_buy_now(
+                        session_digest,
+                        asin,
+                        quantity,
+                        selected_options=selected_options,
+                    )
+                    changed = True
+                elif path == "/gp/cart/add.html":
+                    changed = bool(
+                        self.store.add_cart_item(
+                            session_digest,
+                            asin,
+                            quantity,
+                            selected_options=selected_options,
+                        )
+                    )
+                elif path == "/gp/cart/update.html":
+                    changed = self.store.set_cart_quantity(
+                        session_digest, line_id, quantity
+                    )
+                elif path == "/gp/cart/delete.html":
+                    changed = self.store.delete_cart_item(session_digest, line_id)
+                elif path == "/gp/cart/save-for-later.html":
+                    changed = self.store.save_for_later(session_digest, line_id)
+                else:
+                    changed = self.store.move_to_cart(session_digest, line_id)
+            except ContractError as exc:
+                message = (
+                    UNAVAILABLE_SELECTION_COPY
+                    if str(exc) == UNAVAILABLE_SELECTION_COPY
+                    else "That item cannot be added to this local marketplace cart."
+                )
+                self._send_html(
+                    400,
+                    views.error_page(
+                        message,
+                        self.store.cart_count(session_digest),
+                        400,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            if not changed:
+                self._send_html(
+                    409,
+                    views.error_page(
+                        "That cart item is no longer in the expected state.",
+                        self.store.cart_count(session_digest),
+                        409,
+                    ),
+                    cookies=cookies,
+                )
+                return
+            if path == BUY_NOW_PATH:
+                if buy_now_result and buy_now_result.get(
+                    "requires_authentication"
+                ):
+                    location = "/ap/signin?" + urlencode(
+                        {"openid.return_to": BUY_NOW_CONTINUE_PATH}
+                    )
+                else:
+                    location = CHECKOUT_ADDRESS_PATH
+                self._send(
+                    303,
+                    b"",
+                    headers={"Location": location},
+                    cookies=cookies,
+                )
+                return
+            self._send(
+                303,
+                b"",
+                headers={"Location": "/gp/cart/view.html"},
+                cookies=cookies,
+            )
+            return
+        if path.startswith("/ap/"):
+            self._send(404, b"Not Found", content_type="text/plain; charset=utf-8", cookies=cookies)
+            return
+        if path.startswith("/__bench/") or path not in TERMINAL_PATHS:
+            self.store.record_rejected_post(
+                session_digest,
+                path,
+                self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower(),
+                raw_body,
+            )
+            self._send(404, b"Not Found", content_type="text/plain; charset=utf-8", cookies=cookies)
+            return
+        media_type = self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower()
+        try:
+            fields = parse_qsl(raw_body.decode("utf-8"), keep_blank_values=True, strict_parsing=True)
+        except (UnicodeDecodeError, ValueError):
+            fields = []
+
+        status, outcome = self.store.terminal_request(
+            session_digest,
+            path,
+            media_type,
+            raw_body,
+            fields,
+            self._flow_digest(),
+            self._terminal_source_is_canonical(),
+        )
+        if status == 303:
+            cookies.append(f"{FLOW_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0")
+            self._send(
+                303,
+                b"",
+                headers={"Location": "/gp/cart/view.html"},
+                cookies=cookies,
+            )
+            return
+
+        message = {
+            "wrong-form-body": "Choose quantity 2 and submit the Amazon add-to-cart form once.",
+            "missing-navigation-sequence": "Open the External SSD Best Sellers list before this item.",
+            "wrong-navigation-stage": "Follow the Best Sellers → Samsung T7 journey in the same browser session.",
+            "invalid-flow-capability": "The product-page journey expired. Open the item from Best Sellers again.",
+            "invalid-terminal-source": "Submit the Add to cart form from the current Samsung T7 product page.",
+            "stale-navigation-sequence": "Return to the Samsung T7 product page before adding it to the cart.",
+            "capability-already-consumed": "This add-to-cart action was already completed.",
+            "target-line-already-exists": "The target item is already in this cart.",
+        }.get(outcome, f"The add-to-cart request did not match the local contract ({outcome}).")
+        self._send_html(
+            409,
+            views.error_page(message, self.store.cart_count(session_digest), 409),
+            cookies=cookies,
+        )
+
+
+class AdminHandler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
+    store: Store
+    admin_token: str
+    smtp_summary: dict[str, object] = {"mode": "LOCAL_ONLY"}
+    server_version = "AmazonCloneAdmin/0.1"
+
+    def log_message(self, format_string: str, *args: Any) -> None:
+        sys.stdout.write(
+            json.dumps(
+                {
+                    "stream": "admin",
+                    "client": self.client_address[0],
+                    "method": self.command,
+                    "path": self.path,
+                    "message": format_string % args,
+                },
+                ensure_ascii=False,
+            )
+            + "\n"
+        )
+        sys.stdout.flush()
+
+    def _authorized(self) -> bool:
+        candidate = self.headers.get("X-Bench-Admin-Token", "")
+        return bool(candidate) and secrets.compare_digest(candidate, self.admin_token)
+
+    def _send_json(self, status: int, payload: Any) -> None:
+        body = json_bytes(payload)
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
-        self.send_common_headers()
-        for name, value in (headers or {}).items():
-            self.send_header(name, value)
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         if self.command != "HEAD":
             self.wfile.write(body)
-            self.wfile.flush()
 
-    def send_json(
-        self,
-        payload: Any,
-        status: HTTPStatus = HTTPStatus.OK,
-        headers: dict[str, str] | None = None,
-    ) -> None:
-        if self.command in {"POST", "PATCH", "DELETE"}:
-            self.close_connection = True
-        body = json.dumps(payload, separators=(",", ":"), ensure_ascii=True).encode()
-        self.send_bytes(body, "application/json; charset=utf-8", status, headers)
+    def _not_found(self) -> None:
+        self._send_json(404, {"error": "not-found"})
 
-    def send_request_error(self, error: RequestError) -> None:
-        self.send_json(
-            {"error": str(error), "outcome": error.outcome},
-            error.status,
-        )
+    def _payload(self) -> dict[str, Any]:
+        content_length = int(self.headers.get("Content-Length", "0") or "0")
+        if content_length < 0 or content_length > MAX_ADMIN_BYTES:
+            raise ContractError("admin payload is too large")
+        if content_length == 0:
+            return {}
+        raw = self.rfile.read(content_length)
 
-    def send_storage_error(self) -> None:
-        self.close_connection = True
-        self.send_json(
-            {
-                "error": "Local cart storage is temporarily unavailable. Try again.",
-                "outcome": "storage_unavailable",
-            },
-            HTTPStatus.SERVICE_UNAVAILABLE,
-            {"Retry-After": "1"},
-        )
-
-    def send_redirect(self, location: str) -> None:
-        self.send_bytes(
-            b"",
-            "text/plain; charset=utf-8",
-            HTTPStatus.SEE_OTHER,
-            {"Location": location},
-        )
-
-    def _target(self) -> tuple[Any, str]:
-        parsed = urlsplit(self.path)
-        if parsed.scheme or parsed.netloc or parsed.fragment:
-            raise RequestError(HTTPStatus.BAD_REQUEST, "Invalid request target.")
-        try:
-            path = unquote(parsed.path, errors="strict")
-        except UnicodeDecodeError as error:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST, "Invalid request path."
-            ) from error
-        return parsed, path
-
-    def _cookie_token(self) -> str | None:
-        values = self.headers.get_all("Cookie", [])
-        if not values:
-            return None
-        cookie = SimpleCookie()
-        try:
-            cookie.load("; ".join(values))
-        except CookieError:
-            return None
-        morsel = cookie.get(SESSION_COOKIE)
-        if morsel is None or not SESSION_TOKEN_RE.fullmatch(morsel.value):
-            return None
-        return morsel.value
-
-    def _existing_session(self, db: sqlite3.Connection) -> str | None:
-        token = self._cookie_token()
-        if token is None:
-            return None
-        row = db.execute("SELECT id FROM sessions WHERE id = ?", (token,)).fetchone()
-        return str(row["id"]) if row else None
-
-    def _ensure_session(self, db: sqlite3.Connection) -> str:
-        token = self._existing_session(db)
-        now = utc_now()
-        if token is not None:
-            db.execute(
-                "UPDATE sessions SET last_seen_at = ? WHERE id = ?",
-                (now, token),
-            )
-            return token
-
-        for _ in range(4):
-            token = secrets.token_urlsafe(32)
-            try:
-                db.execute(
-                    "INSERT INTO sessions (id, created_at, last_seen_at) VALUES (?, ?, ?)",
-                    (token, now, now),
-                )
-            except sqlite3.IntegrityError:
-                continue
-            self._pending_cookie = (
-                f"{SESSION_COOKIE}={token}; Path=/; Max-Age=31536000; "
-                "HttpOnly; SameSite=Lax"
-            )
-            return token
-        raise sqlite3.DatabaseError("Could not allocate a unique session")
-
-    def _session_payload(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-    ) -> dict[str, Any]:
-        session = None
-        if session_id is not None:
-            session = db.execute(
-                """
-                SELECT delivery_label, currency, signed_in
-                FROM sessions WHERE id = ?
-                """,
-                (session_id,),
-            ).fetchone()
-        return {
-            "delivery_label": (
-                str(session["delivery_label"]) if session else "New York 10001"
-            ),
-            "currency": str(session["currency"]) if session else "USD",
-            "signed_in": bool(session["signed_in"]) if session else False,
-            "language": "en-US",
-        }
-
-    def _wishlist_payload(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-    ) -> list[dict[str, Any]]:
-        if session_id is None:
-            return []
-        rows = db.execute(
-            """
-            SELECT asin, added_at
-            FROM wishlist
-            WHERE session_id = ?
-            ORDER BY added_at_epoch DESC, id DESC
-            """,
-            (session_id,),
-        ).fetchall()
-        return [
-            {
-                "asin": str(row["asin"]),
-                "added_at": str(row["added_at"]),
-                "product": PRODUCT_INDEX[str(row["asin"])],
-            }
-            for row in rows
-            if str(row["asin"]) in PRODUCT_INDEX
-        ]
-
-    def _recent_views_payload(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-    ) -> list[dict[str, Any]]:
-        if session_id is None:
-            return []
-        rows = db.execute(
-            """
-            SELECT asin, path, viewed_at
-            FROM recent_views
-            WHERE session_id = ?
-            ORDER BY viewed_at_epoch DESC, id DESC
-            LIMIT ?
-            """,
-            (session_id, RECENT_VIEWS_LIMIT),
-        ).fetchall()
-        return [
-            {
-                "asin": str(row["asin"]),
-                "path": str(row["path"]),
-                "viewed_at": str(row["viewed_at"]),
-                "product": GENERIC_PRODUCT_INDEX[str(row["asin"])],
-            }
-            for row in rows
-            if str(row["asin"]) in GENERIC_PRODUCT_INDEX
-        ]
-
-    def _search_history_payload(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-    ) -> list[dict[str, str]]:
-        if session_id is None:
-            return []
-        rows = db.execute(
-            """
-            SELECT query, searched_at
-            FROM search_history
-            WHERE session_id = ?
-            ORDER BY searched_at_epoch DESC, id DESC
-            LIMIT ?
-            """,
-            (session_id, SEARCH_HISTORY_LIMIT),
-        ).fetchall()
-        return [
-            {"query": str(row["query"]), "searched_at": str(row["searched_at"])}
-            for row in rows
-        ]
-
-    def _bootstrap(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-    ) -> dict[str, Any]:
-        cart_rows = []
-        saved_rows = []
-        discovery_rows = []
-        if session_id is not None:
-            cart_rows = db.execute(
-                "SELECT asin, quantity FROM cart WHERE session_id = ?",
-                (session_id,),
-            ).fetchall()
-            saved_rows = db.execute(
-                "SELECT asin, quantity FROM saved WHERE session_id = ?",
-                (session_id,),
-            ).fetchall()
-            discovery_rows = db.execute(
-                """
-                SELECT path, kind, asin
-                FROM discovery
-                WHERE session_id = ? AND viewed_at_epoch >= ?
-                """,
-                (session_id, time.time() - DISCOVERY_TTL_SECONDS),
-            ).fetchall()
-
-        product_order = {
-            product["asin"]: index for index, product in enumerate(ALL_PRODUCTS)
-        }
-        cart_rows = sorted(
-            cart_rows,
-            key=lambda row: product_order.get(row["asin"], len(product_order)),
-        )
-        saved_rows = sorted(
-            saved_rows,
-            key=lambda row: product_order.get(row["asin"], len(product_order)),
-        )
-
-        items = []
-        for row in cart_rows:
-            product = PRODUCT_INDEX.get(str(row["asin"]))
-            if product is None:
-                continue
-            quantity = int(row["quantity"])
-            items.append(
-                {
-                    "asin": product["asin"],
-                    "quantity": quantity,
-                    "subtotal": round(float(product["price"]) * quantity, 2),
-                    "product": product,
-                }
-            )
-
-        saved_items = []
-        for row in saved_rows:
-            product = PRODUCT_INDEX.get(str(row["asin"]))
-            if product is not None:
-                saved_items.append(
-                    {
-                        "asin": product["asin"],
-                        "quantity": int(row["quantity"]),
-                        "product": product,
-                    }
-                )
-
-        viewed_asins = {
-            str(row["asin"])
-            for row in discovery_rows
-            if row["kind"] == "product" and row["asin"] in PRODUCT_INDEX
-        }
-        product_views = [
-            product["asin"] for product in PRODUCTS if product["asin"] in viewed_asins
-        ]
-        return {
-            "session": self._session_payload(db, session_id),
-            "products": PRODUCTS,
-            "cart": {
-                "items": items,
-                "total_quantity": sum(item["quantity"] for item in items),
-                "subtotal": round(sum(item["subtotal"] for item in items), 2),
-            },
-            "saved_for_later": saved_items,
-            "discovery": {
-                "best_sellers_viewed": any(
-                    row["kind"] == "best_sellers" for row in discovery_rows
-                ),
-                "product_views": product_views,
-            },
-            "wishlist": self._wishlist_payload(db, session_id),
-            "recent_views": self._recent_views_payload(db, session_id),
-            "search_history": self._search_history_payload(db, session_id),
-        }
-
-    def _record_discovery(
-        self,
-        db: sqlite3.Connection,
-        session_id: str,
-        path: str,
-    ) -> None:
-        kind = "best_sellers" if path == BEST_SELLERS_PATH else "product"
-        asin = TARGET_ASIN if kind == "product" else None
-        now = utc_now()
-        db.execute(
-            """
-            INSERT INTO discovery
-                (session_id, path, kind, asin, viewed_at, viewed_at_epoch)
-            VALUES (?, ?, ?, ?, ?, ?)
-            ON CONFLICT(session_id, path) DO UPDATE SET
-                kind = excluded.kind,
-                asin = excluded.asin,
-                viewed_at = excluded.viewed_at,
-                viewed_at_epoch = excluded.viewed_at_epoch
-            """,
-            (session_id, path, kind, asin, now, time.time()),
-        )
-
-    def _record_search_history(
-        self,
-        db: sqlite3.Connection,
-        session_id: str,
-        query: str,
-    ) -> None:
-        normalized = query.casefold()
-        now = utc_now()
-        now_epoch = time.time()
-        db.execute(
-            """
-            INSERT INTO search_history
-                (session_id, query, normalized_query, searched_at, searched_at_epoch)
-            VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT(session_id, normalized_query) DO UPDATE SET
-                query = excluded.query,
-                searched_at = excluded.searched_at,
-                searched_at_epoch = excluded.searched_at_epoch
-            """,
-            (session_id, query, normalized, now, now_epoch),
-        )
-        db.execute(
-            """
-            DELETE FROM search_history
-            WHERE session_id = ? AND id NOT IN (
-                SELECT id FROM search_history
-                WHERE session_id = ?
-                ORDER BY searched_at_epoch DESC, id DESC
-                LIMIT ?
-            )
-            """,
-            (session_id, session_id, SEARCH_HISTORY_LIMIT),
-        )
-
-    def _record_recent_view(
-        self,
-        db: sqlite3.Connection,
-        session_id: str,
-        asin: str,
-        path: str,
-    ) -> None:
-        now = utc_now()
-        now_epoch = time.time()
-        db.execute(
-            """
-            INSERT INTO recent_views
-                (session_id, asin, path, viewed_at, viewed_at_epoch)
-            VALUES (?, ?, ?, ?, ?)
-            ON CONFLICT(session_id, asin) DO UPDATE SET
-                path = excluded.path,
-                viewed_at = excluded.viewed_at,
-                viewed_at_epoch = excluded.viewed_at_epoch
-            """,
-            (session_id, asin, path, now, now_epoch),
-        )
-        db.execute(
-            """
-            DELETE FROM recent_views
-            WHERE session_id = ? AND id NOT IN (
-                SELECT id FROM recent_views
-                WHERE session_id = ?
-                ORDER BY viewed_at_epoch DESC, id DESC
-                LIMIT ?
-            )
-            """,
-            (session_id, session_id, RECENT_VIEWS_LIMIT),
-        )
-
-    def _validate_origin(self) -> None:
-        origins = self.headers.get_all("Origin", [])
-        if not origins:
-            return
-        hosts = self.headers.get_all("Host", [])
-        if len(origins) != 1 or len(hosts) != 1:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.FORBIDDEN, "Origin is not allowed.", "bad_origin"
-            )
-        try:
-            origin = urlsplit(origins[0])
-            host = urlsplit(f"//{hosts[0]}")
-            origin_port = origin.port or 80
-            host_port = host.port or 80
-        except ValueError as error:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.FORBIDDEN,
-                "Origin is not allowed.",
-                "bad_origin",
-            ) from error
-        valid = (
-            origin.scheme.lower() == "http"
-            and bool(origin.hostname)
-            and bool(host.hostname)
-            and origin.username is None
-            and origin.password is None
-            and host.username is None
-            and host.password is None
-            and origin.path in {"", "/"}
-            and not origin.query
-            and not origin.fragment
-            and origin.hostname.casefold() == host.hostname.casefold()
-            and origin_port == host_port
-        )
-        if not valid:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.FORBIDDEN, "Origin is not allowed.", "bad_origin"
-            )
-
-    def _content_type(self, expected: str) -> None:
-        values = self.headers.get_all("Content-Type", [])
-        if len(values) != 1:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
-                f"Content-Type must be {expected}.",
-                "unsupported_content_type",
-            )
-        pieces = [piece.strip() for piece in values[0].split(";")]
-        if not pieces or pieces[0].lower() != expected:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
-                f"Content-Type must be {expected}.",
-                "unsupported_content_type",
-            )
-        for parameter in pieces[1:]:
-            if "=" not in parameter:
-                self.close_connection = True
-                raise RequestError(
-                    HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
-                    "Malformed Content-Type.",
-                    "unsupported_content_type",
-                )
-            name, value = parameter.split("=", 1)
-            if (
-                name.strip().lower() != "charset"
-                or value.strip(' \t"').lower() != "utf-8"
-            ):
-                self.close_connection = True
-                raise RequestError(
-                    HTTPStatus.UNSUPPORTED_MEDIA_TYPE,
-                    "Only UTF-8 request bodies are supported.",
-                    "unsupported_content_type",
-                )
-
-    def _read_body(self, *, required: bool) -> bytes:
-        if self.headers.get_all("Transfer-Encoding", []):
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Transfer-Encoding is not supported.",
-                "invalid_body",
-            )
-        lengths = self.headers.get_all("Content-Length", [])
-        if not lengths:
-            if required:
-                raise RequestError(
-                    HTTPStatus.LENGTH_REQUIRED,
-                    "Content-Length is required.",
-                    "invalid_body",
-                )
-            return b""
-        if len(lengths) != 1 or not re.fullmatch(r"[0-9]+", lengths[0].strip()):
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Invalid Content-Length.",
-                "invalid_body",
-            )
-        length = int(lengths[0])
-        if length > MAX_BODY_BYTES:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.REQUEST_ENTITY_TOO_LARGE,
-                f"Request body exceeds {MAX_BODY_BYTES} bytes.",
-                "body_too_large",
-            )
-        if required and length == 0:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST, "Request body is required.", "invalid_body"
-            )
-        body = self.rfile.read(length)
-        if len(body) != length:
-            self.close_connection = True
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST, "Incomplete request body.", "invalid_body"
-            )
-        return body
-
-    def _read_json(self) -> dict[str, Any]:
-        self._content_type("application/json")
-        body = self._read_body(required=True)
-
-        def object_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
             result: dict[str, Any] = {}
             for key, value in pairs:
                 if key in result:
-                    raise RequestError(
-                        HTTPStatus.BAD_REQUEST,
-                        f"Duplicate JSON field: {key}.",
-                        "duplicate_field",
-                    )
+                    raise ContractError(f"duplicate admin field: {key}")
                 result[key] = value
             return result
 
         def reject_constant(value: str) -> None:
-            raise ValueError(f"Invalid JSON constant: {value}")
+            raise ContractError(f"invalid JSON constant: {value}")
 
-        try:
-            payload = json.loads(
-                body.decode("utf-8", errors="strict"),
-                object_pairs_hook=object_pairs,
-                parse_constant=reject_constant,
-            )
-        except RequestError:
-            raise
-        except (UnicodeDecodeError, json.JSONDecodeError, ValueError) as error:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Malformed JSON body.",
-                "malformed_json",
-            ) from error
+        payload = json.loads(
+            raw.decode("utf-8"),
+            object_pairs_hook=unique_object,
+            parse_constant=reject_constant,
+        )
         if not isinstance(payload, dict):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "JSON body must be an object.",
-                "malformed_json",
-            )
+            raise ContractError("admin payload must be an object")
         return payload
 
-    def _read_form(self) -> dict[str, str]:
-        self._content_type("application/x-www-form-urlencoded")
-        body = self._read_body(required=True)
-        try:
-            encoded = body.decode("ascii", errors="strict")
-            if FORM_PERCENT_RE.search(encoded):
-                raise ValueError("invalid percent escape")
-            pairs = parse_qsl(
-                encoded,
-                keep_blank_values=True,
-                strict_parsing=True,
-                encoding="utf-8",
-                errors="strict",
-                max_num_fields=16,
-                separator="&",
-            )
-        except (UnicodeDecodeError, ValueError) as error:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Malformed form body.",
-                "malformed_form",
-            ) from error
-        fields: dict[str, str] = {}
-        for name, value in pairs:
-            if not name:
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    "Form field names may not be empty.",
-                    "malformed_form",
-                )
-            if name in fields:
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    f"Duplicate form field: {name}.",
-                    "duplicate_field",
-                )
-            fields[name] = value
-        return fields
-
-    def _require_empty_body(self) -> None:
-        if self._read_body(required=False):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "This endpoint does not accept a request body.",
-                "invalid_body",
-            )
-
-    def _single_query_parameter(
-        self,
-        parsed: Any,
-        name: str,
-        *,
-        max_length: int,
-    ) -> str:
-        try:
-            if FORM_PERCENT_RE.search(parsed.query):
-                raise ValueError("invalid percent escape")
-            pairs = parse_qsl(
-                parsed.query,
-                keep_blank_values=True,
-                strict_parsing=True,
-                encoding="utf-8",
-                errors="strict",
-                max_num_fields=4,
-                separator="&",
-            )
-        except (UnicodeDecodeError, ValueError) as error:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Malformed query string.",
-                "invalid_query",
-            ) from error
-        if len(pairs) != 1 or pairs[0][0] != name:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                f"Query string must contain exactly one {name} parameter.",
-                "invalid_query",
-            )
-        value = pairs[0][1]
-        if len(value) > max_length:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                f"Query parameter {name} must be at most {max_length} characters.",
-                "invalid_query",
-            )
-        return " ".join(value.split())
-
-    def _product_search_text(self, product: dict[str, Any]) -> str:
-        parts: list[str] = []
-        for key in ("title", "short_title", "brand", "department", "category"):
-            value = product.get(key)
-            if isinstance(value, str):
-                parts.append(value)
-        bullets = product.get("bullets")
-        if isinstance(bullets, list):
-            parts.extend(value for value in bullets if isinstance(value, str))
-        specs = product.get("specs")
-        if isinstance(specs, dict):
-            parts.extend(str(value) for value in specs.values())
-        return " ".join(parts).casefold()
-
-    def _suggestions(
-        self,
-        db: sqlite3.Connection,
-        session_id: str | None,
-        query: str,
-    ) -> list[str]:
-        folded = query.casefold()
-        terms = folded.split()
-        values: list[str] = []
-        seen: set[str] = set()
-
-        def add(value: str) -> None:
-            key = " ".join(value.split()).casefold()
-            if key and key not in seen and len(values) < SUGGESTION_LIMIT:
-                seen.add(key)
-                values.append(value)
-
-        if session_id is not None:
-            rows = db.execute(
-                """
-                SELECT query
-                FROM search_history
-                WHERE session_id = ?
-                ORDER BY searched_at_epoch DESC, id DESC
-                LIMIT ?
-                """,
-                (session_id, SEARCH_HISTORY_LIMIT),
-            ).fetchall()
-            for row in rows:
-                value = str(row["query"])
-                if not folded or folded in value.casefold():
-                    add(value)
-
-        for value in TRENDING_SEARCHES:
-            if not folded or folded in value.casefold():
-                add(value)
-
-        for product in ALL_PRODUCTS:
-            if not terms or all(
-                term in self._product_search_text(product) for term in terms
-            ):
-                add(str(product["title"]))
-        return values
-
-    def _generic_pdp_asin(self, path: str) -> str | None:
-        match = GENERIC_PDP_RE.fullmatch(path)
-        if not match or match.group(1) not in GENERIC_PRODUCT_INDEX:
-            return None
-        return match.group(1)
-
-    def _send_index(self, status: HTTPStatus) -> None:
-        try:
-            body = (STATIC_ROOT / "index.html").read_bytes()
-        except OSError:
-            self.send_bytes(
-                b"Application unavailable.\n",
-                "text/plain; charset=utf-8",
-                HTTPStatus.INTERNAL_SERVER_ERROR,
-            )
-            return
-        self.send_bytes(body, "text/html; charset=utf-8", status)
-
-    def _serve_static(self, path: str) -> None:
-        relative = path.removeprefix("/static/")
-        try:
-            candidate = (STATIC_ROOT / relative).resolve()
-            candidate.relative_to(STATIC_ROOT.resolve())
-            if not candidate.is_file():
-                raise FileNotFoundError
-            body = candidate.read_bytes()
-        except (OSError, ValueError):
-            self.send_bytes(
-                b"Not found.\n",
-                "text/plain; charset=utf-8",
-                HTTPStatus.NOT_FOUND,
-            )
-            return
-        mime = mimetypes.guess_type(candidate.name)[0] or "application/octet-stream"
-        self.send_bytes(body, mime)
-
-    def _handle_get(self, *, mutate: bool) -> None:
-        parsed, path = self._target()
-        if path == "/api/bootstrap":
-            if parsed.query:
-                raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-            with database(self.db_path, write=mutate) as db:
-                session_id = (
-                    self._ensure_session(db) if mutate else self._existing_session(db)
-                )
-                payload = self._bootstrap(db, session_id)
-            self.send_json(payload)
-            return
-        if path == "/api/suggestions":
-            query = self._single_query_parameter(parsed, "q", max_length=80)
-            with database(self.db_path, write=mutate) as db:
-                session_id = (
-                    self._ensure_session(db) if mutate else self._existing_session(db)
-                )
-                suggestions = self._suggestions(db, session_id, query)
-            self.send_json({"suggestions": suggestions})
-            return
-        if path == "/api/search":
-            try:
-                params = parse_qs(
-                    parsed.query,
-                    keep_blank_values=True,
-                    strict_parsing=True,
-                    max_num_fields=8,
-                    encoding="utf-8",
-                    errors="strict",
-                )
-            except (UnicodeDecodeError, ValueError) as error:
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    "Malformed search query.",
-                    "invalid_query",
-                ) from error
-            if set(params).difference({"k"}) or len(params.get("k", [])) > 1:
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    "Search accepts at most one k parameter.",
-                    "invalid_query",
-                )
-            raw_query = params.get("k", [""])[0]
-            query = " ".join(raw_query.split())[:160]
-            terms = [term for term in query.casefold().split() if term]
-            if terms:
-                products = [
-                    product
-                    for product in ALL_PRODUCTS
-                    if all(term in self._product_search_text(product) for term in terms)
-                ]
-            else:
-                products = PRODUCTS
-            if mutate:
-                with database(self.db_path, write=True) as db:
-                    session_id = self._ensure_session(db)
-                    if query:
-                        self._record_search_history(db, session_id, query)
-            self.send_json(
-                {"query": query, "products": products, "count": len(products)}
-            )
-            return
-        if path == "/api/list":
-            if parsed.query:
-                raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-            with database(self.db_path, write=mutate) as db:
-                session_id = (
-                    self._ensure_session(db) if mutate else self._existing_session(db)
-                )
-                items = self._wishlist_payload(db, session_id)
-            self.send_json({"items": items, "count": len(items)})
-            return
-        if path.startswith("/api/"):
-            self.send_json({"error": "Not found."}, HTTPStatus.NOT_FOUND)
-            return
-        if path.startswith("/static/"):
-            self._serve_static(path)
-            return
-        if path in {BEST_SELLERS_PATH, PRODUCT_PATH, MOBILE_PRODUCT_PATH} and mutate:
-            with database(self.db_path, write=True) as db:
-                session_id = self._ensure_session(db)
-                self._record_discovery(db, session_id, path)
-        generic_asin = self._generic_pdp_asin(path)
-        if generic_asin is not None and mutate:
-            with database(self.db_path, write=True) as db:
-                session_id = self._ensure_session(db)
-                self._record_recent_view(db, session_id, generic_asin, path)
-        if (
-            path in APP_ROUTES
-            or path in COMPUTERS_CATEGORY_PATHS
-            or generic_asin is not None
-        ):
-            self._send_index(HTTPStatus.OK)
-        else:
-            self._send_index(HTTPStatus.NOT_FOUND)
-
-    def _terminal_add(self, path: str) -> None:
-        self._validate_origin()
-        fields = self._read_form()
-        allowed = {
-            "ASIN",
-            "quantity",
-            "submit.add-to-cart",
-            "offerListingID",
-            "session-id",
-        }
-        unknown = set(fields).difference(allowed)
-        if unknown:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                f"Unknown form field: {sorted(unknown)[0]}.",
-                "unknown_field",
-            )
-        if "ASIN" not in fields or "quantity" not in fields:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "ASIN and quantity are required.",
-                "missing_field",
-            )
-        asin = fields["ASIN"]
-        quantity_text = fields["quantity"]
-        if not ASIN_RE.fullmatch(asin) or asin not in TASK_PRODUCT_INDEX:
-            raise RequestError(HTTPStatus.NOT_FOUND, "Unknown ASIN.", "unknown_asin")
-        if not re.fullmatch(r"[1-3]", quantity_text):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Quantity must be an integer from 1 to 3.",
-                "invalid_quantity",
-            )
-        quantity = int(quantity_text)
-        status = HTTPStatus.SEE_OTHER
-        outcome = "terminal_added" if quantity == 2 else "cart_added_non_task_quantity"
-        now_epoch = time.time()
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            if asin != TARGET_ASIN:
-                status = HTTPStatus.FORBIDDEN
-                outcome = "undiscovered_product"
-            else:
-                rows = db.execute(
-                    """
-                    SELECT path, viewed_at_epoch
-                    FROM discovery
-                    WHERE session_id = ? AND path IN (?, ?, ?)
-                    """,
-                    (
-                        session_id,
-                        BEST_SELLERS_PATH,
-                        PRODUCT_PATH,
-                        MOBILE_PRODUCT_PATH,
-                    ),
-                ).fetchall()
-                viewed = {
-                    str(row["path"]): float(row["viewed_at_epoch"]) for row in rows
-                }
-                product_view_times = [
-                    viewed[product_path]
-                    for product_path in (PRODUCT_PATH, MOBILE_PRODUCT_PATH)
-                    if product_path in viewed
-                ]
-                if BEST_SELLERS_PATH not in viewed or not product_view_times:
-                    status = HTTPStatus.FORBIDDEN
-                    outcome = "discovery_required"
-                elif any(
-                    timestamp < now_epoch - DISCOVERY_TTL_SECONDS
-                    or timestamp > now_epoch + 1
-                    for timestamp in (
-                        viewed[BEST_SELLERS_PATH],
-                        max(product_view_times),
-                    )
-                ):
-                    status = HTTPStatus.FORBIDDEN
-                    outcome = "discovery_stale"
-                elif max(product_view_times) < viewed[BEST_SELLERS_PATH]:
-                    status = HTTPStatus.FORBIDDEN
-                    outcome = "discovery_order_invalid"
-
-            if status == HTTPStatus.SEE_OTHER and quantity == 2:
-                duplicate = db.execute(
-                    """
-                    SELECT 1 FROM request_journal
-                    WHERE session_id = ? AND outcome = 'terminal_added'
-                    LIMIT 1
-                    """,
-                    (session_id,),
-                ).fetchone()
-                if duplicate is not None:
-                    status = HTTPStatus.CONFLICT
-                    outcome = "duplicate_terminal"
-
-            if status == HTTPStatus.SEE_OTHER:
-                now = utc_now()
-                db.execute(
-                    """
-                    INSERT INTO cart (session_id, asin, quantity, updated_at)
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT(session_id, asin) DO UPDATE SET
-                        quantity = excluded.quantity,
-                        updated_at = excluded.updated_at
-                    """,
-                    (session_id, asin, quantity, now),
-                )
-                db.execute(
-                    "DELETE FROM saved WHERE session_id = ? AND asin = ?",
-                    (session_id, asin),
-                )
-            add_journal(
-                db,
-                session_id,
-                "POST",
-                path,
-                int(status),
-                outcome,
-                asin,
-                quantity,
-            )
-
-        if status == HTTPStatus.SEE_OTHER:
-            self.send_redirect(CART_PATH)
-        else:
-            self.send_request_error(
-                RequestError(
-                    status,
-                    (
-                        "This task completion was already recorded."
-                        if outcome == "duplicate_terminal"
-                        else "View Best Sellers, then the current target product, before adding it."
-                    ),
-                    outcome,
-                )
-            )
-
-    def _catalog_asin(self, value: Any) -> str:
-        if not isinstance(value, str) or not GENERIC_ASIN_RE.fullmatch(value):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "ASIN must be an uppercase catalog identifier.",
-                "invalid_asin",
-            )
-        if value not in PRODUCT_INDEX:
-            raise RequestError(HTTPStatus.NOT_FOUND, "Unknown ASIN.", "unknown_asin")
-        return value
-
-    def _generic_cart_add(self, path: str) -> None:
-        self._validate_origin()
-        payload = self._read_json()
-        if set(payload) != {"asin", "quantity"}:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "JSON body must contain exactly asin and quantity.",
-                "invalid_cart_add",
-            )
-        asin = self._catalog_asin(payload.get("asin"))
-        quantity = payload.get("quantity")
-        if (
-            isinstance(quantity, bool)
-            or not isinstance(quantity, int)
-            or quantity not in {1, 2, 3}
-        ):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Quantity must be an integer from 1 to 3.",
-                "invalid_quantity",
-            )
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            now = utc_now()
-            db.execute(
-                """
-                INSERT INTO cart (session_id, asin, quantity, updated_at)
-                VALUES (?, ?, ?, ?)
-                ON CONFLICT(session_id, asin) DO UPDATE SET
-                    quantity = excluded.quantity,
-                    updated_at = excluded.updated_at
-                """,
-                (session_id, asin, quantity, now),
-            )
-            db.execute(
-                "DELETE FROM saved WHERE session_id = ? AND asin = ?",
-                (session_id, asin),
-            )
-            add_journal(
-                db,
-                session_id,
-                "POST",
-                path,
-                200,
-                "generic_cart_upserted",
-                asin,
-                quantity,
-            )
-        product = PRODUCT_INDEX[asin]
-        self.send_json(
-            {
-                "status": "ok",
-                "outcome": "generic_cart_upserted",
-                "item": {
-                    "asin": asin,
-                    "quantity": quantity,
-                    "subtotal": round(float(product["price"]) * quantity, 2),
-                    "product": product,
-                },
-            }
-        )
-
-    def _wishlist_add(self, path: str) -> None:
-        self._validate_origin()
-        payload = self._read_json()
-        if set(payload) != {"asin"}:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "JSON body must contain exactly one asin field.",
-                "invalid_wishlist",
-            )
-        asin = self._catalog_asin(payload.get("asin"))
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            now = utc_now()
-            cursor = db.execute(
-                """
-                INSERT OR IGNORE INTO wishlist
-                    (session_id, asin, added_at, added_at_epoch)
-                VALUES (?, ?, ?, ?)
-                """,
-                (session_id, asin, now, time.time()),
-            )
-            outcome = "wishlist_added" if cursor.rowcount else "wishlist_unchanged"
-            add_journal(db, session_id, "POST", path, 200, outcome, asin)
-        self.send_json({"status": "ok", "outcome": outcome, "asin": asin})
-
-    def _wishlist_delete(self, path: str, asin: str) -> None:
-        self._validate_origin()
-        self._require_empty_body()
-        asin = self._catalog_asin(asin)
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            cursor = db.execute(
-                "DELETE FROM wishlist WHERE session_id = ? AND asin = ?",
-                (session_id, asin),
-            )
-            outcome = "wishlist_deleted" if cursor.rowcount else "wishlist_absent"
-            add_journal(db, session_id, "DELETE", path, 200, outcome, asin)
-        self.send_json({"status": "ok", "outcome": outcome, "asin": asin})
-
-    def _session_preferences(self, path: str) -> None:
-        self._validate_origin()
-        payload = self._read_json()
-        if set(payload) != {"kind"} or not isinstance(payload.get("kind"), str):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Preference body must contain exactly one string kind.",
-                "invalid_preference",
-            )
-        kind = payload["kind"]
-        if kind not in {"delivery", "language"}:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Preference kind must be delivery or language.",
-                "invalid_preference",
-            )
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            db.execute(
-                """
-                INSERT INTO boundaries (session_id, kind, path, created_at)
-                VALUES (?, ?, ?, ?)
-                """,
-                (session_id, kind, path, utc_now()),
-            )
-            add_journal(
-                db,
-                session_id,
-                "POST",
-                path,
-                200,
-                "preference_boundary_no_effect",
-            )
-            session = self._session_payload(db, session_id)
-        value = session["delivery_label"] if kind == "delivery" else session["language"]
-        self.send_json(
-            {
-                "status": "local-no-effect",
-                "kind": kind,
-                "value": value,
-                "session": session,
-            }
-        )
-
-    def _cart_save_or_move(self, path: str, asin: str, *, move: bool) -> None:
-        self._validate_origin()
-        self._require_empty_body()
-        if asin not in PRODUCT_INDEX:
-            raise RequestError(HTTPStatus.NOT_FOUND, "Unknown ASIN.", "unknown_asin")
-        status = HTTPStatus.OK
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            source = "saved" if move else "cart"
-            target = "cart" if move else "saved"
-            row = db.execute(
-                f"SELECT quantity FROM {source} WHERE session_id = ? AND asin = ?",
-                (session_id, asin),
-            ).fetchone()
-            target_row = db.execute(
-                f"SELECT quantity FROM {target} WHERE session_id = ? AND asin = ?",
-                (session_id, asin),
-            ).fetchone()
-            if row is None and target_row is None:
-                status = HTTPStatus.CONFLICT
-                outcome = "saved_item_not_found" if move else "cart_item_not_found"
-            elif row is None:
-                outcome = "already_in_cart" if move else "already_saved"
-            else:
-                quantity = int(row["quantity"])
-                timestamp_column = "updated_at" if move else "saved_at"
-                db.execute(
-                    f"""
-                    INSERT INTO {target} (session_id, asin, quantity, {timestamp_column})
-                    VALUES (?, ?, ?, ?)
-                    ON CONFLICT(session_id, asin) DO UPDATE SET
-                        quantity = excluded.quantity,
-                        {timestamp_column} = excluded.{timestamp_column}
-                    """,
-                    (session_id, asin, quantity, utc_now()),
-                )
-                db.execute(
-                    f"DELETE FROM {source} WHERE session_id = ? AND asin = ?",
-                    (session_id, asin),
-                )
-                outcome = "moved_to_cart" if move else "saved_for_later"
-            add_journal(db, session_id, "POST", path, int(status), outcome, asin)
-        if status == HTTPStatus.OK:
-            self.send_json({"status": "ok", "outcome": outcome})
-        else:
-            self.send_request_error(
-                RequestError(status, "Item is not available for this action.", outcome)
-            )
-
-    def _boundary(self, path: str) -> None:
-        self._validate_origin()
-        payload = self._read_json()
-        if set(payload) != {"kind"} or not isinstance(payload.get("kind"), str):
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Boundary body must contain exactly one string kind.",
-                "invalid_boundary",
-            )
-        kind = payload["kind"]
-        if kind not in BOUNDARY_KINDS:
-            raise RequestError(
-                HTTPStatus.BAD_REQUEST,
-                "Unknown boundary kind.",
-                "invalid_boundary",
-            )
-        with database(self.db_path, write=True) as db:
-            session_id = self._ensure_session(db)
-            now = utc_now()
-            db.execute(
-                "INSERT INTO boundaries (session_id, kind, path, created_at) VALUES (?, ?, ?, ?)",
-                (session_id, kind, path, now),
-            )
-            add_journal(db, session_id, "POST", path, 200, "boundary_no_effect")
-        self.send_json({"status": "local-no-effect", "kind": kind})
-
     def do_HEAD(self) -> None:
-        try:
-            self._handle_get(mutate=False)
-        except RequestError as error:
-            self.send_request_error(error)
-        except sqlite3.Error:
-            self.send_storage_error()
+        self.do_GET()
 
     def do_GET(self) -> None:
-        try:
-            self._handle_get(mutate=True)
-        except RequestError as error:
-            self.send_request_error(error)
-        except sqlite3.Error:
-            self.send_storage_error()
+        if not self._authorized():
+            self._not_found()
+            return
+        path = urlsplit(self.path).path
+        if path == "/__bench/health":
+            self._send_json(
+                200,
+                {
+                    "ok": True,
+                    "schema": "amazon-clone.admin.v1",
+                    "snapshot_id": self.store.meta().get("snapshot_id"),
+                    "mail_transport": self.smtp_summary,
+                    "mail_delivery_status": self.store.mail_delivery_health(),
+                },
+            )
+        elif path == "/__bench/state":
+            self._send_json(200, self.store.normalized_state())
+        elif path == "/__bench/journal":
+            self._send_json(200, {"schema": "amazon-clone.journal.v1", "requests": self.store.journal()})
+        elif path == "/__bench/auth/registration-outbox":
+            self._send_json(
+                200,
+                {
+                    "schema": "amazon-clone.registration-outbox.v1",
+                    "delivery": self.smtp_summary["mode"],
+                    "messages": self.store.registration_outbox(),
+                },
+            )
+        elif path == "/__bench/auth/password-reset-outbox":
+            self._send_json(
+                200,
+                {
+                    "schema": "amazon-clone.password-reset-outbox.v1",
+                    "delivery": self.smtp_summary["mode"],
+                    "messages": self.store.password_reset_outbox(),
+                },
+            )
+        elif path == "/__bench/mail/outbox":
+            self._send_json(
+                200,
+                {
+                    "schema": "amazon-clone.mail-outbox.v1",
+                    "delivery": self.smtp_summary["mode"],
+                    "messages": self.store.mail_delivery_outbox(),
+                },
+            )
+        else:
+            self._not_found()
 
     def do_POST(self) -> None:
+        if not self._authorized():
+            self._not_found()
+            return
+        path = urlsplit(self.path).path
         try:
-            parsed, path = self._target()
-            if parsed.query:
-                raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-            if path in TERMINAL_PATHS:
-                self._terminal_add(path)
-                return
-            if path == "/api/cart/add":
-                self._generic_cart_add(path)
-                return
-            if path == "/api/list":
-                self._wishlist_add(path)
-                return
-            if path == "/api/session/preferences":
-                self._session_preferences(path)
-                return
-            if path == "/api/boundary":
-                self._boundary(path)
-                return
-            match = re.fullmatch(
-                r"/api/cart/([A-Z0-9]{10,11})/(save-for-later|move-to-cart)",
-                path,
-            )
-            if match:
-                self._cart_save_or_move(
-                    path,
-                    match.group(1),
-                    move=match.group(2) == "move-to-cart",
+            payload = self._payload()
+            if path == "/__bench/reset":
+                unknown = set(payload) - {"fixture"}
+                if unknown:
+                    raise ContractError(f"unsupported reset fields: {sorted(unknown)}")
+                state = self.store.reset(payload.get("fixture", "task-frozen-900136-v1.json"))
+                self._send_json(200, state)
+            elif path == "/__bench/clock/advance":
+                unknown = set(payload) - {"seconds"}
+                if unknown:
+                    raise ContractError(f"unsupported clock fields: {sorted(unknown)}")
+                now = self.store.advance_clock(int(payload.get("seconds", 0)))
+                self._send_json(200, {"controlled_now": now})
+            elif path == "/__bench/orders/advance":
+                if set(payload) != {"orderID", "targetStatus"}:
+                    raise ContractError(
+                        "order advancement requires exactly orderID and targetStatus"
+                    )
+                order_id = payload["orderID"]
+                if (
+                    isinstance(order_id, bool)
+                    or not isinstance(order_id, (int, str))
+                    or re.fullmatch(r"[1-9][0-9]{0,18}", str(order_id)) is None
+                    or not isinstance(payload["targetStatus"], str)
+                ):
+                    raise ContractError("invalid order advancement payload")
+                order = self.store.advance_order_shipment(
+                    order_id, payload["targetStatus"]
                 )
-                return
-            raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-        except RequestError as error:
-            self.send_request_error(error)
-        except sqlite3.Error:
-            self.send_storage_error()
-
-    def do_PATCH(self) -> None:
-        try:
-            parsed, path = self._target()
-            match = re.fullmatch(r"/api/cart/([A-Z0-9]{10,11})", path)
-            if parsed.query or not match:
-                raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-            self._validate_origin()
-            payload = self._read_json()
-            if set(payload) != {"quantity"}:
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    "JSON body must contain exactly one quantity field.",
-                    "invalid_quantity",
+                self._send_json(
+                    200,
+                    {
+                        "schema": "amazon-clone.order-lifecycle.v1",
+                        "order": order,
+                    },
                 )
-            quantity = payload["quantity"]
-            if (
-                isinstance(quantity, bool)
-                or not isinstance(quantity, int)
-                or quantity not in {1, 2, 3}
-            ):
-                raise RequestError(
-                    HTTPStatus.BAD_REQUEST,
-                    "Quantity must be an integer from 1 to 3.",
-                    "invalid_quantity",
+            elif path == "/__bench/returns/advance":
+                if set(payload) != {"returnID", "targetStatus"}:
+                    raise ContractError(
+                        "return advancement requires exactly returnID and targetStatus"
+                    )
+                return_id = payload["returnID"]
+                if (
+                    isinstance(return_id, bool)
+                    or not isinstance(return_id, (int, str))
+                    or re.fullmatch(r"[1-9][0-9]{0,18}", str(return_id)) is None
+                    or not isinstance(payload["targetStatus"], str)
+                ):
+                    raise ContractError("invalid return advancement payload")
+                order = self.store.advance_return_request(
+                    return_id, payload["targetStatus"]
                 )
-            asin = match.group(1)
-            if asin not in PRODUCT_INDEX:
-                raise RequestError(
-                    HTTPStatus.NOT_FOUND, "Unknown ASIN.", "unknown_asin"
+                self._send_json(
+                    200,
+                    {
+                        "schema": "amazon-clone.return-lifecycle.v1",
+                        "order": order,
+                    },
                 )
-            status = HTTPStatus.OK
-            with database(self.db_path, write=True) as db:
-                session_id = self._ensure_session(db)
-                cursor = db.execute(
-                    """
-                    UPDATE cart SET quantity = ?, updated_at = ?
-                    WHERE session_id = ? AND asin = ?
-                    """,
-                    (quantity, utc_now(), session_id, asin),
-                )
-                outcome = "cart_quantity_updated"
-                if cursor.rowcount != 1:
-                    status = HTTPStatus.NOT_FOUND
-                    outcome = "cart_item_not_found"
-                add_journal(
-                    db,
-                    session_id,
-                    "PATCH",
-                    path,
-                    int(status),
-                    outcome,
-                    asin,
-                    quantity,
-                )
-            if status == HTTPStatus.OK:
-                self.send_json({"status": "ok", "outcome": outcome})
             else:
-                self.send_request_error(
-                    RequestError(status, "Cart item not found.", outcome)
-                )
-        except RequestError as error:
-            self.send_request_error(error)
-        except sqlite3.Error:
-            self.send_storage_error()
-
-    def do_DELETE(self) -> None:
-        try:
-            parsed, path = self._target()
-            list_match = re.fullmatch(r"/api/list/([A-Z0-9]{10,11})", path)
-            if list_match and not parsed.query:
-                self._wishlist_delete(path, list_match.group(1))
-                return
-            match = re.fullmatch(r"/api/cart/([A-Z0-9]{10,11})", path)
-            if parsed.query or not match:
-                raise RequestError(HTTPStatus.NOT_FOUND, "Not found.", "not_found")
-            self._validate_origin()
-            self._require_empty_body()
-            asin = match.group(1)
-            if asin not in PRODUCT_INDEX:
-                raise RequestError(
-                    HTTPStatus.NOT_FOUND, "Unknown ASIN.", "unknown_asin"
-                )
-            with database(self.db_path, write=True) as db:
-                session_id = self._ensure_session(db)
-                cursor = db.execute(
-                    "DELETE FROM cart WHERE session_id = ? AND asin = ?",
-                    (session_id, asin),
-                )
-                outcome = "cart_item_deleted" if cursor.rowcount else "cart_item_absent"
-                add_journal(db, session_id, "DELETE", path, 200, outcome, asin)
-            self.send_json({"status": "ok", "outcome": outcome})
-        except RequestError as error:
-            self.send_request_error(error)
-        except sqlite3.Error:
-            self.send_storage_error()
-
-    def _method_not_allowed(self) -> None:
-        self.send_json(
-            {"error": "Method not allowed.", "outcome": "method_not_allowed"},
-            HTTPStatus.METHOD_NOT_ALLOWED,
-            {"Allow": "GET, HEAD, POST, PATCH, DELETE"},
-        )
-
-    do_OPTIONS = _method_not_allowed
-    do_PUT = _method_not_allowed
-    do_TRACE = _method_not_allowed
-    do_CONNECT = _method_not_allowed
-
-    def log_message(self, format: str, *args: Any) -> None:
-        print(f"{self.client_address[0]} - {format % args}")
+                self._not_found()
+        except (OrderNotFound, ReturnNotFound):
+            self._not_found()
+        except OrderStateConflict as exc:
+            self._send_json(
+                409, {"error": "state-conflict", "detail": str(exc)}
+            )
+        except (ContractError, ValueError, json.JSONDecodeError) as exc:
+            self._send_json(400, {"error": "invalid-request", "detail": str(exc)})
 
 
-def port_number(value: str) -> int:
+def resolve_admin_token(admin_host: str, configured_token: str | None) -> str:
+    normalized_host = admin_host.strip().strip("[]")
     try:
-        port = int(value)
-    except ValueError as error:
-        raise argparse.ArgumentTypeError("port must be an integer") from error
-    if not 1 <= port <= 65535:
-        raise argparse.ArgumentTypeError("port must be between 1 and 65535")
-    return port
+        is_loopback = ipaddress.ip_address(normalized_host).is_loopback
+    except ValueError:
+        is_loopback = normalized_host.casefold() == "localhost"
+    token = (configured_token or "").strip()
+    if is_loopback:
+        return token or "local-amazon-bench"
+    if (
+        len(token) < 32
+        or token == "local-amazon-bench"
+        or any(ord(character) < 33 or ord(character) > 126 for character in token)
+    ):
+        raise ValueError(
+            "a non-loopback admin host requires an explicit strong "
+            "AMAZON_ADMIN_TOKEN or --admin-token (at least 32 visible characters)"
+        )
+    return token
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run the clean local Amazon benchmark clone")
+    parser.add_argument("--host", default=os.environ.get("AMAZON_HOST", "127.0.0.1"))
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8153")))
+    parser.add_argument("--admin-host", default=os.environ.get("AMAZON_ADMIN_HOST", "127.0.0.1"))
+    parser.add_argument("--admin-port", type=int, default=int(os.environ.get("AMAZON_ADMIN_PORT", "8154")))
+    parser.add_argument("--admin-token", default=os.environ.get("AMAZON_ADMIN_TOKEN"))
+    parser.add_argument("--db", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--fixture", default="task-frozen-900136-v1.json")
+    args = parser.parse_args()
+    try:
+        args.admin_token = resolve_admin_token(args.admin_host, args.admin_token)
+    except ValueError as exc:
+        parser.error(str(exc))
+    return args
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the local Amazon task backend.")
-    parser.add_argument("--host", default="127.0.0.1")
-    parser.add_argument("--port", type=port_number, default=8153)
-    parser.add_argument("--db", type=Path, default=DEFAULT_DB)
-    args = parser.parse_args()
-    if args.host not in ALLOWED_BIND_HOSTS:
-        parser.error("host must be 127.0.0.1, localhost, or 0.0.0.0")
+    args = parse_args()
+    smtp_config = load_smtp_config()
+    local_inbox_url = load_local_inbox_url(smtp_config)
+    store = Store(args.db.resolve(), SCHEMA_PATH, FIXTURE_ROOT)
+    store.ensure_seeded(args.fixture)
+    wishlist.ensure_wishlist_schema(store)
 
-    db_path = args.db.expanduser().resolve()
-    try:
-        import uvicorn
+    PublicHandler.store = store
+    PublicHandler.smtp_config = smtp_config
+    PublicHandler.local_inbox_url = local_inbox_url
+    AdminHandler.store = store
+    AdminHandler.admin_token = args.admin_token
+    AdminHandler.smtp_summary = smtp_public_summary(smtp_config)
 
-        from fastapi_app import create_app
-    except ImportError as error:
-        parser.error(
-            "FastAPI site dependencies are required; install the project 'sites' extra"
-        )
-        raise AssertionError("unreachable") from error
+    released_mail_claims = 0
+    replayed_mail_jobs = 0
+    expired_mail_jobs = 0
+    exhausted_mail_jobs = 0
+    localized_mail_jobs = 0
+    if smtp_config is not None:
+        expired_mail_jobs = store.expire_stale_pending_auth_mail()
+        exhausted_mail_jobs = store.fail_exhausted_pending_mail()
+        released_mail_claims = store.recover_pending_mail_claims()
+        for delivery in store.pending_mail_deliveries():
+            if dispatch_mail_delivery(store, smtp_config, delivery):
+                replayed_mail_jobs += 1
+    else:
+        localized_mail_jobs = store.reconcile_mail_for_local_only()
 
-    init_db(db_path)
-    app = create_app(db_path, legacy=__import__(__name__))
+    public_server = ReusableThreadingHTTPServer((args.host, args.port), PublicHandler)
+    admin_server = ReusableThreadingHTTPServer((args.admin_host, args.admin_port), AdminHandler)
+    admin_thread = threading.Thread(target=admin_server.serve_forever, name="amazon-clone-admin", daemon=True)
+    admin_thread.start()
+
+    stopping = threading.Event()
+
+    def stop_servers(*_: Any) -> None:
+        if stopping.is_set():
+            return
+        stopping.set()
+        threading.Thread(target=public_server.shutdown, daemon=True).start()
+        threading.Thread(target=admin_server.shutdown, daemon=True).start()
+
+    if threading.current_thread() is threading.main_thread():
+        signal.signal(signal.SIGINT, stop_servers)
+        if hasattr(signal, "SIGTERM"):
+            signal.signal(signal.SIGTERM, stop_servers)
+
     print(
-        f"Amazon FastAPI SSR evaluation listening on http://{args.host}:{args.port}",
+        json.dumps(
+            {
+                "event": "amazon-clone-started",
+                "public": f"http://{args.host}:{args.port}",
+                "admin": f"http://{args.admin_host}:{args.admin_port}",
+                "db": str(args.db.resolve()),
+                "snapshot": store.meta().get("snapshot_id"),
+                "mail_transport": smtp_public_summary(smtp_config),
+                "mail_startup_replay": {
+                    "expired_auth_jobs": expired_mail_jobs,
+                    "exhausted_jobs": exhausted_mail_jobs,
+                    "released_claims": released_mail_claims,
+                    "dispatched": replayed_mail_jobs,
+                    "localized_jobs": localized_mail_jobs,
+                },
+            },
+            ensure_ascii=False,
+        ),
         flush=True,
     )
-    uvicorn.run(
-        app,
-        host=args.host,
-        port=args.port,
-        log_level="warning",
-        access_log=False,
-        server_header=False,
-        date_header=False,
-    )
+    try:
+        public_server.serve_forever()
+    finally:
+        public_server.server_close()
+        admin_server.shutdown()
+        admin_server.server_close()
     return 0
 
 

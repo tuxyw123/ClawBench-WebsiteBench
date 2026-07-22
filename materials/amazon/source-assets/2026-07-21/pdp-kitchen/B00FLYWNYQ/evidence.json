@@ -1,0 +1,94 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B00FLYWNYQ",
+  "market_context": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "identity": {
+    "asin": "B00FLYWNYQ",
+    "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker, Slow Cooker, Rice, Steamer, Sauté, Yogurt Maker, Warmer & Sterilizer, Includes App With Over 800 Recipes, Stainless Steel, 6 Quart",
+    "byline": "Visit the Instant Pot Store"
+  },
+  "taxonomy": {
+    "breadcrumbs": ["Home & Kitchen", "Kitchen & Dining", "Small Appliances"]
+  },
+  "social_proof": {
+    "rating": "4.7",
+    "review_count": 173211,
+    "bought": "10K+ bought in past month"
+  },
+  "offers": {
+    "selection_axis": "Size",
+    "selected_size": "6 Quarts",
+    "source_reported_size_option_count": 3,
+    "size": [
+      {
+        "value": "3 Quarts",
+        "price_text": "$89.99",
+        "price_minor": 8999,
+        "availability": "In Stock"
+      },
+      {
+        "value": "6 Quarts",
+        "price_text": "$103.96",
+        "price_minor": 10396,
+        "availability": "In Stock"
+      }
+    ],
+    "unrevealed_no_featured_offer_count": 1,
+    "unrevealed_option_labels_captured": false,
+    "selected_offer": {
+      "price_text": "$103.96",
+      "price_minor": 10396,
+      "list_price_text": "$109.99",
+      "list_price_minor": 10999
+    }
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $35.82 Shipping to Singapore",
+    "delivery_copy": "$35.82 delivery Monday, July 27",
+    "availability": "In Stock",
+    "ships_from": "Amazon.com",
+    "sold_by": "Amazon.com",
+    "returns": "30-day refund / replacement"
+  },
+  "specs": [
+    ["Brand", "Instant Pot"],
+    ["Capacity", "5.68 liters"],
+    ["Material", "Stainless steel"],
+    ["Finish Type", "Stainless Steel"],
+    ["Product Dimensions", "12.2\"D x 13.38\"W x 12.48\"H"],
+    ["Special Feature", "Programmable"],
+    ["Wattage", "1000 watts"],
+    ["Item Weight", "14.6 pounds"],
+    ["Controller Type", "Touch"],
+    ["Operation Mode", "Automatic"]
+  ],
+  "about": [
+    "7 cooking functions.",
+    "13 one-touch Smart Programs.",
+    "Safe Easy-Release steam switch.",
+    "Cooks up to 70% faster.",
+    "18/8 stainless steel tri-ply inner pot.",
+    "6-quart capacity serves up to 6.",
+    "Dishwasher-safe lid and inner pot."
+  ],
+  "review_snapshot": {
+    "histogram_captured": false,
+    "individual_review_cards_captured": false
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg",
+      "local_path": "pdp-kitchen/B00FLYWNYQ/main.jpg",
+      "bytes": 120645,
+      "sha256": "a9ae0462df70643bfe6d503a46a466c1e480ba3cd37bccac3e5260afc4cd3475",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1433, "height": 1500}
+    }
+  }
+}

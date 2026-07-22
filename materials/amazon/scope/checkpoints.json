@@ -1,0 +1,59 @@
+{
+  "schema_version": "offline-clone.checkpoints.v1",
+  "status": "frozen",
+  "viewports": {
+    "desktop": {"width": 1365, "height": 900},
+    "mobile": {"width": 390, "height": 844},
+    "tablet": {"width": 768, "height": 1024}
+  },
+  "checkpoints": [
+    {
+      "id": "home.desktop.loaded",
+      "route_id": "home",
+      "state": "loaded-with-27-modules",
+      "viewport": "desktop",
+      "priority": "p0",
+      "evidence_kind": "current-direct",
+      "verification_kind": "fixture-validated",
+      "visual_contract": {
+        "source_artifact_path": "source-assets/2026-07-22/search-commerce/visual-goldens/desktop-home-1365x900.png",
+        "source_artifact_sha256": "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110",
+        "viewport": {"width": 1350, "height": 890},
+        "comparison_region": {"x": 0, "y": 0, "width": 1350, "height": 890},
+        "metric": "pixel-mae-similarity-v1",
+        "threshold": 0.8
+      }
+    },
+    {"id": "home.mobile.scroll", "route_id": "home", "state": "native-scroll-no-page-resize", "viewport": "mobile", "priority": "p1", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {
+      "id": "search.desktop.filtered",
+      "route_id": "search",
+      "state": "results-left-filters-sort",
+      "viewport": "desktop",
+      "priority": "p0",
+      "evidence_kind": "current-direct",
+      "verification_kind": "local-tested",
+      "visual_contract": {
+        "source_artifact_path": "source-assets/2026-07-22/search-commerce/visual-goldens/desktop-search-portable-ssd-1365x900.png",
+        "source_artifact_sha256": "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd",
+        "viewport": {"width": 1350, "height": 890},
+        "comparison_region": {"x": 0, "y": 0, "width": 1350, "height": 890},
+        "metric": "pixel-mae-similarity-v1",
+        "threshold": 0.85
+      }
+    },
+    {"id": "search.tablet.results", "route_id": "search", "state": "results-and-no-results", "viewport": "tablet", "priority": "p1", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "pdp.desktop.valid.variant", "route_id": "pdp", "state": "complete-quote-updates-buy-box", "viewport": "desktop", "priority": "p0", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "pdp.mobile.dependency.disabled", "route_id": "pdp", "state": "unreachable-option-disabled", "viewport": "mobile", "priority": "p0", "evidence_kind": "inferred", "verification_kind": "local-tested"},
+    {"id": "pdp.desktop.sparse.boundary", "route_id": "pdp", "state": "browse-only-without-invented-offer", "viewport": "desktop", "priority": "p1", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "cart.desktop.sibling.variants", "route_id": "cart", "state": "same-asin-distinct-selection-lines", "viewport": "desktop", "priority": "p0", "evidence_kind": "inferred", "verification_kind": "local-tested"},
+    {"id": "auth.desktop.hover.register.verify", "route_id": "auth", "state": "hover-unknown-email-register-verify", "viewport": "desktop", "priority": "p0", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "checkout.desktop.declined.retry", "route_id": "checkout", "state": "declined-card-then-approved-bank", "viewport": "desktop", "priority": "p0", "evidence_kind": "inferred", "verification_kind": "local-tested"},
+    {"id": "order.desktop.delivery.return", "route_id": "orders", "state": "placed-to-delivered-to-returned", "viewport": "desktop", "priority": "p0", "evidence_kind": "inferred", "verification_kind": "local-tested"},
+    {"id": "deals.desktop.filters", "route_id": "deals", "state": "populated-grid-and-left-filters", "viewport": "desktop", "priority": "p1", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "reviews.desktop.source.local", "route_id": "reviews", "state": "source-aggregate-separated-from-local", "viewport": "desktop", "priority": "p1", "evidence_kind": "current-partial", "verification_kind": "local-tested"},
+    {"id": "compare.desktop.sibling.variants", "route_id": "compare", "state": "same-family-complete-selection-columns", "viewport": "desktop", "priority": "p1", "evidence_kind": "inferred", "verification_kind": "local-tested"},
+    {"id": "navigation.desktop.local.destinations", "route_id": "shopping-adjacent", "state": "header-gift-cards-sell-registry-help-live", "viewport": "desktop", "priority": "p1", "evidence_kind": "inferred", "verification_kind": "scope-decision", "boundary_kind": "shopping-adjacent-local-model"},
+    {"id": "prime.video.desktop.placeholder", "route_id": "prime-video-placeholder", "state": "explicit-static-placeholder", "viewport": "desktop", "priority": "p2", "evidence_kind": "unavailable", "verification_kind": "scope-decision", "boundary_kind": "explicit-static-placeholder"}
+  ]
+}

@@ -41,7 +41,7 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
     pil.new("RGB", (640, 420), "#f2f6f4").save(source)
     pil.new("RGB", (640, 420), "#e8f5ef").save(candidate)
     EvidenceStore(tmp_path / "visual", REPO_ROOT).upsert(
-        "websitebench--northstar-market",
+        "legacy--dev-115-freshdesk-invoice-dispute-ticket",
         "home-desktop",
         "desktop",
         source_image=source,
@@ -87,7 +87,7 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
                 page.get_by_role("button", name="Sign in").click()
                 page.wait_for_url(base + "/")
                 page.goto(base + "/tasks")
-                page.locator("#task-search").fill("northstar")
+                page.locator("#task-search").fill("freshdesk")
                 assert page.locator("[data-task-row]:visible").count() == 1
                 page.locator("#task-search").fill("")
                 page.locator(".compare-check").nth(0).check()
@@ -95,7 +95,7 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
                 page.locator("#compare-selected").click()
                 page.wait_for_url("**/compare?keys=**")
                 assert page.get_by_text("Official WebsiteBench score").is_visible()
-                page.goto(base + "/tasks/websitebench--northstar-market")
+                page.goto(base + "/tasks/legacy--dev-115-freshdesk-invoice-dispute-ticket")
                 page.get_by_role("button", name="Overlay").click()
                 assert page.locator("[data-capture='0']").get_attribute("data-mode") == "overlay"
                 page.locator("#review-form input[name='reviewer']").fill("reviewer")

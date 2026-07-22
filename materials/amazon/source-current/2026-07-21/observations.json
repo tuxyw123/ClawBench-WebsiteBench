@@ -1,0 +1,64 @@
+{
+  "schema": "amazon-source-current.v1",
+  "captured_on": "2026-07-21",
+  "marketplace": "amazon.com",
+  "session": {
+    "authenticated": false,
+    "delivery_country": "Singapore",
+    "currency": "USD",
+    "international_transition_alert": "expanded"
+  },
+  "viewport": {
+    "width": 1365,
+    "height": 900
+  },
+  "ranking": {
+    "path": "/Best-Sellers-External-Solid-State-Drives/zgbs/pc/3015429011",
+    "hero_heading": {"x": 0, "y": 111, "width": 1350, "height": 77.203125, "font_size": "28px", "line_height": "36px"},
+    "list_heading": {"x": 255.203125, "y": 244.203125, "width": 1094.796875, "height": 32, "font_size": "24px", "line_height": "32px"},
+    "first_row_cards": [
+      {"x": 230.203125, "y": 296.203125, "width": 330.8359375, "height": 353},
+      {"x": 561.203125, "y": 296.203125, "width": 330.8359375, "height": 353},
+      {"x": 892.203125, "y": 296.203125, "width": 330.8359375, "height": 353}
+    ],
+    "items": [
+      {"rank": 1, "asin": "B08GTYFC37", "price": "$189.99", "rating": "4.6", "reviews": 91208},
+      {"rank": 2, "asin": "B0874XN4D8", "price": "$219.99", "rating": "4.7", "reviews": 38085},
+      {"rank": 3, "asin": "B0BGKXX9TK", "price": "$89.99", "rating": "4.5", "reviews": 3522},
+      {"rank": 4, "asin": "B0CHFSWM2P", "price": "$239.99", "rating": "4.6", "reviews": 2894},
+      {"rank": 5, "asin": "B08GV9M64L", "price": "$209.99", "rating": "4.5", "reviews": 16940},
+      {"rank": 6, "asin": "B09VLK9W3S", "price_display": "7 offers from $272.54", "rating": "4.7", "reviews": 16377}
+    ]
+  },
+  "pdp": {
+    "path": "/SAMSUNG-Portable-SSD-1TB-MU-PC1T0T/dp/B0874XN4D8?th=1",
+    "document": {"width": 1350, "height": 15570},
+    "left_column": {"x": 18, "y": 206, "width": 453.328125, "height": 488.5},
+    "center_column": {"x": 491.0390625, "y": 206, "width": 570.9609375, "height": 1424.015625},
+    "right_column": {"x": 1088, "y": 206, "width": 244, "height": 825.5},
+    "main_image": {"x": 62.1328125, "y": 223.7109375, "width": 409.1953125, "height": 373.5703125},
+    "title": {"x": 491.0390625, "y": 252.328125, "width": 558.5546875, "height": 126, "font_size": "24px", "line_height": "32px"},
+    "buybox": {"x": 1088, "y": 206, "width": 244, "height": 683.5},
+    "quantity": {"x": 1107, "y": 543.5, "width": 36.5, "height": 27.5},
+    "add_to_cart": {"x": 1108, "y": 588.5, "width": 204, "height": 30}
+  },
+  "empty_cart_after_pdp": {
+    "url": "https://www.amazon.com/gp/cart/view.html",
+    "capture_sequence": "Visited the T7 PDP, then fetched the empty cart with GET in the same anonymous Singapore/USD session; no source-site Add to cart POST was issued.",
+    "populated_quantity_2_state": "unavailable_inferred",
+    "document": {"width": 1350, "height": 2608},
+    "viewport": {"width": 1365, "height": 900},
+    "international_transition_alert": "expanded",
+    "main_active_cart": {"x": 18, "y": 113, "width": 1314, "height": 408.859},
+    "main_gray_canvas": {"y_start": 99, "y_end": 535},
+    "left_empty_state": {"x": 38, "y": 165, "width": 954, "height": 174.859},
+    "kettle_image": {"x": 38, "y": 165, "width": 304.773, "height": 174.859},
+    "recently_viewed_t7_image": {"x": 1051, "y": 190, "width": 100, "height": 100},
+    "recommendation_rail": {
+      "y": 535,
+      "first_product_image_y": 601.859,
+      "card_x_positions": [103, 300, 497, 694, 891, 1088]
+    },
+    "footer": {"y": 1664.859}
+  }
+}

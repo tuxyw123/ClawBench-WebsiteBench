@@ -1,27 +1,25 @@
 {% extends "base.html" %}
-{% block title %}Task Atlas{% endblock %}
+{% block title %}Offline websites{% endblock %}
 {% block content %}
 <div class="page">
-  <section class="page-heading"><div><p class="eyebrow">Corpus inventory</p><h1>Task Atlas</h1><p>Search and filter by declared metadata. “Pending” means the legacy adapter found no explicit field; it is never guessed from task prose.</p></div><button id="compare-selected" class="primary" type="button" disabled>Compare selected <span>0</span></button></section>
-  <section class="filter-bar" aria-label="Task filters">
-    <label><span>Search</span><input id="task-search" type="search" placeholder="Name, family, capability…"></label>
-    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option>websitebench</option><option>legacy</option></select></label>
-    <label><span>Difficulty</span><select id="difficulty-filter"><option value="">All difficulty</option><option>hard</option><option>medium</option><option>simple</option><option value="pending">Pending</option></select></label>
-    <label><span>Gate</span><select id="gate-filter"><option value="">All gates</option><option>approve</option><option>changes_requested</option><option>reject</option><option>unreviewed</option></select></label>
-    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Missing evidence</option><option value="official">Official candidate score</option><option value="legacy">Legacy checks passed</option></select></label>
+  <section class="page-heading"><div><p class="eyebrow">Dataset catalog</p><h1>Offline websites</h1><p>Browse the benchmark by website category and construction stage. Each card exposes the server surface, state model, visual coverage, and model-run status.</p></div><button id="compare-selected" class="primary" type="button" disabled>Compare selected <span>0</span></button></section>
+  <section class="filter-bar website-filters" aria-label="Website filters">
+    <label><span>Search</span><input id="task-search" type="search" placeholder="Website, category, capability…"></label>
+    <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{% for category in items|map(attribute='product_type')|reject('none')|unique|sort %}<option value="{{ category }}">{{ category|replace('-', ' ')|title }}</option>{% endfor %}</select></label>
+    <label><span>Stage</span><select id="stage-filter"><option value="">All stages</option><option value="building">Building</option><option value="ready">Ready</option><option value="evaluated">Evaluated</option><option value="legacy">Legacy</option></select></label>
+    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option value="websitebench">Benchmark</option><option value="legacy">Legacy</option></select></label>
+    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Needs work</option><option value="official">Best score</option></select></label>
   </section>
-  <p class="result-count"><span id="visible-count">{{ items|length }}</span> of {{ items|length }} tasks shown</p>
-  <div class="table-wrap panel"><table class="atlas-table"><thead><tr><th class="select-column">Compare</th><th>Task</th><th>Declared type</th><th>Capabilities</th><th>Coverage</th><th>Automatic readiness</th><th>Human gate</th><th>Candidate evidence</th></tr></thead><tbody id="task-rows">
-    {% for item in items %}{% set review=reviews[item.key] %}<tr data-task-row data-key="{{ item.key }}" data-name="{{ item.display_name|lower }}" data-search="{{ (item.display_name ~ ' ' ~ (item.family or '') ~ ' ' ~ (item.product_type or '') ~ ' ' ~ item.capability_tags|join(' '))|lower }}" data-source="{{ item.source_type }}" data-difficulty="{{ item.difficulty or 'pending' }}" data-gate="{{ review.gate }}" data-missing="{{ item.readiness_counts.missing + item.readiness_counts.invalid }}" data-official="{{ item.latest_official_result.score if item.latest_official_result else -1 }}" data-legacy="{{ item.legacy_verification.passed if item.legacy_verification else -1 }}">
-      <td><input type="checkbox" class="compare-check" value="{{ item.key }}" aria-label="Compare {{ item.display_name }}"></td>
-      <th><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a><small>{{ item.family or 'Family pending' }} · {{ item.split or 'Split pending' }}</small></th>
-      <td>{{ item.product_type or 'Pending' }}<small>{{ item.difficulty or 'Difficulty pending' }}</small></td>
-      <td><div class="tag-list">{% for tag in item.capability_tags[:4] %}<span>{{ tag }}</span>{% else %}<span class="pending">Pending</span>{% endfor %}</div></td>
-      <td class="numbers"><span>R {{ item.counts.routes if item.counts.routes is not none else '—' }}</span><span>J {{ item.counts.journeys if item.counts.journeys is not none else '—' }}</span><span>C {{ item.counts.checkpoints if item.counts.checkpoints is not none else '—' }}</span><span>S {{ item.counts.seeds if item.counts.seeds is not none else '—' }}</span></td>
-      <td><div class="readiness-mini"><span class="present">{{ item.readiness_counts.present }} present</span>{% if item.readiness_counts.missing %}<span class="missing">{{ item.readiness_counts.missing }} missing</span>{% endif %}{% if item.readiness_counts.invalid %}<span class="invalid">{{ item.readiness_counts.invalid }} invalid</span>{% endif %}</div></td>
-      <td><span class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</span></td>
-      <td>{% if item.latest_official_result %}<a class="score-link" href="/runs/{{ item.latest_official_result.run_id }}"><strong>{{ item.latest_official_result.score }}</strong><span>Official / 100</span></a>{% elif item.legacy_verification %}<div class="legacy-result"><strong>{{ item.legacy_verification.passed }}/{{ item.legacy_verification.total }}</strong><span>Legacy verifier</span></div>{% else %}<span class="muted">No candidate result</span>{% endif %}</td>
-    </tr>{% endfor %}
-  </tbody></table></div>
+  <p class="result-count"><span id="visible-count">{{ items|length }}</span> of {{ items|length }} websites shown</p>
+  <div class="website-grid" id="task-rows">
+    {% for item in items %}{% set review=reviews[item.key] %}<article class="website-card" data-task-row data-key="{{ item.key }}" data-name="{{ item.display_name|lower }}" data-search="{{ (item.display_name ~ ' ' ~ (item.family or '') ~ ' ' ~ (item.product_type or '') ~ ' ' ~ item.capability_tags|join(' '))|lower }}" data-source="{{ item.source_type }}" data-category="{{ item.product_type or 'uncategorized' }}" data-stage="{{ item.lifecycle_stage }}" data-gate="{{ review.gate }}" data-missing="{{ item.readiness_counts.missing + item.readiness_counts.invalid }}" data-official="{{ item.latest_official_result.score if item.latest_official_result else -1 }}" data-legacy="{{ item.legacy_verification.passed if item.legacy_verification else -1 }}">
+      <div class="website-card-top"><label class="compare-toggle"><input type="checkbox" class="compare-check" value="{{ item.key }}" aria-label="Compare {{ item.display_name }}"><span>Compare</span></label><span class="stage stage-{{ item.lifecycle_stage }}">{{ item.lifecycle_stage }}</span></div>
+      <div class="website-card-category">{{ (item.product_type or 'Legacy example')|replace('-', ' ')|title }}</div>
+      <h2><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a></h2><p>{{ item.description or 'No description declared yet.' }}</p>
+      <div class="tag-list">{% for tag in item.capability_tags[:5] %}<span>{{ tag }}</span>{% else %}<span class="pending">Taxonomy pending</span>{% endfor %}</div>
+      <div class="coverage-row"><span><strong>{{ item.counts.routes if item.counts.routes is not none else '—' }}</strong> routes</span><span><strong>{{ item.counts.journeys if item.counts.journeys is not none else '—' }}</strong> journeys</span><span><strong>{{ item.counts.checkpoints if item.counts.checkpoints is not none else '—' }}</strong> views</span></div>
+      <div class="website-card-footer"><div><span>Readiness</span><strong>{{ item.readiness_counts.present }} / {{ item.readiness|length }}</strong></div><div><span>Model runs</span><strong>{{ item.official_runs|length }}</strong></div>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><span>Latest score</span><strong>{{ item.latest_official_result.score }}</strong></a>{% elif item.legacy_verification %}<div><span>Legacy checks</span><strong>{{ item.legacy_verification.passed }}/{{ item.legacy_verification.total }}</strong></div>{% else %}<div><span>Evaluation</span><strong>Pending</strong></div>{% endif %}</div>
+    </article>{% endfor %}
+  </div>
 </div>
 {% endblock %}

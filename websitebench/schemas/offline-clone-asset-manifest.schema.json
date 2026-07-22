@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.assets.v1.json",
+  "title": "ClawBench offline clone asset closure manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "created_at",
+    "remote_runtime_policy",
+    "closure_status",
+    "no_assets_reason",
+    "assets"
+  ],
+  "properties": {
+    "schema_version": {"const": "offline-clone.assets.v1"},
+    "snapshot_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[a-z0-9._-]*[a-z0-9])?$"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "remote_runtime_policy": {"const": "forbidden"},
+    "closure_status": {"enum": ["pending", "declared", "no-assets"]},
+    "no_assets_reason": {"type": ["string", "null"], "minLength": 1, "maxLength": 1000},
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/asset"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"closure_status": {"const": "declared"}}},
+      "then": {
+        "properties": {
+          "assets": {"minItems": 1},
+          "no_assets_reason": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"closure_status": {"const": "no-assets"}}},
+      "then": {
+        "properties": {
+          "assets": {"maxItems": 0},
+          "no_assets_reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:)(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+"
+    },
+    "dimensions": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "priority",
+        "required",
+        "source_path",
+        "runtime_path",
+        "bytes",
+        "sha256",
+        "mime_type",
+        "dimensions",
+        "referenced_by",
+        "evidence_kind"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[a-z0-9._-]*[a-z0-9])?$"
+        },
+        "priority": {"enum": ["p0", "p1", "p2"]},
+        "required": {"type": "boolean"},
+        "source_path": {"$ref": "#/$defs/relative_path"},
+        "runtime_path": {"$ref": "#/$defs/relative_path"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "mime_type": {"type": "string", "pattern": "^[a-z0-9.+-]+/[a-z0-9.+-]+$"},
+        "dimensions": {"$ref": "#/$defs/dimensions"},
+        "referenced_by": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 240}
+        },
+        "evidence_kind": {
+          "enum": ["current-direct", "bounded", "historical", "inferred", "synthetic"]
+        },
+        "source_url": {"type": ["string", "null"], "format": "uri"},
+        "capture_id": {"type": ["string", "null"], "maxLength": 240}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"priority": {"const": "p0"}},
+            "required": ["priority"]
+          },
+          "then": {"properties": {"required": {"const": true}}}
+        },
+        {
+          "if": {
+            "properties": {"referenced_by": {"minItems": 1}},
+            "required": ["referenced_by"]
+          },
+          "then": {"properties": {"required": {"const": true}}}
+        }
+      ]
+    }
+  }
+}

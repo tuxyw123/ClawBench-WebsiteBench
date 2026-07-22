@@ -10,9 +10,11 @@
       "amazon.local"
     ],
     "platform": "amazon",
-    "clone_path": "materials/amazon/clone",
-    "server_command": "python3 materials/amazon/clone/server.py --host 127.0.0.1 --port 8153",
-    "verify_command": "python3 materials/amazon/clone/tools/verify_task.py",
+    "implementation_status": "active_clean_rebuild",
+    "candidate_path": "materials/amazon/clone",
+    "source_evidence": "materials/amazon/source-capture",
+    "source_current": "materials/amazon/source-current/2026-07-20",
+    "rebuild_context": "materials/amazon/REBUILD_CONTEXT.md",
     "dev_only": true
   },
   "instruction": "Open http://host.docker.internal:8153/. On Amazon, browse Best Sellers in External Solid State Drives, open the #2 Samsung T7 Portable SSD 1TB in Gray, choose quantity 2, and add it to the cart.",

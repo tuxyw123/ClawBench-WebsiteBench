@@ -1,0 +1,23 @@
+{
+  "schema_version": "offline-clone.purpose.v1",
+  "status": "frozen",
+  "purpose_id": "amazon.shopping-mainline",
+  "statement": "A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.",
+  "primary_actor_ids": [
+    "shopper.anonymous",
+    "shopper.verified-local"
+  ],
+  "mainline_journey_ids": [
+    "shopping.success",
+    "shopping.failure",
+    "shopping.recovery"
+  ],
+  "out_of_scope": [
+    "advertising auctions, telemetry, anti-bot systems, and source-site personalization beyond the frozen context",
+    "real payment authorization, capture, card data, or funds movement",
+    "real carrier, fulfillment, seller, return receipt, or refund operations",
+    "opt-in external SMTP delivery beyond the default local-only release profile; the adapter is retained but not certified by browser/resource network evidence",
+    "unobserved variant cross-products, marketplace-wide inventory, and continuously changing offers",
+    "Prime Video and other non-shopping ecosystems beyond explicit static placeholders"
+  ]
+}

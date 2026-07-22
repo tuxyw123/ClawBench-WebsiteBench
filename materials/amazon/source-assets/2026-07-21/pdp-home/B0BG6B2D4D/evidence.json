@@ -1,0 +1,95 @@
+{
+  "schema": "amazon-source-pdp-evidence.v1",
+  "capturedAt": "2026-07-21T11:58:03.626Z",
+  "requestedUrl": "https://www.amazon.com/dp/B0BG6B2D4D",
+  "finalUrl": "https://www.amazon.com/dp/B0BG6B2D4D",
+  "canonicalUrl": "https://www.amazon.com/Safari-Ltd-Okapi/dp/B0BG6B2D4D",
+  "marketContext": {
+    "marketplace": "amazon.com",
+    "authenticated": false,
+    "deliveryCountry": "Singapore",
+    "currency": "USD"
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "documentWidth": 1265,
+    "documentHeight": 7704.890625
+  },
+  "identity": {
+    "asin": "B0BG6B2D4D",
+    "title": "Safari Ltd. Okapi Figure - Realistic 5\" Wildlife Model - Educational Toy for Boys, Girls, and Kids Ages 3+",
+    "byline": "Visit the Safari Ltd. Store",
+    "brand": "Safari Ltd."
+  },
+  "taxonomy": {
+    "breadcrumbs": ["Toys & Games", "Toy Figures & Playsets", "Animals"],
+    "observedSubnavLabels": ["Toys & Games", "Shop Amazon Exclusive Toys", "Shop Toy Deals", "Create a Gift List"]
+  },
+  "offer": {
+    "priceText": "$12.99",
+    "priceMinor": 1299,
+    "shippingCopy": "No Import Charges & $7.08 Shipping to Singapore",
+    "deliveryCopy": "$7.08 delivery Wednesday, July 29. Order within 2 hrs 7 mins",
+    "fastestDeliveryCopy": "Or fastest delivery Monday, July 27",
+    "availability": "In Stock"
+  },
+  "socialProof": {
+    "ratingText": "4.8 out of 5 stars",
+    "rating": "4.8",
+    "reviewCountText": "(33)",
+    "reviewCount": 33
+  },
+  "fulfillment": {
+    "shipsFrom": "Amazon",
+    "soldBy": "Safari Ltd.",
+    "returns": "FREE 30-day refund/replacement",
+    "payment": "Secure transaction"
+  },
+  "about": [
+    "DISCOVER THE MYSTERY OF NATURE: Explore the enchanting world of Okapi with the toy figure from Safari Ltd., revealing the unique charm and mystique of this forest giraffe, the closest living relative to the iconic giraffe.",
+    "REALISTIC COLORING: Admire the beauty of the brown and black body of the okapi adorned with white stripes along its legs. The white fur on the sides of his face adds an extra touch of authenticity to this captivating toy.",
+    "IDEAL FOR LITTLE EXPLORERS: With a length of just under 5 inches and nearly 4 inches in height, the Okapi is the perfect size for kids. Its compact yet detailed design makes it the ideal companion for young wildlife enthusiasts, generating endless adventures in the palm of their hands.",
+    "EDUCATIONAL AND FUN: Spark curiosity and learning with the Okapi figure, introducing kids and collectors alike to the fascinating world of wildlife. It is more than a toy, it is a gateway to understand and appreciate nature.",
+    "SAFETY FIRST: Our commitment to safety is a priority. Okapi toy figure, like all our products, is non-toxic and BPA free, ensuring a worry-free experience for parents."
+  ],
+  "importantInformation": {
+    "warning": "CHOKING HAZARD -- Small parts. Not for children under 3 yrs.",
+    "safetyInformation": "Warning: Not suitable for children under 3 years. For use under adult supervision. Only for domestic use."
+  },
+  "media": {
+    "topPromo": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/11RNLXhvOXL.jpg",
+      "localPath": "pdp-home/B0BG6B2D4D/top-promo.jpg",
+      "alt": "International Kindle Paperwhite",
+      "bytes": 3396,
+      "sha256": "800e86128f2a3fba481908396608f6172966f35b8d2d5eff53fa7cb62d8e9197",
+      "width": 650,
+      "height": 45
+    },
+    "mainImageObserved": {
+      "sourceUrl": "https://m.media-amazon.com/images/I/61pFf-1Mu3L._AC_SL1500_.jpg",
+      "naturalWidth": 1500,
+      "naturalHeight": 1243,
+      "renderedWidth": 568.7578125,
+      "renderedHeight": 471.5859375
+    },
+    "visibleThumbnailCount": 6,
+    "videoCount": 0,
+    "gallery": [
+      {"ordinal": 1, "variant": "MAIN", "physicalId": "61pFf-1Mu3L", "sourceUrl": "https://m.media-amazon.com/images/I/61pFf-1Mu3L._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-01.jpg", "bytes": 80360, "sha256": "0f275ce9c6d2d65aa00d5b48d6a42ebd0391f29356577770edafeaaaf7e30af3", "width": 1500, "height": 1243},
+      {"ordinal": 2, "variant": "PT01", "physicalId": "61OW2aQI9mL", "sourceUrl": "https://m.media-amazon.com/images/I/61OW2aQI9mL._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-02.jpg", "bytes": 88469, "sha256": "45216cbb2c880806d31134e564a95002edd5d6c0470e478488b4f19550672638", "width": 1467, "height": 1262},
+      {"ordinal": 3, "variant": "PT02", "physicalId": "61vmHknMsHL", "sourceUrl": "https://m.media-amazon.com/images/I/61vmHknMsHL._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-03.jpg", "bytes": 75522, "sha256": "3114fb0a78943a4deeec05559d3d0e7f3731515553a11d0dfc6402931108c95e", "width": 1152, "height": 1406},
+      {"ordinal": 4, "variant": "PT03", "physicalId": "616UM5SIwqL", "sourceUrl": "https://m.media-amazon.com/images/I/616UM5SIwqL._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-04.jpg", "bytes": 83017, "sha256": "e176759468573b0d28d9b65e3e2d6f0c428d8b536d3ab81067e6823b8b5891eb", "width": 1500, "height": 1294},
+      {"ordinal": 5, "variant": "PT04", "physicalId": "81Ji9Klei6L", "sourceUrl": "https://m.media-amazon.com/images/I/81Ji9Klei6L._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-05.jpg", "bytes": 303990, "sha256": "14c757bb2cf94f23d8e385c573d90da6ddeea8eebd0e10e2cd9daf64a865e5f5", "width": 1500, "height": 1500},
+      {"ordinal": 6, "variant": "PT05", "physicalId": "71tqT4Y8E1L", "sourceUrl": "https://m.media-amazon.com/images/I/71tqT4Y8E1L._AC_SL1500_.jpg", "localPath": "pdp-home/B0BG6B2D4D/gallery-06.jpg", "bytes": 182422, "sha256": "4faaeb14a8bebca3e6c030b07c01769962cb4e10399eb8318654110a8e6522f4", "width": 1500, "height": 1500}
+    ]
+  },
+  "topGeometry": {
+    "root": {"x": 0, "y": 132, "width": 1265, "height": 7704.890625},
+    "imageBlock": {"x": 18, "y": 239, "width": 614.5, "height": 589},
+    "center": {"x": 650.9296875, "y": 239, "width": 326.0703125, "height": 939.5},
+    "buybox": {"x": 1003, "y": 239, "width": 244, "height": 715.5},
+    "title": {"x": 650.9296875, "y": 240, "width": 298.8515625, "height": 126}
+  }
+}

@@ -1,0 +1,2874 @@
+{
+  "assets": [
+    {
+      "contentType": "image/png",
+      "id": "a131eec97c81ff48",
+      "kind": "image",
+      "name": "nav-sprite-global-1x-reorg-privacy._CB779528203_.png",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\a131eec97c81ff48.png",
+      "url": "https://m.media-amazon.com/images/G/01/gno/sprites/nav-sprite-global-1x-reorg-privacy._CB779528203_.png"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4541d8781270e263",
+      "kind": "image",
+      "name": "Fuji_Gaming_SingleImageCard_C-1._SY304_CB762596570_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\4541d8781270e263.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2026/Gaming_26/Fuji_Gaming_SingleImageCard_C-1._SY304_CB762596570_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "25ffc20ec0a7e38e",
+      "kind": "image",
+      "name": "Fuji_SingleImageCard_BTS_SH26_1x._SY304_CB788455970_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\25ffc20ec0a7e38e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2026/BTS2026/Fuji_SingleImageCard_BTS_SH26_1x._SY304_CB788455970_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "014f2bdb67865e0e",
+      "kind": "image",
+      "name": "DQC_APR_TBYB_W_BOTTOMS_1x._SY116_CB624172947_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\014f2bdb67865e0e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2022/SITE_FLIPS/SPR_22/GW/DQC/DQC_APR_TBYB_W_BOTTOMS_1x._SY116_CB624172947_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "31686248cca236ec",
+      "kind": "image",
+      "name": "DQC_APR_TBYB_W_TOPS_1x._SY116_CB623353881_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\31686248cca236ec.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2022/SITE_FLIPS/SPR_22/GW/DQC/DQC_APR_TBYB_W_TOPS_1x._SY116_CB623353881_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b9b5c2175c9e968e",
+      "kind": "image",
+      "name": "DQC_APR_TBYB_W_DRESSES_1x._SY116_CB623353881_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\b9b5c2175c9e968e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2022/SITE_FLIPS/SPR_22/GW/DQC/DQC_APR_TBYB_W_DRESSES_1x._SY116_CB623353881_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f760d9376ddef80d",
+      "kind": "image",
+      "name": "DQC_APR_TBYB_W_SHOES_1x._SY116_CB624172947_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\f760d9376ddef80d.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2022/SITE_FLIPS/SPR_22/GW/DQC/DQC_APR_TBYB_W_SHOES_1x._SY116_CB624172947_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "13b4e86ff2941173",
+      "kind": "image",
+      "name": "Fuji_QuadCard_Bag_BTS25_1x._SY116_CB789327598_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\13b4e86ff2941173.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/BTS25/GenAIExperiment/Group_C/Fuji_QuadCard_Bag_BTS25_1x._SY116_CB789327598_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "9752a198d4271456",
+      "kind": "image",
+      "name": "Fuji_QuadCard_Stationery_BTS25_1x._SY116_CB789327598_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\9752a198d4271456.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/BTS25/GenAIExperiment/Group_C/Fuji_QuadCard_Stationery_BTS25_1x._SY116_CB789327598_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "864424c08dd196b8",
+      "kind": "image",
+      "name": "Fuji_QuadCard_Electronics_BTS25_1x._SY116_CB789327598_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\864424c08dd196b8.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/BTS25/GenAIExperiment/Group_C/Fuji_QuadCard_Electronics_BTS25_1x._SY116_CB789327598_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c6d42e4f6bd30f7d",
+      "kind": "image",
+      "name": "Fuji_QuadCard_Fashion_BTS25_1x._SY116_CB789327598_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\c6d42e4f6bd30f7d.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/BTS25/GenAIExperiment/Group_C/Fuji_QuadCard_Fashion_BTS25_1x._SY116_CB789327598_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4caab0b1d3f3ed6f",
+      "kind": "image",
+      "name": "Home_Flip_Summer_2024_315_HP_NewArrivals_QuadCard_D_01_1x._SY116_CB555960040_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\4caab0b1d3f3ed6f.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_315_HP_NewArrivals_QuadCard_D_01_1x._SY116_CB555960040_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d821da00440eec1c",
+      "kind": "image",
+      "name": "Home_Flip_Summer_2024_316_HP_NewArrivals_QuadCard_D_02_1x._SY116_CB555960040_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\d821da00440eec1c.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_316_HP_NewArrivals_QuadCard_D_02_1x._SY116_CB555960040_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c0514a4ba72c5b37",
+      "kind": "image",
+      "name": "LSS23_SPRING_DT_CAT_CARD_2_x1._SY116_CB595261253_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\c0514a4ba72c5b37.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_2_x1._SY116_CB595261253_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f4963edd4e122be7",
+      "kind": "image",
+      "name": "LSS23_SPRING_DT_CAT_CARD_3_x1._SY116_CB595261253_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\f4963edd4e122be7.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_3_x1._SY116_CB595261253_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "64f21735e1c74948",
+      "kind": "image",
+      "name": "2023Q2_GW_EE_LaundryLuxe_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\64f21735e1c74948.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_LaundryLuxe_D_Quad_186x116._SY116_CB594237035_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "369381e3dd82f9f8",
+      "kind": "image",
+      "name": "2023Q2_GW_EE_Kitchen_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\369381e3dd82f9f8.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_Kitchen_D_Quad_186x116._SY116_CB594237035_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "ba0a643ae5c32b0e",
+      "kind": "image",
+      "name": "71qcoYgEhzL._SX3000_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\ba0a643ae5c32b0e.jpg",
+      "url": "https://m.media-amazon.com/images/I/71qcoYgEhzL._SX3000_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "8b6861c8f69edb45",
+      "kind": "image",
+      "name": "71ROLBmB4AL._SX3000_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\8b6861c8f69edb45.jpg",
+      "url": "https://m.media-amazon.com/images/I/71ROLBmB4AL._SX3000_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c9b9ee3fb2232cce",
+      "kind": "image",
+      "name": "619geyiQI5L._SX3000_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\c9b9ee3fb2232cce.jpg",
+      "url": "https://m.media-amazon.com/images/I/619geyiQI5L._SX3000_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e319297d016a5492",
+      "kind": "image",
+      "name": "61Yx5-N155L._SX3000_.jpg",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Temp\\browser-use\\assets\\f19ff0ae-a509-4596-896b-28277974b197\\e319297d016a5492.jpg",
+      "url": "https://m.media-amazon.com/images/I/61Yx5-N155L._SX3000_.jpg"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "950f9fa40eca21de",
+      "kind": "image",
+      "name": "Home_Flip_Summer_2024_317_HP_NewArrivals_QuadCard_D_03_1x._SY116_CB555960040_.jpg",
+      "path": "950f9fa40eca21de.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_317_HP_NewArrivals_QuadCard_D_03_1x._SY116_CB555960040_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "cdeb1caaa6497025",
+      "kind": "image",
+      "name": "Home_Flip_Summer_2024_318_HP_NewArrivals_QuadCard_D_04_1x._SY116_CB555960040_.jpg",
+      "path": "cdeb1caaa6497025.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_318_HP_NewArrivals_QuadCard_D_04_1x._SY116_CB555960040_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "867dd3e0a203917a",
+      "kind": "image",
+      "name": "LSS23_SPRING_DT_CAT_CARD_1_x1._SY116_CB595261253_.jpg",
+      "path": "867dd3e0a203917a.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_1_x1._SY116_CB595261253_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "779a6383af8ffb6e",
+      "kind": "image",
+      "name": "LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg",
+      "path": "779a6383af8ffb6e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "dc8f8bbc2c6b4bab",
+      "kind": "image",
+      "name": "2023Q2_GW_EE_AccentFurniture_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "path": "dc8f8bbc2c6b4bab.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_AccentFurniture_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "389bf293eaa51bc0",
+      "kind": "image",
+      "name": "2023Q2_GW_EE_Hallway_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "path": "389bf293eaa51bc0.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_Hallway_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6938765e159953cd",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Clothing._SY116_CB549022351_.jpg",
+      "path": "6938765e159953cd.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Clothing._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c84abc45d3c7831b",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Trackers._SY116_CB549022351_.jpg",
+      "path": "c84abc45d3c7831b.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Trackers._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4bcaecb91986cc37",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Equipment._SY116_CB549022351_.jpg",
+      "path": "4bcaecb91986cc37.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Equipment._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6d06fd12fb426900",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Deals_Fitness._SY116_CB549022351_.jpg",
+      "path": "6d06fd12fb426900.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Deals_Fitness._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "007d6dcf1fdb975a",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Playground_sets._SY116_CB558654384_.jpg",
+      "path": "007d6dcf1fdb975a.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Playground_sets._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "616b49f5ba5b5080",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_STEM_toys_or_learning_toys._SY116_CB558654384_.jpg",
+      "path": "616b49f5ba5b5080.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_STEM_toys_or_learning_toys._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "45496c7680c4f68c",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Action_figure._SY116_CB558654384_.jpg",
+      "path": "45496c7680c4f68c.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Action_figure._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b31a1ce1611d39bb",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Pretend_Play_Toys._SY116_CB558654384_.jpg",
+      "path": "b31a1ce1611d39bb.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Pretend_Play_Toys._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c26b2d43dd8d7064",
+      "kind": "image",
+      "name": "Backpack_1x._SY116_CB566100767_.jpg",
+      "path": "c26b2d43dd8d7064.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Backpack_1x._SY116_CB566100767_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "ecf0cd0f0f123fc5",
+      "kind": "image",
+      "name": "TravelBag_1x._SY116_CB566100767_.jpg",
+      "path": "ecf0cd0f0f123fc5.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/TravelBag_1x._SY116_CB566100767_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c6ccda4c0744aa1b",
+      "kind": "image",
+      "name": "Accessories_1x._SY116_CB566100767_.jpg",
+      "path": "c6ccda4c0744aa1b.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Accessories_1x._SY116_CB566100767_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "3ad1d46c7305c535",
+      "kind": "image",
+      "name": "Handbags_1x._SY116_CB566100767_.jpg",
+      "path": "3ad1d46c7305c535.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Handbags_1x._SY116_CB566100767_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "bdaf957e8276af10",
+      "kind": "image",
+      "name": "Fuji_Quad_Apparel_1x._SY116_CB667159060_.jpg",
+      "path": "bdaf957e8276af10.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Apparel_1x._SY116_CB667159060_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "14d4ecc4ed87b683",
+      "kind": "image",
+      "name": "Fuji_Quad_Hat_1x._SY116_CB667159060_.jpg",
+      "path": "14d4ecc4ed87b683.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Hat_1x._SY116_CB667159060_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "66789d6ab1fe9905",
+      "kind": "image",
+      "name": "Fuji_Quad_Figure_1x._SY116_CB667159060_.jpg",
+      "path": "66789d6ab1fe9905.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Figure_1x._SY116_CB667159060_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "77748f7f125db3cf",
+      "kind": "image",
+      "name": "Fuji_Quad_Mug_1x._SY116_CB667159063_.jpg",
+      "path": "77748f7f125db3cf.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Mug_1x._SY116_CB667159063_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1f00662f2c41fe99",
+      "kind": "image",
+      "name": "CE24_SUM_GW_DQC_NW_GamingWeek_PC_v2_1x._SY116_CB558844445_.jpg",
+      "path": "1f00662f2c41fe99.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_NW_GamingWeek_PC_v2_1x._SY116_CB558844445_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1915b416636972ea",
+      "kind": "image",
+      "name": "CE24_SUM_GW_DQC_NE_GamingWeek_Xbox_v2_1x._SY116_CB558844445_.jpg",
+      "path": "1915b416636972ea.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_NE_GamingWeek_Xbox_v2_1x._SY116_CB558844445_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1044f0abd1b0a9a4",
+      "kind": "image",
+      "name": "CE24_SUM_GW_DQC_SW_GamingWeek_Sony_v2_1x._SY116_CB558844445_.jpg",
+      "path": "1044f0abd1b0a9a4.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_SW_GamingWeek_Sony_v2_1x._SY116_CB558844445_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "308a8232dbd7f66b",
+      "kind": "image",
+      "name": "CE24_SUM_GW_DQC_SE_GamingWeek_Nintendo_v2_1x._SY116_CB558844445_.jpg",
+      "path": "308a8232dbd7f66b.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_SE_GamingWeek_Nintendo_v2_1x._SY116_CB558844445_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5d4f18f300b34f3f",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Make-up._SY116_CB558654384_.jpg",
+      "path": "5d4f18f300b34f3f.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Make-up._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f83db64a2f3cbec8",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Brushes._SY116_CB558654384_.jpg",
+      "path": "f83db64a2f3cbec8.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Brushes._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a753d6bf393e34c4",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Sponges._SY116_CB558654384_.jpg",
+      "path": "a753d6bf393e34c4.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Sponges._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "3197d03b8e86fb9c",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Mirrors._SY116_CB558654384_.jpg",
+      "path": "3197d03b8e86fb9c.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Mirrors._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f806a7aed4925070",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Books._SY116_CB549022351_.jpg",
+      "path": "f806a7aed4925070.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Books._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b2eb0a31612bba2b",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Fashion._SY116_CB549022351_.jpg",
+      "path": "b2eb0a31612bba2b.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Fashion._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "59f62bc9e9953c91",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Desktops._SY116_CB549022351_.jpg",
+      "path": "59f62bc9e9953c91.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Desktops._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1a61cc11afe4a3d9",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Beauty._SY116_CB549022351_.jpg",
+      "path": "1a61cc11afe4a3d9.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Beauty._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c15c7d78fd314a2d",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Laptop._SY116_CB549022351_.jpg",
+      "path": "c15c7d78fd314a2d.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Laptop._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "918f344527c4b4de",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_PC._SY116_CB549022351_.jpg",
+      "path": "918f344527c4b4de.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_PC._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "12237c942f7639ab",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Hard_Drives._SY116_CB549022351_.jpg",
+      "path": "12237c942f7639ab.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Hard_Drives._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "47795f5c030aaad1",
+      "kind": "image",
+      "name": "Fuji_Defect_Reduction_1x_Monitors._SY116_CB549022351_.jpg",
+      "path": "47795f5c030aaad1.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Monitors._SY116_CB549022351_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a0aa517f7d0f803e",
+      "kind": "image",
+      "name": "WomenWatches_1x._SY116_CB564394432_.jpg",
+      "path": "a0aa517f7d0f803e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/WomenWatches_1x._SY116_CB564394432_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "8020e47a983015ab",
+      "kind": "image",
+      "name": "MenWatches_1x._SY116_CB564394432_.jpg",
+      "path": "8020e47a983015ab.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/MenWatches_1x._SY116_CB564394432_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "34a6123442d40dd2",
+      "kind": "image",
+      "name": "GirlWatches_1x._SY116_CB564394432_.jpg",
+      "path": "34a6123442d40dd2.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/GirlWatches_1x._SY116_CB564394432_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "0570588e61329a69",
+      "kind": "image",
+      "name": "BoyWatches_1x._SY116_CB564394432_.jpg",
+      "path": "0570588e61329a69.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/BoyWatches_1x._SY116_CB564394432_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "79d09d346509aa4f",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Kitchen._SY116_CB558654384_.jpg",
+      "path": "79d09d346509aa4f.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Kitchen._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a82abedd503127bb",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Home_decor._SY116_CB558654384_.jpg",
+      "path": "a82abedd503127bb.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Home_decor._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "834d20af59880114",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Dining._SY116_CB558654384_.jpg",
+      "path": "834d20af59880114.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Dining._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "876c2616cc6fd466",
+      "kind": "image",
+      "name": "Fuji_BTF_Quad_Cards_1x_Smart_home._SY116_CB558654384_.jpg",
+      "path": "876c2616cc6fd466.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Smart_home._SY116_CB558654384_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "9341c0aa5ab587ad",
+      "kind": "image",
+      "name": "TransformersCat_1x._SY304_CB540253513_.jpg",
+      "path": "9341c0aa5ab587ad.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAUOct2024/TransformersCat_1x._SY304_CB540253513_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1a2952451fe8674c",
+      "kind": "image",
+      "name": "Skincare_1x._SY116_CB563150139_.jpg",
+      "path": "1a2952451fe8674c.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Skincare_1x._SY116_CB563150139_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "2b4ed40de0adcc4e",
+      "kind": "image",
+      "name": "Makeup_1x._SY116_CB563150139_.jpg",
+      "path": "2b4ed40de0adcc4e.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Makeup_1x._SY116_CB563150139_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "7f62214a5481cf69",
+      "kind": "image",
+      "name": "Nail_1x._SY116_CB563150139_.jpg",
+      "path": "7f62214a5481cf69.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Nail_1x._SY116_CB563150139_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5dbaa9ffe04c6573",
+      "kind": "image",
+      "name": "Fragrance_1x._SY116_CB563150139_.jpg",
+      "path": "5dbaa9ffe04c6573.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Fragrance_1x._SY116_CB563150139_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b5a248b9099dbb2e",
+      "kind": "image",
+      "name": "71EESd1deTL._AC_SY200_.jpg",
+      "path": "b5a248b9099dbb2e.jpg",
+      "url": "https://m.media-amazon.com/images/I/71EESd1deTL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6a89f408c9f8477b",
+      "kind": "image",
+      "name": "61zuR3UMnWL._AC_SY200_.jpg",
+      "path": "6a89f408c9f8477b.jpg",
+      "url": "https://m.media-amazon.com/images/I/61zuR3UMnWL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6a73560d6fb7785b",
+      "kind": "image",
+      "name": "91YfRIy7kYL._AC_SY200_.jpg",
+      "path": "6a73560d6fb7785b.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YfRIy7kYL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "118dad6228a13f3b",
+      "kind": "image",
+      "name": "41OUh0ZU1NL._AC_SY200_.jpg",
+      "path": "118dad6228a13f3b.jpg",
+      "url": "https://m.media-amazon.com/images/I/41OUh0ZU1NL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "8c9907779231ab85",
+      "kind": "image",
+      "name": "41rI1J9FcZL._AC_SY200_.jpg",
+      "path": "8c9907779231ab85.jpg",
+      "url": "https://m.media-amazon.com/images/I/41rI1J9FcZL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "85ab4022c6863471",
+      "kind": "image",
+      "name": "71bBCTIvIIL._AC_SY200_.jpg",
+      "path": "85ab4022c6863471.jpg",
+      "url": "https://m.media-amazon.com/images/I/71bBCTIvIIL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1d31483b9bbf9a67",
+      "kind": "image",
+      "name": "71-8LPwxb7L._AC_SY200_.jpg",
+      "path": "1d31483b9bbf9a67.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-8LPwxb7L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1dba2dd5013a6d6e",
+      "kind": "image",
+      "name": "61o6SkL3DOL._AC_SY200_.jpg",
+      "path": "1dba2dd5013a6d6e.jpg",
+      "url": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "358c5388a52fe733",
+      "kind": "image",
+      "name": "61KCbJGpAFL._AC_SY200_.jpg",
+      "path": "358c5388a52fe733.jpg",
+      "url": "https://m.media-amazon.com/images/I/61KCbJGpAFL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "0ad083d2d44c138c",
+      "kind": "image",
+      "name": "718RbhzhVbL._AC_SY200_.jpg",
+      "path": "0ad083d2d44c138c.jpg",
+      "url": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "49c86e9f9a2e44ab",
+      "kind": "image",
+      "name": "71Si2QlAb3L._AC_SY200_.jpg",
+      "path": "49c86e9f9a2e44ab.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Si2QlAb3L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "bbc4d8cc8f3dc911",
+      "kind": "image",
+      "name": "71kHwy9jklL._AC_SY200_.jpg",
+      "path": "bbc4d8cc8f3dc911.jpg",
+      "url": "https://m.media-amazon.com/images/I/71kHwy9jklL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "13e358fe611b2960",
+      "kind": "image",
+      "name": "61HjMmGgC2L._AC_SY200_.jpg",
+      "path": "13e358fe611b2960.jpg",
+      "url": "https://m.media-amazon.com/images/I/61HjMmGgC2L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "7b9a8802b7c24324",
+      "kind": "image",
+      "name": "617+Wg+p7WL._AC_SY200_.jpg",
+      "path": "7b9a8802b7c24324.jpg",
+      "url": "https://m.media-amazon.com/images/I/617+Wg+p7WL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "cef0ed9812e3166e",
+      "kind": "image",
+      "name": "61pFf-1Mu3L._AC_SY200_.jpg",
+      "path": "cef0ed9812e3166e.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pFf-1Mu3L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e360816584837e08",
+      "kind": "image",
+      "name": "819rNXWgZuL._AC_SY200_.jpg",
+      "path": "e360816584837e08.jpg",
+      "url": "https://m.media-amazon.com/images/I/819rNXWgZuL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "bc65df23d7f0c931",
+      "kind": "image",
+      "name": "81DWixeO-fL._AC_SY200_.jpg",
+      "path": "bc65df23d7f0c931.jpg",
+      "url": "https://m.media-amazon.com/images/I/81DWixeO-fL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e8759417c0dd8d5e",
+      "kind": "image",
+      "name": "71-QAqS7VXL._AC_SY200_.jpg",
+      "path": "e8759417c0dd8d5e.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-QAqS7VXL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "884268269d6eca1a",
+      "kind": "image",
+      "name": "81ve1KtO-pL._AC_SY200_.jpg",
+      "path": "884268269d6eca1a.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ve1KtO-pL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "2873a489e0ec8bb7",
+      "kind": "image",
+      "name": "81UExRGfIqL._AC_SY200_.jpg",
+      "path": "2873a489e0ec8bb7.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UExRGfIqL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "beca43f45da7a93b",
+      "kind": "image",
+      "name": "81LVTFVjcLL._AC_SY200_.jpg",
+      "path": "beca43f45da7a93b.jpg",
+      "url": "https://m.media-amazon.com/images/I/81LVTFVjcLL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5b4d9294d5676f06",
+      "kind": "image",
+      "name": "61UEXxKIlrL._AC_SY200_.jpg",
+      "path": "5b4d9294d5676f06.jpg",
+      "url": "https://m.media-amazon.com/images/I/61UEXxKIlrL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "49407b59bd926347",
+      "kind": "image",
+      "name": "51uA1LV5hpL._AC_SY200_.jpg",
+      "path": "49407b59bd926347.jpg",
+      "url": "https://m.media-amazon.com/images/I/51uA1LV5hpL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4ad13bed4b6ba987",
+      "kind": "image",
+      "name": "61hfnwAZosL._AC_SY200_.jpg",
+      "path": "4ad13bed4b6ba987.jpg",
+      "url": "https://m.media-amazon.com/images/I/61hfnwAZosL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6fcfebd0d0c0d64c",
+      "kind": "image",
+      "name": "81zh-RIi18L._AC_SY200_.jpg",
+      "path": "6fcfebd0d0c0d64c.jpg",
+      "url": "https://m.media-amazon.com/images/I/81zh-RIi18L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a219bff98cff5fa6",
+      "kind": "image",
+      "name": "71mrOLs9K4L._AC_SY200_.jpg",
+      "path": "a219bff98cff5fa6.jpg",
+      "url": "https://m.media-amazon.com/images/I/71mrOLs9K4L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5665b2c21855181a",
+      "kind": "image",
+      "name": "81l7AwlRcDL._AC_SY200_.jpg",
+      "path": "5665b2c21855181a.jpg",
+      "url": "https://m.media-amazon.com/images/I/81l7AwlRcDL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e2cfbe3d30d95e69",
+      "kind": "image",
+      "name": "61HHXRkRz6L._AC_SY200_.jpg",
+      "path": "e2cfbe3d30d95e69.jpg",
+      "url": "https://m.media-amazon.com/images/I/61HHXRkRz6L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "0b93049189c1d89f",
+      "kind": "image",
+      "name": "71Km-MVfzvL._AC_SY200_.jpg",
+      "path": "0b93049189c1d89f.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Km-MVfzvL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "ea369062f0006155",
+      "kind": "image",
+      "name": "817IVLm70oL._AC_SY200_.jpg",
+      "path": "ea369062f0006155.jpg",
+      "url": "https://m.media-amazon.com/images/I/817IVLm70oL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f7f53d087e3b33a7",
+      "kind": "image",
+      "name": "61bIDEtowdL._AC_SY200_.jpg",
+      "path": "f7f53d087e3b33a7.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bIDEtowdL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "28f3c4f845645186",
+      "kind": "image",
+      "name": "51wX5vhTB4L._AC_SY200_.jpg",
+      "path": "28f3c4f845645186.jpg",
+      "url": "https://m.media-amazon.com/images/I/51wX5vhTB4L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "7a36d4765b639a85",
+      "kind": "image",
+      "name": "51IFiSD+kCL._AC_SY200_.jpg",
+      "path": "7a36d4765b639a85.jpg",
+      "url": "https://m.media-amazon.com/images/I/51IFiSD+kCL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b00adc06cb9b8e2f",
+      "kind": "image",
+      "name": "71CRaMOcDvL._AC_SY200_.jpg",
+      "path": "b00adc06cb9b8e2f.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CRaMOcDvL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4b510d40c8967c44",
+      "kind": "image",
+      "name": "71iZhpB2FpL._AC_SY200_.jpg",
+      "path": "4b510d40c8967c44.jpg",
+      "url": "https://m.media-amazon.com/images/I/71iZhpB2FpL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "69321ff1ead50515",
+      "kind": "image",
+      "name": "911TynawjkL._AC_SY200_.jpg",
+      "path": "69321ff1ead50515.jpg",
+      "url": "https://m.media-amazon.com/images/I/911TynawjkL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "979a290313b09a15",
+      "kind": "image",
+      "name": "81P0NvoRrWL._AC_SY200_.jpg",
+      "path": "979a290313b09a15.jpg",
+      "url": "https://m.media-amazon.com/images/I/81P0NvoRrWL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "735e12d4f0c89071",
+      "kind": "image",
+      "name": "71rp7o5oTnL._AC_SY200_.jpg",
+      "path": "735e12d4f0c89071.jpg",
+      "url": "https://m.media-amazon.com/images/I/71rp7o5oTnL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d4e8b478f33c1af0",
+      "kind": "image",
+      "name": "61pmJdlAMmL._AC_SY200_.jpg",
+      "path": "d4e8b478f33c1af0.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pmJdlAMmL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "fbf3ab1ff39e1a5f",
+      "kind": "image",
+      "name": "7169bZ6hrNL._AC_SY200_.jpg",
+      "path": "fbf3ab1ff39e1a5f.jpg",
+      "url": "https://m.media-amazon.com/images/I/7169bZ6hrNL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a00253bd688d30bb",
+      "kind": "image",
+      "name": "81pFuCA04TL._AC_SY200_.jpg",
+      "path": "a00253bd688d30bb.jpg",
+      "url": "https://m.media-amazon.com/images/I/81pFuCA04TL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "ffc4d49024498272",
+      "kind": "image",
+      "name": "916k6hSv0pL._AC_SY200_.jpg",
+      "path": "ffc4d49024498272.jpg",
+      "url": "https://m.media-amazon.com/images/I/916k6hSv0pL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a73d12bc1757b36e",
+      "kind": "image",
+      "name": "612HeyYXOnL._AC_SY200_.jpg",
+      "path": "a73d12bc1757b36e.jpg",
+      "url": "https://m.media-amazon.com/images/I/612HeyYXOnL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e401343d4d8879aa",
+      "kind": "image",
+      "name": "61p+1+md+8L._AC_SY200_.jpg",
+      "path": "e401343d4d8879aa.jpg",
+      "url": "https://m.media-amazon.com/images/I/61p+1+md+8L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "8c1e81924a782d79",
+      "kind": "image",
+      "name": "71JnbwZyFoL._AC_SY200_.jpg",
+      "path": "8c1e81924a782d79.jpg",
+      "url": "https://m.media-amazon.com/images/I/71JnbwZyFoL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "44bc787ee9eeedca",
+      "kind": "image",
+      "name": "51ubxqzNGIL._AC_SY200_.jpg",
+      "path": "44bc787ee9eeedca.jpg",
+      "url": "https://m.media-amazon.com/images/I/51ubxqzNGIL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5fc4f455b18d4bc7",
+      "kind": "image",
+      "name": "41roS4Ps5RL._AC_SY200_.jpg",
+      "path": "5fc4f455b18d4bc7.jpg",
+      "url": "https://m.media-amazon.com/images/I/41roS4Ps5RL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "067d7ad08025ea90",
+      "kind": "image",
+      "name": "61Cn1ooILhL._AC_SY200_.jpg",
+      "path": "067d7ad08025ea90.jpg",
+      "url": "https://m.media-amazon.com/images/I/61Cn1ooILhL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f98cb53a4d1f8d34",
+      "kind": "image",
+      "name": "71O6EsQ5lqL._AC_SY200_.jpg",
+      "path": "f98cb53a4d1f8d34.jpg",
+      "url": "https://m.media-amazon.com/images/I/71O6EsQ5lqL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5f5c4139c3bf045b",
+      "kind": "image",
+      "name": "61EunJBqIkL._AC_SY200_.jpg",
+      "path": "5f5c4139c3bf045b.jpg",
+      "url": "https://m.media-amazon.com/images/I/61EunJBqIkL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "76fb066746bfce2b",
+      "kind": "image",
+      "name": "91eLE5GW7ZS._AC_SY200_.jpg",
+      "path": "76fb066746bfce2b.jpg",
+      "url": "https://m.media-amazon.com/images/I/91eLE5GW7ZS._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "be5b7360318b3504",
+      "kind": "image",
+      "name": "71cCJfLM2jL._AC_SY200_.jpg",
+      "path": "be5b7360318b3504.jpg",
+      "url": "https://m.media-amazon.com/images/I/71cCJfLM2jL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d2a81d4a7ea27a9d",
+      "kind": "image",
+      "name": "61uubZNVPkL._AC_SY200_.jpg",
+      "path": "d2a81d4a7ea27a9d.jpg",
+      "url": "https://m.media-amazon.com/images/I/61uubZNVPkL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c9ed54b2f0b80e6d",
+      "kind": "image",
+      "name": "81acZu3SQ5L._AC_SY200_.jpg",
+      "path": "c9ed54b2f0b80e6d.jpg",
+      "url": "https://m.media-amazon.com/images/I/81acZu3SQ5L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "54e425edc926ee00",
+      "kind": "image",
+      "name": "81lqy76Cc4L._AC_SY200_.jpg",
+      "path": "54e425edc926ee00.jpg",
+      "url": "https://m.media-amazon.com/images/I/81lqy76Cc4L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "2b1c5441d4590542",
+      "kind": "image",
+      "name": "91bati0rB3L._AC_SY200_.jpg",
+      "path": "2b1c5441d4590542.jpg",
+      "url": "https://m.media-amazon.com/images/I/91bati0rB3L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1d6a88b7cabbeee5",
+      "kind": "image",
+      "name": "61ncSs-cVpL._AC_SY200_.jpg",
+      "path": "1d6a88b7cabbeee5.jpg",
+      "url": "https://m.media-amazon.com/images/I/61ncSs-cVpL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "639751fd67c2b55e",
+      "kind": "image",
+      "name": "81y8P1up-PL._AC_SY200_.jpg",
+      "path": "639751fd67c2b55e.jpg",
+      "url": "https://m.media-amazon.com/images/I/81y8P1up-PL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6134600085bc67b1",
+      "kind": "image",
+      "name": "61bUaiykV8L._AC_SY200_.jpg",
+      "path": "6134600085bc67b1.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bUaiykV8L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "f161ee71d88e3e9d",
+      "kind": "image",
+      "name": "61XbnUE8ipL._AC_SY200_.jpg",
+      "path": "f161ee71d88e3e9d.jpg",
+      "url": "https://m.media-amazon.com/images/I/61XbnUE8ipL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "383a78908e85823d",
+      "kind": "image",
+      "name": "71uyQUBG4KL._AC_SY200_.jpg",
+      "path": "383a78908e85823d.jpg",
+      "url": "https://m.media-amazon.com/images/I/71uyQUBG4KL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "614fd758ef609fc5",
+      "kind": "image",
+      "name": "71RhoYaxtVL._AC_SY200_.jpg",
+      "path": "614fd758ef609fc5.jpg",
+      "url": "https://m.media-amazon.com/images/I/71RhoYaxtVL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6b5812034cc6523b",
+      "kind": "image",
+      "name": "81brJ9-ValL._AC_SY200_.jpg",
+      "path": "6b5812034cc6523b.jpg",
+      "url": "https://m.media-amazon.com/images/I/81brJ9-ValL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "c37babd922db3738",
+      "kind": "image",
+      "name": "41zMnGQk9WL._AC_SY200_.jpg",
+      "path": "c37babd922db3738.jpg",
+      "url": "https://m.media-amazon.com/images/I/41zMnGQk9WL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "a37da86d87ed0d55",
+      "kind": "image",
+      "name": "81UoGiVDpuL._AC_SY200_.jpg",
+      "path": "a37da86d87ed0d55.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UoGiVDpuL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1c45b7196644d976",
+      "kind": "image",
+      "name": "81E4zwc2W+L._AC_SY200_.jpg",
+      "path": "1c45b7196644d976.jpg",
+      "url": "https://m.media-amazon.com/images/I/81E4zwc2W+L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "10f449c8f68d4ff3",
+      "kind": "image",
+      "name": "717tkJFZcVL._AC_SY200_.jpg",
+      "path": "10f449c8f68d4ff3.jpg",
+      "url": "https://m.media-amazon.com/images/I/717tkJFZcVL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d45038a3b040ad55",
+      "kind": "image",
+      "name": "914ufIDbM1L._AC_SY200_.jpg",
+      "path": "d45038a3b040ad55.jpg",
+      "url": "https://m.media-amazon.com/images/I/914ufIDbM1L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "ca7e82c601aac513",
+      "kind": "image",
+      "name": "71lylM-9P4L._AC_SY200_.jpg",
+      "path": "ca7e82c601aac513.jpg",
+      "url": "https://m.media-amazon.com/images/I/71lylM-9P4L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "e6c0814edf6d8110",
+      "kind": "image",
+      "name": "71KuGgYip5L._AC_SY200_.jpg",
+      "path": "e6c0814edf6d8110.jpg",
+      "url": "https://m.media-amazon.com/images/I/71KuGgYip5L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "85b671a663f2144a",
+      "kind": "image",
+      "name": "71gv46SSzvL._AC_SY200_.jpg",
+      "path": "85b671a663f2144a.jpg",
+      "url": "https://m.media-amazon.com/images/I/71gv46SSzvL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1885e8597420c3ca",
+      "kind": "image",
+      "name": "71izg8Ai-KL._AC_SY200_.jpg",
+      "path": "1885e8597420c3ca.jpg",
+      "url": "https://m.media-amazon.com/images/I/71izg8Ai-KL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "fcfe817a92df7429",
+      "kind": "image",
+      "name": "71wGv7Fh2AL._AC_SY200_.jpg",
+      "path": "fcfe817a92df7429.jpg",
+      "url": "https://m.media-amazon.com/images/I/71wGv7Fh2AL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d1a9f25d66d23a1c",
+      "kind": "image",
+      "name": "71tGN2LBhrL._AC_SY200_.jpg",
+      "path": "d1a9f25d66d23a1c.jpg",
+      "url": "https://m.media-amazon.com/images/I/71tGN2LBhrL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "83e5be1bde909429",
+      "kind": "image",
+      "name": "51-U5dEbEBL._AC_SY200_.jpg",
+      "path": "83e5be1bde909429.jpg",
+      "url": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "fd2dd531f2eda41c",
+      "kind": "image",
+      "name": "91YrLTBnMcL._AC_SY200_.jpg",
+      "path": "fd2dd531f2eda41c.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YrLTBnMcL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "903c03d4d66844ad",
+      "kind": "image",
+      "name": "71CN9PCYTtL._AC_SY200_.jpg",
+      "path": "903c03d4d66844ad.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CN9PCYTtL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "5a4ff884a0e3fd39",
+      "kind": "image",
+      "name": "71t-9BTIg9L._AC_SY200_.jpg",
+      "path": "5a4ff884a0e3fd39.jpg",
+      "url": "https://m.media-amazon.com/images/I/71t-9BTIg9L._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "549c66c4eafb525b",
+      "kind": "image",
+      "name": "91ZpAfw57OL._AC_SY200_.jpg",
+      "path": "549c66c4eafb525b.jpg",
+      "url": "https://m.media-amazon.com/images/I/91ZpAfw57OL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "6687cd1259cc2bcb",
+      "kind": "image",
+      "name": "81EPbaDcgQL._AC_SY200_.jpg",
+      "path": "6687cd1259cc2bcb.jpg",
+      "url": "https://m.media-amazon.com/images/I/81EPbaDcgQL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "4697e8ca943bc9f8",
+      "kind": "image",
+      "name": "81M2CuJPGRL._AC_SY200_.jpg",
+      "path": "4697e8ca943bc9f8.jpg",
+      "url": "https://m.media-amazon.com/images/I/81M2CuJPGRL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b358f583c5c0ceb4",
+      "kind": "image",
+      "name": "81xgud3RjjL._AC_SY200_.jpg",
+      "path": "b358f583c5c0ceb4.jpg",
+      "url": "https://m.media-amazon.com/images/I/81xgud3RjjL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "1423d1f5c19684b0",
+      "kind": "image",
+      "name": "81gtST2FCPL._AC_SY200_.jpg",
+      "path": "1423d1f5c19684b0.jpg",
+      "url": "https://m.media-amazon.com/images/I/81gtST2FCPL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "78e02d2df2f2bf68",
+      "kind": "image",
+      "name": "813kEG0BWyL._AC_SY200_.jpg",
+      "path": "78e02d2df2f2bf68.jpg",
+      "url": "https://m.media-amazon.com/images/I/813kEG0BWyL._AC_SY200_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "49eee639f994b488",
+      "kind": "image",
+      "name": "313wAT6Iy2L._SY160_.jpg",
+      "path": "49eee639f994b488.jpg",
+      "url": "https://m.media-amazon.com/images/I/313wAT6Iy2L._SY160_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "b48141567982327c",
+      "kind": "image",
+      "name": "21W7-lndINL._SY75_.jpg",
+      "path": "b48141567982327c.jpg",
+      "url": "https://m.media-amazon.com/images/I/21W7-lndINL._SY75_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "9f3b26ba35bc8e01",
+      "kind": "image",
+      "name": "21B-NkA9p-L._SY75_.jpg",
+      "path": "9f3b26ba35bc8e01.jpg",
+      "url": "https://m.media-amazon.com/images/I/21B-NkA9p-L._SY75_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "d1794b7faf501a9d",
+      "kind": "image",
+      "name": "217GQ1a2QzL._SY75_.jpg",
+      "path": "d1794b7faf501a9d.jpg",
+      "url": "https://m.media-amazon.com/images/I/217GQ1a2QzL._SY75_.jpg",
+      "provenance": "current-page-assets-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0CHFSWM2P",
+      "kind": "image",
+      "name": "B0CHFSWM2P.jpg",
+      "path": "personalized/B0CHFSWM2P.jpg",
+      "url": "https://m.media-amazon.com/images/I/71EESd1deTL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B08HN37XC1",
+      "kind": "image",
+      "name": "B08HN37XC1.jpg",
+      "path": "personalized/B08HN37XC1.jpg",
+      "url": "https://m.media-amazon.com/images/I/61zuR3UMnWL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0874XN4D8",
+      "kind": "image",
+      "name": "B0874XN4D8.jpg",
+      "path": "personalized/B0874XN4D8.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YfRIy7kYL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B07CRG94G3",
+      "kind": "image",
+      "name": "B07CRG94G3.jpg",
+      "path": "personalized/B07CRG94G3.jpg",
+      "url": "https://m.media-amazon.com/images/I/41OUh0ZU1NL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0F332MNX7",
+      "kind": "image",
+      "name": "B0F332MNX7.jpg",
+      "path": "personalized/B0F332MNX7.jpg",
+      "url": "https://m.media-amazon.com/images/I/41rI1J9FcZL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0C5JQ68FY",
+      "kind": "image",
+      "name": "B0C5JQ68FY.jpg",
+      "path": "personalized/B0C5JQ68FY.jpg",
+      "url": "https://m.media-amazon.com/images/I/71bBCTIvIIL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0BGL4SHY8",
+      "kind": "image",
+      "name": "B0BGL4SHY8.jpg",
+      "path": "personalized/B0BGL4SHY8.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-8LPwxb7L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B06W55K9N6",
+      "kind": "image",
+      "name": "B06W55K9N6.jpg",
+      "path": "personalized/B06W55K9N6.jpg",
+      "url": "https://m.media-amazon.com/images/I/61EunJBqIkL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B081SVSNVB",
+      "kind": "image",
+      "name": "B081SVSNVB.jpg",
+      "path": "personalized/B081SVSNVB.jpg",
+      "url": "https://m.media-amazon.com/images/I/91eLE5GW7ZS._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B085L6TQ2S",
+      "kind": "image",
+      "name": "B085L6TQ2S.jpg",
+      "path": "personalized/B085L6TQ2S.jpg",
+      "url": "https://m.media-amazon.com/images/I/71cCJfLM2jL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0CKMWP1KH",
+      "kind": "image",
+      "name": "B0CKMWP1KH.jpg",
+      "path": "personalized/B0CKMWP1KH.jpg",
+      "url": "https://m.media-amazon.com/images/I/61uubZNVPkL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0C4KKYF6Y",
+      "kind": "image",
+      "name": "B0C4KKYF6Y.jpg",
+      "path": "personalized/B0C4KKYF6Y.jpg",
+      "url": "https://m.media-amazon.com/images/I/81acZu3SQ5L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B08BZ7Y8C7",
+      "kind": "image",
+      "name": "B08BZ7Y8C7.jpg",
+      "path": "personalized/B08BZ7Y8C7.jpg",
+      "url": "https://m.media-amazon.com/images/I/81lqy76Cc4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B01MSSJ32J",
+      "kind": "image",
+      "name": "B01MSSJ32J.jpg",
+      "path": "personalized/B01MSSJ32J.jpg",
+      "url": "https://m.media-amazon.com/images/I/91bati0rB3L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0DX68TWW4",
+      "kind": "image",
+      "name": "B0DX68TWW4.jpg",
+      "path": "personalized/B0DX68TWW4.jpg",
+      "url": "https://m.media-amazon.com/images/I/61ncSs-cVpL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B08F27QGHX",
+      "kind": "image",
+      "name": "B08F27QGHX.jpg",
+      "path": "personalized/B08F27QGHX.jpg",
+      "url": "https://m.media-amazon.com/images/I/81y8P1up-PL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0CMDJXZ19",
+      "kind": "image",
+      "name": "B0CMDJXZ19.jpg",
+      "path": "personalized/B0CMDJXZ19.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bUaiykV8L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0FV7VF5BQ",
+      "kind": "image",
+      "name": "B0FV7VF5BQ.jpg",
+      "path": "personalized/B0FV7VF5BQ.jpg",
+      "url": "https://m.media-amazon.com/images/I/61XbnUE8ipL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0DP35XJFQ",
+      "kind": "image",
+      "name": "B0DP35XJFQ.jpg",
+      "path": "personalized/B0DP35XJFQ.jpg",
+      "url": "https://m.media-amazon.com/images/I/71uyQUBG4KL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0CN6G33CW",
+      "kind": "image",
+      "name": "B0CN6G33CW.jpg",
+      "path": "personalized/B0CN6G33CW.jpg",
+      "url": "https://m.media-amazon.com/images/I/71RhoYaxtVL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0F9VY82J1",
+      "kind": "image",
+      "name": "B0F9VY82J1.jpg",
+      "path": "personalized/B0F9VY82J1.jpg",
+      "url": "https://m.media-amazon.com/images/I/81brJ9-ValL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0C9WGS6MC",
+      "kind": "image",
+      "name": "B0C9WGS6MC.jpg",
+      "path": "personalized/B0C9WGS6MC.jpg",
+      "url": "https://m.media-amazon.com/images/I/41zMnGQk9WL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0CRYY9THJ",
+      "kind": "image",
+      "name": "B0CRYY9THJ.jpg",
+      "path": "personalized/B0CRYY9THJ.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UoGiVDpuL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B0DG16HCWB",
+      "kind": "image",
+      "name": "B0DG16HCWB.jpg",
+      "path": "personalized/B0DG16HCWB.jpg",
+      "url": "https://m.media-amazon.com/images/I/81E4zwc2W+L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "personalized/B09ZRD38D8",
+      "kind": "image",
+      "name": "B09ZRD38D8.jpg",
+      "path": "personalized/B09ZRD38D8.jpg",
+      "url": "https://m.media-amazon.com/images/I/717tkJFZcVL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "wireless-tech/smartphones",
+      "kind": "image",
+      "name": "smartphones.jpg",
+      "path": "wireless-tech/smartphones.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Smartphone_1x._SY116_CB566164844_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "wireless-tech/watches",
+      "kind": "image",
+      "name": "watches.jpg",
+      "path": "wireless-tech/watches.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Watches_1x._SY116_CB566164844_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "wireless-tech/headphones",
+      "kind": "image",
+      "name": "headphones.jpg",
+      "path": "wireless-tech/headphones.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Headphone_1x._SY116_CB566164844_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "wireless-tech/tablets",
+      "kind": "image",
+      "name": "tablets.jpg",
+      "path": "wireless-tech/tablets.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Tablet_1x._SY116_CB566164844_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0CSD1FT18",
+      "kind": "image",
+      "name": "B0CSD1FT18.jpg",
+      "path": "top-picks-singapore/B0CSD1FT18.jpg",
+      "url": "https://m.media-amazon.com/images/I/71tQTr-8nVL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0G1MQYHRD",
+      "kind": "image",
+      "name": "B0G1MQYHRD.jpg",
+      "path": "top-picks-singapore/B0G1MQYHRD.jpg",
+      "url": "https://m.media-amazon.com/images/I/512mn+LKArL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B00FLYWNYQ",
+      "kind": "image",
+      "name": "B00FLYWNYQ.jpg",
+      "path": "top-picks-singapore/B00FLYWNYQ.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FTP511BW",
+      "kind": "image",
+      "name": "B0FTP511BW.jpg",
+      "path": "top-picks-singapore/B0FTP511BW.jpg",
+      "url": "https://m.media-amazon.com/images/I/61X2Bc7MuhL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0C9SWH3RC",
+      "kind": "image",
+      "name": "B0C9SWH3RC.jpg",
+      "path": "top-picks-singapore/B0C9SWH3RC.jpg",
+      "url": "https://m.media-amazon.com/images/I/71D3QLxx+IL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DP3JV2WB",
+      "kind": "image",
+      "name": "B0DP3JV2WB.jpg",
+      "path": "top-picks-singapore/B0DP3JV2WB.jpg",
+      "url": "https://m.media-amazon.com/images/I/81q6tQpIIYL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DXZW363G",
+      "kind": "image",
+      "name": "B0DXZW363G.jpg",
+      "path": "top-picks-singapore/B0DXZW363G.jpg",
+      "url": "https://m.media-amazon.com/images/I/61kX1fMhClL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DKQ4RF3B",
+      "kind": "image",
+      "name": "B0DKQ4RF3B.jpg",
+      "path": "top-picks-singapore/B0DKQ4RF3B.jpg",
+      "url": "https://m.media-amazon.com/images/I/711Hh2gt+gL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FTPYT2H3",
+      "kind": "image",
+      "name": "B0FTPYT2H3.jpg",
+      "path": "top-picks-singapore/B0FTPYT2H3.jpg",
+      "url": "https://m.media-amazon.com/images/I/61JXabRWs4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DKTVC9CR",
+      "kind": "image",
+      "name": "B0DKTVC9CR.jpg",
+      "path": "top-picks-singapore/B0DKTVC9CR.jpg",
+      "url": "https://m.media-amazon.com/images/I/81P3v6+WDSL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FBPZ3RSB",
+      "kind": "image",
+      "name": "B0FBPZ3RSB.jpg",
+      "path": "top-picks-singapore/B0FBPZ3RSB.jpg",
+      "url": "https://m.media-amazon.com/images/I/81QOhV6QAFL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FJH6XRS3",
+      "kind": "image",
+      "name": "B0FJH6XRS3.jpg",
+      "path": "top-picks-singapore/B0FJH6XRS3.jpg",
+      "url": "https://m.media-amazon.com/images/I/5118V4d+AgL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B07799WY99",
+      "kind": "image",
+      "name": "B07799WY99.jpg",
+      "path": "top-picks-singapore/B07799WY99.jpg",
+      "url": "https://m.media-amazon.com/images/I/71uSPR8DzYL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B003NMMVJ0",
+      "kind": "image",
+      "name": "B003NMMVJ0.jpg",
+      "path": "top-picks-singapore/B003NMMVJ0.jpg",
+      "url": "https://m.media-amazon.com/images/I/416iE4dgSwL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DQPBR1RN",
+      "kind": "image",
+      "name": "B0DQPBR1RN.jpg",
+      "path": "top-picks-singapore/B0DQPBR1RN.jpg",
+      "url": "https://m.media-amazon.com/images/I/81WnP5AMq7L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B09BQD3YDY",
+      "kind": "image",
+      "name": "B09BQD3YDY.jpg",
+      "path": "top-picks-singapore/B09BQD3YDY.jpg",
+      "url": "https://m.media-amazon.com/images/I/61a3TsZDylL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0CG7DPXGW",
+      "kind": "image",
+      "name": "B0CG7DPXGW.jpg",
+      "path": "top-picks-singapore/B0CG7DPXGW.jpg",
+      "url": "https://m.media-amazon.com/images/I/61SiAwvAwIL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0CLH89X2K",
+      "kind": "image",
+      "name": "B0CLH89X2K.jpg",
+      "path": "top-picks-singapore/B0CLH89X2K.jpg",
+      "url": "https://m.media-amazon.com/images/I/61-RoURbxfL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FPF5QRV6",
+      "kind": "image",
+      "name": "B0FPF5QRV6.jpg",
+      "path": "top-picks-singapore/B0FPF5QRV6.jpg",
+      "url": "https://m.media-amazon.com/images/I/61e0Xu8+JEL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0007ZF4OA",
+      "kind": "image",
+      "name": "B0007ZF4OA.jpg",
+      "path": "top-picks-singapore/B0007ZF4OA.jpg",
+      "url": "https://m.media-amazon.com/images/I/81LIVrFpRqL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B000052Y5Q",
+      "kind": "image",
+      "name": "B000052Y5Q.jpg",
+      "path": "top-picks-singapore/B000052Y5Q.jpg",
+      "url": "https://m.media-amazon.com/images/I/71ibylo7wGL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0GT2JP76J",
+      "kind": "image",
+      "name": "B0GT2JP76J.jpg",
+      "path": "top-picks-singapore/B0GT2JP76J.jpg",
+      "url": "https://m.media-amazon.com/images/I/71GBlMiclTL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FWBPFL4S",
+      "kind": "image",
+      "name": "B0FWBPFL4S.jpg",
+      "path": "top-picks-singapore/B0FWBPFL4S.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Jlu2VELrL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0G31J12SG",
+      "kind": "image",
+      "name": "B0G31J12SG.jpg",
+      "path": "top-picks-singapore/B0G31J12SG.jpg",
+      "url": "https://m.media-amazon.com/images/I/41gnXokGDAL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DX2GJ1YR",
+      "kind": "image",
+      "name": "B0DX2GJ1YR.jpg",
+      "path": "top-picks-singapore/B0DX2GJ1YR.jpg",
+      "url": "https://m.media-amazon.com/images/I/71qygJIcKnL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FKNGRQVR",
+      "kind": "image",
+      "name": "B0FKNGRQVR.jpg",
+      "path": "top-picks-singapore/B0FKNGRQVR.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ekxtDi1SL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0DK5VM9W2",
+      "kind": "image",
+      "name": "B0DK5VM9W2.jpg",
+      "path": "top-picks-singapore/B0DK5VM9W2.jpg",
+      "url": "https://m.media-amazon.com/images/I/81d9nzhMocL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "top-picks-singapore/B0FY6T2FG6",
+      "kind": "image",
+      "name": "B0FY6T2FG6.jpg",
+      "path": "top-picks-singapore/B0FY6T2FG6.jpg",
+      "url": "https://m.media-amazon.com/images/I/81HZjNyp+IL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B01M16WBW1",
+      "kind": "image",
+      "name": "B01M16WBW1.jpg",
+      "path": "rails/best-sellers-home-kitchen/B01M16WBW1.jpg",
+      "url": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0154ASID6",
+      "kind": "image",
+      "name": "B0154ASID6.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0154ASID6.jpg",
+      "url": "https://m.media-amazon.com/images/I/61KCbJGpAFL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B085DTZQNZ",
+      "kind": "image",
+      "name": "B085DTZQNZ.jpg",
+      "path": "rails/best-sellers-home-kitchen/B085DTZQNZ.jpg",
+      "url": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0BQR2BQYZ",
+      "kind": "image",
+      "name": "B0BQR2BQYZ.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0BQR2BQYZ.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Si2QlAb3L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B00FXNABPI",
+      "kind": "image",
+      "name": "B00FXNABPI.jpg",
+      "path": "rails/best-sellers-home-kitchen/B00FXNABPI.jpg",
+      "url": "https://m.media-amazon.com/images/I/617+Wg+p7WL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B08CRPWQHB",
+      "kind": "image",
+      "name": "B08CRPWQHB.jpg",
+      "path": "rails/best-sellers-home-kitchen/B08CRPWQHB.jpg",
+      "url": "https://m.media-amazon.com/images/I/71kHwy9jklL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0D97YVVQ2",
+      "kind": "image",
+      "name": "B0D97YVVQ2.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0D97YVVQ2.jpg",
+      "url": "https://m.media-amazon.com/images/I/61HjMmGgC2L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0CFGYFCYL",
+      "kind": "image",
+      "name": "B0CFGYFCYL.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0CFGYFCYL.jpg",
+      "url": "https://m.media-amazon.com/images/I/914ufIDbM1L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B001R1RXUG",
+      "kind": "image",
+      "name": "B001R1RXUG.jpg",
+      "path": "rails/best-sellers-home-kitchen/B001R1RXUG.jpg",
+      "url": "https://m.media-amazon.com/images/I/71lylM-9P4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B088BZTYFP",
+      "kind": "image",
+      "name": "B088BZTYFP.jpg",
+      "path": "rails/best-sellers-home-kitchen/B088BZTYFP.jpg",
+      "url": "https://m.media-amazon.com/images/I/71KuGgYip5L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B09MKPDJRT",
+      "kind": "image",
+      "name": "B09MKPDJRT.jpg",
+      "path": "rails/best-sellers-home-kitchen/B09MKPDJRT.jpg",
+      "url": "https://m.media-amazon.com/images/I/71gv46SSzvL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0DGF616XN",
+      "kind": "image",
+      "name": "B0DGF616XN.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0DGF616XN.jpg",
+      "url": "https://m.media-amazon.com/images/I/71izg8Ai-KL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B09GTRVJQM",
+      "kind": "image",
+      "name": "B09GTRVJQM.jpg",
+      "path": "rails/best-sellers-home-kitchen/B09GTRVJQM.jpg",
+      "url": "https://m.media-amazon.com/images/I/71wGv7Fh2AL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B00NX0WXQI",
+      "kind": "image",
+      "name": "B00NX0WXQI.jpg",
+      "path": "rails/best-sellers-home-kitchen/B00NX0WXQI.jpg",
+      "url": "https://m.media-amazon.com/images/I/71tGN2LBhrL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0CP9YB3Q4",
+      "kind": "image",
+      "name": "B0CP9YB3Q4.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0CP9YB3Q4.jpg",
+      "url": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B0113UZJE2",
+      "kind": "image",
+      "name": "B0113UZJE2.jpg",
+      "path": "rails/best-sellers-home-kitchen/B0113UZJE2.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YrLTBnMcL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B082314NFL",
+      "kind": "image",
+      "name": "B082314NFL.jpg",
+      "path": "rails/best-sellers-home-kitchen/B082314NFL.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CN9PCYTtL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B07VVK39F7",
+      "kind": "image",
+      "name": "B07VVK39F7.jpg",
+      "path": "rails/best-sellers-home-kitchen/B07VVK39F7.jpg",
+      "url": "https://m.media-amazon.com/images/I/71t-9BTIg9L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-home-kitchen/B086WNKLTM",
+      "kind": "image",
+      "name": "B086WNKLTM.jpg",
+      "path": "rails/best-sellers-home-kitchen/B086WNKLTM.jpg",
+      "url": "https://m.media-amazon.com/images/I/91ZpAfw57OL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0BG6B2D4D",
+      "kind": "image",
+      "name": "B0BG6B2D4D.jpg",
+      "path": "rails/top-sellers-toys/B0BG6B2D4D.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pFf-1Mu3L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GGTJCVR5",
+      "kind": "image",
+      "name": "B0GGTJCVR5.jpg",
+      "path": "rails/top-sellers-toys/B0GGTJCVR5.jpg",
+      "url": "https://m.media-amazon.com/images/I/819rNXWgZuL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B071V91LGC",
+      "kind": "image",
+      "name": "B071V91LGC.jpg",
+      "path": "rails/top-sellers-toys/B071V91LGC.jpg",
+      "url": "https://m.media-amazon.com/images/I/81DWixeO-fL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GMQMZ96P",
+      "kind": "image",
+      "name": "B0GMQMZ96P.jpg",
+      "path": "rails/top-sellers-toys/B0GMQMZ96P.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-QAqS7VXL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GW2DK37Q",
+      "kind": "image",
+      "name": "B0GW2DK37Q.jpg",
+      "path": "rails/top-sellers-toys/B0GW2DK37Q.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ve1KtO-pL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GHMCL7SN",
+      "kind": "image",
+      "name": "B0GHMCL7SN.jpg",
+      "path": "rails/top-sellers-toys/B0GHMCL7SN.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UExRGfIqL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0H63D57Q4",
+      "kind": "image",
+      "name": "B0H63D57Q4.jpg",
+      "path": "rails/top-sellers-toys/B0H63D57Q4.jpg",
+      "url": "https://m.media-amazon.com/images/I/81LVTFVjcLL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GR6N18F6",
+      "kind": "image",
+      "name": "B0GR6N18F6.jpg",
+      "path": "rails/top-sellers-toys/B0GR6N18F6.jpg",
+      "url": "https://m.media-amazon.com/images/I/81EPbaDcgQL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0BNW3DFYR",
+      "kind": "image",
+      "name": "B0BNW3DFYR.jpg",
+      "path": "rails/top-sellers-toys/B0BNW3DFYR.jpg",
+      "url": "https://m.media-amazon.com/images/I/81M2CuJPGRL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0G8W9DWF9",
+      "kind": "image",
+      "name": "B0G8W9DWF9.jpg",
+      "path": "rails/top-sellers-toys/B0G8W9DWF9.jpg",
+      "url": "https://m.media-amazon.com/images/I/81xgud3RjjL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0H6H4PL4G",
+      "kind": "image",
+      "name": "B0H6H4PL4G.jpg",
+      "path": "rails/top-sellers-toys/B0H6H4PL4G.jpg",
+      "url": "https://m.media-amazon.com/images/I/81gtST2FCPL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FSH8S6DJ",
+      "kind": "image",
+      "name": "B0FSH8S6DJ.jpg",
+      "path": "rails/top-sellers-toys/B0FSH8S6DJ.jpg",
+      "url": "https://m.media-amazon.com/images/I/813kEG0BWyL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GXJ8CSTY",
+      "kind": "image",
+      "name": "B0GXJ8CSTY.jpg",
+      "path": "rails/top-sellers-toys/B0GXJ8CSTY.jpg",
+      "url": "https://m.media-amazon.com/images/I/91E+9GLiyyL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GRX2L4RM",
+      "kind": "image",
+      "name": "B0GRX2L4RM.jpg",
+      "path": "rails/top-sellers-toys/B0GRX2L4RM.jpg",
+      "url": "https://m.media-amazon.com/images/I/81bRG+8l6ML._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GYTRYV7P",
+      "kind": "image",
+      "name": "B0GYTRYV7P.jpg",
+      "path": "rails/top-sellers-toys/B0GYTRYV7P.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ANtTqGJVL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GFGDP1PQ",
+      "kind": "image",
+      "name": "B0GFGDP1PQ.jpg",
+      "path": "rails/top-sellers-toys/B0GFGDP1PQ.jpg",
+      "url": "https://m.media-amazon.com/images/I/8110JfhaiJL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0GHN2RCNT",
+      "kind": "image",
+      "name": "B0GHN2RCNT.jpg",
+      "path": "rails/top-sellers-toys/B0GHN2RCNT.jpg",
+      "url": "https://m.media-amazon.com/images/I/81LI+-q-EFL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FK1PTMTP",
+      "kind": "image",
+      "name": "B0FK1PTMTP.jpg",
+      "path": "rails/top-sellers-toys/B0FK1PTMTP.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ao7b7tO-L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0H1K5HTFT",
+      "kind": "image",
+      "name": "B0H1K5HTFT.jpg",
+      "path": "rails/top-sellers-toys/B0H1K5HTFT.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UENtcVdbL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B002LHA064",
+      "kind": "image",
+      "name": "B002LHA064.jpg",
+      "path": "rails/top-sellers-toys/B002LHA064.jpg",
+      "url": "https://m.media-amazon.com/images/I/61rN+Eh6IML._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FV9YLH5K",
+      "kind": "image",
+      "name": "B0FV9YLH5K.jpg",
+      "path": "rails/top-sellers-toys/B0FV9YLH5K.jpg",
+      "url": "https://m.media-amazon.com/images/I/81Lb10drVZL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FM3KLGRS",
+      "kind": "image",
+      "name": "B0FM3KLGRS.jpg",
+      "path": "rails/top-sellers-toys/B0FM3KLGRS.jpg",
+      "url": "https://m.media-amazon.com/images/I/71jiN6uzScL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0DMMJCNY2",
+      "kind": "image",
+      "name": "B0DMMJCNY2.jpg",
+      "path": "rails/top-sellers-toys/B0DMMJCNY2.jpg",
+      "url": "https://m.media-amazon.com/images/I/81JJIYTQ9+L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FJMQG9K3",
+      "kind": "image",
+      "name": "B0FJMQG9K3.jpg",
+      "path": "rails/top-sellers-toys/B0FJMQG9K3.jpg",
+      "url": "https://m.media-amazon.com/images/I/614WFJsNtWL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B09MSKRJVB",
+      "kind": "image",
+      "name": "B09MSKRJVB.jpg",
+      "path": "rails/top-sellers-toys/B09MSKRJVB.jpg",
+      "url": "https://m.media-amazon.com/images/I/710ShEKpwLL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/top-sellers-toys/B0FY7316FN",
+      "kind": "image",
+      "name": "B0FY7316FN.jpg",
+      "path": "rails/top-sellers-toys/B0FY7316FN.jpg",
+      "url": "https://m.media-amazon.com/images/I/81A5spoVr3L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0BJPXXM7D",
+      "kind": "image",
+      "name": "B0BJPXXM7D.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0BJPXXM7D.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Km-MVfzvL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B01A6BPAN4",
+      "kind": "image",
+      "name": "B01A6BPAN4.jpg",
+      "path": "rails/best-sellers-computers-accessories/B01A6BPAN4.jpg",
+      "url": "https://m.media-amazon.com/images/I/817IVLm70oL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0FY6G1RFK",
+      "kind": "image",
+      "name": "B0FY6G1RFK.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0FY6G1RFK.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bIDEtowdL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B07K74LDCH",
+      "kind": "image",
+      "name": "B07K74LDCH.jpg",
+      "path": "rails/best-sellers-computers-accessories/B07K74LDCH.jpg",
+      "url": "https://m.media-amazon.com/images/I/51wX5vhTB4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0B8STRJYJ",
+      "kind": "image",
+      "name": "B0B8STRJYJ.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0B8STRJYJ.jpg",
+      "url": "https://m.media-amazon.com/images/I/51IFiSD+kCL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B01N6M1Y9N",
+      "kind": "image",
+      "name": "B01N6M1Y9N.jpg",
+      "path": "rails/best-sellers-computers-accessories/B01N6M1Y9N.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CRaMOcDvL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0BDKJFRX4",
+      "kind": "image",
+      "name": "B0BDKJFRX4.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0BDKJFRX4.jpg",
+      "url": "https://m.media-amazon.com/images/I/71iZhpB2FpL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B07XY28FZG",
+      "kind": "image",
+      "name": "B07XY28FZG.jpg",
+      "path": "rails/best-sellers-computers-accessories/B07XY28FZG.jpg",
+      "url": "https://m.media-amazon.com/images/I/51HbD2W7FtL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0BKL7KD6Y",
+      "kind": "image",
+      "name": "B0BKL7KD6Y.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0BKL7KD6Y.jpg",
+      "url": "https://m.media-amazon.com/images/I/71K00r5z4iL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0CHJR142G",
+      "kind": "image",
+      "name": "B0CHJR142G.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0CHJR142G.jpg",
+      "url": "https://m.media-amazon.com/images/I/71cBfxUjyYL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B08HV3MPFD",
+      "kind": "image",
+      "name": "B08HV3MPFD.jpg",
+      "path": "rails/best-sellers-computers-accessories/B08HV3MPFD.jpg",
+      "url": "https://m.media-amazon.com/images/I/51xCw9RKssL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0B9NNWXVP",
+      "kind": "image",
+      "name": "B0B9NNWXVP.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0B9NNWXVP.jpg",
+      "url": "https://m.media-amazon.com/images/I/81Q9vMNUOyL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0B1HJ666G",
+      "kind": "image",
+      "name": "B0B1HJ666G.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0B1HJ666G.jpg",
+      "url": "https://m.media-amazon.com/images/I/51QXqomzfdL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0FX2MQRXC",
+      "kind": "image",
+      "name": "B0FX2MQRXC.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0FX2MQRXC.jpg",
+      "url": "https://m.media-amazon.com/images/I/81sFJ958GeL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0CH9WTYYG",
+      "kind": "image",
+      "name": "B0CH9WTYYG.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0CH9WTYYG.jpg",
+      "url": "https://m.media-amazon.com/images/I/512L0kFUpWL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0BRRPP5KH",
+      "kind": "image",
+      "name": "B0BRRPP5KH.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0BRRPP5KH.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CkCu-9qlL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-computers-accessories/B0CT4HT3CM",
+      "kind": "image",
+      "name": "B0CT4HT3CM.jpg",
+      "path": "rails/best-sellers-computers-accessories/B0CT4HT3CM.jpg",
+      "url": "https://m.media-amazon.com/images/I/71V7+wqHfcL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/168281808X",
+      "kind": "image",
+      "name": "168281808X.jpg",
+      "path": "rails/best-sellers-books/168281808X.jpg",
+      "url": "https://m.media-amazon.com/images/I/911TynawjkL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1668236516",
+      "kind": "image",
+      "name": "1668236516.jpg",
+      "path": "rails/best-sellers-books/1668236516.jpg",
+      "url": "https://m.media-amazon.com/images/I/81P0NvoRrWL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0393356256",
+      "kind": "image",
+      "name": "0393356256.jpg",
+      "path": "rails/best-sellers-books/0393356256.jpg",
+      "url": "https://m.media-amazon.com/images/I/71rp7o5oTnL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/B0GQ2VXKY7",
+      "kind": "image",
+      "name": "B0GQ2VXKY7.jpg",
+      "path": "rails/best-sellers-books/B0GQ2VXKY7.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pmJdlAMmL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/059380421X",
+      "kind": "image",
+      "name": "059380421X.jpg",
+      "path": "rails/best-sellers-books/059380421X.jpg",
+      "url": "https://m.media-amazon.com/images/I/7169bZ6hrNL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1954118813",
+      "kind": "image",
+      "name": "1954118813.jpg",
+      "path": "rails/best-sellers-books/1954118813.jpg",
+      "url": "https://m.media-amazon.com/images/I/81pFuCA04TL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0593135229",
+      "kind": "image",
+      "name": "0593135229.jpg",
+      "path": "rails/best-sellers-books/0593135229.jpg",
+      "url": "https://m.media-amazon.com/images/I/916k6hSv0pL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0063511630",
+      "kind": "image",
+      "name": "0063511630.jpg",
+      "path": "rails/best-sellers-books/0063511630.jpg",
+      "url": "https://m.media-amazon.com/images/I/81D4ATVRKPL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0140268863",
+      "kind": "image",
+      "name": "0140268863.jpg",
+      "path": "rails/best-sellers-books/0140268863.jpg",
+      "url": "https://m.media-amazon.com/images/I/81g0AATkO9L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0316259187",
+      "kind": "image",
+      "name": "0316259187.jpg",
+      "path": "rails/best-sellers-books/0316259187.jpg",
+      "url": "https://m.media-amazon.com/images/I/71L9RAwj3QL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0399226907",
+      "kind": "image",
+      "name": "0399226907.jpg",
+      "path": "rails/best-sellers-books/0399226907.jpg",
+      "url": "https://m.media-amazon.com/images/I/81qsstEtrgL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1401971369",
+      "kind": "image",
+      "name": "1401971369.jpg",
+      "path": "rails/best-sellers-books/1401971369.jpg",
+      "url": "https://m.media-amazon.com/images/I/91ZVf3kNrcL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0593798430",
+      "kind": "image",
+      "name": "0593798430.jpg",
+      "path": "rails/best-sellers-books/0593798430.jpg",
+      "url": "https://m.media-amazon.com/images/I/81PndgdGCXL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1775293939",
+      "kind": "image",
+      "name": "1775293939.jpg",
+      "path": "rails/best-sellers-books/1775293939.jpg",
+      "url": "https://m.media-amazon.com/images/I/813twfPlzhL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1775293947",
+      "kind": "image",
+      "name": "1775293947.jpg",
+      "path": "rails/best-sellers-books/1775293947.jpg",
+      "url": "https://m.media-amazon.com/images/I/811M8UKz6cL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1558585362",
+      "kind": "image",
+      "name": "1558585362.jpg",
+      "path": "rails/best-sellers-books/1558585362.jpg",
+      "url": "https://m.media-amazon.com/images/I/81YNkSjQ+XL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0805047905",
+      "kind": "image",
+      "name": "0805047905.jpg",
+      "path": "rails/best-sellers-books/0805047905.jpg",
+      "url": "https://m.media-amazon.com/images/I/81kZ3Gl3WKL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0593820282",
+      "kind": "image",
+      "name": "0593820282.jpg",
+      "path": "rails/best-sellers-books/0593820282.jpg",
+      "url": "https://m.media-amazon.com/images/I/819qGxineEL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/4861522471",
+      "kind": "image",
+      "name": "4861522471.jpg",
+      "path": "rails/best-sellers-books/4861522471.jpg",
+      "url": "https://m.media-amazon.com/images/I/61CCq+e0vWL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1775293955",
+      "kind": "image",
+      "name": "1775293955.jpg",
+      "path": "rails/best-sellers-books/1775293955.jpg",
+      "url": "https://m.media-amazon.com/images/I/81RN-v3p+wL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0857197681",
+      "kind": "image",
+      "name": "0857197681.jpg",
+      "path": "rails/best-sellers-books/0857197681.jpg",
+      "url": "https://m.media-amazon.com/images/I/71si36sM1BL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1589255518",
+      "kind": "image",
+      "name": "1589255518.jpg",
+      "path": "rails/best-sellers-books/1589255518.jpg",
+      "url": "https://m.media-amazon.com/images/I/81mpSoJzv4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/1454961791",
+      "kind": "image",
+      "name": "1454961791.jpg",
+      "path": "rails/best-sellers-books/1454961791.jpg",
+      "url": "https://m.media-amazon.com/images/I/81qlULQ48yL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0735211299",
+      "kind": "image",
+      "name": "0735211299.jpg",
+      "path": "rails/best-sellers-books/0735211299.jpg",
+      "url": "https://m.media-amazon.com/images/I/81kg51XRc1L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/0778801314",
+      "kind": "image",
+      "name": "0778801314.jpg",
+      "path": "rails/best-sellers-books/0778801314.jpg",
+      "url": "https://m.media-amazon.com/images/I/71cMY5jsc1L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-books/9387779262",
+      "kind": "image",
+      "name": "9387779262.jpg",
+      "path": "rails/best-sellers-books/9387779262.jpg",
+      "url": "https://m.media-amazon.com/images/I/71RPFp7+gfL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B09541P9WH",
+      "kind": "image",
+      "name": "B09541P9WH.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B09541P9WH.jpg",
+      "url": "https://m.media-amazon.com/images/I/612HeyYXOnL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B074PVTPBW",
+      "kind": "image",
+      "name": "B074PVTPBW.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B074PVTPBW.jpg",
+      "url": "https://m.media-amazon.com/images/I/61p+1+md+8L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B00U2VQZDS",
+      "kind": "image",
+      "name": "B00U2VQZDS.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B00U2VQZDS.jpg",
+      "url": "https://m.media-amazon.com/images/I/71JnbwZyFoL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B0B2RM68G2",
+      "kind": "image",
+      "name": "B0B2RM68G2.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B0B2RM68G2.jpg",
+      "url": "https://m.media-amazon.com/images/I/51ubxqzNGIL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B09542G9ZN",
+      "kind": "image",
+      "name": "B09542G9ZN.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B09542G9ZN.jpg",
+      "url": "https://m.media-amazon.com/images/I/41roS4Ps5RL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B07PBXXNCY",
+      "kind": "image",
+      "name": "B07PBXXNCY.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B07PBXXNCY.jpg",
+      "url": "https://m.media-amazon.com/images/I/61Cn1ooILhL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B00F1U0YB4",
+      "kind": "image",
+      "name": "B00F1U0YB4.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B00F1U0YB4.jpg",
+      "url": "https://m.media-amazon.com/images/I/71O6EsQ5lqL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B08H3JPH74",
+      "kind": "image",
+      "name": "B08H3JPH74.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B08H3JPH74.jpg",
+      "url": "https://m.media-amazon.com/images/I/71MQo8pHmBL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B09HHDHXWX",
+      "kind": "image",
+      "name": "B09HHDHXWX.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B09HHDHXWX.jpg",
+      "url": "https://m.media-amazon.com/images/I/61F5elwBZYL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B0DK4Y2YP3",
+      "kind": "image",
+      "name": "B0DK4Y2YP3.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B0DK4Y2YP3.jpg",
+      "url": "https://m.media-amazon.com/images/I/51zdLqgadJL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B0BXTS6L35",
+      "kind": "image",
+      "name": "B0BXTS6L35.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B0BXTS6L35.jpg",
+      "url": "https://m.media-amazon.com/images/I/71LqUR0-ceL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B002MSN3QQ",
+      "kind": "image",
+      "name": "B002MSN3QQ.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B002MSN3QQ.jpg",
+      "url": "https://m.media-amazon.com/images/I/71aXlh7do4L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B07GB3NVN1",
+      "kind": "image",
+      "name": "B07GB3NVN1.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B07GB3NVN1.jpg",
+      "url": "https://m.media-amazon.com/images/I/613CVp8yDGL._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B0GHMZXX8Y",
+      "kind": "image",
+      "name": "B0GHMZXX8Y.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B0GHMZXX8Y.jpg",
+      "url": "https://m.media-amazon.com/images/I/613iSS1QL9L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B000H3I2JG",
+      "kind": "image",
+      "name": "B000H3I2JG.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B000H3I2JG.jpg",
+      "url": "https://m.media-amazon.com/images/I/715FVP4Ks0L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    },
+    {
+      "contentType": "image/jpeg",
+      "id": "rails/best-sellers-beauty-personal-care/B0DG4WXBCF",
+      "kind": "image",
+      "name": "B0DG4WXBCF.jpg",
+      "path": "rails/best-sellers-beauty-personal-care/B0DG4WXBCF.jpg",
+      "url": "https://m.media-amazon.com/images/I/61fuHSbuE2L._AC_SY200_.jpg",
+      "provenance": "current-page-item-level-dom-and-direct-download"
+    }
+  ],
+  "failures": [],
+  "fullPageInventory": "full-page-inventory.json"
+}

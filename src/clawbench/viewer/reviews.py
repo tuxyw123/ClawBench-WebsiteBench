@@ -155,11 +155,18 @@ class ReviewStore:
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary, path)
-            directory_fd = os.open(path.parent, os.O_RDONLY)
             try:
-                os.fsync(directory_fd)
+                directory_fd = os.open(path.parent, os.O_RDONLY)
+            except OSError:
+                # Windows does not permit opening directories this way. The
+                # atomic replace above still provides the required guarantee.
+                directory_fd = None
+            try:
+                if directory_fd is not None:
+                    os.fsync(directory_fd)
             finally:
-                os.close(directory_fd)
+                if directory_fd is not None:
+                    os.close(directory_fd)
         finally:
             temporary.unlink(missing_ok=True)
 

@@ -63,11 +63,15 @@ class EvidenceStore:
             raise ValueError(f"invalid item key: {item_key}")
         return self.root / item_key
 
-    def manifest_path(self, item_key: str) -> Path:
-        return self.item_root(item_key) / "manifest.json"
+    def artifact_root(self, item_key: str, run_id: str | None = None) -> Path:
+        root = self.item_root(item_key)
+        return root / "runs" / self._component(run_id) if run_id else root
 
-    def load(self, item_key: str) -> dict[str, Any] | None:
-        path = self.manifest_path(item_key)
+    def manifest_path(self, item_key: str, run_id: str | None = None) -> Path:
+        return self.artifact_root(item_key, run_id) / "manifest.json"
+
+    def load(self, item_key: str, run_id: str | None = None) -> dict[str, Any] | None:
+        path = self.manifest_path(item_key, run_id)
         if not path.is_file():
             return None
         try:
@@ -103,6 +107,7 @@ class EvidenceStore:
     def _copy_image(
         self,
         item_key: str,
+        run_id: str | None,
         checkpoint: str,
         viewport: str,
         side: str,
@@ -114,7 +119,7 @@ class EvidenceStore:
         if not source.is_file() or source.suffix.lower() not in IMAGE_SUFFIXES:
             raise ValueError(f"capture image is missing or unsupported: {source}")
         relative = Path("captures") / self._component(checkpoint) / self._component(viewport) / f"{side}{source.suffix.lower()}"
-        destination = self.item_root(item_key) / relative
+        destination = self.artifact_root(item_key, run_id) / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, destination)
         return relative.as_posix(), file_sha256(destination)
@@ -125,16 +130,17 @@ class EvidenceStore:
         checkpoint: str,
         viewport: str,
         *,
+        run_id: str | None = None,
         source_image: Path | None = None,
         candidate_image: Path | None = None,
         ignore_regions: list[dict[str, int]] | None = None,
         comparable: bool = True,
     ) -> dict[str, Any]:
         source_relative, source_sha = self._copy_image(
-            item_key, checkpoint, viewport, "source", source_image
+            item_key, run_id, checkpoint, viewport, "source", source_image
         )
         candidate_relative, candidate_sha = self._copy_image(
-            item_key, checkpoint, viewport, "candidate", candidate_image
+            item_key, run_id, checkpoint, viewport, "candidate", candidate_image
         )
         status, reliability = decide_capture_status(
             source_available=source_relative is not None,
@@ -152,9 +158,9 @@ class EvidenceStore:
             ).as_posix()
             try:
                 metrics = compare_images(
-                    self.item_root(item_key) / source_relative,
-                    self.item_root(item_key) / candidate_relative,
-                    self.item_root(item_key) / heatmap_relative,
+                    self.artifact_root(item_key, run_id) / source_relative,
+                    self.artifact_root(item_key, run_id) / candidate_relative,
+                    self.artifact_root(item_key, run_id) / heatmap_relative,
                     ignore_regions=ignore_regions or [],
                 )
             except (RuntimeError, ValueError):
@@ -173,12 +179,14 @@ class EvidenceStore:
             "evidence_reliability": reliability,
             "diagnostic_metrics": metrics,
         }
-        manifest = self.load(item_key) or {
+        manifest = self.load(item_key, run_id) or {
             "schema_version": "websitebench.visual-evidence.v1",
             "item_key": item_key,
             "generated_at": _now(),
             "captures": [],
         }
+        if run_id:
+            manifest["run_id"] = run_id
         manifest["generated_at"] = _now()
         manifest["captures"] = [
             row
@@ -190,11 +198,13 @@ class EvidenceStore:
         errors = validation_errors(manifest, "visual_evidence", self.repo_root)
         if errors:
             raise ValueError("; ".join(errors))
-        self._atomic_write(self.manifest_path(item_key), manifest)
+        self._atomic_write(self.manifest_path(item_key, run_id), manifest)
         return manifest
 
-    def resolve(self, item_key: str, relative_path: str) -> Path:
-        manifest = self.load(item_key)
+    def resolve(
+        self, item_key: str, relative_path: str, run_id: str | None = None
+    ) -> Path:
+        manifest = self.load(item_key, run_id)
         if manifest is None:
             raise FileNotFoundError(relative_path)
         allowed = {
@@ -205,7 +215,7 @@ class EvidenceStore:
         }
         if relative_path not in allowed:
             raise FileNotFoundError(relative_path)
-        root = self.item_root(item_key).resolve()
+        root = self.artifact_root(item_key, run_id).resolve()
         path = (root / relative_path).resolve()
         if root not in path.parents or not path.is_file():
             raise FileNotFoundError(relative_path)

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/offline-clone.invariants.v1.json",
+  "title": "ClawBench offline clone semantic invariants",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "invariants"],
+  "properties": {
+    "schema_version": {"const": "offline-clone.invariants.v1"},
+    "status": {"enum": ["draft", "frozen"]},
+    "invariants": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/invariant"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "frozen"}}, "required": ["status"]},
+      "then": {"properties": {"invariants": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-z0-9]+(?:[._:-][a-z0-9]+)*$"
+    },
+    "invariant": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement",
+        "priority",
+        "journey_ids",
+        "positive_test_refs",
+        "negative_test_refs",
+        "coverage_dimension_ids"
+      ],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "statement": {"type": "string", "minLength": 1, "maxLength": 4000},
+        "priority": {"enum": ["p0", "p1", "p2"]},
+        "journey_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        },
+        "positive_test_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+        },
+        "negative_test_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+        },
+        "coverage_dimension_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/id"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"priority": {"const": "p0"}}, "required": ["priority"]},
+          "then": {
+            "properties": {
+              "journey_ids": {"minItems": 1},
+              "positive_test_refs": {"minItems": 1},
+              "negative_test_refs": {"minItems": 1},
+              "coverage_dimension_ids": {"minItems": 1}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

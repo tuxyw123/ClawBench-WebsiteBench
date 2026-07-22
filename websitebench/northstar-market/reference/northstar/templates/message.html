@@ -1,3 +1,0 @@
-{% extends "base.html" %}
-{% block content %}<section class="message-shell"><div class="message-icon" aria-hidden="true">✦</div><h1>{{ heading }}</h1>{% if error %}<div class="alert alert--error" role="alert">{{ error }}</div>{% endif %}{% if message %}<p>{{ message }}</p>{% endif %}{% if action_href %}<a class="button" href="{{ action_href }}">{{ action_label }}</a>{% endif %}</section>{% endblock %}
-

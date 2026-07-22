@@ -26,7 +26,7 @@ def payload(*, gate: str = "approve", visibility: str = "internal") -> dict:
 
 def test_atomic_save_revision_conflict_and_restart_persistence(tmp_path: Path) -> None:
     root = tmp_path / "reviews"
-    key = "websitebench--northstar-market"
+    key = "legacy--dev-115-freshdesk-invoice-dispute-ticket"
     store = ReviewStore(root, REPO_ROOT)
     saved = store.save(
         key,
@@ -47,14 +47,14 @@ def test_atomic_save_revision_conflict_and_restart_persistence(tmp_path: Path) -
 
 
 def test_import_conflict_rejects_entire_batch(tmp_path: Path) -> None:
-    key = "websitebench--northstar-market"
+    key = "legacy--dev-115-freshdesk-invoice-dispute-ticket"
     existing = ReviewStore(tmp_path / "reviews", REPO_ROOT)
     saved = existing.save(
         key, payload(), expected_revision=0, artifact_fingerprint="a" * 64
     )
     second_store = ReviewStore(tmp_path / "source", REPO_ROOT)
     second = second_store.save(
-        "legacy--dev-115-freshdesk-invoice-dispute-ticket",
+        "legacy--dev-117-greenhouse-codepath-application",
         payload(),
         expected_revision=0,
         artifact_fingerprint="b" * 64,
@@ -74,7 +74,7 @@ def test_public_review_rejects_private_evidence_reference(tmp_path: Path) -> Non
     value["evidence_refs"] = ["judge/fixtures/9101.json"]
     with pytest.raises(ValueError, match="private fixture"):
         ReviewStore(tmp_path, REPO_ROOT).save(
-            "websitebench--northstar-market",
+            "legacy--dev-115-freshdesk-invoice-dispute-ticket",
             value,
             expected_revision=0,
             artifact_fingerprint="a" * 64,

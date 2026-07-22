@@ -110,6 +110,7 @@ def _capture(args: argparse.Namespace) -> int:
                 args.item,
                 args.checkpoint,
                 args.viewport,
+                run_id=args.run_id,
                 source_image=Path(args.source_image) if args.source_image else None,
                 candidate_image=Path(args.candidate_image) if args.candidate_image else None,
                 ignore_regions=ignore_regions,
@@ -125,7 +126,7 @@ def _capture(args: argparse.Namespace) -> int:
                 if item["source_type"] == "legacy":
                     candidate = root / item["legacy_screenshots"][number]
                 manifest = store.upsert(
-                    args.item, checkpoint, viewport, candidate_image=candidate
+                    args.item, checkpoint, viewport, run_id=args.run_id, candidate_image=candidate
                 )
             assert manifest is not None
     except (OSError, ValueError, json.JSONDecodeError) as exc:
@@ -134,7 +135,8 @@ def _capture(args: argparse.Namespace) -> int:
     print(json.dumps({
         "item_key": args.item,
         "captures": len(manifest["captures"]),
-        "manifest": str(store.manifest_path(args.item)),
+        "run_id": args.run_id,
+        "manifest": str(store.manifest_path(args.item, args.run_id)),
         "note": "diagnostic_metrics are viewer diagnostics, not official visual scores",
     }, indent=2))
     return 0
@@ -192,6 +194,23 @@ def _export_reviews(args: argparse.Namespace) -> int:
     return 0
 
 
+def _publish(args: argparse.Namespace) -> int:
+    from .publish import publish_static_site
+
+    try:
+        manifest = publish_static_site(
+            _root(args),
+            Path(args.out),
+            base_path=args.base_path,
+            public_allowlist=Path(args.public_allowlist) if args.public_allowlist else None,
+        )
+    except (OSError, RuntimeError, ValueError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    print(json.dumps(manifest, indent=2, ensure_ascii=False))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="clawbench-viewer")
     parser.add_argument("--repo-root", default=".", help="ClawBench repository root")
@@ -209,6 +228,7 @@ def build_parser() -> argparse.ArgumentParser:
     capture = subparsers.add_parser("capture")
     capture.add_argument("--repo-root", default=argparse.SUPPRESS)
     capture.add_argument("--item", required=True)
+    capture.add_argument("--run-id", help="Attach visual evidence to a specific model run")
     capture.add_argument("--checkpoint")
     capture.add_argument("--viewport", choices=("desktop", "mobile"))
     capture.add_argument("--source-image")
@@ -239,6 +259,13 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--out")
     export.add_argument("--public-only", action="store_true")
     export.set_defaults(function=_export_reviews)
+
+    publish = subparsers.add_parser("publish")
+    publish.add_argument("--repo-root", default=argparse.SUPPRESS)
+    publish.add_argument("--out", required=True)
+    publish.add_argument("--base-path", default="/")
+    publish.add_argument("--public-allowlist")
+    publish.set_defaults(function=_publish)
     return parser
 
 

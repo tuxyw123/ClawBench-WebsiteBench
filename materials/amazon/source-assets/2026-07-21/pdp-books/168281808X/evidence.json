@@ -1,0 +1,54 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "browser handoff; capture timestamp was not supplied",
+  "source_url": "https://www.amazon.com/dp/168281808X",
+  "market_context": {
+    "marketplace": "amazon.com",
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "identity": {
+    "asin": "168281808X",
+    "page_title": "Threshing Day (Wing and Claw Collection) (The Empyrean): Yarros, Rebecca: 9781682818084: Amazon.com: Books",
+    "title": "Threshing Day (Wing and Claw Collection) (The Empyrean)",
+    "author": "Rebecca Yarros"
+  },
+  "offer": {
+    "selected_format": "Hardcover",
+    "price_text": "$17.49",
+    "price_minor": 1749,
+    "list_price_text": "$24.99",
+    "list_price_minor": 2499,
+    "currency": "USD",
+    "nondefault_visible_format": {
+      "format": "Kindle",
+      "price_text": "$11.99",
+      "price_minor": 1199,
+      "transaction_status": "not captured as a physical offer"
+    }
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $8.18 Shipping to Singapore",
+    "delivery_copy": "$8.18 delivery Tuesday, October 6"
+  },
+  "book_details": {
+    "publisher": "Entangled: Red Tower Books",
+    "publication_date": "September 29, 2026",
+    "language": "English",
+    "print_length": "224 pages"
+  },
+  "social_proof": {
+    "customer_reviews": 0,
+    "copy": "There are 0 customer reviews"
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/911TynawjkL._SL1500_.jpg",
+      "local_path": "pdp-books/168281808X/main.jpg",
+      "bytes": 256616,
+      "sha256": "225ff645df989fe7c5523e9f43c28aea7805f41af78ad3e428ff665f0b85c709",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 826, "height": 1500}
+    }
+  }
+}

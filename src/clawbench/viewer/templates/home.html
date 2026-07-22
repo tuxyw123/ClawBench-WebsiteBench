@@ -1,36 +1,44 @@
 {% extends "base.html" %}
-{% block title %}Corpus overview{% endblock %}
+{% block title %}Benchmark overview{% endblock %}
 {% block content %}
 <div class="page">
-  <section class="hero">
-    <div><p class="eyebrow">WebsiteBench-first corpus inspection</p><h1>Clone task quality, <em>without a synthetic composite score.</em></h1><p>Inspect protocol completeness, task depth, visual evidence, human rubric decisions, and candidate results as distinct forms of evidence.</p><div class="hero-actions"><a class="primary button" href="/tasks">Open Task Atlas</a><a class="secondary button" href="/compare">Compare tasks</a></div></div>
-    <div class="stat-grid">
-      <article><strong>{{ summary.item_count }}</strong><span>Corpus items</span></article>
-      <article><strong>{{ summary.websitebench_count }}</strong><span>WebsiteBench</span></article>
-      <article><strong>{{ summary.legacy_count }}</strong><span>Legacy adapters</span></article>
-      <article><strong>{{ summary.official_run_count }}</strong><span>Official candidate runs</span></article>
+  <section class="hero benchmark-hero">
+    <div>
+      <p class="eyebrow">Offline web reconstruction benchmark</p>
+      <h1>From offline websites to <em>model-by-model clone comparison.</em></h1>
+      <p>Track which website categories are being built, run each model against the same isolated servers, then inspect functional, visual, journey, robustness, and efficiency differences without hiding them behind a single leaderboard number.</p>
+      <div class="hero-actions"><a class="primary button" href="/tasks">Browse websites</a><a class="secondary button" href="/results">Open evaluation matrix</a></div>
+    </div>
+    <div class="stat-grid benchmark-stats">
+      <article><strong>{{ summary.websitebench_count }}</strong><span>Offline websites</span></article>
+      <article><strong>{{ summary.category_count }}</strong><span>Website categories</span></article>
+      <article><strong>{{ summary.model_count }}</strong><span>Models evaluated</span></article>
+      <article><strong>{{ summary.evaluated_pair_count }}</strong><span>Website × model pairs</span></article>
     </div>
   </section>
 
-  {% if summary.readiness.missing or summary.readiness.invalid %}
-  <div class="alert warning"><strong>Evidence gaps remain.</strong> {{ summary.readiness.missing }} checks are missing and {{ summary.readiness.invalid }} are invalid. These are completeness states, not quality scores.</div>
-  {% endif %}
-
-  <section class="section-grid">
-    {% for field, distribution in summary.distributions.items() %}
-    <article class="panel"><div class="section-heading"><h2>{{ field|replace('_', ' ')|title }}</h2><span>{{ distribution|length }} groups</span></div><div class="bars">
-      {% for label, count in distribution.items() %}<div><span>{{ label }}</span><meter min="0" max="{{ summary.item_count }}" value="{{ count }}"></meter><strong>{{ count }}</strong></div>{% endfor %}
-    </div></article>
-    {% endfor %}
+  <section class="workflow-strip" aria-label="Benchmark workflow">
+    <article><span>01</span><div><strong>Build the offline website</strong><p>Freeze routes, server state, seed data, roles, and visual checkpoints.</p></div></article>
+    <article><span>02</span><div><strong>Let a model reconstruct it</strong><p>The model explores the reference server and produces a new runnable clone.</p></div></article>
+    <article><span>03</span><div><strong>Compare source and clone</strong><p>Review behavior, journeys, screenshots, failures, and cost for every model run.</p></div></article>
   </section>
 
-  <section class="panel wide">
-    <div class="section-heading"><div><p class="eyebrow">Review matrix</p><h2>Task × QA dimension</h2></div><a href="/methodology">Rubric definitions →</a></div>
-    <div class="table-wrap"><table class="matrix"><thead><tr><th>Task</th><th>Protocol</th><th>Behavior</th><th>Visual</th><th>Reproducibility</th><th>Isolation</th><th>Diversity</th><th>Gate</th></tr></thead><tbody>
-      {% for item in items %}{% set review = reviews[item.key] %}<tr><th><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a><small>{{ item.source_type }}</small></th>
-        {% for name in ['protocol_observability','behavioral_depth','visual_interaction_coverage','reproducibility','isolation_asset_compliance','diversity_non_reskin'] %}<td><span class="state state-{{ review.dimensions[name].rating }}">{{ review.dimensions[name].rating|replace('_',' ') }}</span></td>{% endfor %}
-        <td><span class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</span></td></tr>{% endfor %}
-    </tbody></table></div>
+  <section class="section-heading home-section-heading"><div><p class="eyebrow">Dataset construction</p><h2>Website categories</h2></div><a href="/tasks">View all websites →</a></section>
+  {% if categories %}<div class="category-grid">
+    {% for category in categories %}<a class="category-card" href="/tasks?category={{ category.id }}">
+      <div class="category-icon" aria-hidden="true">{{ category.label[:2]|upper }}</div>
+      <div><strong>{{ category.label }}</strong><p>{{ category.site_count }} website{{ '' if category.site_count == 1 else 's' }} · {{ category.ready_count }} runnable · {{ category.evaluated_count }} evaluated</p></div>
+      <span>{{ category.run_count }} runs</span>
+    </a>{% endfor %}
+  </div>{% else %}<div class="empty-state"><strong>No benchmark categories yet.</strong><p>Add the first WebsiteBench site manifest to start the catalog.</p></div>{% endif %}
+
+  <section class="panel wide matrix-panel">
+    <div class="section-heading"><div><p class="eyebrow">Evaluation coverage</p><h2>Website × model matrix</h2></div><a href="/results">Inspect all results →</a></div>
+    {% if models and evaluation_matrix %}<div class="table-wrap"><table class="result-matrix"><thead><tr><th>Offline website</th>{% for model in models %}<th><a href="/models/{{ model.model_key }}">{{ model.display_name }}</a></th>{% endfor %}</tr></thead><tbody>
+      {% for row in evaluation_matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a><small>{{ row.item.product_type|replace('-', ' ')|title }}</small></th>{% for cell in row.cells %}<td>{% if cell.run %}<a class="matrix-score" href="/runs/{{ cell.run.run_id }}"><strong>{{ cell.run.score }}</strong><span>{{ cell.run.status|replace('_',' ') }}</span></a>{% else %}<span class="matrix-empty">Not run</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}
+    </tbody></table></div>{% else %}<div class="empty-state benchmark-empty"><strong>The benchmark is in dataset-construction mode.</strong><p>Model columns will appear automatically when the first schema-valid result report is added.</p><a class="secondary button" href="/methodology">See evaluation dimensions</a></div>{% endif %}
   </section>
+
+  {% if summary.legacy_count %}<section class="legacy-note"><div><p class="eyebrow">Migration context</p><strong>{{ summary.legacy_count }} legacy clone examples remain available</strong><p>They are useful reference material, but are kept separate from canonical offline websites and official model results.</p></div><a href="/tasks?source=legacy">Review legacy examples →</a></section>{% endif %}
 </div>
 {% endblock %}

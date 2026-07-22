@@ -111,7 +111,10 @@ class CloneProcessManager:
                     command[command.index(option) + 1] = value
                 else:
                     command.extend([option, value])
-            temporary = tempfile.TemporaryDirectory(prefix=f"clawbench-viewer-{item_key}-")
+            temporary = tempfile.TemporaryDirectory(
+                prefix=f"clawbench-viewer-{item_key}-",
+                ignore_cleanup_errors=os.name == "nt",
+            )
             database = str(Path(temporary.name) / "state.sqlite3")
             if "--db" in command:
                 command[command.index("--db") + 1] = database
@@ -145,12 +148,19 @@ class CloneProcessManager:
         self._base_urls.pop(item_key, None)
         if process and process.poll() is None:
             try:
-                os.killpg(process.pid, signal.SIGTERM)
+                if os.name == "nt":
+                    process.terminate()
+                else:
+                    os.killpg(process.pid, signal.SIGTERM)
                 process.wait(timeout=3)
             except (OSError, subprocess.TimeoutExpired):
                 try:
-                    os.killpg(process.pid, signal.SIGKILL)
-                except OSError:
+                    if os.name == "nt":
+                        process.kill()
+                    else:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    process.wait(timeout=3)
+                except (OSError, subprocess.TimeoutExpired):
                     pass
         temporary = self._temporary.pop(item_key, None)
         if temporary:

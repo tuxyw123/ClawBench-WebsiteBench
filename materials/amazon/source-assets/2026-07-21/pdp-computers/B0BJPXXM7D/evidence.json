@@ -1,0 +1,50 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "read-only browser source audit on 2026-07-22",
+  "source_url": "https://www.amazon.com/dp/B0BJPXXM7D",
+  "market_context": {"marketplace": "amazon.com", "delivery_country": "Singapore", "currency": "USD"},
+  "identity": {
+    "asin": "B0BJPXXM7D",
+    "title": "Ailun Screen Protector for iPad 11th A16 2025 [11 Inch] / 10th Generation 2022 [10.9 Inch], Tempered Glass [Face ID & Apple Pencil Compatible] Ultra Sensitive Case Friendly [2 Pack]",
+    "byline": "Visit the Ailun Store"
+  },
+  "social_proof": {"rating": "4.6", "review_count": 143321, "badge": "Amazon's Choice", "bought": "10K+ bought in past month"},
+  "offers": {
+    "selection_axis": "Model",
+    "model": [
+      {"value": "iPad 11th A16 2025/10th", "price_text": "$7.98", "price_minor": 798, "availability": "In Stock"},
+      {"value": "iPad/iPad Pro/iPad Air 1 2", "price_text": "$7.99", "price_minor": 799, "availability": "In Stock"},
+      {"value": "iPad Mini 1/2/3", "price_text": "$8.89", "price_minor": 889, "availability": "In Stock"},
+      {"value": "iPad Mini 4/5", "price_text": "$7.89", "price_minor": 789, "availability": "In Stock"},
+      {"value": "iPadAir4 5/iPadPro2022/21/20/18", "price_text": "$7.89", "price_minor": 789, "availability": "In Stock"},
+      {"value": "iPad Mini 6/A17 Pro 7th Gen", "price_text": "$7.88", "price_minor": 788, "availability": "In Stock"},
+      {"value": "iPadAir 8/7/6th/iPadPro 6/5th 2026/25/24", "price_text": "$7.88", "price_minor": 788, "availability": "In Stock"},
+      {"value": "iPadAir 8/7/6th/iPadPro 8/7th 2026/25/24", "price_text": "$8.89", "price_minor": 889, "availability": "In Stock"},
+      {"value": "iPad 9/8/7thGen 2021/2020/2019", "price_text": "$7.98", "price_minor": 798, "availability": "In Stock"},
+      {"value": "iPad Pro 12.9 2022/2021/2020/2018", "price_text": "$9.89", "price_minor": 989, "availability": "In Stock"},
+      {"value": "iPad Pro 2017/iPad Air 3 2019", "price_text": "$8.88", "price_minor": 888, "availability": "In Stock"}
+    ]
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $7.43 Shipping to Singapore",
+    "delivery_copy": "$7.43 delivery Monday, July 27",
+    "availability": "In Stock",
+    "ships_from": "Amazon",
+    "sold_by": "AilunUS",
+    "returns": "FREE 30-day refund/replacement"
+  },
+  "review_snapshot": {
+    "histogram_percent_by_star": {"5": 82, "4": 10, "3": 4, "2": 1, "1": 3},
+    "individual_review_cards_captured": false
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/71Km-MVfzvL._AC_SL1500_.jpg",
+      "local_path": "pdp-computers/B0BJPXXM7D/main.jpg",
+      "bytes": 121686,
+      "sha256": "c10646b434f535b7afaf500416175b12a4e204912ceff0c096803d5988641888",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1481, "height": 1500}
+    }
+  }
+}

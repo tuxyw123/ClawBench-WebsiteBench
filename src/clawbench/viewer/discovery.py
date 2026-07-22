@@ -120,6 +120,23 @@ def _recursive_strings(value: Any) -> Iterator[str]:
 
 
 def _result_summary(report: dict[str, Any]) -> dict[str, Any]:
+    versions = report.get("versions", {})
+    declared = report.get("candidate") or {}
+    model_id = (
+        declared.get("model_id")
+        or versions.get("model")
+        or versions.get("agent_model")
+        or versions.get("model_id")
+        or "unspecified"
+    )
+    candidate = {
+        "model_id": model_id,
+        "model_key": hashlib.sha256(model_id.encode("utf-8")).hexdigest()[:12],
+        "display_name": declared.get("display_name") or model_id.replace("-", " ").title(),
+        "provider": declared.get("provider"),
+        "harness": declared.get("harness") or versions.get("harness"),
+        "reasoning_effort": declared.get("reasoning_effort"),
+    }
     return {
         "run_id": report["run_id"],
         "site_id": report["site_id"],
@@ -135,7 +152,8 @@ def _result_summary(report: dict[str, Any]) -> dict[str, Any]:
         "network": report["network"],
         "failures": report["failures"],
         "evidence": report["evidence"],
-        "versions": report["versions"],
+        "versions": versions,
+        "candidate": candidate,
         "usage": report["usage"],
         "started_at": report["started_at"],
         "finished_at": report["finished_at"],
@@ -241,6 +259,7 @@ def _canonical_item(
         _status("candidate_report", "present" if item_runs else "not_applicable", f"{len(item_runs)} valid official runs"),
         _status("visual_evidence", "invalid" if visual_errors else ("present" if visual else ("missing" if item_runs else "not_applicable")), "; ".join(visual_errors[:3])),
     ]
+    readiness_counts = _counts(readiness)
     taxonomy = manifest.get("taxonomy") or {}
     documents = {
         "prd": _read_text(referenced["prd"]) if "prd" in referenced else None,
@@ -289,7 +308,14 @@ def _canonical_item(
             "seeds": manifest.get("seeds", {}),
         },
         "readiness": readiness,
-        "readiness_counts": _counts(readiness),
+        "readiness_counts": readiness_counts,
+        "lifecycle_stage": (
+            "evaluated"
+            if item_runs
+            else "ready"
+            if not readiness_counts["missing"] and not readiness_counts["invalid"]
+            else "building"
+        ),
         "official_runs": item_runs,
         "latest_official_result": item_runs[0] if item_runs else None,
         "legacy_verification": None,
@@ -430,6 +456,7 @@ def _legacy_item(repo_root: Path, task_path: Path) -> dict[str, Any] | None:
         },
         "readiness": readiness,
         "readiness_counts": _counts(readiness),
+        "lifecycle_stage": "legacy",
         "official_runs": [],
         "latest_official_result": None,
         "legacy_verification": summary,
@@ -475,6 +502,7 @@ def _public_run(run: dict[str, Any]) -> dict[str, Any]:
             "resources",
             "network",
             "usage",
+            "candidate",
             "started_at",
             "finished_at",
         )
@@ -501,7 +529,7 @@ def public_item(item: dict[str, Any]) -> dict[str, Any]:
             "product_type", "difficulty", "split", "site_version", "capability_tags",
             "interaction_tags", "roles", "stateful_entities", "counts", "readiness",
             "readiness_counts", "official_runs", "latest_official_result",
-            "legacy_verification", "artifact_fingerprint"
+            "legacy_verification", "artifact_fingerprint", "lifecycle_stage"
         )
     }
     result["counts"]["hidden_test_families"] = None
@@ -574,6 +602,76 @@ class CorpusIndex:
     def run_by_id(self, run_id: str) -> dict[str, Any] | None:
         return next((run for run in self.runs if run["run_id"] == run_id), None)
 
+    @property
+    def models(self) -> list[dict[str, Any]]:
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for run in self.runs:
+            grouped.setdefault(run["candidate"]["model_key"], []).append(run)
+        output = []
+        for key, runs in grouped.items():
+            candidate = runs[0]["candidate"]
+            dimensions = {
+                name: round(sum(run["dimensions"][name]["score"] for run in runs) / len(runs), 2)
+                for name in ("visual", "interactions", "journeys", "robustness", "efficiency")
+            }
+            output.append({
+                **copy.deepcopy(candidate),
+                "model_key": key,
+                "run_count": len(runs),
+                "site_count": len({run["site_id"] for run in runs}),
+                "average_score": round(sum(run["score"] for run in runs) / len(runs), 2),
+                "passed_count": sum(run["status"] == "passed" for run in runs),
+                "latest_finished_at": max(run["finished_at"] for run in runs),
+                "dimensions": dimensions,
+                "runs": sorted(runs, key=lambda run: (run["site_id"], run["finished_at"])),
+            })
+        return sorted(output, key=lambda model: (-model["average_score"], model["display_name"].lower()))
+
+    def model_by_key(self, model_key: str) -> dict[str, Any] | None:
+        return next((model for model in self.models if model["model_key"] == model_key), None)
+
+    @property
+    def categories(self) -> list[dict[str, Any]]:
+        grouped: dict[str, list[dict[str, Any]]] = {}
+        for item in self.items:
+            if item["source_type"] != "websitebench":
+                continue
+            grouped.setdefault(item.get("product_type") or "uncategorized", []).append(item)
+        output = []
+        for category, items in grouped.items():
+            output.append({
+                "id": category,
+                "label": category.replace("-", " ").title(),
+                "site_count": len(items),
+                "ready_count": sum(item["lifecycle_stage"] in {"ready", "evaluated"} for item in items),
+                "evaluated_count": sum(item["lifecycle_stage"] == "evaluated" for item in items),
+                "run_count": sum(len(item["official_runs"]) for item in items),
+                "model_count": len({
+                    run["candidate"]["model_key"]
+                    for item in items
+                    for run in item["official_runs"]
+                }),
+                "sites": items,
+            })
+        return sorted(output, key=lambda category: category["label"].lower())
+
+    @property
+    def evaluation_matrix(self) -> list[dict[str, Any]]:
+        models = self.models
+        rows = []
+        for item in (item for item in self.items if item["source_type"] == "websitebench"):
+            cells = []
+            for model in models:
+                runs = [
+                    run
+                    for run in item["official_runs"]
+                    if run["candidate"]["model_key"] == model["model_key"]
+                ]
+                latest = max(runs, key=lambda run: run["finished_at"]) if runs else None
+                cells.append({"model_key": model["model_key"], "run": latest})
+            rows.append({"item": item, "cells": cells})
+        return rows
+
     def as_dict(self) -> dict[str, Any]:
         distributions = {}
         for field in ("source_type", "family", "product_type", "difficulty", "split"):
@@ -582,6 +680,13 @@ class CorpusIndex:
         readiness = Counter(
             check["status"] for item in self.items for check in item["readiness"]
         )
+        models = self.models
+        categories = self.categories
+        benchmark_sites = [item for item in self.items if item["source_type"] == "websitebench"]
+        evaluated_pairs = {
+            (run["site_id"], run["candidate"]["model_key"])
+            for run in self.runs
+        }
         return {
             "schema_version": "websitebench.viewer-index.v1",
             "generated_at": utc_now(),
@@ -592,10 +697,17 @@ class CorpusIndex:
                 "legacy_count": sum(item["source_type"] == "legacy" for item in self.items),
                 "official_run_count": len(self.runs),
                 "invalid_run_count": len(self.invalid_runs),
+                "category_count": len(categories),
+                "model_count": len(models),
+                "evaluated_pair_count": len(evaluated_pairs),
+                "possible_pair_count": len(benchmark_sites) * len(models),
                 "readiness": {state: readiness.get(state, 0) for state in sorted(READINESS_STATES)},
                 "distributions": distributions,
             },
             "items": self.items,
+            "models": models,
+            "categories": categories,
+            "evaluation_matrix": self.evaluation_matrix,
             "invalid_runs": self.invalid_runs if self.profile == "internal" else [],
         }
 

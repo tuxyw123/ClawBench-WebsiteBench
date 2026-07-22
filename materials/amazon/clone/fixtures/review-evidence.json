@@ -1,0 +1,331 @@
+{
+  "schema": "amazon-clone.review-evidence.v1",
+  "snapshot_policy": {
+    "source_aggregates": "Source-observed rating facts are immutable snapshot evidence and are never recomputed from local reviews.",
+    "local_reviews": "User-created clone reviews must carry provenance=local_user_review and are stored and summarized separately.",
+    "seed_policy": "No individual review card is seeded without source-visible author, title, body, date, rating, and helpful metadata."
+  },
+  "products": {
+    "B0874XN4D8": {
+      "product_label": "Samsung T7 Portable SSD 1TB",
+      "rating_summary": {
+        "rating": 4.7,
+        "rating_count": 38085,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/source-current/2026-07-21/observations.json",
+        "evidence_field": "ranking.items[asin=B0874XN4D8].rating/reviews"
+      },
+      "histogram": {
+        "captured_rating_count": 38071,
+        "percent_by_star": {
+          "5": 87,
+          "4": 8,
+          "3": 2,
+          "2": 0,
+          "1": 3
+        },
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-18",
+        "evidence_path": "materials/amazon/source-capture/objects/8b/8b2e980302b6b2dc686bda77237993b4d4074e1f0127cba434a06700a138234c",
+        "evidence_selector": "#reviewsMedley #histogramTable"
+      },
+      "source_topics": [
+        {"label": "Reliability", "mentions": 1404, "positive": 1000, "negative": 404},
+        {"label": "Speed", "mentions": 1296, "positive": 1128, "negative": 168},
+        {"label": "Performance", "mentions": 952, "positive": 904, "negative": 48},
+        {"label": "Compact size", "mentions": 790, "positive": 721, "negative": 69},
+        {"label": "Storage capacity", "mentions": 580, "positive": 544, "negative": 36},
+        {"label": "Value for money", "mentions": 458, "positive": 365, "negative": 93},
+        {"label": "Ease of use", "mentions": 413, "positive": 377, "negative": 36},
+        {"label": "Heat", "mentions": 326, "positive": 125, "negative": 201}
+      ],
+      "topic_provenance": {
+        "kind": "source_site_generated_summary",
+        "snapshot_date": "2026-07-18",
+        "evidence_path": "materials/amazon/source-capture/objects/8b/8b2e980302b6b2dc686bda77237993b4d4074e1f0127cba434a06700a138234c",
+        "evidence_selector": "#reviewsMedley .cm_cr_grid_center_right_non_images_widgets"
+      },
+      "source_excerpts": [
+        {
+          "source_review_id": "R6MYAV4DFHKSU",
+          "topic": "Reliability",
+          "excerpt": "Works great and easy to use. It's just a larger USB.",
+          "provenance": "source_topic_excerpt",
+          "missing_fields": ["author", "title", "date", "rating", "helpful_count"]
+        },
+        {
+          "source_review_id": "R12MRBHYE0GO7E",
+          "topic": "Compact size",
+          "excerpt": "It’s reliable, compact, and offers plenty of storage without adding extra bulk.",
+          "provenance": "source_topic_excerpt",
+          "missing_fields": ["author", "title", "date", "rating", "helpful_count"]
+        },
+        {
+          "source_review_id": "R3GZHZE7EUZVOK",
+          "topic": "Reliability",
+          "excerpt": "By the time it stopped working, about a week...",
+          "provenance": "source_topic_excerpt",
+          "missing_fields": ["author", "title", "date", "rating", "helpful_count"]
+        }
+      ],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "The captured top-reviews region required account verification and exposed no complete review cards.",
+        "source_gate_text": "Customer reviews require account verification. Sign in",
+        "missing_fields": ["author", "title", "body", "date", "rating", "helpful_count"],
+        "evidence_path": "materials/amazon/source-capture/objects/8b/8b2e980302b6b2dc686bda77237993b4d4074e1f0127cba434a06700a138234c",
+        "evidence_selector": "#cr-top-reviews-card"
+      }
+    },
+    "B0CHFSWM2P": {
+      "product_label": "Samsung T9 Portable SSD 1TB",
+      "rating_summary": {
+        "rating": 4.6,
+        "rating_count": 2894,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/source-current/2026-07-21/observations.json",
+        "evidence_field": "ranking.items[asin=B0CHFSWM2P].rating/reviews"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B01M16WBW1": {
+      "product_label": "CGK Unlimited Queen Sheet Set",
+      "rating_summary": {
+        "rating": 4.5,
+        "rating_count": 447592,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/clone/fixtures/home-pdp-evidence.json",
+        "evidence_field": "products[asin=B01M16WBW1].rating/reviews"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B0BG6B2D4D": {
+      "product_label": "Safari Ltd. Okapi Figure",
+      "rating_summary": {
+        "rating": 4.8,
+        "rating_count": 33,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/clone/fixtures/home-pdp-evidence.json",
+        "evidence_field": "products[asin=B0BG6B2D4D].rating/reviews"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B08HN37XC1": {
+      "product_label": "SanDisk Extreme Portable SSD 2TB",
+      "rating_summary": {
+        "rating": 4.6,
+        "rating_count": 91231,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/clone/fixtures/home-pdp-evidence.json",
+        "evidence_field": "products[asin=B08HN37XC1].rating/reviews"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "168281808X": {
+      "product_label": "Threshing Day (Wing and Claw Collection) (The Empyrean)",
+      "rating_summary": {
+        "rating": null,
+        "rating_count": 0,
+        "count_label": "customer reviews",
+        "zero_rating_copy": "There are 0 customer reviews",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/clone/fixtures/home-pdp-evidence.json",
+        "evidence_field": "products[asin=168281808X].pdp.source_review_copy"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "The current source PDP explicitly reports zero customer reviews and exposes no rating or individual review card.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B074PVTPBW": {
+      "product_label": "Mighty Patch Original Nighttime Acne Pimple Patches, 36 Ct",
+      "rating_summary": {
+        "rating": 4.6,
+        "rating_count": 184921,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-21",
+        "evidence_path": "materials/amazon/clone/fixtures/home-pdp-evidence.json",
+        "evidence_field": "products[asin=B074PVTPBW].rating/reviews"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B0BJPXXM7D": {
+      "product_label": "Ailun iPad Screen Protector, 2 Pack",
+      "rating_summary": {
+        "rating": 4.6,
+        "rating_count": 143321,
+        "count_label": "global ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-computers/B0BJPXXM7D/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": {
+        "captured_rating_count": 143321,
+        "percent_by_star": {"5": 82, "4": 10, "3": 4, "2": 1, "1": 3},
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-computers/B0BJPXXM7D/evidence.json",
+        "evidence_selector": "Customer reviews histogram"
+      },
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "The source aggregate and histogram were captured, but no complete individual review card was retained.",
+        "missing_fields": ["author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B071V91LGC": {
+      "product_label": "Vault X 9 Pocket Zip Trading Card Binder",
+      "rating_summary": {
+        "rating": 4.8,
+        "rating_count": 8730,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-toys/B071V91LGC/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B0BQR2BQYZ": {
+      "product_label": "upsimples 11x14 Picture Frame",
+      "rating_summary": {
+        "rating": 4.5,
+        "rating_count": 41071,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-home/B0BQR2BQYZ/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B00FLYWNYQ": {
+      "product_label": "Instant Pot Duo 7-in-1, 6 Quart",
+      "rating_summary": {
+        "rating": 4.7,
+        "rating_count": 173211,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-kitchen/B00FLYWNYQ/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no histogram or complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B07K74LDCH": {
+      "product_label": "JanSport Laptop Backpack, Black",
+      "rating_summary": {
+        "rating": 4.7,
+        "rating_count": 19909,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-computers/B07K74LDCH/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no histogram or complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    },
+    "B088BZTYFP": {
+      "product_label": "Amazon Basics 16x20x1 Air Filter 6-Pack",
+      "rating_summary": {
+        "rating": 4.6,
+        "rating_count": 17115,
+        "count_label": "ratings",
+        "provenance": "source_snapshot_aggregate",
+        "snapshot_date": "2026-07-22",
+        "evidence_path": "materials/amazon/source-assets/2026-07-21/pdp-home/B088BZTYFP/evidence.json",
+        "evidence_field": "social_proof.rating/review_count"
+      },
+      "histogram": null,
+      "source_topics": [],
+      "source_excerpts": [],
+      "individual_review_evidence": {
+        "available": false,
+        "reason": "Only aggregate rating/count evidence is retained for this ASIN; no histogram or complete individual review card was captured.",
+        "missing_fields": ["histogram", "author", "title", "body", "date", "rating", "helpful_count"]
+      }
+    }
+  }
+}

@@ -6,10 +6,18 @@ function setupTaskAtlas() {
   const rows = [...rowsContainer.querySelectorAll("[data-task-row]")];
   const search = document.querySelector("#task-search");
   const source = document.querySelector("#source-filter");
-  const difficulty = document.querySelector("#difficulty-filter");
-  const gate = document.querySelector("#gate-filter");
+  const category = document.querySelector("#category-filter");
+  const stage = document.querySelector("#stage-filter");
   const sort = document.querySelector("#task-sort");
   const count = document.querySelector("#visible-count");
+
+  const initial = new URLSearchParams(window.location.search);
+  for (const [control, parameter] of [[source, "source"], [category, "category"], [stage, "stage"]]) {
+    const value = initial.get(parameter);
+    if (control && value && [...control.options].some((option) => option.value === value)) {
+      control.value = value;
+    }
+  }
 
   const update = () => {
     const query = search.value.trim().toLowerCase();
@@ -17,8 +25,8 @@ function setupTaskAtlas() {
       const visible =
         (!query || row.dataset.search.includes(query)) &&
         (!source.value || row.dataset.source === source.value) &&
-        (!difficulty.value || row.dataset.difficulty === difficulty.value) &&
-        (!gate.value || row.dataset.gate === gate.value);
+        (!category.value || row.dataset.category === category.value) &&
+        (!stage.value || row.dataset.stage === stage.value);
       row.hidden = !visible;
     }
     const numeric = (row, key) => Number(row.dataset[key] || -1);
@@ -31,9 +39,10 @@ function setupTaskAtlas() {
     rows.forEach((row) => rowsContainer.append(row));
     count.textContent = rows.filter((row) => !row.hidden).length;
   };
-  [search, source, difficulty, gate, sort].forEach((control) =>
+  [search, source, category, stage, sort].filter(Boolean).forEach((control) =>
     control.addEventListener(control === search ? "input" : "change", update),
   );
+  update();
 
   const compare = document.querySelector("#compare-selected");
   const checks = [...document.querySelectorAll(".compare-check")];

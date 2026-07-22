@@ -1,0 +1,158 @@
+{
+  "schema_version": "offline-clone.routes.v1",
+  "routes": [
+    {
+      "id": "home",
+      "route_pattern": "/",
+      "priority": "p0",
+      "purpose_edge": "discovery",
+      "evidence_kind": "current-direct",
+      "verification_kind": "fixture-validated",
+      "local_destination": true,
+      "states": ["loaded", "account-hover", "department-drawer", "autocomplete", "narrow-native-scroll"]
+    },
+    {
+      "id": "search",
+      "route_pattern": "/s and /s/ref=nb_sb_noss",
+      "priority": "p0",
+      "purpose_edge": "discovery-and-decision",
+      "evidence_kind": "current-direct",
+      "verification_kind": "fixture-validated",
+      "local_destination": true,
+      "states": ["results", "filtered", "sorted", "no-results", "bounded-card-offer"]
+    },
+    {
+      "id": "departments",
+      "route_pattern": "/books, /home-kitchen, /toys, /computers, /beauty",
+      "priority": "p1",
+      "purpose_edge": "cross-category-discovery",
+      "evidence_kind": "current-direct",
+      "verification_kind": "fixture-validated",
+      "local_destination": true,
+      "states": ["department-card-grid", "department-filter", "browse-only-card", "quoted-card"]
+    },
+    {
+      "id": "deals",
+      "route_pattern": "/gp/goldbox/",
+      "priority": "p1",
+      "purpose_edge": "promotion-discovery",
+      "evidence_kind": "current-direct",
+      "verification_kind": "fixture-validated",
+      "local_destination": true,
+      "states": ["default-cards", "department-filter", "price-filter", "discount-filter", "no-results"]
+    },
+    {
+      "id": "pdp",
+      "route_pattern": "/dp/<ASIN> and /<slug>/dp/<ASIN>",
+      "priority": "p0",
+      "purpose_edge": "decision-and-configuration",
+      "evidence_kind": "current-partial",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["rich-default", "rich-valid-variant", "dependency-disabled", "gallery-dialog", "sparse-evidence-boundary", "buy-now"]
+    },
+    {
+      "id": "cart",
+      "route_pattern": "/gp/cart/view.html and cart mutation endpoints",
+      "priority": "p0",
+      "purpose_edge": "commit-staging",
+      "evidence_kind": "inferred",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["empty", "active-lines", "sibling-variants", "quantity-update", "saved-for-later", "merged-after-auth", "recommendations"]
+    },
+    {
+      "id": "auth",
+      "route_pattern": "/ap/signin, /ap/register, /ap/cvf/verify, /ap/forgotpassword",
+      "priority": "p0",
+      "purpose_edge": "identity-and-recovery",
+      "evidence_kind": "current-partial",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["unknown-email-to-register", "password", "register", "verify-email", "invalid-code", "password-reset", "signed-in", "signed-out"]
+    },
+    {
+      "id": "checkout",
+      "route_pattern": "/gp/buy/* and /gp/buy/place-order",
+      "priority": "p0",
+      "purpose_edge": "commit",
+      "evidence_kind": "inferred",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["address", "delivery", "payment-approved-card", "payment-declined-card", "payment-approved-bank", "stale-reconcile", "placed"]
+    },
+    {
+      "id": "orders",
+      "route_pattern": "/gp/css/order-history and /gp/your-account/*",
+      "priority": "p0",
+      "purpose_edge": "aftercare-and-recovery",
+      "evidence_kind": "inferred",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["placed", "preparing", "shipped", "delivered", "cancelled", "return-requested", "return-received", "refunded", "email-retry"]
+    },
+    {
+      "id": "reviews",
+      "route_pattern": "/product-reviews/<ASIN>",
+      "priority": "p1",
+      "purpose_edge": "decision-and-aftercare",
+      "evidence_kind": "current-partial",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["source-aggregate", "explicit-zero", "source-unavailable", "local-create-update", "helpful", "verified-purchase"]
+    },
+    {
+      "id": "compare",
+      "route_pattern": "/gp/compare and compare mutation endpoints",
+      "priority": "p1",
+      "purpose_edge": "decision",
+      "evidence_kind": "inferred",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["empty", "single-guidance", "same-family-table", "sibling-variants", "family-rejected", "limit-rejected"]
+    },
+    {
+      "id": "lists",
+      "route_pattern": "/hz/wishlist/*",
+      "priority": "p1",
+      "purpose_edge": "saved-intent",
+      "evidence_kind": "current-partial",
+      "verification_kind": "local-tested",
+      "local_destination": true,
+      "states": ["public-intro", "account-list", "create", "rename", "move-to-cart"]
+    },
+    {
+      "id": "shopping-adjacent",
+      "route_pattern": "/gift-cards/*, /sell/*, /registry/*, /gp/help/*",
+      "priority": "p1",
+      "purpose_edge": "supporting-shopping",
+      "evidence_kind": "inferred",
+      "verification_kind": "scope-decision",
+      "boundary_kind": "shopping-adjacent-local-model",
+      "local_destination": true,
+      "states": ["gift-card-preview", "sell-draft", "registry-create-search-detail", "customer-service"]
+    },
+    {
+      "id": "prime-video-placeholder",
+      "route_pattern": "/Amazon-Video/*",
+      "priority": "p2",
+      "purpose_edge": "orthogonal",
+      "evidence_kind": "unavailable",
+      "verification_kind": "scope-decision",
+      "boundary_kind": "explicit-static-placeholder",
+      "local_destination": true,
+      "states": ["explicit-static-placeholder"]
+    },
+    {
+      "id": "external-systems",
+      "route_pattern": "real SMTP, payments, fulfillment, telemetry, ads, and third-party seller systems",
+      "priority": "omit",
+      "purpose_edge": "external-boundary",
+      "evidence_kind": "unavailable",
+      "verification_kind": "scope-decision",
+      "boundary_kind": "explicit-omit",
+      "local_destination": false,
+      "states": ["safe-local-adapter-or-omitted"]
+    }
+  ]
+}

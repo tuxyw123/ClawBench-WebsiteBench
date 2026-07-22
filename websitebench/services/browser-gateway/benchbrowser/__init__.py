@@ -1,2 +1,0 @@
-"""Policy-constrained BrowserUse gateway."""
-

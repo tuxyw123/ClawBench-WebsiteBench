@@ -8,7 +8,7 @@
   <section class="evidence-lanes">
     <article><p>Automatic evidence readiness</p><strong>{{ item.readiness_counts.present }} present</strong><span>{{ item.readiness_counts.missing }} missing · {{ item.readiness_counts.invalid }} invalid</span></article>
     <article><p>Human task QA gate</p><strong class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</strong><span>Revision {{ review.revision }}</span></article>
-    <article><p>Official candidate result</p>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><strong>{{ item.latest_official_result.score }} / 100</strong><span>websitebench.result.v1</span></a>{% else %}<strong>Not available</strong><span>No score is manufactured</span>{% endif %}</article>
+    <article><p>Latest model result</p>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><strong>{{ item.latest_official_result.score }} / 100</strong><span>{{ item.latest_official_result.candidate.display_name }}</span></a>{% else %}<strong>Not evaluated</strong><span>Waiting for the first model run</span>{% endif %}</article>
     <article><p>Legacy self-verification</p>{% if item.legacy_verification %}<strong>{{ item.legacy_verification.passed }} / {{ item.legacy_verification.total }}</strong><span>Verifier checks passed</span>{% else %}<strong>Not applicable</strong><span>Separate from official scoring</span>{% endif %}</article>
   </section>
 
@@ -44,8 +44,8 @@
       {% else %}<div class="empty-state"><strong>No visual evidence companion yet.</strong><p>Run <code>clawbench-viewer capture --item {{ item.key }}</code> with source and candidate images to create reviewable evidence.</p></div>{% endif %}
     </section>
 
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Candidate runs</p><h2>Official WebsiteBench results</h2></div><span>{{ item.official_runs|length }} valid reports</span></div>
-      {% if item.official_runs %}<div class="table-wrap"><table><thead><tr><th>Run</th><th>Status</th><th>Track</th><th>Official score</th><th>Finished</th></tr></thead><tbody>{% for run in item.official_runs %}<tr><th><a href="/runs/{{ run.run_id }}">{{ run.run_id }}</a></th><td>{{ run.status }}</td><td>{{ run.track }}</td><td><strong>{{ run.score }} / 100</strong></td><td>{{ run.finished_at }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state">No valid <code>websitebench.result.v1</code> report was discovered.</div>{% endif %}
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Model runs</p><h2>Clone evaluations on this website</h2></div><span>{{ item.official_runs|length }} valid reports</span></div>
+      {% if item.official_runs %}<div class="table-wrap"><table><thead><tr><th>Model</th><th>Run</th><th>Status</th><th>Track</th><th>Official score</th><th>Finished</th></tr></thead><tbody>{% for run in item.official_runs %}<tr><th>{{ run.candidate.display_name }}<small>{{ run.candidate.provider or run.candidate.model_id }}</small></th><td><a href="/runs/{{ run.run_id }}">{{ run.run_id }}</a></td><td><span class="state state-{{ run.status }}">{{ run.status|replace('_',' ') }}</span></td><td>{{ run.track }}</td><td><strong>{{ run.score }} / 100</strong></td><td>{{ run.finished_at }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><strong>No model has been evaluated here yet.</strong><p>The website can still be reviewed while its server, seeds, and checkpoints are being finalized.</p></div>{% endif %}
     </section>
 
     <section class="panel"><div class="section-heading"><div><p class="eyebrow">Source documents</p><h2>PRD, contracts, and limitations</h2></div></div>{% for name, document in item.documents.items() %}{% if document %}<details><summary>{{ name|replace('_',' ')|title }}</summary><pre class="document">{{ document }}</pre></details>{% endif %}{% endfor %}</section>

@@ -1,0 +1,91 @@
+{
+  "schema": "amazon-home-wireless-tech-capture.v1",
+  "capturedAt": "2026-07-21T10:15:04.002Z",
+  "sourceUrl": "https://www.amazon.com/",
+  "captureContext": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "desktopUserAgentNarrowWindow": true,
+    "interpretation": "This is a narrow-window desktop-UA observation, not a mobile-UA page capture."
+  },
+  "card": {
+    "title": "Wireless Tech",
+    "rect": {
+      "left": 20,
+      "top": 3922,
+      "width": 307,
+      "height": 420
+    },
+    "itemCount": 4,
+    "items": [
+      {
+        "ordinal": 0,
+        "key": "smartphones",
+        "label": "Smartphones",
+        "searchQuery": "smartphones",
+        "canonicalHref": "/s?k=smartphones",
+        "image": {
+          "sourceUrl": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Smartphone_1x._SY116_CB566164844_.jpg",
+          "localRelativePath": "home/wireless-tech/smartphones.jpg",
+          "naturalDimensions": {
+            "width": 186,
+            "height": 116
+          }
+        }
+      },
+      {
+        "ordinal": 1,
+        "key": "watches",
+        "label": "Watches",
+        "searchQuery": "smart watches",
+        "canonicalHref": "/s?k=smart+watches",
+        "image": {
+          "sourceUrl": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Watches_1x._SY116_CB566164844_.jpg",
+          "localRelativePath": "home/wireless-tech/watches.jpg",
+          "naturalDimensions": {
+            "width": 186,
+            "height": 116
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "key": "headphones",
+        "label": "Headphones",
+        "searchQuery": "headphones",
+        "canonicalHref": "/s?k=headphones",
+        "image": {
+          "sourceUrl": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Headphone_1x._SY116_CB566164844_.jpg",
+          "localRelativePath": "home/wireless-tech/headphones.jpg",
+          "naturalDimensions": {
+            "width": 186,
+            "height": 116
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "key": "tablets",
+        "label": "Tablets",
+        "searchQuery": "tablets",
+        "canonicalHref": "/s?k=tablets",
+        "image": {
+          "sourceUrl": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Tablet_1x._SY116_CB566164844_.jpg",
+          "localRelativePath": "home/wireless-tech/tablets.jpg",
+          "naturalDimensions": {
+            "width": 186,
+            "height": 116
+          }
+        }
+      }
+    ],
+    "cta": {
+      "label": "Discover more",
+      "searchQuery": "electronics",
+      "canonicalHref": "/s?k=electronics"
+    }
+  },
+  "remoteRuntimePolicy": "forbidden"
+}

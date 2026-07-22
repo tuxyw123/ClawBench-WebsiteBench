@@ -1,0 +1,54 @@
+{
+  "schema": "amazon-direct-pdp-capture.v1",
+  "capture_provenance": "browser handoff; capture timestamp was not supplied",
+  "source_url": "https://www.amazon.com/dp/B074PVTPBW",
+  "market_context": {
+    "marketplace": "amazon.com",
+    "delivery_country": "Singapore",
+    "currency": "USD"
+  },
+  "identity": {
+    "asin": "B074PVTPBW",
+    "title": "Mighty Patch Hero Cosmetics Original Nighttime Acne Pimple Patches, 36 Ct | #1 Hydrocolloid Acne Patches, Shrinking Zits & Whiteheads in 1 Use, Spot Treatment, Pimple Stickers for Face",
+    "byline": "Visit the Mighty Patch Store"
+  },
+  "social_proof": {
+    "rating": "4.6",
+    "review_count": 184921,
+    "badge": "#1 Best Seller in Facial Treatments & Masks",
+    "bought": "100K+ bought"
+  },
+  "offers": {
+    "selected_size": {
+      "value": "36 Count (Pack of 1)",
+      "price_text": "$12.99",
+      "price_minor": 1299,
+      "unit_price": "$0.36/count"
+    },
+    "captured_alternate_size": {
+      "value": "75 Count",
+      "price_text": "$18.29",
+      "price_minor": 1829,
+      "list_price_text": "$22.90",
+      "list_price_minor": 2290
+    }
+  },
+  "fulfillment": {
+    "shipping_copy": "No Import Charges & $7.06 Shipping to Singapore",
+    "delivery_copy": "$7.06 delivery Monday, July 27",
+    "availability": "In Stock"
+  },
+  "product_details": {
+    "Product Dimensions": "5.5 x 3.25 x 0.75 inches; 0.8 ounces"
+  },
+  "media": {
+    "main_image": {
+      "source_url": "https://m.media-amazon.com/images/I/61p+1+md+8L._SL1500_.jpg",
+      "local_path": "pdp-beauty/B074PVTPBW/main.jpg",
+      "bytes": 59290,
+      "sha256": "47995a6655aea3195ff02bf8a0dcb02d8552fe34022ae02d2c6544eecb5dd6ea",
+      "content_type": "image/jpeg",
+      "dimensions": {"width": 1500, "height": 1500}
+    }
+  }
+}

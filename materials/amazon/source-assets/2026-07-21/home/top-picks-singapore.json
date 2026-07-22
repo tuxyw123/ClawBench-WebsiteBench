@@ -1,0 +1,532 @@
+{
+  "schema": "amazon-home-top-picks-singapore-capture.v1",
+  "capturedAt": null,
+  "captureTimestampStatus": "not supplied in source capture handoff",
+  "captureOrder": "after wireless-tech capture at 2026-07-21T10:15:04.002Z",
+  "sourceUrl": "https://www.amazon.com/",
+  "captureContext": {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "desktopUserAgentNarrowWindow": true,
+    "interpretation": "This is a narrow-window desktop-UA observation, not a mobile-UA page capture."
+  },
+  "rail": {
+    "title": "Top picks for Singapore",
+    "rect": {
+      "left": 20,
+      "top": 3620,
+      "width": 960,
+      "height": 282
+    },
+    "itemCount": 28,
+    "items": [
+      {
+        "ordinal": 0,
+        "asin": "B0CSD1FT18",
+        "canonicalHref": "/dp/B0CSD1FT18",
+        "title": "byACRE Nordic Pioneer Aluminium Rollator Walker, 5.9 kg, Glacier Green | Aluminium Walker With Seat For Seniors,...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71tQTr-8nVL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0CSD1FT18.jpg",
+          "naturalDimensions": {
+            "width": 169,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 179,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 1,
+        "asin": "B0G1MQYHRD",
+        "canonicalHref": "/dp/B0G1MQYHRD",
+        "title": "ASUS Ascent GX10 AI Supercomputer, DGX Spark, NVIDIA GB10 Superchip, 128GB LPDDR5x, 1TB PCIe Gen4 NVMe SSD, Wi-Fi 7 &...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/512mn+LKArL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0G1MQYHRD.jpg",
+          "naturalDimensions": {
+            "width": 461,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 280,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 2,
+        "asin": "B00FLYWNYQ",
+        "canonicalHref": "/dp/B00FLYWNYQ",
+        "title": "Instant Pot Duo 7-in-1 Electric Pressure Cooker, Slow Cooker, Rice, Steamer, Sauté, Yogurt Maker, Warmer & Sterilizer,...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B00FLYWNYQ.jpg",
+          "naturalDimensions": {
+            "width": 191,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 201,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 3,
+        "asin": "B0FTP511BW",
+        "canonicalHref": "/dp/B0FTP511BW",
+        "title": "REVLON ColorSilk After Color Care Mask, Vegan Keratin Hair Treatment, Bond Repair for Damaged Hair, For All Hair Colors...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61X2Bc7MuhL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FTP511BW.jpg",
+          "naturalDimensions": {
+            "width": 184,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 194,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 4,
+        "asin": "B0C9SWH3RC",
+        "canonicalHref": "/dp/B0C9SWH3RC",
+        "title": "Nugget Ice Maker Countertop, Silonn Chewable Pellet Ice Machine with Self-Cleanin Function, 36lbs/24H Portable Ice...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71D3QLxx+IL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0C9SWH3RC.jpg",
+          "naturalDimensions": {
+            "width": 215,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 225,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 5,
+        "asin": "B0DP3JV2WB",
+        "canonicalHref": "/dp/B0DP3JV2WB",
+        "title": "Kodiak Cakes Granola, Honey Oat, High Protein, 100% Whole Grains (Pack of 5 pouches)",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81q6tQpIIYL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DP3JV2WB.jpg",
+          "naturalDimensions": {
+            "width": 209,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 219,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 6,
+        "asin": "B0DXZW363G",
+        "canonicalHref": "/dp/B0DXZW363G",
+        "title": "BUILDCURE FM – Fast-Setting Floor Repair Mortar, Cold-Resistant Concrete & Asphalt Patch, High-Strength (7,250 psi),...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61kX1fMhClL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DXZW363G.jpg",
+          "naturalDimensions": {
+            "width": 192,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 202,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 7,
+        "asin": "B0DKQ4RF3B",
+        "canonicalHref": "/dp/B0DKQ4RF3B",
+        "title": "Naturfi Organic- Insulin Plant Capsules (Costus Igneus), USDA Organic | 100% Natural Supplement, 90 Veggie Caps (1 Month...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/711Hh2gt+gL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DKQ4RF3B.jpg",
+          "naturalDimensions": {
+            "width": 161,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 171,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 8,
+        "asin": "B0FTPYT2H3",
+        "canonicalHref": "/dp/B0FTPYT2H3",
+        "title": "REVLON ColorSilk After Color Conditioner for Color Treated Hair, Moisturizing & Strengthening Bond Repair with Vegan...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61JXabRWs4L._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FTPYT2H3.jpg",
+          "naturalDimensions": {
+            "width": 102,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 155,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 9,
+        "asin": "B0DKTVC9CR",
+        "canonicalHref": "/dp/B0DKTVC9CR",
+        "title": "Gain Flings Laundry Detergent Pacs, 102 Count, Original Scent, with Odor Defense, concentrated laundry soap pacs",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81P3v6+WDSL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DKTVC9CR.jpg",
+          "naturalDimensions": {
+            "width": 166,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 176,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 10,
+        "asin": "B0FBPZ3RSB",
+        "canonicalHref": "/dp/B0FBPZ3RSB",
+        "title": "OLIPOP Prebiotic Soda Pop, Strawberry Vanilla, Pantry Pack Packed with Prebiotics, Fiber, and Botanicals, Gluten Free,...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81QOhV6QAFL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FBPZ3RSB.jpg",
+          "naturalDimensions": {
+            "width": 236,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 246,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 11,
+        "asin": "B0FJH6XRS3",
+        "canonicalHref": "/dp/B0FJH6XRS3",
+        "title": "CamelBak Crayola Chug Insulated Stainless Steel Water Bottle, Cold Retention Design with Spill Resistant Chug Lid for...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/5118V4d+AgL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FJH6XRS3.jpg",
+          "naturalDimensions": {
+            "width": 70,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 155,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 12,
+        "asin": "B07799WY99",
+        "canonicalHref": "/dp/B07799WY99",
+        "title": "Differin Acne Face Wash, 5% Benzoyl Peroxide Daily Cleanser, 4oz | Gentle Acne Cleanser, Clears Breakouts, Sensitive...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71uSPR8DzYL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B07799WY99.jpg",
+          "naturalDimensions": {
+            "width": 151,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 161,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 13,
+        "asin": "B003NMMVJ0",
+        "canonicalHref": "/dp/B003NMMVJ0",
+        "title": "L'Oréal Professionnel Paris Styling Pomade For Men - Medium Hold and Matte Finish, Styling Cream For All Hair Types",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/416iE4dgSwL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B003NMMVJ0.jpg",
+          "naturalDimensions": {
+            "width": 52,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 155,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 14,
+        "asin": "B0DQPBR1RN",
+        "canonicalHref": "/dp/B0DQPBR1RN",
+        "title": "Ekkovision EKKO Weight Lifting Straps With Cuffed D Ring, Wrist Support for Men, Heavy Duty Thick Comfortable Lifting...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81WnP5AMq7L._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DQPBR1RN.jpg",
+          "naturalDimensions": {
+            "width": 239,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 249,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 15,
+        "asin": "B09BQD3YDY",
+        "canonicalHref": "/dp/B09BQD3YDY",
+        "title": "Cosori Stainless Steel Electric Kettle, Plastic-Free Interior, 1.5L, Black | Cool-Touch Double-Wall, Auto Shut-Off,...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61a3TsZDylL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B09BQD3YDY.jpg",
+          "naturalDimensions": {
+            "width": 163,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 173,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 16,
+        "asin": "B0CG7DPXGW",
+        "canonicalHref": "/dp/B0CG7DPXGW",
+        "title": "Tea Tree Special Shampoo, Deep Cleans, Refreshes Scalp, Especially Oily Hair, For All Hair Types",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61SiAwvAwIL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0CG7DPXGW.jpg",
+          "naturalDimensions": {
+            "width": 142,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 155,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 17,
+        "asin": "B0CLH89X2K",
+        "canonicalHref": "/dp/B0CLH89X2K",
+        "title": "Cherry KC 200 MX, Wired Mechanical Office Keyboard, Modern Design with Elegant Aluminum Surface, USB-A Connection, MX2A...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61-RoURbxfL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0CLH89X2K.jpg",
+          "naturalDimensions": {
+            "width": 581,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 280,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 18,
+        "asin": "B0FPF5QRV6",
+        "canonicalHref": "/dp/B0FPF5QRV6",
+        "title": "QPlay Toddler Bike Stroller for Baby 10 Months to 6 Years Old, 8-in-1 Foldable Stroller Bike for Toddlers 3-5 Boys &...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/61e0Xu8+JEL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FPF5QRV6.jpg",
+          "naturalDimensions": {
+            "width": 195,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 205,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 19,
+        "asin": "B0007ZF4OA",
+        "canonicalHref": "/dp/B0007ZF4OA",
+        "title": "HotHands Hand Warmers - Long Lasting Safe Natural Odorless Air Activated Warmers - Up to 10 Hours of Heat",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81LIVrFpRqL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0007ZF4OA.jpg",
+          "naturalDimensions": {
+            "width": 196,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 206,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 20,
+        "asin": "B000052Y5Q",
+        "canonicalHref": "/dp/B000052Y5Q",
+        "title": "Metamucil 4-in-1 Psyllium Husk GLP-1 Friendly Fiber Supplement, Sugar-Free, 72 teaspoons, Orange Flavored, Daily Fiber...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71ibylo7wGL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B000052Y5Q.jpg",
+          "naturalDimensions": {
+            "width": 81,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 155,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 21,
+        "asin": "B0GT2JP76J",
+        "canonicalHref": "/dp/B0GT2JP76J",
+        "title": "AOC 27\" Gaming Monitor QHD 240Hz QD OLED G-SYNC Compatible 0.03ms, Q27GAZDV | 2560×1440 Computer Monitor, True Black...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71GBlMiclTL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0GT2JP76J.jpg",
+          "naturalDimensions": {
+            "width": 224,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 234,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 22,
+        "asin": "B0FWBPFL4S",
+        "canonicalHref": "/dp/B0FWBPFL4S",
+        "title": "Blackview Laptop Screen Extender, 1.3lbs Ultra-Light & 0.17\" Ultra-Slim, 14\" FHD 1080P IPS Portable Laptop Monitor...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71Jlu2VELrL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FWBPFL4S.jpg",
+          "naturalDimensions": {
+            "width": 248,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 258,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 23,
+        "asin": "B0G31J12SG",
+        "canonicalHref": "/dp/B0G31J12SG",
+        "title": "Shark CryoGlow LED Face Mask with Under-Eye Cooling, Anti-Ageing & Blemish Repair, Red & Blue LED, Infrared Light...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/41gnXokGDAL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0G31J12SG.jpg",
+          "naturalDimensions": {
+            "width": 188,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 198,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 24,
+        "asin": "B0DX2GJ1YR",
+        "canonicalHref": "/dp/B0DX2GJ1YR",
+        "title": "Samsung SSD 9100 PRO 4TB, PCIe 5.0x4 M.2 2280, Seq. Read Speeds Up to 14,800MB/s, Best for AI Computing, Gaming, and...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/71qygJIcKnL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DX2GJ1YR.jpg",
+          "naturalDimensions": {
+            "width": 719,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 280,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 25,
+        "asin": "B0FKNGRQVR",
+        "canonicalHref": "/dp/B0FKNGRQVR",
+        "title": "uoozii 24\" | 5 Pounds Highland Cow Weighted Stuffed Animals with Removable Unscented Microwavable Pouch, Cute Coolable...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81ekxtDi1SL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FKNGRQVR.jpg",
+          "naturalDimensions": {
+            "width": 268,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 278,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 26,
+        "asin": "B0DK5VM9W2",
+        "canonicalHref": "/dp/B0DK5VM9W2",
+        "title": "Nexxus Hy-Volume Cloud Foam Hair Foam for Lift and Volume For Flat & Limp Hair Hair Styling Foam Powered by Magnitube...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81d9nzhMocL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0DK5VM9W2.jpg",
+          "naturalDimensions": {
+            "width": 171,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 181,
+          "height": 210
+        }
+      },
+      {
+        "ordinal": 27,
+        "asin": "B0FY6T2FG6",
+        "canonicalHref": "/dp/B0FY6T2FG6",
+        "title": "Pipishell 26″ Solid Pine Wood Shoe Rack Bench with Soft Cushion, 2 Tiers Shoe Storage Organizer with Lift-Top Storage...",
+        "image": {
+          "sourceUrl": "https://m.media-amazon.com/images/I/81HZjNyp+IL._AC_SY200_.jpg",
+          "localRelativePath": "home/top-picks-singapore/B0FY6T2FG6.jpg",
+          "naturalDimensions": {
+            "width": 170,
+            "height": 200
+          }
+        },
+        "cardDimensions": {
+          "width": 180,
+          "height": 210
+        }
+      }
+    ]
+  },
+  "remoteRuntimePolicy": "forbidden"
+}

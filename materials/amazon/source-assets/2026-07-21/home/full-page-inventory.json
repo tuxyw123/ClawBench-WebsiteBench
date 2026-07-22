@@ -1,0 +1,2518 @@
+{
+  "schema": "amazon-home-page-assets.v1",
+  "captured_on": "2026-07-21",
+  "source_page": "https://www.amazon.com/",
+  "inventory_id": "bd07bb11-50d9-427c-b051-f35bd569a607",
+  "assets": [
+    {
+      "id": "950f9fa40eca21de",
+      "name": "Home_Flip_Summer_2024_317_HP_NewArrivals_QuadCard_D_03_1x._SY116_CB555960040_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_317_HP_NewArrivals_QuadCard_D_03_1x._SY116_CB555960040_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "950f9fa40eca21de.jpg",
+      "bytes": 5905,
+      "sha256": "9ac77f2680145aa77a51c61bf72adadd7c48bb96285408a59944a5a80f49b726",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "cdeb1caaa6497025",
+      "name": "Home_Flip_Summer_2024_318_HP_NewArrivals_QuadCard_D_04_1x._SY116_CB555960040_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/HomeLifestyle/HomeSummerFlip/Homepage/QuadCards/Home_Flip_Summer_2024_318_HP_NewArrivals_QuadCard_D_04_1x._SY116_CB555960040_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "cdeb1caaa6497025.jpg",
+      "bytes": 5590,
+      "sha256": "a2a6be4dd40b60f4b8628ebaa7ede6e7f1abcec9b378c69315dc5d51e88ee95a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "867dd3e0a203917a",
+      "name": "LSS23_SPRING_DT_CAT_CARD_1_x1._SY116_CB595261253_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_1_x1._SY116_CB595261253_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "867dd3e0a203917a.jpg",
+      "bytes": 5590,
+      "sha256": "a8c5533c314921ddf2b021c8d384a8d4924dc7f0347b3219e6e043c7b3a842ae",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "779a6383af8ffb6e",
+      "name": "LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2023/LuxuryStores/Spring-23/GW/Quad_Cards/Spring/LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "779a6383af8ffb6e.jpg",
+      "bytes": 6082,
+      "sha256": "b3b7b1c10aeeb6663adc0d60ccaab4df87684748475ae57b92a2b83bcd993eb0",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "dc8f8bbc2c6b4bab",
+      "name": "2023Q2_GW_EE_AccentFurniture_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_AccentFurniture_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "dc8f8bbc2c6b4bab.jpg",
+      "bytes": 4272,
+      "sha256": "28f95080661c3fc7ae2204235bcb9825218c7b4f89ecd167d4bd374f10d86956",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "389bf293eaa51bc0",
+      "name": "2023Q2_GW_EE_Hallway_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/img18/home/2023/Q2/Homepage/2023Q2_GW_EE_Hallway_D_Quad_186x116._SY116_CB594237035_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "389bf293eaa51bc0.jpg",
+      "bytes": 4334,
+      "sha256": "df60bf049e4092040b7d242ccd6aafa3ac469f6ed8727cd220dde7c674540bfb",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "6938765e159953cd",
+      "name": "Fuji_Defect_Reduction_1x_Clothing._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Clothing._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6938765e159953cd.jpg",
+      "bytes": 4827,
+      "sha256": "286eed165338c0cdf6f33d0824471a4f4966429961863d303cf489bf05898b3a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "c84abc45d3c7831b",
+      "name": "Fuji_Defect_Reduction_1x_Trackers._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Trackers._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c84abc45d3c7831b.jpg",
+      "bytes": 5649,
+      "sha256": "9612ab817f289b2abad7fe20e4ee187d6c18e5706c6ad91b3a460686fb74f036",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "4bcaecb91986cc37",
+      "name": "Fuji_Defect_Reduction_1x_Equipment._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Equipment._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "4bcaecb91986cc37.jpg",
+      "bytes": 5338,
+      "sha256": "334c9896ed17d8d40f2e00ed93d973bbe656896eb344f2a372e62725de8e8c69",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "6d06fd12fb426900",
+      "name": "Fuji_Defect_Reduction_1x_Deals_Fitness._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Deals_Fitness._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6d06fd12fb426900.jpg",
+      "bytes": 5589,
+      "sha256": "3c223b8ec2d66cd11deeeec6889d038cf042ad4daa789d23a6d11ba1a0ab5aa8",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "007d6dcf1fdb975a",
+      "name": "Fuji_BTF_Quad_Cards_1x_Playground_sets._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Playground_sets._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "007d6dcf1fdb975a.jpg",
+      "bytes": 5821,
+      "sha256": "45c2a948fd3feeeeb98f0aeca77a586a3d8e46c791a9f6d7f083dc64bfedee81",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "616b49f5ba5b5080",
+      "name": "Fuji_BTF_Quad_Cards_1x_STEM_toys_or_learning_toys._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_STEM_toys_or_learning_toys._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "616b49f5ba5b5080.jpg",
+      "bytes": 5447,
+      "sha256": "6d1c4241757d2e8df65352f0e538d40451500c79ffc44191593157bab3760705",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "45496c7680c4f68c",
+      "name": "Fuji_BTF_Quad_Cards_1x_Action_figure._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Action_figure._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "45496c7680c4f68c.jpg",
+      "bytes": 5601,
+      "sha256": "e9ee68ae3b71a47b4cf02c45fc0530514c4eb97b3c17990101fed832427510aa",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "b31a1ce1611d39bb",
+      "name": "Fuji_BTF_Quad_Cards_1x_Pretend_Play_Toys._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Pretend_Play_Toys._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b31a1ce1611d39bb.jpg",
+      "bytes": 5870,
+      "sha256": "778d9fd8a611fd148b26296c2c3e6de38f8b89fb250c9ff1f33abe90970fa0d2",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "c26b2d43dd8d7064",
+      "name": "Backpack_1x._SY116_CB566100767_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Backpack_1x._SY116_CB566100767_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c26b2d43dd8d7064.jpg",
+      "bytes": 2105,
+      "sha256": "c357ab5bce498e08ce999ac0a60056552b7cb5ef3763b8cdfd08ed2f10d252e4",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "ecf0cd0f0f123fc5",
+      "name": "TravelBag_1x._SY116_CB566100767_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/TravelBag_1x._SY116_CB566100767_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "ecf0cd0f0f123fc5.jpg",
+      "bytes": 3099,
+      "sha256": "18719876b10e63030274b434cb0dd876077f94e4a8b826d5ceb7a8ca3202cf38",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "c6ccda4c0744aa1b",
+      "name": "Accessories_1x._SY116_CB566100767_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Accessories_1x._SY116_CB566100767_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c6ccda4c0744aa1b.jpg",
+      "bytes": 1812,
+      "sha256": "159cea18a6c4aa48541af2de395014b93071bd58b47816f840692ed9cf581452",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "3ad1d46c7305c535",
+      "name": "Handbags_1x._SY116_CB566100767_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/Handbags_1x._SY116_CB566100767_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "3ad1d46c7305c535.jpg",
+      "bytes": 1639,
+      "sha256": "034d35156e8566d968f4e2a51c57c78b898d0dbcdb442aad825faebfd709c7c9",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "bdaf957e8276af10",
+      "name": "Fuji_Quad_Apparel_1x._SY116_CB667159060_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Apparel_1x._SY116_CB667159060_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "bdaf957e8276af10.jpg",
+      "bytes": 3733,
+      "sha256": "f3b5e0121cdb618f47b18108adae01d3766a3fa907d67ecdf1721cf05629f6c2",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "14d4ecc4ed87b683",
+      "name": "Fuji_Quad_Hat_1x._SY116_CB667159060_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Hat_1x._SY116_CB667159060_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "14d4ecc4ed87b683.jpg",
+      "bytes": 2270,
+      "sha256": "dd81ee409ff7e8d81172217eedecce48bb53c2ab7ed8e02966d940352ce8a2f7",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "66789d6ab1fe9905",
+      "name": "Fuji_Quad_Figure_1x._SY116_CB667159060_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Figure_1x._SY116_CB667159060_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "66789d6ab1fe9905.jpg",
+      "bytes": 2519,
+      "sha256": "b05e069d91d11e339ceb7735a88c3f323b1c081a1da6718fe797c75e8c21e23c",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "77748f7f125db3cf",
+      "name": "Fuji_Quad_Mug_1x._SY116_CB667159063_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Mug_1x._SY116_CB667159063_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "77748f7f125db3cf.jpg",
+      "bytes": 3343,
+      "sha256": "9a6ece6e80a41dbabed6aeb6baf0837797f0b929f69355fe882b2448f3bf3112",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "1f00662f2c41fe99",
+      "name": "CE24_SUM_GW_DQC_NW_GamingWeek_PC_v2_1x._SY116_CB558844445_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_NW_GamingWeek_PC_v2_1x._SY116_CB558844445_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1f00662f2c41fe99.jpg",
+      "bytes": 5740,
+      "sha256": "25f303fcd8a9945dd9c299a8b01f1b09867850b2d4b58e1b4515da7a64260ab9",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "1915b416636972ea",
+      "name": "CE24_SUM_GW_DQC_NE_GamingWeek_Xbox_v2_1x._SY116_CB558844445_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_NE_GamingWeek_Xbox_v2_1x._SY116_CB558844445_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1915b416636972ea.jpg",
+      "bytes": 5714,
+      "sha256": "7d072fe6279e4c220bf8f214840905403579e8d3ee81cef2c02c16626c1144cb",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "1044f0abd1b0a9a4",
+      "name": "CE24_SUM_GW_DQC_SW_GamingWeek_Sony_v2_1x._SY116_CB558844445_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_SW_GamingWeek_Sony_v2_1x._SY116_CB558844445_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1044f0abd1b0a9a4.jpg",
+      "bytes": 5196,
+      "sha256": "39a79d6d6b21c97576d21c97e2beeba4d405ecff20e1e74ac09a5a6892b7453e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "308a8232dbd7f66b",
+      "name": "CE24_SUM_GW_DQC_SE_GamingWeek_Nintendo_v2_1x._SY116_CB558844445_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/DiscoTec/2024/CE/GamingWeek24/Homepage/DQC/CE24_SUM_GW_DQC_SE_GamingWeek_Nintendo_v2_1x._SY116_CB558844445_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "308a8232dbd7f66b.jpg",
+      "bytes": 5723,
+      "sha256": "273429edac6694ad7e52a070be21f9229962372cae2cf2836b4b7c310a712699",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "5d4f18f300b34f3f",
+      "name": "Fuji_BTF_Quad_Cards_1x_Make-up._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Make-up._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5d4f18f300b34f3f.jpg",
+      "bytes": 6115,
+      "sha256": "0506af24f6292c687d5f834ca0ed0bd5d5e6dfddbdeb289b0ca1b0482b89c32e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "f83db64a2f3cbec8",
+      "name": "Fuji_BTF_Quad_Cards_1x_Brushes._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Brushes._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "f83db64a2f3cbec8.jpg",
+      "bytes": 5831,
+      "sha256": "3865aaf0c638f3b3da08ca1674d1d8dd08945c5f66914768cd5bd48953d4ea0f",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "a753d6bf393e34c4",
+      "name": "Fuji_BTF_Quad_Cards_1x_Sponges._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Sponges._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a753d6bf393e34c4.jpg",
+      "bytes": 4744,
+      "sha256": "f0e86434d244444efc52b59bb98a463e72c36853e993bfe1358f7fdb1a1ee4f3",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "3197d03b8e86fb9c",
+      "name": "Fuji_BTF_Quad_Cards_1x_Mirrors._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Mirrors._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "3197d03b8e86fb9c.jpg",
+      "bytes": 4756,
+      "sha256": "bd19e77b5f9c73d994a0f80b6a88588b7f89737cd2b78a5a1c8381582dfb170a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "f806a7aed4925070",
+      "name": "Fuji_Defect_Reduction_1x_Books._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Books._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "f806a7aed4925070.jpg",
+      "bytes": 5518,
+      "sha256": "9b695f6666e9451eb9b876abedb164792e5f4fec01d46074640e0a03252b75fe",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "b2eb0a31612bba2b",
+      "name": "Fuji_Defect_Reduction_1x_Fashion._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Fashion._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b2eb0a31612bba2b.jpg",
+      "bytes": 6184,
+      "sha256": "416e726b8545b31e9d7b3283d3ec770ffd2bdf81dfacf053b6a3f74008cd034e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "59f62bc9e9953c91",
+      "name": "Fuji_Defect_Reduction_1x_Desktops._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Desktops._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "59f62bc9e9953c91.jpg",
+      "bytes": 5003,
+      "sha256": "908826e8ffcfc245ba356e7f38ddc16441ff346b279cbb2e8fa69bb051afd662",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "1a61cc11afe4a3d9",
+      "name": "Fuji_Defect_Reduction_1x_Beauty._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Beauty._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1a61cc11afe4a3d9.jpg",
+      "bytes": 5443,
+      "sha256": "f5fecf702a2501e14fffeb02858e3fb724c3cded35fad74d98a7ffeae3951548",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "c15c7d78fd314a2d",
+      "name": "Fuji_Defect_Reduction_1x_Laptop._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Laptop._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c15c7d78fd314a2d.jpg",
+      "bytes": 5149,
+      "sha256": "048619214c6c2a9fde6ed0fe05ecdea874bd68747687bf8ed673adf70c5ccee1",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "918f344527c4b4de",
+      "name": "Fuji_Defect_Reduction_1x_PC._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_PC._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "918f344527c4b4de.jpg",
+      "bytes": 5339,
+      "sha256": "b329f8aa9e1a6e9adaf1aa7c0de2c650d095f79b23af5474a57e0746e85ed462",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "12237c942f7639ab",
+      "name": "Fuji_Defect_Reduction_1x_Hard_Drives._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Hard_Drives._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "12237c942f7639ab.jpg",
+      "bytes": 5909,
+      "sha256": "7976aeef0a1a57be2e95affc4047a25718e82d04a2ba044345014015306bd7e1",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "47795f5c030aaad1",
+      "name": "Fuji_Defect_Reduction_1x_Monitors._SY116_CB549022351_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2025/Q1DefectReduction/Fuji_Defect_Reduction_1x_Monitors._SY116_CB549022351_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "47795f5c030aaad1.jpg",
+      "bytes": 5992,
+      "sha256": "e335c052ed8ba557a58420c464d79898c68be1fa873a1d44e5e0e1c38c3d6792",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "a0aa517f7d0f803e",
+      "name": "WomenWatches_1x._SY116_CB564394432_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/WomenWatches_1x._SY116_CB564394432_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a0aa517f7d0f803e.jpg",
+      "bytes": 1704,
+      "sha256": "ff044f4f3f65546eed91b896a958be21ce521387bf759081850162520e5c2946",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "8020e47a983015ab",
+      "name": "MenWatches_1x._SY116_CB564394432_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/MenWatches_1x._SY116_CB564394432_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "8020e47a983015ab.jpg",
+      "bytes": 2669,
+      "sha256": "04c484ae9378da268aec78f0bb094b6125824ec2bb77c8b8889e405420ce5722",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "34a6123442d40dd2",
+      "name": "GirlWatches_1x._SY116_CB564394432_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/GirlWatches_1x._SY116_CB564394432_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "34a6123442d40dd2.jpg",
+      "bytes": 1689,
+      "sha256": "46d12ba61efb1f8e58b32fc7ab98fa309343a0329118367e863859f5ce8d2b52",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "0570588e61329a69",
+      "name": "BoyWatches_1x._SY116_CB564394432_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/BoyWatches_1x._SY116_CB564394432_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "0570588e61329a69.jpg",
+      "bytes": 2447,
+      "sha256": "2be4cb8bffe83d086c78f6090e063e6d4f28110a5b35d8ba6a307fc3f7b53e9c",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "79d09d346509aa4f",
+      "name": "Fuji_BTF_Quad_Cards_1x_Kitchen._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Kitchen._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "79d09d346509aa4f.jpg",
+      "bytes": 4535,
+      "sha256": "37efe0d65835bf0a269bb30d818e211166c18bc8fdfdd9abbcc25111e3c926d8",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "a82abedd503127bb",
+      "name": "Fuji_BTF_Quad_Cards_1x_Home_decor._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Home_decor._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a82abedd503127bb.jpg",
+      "bytes": 3849,
+      "sha256": "4054bf9dd2221c6fd7f8e95b5c17fbf945724d5211cd4798089fbd6e65acd85a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "834d20af59880114",
+      "name": "Fuji_BTF_Quad_Cards_1x_Dining._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Dining._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "834d20af59880114.jpg",
+      "bytes": 6245,
+      "sha256": "d71c52fb8eb4704bc1b1827af543738dcafe1878119a088facd5a998c934428e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "876c2616cc6fd466",
+      "name": "Fuji_BTF_Quad_Cards_1x_Smart_home._SY116_CB558654384_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Smart_home._SY116_CB558654384_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "876c2616cc6fd466.jpg",
+      "bytes": 5490,
+      "sha256": "5f1d3fb2e094869c36ab68c2c9e3c4236c5a7e1a7a523560fc6aa264a90c80aa",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "9341c0aa5ab587ad",
+      "name": "TransformersCat_1x._SY304_CB540253513_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAUOct2024/TransformersCat_1x._SY304_CB540253513_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "9341c0aa5ab587ad.jpg",
+      "bytes": 20698,
+      "sha256": "5988b496f03763c3131754f56a4c73c0529b1d843cd87d78699dc70adf644ded",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 379,
+        "height": 304
+      },
+      "failure": null
+    },
+    {
+      "id": "1a2952451fe8674c",
+      "name": "Skincare_1x._SY116_CB563150139_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Skincare_1x._SY116_CB563150139_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1a2952451fe8674c.jpg",
+      "bytes": 4264,
+      "sha256": "b8109a7772e748b9f548f01251d14e938db85fb4b4b2f3e7d51a314354a10bad",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "2b4ed40de0adcc4e",
+      "name": "Makeup_1x._SY116_CB563150139_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Makeup_1x._SY116_CB563150139_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "2b4ed40de0adcc4e.jpg",
+      "bytes": 2689,
+      "sha256": "4cb0fc73a756dfe93973b8ff78929827e4ee38c0be4f14295fc6ab7e3a650e89",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "7f62214a5481cf69",
+      "name": "Nail_1x._SY116_CB563150139_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Nail_1x._SY116_CB563150139_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "7f62214a5481cf69.jpg",
+      "bytes": 3242,
+      "sha256": "cb2d247647034d0fd678eac0c6c2635f7f435a7e9615c8e356307ad015d4218b",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "5dbaa9ffe04c6573",
+      "name": "Fragrance_1x._SY116_CB563150139_.jpg",
+      "url": "https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Sept/Fragrance_1x._SY116_CB563150139_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5dbaa9ffe04c6573.jpg",
+      "bytes": 4519,
+      "sha256": "373c76abf0118d3bfc98578c0b50159d4f7136dab63190fadb8bd92ebd89b9e5",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 116
+      },
+      "failure": null
+    },
+    {
+      "id": "b5a248b9099dbb2e",
+      "name": "71EESd1deTL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71EESd1deTL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b5a248b9099dbb2e.jpg",
+      "bytes": 9596,
+      "sha256": "38b85399d8bc3ce9c104608d340a6954bfcc9b47859b25d5877a43afcde266e5",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 230,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6a89f408c9f8477b",
+      "name": "61zuR3UMnWL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61zuR3UMnWL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6a89f408c9f8477b.jpg",
+      "bytes": 5307,
+      "sha256": "87d11d668ea15362c1bdbd42cd1d4d3d0e34040e80a1faa8a4353737e8a586db",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 87,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6a73560d6fb7785b",
+      "name": "91YfRIy7kYL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YfRIy7kYL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6a73560d6fb7785b.jpg",
+      "bytes": 4511,
+      "sha256": "029531cacbe89ab149ee1e7f6a4bef3276613ca62aef6bcbb9e58dc73ea8af5d",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 219,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "118dad6228a13f3b",
+      "name": "41OUh0ZU1NL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/41OUh0ZU1NL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "118dad6228a13f3b.jpg",
+      "bytes": 1688,
+      "sha256": "74df6c40700d3998466380412525b505a2d5fa6468eda280d53610c1f9349200",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 136,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "8c9907779231ab85",
+      "name": "41rI1J9FcZL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/41rI1J9FcZL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "8c9907779231ab85.jpg",
+      "bytes": 4291,
+      "sha256": "4e41c5ecf34a20f6965876650c6171116e8ebcc9e631cbc7821b3bd2331eef92",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 225,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "85ab4022c6863471",
+      "name": "71bBCTIvIIL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71bBCTIvIIL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "85ab4022c6863471.jpg",
+      "bytes": 5210,
+      "sha256": "8a62a57f0473d9ac93dfdf7c0bb64f0db493e5335dd0c3bd79b0fb4685be2850",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 108,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1d31483b9bbf9a67",
+      "name": "71-8LPwxb7L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-8LPwxb7L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1d31483b9bbf9a67.jpg",
+      "bytes": 3185,
+      "sha256": "b934629ca1222ba35a18f9d5031663526e4177aee88637f54622d29199a4d5e1",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 116,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1dba2dd5013a6d6e",
+      "name": "61o6SkL3DOL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61o6SkL3DOL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1dba2dd5013a6d6e.jpg",
+      "bytes": 5632,
+      "sha256": "4dcb72aa0b1255b6fd1d1d2b57e89878bdeb1d63aae39f4c52e4410d4990793c",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 160,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "358c5388a52fe733",
+      "name": "61KCbJGpAFL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61KCbJGpAFL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "358c5388a52fe733.jpg",
+      "bytes": 2965,
+      "sha256": "b5cb139fba553cbc5dba2b6b7291694f2b89bcee9ffee58c21562a94d5020434",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "0ad083d2d44c138c",
+      "name": "718RbhzhVbL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/718RbhzhVbL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "0ad083d2d44c138c.jpg",
+      "bytes": 2274,
+      "sha256": "71ae8f199282a92f9cec2e056bc47c7b7bc3676edd88436377b3f24640dd9dd0",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 58,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "49c86e9f9a2e44ab",
+      "name": "71Si2QlAb3L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Si2QlAb3L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "49c86e9f9a2e44ab.jpg",
+      "bytes": 5914,
+      "sha256": "c1b4398541490ecbba82b5b41545907ef7529c84c79d971bde2193008381bb01",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 160,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "bbc4d8cc8f3dc911",
+      "name": "71kHwy9jklL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71kHwy9jklL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "bbc4d8cc8f3dc911.jpg",
+      "bytes": 8184,
+      "sha256": "1e1813d103f687a028301a408be0224787c863456a38297a80058a36fdc5aae9",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "13e358fe611b2960",
+      "name": "61HjMmGgC2L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61HjMmGgC2L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "13e358fe611b2960.jpg",
+      "bytes": 8257,
+      "sha256": "9fda1bd423f49cbd6a29ee8f0a6dc1b50ffdf0ed5ba4e61d7875407cc17bdb5d",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "7b9a8802b7c24324",
+      "name": "617+Wg+p7WL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/617+Wg+p7WL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "7b9a8802b7c24324.jpg",
+      "bytes": 13029,
+      "sha256": "fe1c52f1c6ea61ce008685213ea0291acc17fa0949c898cebdc2589b7370f55a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 359,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "cef0ed9812e3166e",
+      "name": "61pFf-1Mu3L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pFf-1Mu3L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "cef0ed9812e3166e.jpg",
+      "bytes": 7187,
+      "sha256": "39b22ebfb94a224f345eebba23dc96ba80a6886bed29bcc1113d8d1ddc5b1700",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 241,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "e360816584837e08",
+      "name": "819rNXWgZuL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/819rNXWgZuL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "e360816584837e08.jpg",
+      "bytes": 10645,
+      "sha256": "b3c0fd582848c59d56c67bdb1821915d0fe97a95f66a16ca880c7cdfc0da3527",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 197,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "bc65df23d7f0c931",
+      "name": "81DWixeO-fL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81DWixeO-fL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "bc65df23d7f0c931.jpg",
+      "bytes": 5862,
+      "sha256": "150865ff9de33b2d00cca1da49f3f6afafd51a439215c94d48d46302ca595e75",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 164,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "e8759417c0dd8d5e",
+      "name": "71-QAqS7VXL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71-QAqS7VXL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "e8759417c0dd8d5e.jpg",
+      "bytes": 14466,
+      "sha256": "cfbe7781567c8eb4705429b498696921832ecc2ce52cd2bb4be24fd2b937df7a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 199,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "884268269d6eca1a",
+      "name": "81ve1KtO-pL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81ve1KtO-pL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "884268269d6eca1a.jpg",
+      "bytes": 13752,
+      "sha256": "a4834e8eaee0574ccd8d9d89e9d7bc577149e9bd3aae202c0cfa6e14a3eebc5a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 175,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "2873a489e0ec8bb7",
+      "name": "81UExRGfIqL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UExRGfIqL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "2873a489e0ec8bb7.jpg",
+      "bytes": 10011,
+      "sha256": "4bef1ae7bda4fab3bc02ad18cd549e7430db6e4e46758edbaccd54907d7fe538",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 194,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "beca43f45da7a93b",
+      "name": "81LVTFVjcLL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81LVTFVjcLL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "beca43f45da7a93b.jpg",
+      "bytes": 12128,
+      "sha256": "bab16e5a9f07cc3a7607a0e6614d480802f3ebbdd7f451ad1d1cdcb173b6309f",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 213,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "5b4d9294d5676f06",
+      "name": "61UEXxKIlrL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61UEXxKIlrL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5b4d9294d5676f06.jpg",
+      "bytes": 9508,
+      "sha256": "f04e672902afb9b6bb3df9affd34a65872a399befaa89de261146a70c12001de",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 432,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "49407b59bd926347",
+      "name": "51uA1LV5hpL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/51uA1LV5hpL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "49407b59bd926347.jpg",
+      "bytes": 1854,
+      "sha256": "4f677d48ea71878e2387b453ed243de939cd7b904336bfcf321aef73c6f76354",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 58,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "4ad13bed4b6ba987",
+      "name": "61hfnwAZosL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61hfnwAZosL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "4ad13bed4b6ba987.jpg",
+      "bytes": 2635,
+      "sha256": "6e9b05d48b92a35f031f32ccc4a891fb6179bd231a900d04f88aecba993ca8ae",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 78,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6fcfebd0d0c0d64c",
+      "name": "81zh-RIi18L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81zh-RIi18L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6fcfebd0d0c0d64c.jpg",
+      "bytes": 9538,
+      "sha256": "4b0f51b113dd37f44d56e29c7efe6b48f3f315c91ad610f4ec289352141a39ad",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 193,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "a219bff98cff5fa6",
+      "name": "71mrOLs9K4L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71mrOLs9K4L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a219bff98cff5fa6.jpg",
+      "bytes": 13411,
+      "sha256": "2bd7ed9c432cc0a37504880f222191d6c88f9ae84bef82521e8d87e2979cb4c3",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 219,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "5665b2c21855181a",
+      "name": "81l7AwlRcDL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81l7AwlRcDL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5665b2c21855181a.jpg",
+      "bytes": 7724,
+      "sha256": "c194156f3d3087de1b98fcfdd088465e182f93ce261823f8a526c5dd3fa8d176",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 212,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "e2cfbe3d30d95e69",
+      "name": "61HHXRkRz6L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61HHXRkRz6L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "e2cfbe3d30d95e69.jpg",
+      "bytes": 7955,
+      "sha256": "e1ef6e8ba7e0e682fb6423ec39e148fa61444231a34ea279a4ce547ca381202e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 224,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "0b93049189c1d89f",
+      "name": "71Km-MVfzvL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71Km-MVfzvL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "0b93049189c1d89f.jpg",
+      "bytes": 9085,
+      "sha256": "65f522360894f442128cb8a2f55cda26732721f9bb6e4889b067e2fcb252ed60",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 198,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "ea369062f0006155",
+      "name": "817IVLm70oL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/817IVLm70oL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "ea369062f0006155.jpg",
+      "bytes": 4888,
+      "sha256": "a8a615a70ee187b3f76225fc8bddcaf7fde7d815587e93d374457f8eb8a89f8e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 122,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "f7f53d087e3b33a7",
+      "name": "61bIDEtowdL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bIDEtowdL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "f7f53d087e3b33a7.jpg",
+      "bytes": 8585,
+      "sha256": "e72b4c97da70950cbc36786657d574485872af9e5ec005cfe24faa16cb903ff1",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 188,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "28f3c4f845645186",
+      "name": "51wX5vhTB4L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/51wX5vhTB4L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "28f3c4f845645186.jpg",
+      "bytes": 3844,
+      "sha256": "8187b10adf46b4269b25a5ac64926f1c17271145f4d7949460ac9e5791cd2543",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 134,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "7a36d4765b639a85",
+      "name": "51IFiSD+kCL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/51IFiSD+kCL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "7a36d4765b639a85.jpg",
+      "bytes": 4699,
+      "sha256": "6a9b7f606c82cf46302a3ac4f1d17cb499ab67425bc6ea019786b1662c6ff2f1",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 214,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "b00adc06cb9b8e2f",
+      "name": "71CRaMOcDvL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CRaMOcDvL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b00adc06cb9b8e2f.jpg",
+      "bytes": 4868,
+      "sha256": "4fee80ec1d7e0e47f1eac2e1edbab1dcbac3da9631072c823626f91e1445581d",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 284,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "4b510d40c8967c44",
+      "name": "71iZhpB2FpL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71iZhpB2FpL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "4b510d40c8967c44.jpg",
+      "bytes": 8777,
+      "sha256": "702c8a1836b4010b853416c48a3a17b4610b00e85e84407127c81c26748bfad2",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 215,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "69321ff1ead50515",
+      "name": "911TynawjkL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/911TynawjkL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "69321ff1ead50515.jpg",
+      "bytes": 8236,
+      "sha256": "e1e0a02d07ae6dafcafbe8ba1217e9e04c9815dd07544d56f62235c36c14b0f7",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 109,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "979a290313b09a15",
+      "name": "81P0NvoRrWL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81P0NvoRrWL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "979a290313b09a15.jpg",
+      "bytes": 4085,
+      "sha256": "1842020e3e97989de6bcbbcc2c7624b9772a63228b21e24a12779099f128d715",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 132,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "735e12d4f0c89071",
+      "name": "71rp7o5oTnL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71rp7o5oTnL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "735e12d4f0c89071.jpg",
+      "bytes": 8654,
+      "sha256": "0e88b0ae4f621193e6eef031916a66fdf6456413c9ad0ebf0c3006f94c7130d2",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 137,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "d4e8b478f33c1af0",
+      "name": "61pmJdlAMmL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61pmJdlAMmL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "d4e8b478f33c1af0.jpg",
+      "bytes": 9889,
+      "sha256": "c82163411891d94bcf229fe1a90b0f46eab39d45792014ae336581f2e879962f",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 133,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "fbf3ab1ff39e1a5f",
+      "name": "7169bZ6hrNL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/7169bZ6hrNL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "fbf3ab1ff39e1a5f.jpg",
+      "bytes": 6679,
+      "sha256": "b9597d01339eb4127067c5257c8c4d8fc804d9a609744165286a7a0ac892c160",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 135,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "a00253bd688d30bb",
+      "name": "81pFuCA04TL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81pFuCA04TL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a00253bd688d30bb.jpg",
+      "bytes": 12032,
+      "sha256": "8e54832a4c65a1c2498876c42eb898949dd9cfef8f83b17b33e61ce319f5e67a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 133,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "ffc4d49024498272",
+      "name": "916k6hSv0pL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/916k6hSv0pL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "ffc4d49024498272.jpg",
+      "bytes": 9289,
+      "sha256": "6987db2ca7d9763092a4521c6d45a51849018d373f663239fdcfdf67edc41d04",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 130,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "a73d12bc1757b36e",
+      "name": "612HeyYXOnL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/612HeyYXOnL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a73d12bc1757b36e.jpg",
+      "bytes": 6094,
+      "sha256": "4e150d47a79cd524ab5f49ed24e7f890de02caf541d807636bf574be747dd4bd",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 103,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "e401343d4d8879aa",
+      "name": "61p+1+md+8L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61p+1+md+8L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "e401343d4d8879aa.jpg",
+      "bytes": 6526,
+      "sha256": "1b886cd91c8a866a2d9dcf658d57a45afe9a19ccd3349db2ae0b01d92cf2109a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 161,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "8c1e81924a782d79",
+      "name": "71JnbwZyFoL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71JnbwZyFoL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "8c1e81924a782d79.jpg",
+      "bytes": 11170,
+      "sha256": "3a980ba67395f753e90a4bda6a6b58cf03b3df5be0737933f448ecffe87d78ca",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 196,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "44bc787ee9eeedca",
+      "name": "51ubxqzNGIL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/51ubxqzNGIL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "44bc787ee9eeedca.jpg",
+      "bytes": 6580,
+      "sha256": "bd7b18896abc00d2ee6e2b12898fb78f197f91c6b19a29d38bf86bd8fdc9c96d",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 194,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "5fc4f455b18d4bc7",
+      "name": "41roS4Ps5RL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/41roS4Ps5RL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5fc4f455b18d4bc7.jpg",
+      "bytes": 2026,
+      "sha256": "c1821e2e44a6e09d328ddee8cfc55c0e727f68df728f6f4c6dd68d5a086dd2dc",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 53,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "067d7ad08025ea90",
+      "name": "61Cn1ooILhL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61Cn1ooILhL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "067d7ad08025ea90.jpg",
+      "bytes": 7896,
+      "sha256": "ed19010e03da6ae0aa38d1cb66376a4ac1c3a98d386bf6f3fd23f9d6e3efdec3",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 167,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "f98cb53a4d1f8d34",
+      "name": "71O6EsQ5lqL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71O6EsQ5lqL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "f98cb53a4d1f8d34.jpg",
+      "bytes": 6655,
+      "sha256": "0862db2949617822adda600eb93153e6e339481f6f9e59035ff0d559d5a63dfe",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 133,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "5f5c4139c3bf045b",
+      "name": "61EunJBqIkL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61EunJBqIkL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5f5c4139c3bf045b.jpg",
+      "bytes": 2560,
+      "sha256": "d5d99e039fff94b0f848aae4284f7d4738e3ec94e964cf10f71472ccd1920250",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 134,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "76fb066746bfce2b",
+      "name": "91eLE5GW7ZS._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/91eLE5GW7ZS._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "76fb066746bfce2b.jpg",
+      "bytes": 10648,
+      "sha256": "781343b15ea30570b150e27a4e9d3ded660b6c520531c333f8161dc0ec2c75bd",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 206,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "be5b7360318b3504",
+      "name": "71cCJfLM2jL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71cCJfLM2jL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "be5b7360318b3504.jpg",
+      "bytes": 8244,
+      "sha256": "579ebf4572d0d61c0938089222b42ce65b4198c4354764b24c29e867e5830a00",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 195,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "d2a81d4a7ea27a9d",
+      "name": "61uubZNVPkL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61uubZNVPkL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "d2a81d4a7ea27a9d.jpg",
+      "bytes": 7912,
+      "sha256": "3bedc36ef624c9f55e0be3a35e490e0def0bcefa51e1cb58c6892d3ca298482f",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 209,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "c9ed54b2f0b80e6d",
+      "name": "81acZu3SQ5L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81acZu3SQ5L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c9ed54b2f0b80e6d.jpg",
+      "bytes": 9584,
+      "sha256": "d0cbcef03efbbb31d1cb00a3788c4aee6f85330da58fe3dad20454febfd38ea6",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "54e425edc926ee00",
+      "name": "81lqy76Cc4L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81lqy76Cc4L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "54e425edc926ee00.jpg",
+      "bytes": 7810,
+      "sha256": "d419da3078910a5897efe54e53755c9c198c836b88437c1ce7ed7b2747d2569e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 184,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "2b1c5441d4590542",
+      "name": "91bati0rB3L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/91bati0rB3L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "2b1c5441d4590542.jpg",
+      "bytes": 3674,
+      "sha256": "fb7e1f14477d91759a10689016c188e5d8e2f96d0539365213981d79a4e21608",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 131,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1d6a88b7cabbeee5",
+      "name": "61ncSs-cVpL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61ncSs-cVpL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1d6a88b7cabbeee5.jpg",
+      "bytes": 2584,
+      "sha256": "2c0e4702fa2dee69c589097dbba9e927de4eb0bc766e8d7a803e68a47cac9b42",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 186,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "639751fd67c2b55e",
+      "name": "81y8P1up-PL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81y8P1up-PL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "639751fd67c2b55e.jpg",
+      "bytes": 6032,
+      "sha256": "2141060cc5f9b94b1863a0a048691eb64766b0e40075022025b2a878fe5bd1c7",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 110,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6134600085bc67b1",
+      "name": "61bUaiykV8L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61bUaiykV8L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6134600085bc67b1.jpg",
+      "bytes": 4772,
+      "sha256": "d821da3382da7e0316a037c6bba541a7421a83646c6173332c56f6fab6ef2e07",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 221,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "f161ee71d88e3e9d",
+      "name": "61XbnUE8ipL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/61XbnUE8ipL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "f161ee71d88e3e9d.jpg",
+      "bytes": 3769,
+      "sha256": "a9694513d13fd340c9ef9cc0123de42721825b3c0f5274f577ecaa04fa789b3e",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 109,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "383a78908e85823d",
+      "name": "71uyQUBG4KL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71uyQUBG4KL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "383a78908e85823d.jpg",
+      "bytes": 3460,
+      "sha256": "a9bfb62d9510dc2402ad88ab39616727b522097a202478e45a5bcc3a5e3524c7",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 105,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "614fd758ef609fc5",
+      "name": "71RhoYaxtVL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71RhoYaxtVL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "614fd758ef609fc5.jpg",
+      "bytes": 9386,
+      "sha256": "026a3b2385015217deb5fc5f36b5a70a75f2e118b44468a183a388c1449bdf80",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 187,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6b5812034cc6523b",
+      "name": "81brJ9-ValL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81brJ9-ValL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6b5812034cc6523b.jpg",
+      "bytes": 10723,
+      "sha256": "69543bb5f18003221639d8ccd22310c2113146511b3c74bbbf548863f30cbbcb",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 208,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "c37babd922db3738",
+      "name": "41zMnGQk9WL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/41zMnGQk9WL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "c37babd922db3738.jpg",
+      "bytes": 4214,
+      "sha256": "c15cf9ca35ea764b42f05a2b3d978a51376274fd173f380a162fe0fc4891760a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 222,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "a37da86d87ed0d55",
+      "name": "81UoGiVDpuL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81UoGiVDpuL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "a37da86d87ed0d55.jpg",
+      "bytes": 10160,
+      "sha256": "12dae4ff57c1a0a345507c94d7d6edc0ca03538eaf375c9bce1c900c1d0c3077",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 187,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1c45b7196644d976",
+      "name": "81E4zwc2W+L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81E4zwc2W+L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1c45b7196644d976.jpg",
+      "bytes": 3968,
+      "sha256": "06e427648b697b51744c8599ed2d5eff1d9f825c9b1e4592e539f41c80264c70",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 256,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "10f449c8f68d4ff3",
+      "name": "717tkJFZcVL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/717tkJFZcVL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "10f449c8f68d4ff3.jpg",
+      "bytes": 10453,
+      "sha256": "1979d582117acdf5e67767bc4067cbdf0e98ca3f284f6f19405f271ec6a9b11b",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 420,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "d45038a3b040ad55",
+      "name": "914ufIDbM1L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/914ufIDbM1L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "d45038a3b040ad55.jpg",
+      "bytes": 15913,
+      "sha256": "673bee5b1a4afd82cb7f4a3deeb87f4ee3d7d4973db405c4b765bf11e9d272f0",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "ca7e82c601aac513",
+      "name": "71lylM-9P4L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71lylM-9P4L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "ca7e82c601aac513.jpg",
+      "bytes": 9361,
+      "sha256": "cf027d4578cbc87da6164d158fa415cb8dbff37de4bc42f66c74ce9277009fde",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 196,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "e6c0814edf6d8110",
+      "name": "71KuGgYip5L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71KuGgYip5L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "e6c0814edf6d8110.jpg",
+      "bytes": 9855,
+      "sha256": "1fe4d5025e7bd6f815b7f930c41a881b4936cf0d1e6b105184f163d7e57edf4a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 306,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "85b671a663f2144a",
+      "name": "71gv46SSzvL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71gv46SSzvL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "85b671a663f2144a.jpg",
+      "bytes": 3943,
+      "sha256": "c2422bdd907c71918c3cf5e4897c6d5b7307666020d761a259c1deab8e7f672d",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 136,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1885e8597420c3ca",
+      "name": "71izg8Ai-KL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71izg8Ai-KL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1885e8597420c3ca.jpg",
+      "bytes": 10390,
+      "sha256": "22667163d94b2b835ec27d425d3b369ec5a708d6edfa54c1d9f4544f50019a1b",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 178,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "fcfe817a92df7429",
+      "name": "71wGv7Fh2AL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71wGv7Fh2AL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "fcfe817a92df7429.jpg",
+      "bytes": 6711,
+      "sha256": "c5b301640a487225058ba3ec156a97f057dc3e5bb422fe077f29cf83a7e02a3a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 111,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "d1a9f25d66d23a1c",
+      "name": "71tGN2LBhrL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71tGN2LBhrL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "d1a9f25d66d23a1c.jpg",
+      "bytes": 6477,
+      "sha256": "5247ff6670cfa194227e242d33b79a7113dd1c70cb4dade9ce4ea58b148b2549",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 177,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "83e5be1bde909429",
+      "name": "51-U5dEbEBL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/51-U5dEbEBL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "83e5be1bde909429.jpg",
+      "bytes": 2194,
+      "sha256": "35559b27f92060e3a54ab68689122fb8cd56b8afe2586c57310f50468c0e2c57",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 92,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "fd2dd531f2eda41c",
+      "name": "91YrLTBnMcL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/91YrLTBnMcL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "fd2dd531f2eda41c.jpg",
+      "bytes": 6757,
+      "sha256": "239ab67ee21391ab4439ebc3f9d07452b383137452e2513aac592d8979b0a044",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 151,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "903c03d4d66844ad",
+      "name": "71CN9PCYTtL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71CN9PCYTtL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "903c03d4d66844ad.jpg",
+      "bytes": 10997,
+      "sha256": "46b98b7f8204b7148f532a66151fb8b90e8469da6881a5c7636c6e993086d11c",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 201,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "5a4ff884a0e3fd39",
+      "name": "71t-9BTIg9L._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/71t-9BTIg9L._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "5a4ff884a0e3fd39.jpg",
+      "bytes": 5882,
+      "sha256": "fa36c91b4a94912a83bce65cd2a37e4f56095605be4d1a115a97b0e6c848b9d2",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 112,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "549c66c4eafb525b",
+      "name": "91ZpAfw57OL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/91ZpAfw57OL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "549c66c4eafb525b.jpg",
+      "bytes": 14197,
+      "sha256": "b86b5f8bb9e3940642fcf218da7a44ec5e8dc839197a2ae6ae0c60b547064aca",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 199,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "6687cd1259cc2bcb",
+      "name": "81EPbaDcgQL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81EPbaDcgQL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "6687cd1259cc2bcb.jpg",
+      "bytes": 16141,
+      "sha256": "8aaa31cacf925e7626fc1ce8695536ebf721c545a15602114c261866746fd3f6",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 210,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "4697e8ca943bc9f8",
+      "name": "81M2CuJPGRL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81M2CuJPGRL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "4697e8ca943bc9f8.jpg",
+      "bytes": 6174,
+      "sha256": "f2f8618d7f5e29a55eb0300cd5c832a913dbb9558e2cc4e14b26e5d38fe60566",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 200,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "b358f583c5c0ceb4",
+      "name": "81xgud3RjjL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81xgud3RjjL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b358f583c5c0ceb4.jpg",
+      "bytes": 14921,
+      "sha256": "98f3a31688466401cf8b36861740831acf8e5f397a43c76f2dc09773a41b9a2a",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 236,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "1423d1f5c19684b0",
+      "name": "81gtST2FCPL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/81gtST2FCPL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "1423d1f5c19684b0.jpg",
+      "bytes": 12414,
+      "sha256": "e651f049002cffd28d97e55ee4d12737948f874ce7743bfee5a112249fb3d129",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 187,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "78e02d2df2f2bf68",
+      "name": "813kEG0BWyL._AC_SY200_.jpg",
+      "url": "https://m.media-amazon.com/images/I/813kEG0BWyL._AC_SY200_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "78e02d2df2f2bf68.jpg",
+      "bytes": 13791,
+      "sha256": "c20afdf08e3e1209d6d377d169aa030894fc9009591aafb044cb2c8a75ab59d7",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 178,
+        "height": 200
+      },
+      "failure": null
+    },
+    {
+      "id": "49eee639f994b488",
+      "name": "313wAT6Iy2L._SY160_.jpg",
+      "url": "https://m.media-amazon.com/images/I/313wAT6Iy2L._SY160_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "49eee639f994b488.jpg",
+      "bytes": 8767,
+      "sha256": "e6f551769cc3e96b2274c4e9bc110061218bbed8e1d5da694f6400c8f079bf80",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 408,
+        "height": 160
+      },
+      "failure": null
+    },
+    {
+      "id": "b48141567982327c",
+      "name": "21W7-lndINL._SY75_.jpg",
+      "url": "https://m.media-amazon.com/images/I/21W7-lndINL._SY75_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "b48141567982327c.jpg",
+      "bytes": 2117,
+      "sha256": "ecf035d6b577bf28d5a054d220a8aa9c0dfe52af103b29e69b62e8d5066bb4b9",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 113,
+        "height": 75
+      },
+      "failure": null
+    },
+    {
+      "id": "9f3b26ba35bc8e01",
+      "name": "21B-NkA9p-L._SY75_.jpg",
+      "url": "https://m.media-amazon.com/images/I/21B-NkA9p-L._SY75_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "9f3b26ba35bc8e01.jpg",
+      "bytes": 2270,
+      "sha256": "805c9cba3f78507f982fb1b546729326fc6ae71c6191f05ca6a5cddfeebe9c51",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 113,
+        "height": 75
+      },
+      "failure": null
+    },
+    {
+      "id": "d1794b7faf501a9d",
+      "name": "217GQ1a2QzL._SY75_.jpg",
+      "url": "https://m.media-amazon.com/images/I/217GQ1a2QzL._SY75_.jpg",
+      "kind": "image",
+      "route": "/",
+      "state": "anonymous-desktop-full-page-singapore-usd",
+      "status": "downloaded",
+      "local_file": "d1794b7faf501a9d.jpg",
+      "bytes": 2578,
+      "sha256": "4f5d6c03159898b775e53cb7f8f093cdcd0ab7d7695ef95beb7dd349f9c23561",
+      "content_type": "image/jpeg",
+      "dimensions": {
+        "width": 113,
+        "height": 75
+      },
+      "failure": null
+    }
+  ],
+  "route": "/",
+  "state": "anonymous-desktop-full-page-singapore-usd",
+  "summary": {
+    "expected": 139,
+    "downloaded": 139,
+    "failed": 0,
+    "failures": []
+  }
+}
