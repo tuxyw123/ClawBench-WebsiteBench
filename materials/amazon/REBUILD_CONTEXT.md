@@ -228,7 +228,7 @@ T9、`B01M16WBW1`、`B0BG6B2D4D`、`B08HN37XC1` 外不能据此宣称富证据 P
   顺序和幂等键；退款金额只从订单快照派生，不接受客户端金额，也不声称接入真实承运商、
   退货标签、银行或卡网络。
 
-最终完整 discovery 已通过 `328/328` 项，覆盖当前购物车/规格、Compare 迁移、commerce、
+最终完整 discovery 已通过 `330/330` 项，覆盖当前购物车/规格、Compare 迁移、commerce、
 评论、支付、邮件隐私、request journal 脱敏与购物入口回归。
 当前基础、Deals、Lists、search-commerce 资源校验分别覆盖 `410`、`10`、`12`、`20`
 项，合计 452 个 evidence-verified 资源，均为 0 缺失、0 损坏；运行时物理文件总数为

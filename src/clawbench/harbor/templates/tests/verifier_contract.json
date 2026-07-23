@@ -1,0 +1,17 @@
+{
+  "schema_version": "clawbench.harbor.verifier-contract.v1",
+  "candidate_is_untrusted": true,
+  "exact_node_set": true,
+  "formal_api_driver": "direct-http",
+  "formal_browser_driver": "playwright",
+  "agent_browser_driver": "browser-use-cli",
+  "reference_access_for_agent": "browser-only",
+  "reference_source_in_agent_image": false,
+  "formal_reference_candidate_execution": "sequential-reference-first",
+  "report_origin": "verifier-controlled-filesystem",
+  "score_range": {
+    "minimum": 0,
+    "maximum": 100,
+    "harbor_reward": "score / 100"
+  }
+}

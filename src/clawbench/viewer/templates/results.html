@@ -1,8 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Evaluation matrix{% endblock %}
+{% block title %}Agent scores{% endblock %}
 {% block content %}
-<div class="page">
-  <section class="page-heading"><div><p class="eyebrow">Comparable evidence</p><h1>Evaluation matrix</h1><p>Each cell is the latest valid run for one model on one offline website. Open a cell to inspect source-versus-clone evidence and failures.</p></div></section>
-  {% if models and matrix %}<div class="table-wrap panel"><table class="result-matrix full-matrix"><thead><tr><th>Offline website</th><th>Category</th>{% for model in models %}<th><a href="/models/{{ model.model_key }}">{{ model.display_name }}</a><small>{{ model.run_count }} runs</small></th>{% endfor %}</tr></thead><tbody>{% for row in matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a></th><td>{{ (row.item.product_type or 'Uncategorized')|replace('-', ' ')|title }}</td>{% for cell in row.cells %}<td>{% if cell.run %}<a class="matrix-score" href="/runs/{{ cell.run.run_id }}"><strong>{{ cell.run.score }}</strong><span>{{ cell.run.status|replace('_',' ') }}</span><small>V {{ cell.run.dimensions.visual.score }} · I {{ cell.run.dimensions.interactions.score }} · J {{ cell.run.dimensions.journeys.score }}</small></a>{% else %}<span class="matrix-empty">Not run</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state benchmark-empty"><strong>No comparable model runs yet.</strong><p>The matrix will expand in both directions as offline websites and model reports are added.</p></div>{% endif %}
+<div class="page results-workspace">
+  <section class="page-heading results-heading"><div><p class="eyebrow">Experiment output</p><h1>Agent reconstruction scores</h1><p>Every score will connect back to a runnable generated clone, screenshot differences, interaction replay, terminal journey checks, and resource use. The dataset is ready; experiments have not started.</p></div><span class="status-waiting"><i></i> 0 completed runs</span></section>
+
+  <section class="score-blueprint results-dimensions">
+    {% for dimension, evidence in [('Visual fidelity','Screenshot pairs · diff maps'),('Interaction fidelity','Actions · states · replay'),('Journey completion','Success · failure · recovery'),('Robustness','Hidden cases · isolation'),('Efficiency','Time · tokens · resources')] %}
+    <article><span>{{ dimension }}</span><strong>—</strong><div></div><small>{{ evidence }}</small></article>{% endfor %}
+  </section>
+
+  {% if models and matrix %}
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">Latest valid run per pair</p><h2>Website × agent matrix</h2></div><span>{{ models|length }} evaluated agents</span></div><div class="table-wrap"><table class="result-matrix full-matrix"><thead><tr><th>Offline reference</th><th>Category</th>{% for model in models %}<th><a href="/models/{{ model.model_key }}">{{ model.display_name }}</a><small>{{ model.run_count }} runs</small></th>{% endfor %}</tr></thead><tbody>{% for row in matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a></th><td>{{ (row.item.product_type or 'Uncategorized')|replace('-', ' ')|title }}</td>{% for cell in row.cells %}<td>{% if cell.run %}<a class="matrix-score" href="/runs/{{ cell.run.run_id }}"><strong>{{ cell.run.score }}</strong><span>{{ cell.run.status|replace('_',' ') }}</span><small>V {{ cell.run.dimensions.visual.score }} · I {{ cell.run.dimensions.interactions.score }} · J {{ cell.run.dimensions.journeys.score }}</small></a>{% else %}<span class="matrix-empty">Not run</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div></section>
+  {% else %}
+  <section class="panel empty-matrix-panel">
+    <div class="section-heading"><div><p class="eyebrow">Website × agent matrix</p><h2>One dataset row, no experiment columns yet</h2></div><span>Results remain intentionally blank</span></div>
+    <div class="table-wrap"><table class="future-result-table"><thead><tr><th>Offline reference</th><th>Agent / model</th><th>Generated clone</th><th>Visual</th><th>Interaction</th><th>Journeys</th><th>Robustness</th><th>Efficiency</th><th>Total</th></tr></thead><tbody>{% for row in matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a><small>{{ row.item.product_type|replace('-', ' ')|title }} · dataset ready</small></th><td colspan="8"><div class="unrun-cell"><i></i><span><strong>Experiment not started</strong><small>The first real Agent report will create this row.</small></span></div></td></tr>{% endfor %}{% if not matrix %}<tr><td colspan="9"><div class="unrun-cell"><i></i><span><strong>No accepted dataset item yet</strong><small>Build the first offline reference website before evaluating Agents.</small></span></div></td></tr>{% endif %}</tbody></table></div>
+  </section>
+  {% endif %}
+
+  <section class="results-evidence-grid">
+    <article class="panel"><span class="evidence-number">01</span><h2>See the visual difference</h2><p>Side-by-side, drag split, overlay, blink, and heatmap views preserve the actual screenshot pair behind visual fidelity.</p><div class="mini-evidence-frame"><span>Reference</span><span>Generated clone</span></div></article>
+    <article class="panel"><span class="evidence-number">02</span><h2>Replay the interaction</h2><p>Actions, routes, before/after states, expected outcomes, and failure points explain interaction and journey scores.</p><div class="mini-replay"><i></i><i></i><i></i><i></i><i></i></div></article>
+    <article class="panel"><span class="evidence-number">03</span><h2>Audit the run</h2><p>Network isolation, runtime health, time, tokens, retries, and hard failures remain visible beside the total score.</p><dl><div><dt>Runtime</dt><dd>—</dd></div><div><dt>Tokens</dt><dd>—</dd></div><div><dt>Failures</dt><dd>—</dd></div></dl></article>
+  </section>
 </div>
 {% endblock %}

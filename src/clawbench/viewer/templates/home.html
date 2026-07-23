@@ -1,44 +1,77 @@
 {% extends "base.html" %}
 {% block title %}Benchmark overview{% endblock %}
 {% block content %}
-<div class="page">
-  <section class="hero benchmark-hero">
-    <div>
-      <p class="eyebrow">Offline web reconstruction benchmark</p>
-      <h1>From offline websites to <em>model-by-model clone comparison.</em></h1>
-      <p>Track which website categories are being built, run each model against the same isolated servers, then inspect functional, visual, journey, robustness, and efficiency differences without hiding them behind a single leaderboard number.</p>
-      <div class="hero-actions"><a class="primary button" href="/tasks">Browse websites</a><a class="secondary button" href="/results">Open evaluation matrix</a></div>
+{% set featured = categories[0].sites[0] if categories and categories[0].sites else none %}
+<div class="page benchmark-home">
+  <section class="reconstruction-hero">
+    <div class="reconstruction-copy">
+      <p class="eyebrow">Agent website reconstruction benchmark</p>
+      <h1>Can an agent rebuild a website it can only <em>explore?</em></h1>
+      <p class="hero-lede">WebsiteBench gives an agent an isolated offline website—not its source code. The agent must interact with it, infer its behavior, and produce a new runnable clone. This viewer makes the input website, the generated clone, and every score inspectable.</p>
+      <div class="phase-pills">
+        <span class="phase-live"><i></i> Dataset construction · active</span>
+        <span class="phase-empty"><i></i> Agent experiments · not started</span>
+      </div>
+      <div class="hero-actions"><a class="primary button" href="/tasks">Explore the offline website</a><a class="secondary button" href="/methodology">How evaluation works</a></div>
     </div>
-    <div class="stat-grid benchmark-stats">
-      <article><strong>{{ summary.websitebench_count }}</strong><span>Offline websites</span></article>
-      <article><strong>{{ summary.category_count }}</strong><span>Website categories</span></article>
-      <article><strong>{{ summary.model_count }}</strong><span>Models evaluated</span></article>
-      <article><strong>{{ summary.evaluated_pair_count }}</strong><span>Website × model pairs</span></article>
+    {% if featured and featured.showcase %}
+    <a class="hero-browser" href="/tasks/{{ featured.key }}" aria-label="Open the Amazon Shopping offline website showcase">
+      <div class="browser-bar"><span></span><span></span><span></span><code>offline.amazon.local</code></div>
+      <img src="{{ featured.showcase.hero_image }}" alt="Amazon Shopping offline reference website">
+      <div class="browser-caption"><span><strong>Amazon Shopping</strong> · worked example</span><span>Open evidence →</span></div>
+    </a>
+    {% else %}
+    <div class="hero-browser hero-browser-empty"><div><strong>Offline website preview</strong><span>Waiting for the first accepted dataset item.</span></div></div>
+    {% endif %}
+  </section>
+
+  <section class="benchmark-pipeline" aria-label="WebsiteBench experiment pipeline">
+    <article class="is-ready"><div class="pipeline-index">01</div><div><span class="pipeline-state">Available now</span><h2>Offline reference website</h2><p>A stateful, isolated server the agent can inspect only through interaction.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">02</div><div><span class="pipeline-state">Reserved</span><h2>Agent exploration</h2><p>Browser actions, visited states, tool traces, and resource use will appear here.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">03</div><div><span class="pipeline-state">Reserved</span><h2>Generated clone</h2><p>The new runnable server produced by each evaluated agent.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">04</div><div><span class="pipeline-state">Reserved</span><h2>Multimodal scoring</h2><p>Screenshots, interaction replay, terminal states, robustness, and efficiency.</p></div></article>
+  </section>
+
+  {% if featured and featured.showcase %}
+  <section class="featured-site">
+    <div class="section-heading featured-heading">
+      <div><p class="eyebrow">Dataset item 01 · accepted</p><h2>One complete offline website, fully inspectable</h2><p>Amazon is the current worked example. The dataset is intentionally sparse while additional website categories are still being built.</p></div>
+      <a href="/tasks/{{ featured.key }}">Open full observatory →</a>
+    </div>
+    <div class="featured-grid">
+      <a class="featured-visual" href="/tasks/{{ featured.key }}#visual-evidence"><img loading="lazy" src="{{ featured.showcase.hero_image }}" alt="Amazon Shopping home page in the offline reference server"><span>Standard offline reference · accepted</span></a>
+      <div class="featured-facts">
+        <div class="fact-lead"><span>Purpose</span><p>A bounded shopping environment spanning discovery, product configuration, identity, checkout, orders, returns, reviews, and recovery.</p></div>
+        <div class="coverage-mosaic">
+          <article><strong>{{ featured.counts.routes }}</strong><span>Route families</span></article>
+          <article><strong>{{ featured.counts.states }}</strong><span>Interaction states</span></article>
+          <article><strong>{{ featured.counts.checkpoints }}</strong><span>Checkpoints</span></article>
+          <article><strong>{{ featured.counts.assets }}</strong><span>Local assets</span></article>
+        </div>
+        <div class="journey-chips"><span>Success journey</span><span>Failure journey</span><span>Recovery journey</span></div>
+        <div class="dataset-separation"><strong>Calibration ≠ agent score</strong><p>The source-to-offline comparisons below certify the benchmark input. They are not a model result.</p></div>
+      </div>
     </div>
   </section>
+  {% endif %}
 
-  <section class="workflow-strip" aria-label="Benchmark workflow">
-    <article><span>01</span><div><strong>Build the offline website</strong><p>Freeze routes, server state, seed data, roles, and visual checkpoints.</p></div></article>
-    <article><span>02</span><div><strong>Let a model reconstruct it</strong><p>The model explores the reference server and produces a new runnable clone.</p></div></article>
-    <article><span>03</span><div><strong>Compare source and clone</strong><p>Review behavior, journeys, screenshots, failures, and cost for every model run.</p></div></article>
+  <section class="section-heading roadmap-heading"><div><p class="eyebrow">Corpus roadmap</p><h2>More website categories will be added here</h2></div><span>{{ summary.benchmark_site_count }} available · 3 reserved</span></section>
+  <div class="dataset-slots">
+    {% if featured %}<a class="dataset-slot slot-live" href="/tasks/{{ featured.key }}"><span>01</span><div><strong>{{ featured.display_name }}</strong><p>{{ featured.product_type|replace('-', ' ')|title }}</p></div><i>Accepted</i></a>{% endif %}
+    {% for number in ['02','03','04'] %}<article class="dataset-slot slot-empty"><span>{{ number }}</span><div><strong>Future website</strong><p>Category and scope not assigned</p></div><i>Reserved</i></article>{% endfor %}
+  </div>
+
+  <section class="score-preview panel">
+    <div class="section-heading"><div><p class="eyebrow">Future experiment output</p><h2>Every agent run will stay explainable</h2></div><a href="/results">Open scoring workspace →</a></div>
+    <div class="score-blueprint">
+      {% for dimension in ['Visual fidelity','Interaction fidelity','Journey completion','Robustness','Efficiency'] %}
+      <article><span>{{ dimension }}</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+      {% endfor %}
+    </div>
+    <div class="empty-run-line"><span class="empty-run-icon">◎</span><div><strong>No agent reconstruction has been evaluated yet.</strong><p>Model names, generated clones, replays, and scores remain blank until real experiment reports are added.</p></div></div>
   </section>
-
-  <section class="section-heading home-section-heading"><div><p class="eyebrow">Dataset construction</p><h2>Website categories</h2></div><a href="/tasks">View all websites →</a></section>
-  {% if categories %}<div class="category-grid">
-    {% for category in categories %}<a class="category-card" href="/tasks?category={{ category.id }}">
-      <div class="category-icon" aria-hidden="true">{{ category.label[:2]|upper }}</div>
-      <div><strong>{{ category.label }}</strong><p>{{ category.site_count }} website{{ '' if category.site_count == 1 else 's' }} · {{ category.ready_count }} runnable · {{ category.evaluated_count }} evaluated</p></div>
-      <span>{{ category.run_count }} runs</span>
-    </a>{% endfor %}
-  </div>{% else %}<div class="empty-state"><strong>No benchmark categories yet.</strong><p>Add the first WebsiteBench site manifest to start the catalog.</p></div>{% endif %}
-
-  <section class="panel wide matrix-panel">
-    <div class="section-heading"><div><p class="eyebrow">Evaluation coverage</p><h2>Website × model matrix</h2></div><a href="/results">Inspect all results →</a></div>
-    {% if models and evaluation_matrix %}<div class="table-wrap"><table class="result-matrix"><thead><tr><th>Offline website</th>{% for model in models %}<th><a href="/models/{{ model.model_key }}">{{ model.display_name }}</a></th>{% endfor %}</tr></thead><tbody>
-      {% for row in evaluation_matrix %}<tr><th><a href="/tasks/{{ row.item.key }}">{{ row.item.display_name }}</a><small>{{ row.item.product_type|replace('-', ' ')|title }}</small></th>{% for cell in row.cells %}<td>{% if cell.run %}<a class="matrix-score" href="/runs/{{ cell.run.run_id }}"><strong>{{ cell.run.score }}</strong><span>{{ cell.run.status|replace('_',' ') }}</span></a>{% else %}<span class="matrix-empty">Not run</span>{% endif %}</td>{% endfor %}</tr>{% endfor %}
-    </tbody></table></div>{% else %}<div class="empty-state benchmark-empty"><strong>The benchmark is in dataset-construction mode.</strong><p>Model columns will appear automatically when the first schema-valid result report is added.</p><a class="secondary button" href="/methodology">See evaluation dimensions</a></div>{% endif %}
-  </section>
-
-  {% if summary.legacy_count %}<section class="legacy-note"><div><p class="eyebrow">Migration context</p><strong>{{ summary.legacy_count }} legacy clone examples remain available</strong><p>They are useful reference material, but are kept separate from canonical offline websites and official model results.</p></div><a href="/tasks?source=legacy">Review legacy examples →</a></section>{% endif %}
 </div>
 {% endblock %}

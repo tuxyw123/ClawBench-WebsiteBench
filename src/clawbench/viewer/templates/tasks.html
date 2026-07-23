@@ -1,25 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Offline websites{% endblock %}
+{% block title %}Offline website dataset{% endblock %}
 {% block content %}
 <div class="page">
-  <section class="page-heading"><div><p class="eyebrow">Dataset catalog</p><h1>Offline websites</h1><p>Browse the benchmark by website category and construction stage. Each card exposes the server surface, state model, visual coverage, and model-run status.</p></div><button id="compare-selected" class="primary" type="button" disabled>Compare selected <span>0</span></button></section>
+  <section class="page-heading dataset-heading"><div><p class="eyebrow">Benchmark inputs</p><h1>Offline website dataset</h1><p>Each benchmark item is a runnable server with frozen routes, states, journeys, checkpoints, and evidence. Only completed items contain real data; future corpus slots remain visibly blank.</p></div><div class="dataset-heading-meta"><strong>{{ items|selectattr('source_type','equalto','offline_clone')|list|length }}</strong><span>accepted benchmark item</span></div></section>
   <section class="filter-bar website-filters" aria-label="Website filters">
     <label><span>Search</span><input id="task-search" type="search" placeholder="Website, category, capability…"></label>
     <label><span>Category</span><select id="category-filter"><option value="">All categories</option>{% for category in items|map(attribute='product_type')|reject('none')|unique|sort %}<option value="{{ category }}">{{ category|replace('-', ' ')|title }}</option>{% endfor %}</select></label>
     <label><span>Stage</span><select id="stage-filter"><option value="">All stages</option><option value="building">Building</option><option value="ready">Ready</option><option value="evaluated">Evaluated</option><option value="legacy">Legacy</option></select></label>
-    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option value="websitebench">Benchmark</option><option value="legacy">Legacy</option></select></label>
-    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Needs work</option><option value="official">Best score</option></select></label>
+    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option value="offline_clone">Benchmark dataset</option><option value="websitebench">Canonical benchmark</option><option value="legacy">Legacy reference</option></select></label>
+    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Needs work</option><option value="official">Latest score</option></select></label>
   </section>
-  <p class="result-count"><span id="visible-count">{{ items|length }}</span> of {{ items|length }} websites shown</p>
-  <div class="website-grid" id="task-rows">
-    {% for item in items %}{% set review=reviews[item.key] %}<article class="website-card" data-task-row data-key="{{ item.key }}" data-name="{{ item.display_name|lower }}" data-search="{{ (item.display_name ~ ' ' ~ (item.family or '') ~ ' ' ~ (item.product_type or '') ~ ' ' ~ item.capability_tags|join(' '))|lower }}" data-source="{{ item.source_type }}" data-category="{{ item.product_type or 'uncategorized' }}" data-stage="{{ item.lifecycle_stage }}" data-gate="{{ review.gate }}" data-missing="{{ item.readiness_counts.missing + item.readiness_counts.invalid }}" data-official="{{ item.latest_official_result.score if item.latest_official_result else -1 }}" data-legacy="{{ item.legacy_verification.passed if item.legacy_verification else -1 }}">
-      <div class="website-card-top"><label class="compare-toggle"><input type="checkbox" class="compare-check" value="{{ item.key }}" aria-label="Compare {{ item.display_name }}"><span>Compare</span></label><span class="stage stage-{{ item.lifecycle_stage }}">{{ item.lifecycle_stage }}</span></div>
-      <div class="website-card-category">{{ (item.product_type or 'Legacy example')|replace('-', ' ')|title }}</div>
+  <p class="result-count"><span id="visible-count">{{ items|length }}</span> of {{ items|length }} existing items shown</p>
+  <div class="website-grid dataset-grid" id="task-rows">
+    {% for item in items %}{% set review=reviews[item.key] %}<article class="website-card{% if item.showcase %} website-card-featured{% endif %}" data-task-row data-key="{{ item.key }}" data-name="{{ item.display_name|lower }}" data-search="{{ (item.display_name ~ ' ' ~ (item.family or '') ~ ' ' ~ (item.product_type or '') ~ ' ' ~ item.capability_tags|join(' '))|lower }}" data-source="{{ item.source_type }}" data-category="{{ item.product_type or 'uncategorized' }}" data-stage="{{ item.lifecycle_stage }}" data-gate="{{ review.gate }}" data-missing="{{ item.readiness_counts.missing + item.readiness_counts.invalid }}" data-official="{{ item.latest_official_result.score if item.latest_official_result else -1 }}" data-legacy="{{ item.legacy_verification.passed if item.legacy_verification else -1 }}">
+      {% if item.showcase %}<a class="website-card-image" href="/tasks/{{ item.key }}"><img loading="lazy" src="{{ item.showcase.hero_image }}" alt="{{ item.display_name }} offline website"><span>Worked example 01</span></a>{% endif %}
+      <div class="website-card-top"><span class="stage stage-{{ item.lifecycle_stage }}">{{ 'Dataset ready' if item.lifecycle_stage == 'ready' else item.lifecycle_stage }}</span><span class="experiment-label">{{ 'Experiment not started' if item.experiment_status == 'not_started' else item.source_type|replace('_',' ') }}</span></div>
+      <div class="website-card-category">{{ (item.product_type or 'Legacy reference')|replace('-', ' ')|title }}</div>
       <h2><a href="/tasks/{{ item.key }}">{{ item.display_name }}</a></h2><p>{{ item.description or 'No description declared yet.' }}</p>
-      <div class="tag-list">{% for tag in item.capability_tags[:5] %}<span>{{ tag }}</span>{% else %}<span class="pending">Taxonomy pending</span>{% endfor %}</div>
+      <div class="tag-list">{% for tag in item.capability_tags[:6] %}<span>{{ tag }}</span>{% else %}<span class="pending">Taxonomy pending</span>{% endfor %}</div>
       <div class="coverage-row"><span><strong>{{ item.counts.routes if item.counts.routes is not none else '—' }}</strong> routes</span><span><strong>{{ item.counts.journeys if item.counts.journeys is not none else '—' }}</strong> journeys</span><span><strong>{{ item.counts.checkpoints if item.counts.checkpoints is not none else '—' }}</strong> views</span></div>
-      <div class="website-card-footer"><div><span>Readiness</span><strong>{{ item.readiness_counts.present }} / {{ item.readiness|length }}</strong></div><div><span>Model runs</span><strong>{{ item.official_runs|length }}</strong></div>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><span>Latest score</span><strong>{{ item.latest_official_result.score }}</strong></a>{% elif item.legacy_verification %}<div><span>Legacy checks</span><strong>{{ item.legacy_verification.passed }}/{{ item.legacy_verification.total }}</strong></div>{% else %}<div><span>Evaluation</span><strong>Pending</strong></div>{% endif %}</div>
+      <div class="website-card-footer"><div><span>Dataset evidence</span><strong>{{ item.readiness_counts.present }} ready</strong></div><div><span>Agent runs</span><strong>{{ item.official_runs|length }}</strong></div>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><span>Latest score</span><strong>{{ item.latest_official_result.score }}</strong></a>{% elif item.legacy_verification %}<div><span>Legacy checks</span><strong>{{ item.legacy_verification.passed }}/{{ item.legacy_verification.total }}</strong></div>{% else %}<div><span>Score</span><strong>—</strong></div>{% endif %}</div>
+    </article>{% endfor %}
+
+    {% for number in ['02','03','04'] %}<article class="website-card future-website-card" aria-label="Reserved future website slot {{ number }}">
+      <div class="future-slot-number">{{ number }}</div><div><span class="stage stage-building">Reserved</span><h2>Future offline website</h2><p>Category, scope, screenshots, and interaction evidence will appear only after this dataset item is built and accepted.</p></div>
+      <div class="future-card-lines"><span></span><span></span><span></span></div><div class="future-card-footer">No placeholder data</div>
     </article>{% endfor %}
   </div>
+
+  {% if profile == 'internal' and items|selectattr('source_type','equalto','legacy')|list %}<section class="legacy-note"><div><p class="eyebrow">Migration references</p><strong>Legacy task adapters are visible only for internal curation.</strong><p>They are not counted as current benchmark websites and never populate the public score matrix.</p></div></section>{% endif %}
 </div>
 {% endblock %}

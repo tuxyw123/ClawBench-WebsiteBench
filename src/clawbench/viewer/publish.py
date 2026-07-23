@@ -17,6 +17,22 @@ from .auth import AuthSettings, hash_password
 
 
 ROOT_ATTRIBUTE = re.compile(r'(?P<name>href|src|action)="/(?P<value>[^"]*)"')
+PUBLIC_ROUTE_SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+RESERVED_PUBLIC_ROUTES = {
+    "api",
+    "clone",
+    "compare",
+    "data",
+    "login",
+    "methodology",
+    "models",
+    "results",
+    "runs",
+    "signin-with-chatgpt",
+    "signout-with-chatgpt",
+    "static",
+    "tasks",
+}
 
 
 def _normalize_base_path(value: str) -> str:
@@ -24,7 +40,11 @@ def _normalize_base_path(value: str) -> str:
     return value if value.endswith("/") else value + "/"
 
 
-def _static_html(value: str, base_path: str) -> str:
+def _static_html(
+    value: str,
+    base_path: str,
+    canonical_aliases: dict[str, str] | None = None,
+) -> str:
     value = re.sub(
         r'<meta name="csrf-token" content="[^"]*">',
         '<meta name="csrf-token" content="">',
@@ -36,6 +56,8 @@ def _static_html(value: str, base_path: str) -> str:
     value = re.sub(
         r'<form method="post" action="/logout">.*?</form>', "", value
     )
+    for canonical, alias in (canonical_aliases or {}).items():
+        value = value.replace(f'href="{canonical}', f'href="{alias}')
     prefix = base_path.rstrip("/")
     value = value.replace("http://testserver/", f"{prefix}/")
     value = ROOT_ATTRIBUTE.sub(
@@ -47,16 +69,16 @@ def _static_html(value: str, base_path: str) -> str:
         "script-src 'self'; connect-src 'self'; object-src 'none'; "
         "base-uri 'self'; form-action 'self'"
     )
-    social_image = f'{base_path.rstrip("/")}/static/og.png' or "/static/og.png"
+    social_image = f'{base_path.rstrip("/")}/static/og-v2.png' or "/static/og-v2.png"
     social = "\n  ".join(
         [
             '<meta property="og:type" content="website">',
-            '<meta property="og:title" content="WebsiteBench Clone Atlas">',
-            '<meta property="og:description" content="Compare offline websites, model runs, and source-to-clone differences.">',
+            '<meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">',
+            '<meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">',
             f'<meta property="og:image" content="{social_image}">',
             '<meta name="twitter:card" content="summary_large_image">',
-            '<meta name="twitter:title" content="WebsiteBench Clone Atlas">',
-            '<meta name="twitter:description" content="Compare offline websites, model runs, and source-to-clone differences.">',
+            '<meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">',
+            '<meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">',
             f'<meta name="twitter:image" content="{social_image}">',
         ]
     )
@@ -70,6 +92,31 @@ def _static_html(value: str, base_path: str) -> str:
 def _output_path(output: Path, route: str) -> Path:
     route_path = urlsplit(route).path.strip("/")
     return output / route_path / "index.html" if route_path else output / "index.html"
+
+
+def _load_public_routes(repo_root: Path, path: Path | None) -> dict[str, str]:
+    config_path = path or (
+        repo_root / "websitebench" / "viewer-public-allowlist.json"
+    )
+    try:
+        value = json.loads(config_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"public route config is invalid: {exc}") from exc
+    routes = value.get("routes", {}) if isinstance(value, dict) else {}
+    if not isinstance(routes, dict):
+        raise ValueError("public route config routes must be an object")
+    normalized: dict[str, str] = {}
+    for slug, item_key in routes.items():
+        if (
+            not isinstance(slug, str)
+            or not PUBLIC_ROUTE_SLUG.fullmatch(slug)
+            or slug in RESERVED_PUBLIC_ROUTES
+        ):
+            raise ValueError(f"invalid or reserved public route slug: {slug!r}")
+        if not isinstance(item_key, str) or not item_key:
+            raise ValueError(f"public route {slug!r} must name a corpus item")
+        normalized[slug] = item_key
+    return normalized
 
 
 def publish_static_site(
@@ -105,6 +152,22 @@ def publish_static_site(
         routes.extend(f'/tasks/{item["key"]}' for item in index.items)
         routes.extend(f'/models/{model["model_key"]}' for model in index.models)
         routes.extend(f'/runs/{run["run_id"]}' for run in index.runs)
+        public_routes = _load_public_routes(root, public_allowlist)
+        known_item_keys = {item["key"] for item in index.items}
+        unknown_route_items = sorted(set(public_routes.values()) - known_item_keys)
+        if unknown_route_items:
+            raise ValueError(
+                "public routes reference unpublished corpus items: "
+                + ", ".join(unknown_route_items)
+            )
+        alias_targets = {
+            f"/{slug}": f"/tasks/{item_key}"
+            for slug, item_key in public_routes.items()
+        }
+        canonical_aliases = {
+            canonical: alias for alias, canonical in alias_targets.items()
+        }
+        routes.extend(alias_targets)
 
         if destination.exists():
             shutil.rmtree(destination)
@@ -126,12 +189,15 @@ def publish_static_site(
             if response.status_code != 200:
                 raise RuntimeError("publisher login failed")
             for route in routes:
-                response = client.get(route)
+                response = client.get(alias_targets.get(route, route))
                 if response.status_code != 200:
                     raise RuntimeError(f"publisher route failed: {route}")
                 target = _output_path(destination, route)
                 target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text(_static_html(response.text, base_path), encoding="utf-8")
+                target.write_text(
+                    _static_html(response.text, base_path, canonical_aliases),
+                    encoding="utf-8",
+                )
 
         shutil.copytree(PACKAGE_ROOT / "static", destination / "static")
         index_value = index.as_dict()

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta property="og:image" content="/static/og-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta name="twitter:image" content="/static/og-v2.png">
+  <title>Agent scores · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>WebsiteBench<small>Reconstruction viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Dataset</a><a href="/models">Agents</a><a href="/results">Scores</a><a href="/methodology">Protocol</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public</span></div>
+
+  </header>
+  <main>
+<div class="page results-workspace">
+  <section class="page-heading results-heading"><div><p class="eyebrow">Experiment output</p><h1>Agent reconstruction scores</h1><p>Every score will connect back to a runnable generated clone, screenshot differences, interaction replay, terminal journey checks, and resource use. The dataset is ready; experiments have not started.</p></div><span class="status-waiting"><i></i> 0 completed runs</span></section>
+
+  <section class="score-blueprint results-dimensions">
+
+    <article><span>Visual fidelity</span><strong>—</strong><div></div><small>Screenshot pairs · diff maps</small></article>
+    <article><span>Interaction fidelity</span><strong>—</strong><div></div><small>Actions · states · replay</small></article>
+    <article><span>Journey completion</span><strong>—</strong><div></div><small>Success · failure · recovery</small></article>
+    <article><span>Robustness</span><strong>—</strong><div></div><small>Hidden cases · isolation</small></article>
+    <article><span>Efficiency</span><strong>—</strong><div></div><small>Time · tokens · resources</small></article>
+  </section>
+
+
+  <section class="panel empty-matrix-panel">
+    <div class="section-heading"><div><p class="eyebrow">Website × agent matrix</p><h2>One dataset row, no experiment columns yet</h2></div><span>Results remain intentionally blank</span></div>
+    <div class="table-wrap"><table class="future-result-table"><thead><tr><th>Offline reference</th><th>Agent / model</th><th>Generated clone</th><th>Visual</th><th>Interaction</th><th>Journeys</th><th>Robustness</th><th>Efficiency</th><th>Total</th></tr></thead><tbody><tr><th><a href="/amazon">Amazon Shopping</a><small>Shopping Commerce · dataset ready</small></th><td colspan="8"><div class="unrun-cell"><i></i><span><strong>Experiment not started</strong><small>The first real Agent report will create this row.</small></span></div></td></tr></tbody></table></div>
+  </section>
+
+
+  <section class="results-evidence-grid">
+    <article class="panel"><span class="evidence-number">01</span><h2>See the visual difference</h2><p>Side-by-side, drag split, overlay, blink, and heatmap views preserve the actual screenshot pair behind visual fidelity.</p><div class="mini-evidence-frame"><span>Reference</span><span>Generated clone</span></div></article>
+    <article class="panel"><span class="evidence-number">02</span><h2>Replay the interaction</h2><p>Actions, routes, before/after states, expected outcomes, and failure points explain interaction and journey scores.</p><div class="mini-replay"><i></i><i></i><i></i><i></i><i></i></div></article>
+    <article class="panel"><span class="evidence-number">03</span><h2>Audit the run</h2><p>Network isolation, runtime health, time, tokens, retries, and hard failures remain visible beside the total score.</p><dl><div><dt>Runtime</dt><dd>—</dd></div><div><dt>Tokens</dt><dd>—</dd></div><div><dt>Failures</dt><dd>—</dd></div></dl></article>
+  </section>
+</div>
+</main>
+  <footer><span>WebsiteBench Reconstruction Viewer</span><span>Dataset calibration and agent evaluation are always shown as separate evidence.</span></footer>
+</body>
+</html>

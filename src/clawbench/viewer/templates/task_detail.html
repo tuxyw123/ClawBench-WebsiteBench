@@ -1,67 +1,103 @@
 {% extends "base.html" %}
 {% block title %}{{ item.display_name }}{% endblock %}
 {% block content %}
-<div class="page detail-page">
-  <a class="back-link" href="/tasks">← Task Atlas</a>
-  <section class="detail-heading"><div><div class="tag-list"><span>{{ item.source_type }}</span><span>{{ item.split or 'split pending' }}</span><span>{{ item.difficulty or 'difficulty pending' }}</span></div><h1>{{ item.display_name }}</h1><p>{{ item.description }}</p></div><div class="fingerprint"><span>Artifact fingerprint</span><code>{{ item.artifact_fingerprint[:12] }}…</code></div></section>
-
-  <section class="evidence-lanes">
-    <article><p>Automatic evidence readiness</p><strong>{{ item.readiness_counts.present }} present</strong><span>{{ item.readiness_counts.missing }} missing · {{ item.readiness_counts.invalid }} invalid</span></article>
-    <article><p>Human task QA gate</p><strong class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</strong><span>Revision {{ review.revision }}</span></article>
-    <article><p>Latest model result</p>{% if item.latest_official_result %}<a href="/runs/{{ item.latest_official_result.run_id }}"><strong>{{ item.latest_official_result.score }} / 100</strong><span>{{ item.latest_official_result.candidate.display_name }}</span></a>{% else %}<strong>Not evaluated</strong><span>Waiting for the first model run</span>{% endif %}</article>
-    <article><p>Legacy self-verification</p>{% if item.legacy_verification %}<strong>{{ item.legacy_verification.passed }} / {{ item.legacy_verification.total }}</strong><span>Verifier checks passed</span>{% else %}<strong>Not applicable</strong><span>Separate from official scoring</span>{% endif %}</article>
+{% if item.showcase %}
+<div class="page observatory-page">
+  <a class="back-link" href="/tasks">← Offline website dataset</a>
+  <section class="observatory-hero">
+    <div class="observatory-copy">
+      <div class="status-line"><span class="status-good"><i></i> Offline reference accepted</span><span class="status-waiting"><i></i> Agent experiment not started</span></div>
+      <p class="eyebrow">Worked example 01 · {{ item.product_type|replace('-', ' ') }}</p>
+      <h1>{{ item.display_name }}</h1>
+      <p>{{ item.description }}</p>
+      <div class="tag-list large">{% for tag in item.capability_tags[:8] %}<span>{{ tag }}</span>{% endfor %}</div>
+      <div class="observatory-actions"><a class="primary button" href="#visual-evidence">Compare screenshots</a><a class="secondary button" href="#interaction-replay">Replay journeys</a></div>
+    </div>
+    <figure class="observatory-screen"><div class="browser-bar"><span></span><span></span><span></span><code>offline.amazon.local</code></div><img src="{{ item.showcase.hero_image }}" alt="Amazon Shopping standard offline reference website"><figcaption><span>Standard offline reference server</span><strong>Dataset input</strong></figcaption></figure>
   </section>
 
-  <div class="detail-layout"><div class="detail-main">
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Declared scope</p><h2>Product, capability, and state model</h2></div></div>
-      <dl class="fact-grid"><div><dt>Product type</dt><dd>{{ item.product_type or 'Pending' }}</dd></div><div><dt>Family</dt><dd>{{ item.family or 'Pending' }}</dd></div><div><dt>Roles</dt><dd>{{ item.roles|join(', ') or 'Pending' }}</dd></div><div><dt>Stateful entities</dt><dd>{{ item.stateful_entities|join(', ') or 'Pending' }}</dd></div></dl>
-      <h3>Capability tags</h3><div class="tag-list large">{% for tag in item.capability_tags %}<span>{{ tag }}</span>{% else %}<span class="pending">Pending</span>{% endfor %}</div>
-      <h3>Interaction tags</h3><div class="tag-list large">{% for tag in item.interaction_tags %}<span>{{ tag }}</span>{% else %}<span class="pending">Pending</span>{% endfor %}</div>
-    </section>
+  <section class="observatory-metrics" aria-label="Offline website scope">
+    <article><strong>{{ item.counts.routes }}</strong><span>Route families</span><small>Discovery through aftercare</small></article>
+    <article><strong>{{ item.counts.states }}</strong><span>Interaction states</span><small>Success, failure, recovery</small></article>
+    <article><strong>{{ item.counts.checkpoints }}</strong><span>Frozen checkpoints</span><small>Desktop, tablet, mobile</small></article>
+    <article><strong>{{ item.counts.assets }}</strong><span>Local runtime assets</span><small>Zero required remote calls</small></article>
+  </section>
 
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Protocol coverage</p><h2>Readiness checks</h2></div><span>No weighted total</span></div>
-      <div class="readiness-list">{% for check in item.readiness %}<article><span class="status-dot status-{{ check.status }}"></span><div><strong>{{ check.label }}</strong><p>{{ check.detail or 'No additional detail.' }}</p></div><span class="state state-{{ check.status }}">{{ check.status|replace('_',' ') }}</span></article>{% endfor %}</div>
-      <dl class="fact-grid compact"><div><dt>Routes</dt><dd>{{ item.counts.routes if item.counts.routes is not none else 'Pending' }}</dd></div><div><dt>Journeys</dt><dd>{{ item.counts.journeys if item.counts.journeys is not none else 'Pending' }}</dd></div><div><dt>Visual checkpoints</dt><dd>{{ item.counts.checkpoints if item.counts.checkpoints is not none else 'Pending' }}</dd></div><div><dt>Seeds</dt><dd>{{ item.counts.seeds if item.counts.seeds is not none else 'Pending' }}</dd></div></dl>
-    </section>
+  <section class="shopping-flow panel">
+    <div class="section-heading"><div><p class="eyebrow">Stateful benchmark surface</p><h2>The shopping mainline, end to end</h2></div><span>Not a static homepage clone</span></div>
+    <div class="flow-track">
+      {% for icon, title, sub in [('⌕','Discover','Home · Search · Deals'),('▣','Decide','PDP · Variants · Compare'),('＋','Commit','Cart · Identity · Checkout'),('✓','Fulfil','Order · Delivery · Review'),('↺','Recover','Retry · Return · Refund')] %}
+      <article><div>{{ icon }}</div><strong>{{ title }}</strong><span>{{ sub }}</span></article>{% if not loop.last %}<i>→</i>{% endif %}
+      {% endfor %}
+    </div>
+  </section>
 
-    <section class="panel visual-section"><div class="section-heading"><div><p class="eyebrow">Visual evidence review</p><h2>Source ↔ candidate inspection</h2></div>{% if gateway_allowed %}<a href="/clone/{{ item.key }}/" target="_blank" rel="noopener">Open interactive clone ↗</a>{% endif %}</div>
-      <p class="method-note">SSIM, edge, histogram, and normalized error shown here are diagnostics. They never replace the official visual dimension.</p>
-      {% if visual and visual.captures %}
-        <label class="capture-picker">Checkpoint / viewport<select data-capture-picker>{% for capture in visual.captures %}<option value="{{ loop.index0 }}">{{ capture.checkpoint }} · {{ capture.viewport }} · {{ capture.capture_status }}</option>{% endfor %}</select></label>
-        {% for capture in visual.captures %}
-        <div class="visual-review{% if not loop.first %} hidden{% endif %}" data-capture="{{ loop.index0 }}" data-mode="side">
-          <div class="visual-toolbar" role="toolbar" aria-label="Visual comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button" {% if not capture.heatmap %}disabled{% endif %}>Heatmap</button><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
-          <div class="reliability-line"><span class="state state-{{ capture.capture_status }}">{{ capture.capture_status|replace('_',' ') }}</span><span>Evidence reliability: <strong>{{ capture.evidence_reliability }}</strong></span></div>
-          <div class="visual-stage" data-visual-stage>
-            <div class="visual-image source"><span>Source</span>{% if capture.source_image %}<img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.source_image }}" alt="Source screenshot for {{ capture.checkpoint }}">{% else %}<div class="visual-placeholder">Source image unavailable</div>{% endif %}</div>
-            <div class="visual-image candidate"><span>Candidate</span>{% if capture.candidate_image %}<img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.candidate_image }}" alt="Candidate screenshot for {{ capture.checkpoint }}">{% else %}<div class="visual-placeholder">Candidate image unavailable</div>{% endif %}</div>
-            {% if capture.heatmap %}<div class="visual-image heatmap"><span>Diagnostic heatmap</span><img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.heatmap }}" alt="Diagnostic heatmap for {{ capture.checkpoint }}"></div>{% endif %}
-          </div>
-          {% if capture.diagnostic_metrics %}<div class="diagnostic-grid">{% for name, value in capture.diagnostic_metrics.items() %}<div><span>{{ name|replace('_',' ') }}</span><strong>{{ value }}</strong></div>{% endfor %}</div>{% endif %}
-        </div>{% endfor %}
-      {% elif item.legacy_screenshots %}
-        <div class="legacy-gallery">{% for screenshot in item.legacy_screenshots %}<figure><img loading="lazy" src="/artifacts/{{ item.key }}/legacy/{{ loop.index0 }}" alt="Legacy verifier screenshot {{ loop.index }}"><figcaption>{{ screenshot.split('/')[-1] }} · candidate-only legacy evidence</figcaption></figure>{% endfor %}</div>
-      {% else %}<div class="empty-state"><strong>No visual evidence companion yet.</strong><p>Run <code>clawbench-viewer capture --item {{ item.key }}</code> with source and candidate images to create reviewable evidence.</p></div>{% endif %}
-    </section>
+  <section class="panel visual-section observatory-visual" id="visual-evidence">
+    <div class="section-heading"><div><p class="eyebrow">Dataset calibration evidence</p><h2>Original website evidence ↔ standard offline reference</h2><p>These pairs validate the benchmark input. They are not an Agent score and will never populate the model leaderboard.</p></div><span>{{ visual.captures|length if visual and visual.captures else 0 }} current-direct pairs</span></div>
+    {% if visual and visual.captures %}
+      <label class="capture-picker">Checkpoint<select data-capture-picker>{% for capture in visual.captures %}<option value="{{ loop.index0 }}">{{ capture.checkpoint }} · {{ capture.viewport }}</option>{% endfor %}</select></label>
+      {% for capture in visual.captures %}
+      <div class="visual-review observatory-review{% if not loop.first %} hidden{% endif %}" data-capture="{{ loop.index0 }}" data-mode="side">
+        <div class="visual-toolbar" role="toolbar" aria-label="Screenshot comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Drag split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button">Difference map</button><span class="toolbar-spacer"></span><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
+        <div class="reliability-line"><span class="state state-present">accepted</span><span>Evidence: <strong>{{ capture.evidence_reliability }}</strong></span><span>Comparison: <strong>source → offline reference</strong></span></div>
+        <div class="visual-stage" data-visual-stage>
+          <div class="visual-image source"><span>Original website evidence</span>{% if capture.source_url %}<img draggable="false" src="{{ capture.source_url }}" alt="Original Amazon evidence at {{ capture.checkpoint }}">{% elif capture.source_image %}<img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.source_image }}" alt="Original website at {{ capture.checkpoint }}">{% else %}<div class="visual-placeholder">Original image unavailable</div>{% endif %}</div>
+          <div class="visual-image candidate"><span>Standard offline reference</span>{% if capture.candidate_url %}<img draggable="false" src="{{ capture.candidate_url }}" alt="Offline Amazon reference at {{ capture.checkpoint }}">{% elif capture.candidate_image %}<img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.candidate_image }}" alt="Offline reference at {{ capture.checkpoint }}">{% else %}<div class="visual-placeholder">Reference image unavailable</div>{% endif %}</div>
+          <div class="visual-image heatmap"><span>Absolute visual difference</span>{% if capture.heatmap_url %}<img draggable="false" src="{{ capture.heatmap_url }}" alt="Visual difference map at {{ capture.checkpoint }}">{% elif capture.heatmap %}<img draggable="false" src="/artifacts/{{ item.key }}/{{ capture.heatmap }}" alt="Visual difference map at {{ capture.checkpoint }}">{% endif %}</div>
+        </div>
+        {% if capture.diagnostic_metrics %}<div class="diagnostic-grid calibration-diagnostics">{% for name, value in capture.diagnostic_metrics.items() %}<div><span>{{ name|replace('_',' ') }}</span><strong>{% if value is number and value < 1 %}{{ (value * 100)|round(2) }}%{% else %}{{ value }}{% endif %}</strong></div>{% endfor %}<div><span>Role in benchmark</span><strong>Input calibration</strong></div></div>{% endif %}
+      </div>{% endfor %}
+    {% endif %}
+  </section>
 
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Model runs</p><h2>Clone evaluations on this website</h2></div><span>{{ item.official_runs|length }} valid reports</span></div>
-      {% if item.official_runs %}<div class="table-wrap"><table><thead><tr><th>Model</th><th>Run</th><th>Status</th><th>Track</th><th>Official score</th><th>Finished</th></tr></thead><tbody>{% for run in item.official_runs %}<tr><th>{{ run.candidate.display_name }}<small>{{ run.candidate.provider or run.candidate.model_id }}</small></th><td><a href="/runs/{{ run.run_id }}">{{ run.run_id }}</a></td><td><span class="state state-{{ run.status }}">{{ run.status|replace('_',' ') }}</span></td><td>{{ run.track }}</td><td><strong>{{ run.score }} / 100</strong></td><td>{{ run.finished_at }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><strong>No model has been evaluated here yet.</strong><p>The website can still be reviewed while its server, seeds, and checkpoints are being finalized.</p></div>{% endif %}
-    </section>
+  <section class="observatory-two-up">
+    <article class="panel route-observatory" data-route-explorer>
+      <div class="section-heading"><div><p class="eyebrow">Inspectable surface</p><h2>Route & state explorer</h2></div><span><b data-route-count>{{ item.showcase.route_families|length }}</b> route families</span></div>
+      <div class="route-filters" role="toolbar" aria-label="Evidence filter"><button class="active" type="button" data-evidence-filter="all">All</button><button type="button" data-evidence-filter="current-direct">Direct</button><button type="button" data-evidence-filter="current-partial">Partial</button><button type="button" data-evidence-filter="inferred">Inferred</button><button type="button" data-evidence-filter="unavailable">Boundary</button></div>
+      <div class="route-list">{% for route in item.showcase.route_families %}<details class="route-row" data-route-evidence="{{ route.evidence_kind }}"><summary><span class="route-priority">{{ route.priority }}</span><strong>{{ route.id }}</strong><code>{{ route.route_pattern }}</code><span class="evidence-badge evidence-{{ route.evidence_kind }}">{{ route.evidence_kind|replace('-',' ') }}</span></summary><div><p>{{ route.purpose_edge|replace('-',' ')|title }} · {{ route.verification_kind|replace('-',' ') }}</p><div class="state-cloud">{% for state in route.states %}<span>{{ state|replace('-',' ') }}</span>{% endfor %}</div></div></details>{% endfor %}</div>
+    </article>
 
-    <section class="panel"><div class="section-heading"><div><p class="eyebrow">Source documents</p><h2>PRD, contracts, and limitations</h2></div></div>{% for name, document in item.documents.items() %}{% if document %}<details><summary>{{ name|replace('_',' ')|title }}</summary><pre class="document">{{ document }}</pre></details>{% endif %}{% endfor %}</section>
-  </div>
+    <article class="panel journey-player" id="interaction-replay" data-journey-replay>
+      <div class="section-heading"><div><p class="eyebrow">Dynamic interaction evidence</p><h2>Journey replay</h2></div><span>Click any step</span></div>
+      <div class="journey-tabs" role="tablist">{% for journey in item.showcase.journeys %}<button class="{% if loop.first %}active{% endif %}" type="button" data-journey-tab="{{ loop.index0 }}"><i class="journey-kind-{{ journey.kind }}"></i>{{ journey.kind|title }}</button>{% endfor %}</div>
+      {% for journey in item.showcase.journeys %}<div class="journey-panel{% if not loop.first %} hidden{% endif %}" data-journey-panel="{{ loop.index0 }}">
+        <div class="journey-head"><div><strong>{{ journey.id }}</strong><p>{{ journey.actor }}</p></div><span><b data-replay-current>1</b> / {{ journey.steps|length }}</span></div>
+        <div class="journey-progress"><i data-replay-progress style="width: {{ (100 / journey.steps|length)|round }}%"></i></div>
+        <ol class="replay-steps">{% for step in journey.steps %}<li class="{% if loop.first %}active{% endif %}"><button type="button" data-replay-step="{{ loop.index0 }}"><span>{{ '%02d'|format(loop.index) }}</span><p>{{ step }}</p><i>{% if loop.first %}observed{% else %}queued{% endif %}</i></button></li>{% endfor %}</ol>
+        <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
+      </div>{% endfor %}
+      <p class="replay-note">This is a structured replay of the frozen interaction contract. Per-agent browser traces and before/after frames will populate the same space after experiments begin.</p>
+    </article>
+  </section>
 
-  <aside class="detail-sidebar">
-    <section class="panel sticky"><div class="section-heading"><div><p class="eyebrow">Human QA</p><h2>Review editor</h2></div></div>
-      {% if profile == 'internal' %}<form id="review-form" data-item-key="{{ item.key }}" data-revision="{{ review.revision }}" data-fingerprint="{{ item.artifact_fingerprint }}">
-        <label>Reviewer<input name="reviewer" value="{{ review.reviewer }}" required></label>
-        <label>Gate<select name="gate">{% for value in ['unreviewed','approve','changes_requested','reject'] %}<option value="{{ value }}" {% if review.gate==value %}selected{% endif %}>{{ value|replace('_',' ') }}</option>{% endfor %}</select></label>
-        <label>Visibility<select name="visibility"><option value="internal" {% if review.visibility=='internal' %}selected{% endif %}>Internal</option><option value="public" {% if review.visibility=='public' %}selected{% endif %}>Public after approval</option></select></label>
-        {% for name, label in [('protocol_observability','Protocol & observability'),('behavioral_depth','Behavioral depth'),('visual_interaction_coverage','Visual & interaction coverage'),('reproducibility','Reproducibility'),('isolation_asset_compliance','Isolation & asset compliance'),('diversity_non_reskin','Diversity / non-reskin')] %}<fieldset data-review-dimension="{{ name }}"><legend>{{ label }}</legend><select name="{{ name }}-rating">{% for value in ['unreviewed','pass','concern','fail','not_applicable'] %}<option value="{{ value }}" {% if review.dimensions[name].rating==value %}selected{% endif %}>{{ value|replace('_',' ') }}</option>{% endfor %}</select><textarea name="{{ name }}-notes" rows="3" placeholder="Finding and rationale">{{ review.dimensions[name].notes }}</textarea><textarea name="{{ name }}-evidence" rows="2" placeholder="Evidence refs, one per line">{{ review.dimensions[name].evidence_refs|join('\n') }}</textarea></fieldset>{% endfor %}
-        <label>Overall notes<textarea name="notes" rows="5">{{ review.notes }}</textarea></label><label>Overall evidence refs<textarea name="evidence_refs" rows="3" placeholder="One per line">{{ review.evidence_refs|join('\n') }}</textarea></label>
-        <button class="primary full" type="submit">Save review</button><p id="review-status" role="status"></p>
-      </form>{% else %}<div class="review-readonly"><span class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</span><p>{{ review.notes or 'No approved public review note.' }}</p></div>{% endif %}
-    </section>
-  </aside></div>
+  <section class="panel calibration-panel">
+    <div class="section-heading"><div><p class="eyebrow">Reference server acceptance</p><h2>Calibration passed before any Agent is measured</h2></div><span class="state state-present">{{ item.showcase.calibration.stage }}</span></div>
+    <div class="calibration-grid">
+      <article><span>Visual checks</span><strong>{{ item.showcase.calibration.metrics.visual.checks_passed }} / {{ item.showcase.calibration.metrics.visual.checks_total }}</strong><small>2 direct screenshot pairs</small></article>
+      <article><span>Browser journeys</span><strong>{{ item.showcase.calibration.metrics.browser.journeys_passed }} / {{ item.showcase.calibration.metrics.browser.journeys_total }}</strong><small>{{ item.showcase.calibration.metrics.browser.visited_pages }} pages visited</small></article>
+      <article><span>Asset closure</span><strong>{{ item.showcase.calibration.metrics.network.covered_runtime_assets }} / {{ item.showcase.calibration.metrics.network.declared_runtime_assets }}</strong><small>0 nonlocal requests</small></article>
+      <article><span>Local test suite</span><strong>{{ item.showcase.calibration.metrics['full-suite'].tests_passed }} / {{ item.showcase.calibration.metrics['full-suite'].tests_discovered }}</strong><small>Frozen semantics</small></article>
+    </div>
+    <div class="gate-ribbon">{% for gate in item.showcase.calibration.gates %}<span><i></i>{{ gate.id|title }} gate · {{ gate.status }}</span>{% endfor %}</div>
+  </section>
+
+  <section class="panel future-evaluation">
+    <div class="section-heading"><div><p class="eyebrow">Agent benchmark results</p><h2>The scoring canvas is ready; the experiment data is not.</h2><p>The future comparison changes here: <strong>standard offline reference ↔ Agent-generated clone.</strong></p></div><span>0 model runs</span></div>
+    <div class="score-blueprint">
+      {% for dimension in item.showcase.future_score_dimensions %}<article><span>{{ dimension }}</span><strong>—</strong><div></div><small>Not measured</small></article>{% endfor %}
+    </div>
+    <div class="future-run-layout"><div class="future-clone-frame"><span>Agent-generated clone</span><div><i></i><strong>No build yet</strong><p>A screenshot and live run link will appear here.</p></div></div><div class="future-evidence-list"><article><span>Screenshot comparison</span><strong>—</strong></article><article><span>Interaction replay</span><strong>—</strong></article><article><span>Terminal journey checks</span><strong>—</strong></article><article><span>Runtime & cost</span><strong>—</strong></article></div></div>
+  </section>
+
+  <p class="research-notice">Independent research benchmark; not affiliated with or endorsed by Amazon. Brand and source-origin media remain the property of their respective owners and are shown only as bounded evaluation evidence.</p>
+  <details class="panel curator-evidence"><summary>Dataset readiness and curator evidence</summary><div class="readiness-list">{% for check in item.readiness %}<article><span class="status-dot status-{{ check.status }}"></span><div><strong>{{ check.label }}</strong><p>{{ check.detail }}</p></div><span class="state state-{{ check.status }}">{{ check.status|replace('_',' ') }}</span></article>{% endfor %}</div></details>
 </div>
+{% else %}
+<div class="page detail-page">
+  <a class="back-link" href="/tasks">← Dataset catalog</a>
+  <section class="detail-heading"><div><div class="tag-list"><span>{{ item.source_type }}</span><span>{{ item.split or 'split pending' }}</span></div><h1>{{ item.display_name }}</h1><p>{{ item.description }}</p></div><div class="fingerprint"><span>Artifact fingerprint</span><code>{{ item.artifact_fingerprint[:12] }}…</code></div></section>
+  <section class="evidence-lanes"><article><p>Evidence readiness</p><strong>{{ item.readiness_counts.present }} present</strong><span>{{ item.readiness_counts.missing }} missing · {{ item.readiness_counts.invalid }} invalid</span></article><article><p>Human QA gate</p><strong class="state state-{{ review.gate }}">{{ review.gate|replace('_',' ') }}</strong><span>Revision {{ review.revision }}</span></article><article><p>Agent result</p><strong>Not evaluated</strong><span>No official reconstruction run</span></article><article><p>Legacy verification</p>{% if item.legacy_verification %}<strong>{{ item.legacy_verification.passed }} / {{ item.legacy_verification.total }}</strong><span>Compatibility checks</span>{% else %}<strong>Not applicable</strong>{% endif %}</article></section>
+  <section class="panel"><div class="section-heading"><div><p class="eyebrow">Compatibility record</p><h2>Declared capability and evidence</h2></div></div><div class="tag-list large">{% for tag in item.capability_tags %}<span>{{ tag }}</span>{% else %}<span class="pending">Taxonomy pending</span>{% endfor %}</div><div class="readiness-list">{% for check in item.readiness %}<article><span class="status-dot status-{{ check.status }}"></span><div><strong>{{ check.label }}</strong><p>{{ check.detail }}</p></div><span class="state state-{{ check.status }}">{{ check.status|replace('_',' ') }}</span></article>{% endfor %}</div></section>
+</div>
+{% endif %}
 {% endblock %}

@@ -185,7 +185,7 @@ remain independent, while repeated adds of the same selection merge. Source
 review cards were not captured completely, so the clone does not invent source
 authors or excerpts.
 
-The final full discovery run passes `328/328` tests. This includes the current
+The final full discovery run passes `330/330` tests. This includes the current
 cart/variant, comparison migration, commerce, review, payment, mail privacy,
 request-journal redaction, and shopping-entrypoint regressions.
 The base verifier passes `410/410`, the Deals verifier passes `10/10`, the Lists

@@ -4,7 +4,7 @@
 
 `clawbench-offline-clone` 把离线 clone 从“写完一些页面后自行宣布完成”改造成一个可失效、可审计的阶段流程。它不包含 Amazon 业务代码，也不决定新网站应该复制多少页面；它负责强制保存范围、证据、资源、前端、后端和验收之间的依赖关系。
 
-配套方法论见 [Amazon 案例复盘](offline-clone-amazon-case-study.md)。可自动调用的 Codex skill 安装在 `C:\Users\Administrator\.codex\skills\build-offline-site-clone\SKILL.md`。
+配套方法论见 [Amazon 案例复盘](offline-clone-amazon-case-study.md)。仓库内可复用的 Codex skill 位于 `skills/build-offline-site-clone/SKILL.md`。
 
 ## 生命周期
 
@@ -30,6 +30,22 @@ clawbench-offline-clone init `
   --display-name "Example" `
   --source-url https://example.com/
 ```
+
+同一规范化平台若跨多个一方 origin，可重复传入 `--source-url`；不要仅因主站与
+checkout/API 子域不同就拆成两个互相失真的 clone。例如：
+
+```powershell
+clawbench-offline-clone init `
+  --site-dir materials/example-tickets `
+  --site-id example-tickets `
+  --display-name "Example Tickets" `
+  --source-url https://tickets.example.com/ `
+  --source-url https://checkout.example.com/
+```
+
+多 origin 只声明来源范围，不允许离线 runtime 访问这些地址。正式验收仍要求
+`runtime_remote_requests: forbidden` 和浏览器 network census 的
+`remote_runtime = 0`。
 
 生成结构：
 

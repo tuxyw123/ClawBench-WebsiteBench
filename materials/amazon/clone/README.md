@@ -222,7 +222,7 @@ domain store. It proves:
   account state across authentication without trusting client price/title data;
 - public access to the admin surface is denied.
 
-The final full discovery run passes `328/328` tests, including current
+The final full discovery run passes `330/330` tests, including current
 cart/variant, comparison migration, commerce, review, payment, mail privacy,
 request-journal redaction, and shopping-entrypoint regressions. Re-run
 the command above after later evidence-scoped surfaces are added.

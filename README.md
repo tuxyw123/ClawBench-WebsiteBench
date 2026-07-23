@@ -16,10 +16,17 @@ and corpus review.
 | `materials/amazon/` | Amazon source evidence, scope contracts, runnable offline clone, and verification tooling |
 | `src/clawbench/offline_clone/` | Reusable offline-clone harness and validators |
 | `tests/offline_clone/` | Harness regression tests |
+| `src/clawbench/harbor/` | Harbor authoring schemas, scaffolds, bundle materializer, and trusted verifier templates |
+| `harbor/` | Normalized site/instance authoring root; generated bundles stay outside Git |
+| `tests/harbor/` | Harbor manifest, isolation, materialization, CLI, and scoring regression tests |
+| `project/plan.json` | Machine-readable project status, milestones, backlog, risks, decisions, and release gates |
+| `src/clawbench/project/` | Project-plan validation, status, and release-gate CLI |
+| `skills/build-offline-site-clone/` | Versioned website-clone and benchmark-governance skill package |
 | `src/clawbench/viewer/` | Authenticated corpus-QA and result viewer |
 | `tests/viewer/` | Viewer discovery, security, reviews, evidence, and browser tests |
 | `tasks/` | Amazon task plus compact legacy Viewer fixtures |
 | `website-clone/` | Legacy compatibility clones used by Viewer regression tests |
+| `websitebench/corpora/claw-bench-v2/` | Portable 129-task / 61-platform live-site inventory used by the clone expansion prompt |
 | `websitebench/schemas/` | Shared offline-clone, Viewer, and result schemas |
 | `docs/` | Clone methodology, Amazon case study, and Viewer operation |
 
@@ -31,13 +38,44 @@ Python 3.11 or newer is required.
 python -m pip install -e '.[dev]'
 python -m playwright install chromium
 ruff check src tests websitebench
-python -m pytest tests/offline_clone tests/viewer -q
+python -m pytest tests/offline_clone tests/harbor tests/viewer -q
 python -m pytest materials/amazon/clone/tests -q
 ```
 
 The reusable harness is available as `clawbench-offline-clone`. Start with
 [`docs/offline-clone-harness.md`](docs/offline-clone-harness.md) and
 [`docs/offline-clone-amazon-case-study.md`](docs/offline-clone-amazon-case-study.md).
+For the portable claw-bench-v2 expansion workflow, use
+[`docs/claw-bench-v2-live-site-clone-plan.md`](docs/claw-bench-v2-live-site-clone-plan.md);
+it reads the bundled inventory and does not require a sibling repository.
+
+## Project governance
+
+[`PROJECT.md`](PROJECT.md) defines the lifecycle, roles, definitions of done, and
+expansion rules. `project/plan.json` is the machine-readable source of truth.
+
+```bash
+clawbench-project validate
+clawbench-project status
+clawbench-project check-release
+```
+
+The release check deliberately returns a non-zero status until every declared
+gate has evidence and is marked `passed`.
+
+## Harbor full-stack reconstruction benchmark
+
+`clawbench-harbor` turns normalized site and instance authoring sources into
+self-contained Harbor bundles. The Agent explores a browser-only reference with
+Browser Use CLI, while the separate trusted verifier uses Playwright and direct
+HTTP checks against reference and candidate services. Hidden checks, fixtures,
+reference source, and oracle material are excluded from the Agent image.
+
+Start with [`harbor/README.md`](harbor/README.md) and the complete
+[`Harbor full-stack benchmark standard`](docs/harbor-fullstack-benchmark.md).
+Generated tasks use Harbor's native Docker Compose reference sidecar and
+separate verifier. Release still requires actual Harbor NOP/oracle runs and
+human browser review; static schema validation is only the first gate.
 
 ## Amazon offline clone
 
@@ -52,6 +90,17 @@ Source evidence and its redistribution caveats are described in
 anonymous and GET-only; reports omit cookies, authorization headers, and tokens.
 
 ## Viewer
+
+Public static Viewer:
+
+- [GitHub Pages](https://tuxyw123.github.io/ClawBench-WebsiteBench/)
+- [Amazon worked example](https://tuxyw123.github.io/ClawBench-WebsiteBench/amazon/)
+
+The Pages workflow publishes a project-path-safe copy of
+`deploy/websitebench-cloudflare-worker/public`. It is a public inspection
+surface, not evidence that the benchmark release gates have passed. Viewer
+source changes must be regenerated and sanitized into that public snapshot
+before they are published.
 
 ```bash
 clawbench-viewer hash-password

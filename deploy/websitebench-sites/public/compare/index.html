@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta property="og:image" content="/static/og-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta name="twitter:image" content="/static/og-v2.png">
+  <title>Compare tasks · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>WebsiteBench<small>Reconstruction viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Dataset</a><a href="/models">Agents</a><a href="/results">Scores</a><a href="/methodology">Protocol</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public</span></div>
+
+  </header>
+  <main>
+<div class="page">
+  <section class="page-heading"><div><p class="eyebrow">Aligned task inspection</p><h1>Compare 2–4 tasks</h1><p>Official candidate scores, legacy verifier checks, readiness, and human conclusions use separate rows and labels.</p></div></section>
+  <form class="compare-picker" method="get" action="/compare"><label>Select tasks<select name="items" multiple size="1"><option value="offlineclone--amazon-shopping-mainline" selected>Amazon Shopping</option></select></label><button class="primary" type="submit">Compare selection</button></form>
+  <div class="alert warning">Choose 2–4 tasks to compare.</div>
+  <div class="table-wrap panel compare-table"><table><thead><tr><th>Dimension</th><th><a href="/amazon">Amazon Shopping</a><small>offline_clone</small></th></tr></thead><tbody>
+    <tr class="group"><th colspan="2">Product and state model</th></tr>
+    <tr><th>Product type</th><td>shopping-commerce</td></tr>
+    <tr><th>Family / class</th><td>commerce-marketplace</td></tr>
+    <tr><th>Roles</th><td>shopper.anonymous, shopper.verified-local</td></tr>
+    <tr><th>Stateful entities</th><td>session, account, cart, list, checkout, order, review</td></tr>
+    <tr><th>Capabilities</th><td>Search, Filters, Product variants, Cart, Identity, Checkout, Orders, Reviews, Lists, Recovery</td></tr>
+    <tr class="group"><th colspan="2">Interaction, journey, and visual coverage</th></tr>
+    <tr><th>Interaction tags</th><td>autocomplete, drawer, dependent options, cart mutation, email verification, payment retry, order lifecycle</td></tr>
+    <tr><th>Routes / journeys / checkpoints / seeds</th><td>15 / 3 / 16 / —</td></tr>
+    <tr><th>Declared interaction groups</th><td>Pending</td></tr>
+    <tr><th>Declared user journeys</th><td>Pending</td></tr>
+    <tr><th>Boundary / robustness groups</th><td>Pending</td></tr>
+    <tr><th>Visual breakpoints</th><td>desktop, mobile, tablet</td></tr>
+    <tr class="group"><th colspan="2">Protocol and observability</th></tr>
+    <tr><th>Public protocol artifacts</th><td>purpose, routes, journeys, checkpoints, coverage, sanitized visual evidence</td></tr>
+    <tr><th>Reference observability policy</th><td></td></tr>
+    <tr><th>Hidden test family support</th><td>Pending</td></tr>
+    <tr class="group"><th colspan="2">Reproducibility, isolation, and compliance</th></tr>
+    <tr><th>Seed / reset / time</th><td><span class="state state-not_applicable">seed reset: not_applicable</span><span class="state state-not_applicable">controlled time: not_applicable</span></td></tr>
+    <tr><th>Persistent backend contract</th><td>Pending</td></tr>
+    <tr><th>Concurrency fixtures</th><td>Pending</td></tr>
+    <tr><th>Anti-cheat hard failures</th><td>Pending</td></tr>
+    <tr><th>License / asset record</th><td><span class="state state-not_applicable">not_applicable</span></td></tr>
+    <tr><th>Limitations record</th><td>Not applicable</td></tr>
+    <tr class="group"><th colspan="2">Human QA rubric</th></tr>
+    <tr><th>Protocol &amp; observability</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Behavioral depth</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Visual &amp; interaction coverage</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Reproducibility</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Isolation &amp; asset compliance</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr><tr><th>Diversity / non-reskin</th><td><span class="state state-unreviewed">unreviewed</span><small></small></td></tr>
+    <tr><th>Human gate</th><td><span class="state state-unreviewed">unreviewed</span></td></tr>
+    <tr class="group"><th colspan="2">Candidate and self-verification evidence</th></tr>
+    <tr><th>Official WebsiteBench score</th><td>No official result</td></tr>
+    <tr><th>Official visual</th><td>—</td></tr><tr><th>Official interactions</th><td>—</td></tr><tr><th>Official journeys</th><td>—</td></tr><tr><th>Official robustness</th><td>—</td></tr><tr><th>Official efficiency</th><td>—</td></tr>
+    <tr><th>Legacy verifier</th><td>Not applicable</td></tr>
+  </tbody></table></div>
+</div>
+</main>
+  <footer><span>WebsiteBench Reconstruction Viewer</span><span>Dataset calibration and agent evaluation are always shown as separate evidence.</span></footer>
+</body>
+</html>

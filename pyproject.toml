@@ -32,6 +32,8 @@ dev = [
 [project.scripts]
 clawbench-viewer = "clawbench.viewer.cli:main"
 clawbench-offline-clone = "clawbench.offline_clone.cli:main"
+clawbench-harbor = "clawbench.harbor.cli:main"
+clawbench-project = "clawbench.project.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clawbench"]
@@ -44,6 +46,9 @@ packages = ["src/clawbench"]
 include = [
     "/src/clawbench",
     "/websitebench",
+    "/harbor",
+    "/project",
+    "/skills/build-offline-site-clone",
     "/tests",
     "/deploy",
     "/docs",

@@ -1,4 +1,9 @@
 {
   "schema_version": "websitebench.viewer-public-allowlist.v1",
-  "items": []
+  "items": [
+    "offlineclone--amazon-shopping-mainline"
+  ],
+  "routes": {
+    "amazon": "offlineclone--amazon-shopping-mainline"
+  }
 }

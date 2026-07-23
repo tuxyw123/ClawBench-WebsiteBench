@@ -1,16 +1,33 @@
 {% extends "base.html" %}
-{% block title %}Methodology{% endblock %}
+{% block title %}Benchmark protocol{% endblock %}
 {% block content %}
-<div class="page prose-page">
-  <section class="page-heading"><div><p class="eyebrow">Methodology</p><h1>Six task-design judgments, no composite quality score</h1><p>The human rubric operationalizes the corpus requirements in <code>WebsiteBench.md</code>. It evaluates whether a task is fit to benchmark web-to-code systems; it does not evaluate a particular candidate implementation.</p></div></section>
-  <section class="method-grid">
-    <article><span>01</span><h2>Protocol & observability</h2><p>Are requirements public or normally observable? Are the PRD, candidate contract, browser policy, scoring contract, and hidden-test support coherent and fair?</p><small>WebsiteBench §§3, 8, 12</small></article>
-    <article><span>02</span><h2>Behavioral depth</h2><p>Do journeys exercise meaningful state changes, roles, failures, persistence, concurrency, and backend rules instead of a static shell?</p><small>WebsiteBench §§4, 6, 9</small></article>
-    <article><span>03</span><h2>Visual & interaction coverage</h2><p>Do checkpoints cover representative routes, states, desktop/mobile breakpoints, validation, loading, error, empty, and success interactions?</p><small>WebsiteBench §§6, 9.1–9.2</small></article>
-    <article><span>04</span><h2>Reproducibility</h2><p>Can seed, reset, controlled time, fixtures, accounts, and evaluation runs be reproduced without dependence on wall-clock waits or drifting services?</p><small>WebsiteBench §§4, 6.4, 11</small></article>
-    <article><span>05</span><h2>Isolation & asset compliance</h2><p>Does evaluation prevent reference proxying and external dependencies? Are code, content, assets, trademarks, and data sources appropriately licensed?</p><small>WebsiteBench §§2, 3.3, 9.5, 13</small></article>
-    <article><span>06</span><h2>Diversity & non-reskin</h2><p>Does the task add product-logic or interaction diversity rather than only changing logos, colors, copy, or fixture values within a family?</p><small>WebsiteBench §§6.1–6.2, 7</small></article>
+<div class="page prose-page protocol-page">
+  <section class="page-heading"><div><p class="eyebrow">Evaluation protocol</p><h1>Reconstruct from interaction, then explain every difference</h1><p>The benchmark measures whether an Agent can infer and rebuild a stateful website from a bounded offline server. Dataset acceptance proves the input is trustworthy; only a later Agent run produces a benchmark score.</p></div></section>
+
+  <section class="protocol-sequence">
+    <article class="protocol-input"><span>01 · Input</span><h2>Explore an isolated website</h2><p>The Agent receives a live browser surface and a task contract. It does not receive the reference implementation, source tree, database, or private fixtures.</p><div><i></i> Routes · interactions · server state</div></article>
+    <i>→</i>
+    <article><span>02 · Work</span><h2>Infer and implement</h2><p>The Agent navigates, tests hypotheses, writes code, and produces a separately runnable clone under the same isolation rules.</p><div><i></i> Trace · files · runtime · usage</div></article>
+    <i>→</i>
+    <article><span>03 · Output</span><h2>Compare the new clone</h2><p>Automated and multimodal judges compare observable behavior and appearance against the standard offline reference.</p><div><i></i> Screenshots · replay · terminal state</div></article>
   </section>
-  <section class="panel"><h2>Evidence labels used by this viewer</h2><div class="definition-list"><div><strong>Automatic readiness</strong><p>Presence, absence, validity, or non-applicability of declared artifacts. Never weighted into a quality score.</p></div><div><strong>Human task QA</strong><p>Six explicit ratings plus a gate decision, reviewer, rationale, evidence references, revision, and artifact fingerprint.</p></div><div><strong>Official candidate result</strong><p>Only a schema-valid <code>websitebench.result.v1</code> report: one official /100 score and five official dimensions.</p></div><div><strong>Diagnostic visual metrics</strong><p>Viewer-side screenshot diagnostics for investigation. They do not stand in for the official visual score.</p></div><div><strong>Legacy verifier</strong><p>Self-verification check counts from compatibility clones. They are not candidate benchmark scores.</p></div></div></section>
+
+  <section class="panel score-method">
+    <div class="section-heading"><div><p class="eyebrow">Scoring evidence</p><h2>Five dimensions, each backed by inspectable artifacts</h2></div><span>Weights are supplied by the future scoring contract</span></div>
+    <div class="method-dimensions">
+      <article><span>V</span><div><h3>Visual fidelity</h3><p>Matched screenshots across routes, states, and viewports; differences can be inspected with split, overlay, blink, and heatmaps.</p></div></article>
+      <article><span>I</span><div><h3>Interaction fidelity</h3><p>Clicks, typing, menus, option dependencies, mutations, validation, and before/after states behave like the reference.</p></div></article>
+      <article><span>J</span><div><h3>Journey completion</h3><p>Success, failure, and recovery journeys reach the correct durable terminal states instead of only looking plausible.</p></div></article>
+      <article><span>R</span><div><h3>Robustness</h3><p>Hidden seeds, invalid inputs, retries, persistence, reset behavior, and network isolation test behavior beyond the happy path.</p></div></article>
+      <article><span>E</span><div><h3>Efficiency</h3><p>Elapsed time, tool use, tokens, retries, and runtime resources contextualize the quality of the reconstruction.</p></div></article>
+    </div>
+  </section>
+
+  <section class="evidence-separation">
+    <article><p class="eyebrow">Before experiments</p><h2>Dataset calibration</h2><p>Original website evidence is compared with the standard offline reference to certify that the benchmark input is representative, runnable, stateful, and isolated.</p><div class="comparison-label"><span>Original evidence</span><i>↔</i><span>Offline reference</span></div><strong>Never an Agent score</strong></article>
+    <article><p class="eyebrow">During experiments</p><h2>Agent evaluation</h2><p>The accepted offline reference is compared with a newly generated clone. This evidence produces per-dimension results and the official Agent score.</p><div class="comparison-label"><span>Offline reference</span><i>↔</i><span>Generated clone</span></div><strong>Populates the score matrix</strong></article>
+  </section>
+
+  <section class="panel"><h2>What remains blank today</h2><div class="definition-list"><div><strong>Agent identities</strong><p>No experiment has declared a model, provider, harness, or reasoning configuration.</p></div><div><strong>Generated clones</strong><p>No Agent-produced runnable server has been submitted for comparison.</p></div><div><strong>Official scores</strong><p>Visual, interaction, journey, robustness, efficiency, and total values are intentionally empty.</p></div><div><strong>Run evidence</strong><p>Agent traces, generated-clone screenshots, failure records, and usage metrics will appear only with real reports.</p></div></div></section>
 </div>
 {% endblock %}

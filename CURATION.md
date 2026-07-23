@@ -32,7 +32,8 @@ repository. The source checkout was copied, never moved or deleted.
 - Amazon source evidence and its development task live under
   `materials/amazon/source-capture` and `tasks/clawbench`.
 - The ClawBench task schema is retained at `schemas/task.schema.json`.
-- The Python package exposes `clawbench-offline-clone` and `clawbench-viewer`.
+- The Python package exposes `clawbench-offline-clone`, `clawbench-harbor`, and
+  `clawbench-viewer`.
 - Viewer container context excludes the large Amazon research material.
 - Three small legacy clones/tasks remain solely because they exercise Viewer
   compatibility and score-provenance boundaries.
@@ -55,4 +56,8 @@ The former synthetic commerce corpus, its Web2Code orchestration package,
 container service topology, fixtures, evaluator, tests, and generated static
 publication were removed in July 2026. Cross-site schemas, the Viewer, and the
 new offline-clone harness remain independent of that retired corpus.
+
+The later Harbor authoring toolchain is a new, schema-driven implementation for
+browser-only full-stack reconstruction tasks. It does not restore the retired
+synthetic corpus or its patch-oriented evaluator.
 

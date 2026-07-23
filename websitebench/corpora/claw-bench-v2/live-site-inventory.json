@@ -1,0 +1,3226 @@
+{
+  "schema_version": "clawbench.live-site-inventory.v1",
+  "provenance": {
+    "source_project": "claw-bench-v2",
+    "source_commit": "5fa5e74c33ac0610de6a6c597d2a91493e18ff36",
+    "source_path": "website-clone/task-inventory.json",
+    "upstream_source_root": "test-cases/v2",
+    "documented_task_count": 130,
+    "discovered_task_count": 129,
+    "discovery_warnings": [
+      "documented V2 count is 130, but 129 task.json files were discovered"
+    ]
+  },
+  "summary": {
+    "task_count": 129,
+    "platform_count": 61,
+    "first_party_origin_count": 62
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "task_count": 17,
+      "platforms": [
+        "capterra",
+        "edx",
+        "etsy",
+        "glassdoor",
+        "mailchimp",
+        "petfinder",
+        "taskrabbit",
+        "workable"
+      ]
+    },
+    {
+      "batch": 2,
+      "task_count": 16,
+      "platforms": [
+        "charity-village",
+        "eventbrite",
+        "goodreads",
+        "habitica",
+        "outschool",
+        "theordinary",
+        "todoist"
+      ]
+    },
+    {
+      "batch": 3,
+      "task_count": 16,
+      "platforms": [
+        "coolors",
+        "greenhouse-codepath",
+        "imdb",
+        "ratemyprofessors",
+        "target",
+        "ticketmaster",
+        "tripadvisor"
+      ]
+    },
+    {
+      "batch": 4,
+      "task_count": 16,
+      "platforms": [
+        "eatthismuch",
+        "idealist",
+        "khanacademy",
+        "semantic-scholar",
+        "trakt",
+        "trustpilot",
+        "when2meet"
+      ]
+    },
+    {
+      "batch": 5,
+      "task_count": 16,
+      "platforms": [
+        "airtable",
+        "coursera",
+        "github",
+        "indeed",
+        "ravelry",
+        "simplify-jobs",
+        "tripit",
+        "typeform"
+      ]
+    },
+    {
+      "batch": 6,
+      "task_count": 16,
+      "platforms": [
+        "autoslash",
+        "formswift",
+        "inmyarea",
+        "overleaf",
+        "redcross",
+        "spirit-rock",
+        "untappd",
+        "weworkremotely"
+      ]
+    },
+    {
+      "batch": 7,
+      "task_count": 16,
+      "platforms": [
+        "bark",
+        "boardgamegeek",
+        "freshdesk",
+        "handy",
+        "leetcode",
+        "strava",
+        "styleseat",
+        "vivino"
+      ]
+    },
+    {
+      "batch": 8,
+      "task_count": 16,
+      "platforms": [
+        "beeradvocate",
+        "change",
+        "doodle",
+        "g2",
+        "lowes",
+        "myrecipes",
+        "substack",
+        "webflow"
+      ]
+    }
+  ],
+  "platforms": [
+    {
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "task_ids": [
+        273,
+        1035,
+        1114,
+        1115,
+        1116
+      ],
+      "task_directories": [
+        "v2-273-education-learning-general-edx",
+        "v2-1035-education-learning-enrollment-edx",
+        "v2-1114-education-enrollment-edx",
+        "v2-1115-education-enrollment-edx",
+        "v2-1116-education-enrollment-edx"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "task_ids": [
+        372,
+        560,
+        564,
+        1117,
+        1118
+      ],
+      "task_directories": [
+        "v2-372-entertainment-hobbies-general-eventbrite",
+        "v2-560",
+        "v2-564",
+        "v2-1117",
+        "v2-1118"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "task_ids": [
+        901,
+        902,
+        903,
+        904,
+        905
+      ],
+      "task_directories": [
+        "v2-901-entertainment-imdb-add-to-watchlist",
+        "v2-902-entertainment-imdb-rate-title",
+        "v2-903-entertainment-imdb-remove-rating",
+        "v2-904-entertainment-imdb-create-list",
+        "v2-905-entertainment-imdb-add-to-list"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "task_ids": [
+        1033,
+        1122,
+        1123,
+        1124,
+        1125
+      ],
+      "task_directories": [
+        "v2-1033-education-learning-registration-khanacademy",
+        "v2-1122-education-course-khanacademy",
+        "v2-1123-education-course-khanacademy",
+        "v2-1124-education-course-khanacademy",
+        "v2-1125-education-course-khanacademy"
+      ],
+      "eval_methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "task_ids": [
+        600,
+        601,
+        602,
+        603,
+        1101
+      ],
+      "task_directories": [
+        "v2-600-hobbies-crafts-community-ravelry",
+        "v2-601-hobbies-gaming-reviews-ravelry",
+        "v2-602-hobbies-crafts-community-ravelry",
+        "v2-603-hobbies-crafts-community-ravelry",
+        "v2-1101-hobbies-gaming-discussion-ravelry"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "task_ids": [
+        1130,
+        1131,
+        1132,
+        1133,
+        1134
+      ],
+      "task_directories": [
+        "v2-1130-training-class-search-redcross",
+        "v2-1131-training-add-to-cart-redcross",
+        "v2-1132-training-enroll-course-redcross",
+        "v2-1133-newsletter-signup-redcross",
+        "v2-1134-chapter-finder-redcross"
+      ],
+      "eval_methods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "task_ids": [
+        596,
+        597,
+        1102,
+        1103,
+        1104
+      ],
+      "task_directories": [
+        "v2-596-daily-life-fitness-strava",
+        "v2-597-daily-life-fitness-strava",
+        "v2-1102-fitness-social-post-strava",
+        "v2-1103-fitness-club-strava",
+        "v2-1104-fitness-edit-activity-strava"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "change",
+      "origins": [
+        "https://change.org/"
+      ],
+      "task_ids": [
+        1088,
+        1108,
+        1111,
+        1112
+      ],
+      "task_directories": [
+        "v2-1088-nonprofit-charity-petition-change",
+        "v2-1108-civic-petition-change",
+        "v2-1111-civic-petition-change",
+        "v2-1112-nonprofit-petition-update-change"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "doodle",
+      "origins": [
+        "https://doodle.com/"
+      ],
+      "task_ids": [
+        500,
+        501,
+        502,
+        503
+      ],
+      "task_directories": [
+        "v2-500-office-secretary-tasks-signup-doodle",
+        "v2-501-office-secretary-tasks-signup-doodle",
+        "v2-502-office-secretary-tasks-calendar-doodle",
+        "v2-503-office-secretary-tasks-calendar-doodle"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "etsy",
+      "origins": [
+        "https://etsy.com/"
+      ],
+      "task_ids": [
+        530,
+        531,
+        535,
+        536
+      ],
+      "task_directories": [
+        "v2-530-shopping-marketplace-etsy",
+        "v2-531-shopping-marketplace-etsy",
+        "v2-535-daily-life-shopping-etsy",
+        "v2-536-daily-life-shopping-etsy"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "habitica",
+      "origins": [
+        "https://habitica.com/"
+      ],
+      "task_ids": [
+        630,
+        631,
+        633,
+        634
+      ],
+      "task_directories": [
+        "v2-630-daily-life-productivity-habitica",
+        "v2-631-daily-life-productivity-habitica",
+        "v2-633-daily-life-productivity-habitica",
+        "v2-634-daily-life-productivity-habitica"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "target",
+      "origins": [
+        "https://target.com/"
+      ],
+      "task_ids": [
+        520,
+        521,
+        522,
+        523
+      ],
+      "task_directories": [
+        "v2-520-shopping-retail-target",
+        "v2-521-shopping-retail-target",
+        "v2-522-shopping-retail-target",
+        "v2-523-shopping-retail-target"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "trakt",
+      "origins": [
+        "https://trakt.tv/"
+      ],
+      "task_ids": [
+        635,
+        638,
+        1137,
+        1138
+      ],
+      "task_directories": [
+        "v2-635-entertainment-tracking-trakt",
+        "v2-638-entertainment-tracking-trakt",
+        "v2-1137-entertainment-watchlist-trakt",
+        "v2-1138-entertainment-watchlist-trakt"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "tripit",
+      "origins": [
+        "https://tripit.com/"
+      ],
+      "task_ids": [
+        1093,
+        1139,
+        1140,
+        1141
+      ],
+      "task_directories": [
+        "v2-1093-personal-management-travel-tripit",
+        "v2-1139-travel-itinerary-tripit",
+        "v2-1140-travel-itinerary-tripit",
+        "v2-1141-travel-itinerary-tripit"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "weworkremotely",
+      "origins": [
+        "https://weworkremotely.com/"
+      ],
+      "task_ids": [
+        1045,
+        1144,
+        1145,
+        1146
+      ],
+      "task_directories": [
+        "v2-1045-weworkremotely",
+        "v2-1144-weworkremotely",
+        "v2-1145-weworkremotely",
+        "v2-1146-weworkremotely"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "boardgamegeek",
+      "origins": [
+        "https://boardgamegeek.com/"
+      ],
+      "task_ids": [
+        607,
+        610,
+        1107
+      ],
+      "task_directories": [
+        "v2-607-hobbies-gaming-reviews-boardgamegeek",
+        "v2-610-hobbies-gaming-reviews-boardgamegeek",
+        "v2-1107-hobbies-gaming-forum-boardgamegeek"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "handy",
+      "origins": [
+        "https://handy.com/"
+      ],
+      "task_ids": [
+        1065,
+        1120,
+        1121
+      ],
+      "task_directories": [
+        "v2-1065b-daily-life-home-services-handy",
+        "v2-1120b-services-booking-handy",
+        "v2-1121b-services-booking-handy"
+      ],
+      "eval_methods": [
+        "GET"
+      ]
+    },
+    {
+      "platform_key": "myrecipes",
+      "origins": [
+        "https://myrecipes.com/"
+      ],
+      "task_ids": [
+        1010,
+        1100,
+        1126
+      ],
+      "task_directories": [
+        "v2-1010-rating-voting-review-myrecipes",
+        "v2-1100-food-cooking-collection-myrecipes",
+        "v2-1126-food-cooking-collection-myrecipes"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "petfinder",
+      "origins": [
+        "https://petfinder.com/"
+      ],
+      "task_ids": [
+        815,
+        816,
+        817
+      ],
+      "task_directories": [
+        "v2-815-pet-animal-care-favorite-pet",
+        "v2-816-pet-animal-care-remove-favorite",
+        "v2-817-pet-animal-care-create-adopter-profile"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "theordinary",
+      "origins": [
+        "https://theordinary.com/"
+      ],
+      "task_ids": [
+        1097,
+        1201,
+        1202
+      ],
+      "task_directories": [
+        "v2-1097-beauty-personal-care-shopping-theordinary",
+        "v2-1201-beauty-cart-theordinary",
+        "v2-1202-beauty-cart-quantity-theordinary"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "ticketmaster",
+      "origins": [
+        "https://checkout.ticketmaster.com/",
+        "https://ticketmaster.com/"
+      ],
+      "task_ids": [
+        234,
+        1135,
+        1136
+      ],
+      "task_directories": [
+        "v2-234-daily-life-events-ticketmaster",
+        "v2-1135-events-tickets-ticketmaster",
+        "v2-1136-events-tickets-ticketmaster"
+      ],
+      "eval_methods": [
+        "GET"
+      ]
+    },
+    {
+      "platform_key": "eatthismuch",
+      "origins": [
+        "https://eatthismuch.com/"
+      ],
+      "task_ids": [
+        1095,
+        1113
+      ],
+      "task_directories": [
+        "v2-1095-health-mealplan-eatthismuch",
+        "v2-1113-health-mealplan-eatthismuch"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "github",
+      "origins": [
+        "https://github.com/"
+      ],
+      "task_ids": [
+        179,
+        180
+      ],
+      "task_directories": [
+        "v2-179-dev-tech-github-ops-github",
+        "v2-180-dev-tech-github-ops-github"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "overleaf",
+      "origins": [
+        "https://overleaf.com/"
+      ],
+      "task_ids": [
+        215,
+        242
+      ],
+      "task_directories": [
+        "v2-215-academia-research-paper-tables-overleaf",
+        "v2-242-academia-research-research-tools-overleaf"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "when2meet",
+      "origins": [
+        "https://when2meet.com/"
+      ],
+      "task_ids": [
+        274,
+        284
+      ],
+      "task_directories": [
+        "v2-274-office-secretary-tasks-calendar-when2meet",
+        "v2-284-office-secretary-tasks-calendar-when2meet"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "airtable",
+      "origins": [
+        "https://airtable.com/"
+      ],
+      "task_ids": [
+        483
+      ],
+      "task_directories": [
+        "v2-483-creation-init-general-airtable"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "autoslash",
+      "origins": [
+        "https://autoslash.com/"
+      ],
+      "task_ids": [
+        763
+      ],
+      "task_directories": [
+        "v2-763-automotive-vehicle-services-car-lease-autoslash"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "bark",
+      "origins": [
+        "https://bark.com/"
+      ],
+      "task_ids": [
+        735
+      ],
+      "task_directories": [
+        "v2-735-home-services-maintenance-house-cleaning-bark"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "beeradvocate",
+      "origins": [
+        "https://beeradvocate.com/"
+      ],
+      "task_ids": [
+        706
+      ],
+      "task_directories": [
+        "v2-706-rating-voting-beer-review-beeradvocate"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "capterra",
+      "origins": [
+        "https://capterra.com/"
+      ],
+      "task_ids": [
+        474
+      ],
+      "task_directories": [
+        "v2-474-rating-voting-general-capterra"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "charity-village",
+      "origins": [
+        "https://charityvillage.com/"
+      ],
+      "task_ids": [
+        774
+      ],
+      "task_directories": [
+        "v2-774-nonprofit-charity-nonprofit-job-apply-charity-village"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "coolors",
+      "origins": [
+        "https://coolors.co/"
+      ],
+      "task_ids": [
+        711
+      ],
+      "task_directories": [
+        "v2-711-creation-init-color-design-coolors"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "coursera",
+      "origins": [
+        "https://coursera.org/"
+      ],
+      "task_ids": [
+        265
+      ],
+      "task_directories": [
+        "v2-265-education-learning-general-coursera"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "formswift",
+      "origins": [
+        "https://formswift.com/"
+      ],
+      "task_ids": [
+        598
+      ],
+      "task_directories": [
+        "v2-598-academia-research-legal-docs-formswift"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "freshdesk",
+      "origins": [
+        "https://freshdesk.com/"
+      ],
+      "task_ids": [
+        583
+      ],
+      "task_directories": [
+        "v2-583-office-secretary-tasks-support-tickets-freshdesk"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "g2",
+      "origins": [
+        "https://g2.com/"
+      ],
+      "task_ids": [
+        475
+      ],
+      "task_directories": [
+        "v2-475-rating-voting-general-g2"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "glassdoor",
+      "origins": [
+        "https://glassdoor.com/"
+      ],
+      "task_ids": [
+        468
+      ],
+      "task_directories": [
+        "v2-468-rating-voting-general-glassdoor"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "goodreads",
+      "origins": [
+        "https://goodreads.com/"
+      ],
+      "task_ids": [
+        369
+      ],
+      "task_directories": [
+        "v2-369-entertainment-hobbies-general-goodreads"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "greenhouse-codepath",
+      "origins": [
+        "https://greenhouse.com/"
+      ],
+      "task_ids": [
+        86
+      ],
+      "task_directories": [
+        "v2-086-job-search-hr-cv-autofill-greenhouse-meta"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "idealist",
+      "origins": [
+        "https://idealist.org/"
+      ],
+      "task_ids": [
+        776
+      ],
+      "task_directories": [
+        "v2-776-nonprofit-charity-volunteer-signup-idealist"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "indeed",
+      "origins": [
+        "https://indeed.com/"
+      ],
+      "task_ids": [
+        91
+      ],
+      "task_directories": [
+        "v2-091-job-search-hr-job-apply-indeed"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "inmyarea",
+      "origins": [
+        "https://inmyarea.com/"
+      ],
+      "task_ids": [
+        533
+      ],
+      "task_directories": [
+        "v2-533-daily-life-utilities-inmyarea"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "leetcode",
+      "origins": [
+        "https://leetcode.com/"
+      ],
+      "task_ids": [
+        266
+      ],
+      "task_directories": [
+        "v2-266-education-learning-general-leetcode"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "lowes",
+      "origins": [
+        "https://lowes.com/"
+      ],
+      "task_ids": [
+        737
+      ],
+      "task_directories": [
+        "v2-737-home-services-maintenance-kitchen-remodel-lowes"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "mailchimp",
+      "origins": [
+        "https://mailchimp.com/"
+      ],
+      "task_ids": [
+        486
+      ],
+      "task_directories": [
+        "v2-486-creation-init-general-mailchimp"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "outschool",
+      "origins": [
+        "https://outschool.com/"
+      ],
+      "task_ids": [
+        608
+      ],
+      "task_directories": [
+        "v2-608-education-learning-kids-courses-outschool"
+      ],
+      "eval_methods": [
+        "GET"
+      ]
+    },
+    {
+      "platform_key": "ratemyprofessors",
+      "origins": [
+        "https://ratemyprofessors.com/"
+      ],
+      "task_ids": [
+        708
+      ],
+      "task_directories": [
+        "v2-708-rating-voting-professor-review-ratemyprofessors"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "semantic-scholar",
+      "origins": [
+        "https://semanticscholar.org/"
+      ],
+      "task_ids": [
+        247
+      ],
+      "task_directories": [
+        "v2-247-academia-research-research-tools-semantic-scholar"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "simplify-jobs",
+      "origins": [
+        "https://simplify.jobs/"
+      ],
+      "task_ids": [
+        89
+      ],
+      "task_directories": [
+        "v2-089-job-search-hr-cv-autofill-simplify-jobs"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "spirit-rock",
+      "origins": [
+        "https://spiritrock.org/"
+      ],
+      "task_ids": [
+        609
+      ],
+      "task_directories": [
+        "v2-609-education-learning-meditation-spirit-rock-meditation-center"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "styleseat",
+      "origins": [
+        "https://styleseat.com/"
+      ],
+      "task_ids": [
+        794
+      ],
+      "task_directories": [
+        "v2-794-beauty-personal-care-salon-booking-styleseat"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "substack",
+      "origins": [
+        "https://substack.com/"
+      ],
+      "task_ids": [
+        488
+      ],
+      "task_directories": [
+        "v2-488-creation-init-general-substack"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "taskrabbit",
+      "origins": [
+        "https://taskrabbit.com/"
+      ],
+      "task_ids": [
+        47
+      ],
+      "task_directories": [
+        "v2-047-daily-life-personal-care-taskrabbit"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "todoist",
+      "origins": [
+        "https://todoist.com/"
+      ],
+      "task_ids": [
+        413
+      ],
+      "task_directories": [
+        "v2-413-personal-management-personal-tools-todoist"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "tripadvisor",
+      "origins": [
+        "https://tripadvisor.com/"
+      ],
+      "task_ids": [
+        469
+      ],
+      "task_directories": [
+        "v2-469-rating-voting-general-tripadvisor"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "trustpilot",
+      "origins": [
+        "https://trustpilot.com/"
+      ],
+      "task_ids": [
+        470
+      ],
+      "task_directories": [
+        "v2-470-rating-voting-general-trustpilot"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "typeform",
+      "origins": [
+        "https://typeform.com/"
+      ],
+      "task_ids": [
+        487
+      ],
+      "task_directories": [
+        "v2-487-creation-init-general-typeform"
+      ],
+      "eval_methods": [
+        "PUT"
+      ]
+    },
+    {
+      "platform_key": "untappd",
+      "origins": [
+        "https://untappd.com/"
+      ],
+      "task_ids": [
+        707
+      ],
+      "task_directories": [
+        "v2-707-rating-voting-social-wine-untappd"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "vivino",
+      "origins": [
+        "https://vivino.com/"
+      ],
+      "task_ids": [
+        705
+      ],
+      "task_directories": [
+        "v2-705-rating-voting-wine-review-vivino"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "webflow",
+      "origins": [
+        "https://webflow.com/"
+      ],
+      "task_ids": [
+        485
+      ],
+      "task_directories": [
+        "v2-485-creation-init-general-webflow"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    },
+    {
+      "platform_key": "workable",
+      "origins": [
+        "https://workable.com/"
+      ],
+      "task_ids": [
+        571
+      ],
+      "task_directories": [
+        "v2-571-job-search-hr-recruitment-mgmt-workable"
+      ],
+      "eval_methods": [
+        "POST"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": 47,
+      "directory": "v2-047-daily-life-personal-care-taskrabbit",
+      "platform_key": "taskrabbit",
+      "origins": [
+        "https://taskrabbit.com/"
+      ],
+      "instruction": "Find a moving helper on TaskRabbit, next Saturday 9am-1pm, 1 bedroom apartment",
+      "eval_schema": {
+        "url_pattern": "taskrabbit\\.(com|ca)/(api/v\\d+/jobs|book/\\d+/confirm)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/address_info.json",
+          "description": "Address information (references alex_green_personal_info.json)"
+        }
+      ]
+    },
+    {
+      "task_id": 86,
+      "directory": "v2-086-job-search-hr-cv-autofill-greenhouse-meta",
+      "platform_key": "greenhouse-codepath",
+      "origins": [
+        "https://greenhouse.com/"
+      ],
+      "instruction": "Extract information from resume.pdf and fill out the CodePath Senior Software Engineer application on Greenhouse",
+      "eval_schema": {
+        "url_pattern": "boards-api\\.greenhouse\\.io/v1/boards/.+/jobs/\\d+|job-boards\\.greenhouse\\.io/.+/jobs/\\d+",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/job_links.json",
+          "description": "Job posting URL(s) to apply to"
+        }
+      ]
+    },
+    {
+      "task_id": 89,
+      "directory": "v2-089-job-search-hr-cv-autofill-simplify-jobs",
+      "platform_key": "simplify-jobs",
+      "origins": [
+        "https://simplify.jobs/"
+      ],
+      "instruction": "Use Simplify Jobs to one-click auto-fill the Amazon Applied Scientist application",
+      "eval_schema": {
+        "url_pattern": "api\\.simplify\\.jobs/v2/candidate/me/application",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/job_links.json",
+          "description": "Job posting URL(s) to apply to"
+        }
+      ]
+    },
+    {
+      "task_id": 91,
+      "directory": "v2-091-job-search-hr-job-apply-indeed",
+      "platform_key": "indeed",
+      "origins": [
+        "https://indeed.com/"
+      ],
+      "instruction": "Search \"Senior Software Engineer\" (Toronto) on Indeed, apply to the top-ranked listing",
+      "eval_schema": {
+        "url_pattern": "smartapply\\.indeed\\.com/beta/indeedapply/resumeapply|apply\\.indeed\\.com/indeedapply/postresumeapply|smartapply\\.indeed\\.com/beta/indeedapply/submit",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 179,
+      "directory": "v2-179-dev-tech-github-ops-github",
+      "platform_key": "github",
+      "origins": [
+        "https://github.com/"
+      ],
+      "instruction": "Create repo \"openclaw-agent-benchmark\" on GitHub + README + MIT LICENSE + .gitignore",
+      "eval_schema": {
+        "url_pattern": "github\\.com/repositories$",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/config.json",
+          "description": "Configuration details for the task"
+        }
+      ]
+    },
+    {
+      "task_id": 180,
+      "directory": "v2-180-dev-tech-github-ops-github",
+      "platform_key": "github",
+      "origins": [
+        "https://github.com/"
+      ],
+      "instruction": "Fork huggingface/transformers on GitHub and create branch \"fix-tokenizer-bug\"",
+      "eval_schema": {
+        "url_pattern": "github\\.com/[^/]+/transformers/branches$",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 215,
+      "directory": "v2-215-academia-research-paper-tables-overleaf",
+      "platform_key": "overleaf",
+      "origins": [
+        "https://overleaf.com/"
+      ],
+      "instruction": "On Overleaf, create a new project and write a LaTeX booktabs table with 5 models x 4 metrics + Average + Delta row. The project must compile without errors and display the formatted table.",
+      "eval_schema": {
+        "url_pattern": "overleaf\\.com/project/[a-f0-9]+/compile",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/raw_results.json",
+          "description": "Raw benchmark results: 5 models × 4 metrics"
+        }
+      ]
+    },
+    {
+      "task_id": 234,
+      "directory": "v2-234-daily-life-events-ticketmaster",
+      "platform_key": "ticketmaster",
+      "origins": [
+        "https://checkout.ticketmaster.com/",
+        "https://ticketmaster.com/"
+      ],
+      "instruction": "Find tickets for a live comedy show on Ticketmaster in Los Angeles this Saturday evening",
+      "eval_schema": {
+        "url_pattern": "checkout\\.ticketmaster\\.com\\/[a-f0-9]+",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 242,
+      "directory": "v2-242-academia-research-research-tools-overleaf",
+      "platform_key": "overleaf",
+      "origins": [
+        "https://overleaf.com/"
+      ],
+      "instruction": "Overleaf: Create project \"CVPR2026_Submission\" using CVPR 2026 template",
+      "eval_schema": {
+        "url_pattern": "overleaf\\.com/project/[a-f0-9]+/settings",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 247,
+      "directory": "v2-247-academia-research-research-tools-semantic-scholar",
+      "platform_key": "semantic-scholar",
+      "origins": [
+        "https://semanticscholar.org/"
+      ],
+      "instruction": "Semantic Scholar: Create feed for \"LLMs\"",
+      "eval_schema": {
+        "url_pattern": "semanticscholar\\.org/api/1/alert",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 265,
+      "directory": "v2-265-education-learning-general-coursera",
+      "platform_key": "coursera",
+      "origins": [
+        "https://coursera.org/"
+      ],
+      "instruction": "On Coursera, enroll in the \"Deep Learning Specialization\" by reaching the checkout or payment page with enrollment details filled in.",
+      "eval_schema": {
+        "url_pattern": "coursera\\.org/api/subscriptions\\.v1/\\?action=createCart",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 266,
+      "directory": "v2-266-education-learning-general-leetcode",
+      "platform_key": "leetcode",
+      "origins": [
+        "https://leetcode.com/"
+      ],
+      "instruction": "On LeetCode, open the \"Two Sum\" problem, write a correct Python solution in the code editor, and click the Submit button.",
+      "eval_schema": {
+        "url_pattern": "leetcode\\.com/problems/two-sum/submit",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/solution_code.py",
+          "description": "Python solution for the Two Sum problem"
+        }
+      ]
+    },
+    {
+      "task_id": 273,
+      "directory": "v2-273-education-learning-general-edx",
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "instruction": "Log into edX and enroll in CS50 by selecting the free audit track and completing the enrollment process until the course content or dashboard is accessible.",
+      "eval_schema": {
+        "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 274,
+      "directory": "v2-274-office-secretary-tasks-calendar-when2meet",
+      "platform_key": "when2meet",
+      "origins": [
+        "https://when2meet.com/"
+      ],
+      "instruction": "Create a When2meet event for a 3-person team meeting next week",
+      "eval_schema": {
+        "url_pattern": "when2meet\\.com/(SaveNewEvent|SaveTimes|api)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 284,
+      "directory": "v2-284-office-secretary-tasks-calendar-when2meet",
+      "platform_key": "when2meet",
+      "origins": [
+        "https://when2meet.com/"
+      ],
+      "instruction": "Use When2meet to schedule a 90-minute Strategy Session with 3 attendees",
+      "eval_schema": {
+        "url_pattern": "when2meet\\.com/(SaveNewEvent|SaveTimes|api)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 369,
+      "directory": "v2-369-entertainment-hobbies-general-goodreads",
+      "platform_key": "goodreads",
+      "origins": [
+        "https://goodreads.com/"
+      ],
+      "instruction": "Goodreads: Create a shelf \"ML Must-Reads\" and add 10 books",
+      "eval_schema": {
+        "url_pattern": "goodreads\\.com/shelf/add_to_shelf",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/book_list.json",
+          "description": "List of 10 ML books to add to shelf"
+        }
+      ]
+    },
+    {
+      "task_id": 372,
+      "directory": "v2-372-entertainment-hobbies-general-eventbrite",
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "instruction": "Eventbrite: Create a free event \"ML Paper Reading Group\"",
+      "eval_schema": {
+        "url_pattern": "www\\.eventbrite\\.com/api/v3/organizations/\\d+/events/auto-create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/event_details.json",
+          "description": "Event details including name, date, time, location, and description"
+        }
+      ]
+    },
+    {
+      "task_id": 413,
+      "directory": "v2-413-personal-management-personal-tools-todoist",
+      "platform_key": "todoist",
+      "origins": [
+        "https://todoist.com/"
+      ],
+      "instruction": "Create project \"Q2 Engineering Goals\" with 8 tasks, due dates, and priorities in Todoist",
+      "eval_schema": {
+        "url_pattern": "app\\.todoist\\.com/api/v1/sync",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/task_list.json",
+          "description": "Task list with names, assignees, due dates, and priorities"
+        }
+      ]
+    },
+    {
+      "task_id": 468,
+      "directory": "v2-468-rating-voting-general-glassdoor",
+      "platform_key": "glassdoor",
+      "origins": [
+        "https://glassdoor.com/"
+      ],
+      "instruction": "Write an interview review on Glassdoor",
+      "eval_schema": {
+        "url_pattern": "glassdoor\\.com/(graph|api|a/interview)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/interview_experience.json",
+          "description": "Interview experience details for review submission"
+        }
+      ]
+    },
+    {
+      "task_id": 469,
+      "directory": "v2-469-rating-voting-general-tripadvisor",
+      "platform_key": "tripadvisor",
+      "origins": [
+        "https://tripadvisor.com/"
+      ],
+      "instruction": "Write a 4-star review for a tour on TripAdvisor",
+      "eval_schema": {
+        "url_pattern": "tripadvisor\\.com/data/graphql/ids",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/review_content.json",
+          "description": "Review content for submission"
+        }
+      ]
+    },
+    {
+      "task_id": 470,
+      "directory": "v2-470-rating-voting-general-trustpilot",
+      "platform_key": "trustpilot",
+      "origins": [
+        "https://trustpilot.com/"
+      ],
+      "instruction": "Write a 5-star review for Wealthsimple on Trustpilot",
+      "eval_schema": {
+        "url_pattern": "trustpilot\\.com/api/consumer/review",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/review_content.json",
+          "description": "Review content for submission"
+        }
+      ]
+    },
+    {
+      "task_id": 474,
+      "directory": "v2-474-rating-voting-general-capterra",
+      "platform_key": "capterra",
+      "origins": [
+        "https://capterra.com/"
+      ],
+      "instruction": "Write a review for Notion on Capterra with overall rating 4 stars and exactly this text: \"Flexible workspace, steep learning curve.\"",
+      "eval_schema": {
+        "url_pattern": "reviews\\.capterra\\.com/api/v1/products/[^/]+/partial-review",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 475,
+      "directory": "v2-475-rating-voting-general-g2",
+      "platform_key": "g2",
+      "origins": [
+        "https://g2.com/"
+      ],
+      "instruction": "Write a 4-star review for Jira on G2 with exactly this text: \"Powerful tracking, complex UI.\"",
+      "eval_schema": {
+        "url_pattern": "g2\\.com/survey_responses/.+/autosave_answers\\.json",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 483,
+      "directory": "v2-483-creation-init-general-airtable",
+      "platform_key": "airtable",
+      "origins": [
+        "https://airtable.com/"
+      ],
+      "instruction": "Create an Airtable base \"Conference Tracker\" with schema",
+      "eval_schema": {
+        "url_pattern": "airtable\\.com/v0\\.3/application/[^/]+/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 485,
+      "directory": "v2-485-creation-init-general-webflow",
+      "platform_key": "webflow",
+      "origins": [
+        "https://webflow.com/"
+      ],
+      "instruction": "Create a portfolio website project on Webflow",
+      "eval_schema": {
+        "url_pattern": "webflow\\.com/api/workspaces/[^/]+/sites",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 486,
+      "directory": "v2-486-creation-init-general-mailchimp",
+      "platform_key": "mailchimp",
+      "origins": [
+        "https://mailchimp.com/"
+      ],
+      "instruction": "Create a Mailchimp email campaign with audience set to research newsletter",
+      "eval_schema": {
+        "url_pattern": "admin\\.mailchimp\\.com/campaigns/(wizard|send|schedule)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/content.json",
+          "description": "Content and links for the task"
+        }
+      ]
+    },
+    {
+      "task_id": 487,
+      "directory": "v2-487-creation-init-general-typeform",
+      "platform_key": "typeform",
+      "origins": [
+        "https://typeform.com/"
+      ],
+      "instruction": "Create a Typeform user research survey with 10 questions",
+      "eval_schema": {
+        "url_pattern": "admin\\.typeform\\.com/bff/bob-the-builder/forms/",
+        "method": "PUT"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/survey_questions.json",
+          "description": "Survey questions for user research with 10 questions of various types"
+        }
+      ]
+    },
+    {
+      "task_id": 488,
+      "directory": "v2-488-creation-init-general-substack",
+      "platform_key": "substack",
+      "origins": [
+        "https://substack.com/"
+      ],
+      "instruction": "Create a Substack newsletter \"ML Research Roundup\" and publish the first issue",
+      "eval_schema": {
+        "url_pattern": "substack\\.com/api/v1/drafts/\\d+/publish",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": [
+        {
+          "path": "extra_info/content.json",
+          "description": "Content and links for the task"
+        }
+      ]
+    },
+    {
+      "task_id": 500,
+      "directory": "v2-500-office-secretary-tasks-signup-doodle",
+      "platform_key": "doodle",
+      "origins": [
+        "https://doodle.com/"
+      ],
+      "instruction": "Create a sign-up sheet on Doodle for volunteers to bring snacks to the office Friday party",
+      "eval_schema": {
+        "url_pattern": "api\\.doodle\\.com/svc-sign-up-sheet/v[\\d.]+/sheets",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 501,
+      "directory": "v2-501-office-secretary-tasks-signup-doodle",
+      "platform_key": "doodle",
+      "origins": [
+        "https://doodle.com/"
+      ],
+      "instruction": "Create a sign-up sheet on Doodle for team members to pick presentation slots at the quarterly all-hands",
+      "eval_schema": {
+        "url_pattern": "api\\.doodle\\.com/svc-sign-up-sheet/v[\\d.]+/sheets",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 502,
+      "directory": "v2-502-office-secretary-tasks-calendar-doodle",
+      "platform_key": "doodle",
+      "origins": [
+        "https://doodle.com/"
+      ],
+      "instruction": "Create a Doodle group poll for a 1-hour Client Sync on Thursday",
+      "eval_schema": {
+        "url_pattern": "api\\.doodle\\.com/scheduling/scheduling-attempts",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 503,
+      "directory": "v2-503-office-secretary-tasks-calendar-doodle",
+      "platform_key": "doodle",
+      "origins": [
+        "https://doodle.com/"
+      ],
+      "instruction": "Use Doodle to find a time tomorrow for a 30-minute design review in SF",
+      "eval_schema": {
+        "url_pattern": "api\\.doodle\\.com/scheduling/scheduling-attempts",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 520,
+      "directory": "v2-520-shopping-retail-target",
+      "platform_key": "target",
+      "origins": [
+        "https://target.com/"
+      ],
+      "instruction": "Search Target for a 6-piece cotton bath towel set in white and add the highest rated one to cart",
+      "eval_schema": {
+        "url_pattern": "carts\\.target\\.com/web_checkouts/v\\d+/cart_items",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 521,
+      "directory": "v2-521-shopping-retail-target",
+      "platform_key": "target",
+      "origins": [
+        "https://target.com/"
+      ],
+      "instruction": "Search Target for a stainless steel insulated water bottle and add the best-selling one to cart",
+      "eval_schema": {
+        "url_pattern": "carts\\.target\\.com/web_checkouts/v\\d+/cart_items",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 522,
+      "directory": "v2-522-shopping-retail-target",
+      "platform_key": "target",
+      "origins": [
+        "https://target.com/"
+      ],
+      "instruction": "Search Target for a non-stick frying pan 12 inch and add the highest rated one to cart",
+      "eval_schema": {
+        "url_pattern": "carts\\.target\\.com/web_checkouts/v\\d+/cart_items",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 523,
+      "directory": "v2-523-shopping-retail-target",
+      "platform_key": "target",
+      "origins": [
+        "https://target.com/"
+      ],
+      "instruction": "Search Target for a queen size microfiber bed sheet set in gray and add the lowest priced one to cart",
+      "eval_schema": {
+        "url_pattern": "carts\\.target\\.com/web_checkouts/v\\d+/cart_items",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 530,
+      "directory": "v2-530-shopping-marketplace-etsy",
+      "platform_key": "etsy",
+      "origins": [
+        "https://etsy.com/"
+      ],
+      "instruction": "Search Etsy for a personalized leather bifold wallet with initials engraving and add it to cart",
+      "eval_schema": {
+        "url_pattern": "etsy\\.com/cart/listing",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 531,
+      "directory": "v2-531-shopping-marketplace-etsy",
+      "platform_key": "etsy",
+      "origins": [
+        "https://etsy.com/"
+      ],
+      "instruction": "Find a leather dog collar with custom name embroidery for a medium-sized dog on Etsy and add to cart",
+      "eval_schema": {
+        "url_pattern": "etsy\\.com/cart/listing",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 533,
+      "directory": "v2-533-daily-life-utilities-inmyarea",
+      "platform_key": "inmyarea",
+      "origins": [
+        "https://inmyarea.com/"
+      ],
+      "instruction": "On InMyArea, enter home address (ZIP 90210), select an internet service plan, click Order Now, then on the provider's signup page fill in personal information and complete the subscription",
+      "eval_schema": {
+        "url_pattern": "att\\.com/msapi/salesapi/wireless-sales-eapi/v2/addtocart",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 535,
+      "directory": "v2-535-daily-life-shopping-etsy",
+      "platform_key": "etsy",
+      "origins": [
+        "https://etsy.com/"
+      ],
+      "instruction": "Search Etsy for a handmade blue ceramic flower vase under $50 and add it to your favorites",
+      "eval_schema": {
+        "url_pattern": "etsy\\.com/api/v\\d+/ajax/bespoke/member/neu/specs/favoriteConfirmationToast",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 536,
+      "directory": "v2-536-daily-life-shopping-etsy",
+      "platform_key": "etsy",
+      "origins": [
+        "https://etsy.com/"
+      ],
+      "instruction": "Find a mid-century modern wooden bookshelf on Etsy priced under $300 and add it to your favorites",
+      "eval_schema": {
+        "url_pattern": "etsy\\.com/api/v\\d+/ajax/bespoke/member/neu/specs/favoriteConfirmationToast",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 560,
+      "directory": "v2-560",
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "instruction": "Search for a free tech networking event in San Francisco on Eventbrite and register for it.\n\nNote: The event is free. Look for a tech networking event in San Francisco and complete the registration flow.",
+      "eval_schema": {
+        "url_pattern": "eventbrite\\.com/purchase-flow-webapp/api/v\\d+/orders/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 120,
+      "extra_info": []
+    },
+    {
+      "task_id": 564,
+      "directory": "v2-564",
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "instruction": "Search for a free startup pitch night event in New York on Eventbrite and register for 2 tickets.\n\nNote: The event is free. Look for a startup pitch night in New York and register for 2 tickets.",
+      "eval_schema": {
+        "url_pattern": "eventbrite\\.com/purchase-flow-webapp/api/v\\d+/orders/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 120,
+      "extra_info": []
+    },
+    {
+      "task_id": 571,
+      "directory": "v2-571-job-search-hr-recruitment-mgmt-workable",
+      "platform_key": "workable",
+      "origins": [
+        "https://workable.com/"
+      ],
+      "instruction": "Sign up for a Workable free trial, create a new job position, and publish it to the Workable careers page",
+      "eval_schema": {
+        "url_pattern": "workable\\.com.*(jobs?/(create|publish|new|draft)|api/(spi|v\\d+)/jobs|careers/publish|/openings)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 583,
+      "directory": "v2-583-office-secretary-tasks-support-tickets-freshdesk",
+      "platform_key": "freshdesk",
+      "origins": [
+        "https://freshdesk.com/"
+      ],
+      "instruction": "Register a free Freshdesk Sprout account, create a new support ticket with subject \"Invoice Dispute - Order #10042\", describe a billing discrepancy, set priority to High, and assign to a test agent",
+      "eval_schema": {
+        "url_pattern": "freshdesk\\.com/api/_/tickets",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 596,
+      "directory": "v2-596-daily-life-fitness-strava",
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "instruction": "Add a 20-mile cycling activity to Strava titled 'Morning Ride'",
+      "eval_schema": {
+        "url_pattern": "strava\\.com\\/activities",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 597,
+      "directory": "v2-597-daily-life-fitness-strava",
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "instruction": "Log a 45-minute yoga session on Strava from yesterday evening",
+      "eval_schema": {
+        "url_pattern": "strava\\.com\\/activities",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 598,
+      "directory": "v2-598-academia-research-legal-docs-formswift",
+      "platform_key": "formswift",
+      "origins": [
+        "https://formswift.com/"
+      ],
+      "instruction": "On FormSwift, search for a \"Power of Attorney\" template, fill in the principal's name, agent's name, and scope of authority, then download the completed document",
+      "eval_schema": {
+        "url_pattern": "api\\.formswift\\.com/static/document/save/",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 600,
+      "directory": "v2-600-hobbies-crafts-community-ravelry",
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "instruction": "Search for a free beginner knitting pattern for a scarf on Ravelry and add it to your library",
+      "eval_schema": {
+        "url_pattern": "ravelry\\.com/patterns/library/[^/]+/add_to_library",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 601,
+      "directory": "v2-601-hobbies-gaming-reviews-ravelry",
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "instruction": "Find a highly-rated crochet amigurumi pattern on Ravelry and add it to your favorites",
+      "eval_schema": {
+        "url_pattern": "ravelry\\.com/patterns/library/[^/]+/bookmark",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 602,
+      "directory": "v2-602-hobbies-crafts-community-ravelry",
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "instruction": "Search for worsted weight yarn on Ravelry and add the most popular result to your stash",
+      "eval_schema": {
+        "url_pattern": "ravelry\\.com/people/[^/]+/stash/[^/]+/quick",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 603,
+      "directory": "v2-603-hobbies-crafts-community-ravelry",
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "instruction": "Find a knitting group on Ravelry, join it, and post a greeting message in its chatroom",
+      "eval_schema": {
+        "url_pattern": "ravelry\\.com/chats/\\d+/talk",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 607,
+      "directory": "v2-607-hobbies-gaming-reviews-boardgamegeek",
+      "platform_key": "boardgamegeek",
+      "origins": [
+        "https://boardgamegeek.com/"
+      ],
+      "instruction": "Log a play for 'Pandemic' on BoardGameGeek with 4 players and a duration of 60 minutes",
+      "eval_schema": {
+        "url_pattern": "boardgamegeek\\.com/(geekplay|api/plays)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 608,
+      "directory": "v2-608-education-learning-kids-courses-outschool",
+      "platform_key": "outschool",
+      "origins": [
+        "https://outschool.com/"
+      ],
+      "instruction": "Search for a Minecraft coding class for kids on Outschool and open the detail page of one of the results to view its description, schedule, and teacher information",
+      "eval_schema": {
+        "url_pattern": "outschool\\.com/classes/",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 609,
+      "directory": "v2-609-education-learning-meditation-spirit-rock-meditation-center",
+      "platform_key": "spirit-rock",
+      "origins": [
+        "https://spiritrock.org/"
+      ],
+      "instruction": "Browse upcoming weekend retreat offerings on the Spirit Rock Meditation Center website, select one session, and complete the registration",
+      "eval_schema": {
+        "url_pattern": "spirit-rock\\.secure\\.retreat\\.guru/program/.*\\?form=1",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 610,
+      "directory": "v2-610-hobbies-gaming-reviews-boardgamegeek",
+      "platform_key": "boardgamegeek",
+      "origins": [
+        "https://boardgamegeek.com/"
+      ],
+      "instruction": "Add yourself as a fan to 'Brass: Birmingham' (2018) on BoardGameGeek",
+      "eval_schema": {
+        "url_pattern": "boardgamegeek\\.com/api/fans",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 630,
+      "directory": "v2-630-daily-life-productivity-habitica",
+      "platform_key": "habitica",
+      "origins": [
+        "https://habitica.com/"
+      ],
+      "instruction": "Add a new daily task on Habitica for 'Drink 8 glasses of water'",
+      "eval_schema": {
+        "url_pattern": "habitica\\.com/api/v\\d+/tasks/user",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 631,
+      "directory": "v2-631-daily-life-productivity-habitica",
+      "platform_key": "habitica",
+      "origins": [
+        "https://habitica.com/"
+      ],
+      "instruction": "Create a new habit on Habitica called 'Read 10 pages' and set it to positive only",
+      "eval_schema": {
+        "url_pattern": "habitica\\.com/api/v\\d+/tasks/user",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 633,
+      "directory": "v2-633-daily-life-productivity-habitica",
+      "platform_key": "habitica",
+      "origins": [
+        "https://habitica.com/"
+      ],
+      "instruction": "Create a daily task called 'Morning Workout' on Habitica and mark it as completed to earn experience points",
+      "eval_schema": {
+        "url_pattern": "habitica\\.com/api/v\\d+/tasks/[^/]+/score/up",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 634,
+      "directory": "v2-634-daily-life-productivity-habitica",
+      "platform_key": "habitica",
+      "origins": [
+        "https://habitica.com/"
+      ],
+      "instruction": "Add a To-Do item on Habitica called 'Buy a birthday gift for Mom' with medium priority and a due date of next Friday",
+      "eval_schema": {
+        "url_pattern": "habitica\\.com/api/v\\d+/tasks/user",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 635,
+      "directory": "v2-635-entertainment-tracking-trakt",
+      "platform_key": "trakt",
+      "origins": [
+        "https://trakt.tv/"
+      ],
+      "instruction": "Search for 'Breaking Bad' on Trakt.tv and add it to your watchlist",
+      "eval_schema": {
+        "url_pattern": "trakt\\.tv.*(sync/watchlist)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 638,
+      "directory": "v2-638-entertainment-tracking-trakt",
+      "platform_key": "trakt",
+      "origins": [
+        "https://trakt.tv/"
+      ],
+      "instruction": "Create a new custom list on Trakt.tv named 'Sci-Fi Favorites'",
+      "eval_schema": {
+        "url_pattern": "trakt\\.tv.*(users/me/lists)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 705,
+      "directory": "v2-705-rating-voting-wine-review-vivino",
+      "platform_key": "vivino",
+      "origins": [
+        "https://vivino.com/"
+      ],
+      "instruction": "Submit a 4-star rating for a Pinot Noir on Vivino with exactly this tasting note: \"Light body, cherry notes, smooth finish.\"",
+      "eval_schema": {
+        "url_pattern": "vivino\\.com/api/vintages/\\d+/reviews",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 706,
+      "directory": "v2-706-rating-voting-beer-review-beeradvocate",
+      "platform_key": "beeradvocate",
+      "origins": [
+        "https://beeradvocate.com/"
+      ],
+      "instruction": "Submit a review for an Imperial Stout on BeerAdvocate with all dimension scores filled and exactly this comment: \"Rich malt, roasty aroma, full body.\"",
+      "eval_schema": {
+        "url_pattern": "beeradvocate\\.com/beer/rate/\\d+",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 707,
+      "directory": "v2-707-rating-voting-social-wine-untappd",
+      "platform_key": "untappd",
+      "origins": [
+        "https://untappd.com/"
+      ],
+      "instruction": "Check in an IPA on Untappd with the highest star rating, and check out",
+      "eval_schema": {
+        "url_pattern": "^https://untappd\\.com/api/v2/shop/summaries/\\d+",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 708,
+      "directory": "v2-708-rating-voting-professor-review-ratemyprofessors",
+      "platform_key": "ratemyprofessors",
+      "origins": [
+        "https://ratemyprofessors.com/"
+      ],
+      "instruction": "Submit a rating for a Computer Science professor on RateMyProfessors: quality 4, difficulty 3, would take again Yes, with exactly this comment: \"Clear lectures, fair exams.\"",
+      "eval_schema": {
+        "url_pattern": "ratemyprofessors\\.com/graphql",
+        "method": "POST",
+        "body": {
+          "operationName": "RateTeacherMutation"
+        }
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 711,
+      "directory": "v2-711-creation-init-color-design-coolors",
+      "platform_key": "coolors",
+      "origins": [
+        "https://coolors.co/"
+      ],
+      "instruction": "On Coolors, generate a 5-color palette, lock one color and adjust it to #FF6B6B, then export the palette to PDF.",
+      "eval_schema": {
+        "url_pattern": "coolors\\.co/ajax/export-palette",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 735,
+      "directory": "v2-735-home-services-maintenance-house-cleaning-bark",
+      "platform_key": "bark",
+      "origins": [
+        "https://bark.com/"
+      ],
+      "instruction": "Post a home cleaning project on Bark, fill in the service description, address, and required date, and submit the project",
+      "eval_schema": {
+        "url_pattern": "api\\.bark\\.com/bark/pre",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 737,
+      "directory": "v2-737-home-services-maintenance-kitchen-remodel-lowes",
+      "platform_key": "lowes",
+      "origins": [
+        "https://lowes.com/"
+      ],
+      "instruction": "Schedule a free kitchen remodel consultation on Lowe's website",
+      "eval_schema": {
+        "url_pattern": "lowes\\.myhomeprojectcenter\\.com.*/lead|lowes\\.com.*/schedule|lowes\\.com.*/consultation|lowes\\.com.*/install-services|lowes\\.com.*/measurerequest",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 763,
+      "directory": "v2-763-automotive-vehicle-services-car-lease-autoslash",
+      "platform_key": "autoslash",
+      "origins": [
+        "https://autoslash.com/"
+      ],
+      "instruction": "Search AutoSlash for the cheapest economy car rental at Miami airport for a 3-day period, and complete the price-tracking registration so it auto-rebooks if prices drop",
+      "eval_schema": {
+        "url_pattern": "www\\.autoslash\\.com/quote/contact-info/[0-9a-f-]+",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 774,
+      "directory": "v2-774-nonprofit-charity-nonprofit-job-apply-charity-village",
+      "platform_key": "charity-village",
+      "origins": [
+        "https://charityvillage.com/"
+      ],
+      "instruction": "On Charity Village, create an account and apply for a full-time volunteer coordinator position in the Youth sector in Calgary, upload a resume and fill in a cover letter",
+      "eval_schema": {
+        "url_pattern": "www\\.charityvillage\\.com/api/auth/callback/sign-in",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 776,
+      "directory": "v2-776-nonprofit-charity-volunteer-signup-idealist",
+      "platform_key": "idealist",
+      "origins": [
+        "https://idealist.org/"
+      ],
+      "instruction": "On Idealist, search for Program Manager positions at nonprofits in Washington DC, select a qualifying position and submit a job application",
+      "eval_schema": {
+        "url_pattern": "www\\.idealist\\.org/data/userdashboard/missing-info",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 794,
+      "directory": "v2-794-beauty-personal-care-salon-booking-styleseat",
+      "platform_key": "styleseat",
+      "origins": [
+        "https://styleseat.com/"
+      ],
+      "instruction": "On StyleSeat, search for hairstylists in your city, select one rated 4.8 stars or above, and book a haircut appointment at the earliest available time slot",
+      "eval_schema": {
+        "url_pattern": "styleseat\\.com/api/v1/appointment-request/",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 815,
+      "directory": "v2-815-pet-animal-care-favorite-pet",
+      "platform_key": "petfinder",
+      "origins": [
+        "https://petfinder.com/"
+      ],
+      "instruction": "On Petfinder, search for adoptable dogs near ZIP code 10001, open the profile of the first dog listed, and save it as a favorite by clicking the heart icon. You will need to sign in or create an account to complete this action.",
+      "eval_schema": {
+        "url_pattern": "psl\\.petfinder\\.com/graphql",
+        "method": "POST",
+        "body": {
+          "operationName": "CreateAnimalFavorite"
+        }
+      },
+      "time_limit_minutes": 25,
+      "extra_info": []
+    },
+    {
+      "task_id": 816,
+      "directory": "v2-816-pet-animal-care-remove-favorite",
+      "platform_key": "petfinder",
+      "origins": [
+        "https://petfinder.com/"
+      ],
+      "instruction": "On Petfinder, search for adoptable cats near ZIP code 90210, open the profile of the first result, save it as a favorite, and then immediately remove it from your favorites by clicking the heart icon again.",
+      "eval_schema": {
+        "url_pattern": "psl\\.petfinder\\.com/graphql",
+        "method": "POST",
+        "body": {
+          "operationName": "RemoveAnimalFavorite"
+        }
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 817,
+      "directory": "v2-817-pet-animal-care-create-adopter-profile",
+      "platform_key": "petfinder",
+      "origins": [
+        "https://petfinder.com/"
+      ],
+      "instruction": "On Petfinder, start the process of submitting an adoption inquiry for any adoptable dog. When prompted, complete the adopter profile creation form with your details to proceed.",
+      "eval_schema": {
+        "url_pattern": "psl\\.petfinder\\.com/graphql",
+        "method": "POST",
+        "body": {
+          "operationName": "CreateAdopterProfile"
+        }
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 901,
+      "directory": "v2-901-entertainment-imdb-add-to-watchlist",
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "instruction": "On IMDb, search for the movie 'The Dark Knight', open its title page, and add it to your Watchlist by clicking the '+ Watchlist' button. You will need to be signed in to complete this action.",
+      "eval_schema": {
+        "url_pattern": "api\\.graphql\\.imdb\\.com",
+        "method": "POST",
+        "body": {
+          "operationName": "AddIdToWatchlist"
+        }
+      },
+      "time_limit_minutes": 20,
+      "extra_info": []
+    },
+    {
+      "task_id": 902,
+      "directory": "v2-902-entertainment-imdb-rate-title",
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "instruction": "On IMDb, open the title page for 'Interstellar' (2014) and give it a rating of 9 out of 10 stars using the Rate button. You will need to be signed in.",
+      "eval_schema": {
+        "url_pattern": "api\\.graphql\\.imdb\\.com",
+        "method": "POST",
+        "body": {
+          "operationName": "UpdateTitleRating"
+        }
+      },
+      "time_limit_minutes": 25,
+      "extra_info": []
+    },
+    {
+      "task_id": 903,
+      "directory": "v2-903-entertainment-imdb-remove-rating",
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "instruction": "On IMDb, find any title you have previously rated, open its page, click the Rate button, and then click 'Remove rating' to delete your rating.",
+      "eval_schema": {
+        "url_pattern": "api\\.graphql\\.imdb\\.com",
+        "method": "POST",
+        "body": {
+          "operationName": "DeleteTitleRating"
+        }
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 904,
+      "directory": "v2-904-entertainment-imdb-create-list",
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "instruction": "On IMDb, navigate to the 'Create a new list' page, enter the name 'My Sci-Fi Favorites', keep the default List Type as 'Titles', set Privacy to 'Private', and click Create.",
+      "eval_schema": {
+        "url_pattern": "api\\.graphql\\.imdb\\.com",
+        "method": "POST",
+        "body": {
+          "operationName": "ListCreate"
+        }
+      },
+      "time_limit_minutes": 20,
+      "extra_info": []
+    },
+    {
+      "task_id": 905,
+      "directory": "v2-905-entertainment-imdb-add-to-list",
+      "platform_key": "imdb",
+      "origins": [
+        "https://imdb.com/"
+      ],
+      "instruction": "On IMDb, open the title page for 'Pulp Fiction' (1994), click the dropdown chevron next to the Watchlist button, and add it to an existing custom list of yours.\n\nNote: The user must already have at least one custom list created. If not, create one first.",
+      "eval_schema": {
+        "url_pattern": "api\\.graphql\\.imdb\\.com",
+        "method": "POST",
+        "body": {
+          "operationName": "AddConstToList"
+        }
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1010,
+      "directory": "v2-1010-rating-voting-review-myrecipes",
+      "platform_key": "myrecipes",
+      "origins": [
+        "https://myrecipes.com/"
+      ],
+      "instruction": "Rate a Vegan Chocolate Chip Cookies Recipe on MyRecipes with 4 stars and add a helpful tip",
+      "eval_schema": {
+        "url_pattern": "myrecipes\\.com/api/v\\d+/review/save",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1033,
+      "directory": "v2-1033-education-learning-registration-khanacademy",
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "instruction": "Navigate to the 'World War I: military & diplomacy' lesson on Khan Academy",
+      "eval_schema": {
+        "url_pattern": "khanacademy\\.org/humanities/ap-us-history/period-7/apush-world-war-i-military-and-diplomacy-lesson",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1035,
+      "directory": "v2-1035-education-learning-enrollment-edx",
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "instruction": "Log into edX and enroll in the free 'Machine Learning with Python: from Linear Models to Deep Learning' course by MIT on edX",
+      "eval_schema": {
+        "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1045,
+      "directory": "v2-1045-weworkremotely",
+      "platform_key": "weworkremotely",
+      "origins": [
+        "https://weworkremotely.com/"
+      ],
+      "instruction": "Go to We Work Remotely (https://weworkremotely.com/remote-jobs/new) and complete the 4-step job posting form to post a remote job listing. Fill in all required fields across all steps and place the order.",
+      "eval_schema": {
+        "url_pattern": "weworkremotely\\.com/listings",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1065,
+      "directory": "v2-1065b-daily-life-home-services-handy",
+      "platform_key": "handy",
+      "origins": [
+        "https://handy.com/"
+      ],
+      "instruction": "Get a price quote on Handy for a house cleaning service for next Saturday at 9am for a 3-bedroom, 2-bathroom apartment in Brooklyn (ZIP 11201). Select 3 hours duration.",
+      "eval_schema": {
+        "url_pattern": "handy\\.com/quotes/\\d+/finalize",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1088,
+      "directory": "v2-1088-nonprofit-charity-petition-change",
+      "platform_key": "change",
+      "origins": [
+        "https://change.org/"
+      ],
+      "instruction": "Start a petition on Change.org to add more late-night bus routes in downtown Toronto",
+      "eval_schema": {
+        "url_pattern": "change\\.org/api-proxy/graphql.*op=GenerateAiDraft|change\\.org/api-proxy/graphql.*op=CreatePetition|change\\.org/api-proxy/graphql.*op=SAPCreatePetition",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1093,
+      "directory": "v2-1093-personal-management-travel-tripit",
+      "platform_key": "tripit",
+      "origins": [
+        "https://tripit.com/"
+      ],
+      "instruction": "Create a travel itinerary on TripIt for a 7-day trip to Vancouver from June 15 to June 22 with a flight from SFO",
+      "eval_schema": {
+        "url_pattern": "tripit\\.com/api/v\\d+/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1095,
+      "directory": "v2-1095-health-mealplan-eatthismuch",
+      "platform_key": "eatthismuch",
+      "origins": [
+        "https://eatthismuch.com/"
+      ],
+      "instruction": "Add a new custom meal type called 'Morning Snack' to your Eat This Much meal layout. Set the meal size to 'Tiny' and the cooking preference to 'No Cooking', then save it.",
+      "eval_schema": {
+        "url_pattern": "eatthismuch\\.com/api/v\\d+/mealtype/",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1097,
+      "directory": "v2-1097-beauty-personal-care-shopping-theordinary",
+      "platform_key": "theordinary",
+      "origins": [
+        "https://theordinary.com/"
+      ],
+      "instruction": "Add The Ordinary Niacinamide 10% + Zinc 1% and Hyaluronic Acid 2% + B5 (with Ceramides) to cart on The Ordinary website",
+      "eval_schema": {
+        "url_pattern": "theordinary\\.com.*Cart-AddProduct",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1100,
+      "directory": "v2-1100-food-cooking-collection-myrecipes",
+      "platform_key": "myrecipes",
+      "origins": [
+        "https://myrecipes.com/"
+      ],
+      "instruction": "Add Baked Ziti to Want to Try collection on MyRecipes",
+      "eval_schema": {
+        "url_pattern": "myrecipes\\.com/collections/bookmarks/save",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1101,
+      "directory": "v2-1101-hobbies-gaming-discussion-ravelry",
+      "platform_key": "ravelry",
+      "origins": [
+        "https://ravelry.com/"
+      ],
+      "instruction": "Post a fun discussion topic in 'Sock Knitters' group on Ravelry",
+      "eval_schema": {
+        "url_pattern": "ravelry\\.com/discuss/[^/]+/topics",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1102,
+      "directory": "v2-1102-fitness-social-post-strava",
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "instruction": "Publish a post on Strava with the caption 'Great morning ride!'",
+      "eval_schema": {
+        "url_pattern": "strava\\.com\\/athletes\\/\\d+\\/posts",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1103,
+      "directory": "v2-1103-fitness-club-strava",
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "instruction": "Create a cycling club on Strava called 'Portland Weekend Riders' for casual group rides every Saturday morning in Portland, OR",
+      "eval_schema": {
+        "url_pattern": "strava\\.com\\/clubs",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1104,
+      "directory": "v2-1104-fitness-edit-activity-strava",
+      "platform_key": "strava",
+      "origins": [
+        "https://strava.com/"
+      ],
+      "instruction": "Edit the most recent activity on Strava and add the description 'Felt strong today — great tempo throughout.'",
+      "eval_schema": {
+        "url_pattern": "strava\\.com\\/activities\\/\\d+",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1107,
+      "directory": "v2-1107-hobbies-gaming-forum-boardgamegeek",
+      "platform_key": "boardgamegeek",
+      "origins": [
+        "https://boardgamegeek.com/"
+      ],
+      "instruction": "Post a question in the 'Ticket to Ride' forum on BoardGameGeek asking about the best strategy for long routes",
+      "eval_schema": {
+        "url_pattern": "geekdo\\.com/api/thread",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1108,
+      "directory": "v2-1108-civic-petition-change",
+      "platform_key": "change",
+      "origins": [
+        "https://change.org/"
+      ],
+      "instruction": "Start a petition on Change.org to install more bike lanes on Market Street in San Francisco",
+      "eval_schema": {
+        "url_pattern": "change\\.org/api-proxy/graphql.*op=GenerateAiDraft|change\\.org/api-proxy/graphql.*op=CreatePetition|change\\.org/api-proxy/graphql.*op=SAPCreatePetition",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1111,
+      "directory": "v2-1111-civic-petition-change",
+      "platform_key": "change",
+      "origins": [
+        "https://change.org/"
+      ],
+      "instruction": "On Change.org, write and publish a petition from scratch (without AI assistance) calling for free public Wi-Fi in all New York City public libraries",
+      "eval_schema": {
+        "url_pattern": "change\\.org/api-proxy/graphql.*op=SAPCreatePetition",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1112,
+      "directory": "v2-1112-nonprofit-petition-update-change",
+      "platform_key": "change",
+      "origins": [
+        "https://change.org/"
+      ],
+      "instruction": "On Change.org, find your most recently created petition and post a supporter update announcing that the petition has reached a new milestone and urging followers to keep sharing",
+      "eval_schema": {
+        "url_pattern": "change\\.org/api-proxy/graphql.*op=CreatePetitionUpdate",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1113,
+      "directory": "v2-1113-health-mealplan-eatthismuch",
+      "platform_key": "eatthismuch",
+      "origins": [
+        "https://eatthismuch.com/"
+      ],
+      "instruction": "Set your dietary preferences on Eat This Much to keto with a daily budget of $15, then navigate to the planner and regenerate today's meals.",
+      "eval_schema": {
+        "url_pattern": "eatthismuch\\.com/g/generate/day",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1114,
+      "directory": "v2-1114-education-enrollment-edx",
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "instruction": "Log into edX and enroll in the free 'Introduction to Computer Science' course by Harvard (CS50) on edX",
+      "eval_schema": {
+        "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1115,
+      "directory": "v2-1115-education-enrollment-edx",
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "instruction": "Log into edX and enroll in the free 'Algorithmic Design and Techniques' course by UC San Diego on edX",
+      "eval_schema": {
+        "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1116,
+      "directory": "v2-1116-education-enrollment-edx",
+      "platform_key": "edx",
+      "origins": [
+        "https://edx.org/"
+      ],
+      "instruction": "Log into edX and enroll in the free 'Python Basics for Data Science' course by IBM on edX",
+      "eval_schema": {
+        "url_pattern": "www\\.edx\\.org/(track-select/|learn/)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1117,
+      "directory": "v2-1117",
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "instruction": "Search for the 'Hearts2Heal Monthly Wellness Meetup' event in Austin, TX on Eventbrite and register for the next available date.\n\nNote: The event is free and held on the 4th Tuesday of each month at Capital Factory, Austin TX. Event URL: https://www.eventbrite.com/e/hearts2heal-monthly-wellness-meetup-tickets-1983102574183",
+      "eval_schema": {
+        "url_pattern": "eventbrite\\.com/purchase-flow-webapp/api/v\\d+/orders/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 120,
+      "extra_info": []
+    },
+    {
+      "task_id": 1118,
+      "directory": "v2-1118",
+      "platform_key": "eventbrite",
+      "origins": [
+        "https://eventbrite.com/"
+      ],
+      "instruction": "Find the 'Sazón Latin Food Festival 2026: Chicago's Taste of Latin American Food' on Eventbrite and register for 2 General Admission tickets.\n\nNote: The event is free and takes place on Sunday, June 14, 2026, 12 PM – 5 PM at KOVAL Store, Chicago, IL. Event URL: https://www.eventbrite.com/e/sazon-latin-food-festival-2026-chicagos-taste-of-latin-american-food-tickets-1980904085444",
+      "eval_schema": {
+        "url_pattern": "eventbrite\\.com/purchase-flow-webapp/api/v\\d+/orders/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 120,
+      "extra_info": []
+    },
+    {
+      "task_id": 1120,
+      "directory": "v2-1120b-services-booking-handy",
+      "platform_key": "handy",
+      "origins": [
+        "https://handy.com/"
+      ],
+      "instruction": "Get a price quote on Handy for a furniture assembly service for next Friday at 2pm in Brooklyn (ZIP 11201) for 1 medium furniture item. Add the description 'IKEA KALLAX bookshelf assembly' in the job description field.",
+      "eval_schema": {
+        "url_pattern": "handy\\.com/quotes/\\d+/finalize",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1121,
+      "directory": "v2-1121b-services-booking-handy",
+      "platform_key": "handy",
+      "origins": [
+        "https://handy.com/"
+      ],
+      "instruction": "Get a price quote on Handy for a TV mounting service for next Wednesday at 10am in Brooklyn (ZIP 11201) for 1 TV.",
+      "eval_schema": {
+        "url_pattern": "handy\\.com/quotes/\\d+/finalize",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1122,
+      "directory": "v2-1122-education-course-khanacademy",
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "instruction": "Navigate to the 'Algebra 1' course on Khan Academy, go to the 'Linear equations & graphs' unit, and answer the first question of the 'Solutions to 2-variable equations' practice exercise",
+      "eval_schema": {
+        "url_pattern": "khanacademy\\.org/api/internal/graphql/attemptProblem",
+        "method": "POST"
+      },
+      "time_limit_minutes": 60,
+      "extra_info": []
+    },
+    {
+      "task_id": 1123,
+      "directory": "v2-1123-education-course-khanacademy",
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "instruction": "Navigate to the AP Biology 'Cell Communication and Cell Cycle' unit on Khan Academy, go to the 'Cell cycle' lesson, and answer the first question of the Cell cycle practice exercise",
+      "eval_schema": {
+        "url_pattern": "khanacademy\\.org/api/internal/graphql/attemptProblem",
+        "method": "POST"
+      },
+      "time_limit_minutes": 60,
+      "extra_info": []
+    },
+    {
+      "task_id": 1124,
+      "directory": "v2-1124-education-course-khanacademy",
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "instruction": "Search for 'Organic Chemistry' on Khan Academy and add the course to your learning list",
+      "eval_schema": {
+        "url_pattern": "khanacademy\\.org/api/internal/graphql/setUserCourses",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1125,
+      "directory": "v2-1125-education-course-khanacademy",
+      "platform_key": "khanacademy",
+      "origins": [
+        "https://khanacademy.org/"
+      ],
+      "instruction": "On Khan Academy, navigate to the AP US History course, go to the 'World War I: military and diplomacy' lesson, and answer the first question of the practice exercise",
+      "eval_schema": {
+        "url_pattern": "khanacademy\\.org/api/internal/graphql/attemptProblem",
+        "method": "POST"
+      },
+      "time_limit_minutes": 60,
+      "extra_info": []
+    },
+    {
+      "task_id": 1126,
+      "directory": "v2-1126-food-cooking-collection-myrecipes",
+      "platform_key": "myrecipes",
+      "origins": [
+        "https://myrecipes.com/"
+      ],
+      "instruction": "Search for 'chicken soup' on MyRecipes and save the top result to your Want to Try collection",
+      "eval_schema": {
+        "url_pattern": "myrecipes\\.com/collections/bookmarks/save",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1130,
+      "directory": "v2-1130-training-class-search-redcross",
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "instruction": "Search for CPR certification classes in zip code 10001 on the Red Cross training website and find the first available in-person class",
+      "eval_schema": {
+        "url_pattern": "redcross\\.org\\/take-a-class\\/search.*(?:q|query|zip|searchtype|location)=",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1131,
+      "directory": "v2-1131-training-add-to-cart-redcross",
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "instruction": "Add the 'Adult First Aid/CPR/AED Online' course to the cart on the Red Cross training website",
+      "eval_schema": {
+        "url_pattern": "redcross\\.org\\/on\\/demandware\\.store\\/Sites-RedCross-Site\\/default\\/Product-Detail",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1132,
+      "directory": "v2-1132-training-enroll-course-redcross",
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "instruction": "Enroll in an online First Aid/CPR certification course on the Red Cross website",
+      "eval_schema": {
+        "url_pattern": "redcross\\.org\\/take-a-class\\/cart\\/checkout-confirmation",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1133,
+      "directory": "v2-1133-newsletter-signup-redcross",
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "instruction": "Sign up for the Red Cross training newsletter using the email signup form on their training website",
+      "eval_schema": {
+        "url_pattern": "redcross\\.org\\/on\\/demandware\\.store\\/Sites-RedCross-Site\\/default\\/ExactTargetEmailSignUp",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1134,
+      "directory": "v2-1134-chapter-finder-redcross",
+      "platform_key": "redcross",
+      "origins": [
+        "https://redcross.org/"
+      ],
+      "instruction": "Find the nearest Red Cross chapter to zip code 90210 using the local chapter finder on redcross.org",
+      "eval_schema": {
+        "url_pattern": "redcross\\.org\\/find-your-local-chapter",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1135,
+      "directory": "v2-1135-events-tickets-ticketmaster",
+      "platform_key": "ticketmaster",
+      "origins": [
+        "https://ticketmaster.com/"
+      ],
+      "instruction": "Search for upcoming NBA basketball games on Ticketmaster in a major US city and view available ticket pricing for 2 tickets",
+      "eval_schema": {
+        "url_pattern": "ticketmaster\\.com\\/[^/]+-tickets-[^/]+\\/event\\/[A-Z0-9]+",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1136,
+      "directory": "v2-1136-events-tickets-ticketmaster",
+      "platform_key": "ticketmaster",
+      "origins": [
+        "https://ticketmaster.com/"
+      ],
+      "instruction": "Find a Broadway or theater show in New York City on Ticketmaster, open the event page for one of the results, and use the 'Best Seats' option to view the top recommended seats for 4 tickets",
+      "eval_schema": {
+        "url_pattern": "services\\.ticketmaster\\.com/api/ismds/event/[A-Z0-9]+/quickpicks.*qty=4.*sort=-quality",
+        "method": "GET"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1137,
+      "directory": "v2-1137-entertainment-watchlist-trakt",
+      "platform_key": "trakt",
+      "origins": [
+        "https://trakt.tv/"
+      ],
+      "instruction": "Search for 'The Office' on Trakt.tv and rate it 10 out of 10 stars",
+      "eval_schema": {
+        "url_pattern": "trakt\\.tv.*(sync/ratings)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1138,
+      "directory": "v2-1138-entertainment-watchlist-trakt",
+      "platform_key": "trakt",
+      "origins": [
+        "https://trakt.tv/"
+      ],
+      "instruction": "Mark the first 3 episodes of 'Stranger Things' Season 1 as watched on Trakt.tv",
+      "eval_schema": {
+        "url_pattern": "trakt\\.tv.*(sync/history)",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1139,
+      "directory": "v2-1139-travel-itinerary-tripit",
+      "platform_key": "tripit",
+      "origins": [
+        "https://tripit.com/"
+      ],
+      "instruction": "Create a travel itinerary on TripIt for a 4-day weekend trip to New York from May 23 to May 26 flying from LAX",
+      "eval_schema": {
+        "url_pattern": "tripit\\.com/api/v\\d+/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1140,
+      "directory": "v2-1140-travel-itinerary-tripit",
+      "platform_key": "tripit",
+      "origins": [
+        "https://tripit.com/"
+      ],
+      "instruction": "Add a hotel reservation at the Hilton Midtown Manhattan from May 23-26 to your existing New York trip on TripIt",
+      "eval_schema": {
+        "url_pattern": "tripit\\.com/api/v\\d+/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1141,
+      "directory": "v2-1141-travel-itinerary-tripit",
+      "platform_key": "tripit",
+      "origins": [
+        "https://tripit.com/"
+      ],
+      "instruction": "Create a trip on TripIt for a business conference in Seattle from August 10 to August 13 with a flight from SFO",
+      "eval_schema": {
+        "url_pattern": "tripit\\.com/api/v\\d+/create",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1144,
+      "directory": "v2-1144-weworkremotely",
+      "platform_key": "weworkremotely",
+      "origins": [
+        "https://weworkremotely.com/"
+      ],
+      "instruction": "Go to We Work Remotely (https://weworkremotely.com/remote-jobs/new) and post a remote job listing for a 'Senior Backend Developer' position in the 'Back-End Programming' category. Fill in all required fields across all steps and place the order.",
+      "eval_schema": {
+        "url_pattern": "weworkremotely\\.com/listings",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1145,
+      "directory": "v2-1145-weworkremotely",
+      "platform_key": "weworkremotely",
+      "origins": [
+        "https://weworkremotely.com/"
+      ],
+      "instruction": "Go to We Work Remotely (https://weworkremotely.com/remote-jobs/new) and post a remote job listing for a 'Senior UI/UX Designer' position in the 'Design' category. Fill in all required fields across all steps and place the order.",
+      "eval_schema": {
+        "url_pattern": "weworkremotely\\.com/listings",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1146,
+      "directory": "v2-1146-weworkremotely",
+      "platform_key": "weworkremotely",
+      "origins": [
+        "https://weworkremotely.com/"
+      ],
+      "instruction": "Go to We Work Remotely (https://weworkremotely.com). Find any remote job listing in the 'Back-End Programming' category and save it by clicking the 'Save Job' button on the job detail page.\n\nNote: The user is already logged in. Any available Back-End Programming job listing works. The 'Save Job' button appears on the individual job detail page. After clicking, the button changes to 'Remove Job' to confirm success.",
+      "eval_schema": {
+        "url_pattern": "weworkremotely\\.com/listings/[^/]+/toggle_save",
+        "method": "POST"
+      },
+      "time_limit_minutes": 30,
+      "extra_info": []
+    },
+    {
+      "task_id": 1201,
+      "directory": "v2-1201-beauty-cart-theordinary",
+      "platform_key": "theordinary",
+      "origins": [
+        "https://theordinary.com/"
+      ],
+      "instruction": "Search for 'retinol' on The Ordinary website, then add the Granactive Retinoid 2% Emulsion to the cart",
+      "eval_schema": {
+        "url_pattern": "theordinary\\.com.*Cart-AddProduct",
+        "method": "POST"
+      },
+      "time_limit_minutes": 45,
+      "extra_info": []
+    },
+    {
+      "task_id": 1202,
+      "directory": "v2-1202-beauty-cart-quantity-theordinary",
+      "platform_key": "theordinary",
+      "origins": [
+        "https://theordinary.com/"
+      ],
+      "instruction": "Add 2 units of The Ordinary Multi-Peptide + HA Serum to the cart on The Ordinary website",
+      "eval_schema": {
+        "url_pattern": "theordinary\\.com.*Cart-AddProduct",
+        "method": "POST"
+      },
+      "time_limit_minutes": 45,
+      "extra_info": []
+    }
+  ]
+}

@@ -336,7 +336,10 @@ class LocalSMTPHandler(socketserver.StreamRequestHandler):
 
 
 class LocalSMTPServer(socketserver.ThreadingTCPServer):
-    allow_reuse_address = True
+    # Fail closed when another inbox already owns the SMTP endpoint.  On
+    # Windows SO_REUSEADDR can otherwise allow two listeners for one port and
+    # route verification mail to the wrong browser inbox.
+    allow_reuse_address = False
     daemon_threads = True
     request_queue_size = 16
 
@@ -492,7 +495,7 @@ class InboxHTTPHandler(BaseHTTPRequestHandler):
 
 
 class InboxHTTPServer(ThreadingHTTPServer):
-    allow_reuse_address = True
+    allow_reuse_address = False
     daemon_threads = True
 
     def __init__(self, address: tuple[str, int], inbox: InboxStore) -> None:

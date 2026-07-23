@@ -1,0 +1,636 @@
+{
+  "schema_version": "clawbench.project.v1",
+  "project_id": "clawbench-websitebench",
+  "title": "ClawBench WebsiteBench",
+  "objective": "评估 Agent 能否仅通过浏览器交互既有离线网站，在隔离环境中复刻其可见界面、关键交互和必要的前后端语义，并由 Harbor 下的独立验证器完成可重复评分。",
+  "status": "active",
+  "updated_at": "2026-07-23",
+  "principles": [
+    "网站复刻以冻结证据、用户旅程和语义不变量为依据，不以技术栈相似度为目标。",
+    "Agent 使用 Browser Use CLI 探索参考站；Playwright 与直接 HTTP 检查只属于正式验证器。",
+    "参考实现、隐藏检查、隐藏 fixture 和 oracle 不进入 Agent 可见文件系统。",
+    "site 合约与 instance 任务分离，扩容时复用站点、按题目叠加目标与测试。",
+    "完成状态必须由可追溯证据支持；静态校验不能替代 NOP、oracle、真实 Harbor 和人工浏览器验收。"
+  ],
+  "roles": [
+    {
+      "id": "benchmark-maintainer",
+      "title": "Benchmark Maintainer",
+      "responsibilities": [
+        "维护数据模型、CLI、项目计划和兼容性边界。",
+        "合并前检查跨工作流回归与发布门禁。"
+      ]
+    },
+    {
+      "id": "site-author",
+      "title": "Site Author",
+      "responsibilities": [
+        "冻结参考站范围、证据、路由状态矩阵和后端语义不变量。",
+        "交付可重置、离线且不依赖远程资源的参考站。"
+      ]
+    },
+    {
+      "id": "instance-author",
+      "title": "Instance Author",
+      "responsibilities": [
+        "编写单题 instruction、公开 starter、测试节点和 oracle。",
+        "确保题目要求不泄漏 verifier-only 内容。"
+      ]
+    },
+    {
+      "id": "verifier-author",
+      "title": "Verifier Author",
+      "responsibilities": [
+        "实现参考优先的顺序差分验证、exact CTRF 计分与证据输出。",
+        "执行 NOP、oracle、重复性和抗代理校准。"
+      ]
+    },
+    {
+      "id": "human-reviewer",
+      "title": "Human Reviewer",
+      "responsibilities": [
+        "用真实浏览器复核视觉、交互、边界状态和误导性完成声明。",
+        "把人工 QA 与机器评分保持为独立证据。"
+      ]
+    },
+    {
+      "id": "release-manager",
+      "title": "Release Manager",
+      "responsibilities": [
+        "核对所有发布门禁并固定发布清单。",
+        "拒绝缺少 Harbor 实跑或证据不完整的实例进入正式语料。"
+      ]
+    }
+  ],
+  "workstreams": [
+    {
+      "id": "project-governance",
+      "title": "项目治理与扩容规范",
+      "owner": "benchmark-maintainer",
+      "status": "complete",
+      "outcome": "用同一份机器可读计划管理目标、角色、里程碑、积压、风险、决策和发布门禁。",
+      "deliverables": [
+        "project/plan.json",
+        "PROJECT.md",
+        "clawbench-project CLI",
+        "仓库版本化 build-offline-site-clone skill"
+      ],
+      "evidence": [
+        "project/plan.json",
+        "websitebench/schemas/project-plan.schema.json",
+        "src/clawbench/project/",
+        "tests/project/",
+        "skills/build-offline-site-clone/"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "offline-clone-harness",
+      "title": "离线网站复刻与证据闭包",
+      "owner": "site-author",
+      "status": "in_progress",
+      "outcome": "每个参考站都具有冻结范围、完整资源闭包、路由状态矩阵、语义不变量和可重置本地运行时。",
+      "deliverables": [
+        "站点 scope contract 与冻结证据",
+        "前端视觉和交互复刻",
+        "必要的后端语义与 deterministic reset",
+        "离线闭包、功能和视觉报告"
+      ],
+      "evidence": [
+        "src/clawbench/offline_clone/",
+        "docs/offline-clone-harness.md",
+        "materials/amazon/"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "harbor-authoring",
+      "title": "Harbor 前后端联合 benchmark 封装",
+      "owner": "benchmark-maintainer",
+      "status": "complete",
+      "outcome": "从规范化 site/instance 源生成隔离的 Harbor 1.4 bundle，并由 Browser Use Agent 与独立 Playwright/HTTP verifier 分工。",
+      "deliverables": [
+        "site 与 instance schema",
+        "scaffold、validate、materialize CLI",
+        "Compose reference sidecar 与 separate verifier",
+        "100 分 exact CTRF 计分模板"
+      ],
+      "evidence": [
+        "src/clawbench/harbor/",
+        "websitebench/schemas/harbor-site.schema.json",
+        "websitebench/schemas/harbor-instance.schema.json",
+        "tests/harbor/",
+        "docs/harbor-fullstack-benchmark.md"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "release-instances",
+      "title": "真实站点与联合测试实例扩容",
+      "owner": "instance-author",
+      "status": "planned",
+      "outcome": "形成覆盖不同站点、不同旅程和前后端语义的可发布 Harbor 实例集。",
+      "deliverables": [
+        "首个 release-ready 真实 site",
+        "首个通过校准的 Harbor instance",
+        "至少 10 个前后端联合测试实例"
+      ],
+      "evidence": [],
+      "blocked_by": []
+    },
+    {
+      "id": "viewer-integration",
+      "title": "语料审核与结果 Viewer 集成",
+      "owner": "benchmark-maintainer",
+      "status": "blocked",
+      "outcome": "Viewer 能稳定发现规范化复刻任务与 Harbor bundle，并保持人工 QA、官方分数和诊断指标分离。",
+      "deliverables": [
+        "规范化 instance 发现与详情页",
+        "Harbor bundle manifest 可见性审核",
+        "全套 Viewer 回归通过"
+      ],
+      "evidence": [
+        "src/clawbench/viewer/",
+        "tests/viewer/"
+      ],
+      "blocked_by": [
+        "当前并行 Amazon/Viewer 改动新增 offline-clone--amazon-shopping-mainline，但既有 review key 合约尚未同步，完整测试仍有 6 个失败。"
+      ]
+    }
+  ],
+  "milestones": [
+    {
+      "id": "governance-baseline",
+      "title": "建立项目管理单一事实源",
+      "owner": "benchmark-maintainer",
+      "status": "complete",
+      "target": "repository baseline",
+      "exit_criteria": [
+        "计划能被 schema 与语义校验。",
+        "状态命令能列出阻塞、下一步和发布就绪度。",
+        "website clone skill 强制读取并更新项目证据。"
+      ],
+      "evidence": [
+        "project/plan.json",
+        "PROJECT.md",
+        "src/clawbench/project/",
+        "skills/build-offline-site-clone/"
+      ],
+      "blocked_by": [],
+      "depends_on": []
+    },
+    {
+      "id": "authoring-toolchain",
+      "title": "完成 Harbor authoring 工具链",
+      "owner": "benchmark-maintainer",
+      "status": "complete",
+      "target": "toolchain v1",
+      "exit_criteria": [
+        "site/instance scaffold、validate 与 materialize 可重复。",
+        "Agent、reference、candidate、verifier 和 oracle 可见性边界有回归测试。",
+        "输出符合 Harbor 1.4 task 与 Compose 结构。"
+      ],
+      "evidence": [
+        "src/clawbench/harbor/",
+        "tests/harbor/",
+        "docs/harbor-fullstack-benchmark.md"
+      ],
+      "blocked_by": [],
+      "depends_on": [
+        "governance-baseline"
+      ]
+    },
+    {
+      "id": "first-release-site",
+      "title": "首个真实站点达到 release-ready",
+      "owner": "site-author",
+      "status": "in_progress",
+      "target": "corpus v1",
+      "exit_criteria": [
+        "范围、证据、资源闭包、路由状态矩阵和后端不变量全部冻结。",
+        "离线、reset、功能、视觉与人工浏览器验收通过。",
+        "已知差异与版权/再分发边界写入报告。"
+      ],
+      "evidence": [
+        "materials/amazon/"
+      ],
+      "blocked_by": [],
+      "depends_on": [
+        "governance-baseline"
+      ]
+    },
+    {
+      "id": "first-harbor-instance",
+      "title": "首个真实 Harbor instance 通过校准",
+      "owner": "verifier-author",
+      "status": "planned",
+      "target": "corpus v1",
+      "exit_criteria": [
+        "在真实 Harbor 中完成 NOP 与 oracle 运行。",
+        "NOP 不超过阈值且 oracle 达到阈值。",
+        "重复运行、candidate proxy 防护和人工浏览器复核通过。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "authoring-toolchain",
+        "first-release-site"
+      ]
+    },
+    {
+      "id": "ten-instance-corpus",
+      "title": "形成 10 题前后端联合语料",
+      "owner": "release-manager",
+      "status": "planned",
+      "target": "corpus v1",
+      "exit_criteria": [
+        "至少 10 个实例覆盖多个主线、边界状态和后端语义。",
+        "每题均有独立校准与发布证据。",
+        "语料级 validate、materialize 和 Viewer 回归通过。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "first-harbor-instance"
+      ]
+    }
+  ],
+  "backlog": [
+    {
+      "id": "finalize-amazon-gates",
+      "title": "完成 Amazon 参考站的冻结范围与发布证据",
+      "priority": "P0",
+      "owner": "site-author",
+      "status": "in_progress",
+      "acceptance": [
+        "所有 scope contract 和 semantic invariant 与实际实现一致。",
+        "离线、reset、功能、视觉与人工浏览器证据可追溯。",
+        "不存在以推断状态冒充直接比较的完成声明。"
+      ],
+      "evidence": [
+        "materials/amazon/"
+      ],
+      "blocked_by": [],
+      "depends_on": []
+    },
+    {
+      "id": "author-first-instance",
+      "title": "把首个真实复刻站封装为 Harbor instance",
+      "priority": "P0",
+      "owner": "instance-author",
+      "status": "planned",
+      "acceptance": [
+        "site/instance manifests 通过 clawbench-harbor validate。",
+        "任务包含 contract、API、UI、visual、journey 与 robustness 节点。",
+        "生成 bundle 中 reference/verifier/oracle 不对 Agent 泄漏。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "finalize-amazon-gates"
+      ]
+    },
+    {
+      "id": "calibrate-first-instance",
+      "title": "在真实 Harbor 中执行 NOP、oracle 和重复性校准",
+      "priority": "P0",
+      "owner": "verifier-author",
+      "status": "planned",
+      "acceptance": [
+        "NOP score 小于等于 instance 阈值。",
+        "oracle score 大于等于 instance 阈值。",
+        "两次 oracle 的总分和测试节点结果保持稳定。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "author-first-instance"
+      ]
+    },
+    {
+      "id": "resolve-viewer-contract",
+      "title": "统一新 offline clone 发现结果与 Viewer review key 合约",
+      "priority": "P0",
+      "owner": "benchmark-maintainer",
+      "status": "blocked",
+      "acceptance": [
+        "明确新实例标识规范并补充 schema 与迁移策略。",
+        "tests/viewer 全部通过且不破坏旧 fixture。",
+        "变更不覆盖并行开发者的未完成工作。"
+      ],
+      "evidence": [
+        "tests/viewer/"
+      ],
+      "blocked_by": [
+        "相关文件存在并行未完成改动，需要在所有权明确或变更稳定后集成。"
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "add-ci-gates",
+      "title": "把 project、skill、Harbor corpus 和 release gate 校验纳入 CI",
+      "priority": "P1",
+      "owner": "benchmark-maintainer",
+      "status": "planned",
+      "acceptance": [
+        "CI 运行 clawbench-project validate。",
+        "CI 校验仓库本地 skill 和 Harbor corpus。",
+        "正式发布 job 必须通过 clawbench-project check-release。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "resolve-viewer-contract"
+      ]
+    },
+    {
+      "id": "prepare-live-site-clone-corpus",
+      "title": "形成 live-site inventory 到离线 clone 的可执行扩容说明",
+      "priority": "P1",
+      "owner": "site-author",
+      "status": "complete",
+      "acceptance": [
+        "审计 claw-bench-v2 的任务、平台与一方站点分母，并显式保留缺失上游 artifact 告警。",
+        "在本仓库固化包含平台、origin、task instruction 与 eval contract 的自包含 inventory，执行 Prompt 不依赖同级 claw-bench-v2 checkout。",
+        "提供可直接交给 build-offline-site-clone skill 的完整 prompt，按平台聚合任务且不复制 Amazon 专用领域模型。",
+        "offline-clone init 支持同一平台的多个 source origin，并具有 CLI 与 manifest 回归测试。",
+        "仓库 skill 和 harness 文档说明 inventory 驱动扩容、逐站 gate 与 release 证据边界。"
+      ],
+      "evidence": [
+        "docs/claw-bench-v2-live-site-clone-plan.md",
+        "docs/offline-clone-harness.md",
+        "websitebench/corpora/claw-bench-v2/live-site-inventory.json",
+        "skills/build-offline-site-clone/SKILL.md",
+        "skills/build-offline-site-clone/references/corpus-expansion.md",
+        "src/clawbench/offline_clone/",
+        "tests/offline_clone/test_manifest_and_cli.py",
+        "tests/offline_clone/test_live_site_inventory.py"
+      ],
+      "blocked_by": [],
+      "depends_on": []
+    },
+    {
+      "id": "expand-corpus",
+      "title": "按统一模板扩容到至少 10 个前后端联合实例",
+      "priority": "P1",
+      "owner": "release-manager",
+      "status": "planned",
+      "acceptance": [
+        "每个实例都有需求卡、site 合约、instance overlay、校准与人工验收。",
+        "实例之间覆盖不同用户旅程、失败模式与持久化语义。",
+        "所有实例由同一 authoring CLI 生成并验证。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "calibrate-first-instance",
+        "add-ci-gates"
+      ]
+    },
+    {
+      "id": "compose-matrix",
+      "title": "验证 Harbor provider 与 Docker Compose 运行矩阵",
+      "priority": "P2",
+      "owner": "benchmark-maintainer",
+      "status": "planned",
+      "acceptance": [
+        "记录支持的 Harbor/provider/Compose 版本。",
+        "reference 健康检查、separate verifier 与 artifact 导出在目标环境一致。",
+        "不支持的组合有清晰失败消息。"
+      ],
+      "evidence": [],
+      "blocked_by": [],
+      "depends_on": [
+        "calibrate-first-instance"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "id": "reference-leakage",
+      "title": "参考实现或隐藏检查泄漏给 Agent",
+      "owner": "benchmark-maintainer",
+      "severity": "critical",
+      "likelihood": "possible",
+      "status": "mitigated",
+      "description": "bundle 拼装或镜像构建上下文错误可能让 Agent 直接读取 reference、fixture、verifier 或 oracle。",
+      "mitigation": [
+        "分离 public、reference、verifier、hidden fixture 与 oracle 目录。",
+        "materialize 生成带可见性标签和 SHA-256 的 bundle manifest。",
+        "用回归测试断言 Agent seed 中不存在 verifier-only 内容。"
+      ],
+      "trigger": "Agent 容器或导出的 /app/repo 中出现任何隐藏路径内容。"
+    },
+    {
+      "id": "candidate-proxy",
+      "title": "candidate 代理 reference 而非完成复刻",
+      "owner": "verifier-author",
+      "severity": "critical",
+      "likelihood": "possible",
+      "status": "monitoring",
+      "description": "若验证器同时暴露 reference 与 candidate，candidate 可能通过代理或时序耦合绕过复刻。",
+      "mitigation": [
+        "验证器先采集 reference expectation，再停止 Agent 可利用的参考访问后检查 candidate。",
+        "检查网络边界、响应来源、持久化和 reset 语义。",
+        "加入针对反向代理与静态截图替代的 robustness 节点。"
+      ],
+      "trigger": "candidate 响应依赖 reference 可达性，或断开 reference 后核心旅程失败。"
+    },
+    {
+      "id": "false-completion",
+      "title": "静态通过被误报为 benchmark 完成",
+      "owner": "release-manager",
+      "severity": "high",
+      "likelihood": "likely",
+      "status": "monitoring",
+      "description": "schema、单元测试或模板成功无法证明真实 Harbor 隔离、评分和浏览器体验正确。",
+      "mitigation": [
+        "发布门禁强制真实 Harbor NOP/oracle、重复性和人工浏览器检查。",
+        "计划中 complete 与 passed 状态必须附 evidence。",
+        "发布命令在任一 gate 未通过时返回非零。"
+      ],
+      "trigger": "没有实际运行证据却将 instance 或 corpus 标为 release-ready。"
+    },
+    {
+      "id": "viewer-contract-drift",
+      "title": "Viewer 标识合约与新任务类型漂移",
+      "owner": "benchmark-maintainer",
+      "severity": "medium",
+      "likelihood": "likely",
+      "status": "open",
+      "description": "新 offline clone 或 Harbor instance 的标识若未同步 review key、schema 和 fixture，会使发现成功但审核路径失败。",
+      "mitigation": [
+        "先固定统一 instance id 规范，再修改 schema、迁移与测试。",
+        "保持旧 fixture 的向后兼容。",
+        "在并行改动稳定前不覆盖相关工作树文件。"
+      ],
+      "trigger": "Viewer 全量测试因新发现实例的 review key 或 schema 校验失败。"
+    },
+    {
+      "id": "corpus-homogeneity",
+      "title": "扩容只增加外观相似但语义单一的题目",
+      "owner": "release-manager",
+      "severity": "high",
+      "likelihood": "possible",
+      "status": "monitoring",
+      "description": "若 10 题只改变页面皮肤，benchmark 无法区分前端复刻与真正的前后端联合能力。",
+      "mitigation": [
+        "需求卡必须声明主线、边界状态、持久化和失败模式。",
+        "语料评审统计旅程与语义覆盖，而非只统计题目数。",
+        "复用 site 时要求 instance overlay 带来实质不同的测试目标。"
+      ],
+      "trigger": "新增实例没有新的语义不变量、状态转换或失败模式覆盖。"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "browser-role-split",
+      "title": "分离 Agent 浏览器与正式验证浏览器",
+      "status": "accepted",
+      "date": "2026-07-23",
+      "decision": "Agent 通过 Browser Use CLI 探索参考站；正式评分使用独立 verifier 中的 Playwright 和直接 HTTP 检查。",
+      "rationale": "保持题目求解界面与可重复、可审计的评分机制职责清晰。",
+      "consequences": [
+        "Browser Use 行为不直接作为通过证据。",
+        "Playwright 测试不得放入 Agent 可见环境。"
+      ]
+    },
+    {
+      "id": "site-instance-separation",
+      "title": "分离可复用 site 合约与单题 instance overlay",
+      "status": "accepted",
+      "date": "2026-07-23",
+      "decision": "稳定的参考站运行时、路径、评分维度和 verifier 放在 harbor/sites；instruction、starter、测试节点与 oracle 放在 harbor/instances。",
+      "rationale": "降低扩容复制成本，同时让每道题的目标与校准可独立演进。",
+      "consequences": [
+        "site 改动会影响引用它的全部 instance，必须做语料级回归。",
+        "instance 不能私自覆盖站点安全和隔离边界。"
+      ]
+    },
+    {
+      "id": "harbor-native-bundle",
+      "title": "生成 Harbor 原生 Compose bundle",
+      "status": "accepted",
+      "date": "2026-07-23",
+      "decision": "materialize 输出 Harbor 1.4 task.toml、Docker Compose reference sidecar 和 separate verifier，不假设自定义 image.tar。",
+      "rationale": "复用 Harbor 的环境生命周期与验证架构，减少专用运行器分叉。",
+      "consequences": [
+        "每个目标 provider 仍需真实兼容性验证。",
+        "生成 bundle 必须是可重复且自包含的。"
+      ]
+    },
+    {
+      "id": "exact-ctrf-scoring",
+      "title": "采用 100 分 exact CTRF 评分",
+      "status": "accepted",
+      "date": "2026-07-23",
+      "decision": "测试节点按 contract、API、UI、visual、journey、robustness 和可选 efficiency 维度汇总为精确 100 分，并输出 CTRF 与 reward.txt。",
+      "rationale": "让分数可解释、可复核，并阻止浮点累计和隐式权重漂移。",
+      "consequences": [
+        "每个 site 的维度权重总和必须严格等于 100。",
+        "增加或删除节点时必须重新校准维度内部权重。"
+      ]
+    },
+    {
+      "id": "evidence-backed-management",
+      "title": "项目状态以证据驱动",
+      "status": "accepted",
+      "date": "2026-07-23",
+      "decision": "project/plan.json 是项目状态单一事实源；complete 和 passed 必须记录可追溯 evidence。",
+      "rationale": "避免路线图、skill、README 和实际测试状态相互漂移。",
+      "consequences": [
+        "每次 benchmark 变更都要评估并更新 plan。",
+        "发布自动化只读取经校验的 plan 和门禁状态。"
+      ]
+    }
+  ],
+  "release_gates": [
+    {
+      "id": "plan-valid",
+      "title": "项目计划和 authoring schema 有效",
+      "owner": "benchmark-maintainer",
+      "status": "passed",
+      "criteria": [
+        "clawbench-project validate 成功。",
+        "Harbor site/instance schema 与语义校验成功。"
+      ],
+      "evidence": [
+        "websitebench/schemas/project-plan.schema.json",
+        "tests/project/",
+        "tests/harbor/"
+      ],
+      "blocked_by": []
+    },
+    {
+      "id": "regression-green",
+      "title": "目标发布范围回归全部通过",
+      "owner": "benchmark-maintainer",
+      "status": "blocked",
+      "criteria": [
+        "offline_clone、harbor、project、viewer 和目标站点测试全部通过。",
+        "ruff 对 src、tests 和 websitebench 无错误。"
+      ],
+      "evidence": [
+        "tests/offline_clone/",
+        "tests/harbor/",
+        "tests/project/",
+        "tests/viewer/"
+      ],
+      "blocked_by": [
+        "Viewer review key 与新发现的 Amazon mainline instance 尚未完成合约同步。"
+      ]
+    },
+    {
+      "id": "harbor-calibration",
+      "title": "真实 Harbor NOP 与 oracle 校准通过",
+      "owner": "verifier-author",
+      "status": "pending",
+      "criteria": [
+        "NOP 得分不超过 instance.nop_max_score。",
+        "oracle 得分不低于 instance.oracle_min_score。",
+        "重复运行的节点与总分稳定。"
+      ],
+      "evidence": [],
+      "blocked_by": []
+    },
+    {
+      "id": "isolation-audit",
+      "title": "Agent/Reference/Verifier/Oracle 隔离审核通过",
+      "owner": "verifier-author",
+      "status": "pending",
+      "criteria": [
+        "Agent 文件系统不含 reference source、hidden fixture、verifier 或 oracle。",
+        "candidate 无法通过代理 reference 获得通过分。",
+        "bundle manifest 可验证全部文件哈希和可见性。"
+      ],
+      "evidence": [],
+      "blocked_by": []
+    },
+    {
+      "id": "human-browser-review",
+      "title": "人工浏览器验收通过",
+      "owner": "human-reviewer",
+      "status": "pending",
+      "criteria": [
+        "核心路线、关键状态和失败状态逐项检查。",
+        "视觉差异和已知限制均有记录。",
+        "人工 QA 不被机器分数替代。"
+      ],
+      "evidence": [],
+      "blocked_by": []
+    },
+    {
+      "id": "release-manifest",
+      "title": "发布清单、许可证和再分发边界完整",
+      "owner": "release-manager",
+      "status": "pending",
+      "criteria": [
+        "发布清单固定实例、site、bundle 和验证结果哈希。",
+        "源站素材的所有权、许可证与再分发限制明确。",
+        "运行数据、凭据、浏览器 profile 和生成物未进入版本库。"
+      ],
+      "evidence": [],
+      "blocked_by": []
+    }
+  ]
+}

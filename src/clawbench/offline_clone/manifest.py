@@ -9,6 +9,7 @@ import os
 import re
 import stat
 import warnings
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path, PurePosixPath, PureWindowsPath
@@ -2878,11 +2879,17 @@ def initialize_site(
     *,
     site_id: str,
     display_name: str,
-    source_url: str,
+    source_url: str | Sequence[str],
 ) -> LoadedManifest:
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", site_id):
         raise ValueError("site_id must contain lowercase letters, digits, and single hyphens")
-    validate_source_url(source_url)
+    source_urls = [source_url] if isinstance(source_url, str) else list(source_url)
+    if not source_urls:
+        raise ValueError("at least one source URL is required")
+    for value in source_urls:
+        validate_source_url(value)
+    if len(source_urls) != len(set(source_urls)):
+        raise ValueError("source URLs must be unique")
     if not display_name.strip():
         raise ValueError("display_name must not be empty")
 
@@ -2936,7 +2943,7 @@ def initialize_site(
         "display_name": display_name,
         "state_model": "stateful",
         "source": {
-            "origins": [source_url],
+            "origins": source_urls,
             "baseline": {
                 "locale": "en-US",
                 "currency": None,

@@ -44,6 +44,7 @@ def _init(args: argparse.Namespace) -> int:
             "status": "initialized",
             "site_id": manifest.data["site_id"],
             "manifest": str(manifest.path),
+            "source_origins": manifest.data["source"]["origins"],
             "stage": "INIT",
         }
     )
@@ -105,7 +106,12 @@ def build_parser() -> argparse.ArgumentParser:
     init.add_argument("--site-dir", type=Path, required=True)
     init.add_argument("--site-id", required=True)
     init.add_argument("--display-name", required=True)
-    init.add_argument("--source-url", required=True)
+    init.add_argument(
+        "--source-url",
+        action="append",
+        required=True,
+        help="source origin URL; repeat for one platform spanning multiple first-party origins",
+    )
     init.set_defaults(function=_init)
 
     for name, function in (

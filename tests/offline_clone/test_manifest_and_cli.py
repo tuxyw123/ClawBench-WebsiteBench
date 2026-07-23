@@ -35,6 +35,7 @@ def test_init_validate_status_and_report_commands(tmp_path: Path, capsys: pytest
     ) == 0
     initialized = json.loads(capsys.readouterr().out)
     assert initialized["stage"] == "INIT"
+    assert initialized["source_origins"] == ["https://example.test/"]
     assert (root / "clone/frontend").is_dir()
     assert (root / "scope/claims.jsonl").is_file()
     assert (root / "scope/purpose.json").is_file()
@@ -74,6 +75,49 @@ def test_init_validate_status_and_report_commands(tmp_path: Path, capsys: pytest
     assert report["asset_closure"]["closure_status"] == "pending"
     assert report["runtime_remote_request_policy"] == "forbidden"
     assert "runtime_remote_requests" not in report
+
+
+def test_init_accepts_repeated_source_origins(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    root = tmp_path / "multi-origin-site"
+    assert main(
+        [
+            "init",
+            "--site-dir",
+            str(root),
+            "--site-id",
+            "ticket-platform",
+            "--display-name",
+            "Ticket Platform",
+            "--source-url",
+            "https://tickets.example.test/",
+            "--source-url",
+            "https://checkout.example.test/",
+        ]
+    ) == 0
+
+    initialized = json.loads(capsys.readouterr().out)
+    assert initialized["source_origins"] == [
+        "https://tickets.example.test/",
+        "https://checkout.example.test/",
+    ]
+    assert load_manifest(root).data["source"]["origins"] == initialized["source_origins"]
+
+
+@pytest.mark.parametrize("source_urls", [[], ["https://example.test/", "https://example.test/"]])
+def test_init_rejects_empty_or_duplicate_source_origins_before_writing(
+    tmp_path: Path, source_urls: list[str]
+) -> None:
+    root = tmp_path / "bad-origins"
+    with pytest.raises(ValueError, match="source URL"):
+        initialize_site(
+            root,
+            site_id="bad-origins",
+            display_name="Bad Origins",
+            source_url=source_urls,
+        )
+    assert not root.exists()
 
 
 def test_init_rejects_bad_identity_before_creating_site(tmp_path: Path) -> None:

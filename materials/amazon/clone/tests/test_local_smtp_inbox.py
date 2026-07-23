@@ -132,6 +132,14 @@ class LocalSMTPInboxTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "explicit loopback"):
             build_servers(smtp_host="0.0.0.0", smtp_port=0, web_port=0)
 
+    def test_smtp_and_web_ports_are_exclusive(self) -> None:
+        smtp_port = int(self.smtp_server.server_address[1])
+        web_port = int(self.web_server.server_address[1])
+        with self.assertRaises(OSError):
+            build_servers(smtp_port=smtp_port, web_port=0)
+        with self.assertRaises(OSError):
+            build_servers(smtp_port=0, web_port=web_port)
+
 
 class RegistrationThroughLocalSMTPTests(unittest.TestCase):
     def setUp(self) -> None:

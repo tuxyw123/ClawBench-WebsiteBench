@@ -33,6 +33,11 @@ READINESS_LABELS = {
     "limitations": "Limitations record",
 }
 READINESS_STATES = {"present", "missing", "invalid", "not_applicable"}
+BENCHMARK_SOURCE_TYPES = {"websitebench", "offline_clone"}
+
+
+def _is_benchmark_item(item: dict[str, Any]) -> bool:
+    return item.get("source_type") in BENCHMARK_SOURCE_TYPES
 
 
 def utc_now() -> str:
@@ -354,6 +359,341 @@ def _legacy_visual_paths(report: Any, clone_root: Path, repo_root: Path) -> list
     return output
 
 
+def _offline_clone_item(
+    repo_root: Path,
+    manifest_path: Path,
+    results: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any] | None:
+    """Adapt a frozen offline-clone site into the benchmark viewer contract."""
+
+    site_root = manifest_path.parent
+    try:
+        manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return None
+    if not isinstance(manifest, dict) or manifest.get("schema_version") != "offline-clone.manifest.v1":
+        return None
+
+    manifest_errors: list[str] = []
+    scope: dict[str, Any] = {}
+    referenced: list[Path] = [manifest_path]
+    for name in ("purpose", "routes", "journeys", "checkpoints", "coverage"):
+        relative = manifest.get("scope", {}).get(name)
+        if not isinstance(relative, str):
+            manifest_errors.append(f"scope.{name} is not declared")
+            scope[name] = {}
+            continue
+        try:
+            path = _safe_resolve(repo_root, site_root / relative)
+        except ValueError as exc:
+            manifest_errors.append(str(exc))
+            scope[name] = {}
+            continue
+        value, error = _read_json(path)
+        if error or not isinstance(value, dict):
+            manifest_errors.append(f"scope.{name}: {error or 'not an object'}")
+            scope[name] = {}
+            continue
+        referenced.append(path)
+        scope[name] = value
+
+    paths = manifest.get("paths", {})
+    artifact_relative = paths.get("artifact_root")
+    candidate_relative = paths.get("candidate_root")
+    asset_relative = paths.get("asset_manifest")
+    artifact_root = (
+        _safe_resolve(repo_root, site_root / artifact_relative)
+        if isinstance(artifact_relative, str)
+        else site_root / "artifacts" / "offline-clone"
+    )
+    candidate_root = (
+        _safe_resolve(repo_root, site_root / candidate_relative)
+        if isinstance(candidate_relative, str)
+        else site_root / "clone"
+    )
+    asset_manifest_path = (
+        _safe_resolve(repo_root, site_root / asset_relative)
+        if isinstance(asset_relative, str)
+        else site_root / "source-assets" / "offline-clone-manifest.json"
+    )
+    report_path = artifact_root / "report.json"
+    report, report_error = _read_json(report_path)
+    report = report if isinstance(report, dict) else {}
+    assets, asset_error = _read_json(asset_manifest_path)
+    assets = assets if isinstance(assets, dict) else {}
+    acceptance: dict[str, dict[str, Any]] = {}
+    acceptance_paths: list[Path] = []
+    for kind in ("visual", "browser", "network", "migration", "independent-audit", "full-suite"):
+        path = artifact_root / "acceptance" / f"{kind}.json"
+        value, error = _read_json(path)
+        if not error and isinstance(value, dict):
+            acceptance[kind] = value
+            acceptance_paths.append(path)
+
+    purpose = scope.get("purpose", {})
+    route_rows = scope.get("routes", {}).get("routes", [])
+    journey_rows = scope.get("journeys", {}).get("journeys", [])
+    checkpoint_rows = scope.get("checkpoints", {}).get("checkpoints", [])
+    viewports = scope.get("checkpoints", {}).get("viewports", {})
+    coverage_rows = scope.get("coverage", {}).get("dimensions", [])
+    coverage_counts = {
+        row.get("id"): len(row.get("required_items", []))
+        for row in coverage_rows
+        if isinstance(row, dict)
+    }
+    asset_rows = assets.get("assets", [])
+    asset_count = len(asset_rows) if isinstance(asset_rows, list) else 0
+    site_id = str(manifest.get("site_id") or site_root.name)
+    item_runs = results.get(site_id, [])
+    key = f"offlineclone--{site_id}"
+
+    raw_visual_root = artifact_root / "acceptance" / "raw" / "visual"
+    public_media = {
+        "home": {
+            "source": "/static/showcase/amazon/source-home.png",
+            "candidate": "/static/showcase/amazon/clone-home.png",
+            "heatmap": "/static/showcase/amazon/diff-home.png",
+        },
+        "search": {
+            "source": "/static/showcase/amazon/source-search.png",
+            "candidate": "/static/showcase/amazon/clone-search.png",
+            "heatmap": "/static/showcase/amazon/diff-search.png",
+        },
+    }
+    visual_metrics = acceptance.get("visual", {}).get("metrics", {})
+    visual_scores = visual_metrics.get("pixel_similarity_scores", [])
+    visual_thresholds = visual_metrics.get("pixel_similarity_thresholds", [])
+    capture_specs = (
+        ("home.desktop.loaded", "home", 0),
+        ("search.desktop.filtered", "search", 1),
+    )
+    visual_captures = []
+    for checkpoint, media_key, index in capture_specs:
+        media = public_media[media_key]
+        visual_captures.append(
+            {
+                "checkpoint": checkpoint,
+                "viewport": "desktop",
+                "capture_status": "accepted",
+                "evidence_reliability": "current-direct",
+                "comparison_kind": "source-to-offline-reference",
+                "source_url": media["source"],
+                "candidate_url": media["candidate"],
+                "heatmap_url": media["heatmap"],
+                "diagnostic_metrics": {
+                    "pixel_similarity": visual_scores[index] if index < len(visual_scores) else None,
+                    "acceptance_threshold": visual_thresholds[index] if index < len(visual_thresholds) else None,
+                },
+            }
+        )
+    visual_media_present = all(
+        (raw_visual_root / name).is_file()
+        for name in (
+            "source-home-desktop-loaded.png",
+            "clone-home-desktop-loaded.png",
+            "source-search-desktop-filtered.png",
+            "clone-search-desktop-filtered.png",
+        )
+    )
+    visual = {
+        "schema_version": "websitebench.viewer-public-visual.v1",
+        "comparison_kind": "source-to-offline-reference",
+        "captures": visual_captures,
+    } if visual_media_present else None
+
+    coverage_cards = []
+    coverage_selection = (
+        ("known-products", "Known products"),
+        ("rich-pdp-products", "Rich PDPs"),
+        ("purchasable-products", "Purchasable"),
+        ("review-backed-products", "Review-backed"),
+        ("comparable-products", "Comparable"),
+        ("required-runtime-asset-paths", "Runtime assets"),
+    )
+    for coverage_id, label in coverage_selection:
+        coverage_cards.append(
+            {
+                "id": coverage_id,
+                "label": label,
+                "value": coverage_counts.get(coverage_id, 0),
+            }
+        )
+
+    calibration_metrics = {}
+    for kind in ("visual", "browser", "network", "full-suite"):
+        if kind in acceptance:
+            calibration_metrics[kind] = copy.deepcopy(acceptance[kind].get("metrics", {}))
+    gates = [
+        {
+            "id": gate_id,
+            "status": value.get("status"),
+        }
+        for gate_id, value in report.get("gates", {}).items()
+        if isinstance(value, dict)
+    ]
+    showcase = {
+        "brand": "Amazon",
+        "construction_status": "accepted" if report.get("stage") == "ACCEPTED" else "building",
+        "experiment_status": "not_started" if not item_runs else "running",
+        "hero_image": "/static/showcase/amazon/clone-home.png",
+        "visual_pairs": visual_captures,
+        "route_families": [
+            {
+                "id": row.get("id"),
+                "route_pattern": row.get("route_pattern"),
+                "priority": row.get("priority"),
+                "purpose_edge": row.get("purpose_edge"),
+                "evidence_kind": row.get("evidence_kind"),
+                "verification_kind": row.get("verification_kind"),
+                "local_destination": row.get("local_destination"),
+                "states": copy.deepcopy(row.get("states", [])),
+            }
+            for row in route_rows
+            if isinstance(row, dict)
+        ],
+        "journeys": [
+            {
+                "id": row.get("id"),
+                "kind": row.get("kind"),
+                "actor": row.get("actor"),
+                "steps": copy.deepcopy(row.get("steps", [])),
+            }
+            for row in journey_rows
+            if isinstance(row, dict)
+        ],
+        "checkpoints": [
+            {
+                "id": row.get("id"),
+                "route_id": row.get("route_id"),
+                "state": row.get("state"),
+                "viewport": row.get("viewport"),
+                "priority": row.get("priority"),
+                "evidence_kind": row.get("evidence_kind"),
+                "verification_kind": row.get("verification_kind"),
+            }
+            for row in checkpoint_rows
+            if isinstance(row, dict)
+        ],
+        "coverage": coverage_cards,
+        "calibration": {
+            "stage": report.get("stage"),
+            "manifest_current": report.get("manifest_current") is True,
+            "gates": gates,
+            "metrics": calibration_metrics,
+        },
+        "future_score_dimensions": [
+            "Visual fidelity",
+            "Interaction fidelity",
+            "Journey completion",
+            "Robustness",
+            "Efficiency",
+        ],
+    }
+
+    required_scope_present = (
+        not manifest_errors
+        and all(scope.get(name) for name in ("purpose", "routes", "journeys", "checkpoints", "coverage"))
+        and asset_manifest_path.is_file()
+    )
+    acceptance_current = (
+        report.get("stage") == "ACCEPTED"
+        and report.get("manifest_current") is True
+        and all(value.get("status") == "passed" for value in report.get("gates", {}).values())
+    )
+    readiness = [
+        _status("manifest_schema", "invalid" if manifest_errors else "present", "; ".join(manifest_errors[:3])),
+        _status("required_artifacts", "present" if required_scope_present else "missing", "Frozen purpose, routes, journeys, checkpoints, coverage, and asset closure"),
+        _status("clone_artifact", "present" if candidate_root.is_dir() else "missing", "Runnable isolated offline reference server"),
+        _status("journeys", "present" if journey_rows else "missing", f"{len(journey_rows)} frozen success, failure, and recovery journeys"),
+        _status("visual_checkpoints", "present" if checkpoint_rows else "missing", f"{len(checkpoint_rows)} route-state-viewport checkpoints"),
+        _status("verification_report", "present" if acceptance_current else ("invalid" if report else "missing"), "Acceptance report is current and all release gates passed" if acceptance_current else (report_error or "Acceptance is incomplete")),
+        _status("visual_evidence", "present" if visual else "missing", f"{len(visual_captures) if visual else 0} sanitized source/reference pairs"),
+        _status("seed_reset", "not_applicable", "Managed by the offline-clone harness rather than the candidate scoring contract"),
+        _status("controlled_time", "not_applicable", "Deterministic local simulations are certified by acceptance evidence"),
+        _status("license", "not_applicable", "Research evidence remains subject to source-owner rights and publication review"),
+        _status("candidate_report", "present" if item_runs else "not_applicable", f"{len(item_runs)} valid agent experiment runs"),
+        _status("scoring_contract", "not_applicable", "Agent scoring remains intentionally empty until experiments start"),
+    ]
+    readiness_counts = _counts(readiness)
+    fingerprint_paths = [
+        *referenced,
+        asset_manifest_path,
+        report_path,
+        *acceptance_paths,
+    ]
+    return {
+        "key": key,
+        "source_type": "offline_clone",
+        "site_id": site_id,
+        "display_name": "Amazon Shopping",
+        "description": purpose.get("statement") or manifest.get("display_name", ""),
+        "family": "commerce-marketplace",
+        "product_type": "shopping-commerce",
+        "difficulty": "high",
+        "split": "worked-example",
+        "site_version": report.get("manifest_sha256", "")[:12] or None,
+        "capability_tags": [
+            "Search",
+            "Filters",
+            "Product variants",
+            "Cart",
+            "Identity",
+            "Checkout",
+            "Orders",
+            "Reviews",
+            "Lists",
+            "Recovery",
+        ],
+        "interaction_tags": [
+            "autocomplete",
+            "drawer",
+            "dependent options",
+            "cart mutation",
+            "email verification",
+            "payment retry",
+            "order lifecycle",
+        ],
+        "roles": copy.deepcopy(purpose.get("primary_actor_ids", [])),
+        "stateful_entities": ["session", "account", "cart", "list", "checkout", "order", "review"],
+        "counts": {
+            "routes": len(route_rows),
+            "journeys": len(journey_rows),
+            "checkpoints": len(checkpoint_rows),
+            "seeds": None,
+            "public_seeds": None,
+            "hidden_test_families": None,
+            "states": sum(len(row.get("states", [])) for row in route_rows if isinstance(row, dict)),
+            "assets": asset_count,
+        },
+        "protocol": {
+            "public_artifacts": ["purpose", "routes", "journeys", "checkpoints", "coverage", "sanitized visual evidence"],
+            "browser_policy": {"runtime_remote_requests": manifest.get("source", {}).get("capture_policy", {}).get("runtime_remote_requests")},
+            "services": ["isolated offline reference server"],
+            "visual_viewports": sorted(viewports) if isinstance(viewports, dict) else [],
+        },
+        "readiness": readiness,
+        "readiness_counts": readiness_counts,
+        "lifecycle_stage": "evaluated" if item_runs else ("ready" if acceptance_current else "building"),
+        "construction_status": showcase["construction_status"],
+        "experiment_status": showcase["experiment_status"],
+        "official_runs": item_runs,
+        "latest_official_result": item_runs[0] if item_runs else None,
+        "legacy_verification": None,
+        "visual_evidence": visual,
+        "visual_evidence_errors": [],
+        "showcase": showcase,
+        "documents": {},
+        "artifact_fingerprint": fingerprint(fingerprint_paths, repo_root),
+        "internal": {
+            "manifest_path": str(manifest_path.relative_to(repo_root)),
+            "site_root": str(site_root.relative_to(repo_root)),
+            "report_path": str(report_path.relative_to(repo_root)),
+            "manifest_errors": manifest_errors,
+            "asset_error": asset_error,
+        },
+    }
+
+
 def _legacy_summary(report: dict[str, Any]) -> dict[str, Any]:
     checks_value = report.get("checks")
     checks: list[Any] = checks_value if isinstance(checks_value, list) else []
@@ -529,8 +869,10 @@ def public_item(item: dict[str, Any]) -> dict[str, Any]:
             "product_type", "difficulty", "split", "site_version", "capability_tags",
             "interaction_tags", "roles", "stateful_entities", "counts", "readiness",
             "readiness_counts", "official_runs", "latest_official_result",
-            "legacy_verification", "artifact_fingerprint", "lifecycle_stage"
+            "legacy_verification", "artifact_fingerprint", "lifecycle_stage",
+            "construction_status", "experiment_status",
         )
+        if key in item
     }
     result["counts"]["hidden_test_families"] = None
     result["official_runs"] = [_public_run(run) for run in item["official_runs"]]
@@ -553,8 +895,9 @@ def public_item(item: dict[str, Any]) -> dict[str, Any]:
         for key, value in item.get("documents", {}).items()
         if key in {"prd", "candidate_contract", "readme", "limitations", "asset_attribution"}
     }
-    result["visual_evidence"] = None
+    result["visual_evidence"] = copy.deepcopy(item.get("visual_evidence"))
     result["visual_evidence_errors"] = []
+    result["showcase"] = copy.deepcopy(item.get("showcase"))
     return result
 
 
@@ -634,7 +977,7 @@ class CorpusIndex:
     def categories(self) -> list[dict[str, Any]]:
         grouped: dict[str, list[dict[str, Any]]] = {}
         for item in self.items:
-            if item["source_type"] != "websitebench":
+            if not _is_benchmark_item(item):
                 continue
             grouped.setdefault(item.get("product_type") or "uncategorized", []).append(item)
         output = []
@@ -659,7 +1002,7 @@ class CorpusIndex:
     def evaluation_matrix(self) -> list[dict[str, Any]]:
         models = self.models
         rows = []
-        for item in (item for item in self.items if item["source_type"] == "websitebench"):
+        for item in (item for item in self.items if _is_benchmark_item(item)):
             cells = []
             for model in models:
                 runs = [
@@ -682,7 +1025,7 @@ class CorpusIndex:
         )
         models = self.models
         categories = self.categories
-        benchmark_sites = [item for item in self.items if item["source_type"] == "websitebench"]
+        benchmark_sites = [item for item in self.items if _is_benchmark_item(item)]
         evaluated_pairs = {
             (run["site_id"], run["candidate"]["model_key"])
             for run in self.runs
@@ -694,6 +1037,8 @@ class CorpusIndex:
             "summary": {
                 "item_count": len(self.items),
                 "websitebench_count": sum(item["source_type"] == "websitebench" for item in self.items),
+                "offline_clone_count": sum(item["source_type"] == "offline_clone" for item in self.items),
+                "benchmark_site_count": len(benchmark_sites),
                 "legacy_count": sum(item["source_type"] == "legacy" for item in self.items),
                 "official_run_count": len(self.runs),
                 "invalid_run_count": len(self.invalid_runs),
@@ -726,11 +1071,15 @@ def discover_corpus(
         _canonical_item(root, path, results)
         for path in sorted((root / "websitebench").glob("*/public/manifest.yaml"))
     ]
+    for path in sorted((root / "materials").glob("*/clone.yaml")):
+        item = _offline_clone_item(root, path, results)
+        if item is not None:
+            items.append(item)
     for path in sorted((root / "tasks" / "dev").glob("*/task.json")):
         item = _legacy_item(root, path)
         if item is not None:
             items.append(item)
-    items.sort(key=lambda item: (item["source_type"] != "websitebench", item["display_name"].lower()))
+    items.sort(key=lambda item: (not _is_benchmark_item(item), item["display_name"].lower()))
     if profile == "public":
         allowlist = _load_allowlist(root, public_allowlist)
         items = [public_item(item) for item in items if item["key"] in allowlist]

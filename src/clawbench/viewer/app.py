@@ -326,7 +326,7 @@ def create_app(
                 index=index,
                 auth=auth,
                 models=index.models,
-                site_count=sum(item["source_type"] == "websitebench" for item in index.items),
+                site_count=len(index.evaluation_matrix),
             ),
         )
 
@@ -377,7 +377,10 @@ def create_app(
         selected_keys = items or ([part for part in (keys or "").split(",") if part])
         if not selected_keys:
             selected_keys = [item["key"] for item in index.items[:2]]
-        selected_keys = list(dict.fromkeys(selected_keys))
+        known_keys = {item["key"] for item in index.items}
+        selected_keys = [
+            key for key in dict.fromkeys(selected_keys) if key in known_keys
+        ]
         if len(selected_keys) > 4:
             raise HTTPException(400, "compare accepts at most four corpus items")
         selected = [index.by_key(key) for key in selected_keys]

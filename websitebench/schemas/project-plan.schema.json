@@ -1,0 +1,401 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/project-plan.schema.json",
+  "title": "ClawBench repository project plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project_id",
+    "title",
+    "objective",
+    "status",
+    "updated_at",
+    "principles",
+    "roles",
+    "workstreams",
+    "milestones",
+    "backlog",
+    "risks",
+    "decisions",
+    "release_gates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "clawbench.project.v1"
+    },
+    "project_id": {
+      "$ref": "#/$defs/id"
+    },
+    "title": {
+      "$ref": "#/$defs/text"
+    },
+    "objective": {
+      "$ref": "#/$defs/text"
+    },
+    "status": {
+      "enum": ["active", "maintenance", "paused", "complete"]
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "principles": {
+      "$ref": "#/$defs/nonEmptyStringList"
+    },
+    "roles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/role"
+      }
+    },
+    "workstreams": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/workstream"
+      }
+    },
+    "milestones": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/milestone"
+      }
+    },
+    "backlog": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/backlogItem"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/risk"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/decision"
+      }
+    },
+    "release_gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/releaseGate"
+      }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "stringList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/text"
+      },
+      "uniqueItems": true
+    },
+    "nonEmptyStringList": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/stringList"
+        },
+        {
+          "minItems": 1
+        }
+      ]
+    },
+    "workStatus": {
+      "enum": ["planned", "in_progress", "blocked", "complete"]
+    },
+    "owner": {
+      "$ref": "#/$defs/id"
+    },
+    "role": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "responsibilities"],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "responsibilities": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        }
+      }
+    },
+    "workstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "status",
+        "outcome",
+        "deliverables",
+        "evidence",
+        "blocked_by"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "status": {
+          "$ref": "#/$defs/workStatus"
+        },
+        "outcome": {
+          "$ref": "#/$defs/text"
+        },
+        "deliverables": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        },
+        "evidence": {
+          "$ref": "#/$defs/stringList"
+        },
+        "blocked_by": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    },
+    "milestone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "status",
+        "target",
+        "exit_criteria",
+        "evidence",
+        "blocked_by",
+        "depends_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "status": {
+          "$ref": "#/$defs/workStatus"
+        },
+        "target": {
+          "$ref": "#/$defs/text"
+        },
+        "exit_criteria": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        },
+        "evidence": {
+          "$ref": "#/$defs/stringList"
+        },
+        "blocked_by": {
+          "$ref": "#/$defs/stringList"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "backlogItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "priority",
+        "owner",
+        "status",
+        "acceptance",
+        "evidence",
+        "blocked_by",
+        "depends_on"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "priority": {
+          "enum": ["P0", "P1", "P2"]
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "status": {
+          "$ref": "#/$defs/workStatus"
+        },
+        "acceptance": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        },
+        "evidence": {
+          "$ref": "#/$defs/stringList"
+        },
+        "blocked_by": {
+          "$ref": "#/$defs/stringList"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "severity",
+        "likelihood",
+        "status",
+        "description",
+        "mitigation",
+        "trigger"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "severity": {
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "likelihood": {
+          "enum": ["unlikely", "possible", "likely"]
+        },
+        "status": {
+          "enum": ["open", "monitoring", "mitigated", "accepted", "closed"]
+        },
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "mitigation": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        },
+        "trigger": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "status",
+        "date",
+        "decision",
+        "rationale",
+        "consequences"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "status": {
+          "enum": ["proposed", "accepted", "superseded"]
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "decision": {
+          "$ref": "#/$defs/text"
+        },
+        "rationale": {
+          "$ref": "#/$defs/text"
+        },
+        "consequences": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        }
+      }
+    },
+    "releaseGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "status",
+        "criteria",
+        "evidence",
+        "blocked_by"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "owner": {
+          "$ref": "#/$defs/owner"
+        },
+        "status": {
+          "enum": ["pending", "passed", "failed", "blocked"]
+        },
+        "criteria": {
+          "$ref": "#/$defs/nonEmptyStringList"
+        },
+        "evidence": {
+          "$ref": "#/$defs/stringList"
+        },
+        "blocked_by": {
+          "$ref": "#/$defs/stringList"
+        }
+      }
+    }
+  }
+}

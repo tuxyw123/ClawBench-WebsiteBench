@@ -2820,8 +2820,8 @@ def run_full_suite(site_root: Path) -> None:
         ["discover", "-s", "tests", "-v"],
         timeout_seconds=3600,
     )
-    if count != 328:
-        raise GateFailure(f"full Amazon discovery expected 328 tests, got {count}")
+    if count != 330:
+        raise GateFailure(f"full Amazon discovery expected 330 tests, got {count}")
     passed_test_refs = _passed_test_refs(runner_output)
     if len(passed_test_refs) != count:
         raise GateFailure(
@@ -2918,7 +2918,7 @@ def run_full_suite(site_root: Path) -> None:
         site_root,
         kind="full-suite",
         summary=(
-            "The complete 328-test Amazon clone discovery suite passed, covering "
+            "The complete 330-test Amazon clone discovery suite passed, covering "
             "catalog breadth, variants, cart identity, comparison, identity, reviews, "
             "checkout, payment simulation, mail adapters, and order lifecycle."
         ),

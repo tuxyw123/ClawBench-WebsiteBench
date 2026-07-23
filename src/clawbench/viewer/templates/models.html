@@ -1,8 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Models{% endblock %}
+{% block title %}Evaluated agents{% endblock %}
 {% block content %}
 <div class="page">
-  <section class="page-heading"><div><p class="eyebrow">Cross-site evaluation</p><h1>Models</h1><p>One row per declared model identity. Averages summarize official runs while each website result remains directly inspectable.</p></div><a class="secondary button" href="/results">Open matrix</a></section>
-  {% if models %}<div class="model-grid">{% for model in models %}<a class="model-card" href="/models/{{ model.model_key }}"><div class="model-rank">{{ '%02d'|format(loop.index) }}</div><div><p class="eyebrow">{{ model.provider or 'Provider not declared' }}</p><h2>{{ model.display_name }}</h2><p>{{ model.site_count }} / {{ site_count }} websites · {{ model.run_count }} runs · {{ model.passed_count }} passed</p></div><div class="model-score"><strong>{{ model.average_score }}</strong><span>Average / 100</span></div><div class="model-dimensions">{% for name, score in model.dimensions.items() %}<span>{{ name }} <strong>{{ score }}</strong></span>{% endfor %}</div></a>{% endfor %}</div>{% else %}<div class="empty-state benchmark-empty"><strong>No model results yet.</strong><p>Declare <code>candidate.model_id</code> and <code>candidate.display_name</code> in result reports. The leaderboard and coverage matrix will populate automatically.</p></div>{% endif %}
+  <section class="page-heading"><div><p class="eyebrow">Cross-site evaluation</p><h1>Evaluated agents</h1><p>Agents appear only after a schema-valid reconstruction run exists. Coverage is reported alongside scores so an Agent tested on one website cannot look equivalent to one tested across the full corpus.</p></div><a class="secondary button" href="/results">Open score workspace</a></section>
+  {% if models %}
+  <div class="model-grid">{% for model in models %}<a class="model-card" href="/models/{{ model.model_key }}"><div class="model-rank">{{ '%02d'|format(loop.index) }}</div><div><p class="eyebrow">{{ model.provider or 'Provider not declared' }}</p><h2>{{ model.display_name }}</h2><p>{{ model.site_count }} / {{ site_count }} websites · {{ model.run_count }} runs · {{ model.passed_count }} passed</p></div><div class="model-score"><strong>{{ model.average_score }}</strong><span>Macro view / 100</span></div><div class="model-dimensions">{% for name, score in model.dimensions.items() %}<span>{{ name }} <strong>{{ score }}</strong></span>{% endfor %}</div></a>{% endfor %}</div>
+  {% else %}
+  <section class="agent-empty-stage">
+    <div class="agent-empty-orbit"><div class="agent-core">AGENT</div><span style="--i:0">Explore</span><span style="--i:1">Infer</span><span style="--i:2">Build</span><span style="--i:3">Verify</span></div>
+    <div><p class="eyebrow">Experiment phase reserved</p><h2>No Agent reconstruction has run yet</h2><p>When experiments begin, this page will show model identity, corpus coverage, per-site results, score dimensions, failures, and direct links to each generated clone. No sample models or synthetic rankings are inserted.</p><div class="agent-empty-actions"><a class="primary button" href="/tasks">Inspect the benchmark input</a><a class="secondary button" href="/methodology">Review the protocol</a></div></div>
+  </section>
+  <div class="reserved-agent-grid">{% for number in ['01','02','03'] %}<article><span>Run slot {{ number }}</span><strong>—</strong><p>Agent identity not assigned</p><div><i></i><i></i><i></i><i></i><i></i></div></article>{% endfor %}</div>
+  {% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://clawbench.local/schemas/harbor-site.schema.json",
+  "title": "ClawBench Harbor site manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "site_id",
+    "display_name",
+    "benchmark_kind",
+    "runtime",
+    "paths",
+    "scoring"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "clawbench.harbor.site.v1"
+    },
+    "site_id": {
+      "$ref": "#/$defs/slug"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "benchmark_kind": {
+      "const": "fullstack-offline-reconstruction"
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_access",
+        "agent_browser",
+        "formal_browser",
+        "reference_url_env",
+        "candidate_url_env",
+        "reference_admin_url_env",
+        "candidate_admin_url_env",
+        "reference_port",
+        "candidate_port",
+        "verifier_reference_port",
+        "verifier_candidate_port",
+        "ready_path",
+        "reset_path",
+        "judge_network"
+      ],
+      "properties": {
+        "reference_access": {
+          "const": "browser-only"
+        },
+        "agent_browser": {
+          "const": "browser-use-cli"
+        },
+        "formal_browser": {
+          "const": "playwright"
+        },
+        "reference_url_env": {
+          "$ref": "#/$defs/env_name"
+        },
+        "candidate_url_env": {
+          "$ref": "#/$defs/env_name"
+        },
+        "reference_admin_url_env": {
+          "$ref": "#/$defs/env_name"
+        },
+        "candidate_admin_url_env": {
+          "$ref": "#/$defs/env_name"
+        },
+        "reference_port": {
+          "$ref": "#/$defs/port"
+        },
+        "candidate_port": {
+          "$ref": "#/$defs/port"
+        },
+        "verifier_reference_port": {
+          "$ref": "#/$defs/port"
+        },
+        "verifier_candidate_port": {
+          "$ref": "#/$defs/port"
+        },
+        "ready_path": {
+          "$ref": "#/$defs/http_path"
+        },
+        "reset_path": {
+          "$ref": "#/$defs/http_path"
+        },
+        "judge_network": {
+          "const": "offline"
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public",
+        "reference",
+        "verifier",
+        "hidden_fixtures"
+      ],
+      "properties": {
+        "public": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "reference": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "verifier": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "hidden_fixtures": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "oracle": {
+          "$ref": "#/$defs/relative_path"
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_points",
+        "dimensions"
+      ],
+      "properties": {
+        "max_points": {
+          "const": 100
+        },
+        "dimensions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "contract",
+            "api",
+            "ui",
+            "visual",
+            "journey",
+            "robustness"
+          ],
+          "properties": {
+            "contract": {
+              "$ref": "#/$defs/points"
+            },
+            "api": {
+              "$ref": "#/$defs/points"
+            },
+            "ui": {
+              "$ref": "#/$defs/points"
+            },
+            "visual": {
+              "$ref": "#/$defs/points"
+            },
+            "journey": {
+              "$ref": "#/$defs/points"
+            },
+            "robustness": {
+              "$ref": "#/$defs/points"
+            },
+            "efficiency": {
+              "$ref": "#/$defs/points"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "env_name": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]*$",
+      "maxLength": 100
+    },
+    "http_path": {
+      "type": "string",
+      "pattern": "^/(?!/).*$",
+      "maxLength": 256
+    },
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512,
+      "pattern": "^(?![A-Za-z]:)(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+"
+    },
+    "points": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "port": {
+      "type": "integer",
+      "minimum": 1024,
+      "maximum": 65535
+    }
+  }
+}

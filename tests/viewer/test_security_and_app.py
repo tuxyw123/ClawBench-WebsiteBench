@@ -107,6 +107,7 @@ def test_auth_redirect_security_headers_and_core_pages(tmp_path: Path) -> None:
         for path in (
             "/",
             "/tasks",
+            "/tasks/offlineclone--amazon-shopping-mainline",
             "/tasks/legacy--dev-115-freshdesk-invoice-dispute-ticket",
             "/models",
             "/results",
@@ -118,9 +119,16 @@ def test_auth_redirect_security_headers_and_core_pages(tmp_path: Path) -> None:
             assert "default-src 'self'" in response.headers["content-security-policy"]
             assert response.headers["x-frame-options"] == "DENY"
         tasks = client.get("/tasks").text
-        assert tasks.count("data-task-row") == 3
-        assert "Model runs" in tasks
+        assert tasks.count("data-task-row") == 4
+        assert "Agent runs" in tasks
         assert "Legacy checks" in tasks
+        amazon = client.get(
+            "/tasks/offlineclone--amazon-shopping-mainline"
+        ).text
+        assert "Route & state explorer" in amazon
+        assert "Journey replay" in amazon
+        assert "Agent experiment not started" in amazon
+        assert "/static/showcase/amazon/clone-home.png" in amazon
 
 
 def test_review_csrf_revision_and_export(tmp_path: Path) -> None:
@@ -180,19 +188,35 @@ def test_compare_deduplicates_and_ignores_unknown_items(tmp_path: Path) -> None:
 def test_public_static_publish_includes_scalable_catalog_routes(tmp_path: Path) -> None:
     output = tmp_path / "site"
     manifest = publish_static_site(REPO_ROOT, output)
-    assert manifest["items"] == 0
+    assert manifest["items"] == 1
     assert (output / "index.html").is_file()
     assert (output / "tasks" / "index.html").is_file()
+    assert (
+        output
+        / "tasks"
+        / "offlineclone--amazon-shopping-mainline"
+        / "index.html"
+    ).is_file()
+    assert (output / "amazon" / "index.html").is_file()
     assert (output / "models" / "index.html").is_file()
     assert (output / "results" / "index.html").is_file()
+    assert (
+        output / "static" / "showcase" / "amazon" / "clone-home.png"
+    ).is_file()
     html = (output / "index.html").read_text(encoding="utf-8")
-    assert "Website × model matrix" in html
+    assert "Can an agent rebuild a website" in html
+    assert "Agent experiments · not started" in html
     assert 'name="csrf-token" content=""' in html
     assert 'href="/static/styles.css"' in html
     assert 'src="/static/app.js"' in html
-    assert 'property="og:image" content="/static/og.png"' in html
+    assert 'property="og:image" content="/static/og-v2.png"' in html
+    assert 'href="/amazon"' in html
+    assert 'href="/tasks/offlineclone--amazon-shopping-mainline"' not in html
     assert "http://testserver" not in html
     assert "Sign out" not in html
+    amazon_html = (output / "amazon" / "index.html").read_text(encoding="utf-8")
+    assert "Route & state explorer" in amazon_html
+    assert "Amazon Shopping" in amazon_html
 
 
 def test_internal_gateway_requires_auth_and_rewrites_clone_response(

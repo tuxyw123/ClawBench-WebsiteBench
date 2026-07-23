@@ -1,0 +1,2502 @@
+{
+  "schema_version": "websitebench.viewer-index.v1",
+  "generated_at": "2026-07-23T11:23:32.684272+00:00",
+  "profile": "public",
+  "summary": {
+    "item_count": 1,
+    "websitebench_count": 0,
+    "offline_clone_count": 1,
+    "benchmark_site_count": 1,
+    "legacy_count": 0,
+    "official_run_count": 0,
+    "invalid_run_count": 0,
+    "category_count": 1,
+    "model_count": 0,
+    "evaluated_pair_count": 0,
+    "possible_pair_count": 0,
+    "readiness": {
+      "invalid": 0,
+      "missing": 0,
+      "not_applicable": 5,
+      "present": 7
+    },
+    "distributions": {
+      "source_type": {
+        "offline_clone": 1
+      },
+      "family": {
+        "commerce-marketplace": 1
+      },
+      "product_type": {
+        "shopping-commerce": 1
+      },
+      "difficulty": {
+        "high": 1
+      },
+      "split": {
+        "worked-example": 1
+      }
+    }
+  },
+  "items": [
+    {
+      "key": "offlineclone--amazon-shopping-mainline",
+      "source_type": "offline_clone",
+      "site_id": "amazon-shopping-mainline",
+      "display_name": "Amazon Shopping",
+      "description": "A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.",
+      "family": "commerce-marketplace",
+      "product_type": "shopping-commerce",
+      "difficulty": "high",
+      "split": "worked-example",
+      "site_version": "a93e7cc9484a",
+      "capability_tags": [
+        "Search",
+        "Filters",
+        "Product variants",
+        "Cart",
+        "Identity",
+        "Checkout",
+        "Orders",
+        "Reviews",
+        "Lists",
+        "Recovery"
+      ],
+      "interaction_tags": [
+        "autocomplete",
+        "drawer",
+        "dependent options",
+        "cart mutation",
+        "email verification",
+        "payment retry",
+        "order lifecycle"
+      ],
+      "roles": [
+        "shopper.anonymous",
+        "shopper.verified-local"
+      ],
+      "stateful_entities": [
+        "session",
+        "account",
+        "cart",
+        "list",
+        "checkout",
+        "order",
+        "review"
+      ],
+      "counts": {
+        "routes": 15,
+        "journeys": 3,
+        "checkpoints": 16,
+        "seeds": null,
+        "public_seeds": null,
+        "hidden_test_families": null,
+        "states": 79,
+        "assets": 454
+      },
+      "readiness": [
+        {
+          "id": "manifest_schema",
+          "label": "Manifest schema",
+          "status": "present",
+          "detail": ""
+        },
+        {
+          "id": "required_artifacts",
+          "label": "Required public artifacts",
+          "status": "present",
+          "detail": "Frozen purpose, routes, journeys, checkpoints, coverage, and asset closure"
+        },
+        {
+          "id": "clone_artifact",
+          "label": "Clone artifact",
+          "status": "present",
+          "detail": "Runnable isolated offline reference server"
+        },
+        {
+          "id": "journeys",
+          "label": "User journeys",
+          "status": "present",
+          "detail": "3 frozen success, failure, and recovery journeys"
+        },
+        {
+          "id": "visual_checkpoints",
+          "label": "Visual checkpoints",
+          "status": "present",
+          "detail": "16 route-state-viewport checkpoints"
+        },
+        {
+          "id": "verification_report",
+          "label": "Legacy verifier report",
+          "status": "present",
+          "detail": "Acceptance report is current and all release gates passed"
+        },
+        {
+          "id": "visual_evidence",
+          "label": "Visual evidence companion",
+          "status": "present",
+          "detail": "2 sanitized source/reference pairs"
+        },
+        {
+          "id": "seed_reset",
+          "label": "Seed and reset",
+          "status": "not_applicable",
+          "detail": "Managed by the offline-clone harness rather than the candidate scoring contract"
+        },
+        {
+          "id": "controlled_time",
+          "label": "Controlled time",
+          "status": "not_applicable",
+          "detail": "Deterministic local simulations are certified by acceptance evidence"
+        },
+        {
+          "id": "license",
+          "label": "License and assets",
+          "status": "not_applicable",
+          "detail": "Research evidence remains subject to source-owner rights and publication review"
+        },
+        {
+          "id": "candidate_report",
+          "label": "Official candidate report",
+          "status": "not_applicable",
+          "detail": "0 valid agent experiment runs"
+        },
+        {
+          "id": "scoring_contract",
+          "label": "Scoring contract",
+          "status": "not_applicable",
+          "detail": "Agent scoring remains intentionally empty until experiments start"
+        }
+      ],
+      "readiness_counts": {
+        "invalid": 0,
+        "missing": 0,
+        "not_applicable": 5,
+        "present": 7
+      },
+      "official_runs": [],
+      "latest_official_result": null,
+      "legacy_verification": null,
+      "artifact_fingerprint": "11eb35d2adf1c559855354dab457e17839f135f1247a0dd6c1972d5be82cbdcf",
+      "lifecycle_stage": "ready",
+      "construction_status": "accepted",
+      "experiment_status": "not_started",
+      "protocol": {
+        "public_artifacts": [
+          "purpose",
+          "routes",
+          "journeys",
+          "checkpoints",
+          "coverage",
+          "sanitized visual evidence"
+        ],
+        "browser_policy": {
+          "runtime_remote_requests": "forbidden"
+        },
+        "services": [
+          "isolated offline reference server"
+        ],
+        "visual_viewports": [
+          "desktop",
+          "mobile",
+          "tablet"
+        ]
+      },
+      "documents": {},
+      "visual_evidence": {
+        "schema_version": "websitebench.viewer-public-visual.v1",
+        "comparison_kind": "source-to-offline-reference",
+        "captures": [
+          {
+            "checkpoint": "home.desktop.loaded",
+            "viewport": "desktop",
+            "capture_status": "accepted",
+            "evidence_reliability": "current-direct",
+            "comparison_kind": "source-to-offline-reference",
+            "source_url": "/static/showcase/amazon/source-home.png",
+            "candidate_url": "/static/showcase/amazon/clone-home.png",
+            "heatmap_url": "/static/showcase/amazon/diff-home.png",
+            "diagnostic_metrics": {
+              "pixel_similarity": 0.842515811,
+              "acceptance_threshold": 0.8
+            }
+          },
+          {
+            "checkpoint": "search.desktop.filtered",
+            "viewport": "desktop",
+            "capture_status": "accepted",
+            "evidence_reliability": "current-direct",
+            "comparison_kind": "source-to-offline-reference",
+            "source_url": "/static/showcase/amazon/source-search.png",
+            "candidate_url": "/static/showcase/amazon/clone-search.png",
+            "heatmap_url": "/static/showcase/amazon/diff-search.png",
+            "diagnostic_metrics": {
+              "pixel_similarity": 0.894721445,
+              "acceptance_threshold": 0.85
+            }
+          }
+        ]
+      },
+      "visual_evidence_errors": [],
+      "showcase": {
+        "brand": "Amazon",
+        "construction_status": "accepted",
+        "experiment_status": "not_started",
+        "hero_image": "/static/showcase/amazon/clone-home.png",
+        "visual_pairs": [
+          {
+            "checkpoint": "home.desktop.loaded",
+            "viewport": "desktop",
+            "capture_status": "accepted",
+            "evidence_reliability": "current-direct",
+            "comparison_kind": "source-to-offline-reference",
+            "source_url": "/static/showcase/amazon/source-home.png",
+            "candidate_url": "/static/showcase/amazon/clone-home.png",
+            "heatmap_url": "/static/showcase/amazon/diff-home.png",
+            "diagnostic_metrics": {
+              "pixel_similarity": 0.842515811,
+              "acceptance_threshold": 0.8
+            }
+          },
+          {
+            "checkpoint": "search.desktop.filtered",
+            "viewport": "desktop",
+            "capture_status": "accepted",
+            "evidence_reliability": "current-direct",
+            "comparison_kind": "source-to-offline-reference",
+            "source_url": "/static/showcase/amazon/source-search.png",
+            "candidate_url": "/static/showcase/amazon/clone-search.png",
+            "heatmap_url": "/static/showcase/amazon/diff-search.png",
+            "diagnostic_metrics": {
+              "pixel_similarity": 0.894721445,
+              "acceptance_threshold": 0.85
+            }
+          }
+        ],
+        "route_families": [
+          {
+            "id": "home",
+            "route_pattern": "/",
+            "priority": "p0",
+            "purpose_edge": "discovery",
+            "evidence_kind": "current-direct",
+            "verification_kind": "fixture-validated",
+            "local_destination": true,
+            "states": [
+              "loaded",
+              "account-hover",
+              "department-drawer",
+              "autocomplete",
+              "narrow-native-scroll"
+            ]
+          },
+          {
+            "id": "search",
+            "route_pattern": "/s and /s/ref=nb_sb_noss",
+            "priority": "p0",
+            "purpose_edge": "discovery-and-decision",
+            "evidence_kind": "current-direct",
+            "verification_kind": "fixture-validated",
+            "local_destination": true,
+            "states": [
+              "results",
+              "filtered",
+              "sorted",
+              "no-results",
+              "bounded-card-offer"
+            ]
+          },
+          {
+            "id": "departments",
+            "route_pattern": "/books, /home-kitchen, /toys, /computers, /beauty",
+            "priority": "p1",
+            "purpose_edge": "cross-category-discovery",
+            "evidence_kind": "current-direct",
+            "verification_kind": "fixture-validated",
+            "local_destination": true,
+            "states": [
+              "department-card-grid",
+              "department-filter",
+              "browse-only-card",
+              "quoted-card"
+            ]
+          },
+          {
+            "id": "deals",
+            "route_pattern": "/gp/goldbox/",
+            "priority": "p1",
+            "purpose_edge": "promotion-discovery",
+            "evidence_kind": "current-direct",
+            "verification_kind": "fixture-validated",
+            "local_destination": true,
+            "states": [
+              "default-cards",
+              "department-filter",
+              "price-filter",
+              "discount-filter",
+              "no-results"
+            ]
+          },
+          {
+            "id": "pdp",
+            "route_pattern": "/dp/<ASIN> and /<slug>/dp/<ASIN>",
+            "priority": "p0",
+            "purpose_edge": "decision-and-configuration",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "rich-default",
+              "rich-valid-variant",
+              "dependency-disabled",
+              "gallery-dialog",
+              "sparse-evidence-boundary",
+              "buy-now"
+            ]
+          },
+          {
+            "id": "cart",
+            "route_pattern": "/gp/cart/view.html and cart mutation endpoints",
+            "priority": "p0",
+            "purpose_edge": "commit-staging",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "empty",
+              "active-lines",
+              "sibling-variants",
+              "quantity-update",
+              "saved-for-later",
+              "merged-after-auth",
+              "recommendations"
+            ]
+          },
+          {
+            "id": "auth",
+            "route_pattern": "/ap/signin, /ap/register, /ap/cvf/verify, /ap/forgotpassword",
+            "priority": "p0",
+            "purpose_edge": "identity-and-recovery",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "unknown-email-to-register",
+              "password",
+              "register",
+              "verify-email",
+              "invalid-code",
+              "password-reset",
+              "signed-in",
+              "signed-out"
+            ]
+          },
+          {
+            "id": "checkout",
+            "route_pattern": "/gp/buy/* and /gp/buy/place-order",
+            "priority": "p0",
+            "purpose_edge": "commit",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "address",
+              "delivery",
+              "payment-approved-card",
+              "payment-declined-card",
+              "payment-approved-bank",
+              "stale-reconcile",
+              "placed"
+            ]
+          },
+          {
+            "id": "orders",
+            "route_pattern": "/gp/css/order-history and /gp/your-account/*",
+            "priority": "p0",
+            "purpose_edge": "aftercare-and-recovery",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "placed",
+              "preparing",
+              "shipped",
+              "delivered",
+              "cancelled",
+              "return-requested",
+              "return-received",
+              "refunded",
+              "email-retry"
+            ]
+          },
+          {
+            "id": "reviews",
+            "route_pattern": "/product-reviews/<ASIN>",
+            "priority": "p1",
+            "purpose_edge": "decision-and-aftercare",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "source-aggregate",
+              "explicit-zero",
+              "source-unavailable",
+              "local-create-update",
+              "helpful",
+              "verified-purchase"
+            ]
+          },
+          {
+            "id": "compare",
+            "route_pattern": "/gp/compare and compare mutation endpoints",
+            "priority": "p1",
+            "purpose_edge": "decision",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "empty",
+              "single-guidance",
+              "same-family-table",
+              "sibling-variants",
+              "family-rejected",
+              "limit-rejected"
+            ]
+          },
+          {
+            "id": "lists",
+            "route_pattern": "/hz/wishlist/*",
+            "priority": "p1",
+            "purpose_edge": "saved-intent",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested",
+            "local_destination": true,
+            "states": [
+              "public-intro",
+              "account-list",
+              "create",
+              "rename",
+              "move-to-cart"
+            ]
+          },
+          {
+            "id": "shopping-adjacent",
+            "route_pattern": "/gift-cards/*, /sell/*, /registry/*, /gp/help/*",
+            "priority": "p1",
+            "purpose_edge": "supporting-shopping",
+            "evidence_kind": "inferred",
+            "verification_kind": "scope-decision",
+            "local_destination": true,
+            "states": [
+              "gift-card-preview",
+              "sell-draft",
+              "registry-create-search-detail",
+              "customer-service"
+            ]
+          },
+          {
+            "id": "prime-video-placeholder",
+            "route_pattern": "/Amazon-Video/*",
+            "priority": "p2",
+            "purpose_edge": "orthogonal",
+            "evidence_kind": "unavailable",
+            "verification_kind": "scope-decision",
+            "local_destination": true,
+            "states": [
+              "explicit-static-placeholder"
+            ]
+          },
+          {
+            "id": "external-systems",
+            "route_pattern": "real SMTP, payments, fulfillment, telemetry, ads, and third-party seller systems",
+            "priority": "omit",
+            "purpose_edge": "external-boundary",
+            "evidence_kind": "unavailable",
+            "verification_kind": "scope-decision",
+            "local_destination": false,
+            "states": [
+              "safe-local-adapter-or-omitted"
+            ]
+          }
+        ],
+        "journeys": [
+          {
+            "id": "shopping.success",
+            "kind": "success",
+            "actor": "anonymous shopper becoming a verified local account",
+            "steps": [
+              "discover a quoted product through home, search, a department, or Deals",
+              "open the local PDP and choose a complete source-quoted option combination",
+              "add multiple sibling variants without overwriting either cart line",
+              "sign in or register and verify the local email flow",
+              "select an owned address and supported delivery option",
+              "choose an approved local sandbox card or bank method",
+              "place the order once with server re-quotation and idempotency",
+              "refresh order history and progress the local shipment to delivered",
+              "create or update a local review whose Verified Purchase flag is server-derived"
+            ]
+          },
+          {
+            "id": "shopping.failure",
+            "kind": "failure",
+            "actor": "shopper encountering invalid or stale input",
+            "steps": [
+              "see option values with no reachable quote disabled before selection",
+              "have forged ASIN, option, quantity, owner, and cross-origin mutations rejected",
+              "receive a deterministic declined sandbox payment without an order or funds claim",
+              "have stale cart or checkout state re-quoted and reconciled instead of silently committed",
+              "retry a duplicate place-order action without creating a second order"
+            ]
+          },
+          {
+            "id": "shopping.recovery",
+            "kind": "recovery",
+            "actor": "shopper recovering identity, payment, or post-order state",
+            "steps": [
+              "enter an unknown sign-in email and continue through registration",
+              "verify the email locally or exercise bounded SMTP delivery and retry states",
+              "request password recovery without account enumeration",
+              "switch from declined card to an approved sandbox method",
+              "cancel before fulfillment or request a return after simulated delivery",
+              "refresh and observe durable cancelled, returned, or refunded state"
+            ]
+          }
+        ],
+        "checkpoints": [
+          {
+            "id": "home.desktop.loaded",
+            "route_id": "home",
+            "state": "loaded-with-27-modules",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "current-direct",
+            "verification_kind": "fixture-validated"
+          },
+          {
+            "id": "home.mobile.scroll",
+            "route_id": "home",
+            "state": "native-scroll-no-page-resize",
+            "viewport": "mobile",
+            "priority": "p1",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "search.desktop.filtered",
+            "route_id": "search",
+            "state": "results-left-filters-sort",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "current-direct",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "search.tablet.results",
+            "route_id": "search",
+            "state": "results-and-no-results",
+            "viewport": "tablet",
+            "priority": "p1",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "pdp.desktop.valid.variant",
+            "route_id": "pdp",
+            "state": "complete-quote-updates-buy-box",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "pdp.mobile.dependency.disabled",
+            "route_id": "pdp",
+            "state": "unreachable-option-disabled",
+            "viewport": "mobile",
+            "priority": "p0",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "pdp.desktop.sparse.boundary",
+            "route_id": "pdp",
+            "state": "browse-only-without-invented-offer",
+            "viewport": "desktop",
+            "priority": "p1",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "cart.desktop.sibling.variants",
+            "route_id": "cart",
+            "state": "same-asin-distinct-selection-lines",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "auth.desktop.hover.register.verify",
+            "route_id": "auth",
+            "state": "hover-unknown-email-register-verify",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "checkout.desktop.declined.retry",
+            "route_id": "checkout",
+            "state": "declined-card-then-approved-bank",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "order.desktop.delivery.return",
+            "route_id": "orders",
+            "state": "placed-to-delivered-to-returned",
+            "viewport": "desktop",
+            "priority": "p0",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "deals.desktop.filters",
+            "route_id": "deals",
+            "state": "populated-grid-and-left-filters",
+            "viewport": "desktop",
+            "priority": "p1",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "reviews.desktop.source.local",
+            "route_id": "reviews",
+            "state": "source-aggregate-separated-from-local",
+            "viewport": "desktop",
+            "priority": "p1",
+            "evidence_kind": "current-partial",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "compare.desktop.sibling.variants",
+            "route_id": "compare",
+            "state": "same-family-complete-selection-columns",
+            "viewport": "desktop",
+            "priority": "p1",
+            "evidence_kind": "inferred",
+            "verification_kind": "local-tested"
+          },
+          {
+            "id": "navigation.desktop.local.destinations",
+            "route_id": "shopping-adjacent",
+            "state": "header-gift-cards-sell-registry-help-live",
+            "viewport": "desktop",
+            "priority": "p1",
+            "evidence_kind": "inferred",
+            "verification_kind": "scope-decision"
+          },
+          {
+            "id": "prime.video.desktop.placeholder",
+            "route_id": "prime-video-placeholder",
+            "state": "explicit-static-placeholder",
+            "viewport": "desktop",
+            "priority": "p2",
+            "evidence_kind": "unavailable",
+            "verification_kind": "scope-decision"
+          }
+        ],
+        "coverage": [
+          {
+            "id": "known-products",
+            "label": "Known products",
+            "value": 191
+          },
+          {
+            "id": "rich-pdp-products",
+            "label": "Rich PDPs",
+            "value": 14
+          },
+          {
+            "id": "purchasable-products",
+            "label": "Purchasable",
+            "value": 49
+          },
+          {
+            "id": "review-backed-products",
+            "label": "Review-backed",
+            "value": 13
+          },
+          {
+            "id": "comparable-products",
+            "label": "Comparable",
+            "value": 39
+          },
+          {
+            "id": "required-runtime-asset-paths",
+            "label": "Runtime assets",
+            "value": 454
+          }
+        ],
+        "calibration": {
+          "stage": "ACCEPTED",
+          "manifest_current": true,
+          "gates": [
+            {
+              "id": "assets",
+              "status": "passed"
+            },
+            {
+              "id": "backend",
+              "status": "passed"
+            },
+            {
+              "id": "frontend",
+              "status": "passed"
+            },
+            {
+              "id": "release",
+              "status": "passed"
+            },
+            {
+              "id": "source",
+              "status": "passed"
+            }
+          ],
+          "metrics": {
+            "visual": {
+              "browser_context_height": 890,
+              "browser_context_width": 1350,
+              "browser_errors": 0,
+              "checkpoints_failed": 0,
+              "checkpoints_passed": 2,
+              "checkpoints_total": 2,
+              "checks_failed": 0,
+              "checks_passed": 26,
+              "checks_total": 26,
+              "clone_capture_sha256": [
+                "a3c815be7d7c40c3c643cdee6e2dc72d290e861e545e01e3007047b3351d3862",
+                "ba33e0402d019dc5b41cec2b08fbe528b785341cb7bc5c2a111d0735127c1460"
+              ],
+              "compared_raster_height": 890,
+              "compared_raster_width": 1350,
+              "nonlocal_requests": 0,
+              "pixel_similarity_scores": [
+                0.842515811,
+                0.894721445
+              ],
+              "pixel_similarity_thresholds": [
+                0.8,
+                0.85
+              ],
+              "reference_views": 2,
+              "source_reference_sha256": [
+                "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110",
+                "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd"
+              ],
+              "wrong_checkpoint_similarity_scores": [
+                0.735465934,
+                0.719866262
+              ]
+            },
+            "browser": {
+              "checkpoint_routes_observed": 16,
+              "checkpoint_semantics_verified": 16,
+              "checkpoints_failed": 0,
+              "checkpoints_passed": 16,
+              "checkpoints_total": 16,
+              "checks_failed": 0,
+              "checks_passed": 20,
+              "checks_total": 20,
+              "journey_segments": 4,
+              "journeys_failed": 0,
+              "journeys_passed": 22,
+              "journeys_total": 22,
+              "visited_pages": 41
+            },
+            "network": {
+              "broken_images": 0,
+              "browser_requested_assets": 454,
+              "checks_failed": 0,
+              "checks_passed": 9,
+              "checks_total": 9,
+              "covered_runtime_assets": 454,
+              "declared_runtime_assets": 454,
+              "forbidden_remote_requests": 0,
+              "network_failures": 0,
+              "nonlocal_requests": 0,
+              "parser_proven_assets": 22,
+              "requests_total": 1559,
+              "static_failures": 0,
+              "websocket_events": 0
+            },
+            "full-suite": {
+              "checks_failed": 0,
+              "checks_passed": 330,
+              "checks_total": 330,
+              "discovered_tests": 330,
+              "tests_discovered": 330,
+              "tests_failed": 0,
+              "tests_passed": 330
+            }
+          }
+        },
+        "future_score_dimensions": [
+          "Visual fidelity",
+          "Interaction fidelity",
+          "Journey completion",
+          "Robustness",
+          "Efficiency"
+        ]
+      }
+    }
+  ],
+  "models": [],
+  "categories": [
+    {
+      "id": "shopping-commerce",
+      "label": "Shopping Commerce",
+      "site_count": 1,
+      "ready_count": 1,
+      "evaluated_count": 0,
+      "run_count": 0,
+      "model_count": 0,
+      "sites": [
+        {
+          "key": "offlineclone--amazon-shopping-mainline",
+          "source_type": "offline_clone",
+          "site_id": "amazon-shopping-mainline",
+          "display_name": "Amazon Shopping",
+          "description": "A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.",
+          "family": "commerce-marketplace",
+          "product_type": "shopping-commerce",
+          "difficulty": "high",
+          "split": "worked-example",
+          "site_version": "a93e7cc9484a",
+          "capability_tags": [
+            "Search",
+            "Filters",
+            "Product variants",
+            "Cart",
+            "Identity",
+            "Checkout",
+            "Orders",
+            "Reviews",
+            "Lists",
+            "Recovery"
+          ],
+          "interaction_tags": [
+            "autocomplete",
+            "drawer",
+            "dependent options",
+            "cart mutation",
+            "email verification",
+            "payment retry",
+            "order lifecycle"
+          ],
+          "roles": [
+            "shopper.anonymous",
+            "shopper.verified-local"
+          ],
+          "stateful_entities": [
+            "session",
+            "account",
+            "cart",
+            "list",
+            "checkout",
+            "order",
+            "review"
+          ],
+          "counts": {
+            "routes": 15,
+            "journeys": 3,
+            "checkpoints": 16,
+            "seeds": null,
+            "public_seeds": null,
+            "hidden_test_families": null,
+            "states": 79,
+            "assets": 454
+          },
+          "readiness": [
+            {
+              "id": "manifest_schema",
+              "label": "Manifest schema",
+              "status": "present",
+              "detail": ""
+            },
+            {
+              "id": "required_artifacts",
+              "label": "Required public artifacts",
+              "status": "present",
+              "detail": "Frozen purpose, routes, journeys, checkpoints, coverage, and asset closure"
+            },
+            {
+              "id": "clone_artifact",
+              "label": "Clone artifact",
+              "status": "present",
+              "detail": "Runnable isolated offline reference server"
+            },
+            {
+              "id": "journeys",
+              "label": "User journeys",
+              "status": "present",
+              "detail": "3 frozen success, failure, and recovery journeys"
+            },
+            {
+              "id": "visual_checkpoints",
+              "label": "Visual checkpoints",
+              "status": "present",
+              "detail": "16 route-state-viewport checkpoints"
+            },
+            {
+              "id": "verification_report",
+              "label": "Legacy verifier report",
+              "status": "present",
+              "detail": "Acceptance report is current and all release gates passed"
+            },
+            {
+              "id": "visual_evidence",
+              "label": "Visual evidence companion",
+              "status": "present",
+              "detail": "2 sanitized source/reference pairs"
+            },
+            {
+              "id": "seed_reset",
+              "label": "Seed and reset",
+              "status": "not_applicable",
+              "detail": "Managed by the offline-clone harness rather than the candidate scoring contract"
+            },
+            {
+              "id": "controlled_time",
+              "label": "Controlled time",
+              "status": "not_applicable",
+              "detail": "Deterministic local simulations are certified by acceptance evidence"
+            },
+            {
+              "id": "license",
+              "label": "License and assets",
+              "status": "not_applicable",
+              "detail": "Research evidence remains subject to source-owner rights and publication review"
+            },
+            {
+              "id": "candidate_report",
+              "label": "Official candidate report",
+              "status": "not_applicable",
+              "detail": "0 valid agent experiment runs"
+            },
+            {
+              "id": "scoring_contract",
+              "label": "Scoring contract",
+              "status": "not_applicable",
+              "detail": "Agent scoring remains intentionally empty until experiments start"
+            }
+          ],
+          "readiness_counts": {
+            "invalid": 0,
+            "missing": 0,
+            "not_applicable": 5,
+            "present": 7
+          },
+          "official_runs": [],
+          "latest_official_result": null,
+          "legacy_verification": null,
+          "artifact_fingerprint": "11eb35d2adf1c559855354dab457e17839f135f1247a0dd6c1972d5be82cbdcf",
+          "lifecycle_stage": "ready",
+          "construction_status": "accepted",
+          "experiment_status": "not_started",
+          "protocol": {
+            "public_artifacts": [
+              "purpose",
+              "routes",
+              "journeys",
+              "checkpoints",
+              "coverage",
+              "sanitized visual evidence"
+            ],
+            "browser_policy": {
+              "runtime_remote_requests": "forbidden"
+            },
+            "services": [
+              "isolated offline reference server"
+            ],
+            "visual_viewports": [
+              "desktop",
+              "mobile",
+              "tablet"
+            ]
+          },
+          "documents": {},
+          "visual_evidence": {
+            "schema_version": "websitebench.viewer-public-visual.v1",
+            "comparison_kind": "source-to-offline-reference",
+            "captures": [
+              {
+                "checkpoint": "home.desktop.loaded",
+                "viewport": "desktop",
+                "capture_status": "accepted",
+                "evidence_reliability": "current-direct",
+                "comparison_kind": "source-to-offline-reference",
+                "source_url": "/static/showcase/amazon/source-home.png",
+                "candidate_url": "/static/showcase/amazon/clone-home.png",
+                "heatmap_url": "/static/showcase/amazon/diff-home.png",
+                "diagnostic_metrics": {
+                  "pixel_similarity": 0.842515811,
+                  "acceptance_threshold": 0.8
+                }
+              },
+              {
+                "checkpoint": "search.desktop.filtered",
+                "viewport": "desktop",
+                "capture_status": "accepted",
+                "evidence_reliability": "current-direct",
+                "comparison_kind": "source-to-offline-reference",
+                "source_url": "/static/showcase/amazon/source-search.png",
+                "candidate_url": "/static/showcase/amazon/clone-search.png",
+                "heatmap_url": "/static/showcase/amazon/diff-search.png",
+                "diagnostic_metrics": {
+                  "pixel_similarity": 0.894721445,
+                  "acceptance_threshold": 0.85
+                }
+              }
+            ]
+          },
+          "visual_evidence_errors": [],
+          "showcase": {
+            "brand": "Amazon",
+            "construction_status": "accepted",
+            "experiment_status": "not_started",
+            "hero_image": "/static/showcase/amazon/clone-home.png",
+            "visual_pairs": [
+              {
+                "checkpoint": "home.desktop.loaded",
+                "viewport": "desktop",
+                "capture_status": "accepted",
+                "evidence_reliability": "current-direct",
+                "comparison_kind": "source-to-offline-reference",
+                "source_url": "/static/showcase/amazon/source-home.png",
+                "candidate_url": "/static/showcase/amazon/clone-home.png",
+                "heatmap_url": "/static/showcase/amazon/diff-home.png",
+                "diagnostic_metrics": {
+                  "pixel_similarity": 0.842515811,
+                  "acceptance_threshold": 0.8
+                }
+              },
+              {
+                "checkpoint": "search.desktop.filtered",
+                "viewport": "desktop",
+                "capture_status": "accepted",
+                "evidence_reliability": "current-direct",
+                "comparison_kind": "source-to-offline-reference",
+                "source_url": "/static/showcase/amazon/source-search.png",
+                "candidate_url": "/static/showcase/amazon/clone-search.png",
+                "heatmap_url": "/static/showcase/amazon/diff-search.png",
+                "diagnostic_metrics": {
+                  "pixel_similarity": 0.894721445,
+                  "acceptance_threshold": 0.85
+                }
+              }
+            ],
+            "route_families": [
+              {
+                "id": "home",
+                "route_pattern": "/",
+                "priority": "p0",
+                "purpose_edge": "discovery",
+                "evidence_kind": "current-direct",
+                "verification_kind": "fixture-validated",
+                "local_destination": true,
+                "states": [
+                  "loaded",
+                  "account-hover",
+                  "department-drawer",
+                  "autocomplete",
+                  "narrow-native-scroll"
+                ]
+              },
+              {
+                "id": "search",
+                "route_pattern": "/s and /s/ref=nb_sb_noss",
+                "priority": "p0",
+                "purpose_edge": "discovery-and-decision",
+                "evidence_kind": "current-direct",
+                "verification_kind": "fixture-validated",
+                "local_destination": true,
+                "states": [
+                  "results",
+                  "filtered",
+                  "sorted",
+                  "no-results",
+                  "bounded-card-offer"
+                ]
+              },
+              {
+                "id": "departments",
+                "route_pattern": "/books, /home-kitchen, /toys, /computers, /beauty",
+                "priority": "p1",
+                "purpose_edge": "cross-category-discovery",
+                "evidence_kind": "current-direct",
+                "verification_kind": "fixture-validated",
+                "local_destination": true,
+                "states": [
+                  "department-card-grid",
+                  "department-filter",
+                  "browse-only-card",
+                  "quoted-card"
+                ]
+              },
+              {
+                "id": "deals",
+                "route_pattern": "/gp/goldbox/",
+                "priority": "p1",
+                "purpose_edge": "promotion-discovery",
+                "evidence_kind": "current-direct",
+                "verification_kind": "fixture-validated",
+                "local_destination": true,
+                "states": [
+                  "default-cards",
+                  "department-filter",
+                  "price-filter",
+                  "discount-filter",
+                  "no-results"
+                ]
+              },
+              {
+                "id": "pdp",
+                "route_pattern": "/dp/<ASIN> and /<slug>/dp/<ASIN>",
+                "priority": "p0",
+                "purpose_edge": "decision-and-configuration",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "rich-default",
+                  "rich-valid-variant",
+                  "dependency-disabled",
+                  "gallery-dialog",
+                  "sparse-evidence-boundary",
+                  "buy-now"
+                ]
+              },
+              {
+                "id": "cart",
+                "route_pattern": "/gp/cart/view.html and cart mutation endpoints",
+                "priority": "p0",
+                "purpose_edge": "commit-staging",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "empty",
+                  "active-lines",
+                  "sibling-variants",
+                  "quantity-update",
+                  "saved-for-later",
+                  "merged-after-auth",
+                  "recommendations"
+                ]
+              },
+              {
+                "id": "auth",
+                "route_pattern": "/ap/signin, /ap/register, /ap/cvf/verify, /ap/forgotpassword",
+                "priority": "p0",
+                "purpose_edge": "identity-and-recovery",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "unknown-email-to-register",
+                  "password",
+                  "register",
+                  "verify-email",
+                  "invalid-code",
+                  "password-reset",
+                  "signed-in",
+                  "signed-out"
+                ]
+              },
+              {
+                "id": "checkout",
+                "route_pattern": "/gp/buy/* and /gp/buy/place-order",
+                "priority": "p0",
+                "purpose_edge": "commit",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "address",
+                  "delivery",
+                  "payment-approved-card",
+                  "payment-declined-card",
+                  "payment-approved-bank",
+                  "stale-reconcile",
+                  "placed"
+                ]
+              },
+              {
+                "id": "orders",
+                "route_pattern": "/gp/css/order-history and /gp/your-account/*",
+                "priority": "p0",
+                "purpose_edge": "aftercare-and-recovery",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "placed",
+                  "preparing",
+                  "shipped",
+                  "delivered",
+                  "cancelled",
+                  "return-requested",
+                  "return-received",
+                  "refunded",
+                  "email-retry"
+                ]
+              },
+              {
+                "id": "reviews",
+                "route_pattern": "/product-reviews/<ASIN>",
+                "priority": "p1",
+                "purpose_edge": "decision-and-aftercare",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "source-aggregate",
+                  "explicit-zero",
+                  "source-unavailable",
+                  "local-create-update",
+                  "helpful",
+                  "verified-purchase"
+                ]
+              },
+              {
+                "id": "compare",
+                "route_pattern": "/gp/compare and compare mutation endpoints",
+                "priority": "p1",
+                "purpose_edge": "decision",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "empty",
+                  "single-guidance",
+                  "same-family-table",
+                  "sibling-variants",
+                  "family-rejected",
+                  "limit-rejected"
+                ]
+              },
+              {
+                "id": "lists",
+                "route_pattern": "/hz/wishlist/*",
+                "priority": "p1",
+                "purpose_edge": "saved-intent",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested",
+                "local_destination": true,
+                "states": [
+                  "public-intro",
+                  "account-list",
+                  "create",
+                  "rename",
+                  "move-to-cart"
+                ]
+              },
+              {
+                "id": "shopping-adjacent",
+                "route_pattern": "/gift-cards/*, /sell/*, /registry/*, /gp/help/*",
+                "priority": "p1",
+                "purpose_edge": "supporting-shopping",
+                "evidence_kind": "inferred",
+                "verification_kind": "scope-decision",
+                "local_destination": true,
+                "states": [
+                  "gift-card-preview",
+                  "sell-draft",
+                  "registry-create-search-detail",
+                  "customer-service"
+                ]
+              },
+              {
+                "id": "prime-video-placeholder",
+                "route_pattern": "/Amazon-Video/*",
+                "priority": "p2",
+                "purpose_edge": "orthogonal",
+                "evidence_kind": "unavailable",
+                "verification_kind": "scope-decision",
+                "local_destination": true,
+                "states": [
+                  "explicit-static-placeholder"
+                ]
+              },
+              {
+                "id": "external-systems",
+                "route_pattern": "real SMTP, payments, fulfillment, telemetry, ads, and third-party seller systems",
+                "priority": "omit",
+                "purpose_edge": "external-boundary",
+                "evidence_kind": "unavailable",
+                "verification_kind": "scope-decision",
+                "local_destination": false,
+                "states": [
+                  "safe-local-adapter-or-omitted"
+                ]
+              }
+            ],
+            "journeys": [
+              {
+                "id": "shopping.success",
+                "kind": "success",
+                "actor": "anonymous shopper becoming a verified local account",
+                "steps": [
+                  "discover a quoted product through home, search, a department, or Deals",
+                  "open the local PDP and choose a complete source-quoted option combination",
+                  "add multiple sibling variants without overwriting either cart line",
+                  "sign in or register and verify the local email flow",
+                  "select an owned address and supported delivery option",
+                  "choose an approved local sandbox card or bank method",
+                  "place the order once with server re-quotation and idempotency",
+                  "refresh order history and progress the local shipment to delivered",
+                  "create or update a local review whose Verified Purchase flag is server-derived"
+                ]
+              },
+              {
+                "id": "shopping.failure",
+                "kind": "failure",
+                "actor": "shopper encountering invalid or stale input",
+                "steps": [
+                  "see option values with no reachable quote disabled before selection",
+                  "have forged ASIN, option, quantity, owner, and cross-origin mutations rejected",
+                  "receive a deterministic declined sandbox payment without an order or funds claim",
+                  "have stale cart or checkout state re-quoted and reconciled instead of silently committed",
+                  "retry a duplicate place-order action without creating a second order"
+                ]
+              },
+              {
+                "id": "shopping.recovery",
+                "kind": "recovery",
+                "actor": "shopper recovering identity, payment, or post-order state",
+                "steps": [
+                  "enter an unknown sign-in email and continue through registration",
+                  "verify the email locally or exercise bounded SMTP delivery and retry states",
+                  "request password recovery without account enumeration",
+                  "switch from declined card to an approved sandbox method",
+                  "cancel before fulfillment or request a return after simulated delivery",
+                  "refresh and observe durable cancelled, returned, or refunded state"
+                ]
+              }
+            ],
+            "checkpoints": [
+              {
+                "id": "home.desktop.loaded",
+                "route_id": "home",
+                "state": "loaded-with-27-modules",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "current-direct",
+                "verification_kind": "fixture-validated"
+              },
+              {
+                "id": "home.mobile.scroll",
+                "route_id": "home",
+                "state": "native-scroll-no-page-resize",
+                "viewport": "mobile",
+                "priority": "p1",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "search.desktop.filtered",
+                "route_id": "search",
+                "state": "results-left-filters-sort",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "current-direct",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "search.tablet.results",
+                "route_id": "search",
+                "state": "results-and-no-results",
+                "viewport": "tablet",
+                "priority": "p1",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "pdp.desktop.valid.variant",
+                "route_id": "pdp",
+                "state": "complete-quote-updates-buy-box",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "pdp.mobile.dependency.disabled",
+                "route_id": "pdp",
+                "state": "unreachable-option-disabled",
+                "viewport": "mobile",
+                "priority": "p0",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "pdp.desktop.sparse.boundary",
+                "route_id": "pdp",
+                "state": "browse-only-without-invented-offer",
+                "viewport": "desktop",
+                "priority": "p1",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "cart.desktop.sibling.variants",
+                "route_id": "cart",
+                "state": "same-asin-distinct-selection-lines",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "auth.desktop.hover.register.verify",
+                "route_id": "auth",
+                "state": "hover-unknown-email-register-verify",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "checkout.desktop.declined.retry",
+                "route_id": "checkout",
+                "state": "declined-card-then-approved-bank",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "order.desktop.delivery.return",
+                "route_id": "orders",
+                "state": "placed-to-delivered-to-returned",
+                "viewport": "desktop",
+                "priority": "p0",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "deals.desktop.filters",
+                "route_id": "deals",
+                "state": "populated-grid-and-left-filters",
+                "viewport": "desktop",
+                "priority": "p1",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "reviews.desktop.source.local",
+                "route_id": "reviews",
+                "state": "source-aggregate-separated-from-local",
+                "viewport": "desktop",
+                "priority": "p1",
+                "evidence_kind": "current-partial",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "compare.desktop.sibling.variants",
+                "route_id": "compare",
+                "state": "same-family-complete-selection-columns",
+                "viewport": "desktop",
+                "priority": "p1",
+                "evidence_kind": "inferred",
+                "verification_kind": "local-tested"
+              },
+              {
+                "id": "navigation.desktop.local.destinations",
+                "route_id": "shopping-adjacent",
+                "state": "header-gift-cards-sell-registry-help-live",
+                "viewport": "desktop",
+                "priority": "p1",
+                "evidence_kind": "inferred",
+                "verification_kind": "scope-decision"
+              },
+              {
+                "id": "prime.video.desktop.placeholder",
+                "route_id": "prime-video-placeholder",
+                "state": "explicit-static-placeholder",
+                "viewport": "desktop",
+                "priority": "p2",
+                "evidence_kind": "unavailable",
+                "verification_kind": "scope-decision"
+              }
+            ],
+            "coverage": [
+              {
+                "id": "known-products",
+                "label": "Known products",
+                "value": 191
+              },
+              {
+                "id": "rich-pdp-products",
+                "label": "Rich PDPs",
+                "value": 14
+              },
+              {
+                "id": "purchasable-products",
+                "label": "Purchasable",
+                "value": 49
+              },
+              {
+                "id": "review-backed-products",
+                "label": "Review-backed",
+                "value": 13
+              },
+              {
+                "id": "comparable-products",
+                "label": "Comparable",
+                "value": 39
+              },
+              {
+                "id": "required-runtime-asset-paths",
+                "label": "Runtime assets",
+                "value": 454
+              }
+            ],
+            "calibration": {
+              "stage": "ACCEPTED",
+              "manifest_current": true,
+              "gates": [
+                {
+                  "id": "assets",
+                  "status": "passed"
+                },
+                {
+                  "id": "backend",
+                  "status": "passed"
+                },
+                {
+                  "id": "frontend",
+                  "status": "passed"
+                },
+                {
+                  "id": "release",
+                  "status": "passed"
+                },
+                {
+                  "id": "source",
+                  "status": "passed"
+                }
+              ],
+              "metrics": {
+                "visual": {
+                  "browser_context_height": 890,
+                  "browser_context_width": 1350,
+                  "browser_errors": 0,
+                  "checkpoints_failed": 0,
+                  "checkpoints_passed": 2,
+                  "checkpoints_total": 2,
+                  "checks_failed": 0,
+                  "checks_passed": 26,
+                  "checks_total": 26,
+                  "clone_capture_sha256": [
+                    "a3c815be7d7c40c3c643cdee6e2dc72d290e861e545e01e3007047b3351d3862",
+                    "ba33e0402d019dc5b41cec2b08fbe528b785341cb7bc5c2a111d0735127c1460"
+                  ],
+                  "compared_raster_height": 890,
+                  "compared_raster_width": 1350,
+                  "nonlocal_requests": 0,
+                  "pixel_similarity_scores": [
+                    0.842515811,
+                    0.894721445
+                  ],
+                  "pixel_similarity_thresholds": [
+                    0.8,
+                    0.85
+                  ],
+                  "reference_views": 2,
+                  "source_reference_sha256": [
+                    "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110",
+                    "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd"
+                  ],
+                  "wrong_checkpoint_similarity_scores": [
+                    0.735465934,
+                    0.719866262
+                  ]
+                },
+                "browser": {
+                  "checkpoint_routes_observed": 16,
+                  "checkpoint_semantics_verified": 16,
+                  "checkpoints_failed": 0,
+                  "checkpoints_passed": 16,
+                  "checkpoints_total": 16,
+                  "checks_failed": 0,
+                  "checks_passed": 20,
+                  "checks_total": 20,
+                  "journey_segments": 4,
+                  "journeys_failed": 0,
+                  "journeys_passed": 22,
+                  "journeys_total": 22,
+                  "visited_pages": 41
+                },
+                "network": {
+                  "broken_images": 0,
+                  "browser_requested_assets": 454,
+                  "checks_failed": 0,
+                  "checks_passed": 9,
+                  "checks_total": 9,
+                  "covered_runtime_assets": 454,
+                  "declared_runtime_assets": 454,
+                  "forbidden_remote_requests": 0,
+                  "network_failures": 0,
+                  "nonlocal_requests": 0,
+                  "parser_proven_assets": 22,
+                  "requests_total": 1559,
+                  "static_failures": 0,
+                  "websocket_events": 0
+                },
+                "full-suite": {
+                  "checks_failed": 0,
+                  "checks_passed": 330,
+                  "checks_total": 330,
+                  "discovered_tests": 330,
+                  "tests_discovered": 330,
+                  "tests_failed": 0,
+                  "tests_passed": 330
+                }
+              }
+            },
+            "future_score_dimensions": [
+              "Visual fidelity",
+              "Interaction fidelity",
+              "Journey completion",
+              "Robustness",
+              "Efficiency"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "evaluation_matrix": [
+    {
+      "item": {
+        "key": "offlineclone--amazon-shopping-mainline",
+        "source_type": "offline_clone",
+        "site_id": "amazon-shopping-mainline",
+        "display_name": "Amazon Shopping",
+        "description": "A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.",
+        "family": "commerce-marketplace",
+        "product_type": "shopping-commerce",
+        "difficulty": "high",
+        "split": "worked-example",
+        "site_version": "a93e7cc9484a",
+        "capability_tags": [
+          "Search",
+          "Filters",
+          "Product variants",
+          "Cart",
+          "Identity",
+          "Checkout",
+          "Orders",
+          "Reviews",
+          "Lists",
+          "Recovery"
+        ],
+        "interaction_tags": [
+          "autocomplete",
+          "drawer",
+          "dependent options",
+          "cart mutation",
+          "email verification",
+          "payment retry",
+          "order lifecycle"
+        ],
+        "roles": [
+          "shopper.anonymous",
+          "shopper.verified-local"
+        ],
+        "stateful_entities": [
+          "session",
+          "account",
+          "cart",
+          "list",
+          "checkout",
+          "order",
+          "review"
+        ],
+        "counts": {
+          "routes": 15,
+          "journeys": 3,
+          "checkpoints": 16,
+          "seeds": null,
+          "public_seeds": null,
+          "hidden_test_families": null,
+          "states": 79,
+          "assets": 454
+        },
+        "readiness": [
+          {
+            "id": "manifest_schema",
+            "label": "Manifest schema",
+            "status": "present",
+            "detail": ""
+          },
+          {
+            "id": "required_artifacts",
+            "label": "Required public artifacts",
+            "status": "present",
+            "detail": "Frozen purpose, routes, journeys, checkpoints, coverage, and asset closure"
+          },
+          {
+            "id": "clone_artifact",
+            "label": "Clone artifact",
+            "status": "present",
+            "detail": "Runnable isolated offline reference server"
+          },
+          {
+            "id": "journeys",
+            "label": "User journeys",
+            "status": "present",
+            "detail": "3 frozen success, failure, and recovery journeys"
+          },
+          {
+            "id": "visual_checkpoints",
+            "label": "Visual checkpoints",
+            "status": "present",
+            "detail": "16 route-state-viewport checkpoints"
+          },
+          {
+            "id": "verification_report",
+            "label": "Legacy verifier report",
+            "status": "present",
+            "detail": "Acceptance report is current and all release gates passed"
+          },
+          {
+            "id": "visual_evidence",
+            "label": "Visual evidence companion",
+            "status": "present",
+            "detail": "2 sanitized source/reference pairs"
+          },
+          {
+            "id": "seed_reset",
+            "label": "Seed and reset",
+            "status": "not_applicable",
+            "detail": "Managed by the offline-clone harness rather than the candidate scoring contract"
+          },
+          {
+            "id": "controlled_time",
+            "label": "Controlled time",
+            "status": "not_applicable",
+            "detail": "Deterministic local simulations are certified by acceptance evidence"
+          },
+          {
+            "id": "license",
+            "label": "License and assets",
+            "status": "not_applicable",
+            "detail": "Research evidence remains subject to source-owner rights and publication review"
+          },
+          {
+            "id": "candidate_report",
+            "label": "Official candidate report",
+            "status": "not_applicable",
+            "detail": "0 valid agent experiment runs"
+          },
+          {
+            "id": "scoring_contract",
+            "label": "Scoring contract",
+            "status": "not_applicable",
+            "detail": "Agent scoring remains intentionally empty until experiments start"
+          }
+        ],
+        "readiness_counts": {
+          "invalid": 0,
+          "missing": 0,
+          "not_applicable": 5,
+          "present": 7
+        },
+        "official_runs": [],
+        "latest_official_result": null,
+        "legacy_verification": null,
+        "artifact_fingerprint": "11eb35d2adf1c559855354dab457e17839f135f1247a0dd6c1972d5be82cbdcf",
+        "lifecycle_stage": "ready",
+        "construction_status": "accepted",
+        "experiment_status": "not_started",
+        "protocol": {
+          "public_artifacts": [
+            "purpose",
+            "routes",
+            "journeys",
+            "checkpoints",
+            "coverage",
+            "sanitized visual evidence"
+          ],
+          "browser_policy": {
+            "runtime_remote_requests": "forbidden"
+          },
+          "services": [
+            "isolated offline reference server"
+          ],
+          "visual_viewports": [
+            "desktop",
+            "mobile",
+            "tablet"
+          ]
+        },
+        "documents": {},
+        "visual_evidence": {
+          "schema_version": "websitebench.viewer-public-visual.v1",
+          "comparison_kind": "source-to-offline-reference",
+          "captures": [
+            {
+              "checkpoint": "home.desktop.loaded",
+              "viewport": "desktop",
+              "capture_status": "accepted",
+              "evidence_reliability": "current-direct",
+              "comparison_kind": "source-to-offline-reference",
+              "source_url": "/static/showcase/amazon/source-home.png",
+              "candidate_url": "/static/showcase/amazon/clone-home.png",
+              "heatmap_url": "/static/showcase/amazon/diff-home.png",
+              "diagnostic_metrics": {
+                "pixel_similarity": 0.842515811,
+                "acceptance_threshold": 0.8
+              }
+            },
+            {
+              "checkpoint": "search.desktop.filtered",
+              "viewport": "desktop",
+              "capture_status": "accepted",
+              "evidence_reliability": "current-direct",
+              "comparison_kind": "source-to-offline-reference",
+              "source_url": "/static/showcase/amazon/source-search.png",
+              "candidate_url": "/static/showcase/amazon/clone-search.png",
+              "heatmap_url": "/static/showcase/amazon/diff-search.png",
+              "diagnostic_metrics": {
+                "pixel_similarity": 0.894721445,
+                "acceptance_threshold": 0.85
+              }
+            }
+          ]
+        },
+        "visual_evidence_errors": [],
+        "showcase": {
+          "brand": "Amazon",
+          "construction_status": "accepted",
+          "experiment_status": "not_started",
+          "hero_image": "/static/showcase/amazon/clone-home.png",
+          "visual_pairs": [
+            {
+              "checkpoint": "home.desktop.loaded",
+              "viewport": "desktop",
+              "capture_status": "accepted",
+              "evidence_reliability": "current-direct",
+              "comparison_kind": "source-to-offline-reference",
+              "source_url": "/static/showcase/amazon/source-home.png",
+              "candidate_url": "/static/showcase/amazon/clone-home.png",
+              "heatmap_url": "/static/showcase/amazon/diff-home.png",
+              "diagnostic_metrics": {
+                "pixel_similarity": 0.842515811,
+                "acceptance_threshold": 0.8
+              }
+            },
+            {
+              "checkpoint": "search.desktop.filtered",
+              "viewport": "desktop",
+              "capture_status": "accepted",
+              "evidence_reliability": "current-direct",
+              "comparison_kind": "source-to-offline-reference",
+              "source_url": "/static/showcase/amazon/source-search.png",
+              "candidate_url": "/static/showcase/amazon/clone-search.png",
+              "heatmap_url": "/static/showcase/amazon/diff-search.png",
+              "diagnostic_metrics": {
+                "pixel_similarity": 0.894721445,
+                "acceptance_threshold": 0.85
+              }
+            }
+          ],
+          "route_families": [
+            {
+              "id": "home",
+              "route_pattern": "/",
+              "priority": "p0",
+              "purpose_edge": "discovery",
+              "evidence_kind": "current-direct",
+              "verification_kind": "fixture-validated",
+              "local_destination": true,
+              "states": [
+                "loaded",
+                "account-hover",
+                "department-drawer",
+                "autocomplete",
+                "narrow-native-scroll"
+              ]
+            },
+            {
+              "id": "search",
+              "route_pattern": "/s and /s/ref=nb_sb_noss",
+              "priority": "p0",
+              "purpose_edge": "discovery-and-decision",
+              "evidence_kind": "current-direct",
+              "verification_kind": "fixture-validated",
+              "local_destination": true,
+              "states": [
+                "results",
+                "filtered",
+                "sorted",
+                "no-results",
+                "bounded-card-offer"
+              ]
+            },
+            {
+              "id": "departments",
+              "route_pattern": "/books, /home-kitchen, /toys, /computers, /beauty",
+              "priority": "p1",
+              "purpose_edge": "cross-category-discovery",
+              "evidence_kind": "current-direct",
+              "verification_kind": "fixture-validated",
+              "local_destination": true,
+              "states": [
+                "department-card-grid",
+                "department-filter",
+                "browse-only-card",
+                "quoted-card"
+              ]
+            },
+            {
+              "id": "deals",
+              "route_pattern": "/gp/goldbox/",
+              "priority": "p1",
+              "purpose_edge": "promotion-discovery",
+              "evidence_kind": "current-direct",
+              "verification_kind": "fixture-validated",
+              "local_destination": true,
+              "states": [
+                "default-cards",
+                "department-filter",
+                "price-filter",
+                "discount-filter",
+                "no-results"
+              ]
+            },
+            {
+              "id": "pdp",
+              "route_pattern": "/dp/<ASIN> and /<slug>/dp/<ASIN>",
+              "priority": "p0",
+              "purpose_edge": "decision-and-configuration",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "rich-default",
+                "rich-valid-variant",
+                "dependency-disabled",
+                "gallery-dialog",
+                "sparse-evidence-boundary",
+                "buy-now"
+              ]
+            },
+            {
+              "id": "cart",
+              "route_pattern": "/gp/cart/view.html and cart mutation endpoints",
+              "priority": "p0",
+              "purpose_edge": "commit-staging",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "empty",
+                "active-lines",
+                "sibling-variants",
+                "quantity-update",
+                "saved-for-later",
+                "merged-after-auth",
+                "recommendations"
+              ]
+            },
+            {
+              "id": "auth",
+              "route_pattern": "/ap/signin, /ap/register, /ap/cvf/verify, /ap/forgotpassword",
+              "priority": "p0",
+              "purpose_edge": "identity-and-recovery",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "unknown-email-to-register",
+                "password",
+                "register",
+                "verify-email",
+                "invalid-code",
+                "password-reset",
+                "signed-in",
+                "signed-out"
+              ]
+            },
+            {
+              "id": "checkout",
+              "route_pattern": "/gp/buy/* and /gp/buy/place-order",
+              "priority": "p0",
+              "purpose_edge": "commit",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "address",
+                "delivery",
+                "payment-approved-card",
+                "payment-declined-card",
+                "payment-approved-bank",
+                "stale-reconcile",
+                "placed"
+              ]
+            },
+            {
+              "id": "orders",
+              "route_pattern": "/gp/css/order-history and /gp/your-account/*",
+              "priority": "p0",
+              "purpose_edge": "aftercare-and-recovery",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "placed",
+                "preparing",
+                "shipped",
+                "delivered",
+                "cancelled",
+                "return-requested",
+                "return-received",
+                "refunded",
+                "email-retry"
+              ]
+            },
+            {
+              "id": "reviews",
+              "route_pattern": "/product-reviews/<ASIN>",
+              "priority": "p1",
+              "purpose_edge": "decision-and-aftercare",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "source-aggregate",
+                "explicit-zero",
+                "source-unavailable",
+                "local-create-update",
+                "helpful",
+                "verified-purchase"
+              ]
+            },
+            {
+              "id": "compare",
+              "route_pattern": "/gp/compare and compare mutation endpoints",
+              "priority": "p1",
+              "purpose_edge": "decision",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "empty",
+                "single-guidance",
+                "same-family-table",
+                "sibling-variants",
+                "family-rejected",
+                "limit-rejected"
+              ]
+            },
+            {
+              "id": "lists",
+              "route_pattern": "/hz/wishlist/*",
+              "priority": "p1",
+              "purpose_edge": "saved-intent",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested",
+              "local_destination": true,
+              "states": [
+                "public-intro",
+                "account-list",
+                "create",
+                "rename",
+                "move-to-cart"
+              ]
+            },
+            {
+              "id": "shopping-adjacent",
+              "route_pattern": "/gift-cards/*, /sell/*, /registry/*, /gp/help/*",
+              "priority": "p1",
+              "purpose_edge": "supporting-shopping",
+              "evidence_kind": "inferred",
+              "verification_kind": "scope-decision",
+              "local_destination": true,
+              "states": [
+                "gift-card-preview",
+                "sell-draft",
+                "registry-create-search-detail",
+                "customer-service"
+              ]
+            },
+            {
+              "id": "prime-video-placeholder",
+              "route_pattern": "/Amazon-Video/*",
+              "priority": "p2",
+              "purpose_edge": "orthogonal",
+              "evidence_kind": "unavailable",
+              "verification_kind": "scope-decision",
+              "local_destination": true,
+              "states": [
+                "explicit-static-placeholder"
+              ]
+            },
+            {
+              "id": "external-systems",
+              "route_pattern": "real SMTP, payments, fulfillment, telemetry, ads, and third-party seller systems",
+              "priority": "omit",
+              "purpose_edge": "external-boundary",
+              "evidence_kind": "unavailable",
+              "verification_kind": "scope-decision",
+              "local_destination": false,
+              "states": [
+                "safe-local-adapter-or-omitted"
+              ]
+            }
+          ],
+          "journeys": [
+            {
+              "id": "shopping.success",
+              "kind": "success",
+              "actor": "anonymous shopper becoming a verified local account",
+              "steps": [
+                "discover a quoted product through home, search, a department, or Deals",
+                "open the local PDP and choose a complete source-quoted option combination",
+                "add multiple sibling variants without overwriting either cart line",
+                "sign in or register and verify the local email flow",
+                "select an owned address and supported delivery option",
+                "choose an approved local sandbox card or bank method",
+                "place the order once with server re-quotation and idempotency",
+                "refresh order history and progress the local shipment to delivered",
+                "create or update a local review whose Verified Purchase flag is server-derived"
+              ]
+            },
+            {
+              "id": "shopping.failure",
+              "kind": "failure",
+              "actor": "shopper encountering invalid or stale input",
+              "steps": [
+                "see option values with no reachable quote disabled before selection",
+                "have forged ASIN, option, quantity, owner, and cross-origin mutations rejected",
+                "receive a deterministic declined sandbox payment without an order or funds claim",
+                "have stale cart or checkout state re-quoted and reconciled instead of silently committed",
+                "retry a duplicate place-order action without creating a second order"
+              ]
+            },
+            {
+              "id": "shopping.recovery",
+              "kind": "recovery",
+              "actor": "shopper recovering identity, payment, or post-order state",
+              "steps": [
+                "enter an unknown sign-in email and continue through registration",
+                "verify the email locally or exercise bounded SMTP delivery and retry states",
+                "request password recovery without account enumeration",
+                "switch from declined card to an approved sandbox method",
+                "cancel before fulfillment or request a return after simulated delivery",
+                "refresh and observe durable cancelled, returned, or refunded state"
+              ]
+            }
+          ],
+          "checkpoints": [
+            {
+              "id": "home.desktop.loaded",
+              "route_id": "home",
+              "state": "loaded-with-27-modules",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "current-direct",
+              "verification_kind": "fixture-validated"
+            },
+            {
+              "id": "home.mobile.scroll",
+              "route_id": "home",
+              "state": "native-scroll-no-page-resize",
+              "viewport": "mobile",
+              "priority": "p1",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "search.desktop.filtered",
+              "route_id": "search",
+              "state": "results-left-filters-sort",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "current-direct",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "search.tablet.results",
+              "route_id": "search",
+              "state": "results-and-no-results",
+              "viewport": "tablet",
+              "priority": "p1",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "pdp.desktop.valid.variant",
+              "route_id": "pdp",
+              "state": "complete-quote-updates-buy-box",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "pdp.mobile.dependency.disabled",
+              "route_id": "pdp",
+              "state": "unreachable-option-disabled",
+              "viewport": "mobile",
+              "priority": "p0",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "pdp.desktop.sparse.boundary",
+              "route_id": "pdp",
+              "state": "browse-only-without-invented-offer",
+              "viewport": "desktop",
+              "priority": "p1",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "cart.desktop.sibling.variants",
+              "route_id": "cart",
+              "state": "same-asin-distinct-selection-lines",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "auth.desktop.hover.register.verify",
+              "route_id": "auth",
+              "state": "hover-unknown-email-register-verify",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "checkout.desktop.declined.retry",
+              "route_id": "checkout",
+              "state": "declined-card-then-approved-bank",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "order.desktop.delivery.return",
+              "route_id": "orders",
+              "state": "placed-to-delivered-to-returned",
+              "viewport": "desktop",
+              "priority": "p0",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "deals.desktop.filters",
+              "route_id": "deals",
+              "state": "populated-grid-and-left-filters",
+              "viewport": "desktop",
+              "priority": "p1",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "reviews.desktop.source.local",
+              "route_id": "reviews",
+              "state": "source-aggregate-separated-from-local",
+              "viewport": "desktop",
+              "priority": "p1",
+              "evidence_kind": "current-partial",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "compare.desktop.sibling.variants",
+              "route_id": "compare",
+              "state": "same-family-complete-selection-columns",
+              "viewport": "desktop",
+              "priority": "p1",
+              "evidence_kind": "inferred",
+              "verification_kind": "local-tested"
+            },
+            {
+              "id": "navigation.desktop.local.destinations",
+              "route_id": "shopping-adjacent",
+              "state": "header-gift-cards-sell-registry-help-live",
+              "viewport": "desktop",
+              "priority": "p1",
+              "evidence_kind": "inferred",
+              "verification_kind": "scope-decision"
+            },
+            {
+              "id": "prime.video.desktop.placeholder",
+              "route_id": "prime-video-placeholder",
+              "state": "explicit-static-placeholder",
+              "viewport": "desktop",
+              "priority": "p2",
+              "evidence_kind": "unavailable",
+              "verification_kind": "scope-decision"
+            }
+          ],
+          "coverage": [
+            {
+              "id": "known-products",
+              "label": "Known products",
+              "value": 191
+            },
+            {
+              "id": "rich-pdp-products",
+              "label": "Rich PDPs",
+              "value": 14
+            },
+            {
+              "id": "purchasable-products",
+              "label": "Purchasable",
+              "value": 49
+            },
+            {
+              "id": "review-backed-products",
+              "label": "Review-backed",
+              "value": 13
+            },
+            {
+              "id": "comparable-products",
+              "label": "Comparable",
+              "value": 39
+            },
+            {
+              "id": "required-runtime-asset-paths",
+              "label": "Runtime assets",
+              "value": 454
+            }
+          ],
+          "calibration": {
+            "stage": "ACCEPTED",
+            "manifest_current": true,
+            "gates": [
+              {
+                "id": "assets",
+                "status": "passed"
+              },
+              {
+                "id": "backend",
+                "status": "passed"
+              },
+              {
+                "id": "frontend",
+                "status": "passed"
+              },
+              {
+                "id": "release",
+                "status": "passed"
+              },
+              {
+                "id": "source",
+                "status": "passed"
+              }
+            ],
+            "metrics": {
+              "visual": {
+                "browser_context_height": 890,
+                "browser_context_width": 1350,
+                "browser_errors": 0,
+                "checkpoints_failed": 0,
+                "checkpoints_passed": 2,
+                "checkpoints_total": 2,
+                "checks_failed": 0,
+                "checks_passed": 26,
+                "checks_total": 26,
+                "clone_capture_sha256": [
+                  "a3c815be7d7c40c3c643cdee6e2dc72d290e861e545e01e3007047b3351d3862",
+                  "ba33e0402d019dc5b41cec2b08fbe528b785341cb7bc5c2a111d0735127c1460"
+                ],
+                "compared_raster_height": 890,
+                "compared_raster_width": 1350,
+                "nonlocal_requests": 0,
+                "pixel_similarity_scores": [
+                  0.842515811,
+                  0.894721445
+                ],
+                "pixel_similarity_thresholds": [
+                  0.8,
+                  0.85
+                ],
+                "reference_views": 2,
+                "source_reference_sha256": [
+                  "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110",
+                  "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd"
+                ],
+                "wrong_checkpoint_similarity_scores": [
+                  0.735465934,
+                  0.719866262
+                ]
+              },
+              "browser": {
+                "checkpoint_routes_observed": 16,
+                "checkpoint_semantics_verified": 16,
+                "checkpoints_failed": 0,
+                "checkpoints_passed": 16,
+                "checkpoints_total": 16,
+                "checks_failed": 0,
+                "checks_passed": 20,
+                "checks_total": 20,
+                "journey_segments": 4,
+                "journeys_failed": 0,
+                "journeys_passed": 22,
+                "journeys_total": 22,
+                "visited_pages": 41
+              },
+              "network": {
+                "broken_images": 0,
+                "browser_requested_assets": 454,
+                "checks_failed": 0,
+                "checks_passed": 9,
+                "checks_total": 9,
+                "covered_runtime_assets": 454,
+                "declared_runtime_assets": 454,
+                "forbidden_remote_requests": 0,
+                "network_failures": 0,
+                "nonlocal_requests": 0,
+                "parser_proven_assets": 22,
+                "requests_total": 1559,
+                "static_failures": 0,
+                "websocket_events": 0
+              },
+              "full-suite": {
+                "checks_failed": 0,
+                "checks_passed": 330,
+                "checks_total": 330,
+                "discovered_tests": 330,
+                "tests_discovered": 330,
+                "tests_failed": 0,
+                "tests_passed": 330
+              }
+            }
+          },
+          "future_score_dimensions": [
+            "Visual fidelity",
+            "Interaction fidelity",
+            "Journey completion",
+            "Robustness",
+            "Efficiency"
+          ]
+        }
+      },
+      "cells": []
+    }
+  ],
+  "invalid_runs": []
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Offline Site Clone"
+  short_description: "Govern and verify offline clone benchmarks"
+  default_prompt: "Use $build-offline-site-clone to plan, build, package, calibrate, and evidence this offline website-clone benchmark task."

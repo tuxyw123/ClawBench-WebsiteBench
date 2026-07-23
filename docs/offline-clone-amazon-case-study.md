@@ -67,7 +67,7 @@
 | Compare | 39 个 eligible ASIN，保留完整规格且限制同一来源 family | 数量来自报价与 taxonomy，不是固定白名单 5 项 |
 | 支付 | approved card、declined card、approved bank 三种本地沙箱场景 | 不收集 PAN、expiry、CVV，也不代表真实支付连接 |
 | 邮件 | `LOCAL_ONLY`、`SMTP_PENDING`、`SMTP_SENT`、`SMTP_FAILED` 四态 | 默认离线；只有显式完整配置才进行真实 SMTP 投递 |
-| 回归 | 最终完整 discovery 为 `328/328` | 证明当前合同回归通过，不提升任何缺失的源站证据等级 |
+| 回归 | 最终完整 discovery 为 `330/330` | 证明当前合同回归通过，不提升任何缺失的源站证据等级 |
 
 这些分母保持分离，是当前版本比旧候选可信的核心原因。后续 clone 必须始终分别报告：known、reachable、rich、purchasable、comparable、source-verified 和 locally simulated。
 

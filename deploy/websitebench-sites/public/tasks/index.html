@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta property="og:image" content="/static/og-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta name="twitter:image" content="/static/og-v2.png">
+  <title>Offline website dataset · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>WebsiteBench<small>Reconstruction viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Dataset</a><a href="/models">Agents</a><a href="/results">Scores</a><a href="/methodology">Protocol</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public</span></div>
+
+  </header>
+  <main>
+<div class="page">
+  <section class="page-heading dataset-heading"><div><p class="eyebrow">Benchmark inputs</p><h1>Offline website dataset</h1><p>Each benchmark item is a runnable server with frozen routes, states, journeys, checkpoints, and evidence. Only completed items contain real data; future corpus slots remain visibly blank.</p></div><div class="dataset-heading-meta"><strong>1</strong><span>accepted benchmark item</span></div></section>
+  <section class="filter-bar website-filters" aria-label="Website filters">
+    <label><span>Search</span><input id="task-search" type="search" placeholder="Website, category, capability…"></label>
+    <label><span>Category</span><select id="category-filter"><option value="">All categories</option><option value="shopping-commerce">Shopping Commerce</option></select></label>
+    <label><span>Stage</span><select id="stage-filter"><option value="">All stages</option><option value="building">Building</option><option value="ready">Ready</option><option value="evaluated">Evaluated</option><option value="legacy">Legacy</option></select></label>
+    <label><span>Source</span><select id="source-filter"><option value="">All sources</option><option value="offline_clone">Benchmark dataset</option><option value="websitebench">Canonical benchmark</option><option value="legacy">Legacy reference</option></select></label>
+    <label><span>Sort</span><select id="task-sort"><option value="name">Name</option><option value="readiness">Needs work</option><option value="official">Latest score</option></select></label>
+  </section>
+  <p class="result-count"><span id="visible-count">1</span> of 1 existing items shown</p>
+  <div class="website-grid dataset-grid" id="task-rows">
+    <article class="website-card website-card-featured" data-task-row data-key="offlineclone--amazon-shopping-mainline" data-name="amazon shopping" data-search="amazon shopping commerce-marketplace shopping-commerce search filters product variants cart identity checkout orders reviews lists recovery" data-source="offline_clone" data-category="shopping-commerce" data-stage="ready" data-gate="unreviewed" data-missing="0" data-official="-1" data-legacy="-1">
+      <a class="website-card-image" href="/amazon"><img loading="lazy" src="/static/showcase/amazon/clone-home.png" alt="Amazon Shopping offline website"><span>Worked example 01</span></a>
+      <div class="website-card-top"><span class="stage stage-ready">Dataset ready</span><span class="experiment-label">Experiment not started</span></div>
+      <div class="website-card-category">Shopping Commerce</div>
+      <h2><a href="/amazon">Amazon Shopping</a></h2><p>A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.</p>
+      <div class="tag-list"><span>Search</span><span>Filters</span><span>Product variants</span><span>Cart</span><span>Identity</span><span>Checkout</span></div>
+      <div class="coverage-row"><span><strong>15</strong> routes</span><span><strong>3</strong> journeys</span><span><strong>16</strong> views</span></div>
+      <div class="website-card-footer"><div><span>Dataset evidence</span><strong>7 ready</strong></div><div><span>Agent runs</span><strong>0</strong></div><div><span>Score</span><strong>—</strong></div></div>
+    </article>
+
+    <article class="website-card future-website-card" aria-label="Reserved future website slot 02">
+      <div class="future-slot-number">02</div><div><span class="stage stage-building">Reserved</span><h2>Future offline website</h2><p>Category, scope, screenshots, and interaction evidence will appear only after this dataset item is built and accepted.</p></div>
+      <div class="future-card-lines"><span></span><span></span><span></span></div><div class="future-card-footer">No placeholder data</div>
+    </article><article class="website-card future-website-card" aria-label="Reserved future website slot 03">
+      <div class="future-slot-number">03</div><div><span class="stage stage-building">Reserved</span><h2>Future offline website</h2><p>Category, scope, screenshots, and interaction evidence will appear only after this dataset item is built and accepted.</p></div>
+      <div class="future-card-lines"><span></span><span></span><span></span></div><div class="future-card-footer">No placeholder data</div>
+    </article><article class="website-card future-website-card" aria-label="Reserved future website slot 04">
+      <div class="future-slot-number">04</div><div><span class="stage stage-building">Reserved</span><h2>Future offline website</h2><p>Category, scope, screenshots, and interaction evidence will appear only after this dataset item is built and accepted.</p></div>
+      <div class="future-card-lines"><span></span><span></span><span></span></div><div class="future-card-footer">No placeholder data</div>
+    </article>
+  </div>
+
+
+</div>
+</main>
+  <footer><span>WebsiteBench Reconstruction Viewer</span><span>Dataset calibration and agent evaluation are always shown as separate evidence.</span></footer>
+</body>
+</html>
