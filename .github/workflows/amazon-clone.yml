@@ -50,6 +50,9 @@ jobs:
             docker run --detach \
               --name "${container_name}" \
               --env PORT=10000 \
+              --env AMAZON_HOST=0.0.0.0 \
+              --env AMAZON_DB_PATH=/data/amazon.sqlite3 \
+              --env AMAZON_ADMIN_HOST=127.0.0.1 \
               --env AMAZON_ADMIN_TOKEN=ci-only-admin-token-000000000000 \
               --env AMAZON_BASIC_AUTH_USERNAME=bench \
               --env AMAZON_BASIC_AUTH_PASSWORD=ci-demo-password \
