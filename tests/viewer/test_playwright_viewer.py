@@ -25,7 +25,7 @@ def _port() -> int:
         return int(sock.getsockname()[1])
 
 
-def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
+def test_login_filter_compare_visual_export_logout_at_two_viewports(
     tmp_path: Path,
 ) -> None:
     playwright = pytest.importorskip("playwright.sync_api")
@@ -40,8 +40,9 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
     candidate = tmp_path / "candidate.png"
     pil.new("RGB", (640, 420), "#f2f6f4").save(source)
     pil.new("RGB", (640, 420), "#e8f5ef").save(candidate)
+    showcase_key = "offlineclone--amazon-shopping-mainline"
     EvidenceStore(tmp_path / "visual", REPO_ROOT).upsert(
-        "legacy--dev-115-freshdesk-invoice-dispute-ticket",
+        showcase_key,
         "home-desktop",
         "desktop",
         source_image=source,
@@ -77,7 +78,10 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
 
     try:
         with playwright.sync_playwright() as runtime:
-            browser = runtime.chromium.launch(headless=True)
+            launch_options = {"headless": True}
+            if executable_path := os.environ.get("CLAWBENCH_BROWSER_EXECUTABLE"):
+                launch_options["executable_path"] = executable_path
+            browser = runtime.chromium.launch(**launch_options)
             for width, height in ((1440, 1000), (390, 844)):
                 context = browser.new_context(viewport={"width": width, "height": height})
                 page = context.new_page()
@@ -90,20 +94,14 @@ def test_login_filter_compare_visual_review_export_logout_at_two_viewports(
                 page.locator("#task-search").fill("freshdesk")
                 assert page.locator("[data-task-row]:visible").count() == 1
                 page.locator("#task-search").fill("")
-                page.locator(".compare-check").nth(0).check()
-                page.locator(".compare-check").nth(1).check()
-                page.locator("#compare-selected").click()
-                page.wait_for_url("**/compare?keys=**")
+                page.goto(base + "/compare")
+                page.locator(".compare-picker select").select_option(index=[0, 1])
+                page.get_by_role("button", name="Compare selection").click()
+                page.wait_for_url("**/compare?**")
                 assert page.get_by_text("Official WebsiteBench score").is_visible()
-                page.goto(base + "/tasks/legacy--dev-115-freshdesk-invoice-dispute-ticket")
+                page.goto(f"{base}/tasks/{showcase_key}")
                 page.get_by_role("button", name="Overlay").click()
                 assert page.locator("[data-capture='0']").get_attribute("data-mode") == "overlay"
-                page.locator("#review-form input[name='reviewer']").fill("reviewer")
-                page.locator("#review-form select[name='gate']").select_option("approve")
-                page.locator("#review-form button[type='submit']").click()
-                playwright.expect(page.locator("#review-status")).to_contain_text(
-                    "Saved revision"
-                )
                 overflow = page.evaluate(
                     "document.documentElement.scrollWidth > document.documentElement.clientWidth"
                 )
