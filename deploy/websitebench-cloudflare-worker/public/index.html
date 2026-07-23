@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta property="og:image" content="/static/og-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta name="twitter:image" content="/static/og-v2.png">
+  <title>Benchmark overview · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>WebsiteBench<small>Reconstruction viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Dataset</a><a href="/models">Agents</a><a href="/results">Scores</a><a href="/methodology">Protocol</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public</span></div>
+
+  </header>
+  <main>
+
+<div class="page benchmark-home">
+  <section class="reconstruction-hero">
+    <div class="reconstruction-copy">
+      <p class="eyebrow">Agent website reconstruction benchmark</p>
+      <h1>Can an agent rebuild a website it can only <em>explore?</em></h1>
+      <p class="hero-lede">WebsiteBench gives an agent an isolated offline website—not its source code. The agent must interact with it, infer its behavior, and produce a new runnable clone. This viewer makes the input website, the generated clone, and every score inspectable.</p>
+      <div class="phase-pills">
+        <span class="phase-live"><i></i> Dataset construction · active</span>
+        <span class="phase-empty"><i></i> Agent experiments · not started</span>
+      </div>
+      <div class="hero-actions"><a class="primary button" href="/tasks">Explore the offline website</a><a class="secondary button" href="/methodology">How evaluation works</a></div>
+    </div>
+
+    <a class="hero-browser" href="/amazon" aria-label="Open the Amazon Shopping offline website showcase">
+      <div class="browser-bar"><span></span><span></span><span></span><code>offline.amazon.local</code></div>
+      <img src="/static/showcase/amazon/clone-home.png" alt="Amazon Shopping offline reference website">
+      <div class="browser-caption"><span><strong>Amazon Shopping</strong> · worked example</span><span>Open evidence →</span></div>
+    </a>
+
+  </section>
+
+  <section class="benchmark-pipeline" aria-label="WebsiteBench experiment pipeline">
+    <article class="is-ready"><div class="pipeline-index">01</div><div><span class="pipeline-state">Available now</span><h2>Offline reference website</h2><p>A stateful, isolated server the agent can inspect only through interaction.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">02</div><div><span class="pipeline-state">Reserved</span><h2>Agent exploration</h2><p>Browser actions, visited states, tool traces, and resource use will appear here.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">03</div><div><span class="pipeline-state">Reserved</span><h2>Generated clone</h2><p>The new runnable server produced by each evaluated agent.</p></div></article>
+    <div class="pipeline-arrow" aria-hidden="true">→</div>
+    <article class="is-future"><div class="pipeline-index">04</div><div><span class="pipeline-state">Reserved</span><h2>Multimodal scoring</h2><p>Screenshots, interaction replay, terminal states, robustness, and efficiency.</p></div></article>
+  </section>
+
+
+  <section class="featured-site">
+    <div class="section-heading featured-heading">
+      <div><p class="eyebrow">Dataset item 01 · accepted</p><h2>One complete offline website, fully inspectable</h2><p>Amazon is the current worked example. The dataset is intentionally sparse while additional website categories are still being built.</p></div>
+      <a href="/amazon">Open full observatory →</a>
+    </div>
+    <div class="featured-grid">
+      <a class="featured-visual" href="/amazon#visual-evidence"><img loading="lazy" src="/static/showcase/amazon/clone-home.png" alt="Amazon Shopping home page in the offline reference server"><span>Standard offline reference · accepted</span></a>
+      <div class="featured-facts">
+        <div class="fact-lead"><span>Purpose</span><p>A bounded shopping environment spanning discovery, product configuration, identity, checkout, orders, returns, reviews, and recovery.</p></div>
+        <div class="coverage-mosaic">
+          <article><strong>15</strong><span>Route families</span></article>
+          <article><strong>79</strong><span>Interaction states</span></article>
+          <article><strong>16</strong><span>Checkpoints</span></article>
+          <article><strong>454</strong><span>Local assets</span></article>
+        </div>
+        <div class="journey-chips"><span>Success journey</span><span>Failure journey</span><span>Recovery journey</span></div>
+        <div class="dataset-separation"><strong>Calibration ≠ agent score</strong><p>The source-to-offline comparisons below certify the benchmark input. They are not a model result.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section-heading roadmap-heading"><div><p class="eyebrow">Corpus roadmap</p><h2>More website categories will be added here</h2></div><span>1 available · 3 reserved</span></section>
+  <div class="dataset-slots">
+    <a class="dataset-slot slot-live" href="/amazon"><span>01</span><div><strong>Amazon Shopping</strong><p>Shopping Commerce</p></div><i>Accepted</i></a>
+    <article class="dataset-slot slot-empty"><span>02</span><div><strong>Future website</strong><p>Category and scope not assigned</p></div><i>Reserved</i></article><article class="dataset-slot slot-empty"><span>03</span><div><strong>Future website</strong><p>Category and scope not assigned</p></div><i>Reserved</i></article><article class="dataset-slot slot-empty"><span>04</span><div><strong>Future website</strong><p>Category and scope not assigned</p></div><i>Reserved</i></article>
+  </div>
+
+  <section class="score-preview panel">
+    <div class="section-heading"><div><p class="eyebrow">Future experiment output</p><h2>Every agent run will stay explainable</h2></div><a href="/results">Open scoring workspace →</a></div>
+    <div class="score-blueprint">
+
+      <article><span>Visual fidelity</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+
+      <article><span>Interaction fidelity</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+
+      <article><span>Journey completion</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+
+      <article><span>Robustness</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+
+      <article><span>Efficiency</span><strong>—</strong><div></div><small>Awaiting first agent run</small></article>
+
+    </div>
+    <div class="empty-run-line"><span class="empty-run-icon">◎</span><div><strong>No agent reconstruction has been evaluated yet.</strong><p>Model names, generated clones, replays, and scores remain blank until real experiment reports are added.</p></div></div>
+  </section>
+</div>
+</main>
+  <footer><span>WebsiteBench Reconstruction Viewer</span><span>Dataset calibration and agent evaluation are always shown as separate evidence.</span></footer>
+</body>
+</html>

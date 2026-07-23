@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta property="og:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta property="og:image" content="/static/og-v2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebsiteBench · Agent Reconstruction Viewer">
+  <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
+  <meta name="twitter:image" content="/static/og-v2.png">
+  <title>Amazon Shopping · WebsiteBench</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/"><span class="brand-mark">WB</span><span>WebsiteBench<small>Reconstruction viewer</small></span></a>
+
+      <nav aria-label="Primary navigation">
+        <a href="/">Overview</a><a href="/tasks">Dataset</a><a href="/models">Agents</a><a href="/results">Scores</a><a href="/methodology">Protocol</a>
+      </nav>
+      <div class="header-actions"><span class="profile-pill">public</span></div>
+
+  </header>
+  <main>
+
+<div class="page observatory-page">
+  <a class="back-link" href="/tasks">← Offline website dataset</a>
+  <section class="observatory-hero">
+    <div class="observatory-copy">
+      <div class="status-line"><span class="status-good"><i></i> Offline reference accepted</span><span class="status-waiting"><i></i> Agent experiment not started</span></div>
+      <p class="eyebrow">Worked example 01 · shopping commerce</p>
+      <h1>Amazon Shopping</h1>
+      <p>A shopper discovers, configures, purchases, receives, and can recover or return an evidence-backed product in a bounded local Amazon shopping simulation. The freeze covers anonymous Singapore/USD source evidence plus local account journeys; it explicitly denies whole-marketplace or whole-site fidelity.</p>
+      <div class="tag-list large"><span>Search</span><span>Filters</span><span>Product variants</span><span>Cart</span><span>Identity</span><span>Checkout</span><span>Orders</span><span>Reviews</span></div>
+      <div class="observatory-actions"><a class="primary button" href="#visual-evidence">Compare screenshots</a><a class="secondary button" href="#interaction-replay">Replay journeys</a></div>
+    </div>
+    <figure class="observatory-screen"><div class="browser-bar"><span></span><span></span><span></span><code>offline.amazon.local</code></div><img src="/static/showcase/amazon/clone-home.png" alt="Amazon Shopping standard offline reference website"><figcaption><span>Standard offline reference server</span><strong>Dataset input</strong></figcaption></figure>
+  </section>
+
+  <section class="observatory-metrics" aria-label="Offline website scope">
+    <article><strong>15</strong><span>Route families</span><small>Discovery through aftercare</small></article>
+    <article><strong>79</strong><span>Interaction states</span><small>Success, failure, recovery</small></article>
+    <article><strong>16</strong><span>Frozen checkpoints</span><small>Desktop, tablet, mobile</small></article>
+    <article><strong>454</strong><span>Local runtime assets</span><small>Zero required remote calls</small></article>
+  </section>
+
+  <section class="shopping-flow panel">
+    <div class="section-heading"><div><p class="eyebrow">Stateful benchmark surface</p><h2>The shopping mainline, end to end</h2></div><span>Not a static homepage clone</span></div>
+    <div class="flow-track">
+
+      <article><div>⌕</div><strong>Discover</strong><span>Home · Search · Deals</span></article><i>→</i>
+
+      <article><div>▣</div><strong>Decide</strong><span>PDP · Variants · Compare</span></article><i>→</i>
+
+      <article><div>＋</div><strong>Commit</strong><span>Cart · Identity · Checkout</span></article><i>→</i>
+
+      <article><div>✓</div><strong>Fulfil</strong><span>Order · Delivery · Review</span></article><i>→</i>
+
+      <article><div>↺</div><strong>Recover</strong><span>Retry · Return · Refund</span></article>
+
+    </div>
+  </section>
+
+  <section class="panel visual-section observatory-visual" id="visual-evidence">
+    <div class="section-heading"><div><p class="eyebrow">Dataset calibration evidence</p><h2>Original website evidence ↔ standard offline reference</h2><p>These pairs validate the benchmark input. They are not an Agent score and will never populate the model leaderboard.</p></div><span>2 current-direct pairs</span></div>
+
+      <label class="capture-picker">Checkpoint<select data-capture-picker><option value="0">home.desktop.loaded · desktop</option><option value="1">search.desktop.filtered · desktop</option></select></label>
+
+      <div class="visual-review observatory-review" data-capture="0" data-mode="side">
+        <div class="visual-toolbar" role="toolbar" aria-label="Screenshot comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Drag split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button">Difference map</button><span class="toolbar-spacer"></span><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
+        <div class="reliability-line"><span class="state state-present">accepted</span><span>Evidence: <strong>current-direct</strong></span><span>Comparison: <strong>source → offline reference</strong></span></div>
+        <div class="visual-stage" data-visual-stage>
+          <div class="visual-image source"><span>Original website evidence</span><img draggable="false" src="/static/showcase/amazon/source-home.jpg" alt="Original Amazon evidence at home.desktop.loaded"></div>
+          <div class="visual-image candidate"><span>Standard offline reference</span><img draggable="false" src="/static/showcase/amazon/clone-home.png" alt="Offline Amazon reference at home.desktop.loaded"></div>
+          <div class="visual-image heatmap"><span>Absolute visual difference</span><img draggable="false" src="/static/showcase/amazon/diff-home.png" alt="Visual difference map at home.desktop.loaded"></div>
+        </div>
+        <div class="diagnostic-grid calibration-diagnostics"><div><span>pixel similarity</span><strong>84.25%</strong></div><div><span>acceptance threshold</span><strong>80.0%</strong></div><div><span>Role in benchmark</span><strong>Input calibration</strong></div></div>
+      </div>
+      <div class="visual-review observatory-review hidden" data-capture="1" data-mode="side">
+        <div class="visual-toolbar" role="toolbar" aria-label="Screenshot comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Drag split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button">Difference map</button><span class="toolbar-spacer"></span><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
+        <div class="reliability-line"><span class="state state-present">accepted</span><span>Evidence: <strong>current-direct</strong></span><span>Comparison: <strong>source → offline reference</strong></span></div>
+        <div class="visual-stage" data-visual-stage>
+          <div class="visual-image source"><span>Original website evidence</span><img draggable="false" src="/static/showcase/amazon/source-search.jpg" alt="Original Amazon evidence at search.desktop.filtered"></div>
+          <div class="visual-image candidate"><span>Standard offline reference</span><img draggable="false" src="/static/showcase/amazon/clone-search.png" alt="Offline Amazon reference at search.desktop.filtered"></div>
+          <div class="visual-image heatmap"><span>Absolute visual difference</span><img draggable="false" src="/static/showcase/amazon/diff-search.png" alt="Visual difference map at search.desktop.filtered"></div>
+        </div>
+        <div class="diagnostic-grid calibration-diagnostics"><div><span>pixel similarity</span><strong>89.47%</strong></div><div><span>acceptance threshold</span><strong>85.0%</strong></div><div><span>Role in benchmark</span><strong>Input calibration</strong></div></div>
+      </div>
+
+  </section>
+
+  <section class="observatory-two-up">
+    <article class="panel route-observatory" data-route-explorer>
+      <div class="section-heading"><div><p class="eyebrow">Inspectable surface</p><h2>Route & state explorer</h2></div><span><b data-route-count>15</b> route families</span></div>
+      <div class="route-filters" role="toolbar" aria-label="Evidence filter"><button class="active" type="button" data-evidence-filter="all">All</button><button type="button" data-evidence-filter="current-direct">Direct</button><button type="button" data-evidence-filter="current-partial">Partial</button><button type="button" data-evidence-filter="inferred">Inferred</button><button type="button" data-evidence-filter="unavailable">Boundary</button></div>
+      <div class="route-list"><details class="route-row" data-route-evidence="current-direct"><summary><span class="route-priority">p0</span><strong>home</strong><code>/</code><span class="evidence-badge evidence-current-direct">current direct</span></summary><div><p>Discovery · fixture validated</p><div class="state-cloud"><span>loaded</span><span>account hover</span><span>department drawer</span><span>autocomplete</span><span>narrow native scroll</span></div></div></details><details class="route-row" data-route-evidence="current-direct"><summary><span class="route-priority">p0</span><strong>search</strong><code>/s and /s/ref=nb_sb_noss</code><span class="evidence-badge evidence-current-direct">current direct</span></summary><div><p>Discovery And Decision · fixture validated</p><div class="state-cloud"><span>results</span><span>filtered</span><span>sorted</span><span>no results</span><span>bounded card offer</span></div></div></details><details class="route-row" data-route-evidence="current-direct"><summary><span class="route-priority">p1</span><strong>departments</strong><code>/books, /home-kitchen, /toys, /computers, /beauty</code><span class="evidence-badge evidence-current-direct">current direct</span></summary><div><p>Cross Category Discovery · fixture validated</p><div class="state-cloud"><span>department card grid</span><span>department filter</span><span>browse only card</span><span>quoted card</span></div></div></details><details class="route-row" data-route-evidence="current-direct"><summary><span class="route-priority">p1</span><strong>deals</strong><code>/gp/goldbox/</code><span class="evidence-badge evidence-current-direct">current direct</span></summary><div><p>Promotion Discovery · fixture validated</p><div class="state-cloud"><span>default cards</span><span>department filter</span><span>price filter</span><span>discount filter</span><span>no results</span></div></div></details><details class="route-row" data-route-evidence="current-partial"><summary><span class="route-priority">p0</span><strong>pdp</strong><code>/dp/&lt;ASIN&gt; and /&lt;slug&gt;/dp/&lt;ASIN&gt;</code><span class="evidence-badge evidence-current-partial">current partial</span></summary><div><p>Decision And Configuration · local tested</p><div class="state-cloud"><span>rich default</span><span>rich valid variant</span><span>dependency disabled</span><span>gallery dialog</span><span>sparse evidence boundary</span><span>buy now</span></div></div></details><details class="route-row" data-route-evidence="inferred"><summary><span class="route-priority">p0</span><strong>cart</strong><code>/gp/cart/view.html and cart mutation endpoints</code><span class="evidence-badge evidence-inferred">inferred</span></summary><div><p>Commit Staging · local tested</p><div class="state-cloud"><span>empty</span><span>active lines</span><span>sibling variants</span><span>quantity update</span><span>saved for later</span><span>merged after auth</span><span>recommendations</span></div></div></details><details class="route-row" data-route-evidence="current-partial"><summary><span class="route-priority">p0</span><strong>auth</strong><code>/ap/signin, /ap/register, /ap/cvf/verify, /ap/forgotpassword</code><span class="evidence-badge evidence-current-partial">current partial</span></summary><div><p>Identity And Recovery · local tested</p><div class="state-cloud"><span>unknown email to register</span><span>password</span><span>register</span><span>verify email</span><span>invalid code</span><span>password reset</span><span>signed in</span><span>signed out</span></div></div></details><details class="route-row" data-route-evidence="inferred"><summary><span class="route-priority">p0</span><strong>checkout</strong><code>/gp/buy/* and /gp/buy/place-order</code><span class="evidence-badge evidence-inferred">inferred</span></summary><div><p>Commit · local tested</p><div class="state-cloud"><span>address</span><span>delivery</span><span>payment approved card</span><span>payment declined card</span><span>payment approved bank</span><span>stale reconcile</span><span>placed</span></div></div></details><details class="route-row" data-route-evidence="inferred"><summary><span class="route-priority">p0</span><strong>orders</strong><code>/gp/css/order-history and /gp/your-account/*</code><span class="evidence-badge evidence-inferred">inferred</span></summary><div><p>Aftercare And Recovery · local tested</p><div class="state-cloud"><span>placed</span><span>preparing</span><span>shipped</span><span>delivered</span><span>cancelled</span><span>return requested</span><span>return received</span><span>refunded</span><span>email retry</span></div></div></details><details class="route-row" data-route-evidence="current-partial"><summary><span class="route-priority">p1</span><strong>reviews</strong><code>/product-reviews/&lt;ASIN&gt;</code><span class="evidence-badge evidence-current-partial">current partial</span></summary><div><p>Decision And Aftercare · local tested</p><div class="state-cloud"><span>source aggregate</span><span>explicit zero</span><span>source unavailable</span><span>local create update</span><span>helpful</span><span>verified purchase</span></div></div></details><details class="route-row" data-route-evidence="inferred"><summary><span class="route-priority">p1</span><strong>compare</strong><code>/gp/compare and compare mutation endpoints</code><span class="evidence-badge evidence-inferred">inferred</span></summary><div><p>Decision · local tested</p><div class="state-cloud"><span>empty</span><span>single guidance</span><span>same family table</span><span>sibling variants</span><span>family rejected</span><span>limit rejected</span></div></div></details><details class="route-row" data-route-evidence="current-partial"><summary><span class="route-priority">p1</span><strong>lists</strong><code>/hz/wishlist/*</code><span class="evidence-badge evidence-current-partial">current partial</span></summary><div><p>Saved Intent · local tested</p><div class="state-cloud"><span>public intro</span><span>account list</span><span>create</span><span>rename</span><span>move to cart</span></div></div></details><details class="route-row" data-route-evidence="inferred"><summary><span class="route-priority">p1</span><strong>shopping-adjacent</strong><code>/gift-cards/*, /sell/*, /registry/*, /gp/help/*</code><span class="evidence-badge evidence-inferred">inferred</span></summary><div><p>Supporting Shopping · scope decision</p><div class="state-cloud"><span>gift card preview</span><span>sell draft</span><span>registry create search detail</span><span>customer service</span></div></div></details><details class="route-row" data-route-evidence="unavailable"><summary><span class="route-priority">p2</span><strong>prime-video-placeholder</strong><code>/Amazon-Video/*</code><span class="evidence-badge evidence-unavailable">unavailable</span></summary><div><p>Orthogonal · scope decision</p><div class="state-cloud"><span>explicit static placeholder</span></div></div></details><details class="route-row" data-route-evidence="unavailable"><summary><span class="route-priority">omit</span><strong>external-systems</strong><code>real SMTP, payments, fulfillment, telemetry, ads, and third-party seller systems</code><span class="evidence-badge evidence-unavailable">unavailable</span></summary><div><p>External Boundary · scope decision</p><div class="state-cloud"><span>safe local adapter or omitted</span></div></div></details></div>
+    </article>
+
+    <article class="panel journey-player" id="interaction-replay" data-journey-replay>
+      <div class="section-heading"><div><p class="eyebrow">Dynamic interaction evidence</p><h2>Journey replay</h2></div><span>Click any step</span></div>
+      <div class="journey-tabs" role="tablist"><button class="active" type="button" data-journey-tab="0"><i class="journey-kind-success"></i>Success</button><button class="" type="button" data-journey-tab="1"><i class="journey-kind-failure"></i>Failure</button><button class="" type="button" data-journey-tab="2"><i class="journey-kind-recovery"></i>Recovery</button></div>
+      <div class="journey-panel" data-journey-panel="0">
+        <div class="journey-head"><div><strong>shopping.success</strong><p>anonymous shopper becoming a verified local account</p></div><span><b data-replay-current>1</b> / 9</span></div>
+        <div class="journey-progress"><i data-replay-progress style="width: 11.0%"></i></div>
+        <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>discover a quoted product through home, search, a department, or Deals</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>open the local PDP and choose a complete source-quoted option combination</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>add multiple sibling variants without overwriting either cart line</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>sign in or register and verify the local email flow</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>select an owned address and supported delivery option</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="5"><span>06</span><p>choose an approved local sandbox card or bank method</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="6"><span>07</span><p>place the order once with server re-quotation and idempotency</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="7"><span>08</span><p>refresh order history and progress the local shipment to delivered</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="8"><span>09</span><p>create or update a local review whose Verified Purchase flag is server-derived</p><i>queued</i></button></li></ol>
+        <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
+      </div><div class="journey-panel hidden" data-journey-panel="1">
+        <div class="journey-head"><div><strong>shopping.failure</strong><p>shopper encountering invalid or stale input</p></div><span><b data-replay-current>1</b> / 5</span></div>
+        <div class="journey-progress"><i data-replay-progress style="width: 20.0%"></i></div>
+        <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>see option values with no reachable quote disabled before selection</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>have forged ASIN, option, quantity, owner, and cross-origin mutations rejected</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>receive a deterministic declined sandbox payment without an order or funds claim</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>have stale cart or checkout state re-quoted and reconciled instead of silently committed</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>retry a duplicate place-order action without creating a second order</p><i>queued</i></button></li></ol>
+        <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
+      </div><div class="journey-panel hidden" data-journey-panel="2">
+        <div class="journey-head"><div><strong>shopping.recovery</strong><p>shopper recovering identity, payment, or post-order state</p></div><span><b data-replay-current>1</b> / 6</span></div>
+        <div class="journey-progress"><i data-replay-progress style="width: 17.0%"></i></div>
+        <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>enter an unknown sign-in email and continue through registration</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>verify the email locally or exercise bounded SMTP delivery and retry states</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>request password recovery without account enumeration</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>switch from declined card to an approved sandbox method</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>cancel before fulfillment or request a return after simulated delivery</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="5"><span>06</span><p>refresh and observe durable cancelled, returned, or refunded state</p><i>queued</i></button></li></ol>
+        <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
+      </div>
+      <p class="replay-note">This is a structured replay of the frozen interaction contract. Per-agent browser traces and before/after frames will populate the same space after experiments begin.</p>
+    </article>
+  </section>
+
+  <section class="panel calibration-panel">
+    <div class="section-heading"><div><p class="eyebrow">Reference server acceptance</p><h2>Calibration passed before any Agent is measured</h2></div><span class="state state-present">ACCEPTED</span></div>
+    <div class="calibration-grid">
+      <article><span>Visual checks</span><strong>26 / 26</strong><small>2 direct screenshot pairs</small></article>
+      <article><span>Browser journeys</span><strong>22 / 22</strong><small>41 pages visited</small></article>
+      <article><span>Asset closure</span><strong>454 / 454</strong><small>0 nonlocal requests</small></article>
+      <article><span>Local test suite</span><strong>330 / 330</strong><small>Frozen semantics</small></article>
+    </div>
+    <div class="gate-ribbon"><span><i></i>Assets gate · passed</span><span><i></i>Backend gate · passed</span><span><i></i>Frontend gate · passed</span><span><i></i>Release gate · passed</span><span><i></i>Source gate · passed</span></div>
+  </section>
+
+  <section class="panel future-evaluation">
+    <div class="section-heading"><div><p class="eyebrow">Agent benchmark results</p><h2>The scoring canvas is ready; the experiment data is not.</h2><p>The future comparison changes here: <strong>standard offline reference ↔ Agent-generated clone.</strong></p></div><span>0 model runs</span></div>
+    <div class="score-blueprint">
+      <article><span>Visual fidelity</span><strong>—</strong><div></div><small>Not measured</small></article><article><span>Interaction fidelity</span><strong>—</strong><div></div><small>Not measured</small></article><article><span>Journey completion</span><strong>—</strong><div></div><small>Not measured</small></article><article><span>Robustness</span><strong>—</strong><div></div><small>Not measured</small></article><article><span>Efficiency</span><strong>—</strong><div></div><small>Not measured</small></article>
+    </div>
+    <div class="future-run-layout"><div class="future-clone-frame"><span>Agent-generated clone</span><div><i></i><strong>No build yet</strong><p>A screenshot and live run link will appear here.</p></div></div><div class="future-evidence-list"><article><span>Screenshot comparison</span><strong>—</strong></article><article><span>Interaction replay</span><strong>—</strong></article><article><span>Terminal journey checks</span><strong>—</strong></article><article><span>Runtime & cost</span><strong>—</strong></article></div></div>
+  </section>
+
+  <p class="research-notice">Independent research benchmark; not affiliated with or endorsed by Amazon. Brand and source-origin media remain the property of their respective owners and are shown only as bounded evaluation evidence.</p>
+  <details class="panel curator-evidence"><summary>Dataset readiness and curator evidence</summary><div class="readiness-list"><article><span class="status-dot status-present"></span><div><strong>Manifest schema</strong><p></p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>Required public artifacts</strong><p>Frozen purpose, routes, journeys, checkpoints, coverage, and asset closure</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>Clone artifact</strong><p>Runnable isolated offline reference server</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>User journeys</strong><p>3 frozen success, failure, and recovery journeys</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>Visual checkpoints</strong><p>16 route-state-viewport checkpoints</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>Legacy verifier report</strong><p>Acceptance report is current and all release gates passed</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-present"></span><div><strong>Visual evidence companion</strong><p>2 sanitized source/reference pairs</p></div><span class="state state-present">present</span></article><article><span class="status-dot status-not_applicable"></span><div><strong>Seed and reset</strong><p>Managed by the offline-clone harness rather than the candidate scoring contract</p></div><span class="state state-not_applicable">not applicable</span></article><article><span class="status-dot status-not_applicable"></span><div><strong>Controlled time</strong><p>Deterministic local simulations are certified by acceptance evidence</p></div><span class="state state-not_applicable">not applicable</span></article><article><span class="status-dot status-not_applicable"></span><div><strong>License and assets</strong><p>Research evidence remains subject to source-owner rights and publication review</p></div><span class="state state-not_applicable">not applicable</span></article><article><span class="status-dot status-not_applicable"></span><div><strong>Official candidate report</strong><p>0 valid agent experiment runs</p></div><span class="state state-not_applicable">not applicable</span></article><article><span class="status-dot status-not_applicable"></span><div><strong>Scoring contract</strong><p>Agent scoring remains intentionally empty until experiments start</p></div><span class="state state-not_applicable">not applicable</span></article></div></details>
+</div>
+
+</main>
+  <footer><span>WebsiteBench Reconstruction Viewer</span><span>Dataset calibration and agent evaluation are always shown as separate evidence.</span></footer>
+</body>
+</html>
