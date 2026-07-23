@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "WebsiteBench · Agent Reconstruction Viewer",
   description: "Explore offline reference websites and inspect how future Agents reconstruct them.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/static/favicon.svg",
+    shortcut: "/static/favicon.svg",
   },
   openGraph: {
     title: "WebsiteBench · Agent Reconstruction Viewer",

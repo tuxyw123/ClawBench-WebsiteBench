@@ -34,6 +34,9 @@ then created from an empty directory; it does not restore the deleted code.
 - `source-capture/tools/`: GET-only capture and source-summary utilities.
 - `source-capture/tests/`: tests for capture privacy, redaction, consistency,
   resumability, and source-summary behavior.
+- `viewer-public.json`: sanitized, hash-bound Viewer summary used by clean
+  checkouts; ignored raw acceptance artifacts remain local and are never
+  required to render the public Viewer.
 - `../../tasks/clawbench/dev-136-amazon-t7-best-seller/task.json`: preserved
   task semantics and terminal request contract used by the replacement
   implementation.

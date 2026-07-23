@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>WebsiteBench</title>
+  <rect width="64" height="64" rx="14" fill="#123d30"/>
+  <path d="M13 18h8l4 23 6-17h5l6 17 4-23h8l-8 31h-7l-5.5-15.5L28 49h-7z" fill="#fff"/>
+</svg>

@@ -1,0 +1,166 @@
+{
+  "schema_version": "websitebench.viewer-offline-clone-summary.v1",
+  "site_id": "amazon-shopping-mainline",
+  "generated_at": "2026-07-22T20:14:14.221538Z",
+  "report": {
+    "stage": "ACCEPTED",
+    "manifest_current": true,
+    "manifest_sha256": "a93e7cc9484af226d3e5586456ea1098514712eb3e8d165d40d600d7e32d168c",
+    "gates": {
+      "assets": {
+        "status": "passed"
+      },
+      "backend": {
+        "status": "passed"
+      },
+      "frontend": {
+        "status": "passed"
+      },
+      "release": {
+        "status": "passed"
+      },
+      "source": {
+        "status": "passed"
+      }
+    }
+  },
+  "acceptance": {
+    "visual": {
+      "status": "passed",
+      "metrics": {
+        "browser_context_height": 890,
+        "browser_context_width": 1350,
+        "browser_errors": 0,
+        "checkpoints_failed": 0,
+        "checkpoints_passed": 2,
+        "checkpoints_total": 2,
+        "checks_failed": 0,
+        "checks_passed": 26,
+        "checks_total": 26,
+        "clone_capture_sha256": [
+          "a3c815be7d7c40c3c643cdee6e2dc72d290e861e545e01e3007047b3351d3862",
+          "ba33e0402d019dc5b41cec2b08fbe528b785341cb7bc5c2a111d0735127c1460"
+        ],
+        "compared_raster_height": 890,
+        "compared_raster_width": 1350,
+        "nonlocal_requests": 0,
+        "pixel_similarity_scores": [
+          0.842515811,
+          0.894721445
+        ],
+        "pixel_similarity_thresholds": [
+          0.8,
+          0.85
+        ],
+        "reference_views": 2,
+        "source_reference_sha256": [
+          "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110",
+          "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd"
+        ],
+        "wrong_checkpoint_similarity_scores": [
+          0.735465934,
+          0.719866262
+        ]
+      }
+    },
+    "browser": {
+      "status": "passed",
+      "metrics": {
+        "checkpoint_routes_observed": 16,
+        "checkpoint_semantics_verified": 16,
+        "checkpoints_failed": 0,
+        "checkpoints_passed": 16,
+        "checkpoints_total": 16,
+        "checks_failed": 0,
+        "checks_passed": 20,
+        "checks_total": 20,
+        "journey_segments": 4,
+        "journeys_failed": 0,
+        "journeys_passed": 22,
+        "journeys_total": 22,
+        "visited_pages": 41
+      }
+    },
+    "network": {
+      "status": "passed",
+      "metrics": {
+        "broken_images": 0,
+        "browser_requested_assets": 454,
+        "checks_failed": 0,
+        "checks_passed": 9,
+        "checks_total": 9,
+        "covered_runtime_assets": 454,
+        "declared_runtime_assets": 454,
+        "forbidden_remote_requests": 0,
+        "network_failures": 0,
+        "nonlocal_requests": 0,
+        "parser_proven_assets": 22,
+        "requests_total": 1559,
+        "static_failures": 0,
+        "websocket_events": 0
+      }
+    },
+    "full-suite": {
+      "status": "passed",
+      "metrics": {
+        "checks_failed": 0,
+        "checks_passed": 330,
+        "checks_total": 330,
+        "discovered_tests": 330,
+        "tests_discovered": 330,
+        "tests_failed": 0,
+        "tests_passed": 330
+      }
+    }
+  },
+  "visual_media": [
+    {
+      "path": "showcase/amazon/source-home.png",
+      "sha256": "94b11aecf9f320d9e9b6a8308a70b81d709be50096fd4d6ef1b41b35a8902110"
+    },
+    {
+      "path": "showcase/amazon/clone-home.png",
+      "sha256": "a3c815be7d7c40c3c643cdee6e2dc72d290e861e545e01e3007047b3351d3862"
+    },
+    {
+      "path": "showcase/amazon/diff-home.png",
+      "sha256": "53dfe5a60eb1cb2a9673e452de5f2c9f60171506b6b5e5104c3723273a27879a"
+    },
+    {
+      "path": "showcase/amazon/source-search.png",
+      "sha256": "d47bb91224738f256f4f2398bea812b609f71559b5a2c570e91761d0d06d07fd"
+    },
+    {
+      "path": "showcase/amazon/clone-search.png",
+      "sha256": "ba33e0402d019dc5b41cec2b08fbe528b785341cb7bc5c2a111d0735127c1460"
+    },
+    {
+      "path": "showcase/amazon/diff-search.png",
+      "sha256": "feff33c2e5c6c4353134f04b29a2ab1d839ed5fda74d0524057ce87391623de5"
+    }
+  ],
+  "provenance": {
+    "report": {
+      "path": "artifacts/offline-clone/report.json",
+      "sha256": "2e57628ce2cb4c49426904edaee744a6b1e71a013345fb2dbe9c8bb07fa658d0"
+    },
+    "acceptance": {
+      "visual": {
+        "path": "artifacts/offline-clone/acceptance/visual.json",
+        "sha256": "7cb5ddda9e73cd00f12805cc77f49084ba0eb22237ade658f6ffe52e2c373c97"
+      },
+      "browser": {
+        "path": "artifacts/offline-clone/acceptance/browser.json",
+        "sha256": "7ee3bc51b935c92d44118ba451600c9998a1f4f3ca21223e761371943bbd70a9"
+      },
+      "network": {
+        "path": "artifacts/offline-clone/acceptance/network.json",
+        "sha256": "1ce471fce5f4815cf1c024f83ac4b396b328b6076831496e1f2b3fbaaa34ae8b"
+      },
+      "full-suite": {
+        "path": "artifacts/offline-clone/acceptance/full-suite.json",
+        "sha256": "3c31aabd4c9d0531143b08bb92d14a9a97edf00b3e96a89e837ff87567ceb1bd"
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@
   <a class="back-link" href="/tasks">← Offline website dataset</a>
   <section class="observatory-hero">
     <div class="observatory-copy">
-      <div class="status-line"><span class="status-good"><i></i> Offline reference accepted</span><span class="status-waiting"><i></i> Agent experiment not started</span></div>
+      <div class="status-line">{% if item.construction_status == 'accepted' %}<span class="status-good"><i></i> Offline reference accepted</span>{% else %}<span class="status-waiting"><i></i> Reference construction in progress</span>{% endif %}<span class="status-waiting"><i></i> Agent experiment not started</span></div>
       <p class="eyebrow">Worked example 01 · {{ item.product_type|replace('-', ' ') }}</p>
       <h1>{{ item.display_name }}</h1>
       <p>{{ item.description }}</p>
@@ -35,7 +35,7 @@
   <section class="panel visual-section observatory-visual" id="visual-evidence">
     <div class="section-heading"><div><p class="eyebrow">Dataset calibration evidence</p><h2>Original website evidence ↔ standard offline reference</h2><p>These pairs validate the benchmark input. They are not an Agent score and will never populate the model leaderboard.</p></div><span>{{ visual.captures|length if visual and visual.captures else 0 }} current-direct pairs</span></div>
     {% if visual and visual.captures %}
-      <label class="capture-picker">Checkpoint<select data-capture-picker>{% for capture in visual.captures %}<option value="{{ loop.index0 }}">{{ capture.checkpoint }} · {{ capture.viewport }}</option>{% endfor %}</select></label>
+      <label class="capture-picker" for="capture-picker">Checkpoint<select id="capture-picker" name="capture" data-capture-picker>{% for capture in visual.captures %}<option value="{{ loop.index0 }}">{{ capture.checkpoint }} · {{ capture.viewport }}</option>{% endfor %}</select></label>
       {% for capture in visual.captures %}
       <div class="visual-review observatory-review{% if not loop.first %} hidden{% endif %}" data-capture="{{ loop.index0 }}" data-mode="side">
         <div class="visual-toolbar" role="toolbar" aria-label="Screenshot comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Drag split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button">Difference map</button><span class="toolbar-spacer"></span><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
@@ -62,7 +62,7 @@
       <div class="journey-tabs" role="tablist">{% for journey in item.showcase.journeys %}<button class="{% if loop.first %}active{% endif %}" type="button" data-journey-tab="{{ loop.index0 }}"><i class="journey-kind-{{ journey.kind }}"></i>{{ journey.kind|title }}</button>{% endfor %}</div>
       {% for journey in item.showcase.journeys %}<div class="journey-panel{% if not loop.first %} hidden{% endif %}" data-journey-panel="{{ loop.index0 }}">
         <div class="journey-head"><div><strong>{{ journey.id }}</strong><p>{{ journey.actor }}</p></div><span><b data-replay-current>1</b> / {{ journey.steps|length }}</span></div>
-        <div class="journey-progress"><i data-replay-progress style="width: {{ (100 / journey.steps|length)|round }}%"></i></div>
+        <div class="journey-progress"><i data-replay-progress></i></div>
         <ol class="replay-steps">{% for step in journey.steps %}<li class="{% if loop.first %}active{% endif %}"><button type="button" data-replay-step="{{ loop.index0 }}"><span>{{ '%02d'|format(loop.index) }}</span><p>{{ step }}</p><i>{% if loop.first %}observed{% else %}queued{% endif %}</i></button></li>{% endfor %}</ol>
         <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
       </div>{% endfor %}
@@ -71,12 +71,17 @@
   </section>
 
   <section class="panel calibration-panel">
-    <div class="section-heading"><div><p class="eyebrow">Reference server acceptance</p><h2>Calibration passed before any Agent is measured</h2></div><span class="state state-present">{{ item.showcase.calibration.stage }}</span></div>
+    <div class="section-heading"><div><p class="eyebrow">Reference server acceptance</p><h2>{% if item.showcase.calibration.stage == 'ACCEPTED' %}Calibration passed before any Agent is measured{% else %}Calibration evidence remains pending{% endif %}</h2></div><span class="state state-{{ 'present' if item.showcase.calibration.stage == 'ACCEPTED' else 'missing' }}">{{ item.showcase.calibration.stage or 'Evidence pending' }}</span></div>
+    {% set calibration_metrics = item.showcase.calibration.metrics %}
+    {% set visual_metrics = calibration_metrics.get('visual', {}) %}
+    {% set browser_metrics = calibration_metrics.get('browser', {}) %}
+    {% set network_metrics = calibration_metrics.get('network', {}) %}
+    {% set suite_metrics = calibration_metrics.get('full-suite', {}) %}
     <div class="calibration-grid">
-      <article><span>Visual checks</span><strong>{{ item.showcase.calibration.metrics.visual.checks_passed }} / {{ item.showcase.calibration.metrics.visual.checks_total }}</strong><small>2 direct screenshot pairs</small></article>
-      <article><span>Browser journeys</span><strong>{{ item.showcase.calibration.metrics.browser.journeys_passed }} / {{ item.showcase.calibration.metrics.browser.journeys_total }}</strong><small>{{ item.showcase.calibration.metrics.browser.visited_pages }} pages visited</small></article>
-      <article><span>Asset closure</span><strong>{{ item.showcase.calibration.metrics.network.covered_runtime_assets }} / {{ item.showcase.calibration.metrics.network.declared_runtime_assets }}</strong><small>0 nonlocal requests</small></article>
-      <article><span>Local test suite</span><strong>{{ item.showcase.calibration.metrics['full-suite'].tests_passed }} / {{ item.showcase.calibration.metrics['full-suite'].tests_discovered }}</strong><small>Frozen semantics</small></article>
+      <article><span>Visual checks</span><strong>{% if visual_metrics %}{{ visual_metrics.checks_passed }} / {{ visual_metrics.checks_total }}{% else %}—{% endif %}</strong><small>{% if visual_metrics %}2 direct screenshot pairs{% else %}Evidence pending{% endif %}</small></article>
+      <article><span>Browser journeys</span><strong>{% if browser_metrics %}{{ browser_metrics.journeys_passed }} / {{ browser_metrics.journeys_total }}{% else %}—{% endif %}</strong><small>{% if browser_metrics %}{{ browser_metrics.visited_pages }} pages visited{% else %}Evidence pending{% endif %}</small></article>
+      <article><span>Asset closure</span><strong>{% if network_metrics %}{{ network_metrics.covered_runtime_assets }} / {{ network_metrics.declared_runtime_assets }}{% else %}—{% endif %}</strong><small>{% if network_metrics %}0 nonlocal requests{% else %}Evidence pending{% endif %}</small></article>
+      <article><span>Local test suite</span><strong>{% if suite_metrics %}{{ suite_metrics.tests_passed }} / {{ suite_metrics.tests_discovered }}{% else %}—{% endif %}</strong><small>{% if suite_metrics %}Frozen semantics{% else %}Evidence pending{% endif %}</small></article>
     </div>
     <div class="gate-ribbon">{% for gate in item.showcase.calibration.gates %}<span><i></i>{{ gate.id|title }} gate · {{ gate.status }}</span>{% endfor %}</div>
   </section>

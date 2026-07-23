@@ -18,3 +18,5 @@ jobs:
       - run: clawbench-project validate
       - run: ruff check src tests websitebench
       - run: python -m pytest tests/project tests/offline_clone tests/harbor tests/viewer -q
+        env:
+          CLAWBENCH_RUN_VIEWER_PLAYWRIGHT: "1"

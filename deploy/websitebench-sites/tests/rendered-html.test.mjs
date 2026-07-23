@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 const projectRoot = new URL("../", import.meta.url);
@@ -7,6 +7,16 @@ const publicRoot = new URL("../public/", import.meta.url);
 
 async function text(relative) {
   return readFile(new URL(relative, publicRoot), "utf8");
+}
+
+async function htmlFilesUnder(directory) {
+  const files = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const child = new URL(`${entry.name}${entry.isDirectory() ? "/" : ""}`, directory);
+    if (entry.isDirectory()) files.push(...(await htmlFilesUnder(child)));
+    if (entry.isFile() && entry.name.endsWith(".html")) files.push(child);
+  }
+  return files;
 }
 
 test("publishes the reconstruction-first benchmark overview", async () => {
@@ -36,6 +46,7 @@ test("publishes one real Amazon item and keeps experiment output empty", async (
 
 test("includes the sanitized public evidence bundle", async () => {
   for (const relative of [
+    "static/favicon.svg",
     "static/og-v2.png",
     "static/showcase/amazon/source-home.png",
     "static/showcase/amazon/clone-home.png",
@@ -49,4 +60,25 @@ test("includes the sanitized public evidence bundle", async () => {
   const worker = await readFile(new URL("worker/index.ts", projectRoot), "utf8");
   assert.match(worker, /ASSETS\.fetch/);
   assert.match(worker, /index\.html/);
+});
+
+test("keeps the strict CSP free of blocked inline styles", async () => {
+  const htmlFiles = await htmlFilesUnder(publicRoot);
+  assert.equal(htmlFiles.length, 9);
+  await Promise.all(
+    htmlFiles.map(async (file) => {
+      const html = await readFile(file, "utf8");
+      assert.doesNotMatch(html, /\sstyle=/, file.pathname);
+      assert.match(
+        html,
+        /style-src 'self'; script-src 'self'/,
+        file.pathname,
+      );
+      assert.match(
+        html,
+        /rel="icon" href="\/static\/favicon\.svg"/,
+        file.pathname,
+      );
+    }),
+  );
 });

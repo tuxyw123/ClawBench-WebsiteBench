@@ -14,6 +14,7 @@
   <meta name="twitter:description" content="Explore offline reference websites and inspect how future Agents reconstruct them.">
   <meta name="twitter:image" content="/static/og-v2.png">
   <title>Amazon Shopping · WebsiteBench</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/styles.css">
   <script defer src="/static/app.js"></script>
 </head>
@@ -70,7 +71,7 @@
   <section class="panel visual-section observatory-visual" id="visual-evidence">
     <div class="section-heading"><div><p class="eyebrow">Dataset calibration evidence</p><h2>Original website evidence ↔ standard offline reference</h2><p>These pairs validate the benchmark input. They are not an Agent score and will never populate the model leaderboard.</p></div><span>2 current-direct pairs</span></div>
 
-      <label class="capture-picker">Checkpoint<select data-capture-picker><option value="0">home.desktop.loaded · desktop</option><option value="1">search.desktop.filtered · desktop</option></select></label>
+      <label class="capture-picker" for="capture-picker">Checkpoint<select id="capture-picker" name="capture" data-capture-picker><option value="0">home.desktop.loaded · desktop</option><option value="1">search.desktop.filtered · desktop</option></select></label>
 
       <div class="visual-review observatory-review" data-capture="0" data-mode="side">
         <div class="visual-toolbar" role="toolbar" aria-label="Screenshot comparison mode"><button class="active" data-visual-mode="side" type="button">Side by side</button><button data-visual-mode="split" type="button">Drag split</button><button data-visual-mode="overlay" type="button">Overlay</button><button data-visual-mode="blink" type="button">Blink</button><button data-visual-mode="heatmap" type="button">Difference map</button><span class="toolbar-spacer"></span><button data-zoom="out" type="button">−</button><span data-zoom-label>100%</span><button data-zoom="in" type="button">+</button></div>
@@ -107,17 +108,17 @@
       <div class="journey-tabs" role="tablist"><button class="active" type="button" data-journey-tab="0"><i class="journey-kind-success"></i>Success</button><button class="" type="button" data-journey-tab="1"><i class="journey-kind-failure"></i>Failure</button><button class="" type="button" data-journey-tab="2"><i class="journey-kind-recovery"></i>Recovery</button></div>
       <div class="journey-panel" data-journey-panel="0">
         <div class="journey-head"><div><strong>shopping.success</strong><p>anonymous shopper becoming a verified local account</p></div><span><b data-replay-current>1</b> / 9</span></div>
-        <div class="journey-progress"><i data-replay-progress style="width: 11.0%"></i></div>
+        <div class="journey-progress"><i data-replay-progress></i></div>
         <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>discover a quoted product through home, search, a department, or Deals</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>open the local PDP and choose a complete source-quoted option combination</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>add multiple sibling variants without overwriting either cart line</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>sign in or register and verify the local email flow</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>select an owned address and supported delivery option</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="5"><span>06</span><p>choose an approved local sandbox card or bank method</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="6"><span>07</span><p>place the order once with server re-quotation and idempotency</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="7"><span>08</span><p>refresh order history and progress the local shipment to delivered</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="8"><span>09</span><p>create or update a local review whose Verified Purchase flag is server-derived</p><i>queued</i></button></li></ol>
         <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
       </div><div class="journey-panel hidden" data-journey-panel="1">
         <div class="journey-head"><div><strong>shopping.failure</strong><p>shopper encountering invalid or stale input</p></div><span><b data-replay-current>1</b> / 5</span></div>
-        <div class="journey-progress"><i data-replay-progress style="width: 20.0%"></i></div>
+        <div class="journey-progress"><i data-replay-progress></i></div>
         <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>see option values with no reachable quote disabled before selection</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>have forged ASIN, option, quantity, owner, and cross-origin mutations rejected</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>receive a deterministic declined sandbox payment without an order or funds claim</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>have stale cart or checkout state re-quoted and reconciled instead of silently committed</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>retry a duplicate place-order action without creating a second order</p><i>queued</i></button></li></ol>
         <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
       </div><div class="journey-panel hidden" data-journey-panel="2">
         <div class="journey-head"><div><strong>shopping.recovery</strong><p>shopper recovering identity, payment, or post-order state</p></div><span><b data-replay-current>1</b> / 6</span></div>
-        <div class="journey-progress"><i data-replay-progress style="width: 17.0%"></i></div>
+        <div class="journey-progress"><i data-replay-progress></i></div>
         <ol class="replay-steps"><li class="active"><button type="button" data-replay-step="0"><span>01</span><p>enter an unknown sign-in email and continue through registration</p><i>observed</i></button></li><li class=""><button type="button" data-replay-step="1"><span>02</span><p>verify the email locally or exercise bounded SMTP delivery and retry states</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="2"><span>03</span><p>request password recovery without account enumeration</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="3"><span>04</span><p>switch from declined card to an approved sandbox method</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="4"><span>05</span><p>cancel before fulfillment or request a return after simulated delivery</p><i>queued</i></button></li><li class=""><button type="button" data-replay-step="5"><span>06</span><p>refresh and observe durable cancelled, returned, or refunded state</p><i>queued</i></button></li></ol>
         <div class="replay-controls"><button class="secondary" type="button" data-replay-prev>← Previous</button><button class="primary" type="button" data-replay-next>Next step →</button></div>
       </div>
@@ -127,6 +128,11 @@
 
   <section class="panel calibration-panel">
     <div class="section-heading"><div><p class="eyebrow">Reference server acceptance</p><h2>Calibration passed before any Agent is measured</h2></div><span class="state state-present">ACCEPTED</span></div>
+
+
+
+
+
     <div class="calibration-grid">
       <article><span>Visual checks</span><strong>26 / 26</strong><small>2 direct screenshot pairs</small></article>
       <article><span>Browser journeys</span><strong>22 / 22</strong><small>41 pages visited</small></article>

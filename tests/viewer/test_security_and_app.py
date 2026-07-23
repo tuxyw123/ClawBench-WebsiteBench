@@ -6,6 +6,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch
 
+from clawbench.viewer import discovery as discovery_module
 from clawbench.viewer.app import create_app
 from clawbench.viewer.auth import AuthSettings, LoginLimiter, hash_password
 from clawbench.viewer.reviews import DIMENSIONS
@@ -203,12 +204,14 @@ def test_public_static_publish_includes_scalable_catalog_routes(tmp_path: Path) 
     assert (
         output / "static" / "showcase" / "amazon" / "clone-home.png"
     ).is_file()
+    assert (output / "static" / "favicon.svg").is_file()
     html = (output / "index.html").read_text(encoding="utf-8")
     assert "Can an agent rebuild a website" in html
     assert "Agent experiments · not started" in html
     assert 'name="csrf-token" content=""' in html
     assert 'href="/static/styles.css"' in html
     assert 'src="/static/app.js"' in html
+    assert 'rel="icon" href="/static/favicon.svg"' in html
     assert 'property="og:image" content="/static/og-v2.png"' in html
     assert 'href="/amazon"' in html
     assert 'href="/tasks/offlineclone--amazon-shopping-mainline"' not in html
@@ -217,6 +220,39 @@ def test_public_static_publish_includes_scalable_catalog_routes(tmp_path: Path) 
     amazon_html = (output / "amazon" / "index.html").read_text(encoding="utf-8")
     assert "Route & state explorer" in amazon_html
     assert "Amazon Shopping" in amazon_html
+    assert " style=" not in amazon_html
+    models_html = (output / "models" / "index.html").read_text(encoding="utf-8")
+    assert " style=" not in models_html
+
+
+def test_amazon_detail_fails_soft_when_acceptance_evidence_is_unavailable(
+    tmp_path: Path,
+    monkeypatch: MonkeyPatch,
+) -> None:
+    artifact_root = (
+        REPO_ROOT / "materials" / "amazon" / "artifacts" / "offline-clone"
+    ).resolve()
+    summary_path = (REPO_ROOT / "materials" / "amazon" / "viewer-public.json").resolve()
+    read_json = discovery_module._read_json
+
+    def without_acceptance_evidence(path: Path) -> tuple[object | None, str | None]:
+        resolved = path.resolve()
+        if (
+            resolved == summary_path
+            or resolved == artifact_root
+            or artifact_root in resolved.parents
+        ):
+            return None, "simulated unavailable acceptance evidence"
+        return read_json(path)
+
+    monkeypatch.setattr(discovery_module, "_read_json", without_acceptance_evidence)
+    with TestClient(application(tmp_path)) as client:
+        login(client)
+        response = client.get("/tasks/offlineclone--amazon-shopping-mainline")
+    assert response.status_code == 200
+    assert "Reference construction in progress" in response.text
+    assert "Calibration evidence remains pending" in response.text
+    assert "Evidence pending" in response.text
 
 
 def test_internal_gateway_requires_auth_and_rewrites_clone_response(

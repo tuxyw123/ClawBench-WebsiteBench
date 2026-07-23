@@ -34,6 +34,8 @@ READINESS_LABELS = {
 }
 READINESS_STATES = {"present", "missing", "invalid", "not_applicable"}
 BENCHMARK_SOURCE_TYPES = {"websitebench", "offline_clone"}
+OFFLINE_VIEWER_SUMMARY_SCHEMA = "websitebench.viewer-offline-clone-summary.v1"
+VIEWER_STATIC_ROOT = Path(__file__).resolve().parent / "static"
 
 
 def _is_benchmark_item(item: dict[str, Any]) -> bool:
@@ -359,10 +361,71 @@ def _legacy_visual_paths(report: Any, clone_root: Path, repo_root: Path) -> list
     return output
 
 
+def _load_offline_viewer_summary(
+    site_root: Path,
+    manifest_path: Path,
+    site_id: str,
+) -> tuple[dict[str, Any], str | None]:
+    """Load the checked-in, sanitized fallback for ignored acceptance artifacts."""
+
+    path = site_root / "viewer-public.json"
+    value, error = _read_json(path)
+    if error:
+        return {}, error
+    if not isinstance(value, dict):
+        return {}, "viewer-public.json must contain an object"
+    if value.get("schema_version") != OFFLINE_VIEWER_SUMMARY_SCHEMA:
+        return {}, "viewer-public.json has an unsupported schema_version"
+    if value.get("site_id") != site_id:
+        return {}, "viewer-public.json site_id does not match clone.yaml"
+
+    report = value.get("report")
+    if not isinstance(report, dict):
+        return {}, "viewer-public.json report must be an object"
+    if report.get("manifest_sha256") != _sha256(manifest_path):
+        return {}, "viewer-public.json is stale for the current clone.yaml"
+
+    acceptance = value.get("acceptance")
+    required_acceptance = {"visual", "browser", "network", "full-suite"}
+    if not isinstance(acceptance, dict) or not required_acceptance.issubset(acceptance):
+        return {}, "viewer-public.json is missing required acceptance summaries"
+    if any(
+        not isinstance(acceptance[kind], dict)
+        or not isinstance(acceptance[kind].get("metrics"), dict)
+        for kind in required_acceptance
+    ):
+        return {}, "viewer-public.json acceptance summaries are invalid"
+
+    media = value.get("visual_media")
+    if not isinstance(media, list) or not media:
+        return {}, "viewer-public.json visual_media must be a non-empty array"
+    for entry in media:
+        if not isinstance(entry, dict):
+            return {}, "viewer-public.json visual_media entries must be objects"
+        relative = entry.get("path")
+        expected_sha256 = entry.get("sha256")
+        if (
+            not isinstance(relative, str)
+            or not relative
+            or not isinstance(expected_sha256, str)
+            or len(expected_sha256) != 64
+        ):
+            return {}, "viewer-public.json visual_media entry is invalid"
+        try:
+            media_path = _safe_resolve(VIEWER_STATIC_ROOT, VIEWER_STATIC_ROOT / relative)
+        except ValueError:
+            return {}, "viewer-public.json visual_media path escapes Viewer static root"
+        if not media_path.is_file() or _sha256(media_path) != expected_sha256:
+            return {}, f"viewer-public.json visual media is missing or stale: {relative}"
+    return value, None
+
+
 def _offline_clone_item(
     repo_root: Path,
     manifest_path: Path,
     results: dict[str, list[dict[str, Any]]],
+    *,
+    profile: str,
 ) -> dict[str, Any] | None:
     """Adapt a frozen offline-clone site into the benchmark viewer contract."""
 
@@ -374,6 +437,13 @@ def _offline_clone_item(
     if not isinstance(manifest, dict) or manifest.get("schema_version") != "offline-clone.manifest.v1":
         return None
 
+    site_id = str(manifest.get("site_id") or site_root.name)
+    public_summary_path = site_root / "viewer-public.json"
+    public_summary, public_summary_error = _load_offline_viewer_summary(
+        site_root,
+        manifest_path,
+        site_id,
+    )
     manifest_errors: list[str] = []
     scope: dict[str, Any] = {}
     referenced: list[Path] = [manifest_path]
@@ -417,18 +487,42 @@ def _offline_clone_item(
         else site_root / "source-assets" / "offline-clone-manifest.json"
     )
     report_path = artifact_root / "report.json"
-    report, report_error = _read_json(report_path)
-    report = report if isinstance(report, dict) else {}
+    if profile == "public":
+        report = (
+            copy.deepcopy(public_summary["report"])
+            if isinstance(public_summary.get("report"), dict)
+            else {}
+        )
+        report_from_artifacts = False
+        report_error = None if report else public_summary_error
+    else:
+        report, report_error = _read_json(report_path)
+        report_from_artifacts = isinstance(report, dict) and bool(report)
+        report = report if isinstance(report, dict) else {}
+        if not report and isinstance(public_summary.get("report"), dict):
+            report = copy.deepcopy(public_summary["report"])
+            report_error = None
     assets, asset_error = _read_json(asset_manifest_path)
     assets = assets if isinstance(assets, dict) else {}
     acceptance: dict[str, dict[str, Any]] = {}
     acceptance_paths: list[Path] = []
+    public_acceptance = public_summary.get("acceptance", {})
     for kind in ("visual", "browser", "network", "migration", "independent-audit", "full-suite"):
         path = artifact_root / "acceptance" / f"{kind}.json"
+        if profile == "public":
+            if isinstance(public_acceptance, dict) and isinstance(
+                public_acceptance.get(kind), dict
+            ):
+                acceptance[kind] = copy.deepcopy(public_acceptance[kind])
+            continue
         value, error = _read_json(path)
         if not error and isinstance(value, dict):
             acceptance[kind] = value
             acceptance_paths.append(path)
+        elif isinstance(public_acceptance, dict) and isinstance(
+            public_acceptance.get(kind), dict
+        ):
+            acceptance[kind] = copy.deepcopy(public_acceptance[kind])
 
     purpose = scope.get("purpose", {})
     route_rows = scope.get("routes", {}).get("routes", [])
@@ -443,7 +537,6 @@ def _offline_clone_item(
     }
     asset_rows = assets.get("assets", [])
     asset_count = len(asset_rows) if isinstance(asset_rows, list) else 0
-    site_id = str(manifest.get("site_id") or site_root.name)
     item_runs = results.get(site_id, [])
     key = f"offlineclone--{site_id}"
 
@@ -486,7 +579,7 @@ def _offline_clone_item(
                 },
             }
         )
-    visual_media_present = all(
+    raw_visual_media_present = all(
         (raw_visual_root / name).is_file()
         for name in (
             "source-home-desktop-loaded.png",
@@ -494,6 +587,22 @@ def _offline_clone_item(
             "source-search-desktop-filtered.png",
             "clone-search-desktop-filtered.png",
         )
+    )
+    summarized_media = {
+        entry.get("path")
+        for entry in public_summary.get("visual_media", [])
+        if isinstance(entry, dict)
+    }
+    required_public_media = {
+        value.removeprefix("/static/")
+        for media in public_media.values()
+        for value in media.values()
+    }
+    summarized_media_present = required_public_media.issubset(summarized_media)
+    visual_media_present = (
+        summarized_media_present
+        if profile == "public"
+        else raw_visual_media_present or summarized_media_present
     )
     visual = {
         "schema_version": "websitebench.viewer-public-visual.v1",
@@ -615,12 +724,23 @@ def _offline_clone_item(
         _status("scoring_contract", "not_applicable", "Agent scoring remains intentionally empty until experiments start"),
     ]
     readiness_counts = _counts(readiness)
+    generated_evidence_paths = (
+        [] if profile == "public" else [report_path, *acceptance_paths]
+    )
     fingerprint_paths = [
         *referenced,
         asset_manifest_path,
-        report_path,
-        *acceptance_paths,
+        *generated_evidence_paths,
+        public_summary_path,
     ]
+    if profile == "public" and public_summary:
+        acceptance_source = "viewer-public-summary"
+    elif report_from_artifacts:
+        acceptance_source = "generated-artifacts"
+    elif public_summary:
+        acceptance_source = "viewer-public-summary"
+    else:
+        acceptance_source = "unavailable"
     return {
         "key": key,
         "source_type": "offline_clone",
@@ -690,6 +810,8 @@ def _offline_clone_item(
             "report_path": str(report_path.relative_to(repo_root)),
             "manifest_errors": manifest_errors,
             "asset_error": asset_error,
+            "viewer_public_summary_error": public_summary_error,
+            "acceptance_source": acceptance_source,
         },
     }
 
@@ -1072,7 +1194,7 @@ def discover_corpus(
         for path in sorted((root / "websitebench").glob("*/public/manifest.yaml"))
     ]
     for path in sorted((root / "materials").glob("*/clone.yaml")):
-        item = _offline_clone_item(root, path, results)
+        item = _offline_clone_item(root, path, results, profile=profile)
         if item is not None:
             items.append(item)
     for path in sorted((root / "tasks" / "dev").glob("*/task.json")):
