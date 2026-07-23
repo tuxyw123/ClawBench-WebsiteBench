@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import binascii
 import hashlib
+import hmac
 import ipaddress
 import json
 import mimetypes
@@ -90,6 +93,7 @@ DEFAULT_DB = ROOT / "runtime" / "amazon.sqlite3"
 SESSION_COOKIE = "amazon_clone_session"
 FLOW_COOKIE = "amazon_clone_flow"
 SESSION_BYTES = 32
+TRUE_ENV_VALUES = frozenset({"1", "true", "yes", "on"})
 # A 10,000-character review body is a supported domain value.  URL-encoded
 # non-ASCII text can use up to twelve bytes per Unicode scalar (four UTF-8
 # bytes, each percent-encoded), so keep the transport limit above that bound.
@@ -223,6 +227,32 @@ SPECIALTY_POST_PATHS = frozenset(
         specialty.REGISTRY_CREATE_PATH,
     }
 )
+
+
+def env_flag(name: str) -> bool:
+    return os.environ.get(name, "").strip().casefold() in TRUE_ENV_VALUES
+
+
+def browser_cookie(name: str, value: str, *, max_age: int | None = None) -> str:
+    attributes = [f"{name}={value}", "Path=/", "HttpOnly", "SameSite=Lax"]
+    if env_flag("AMAZON_COOKIE_SECURE"):
+        attributes.append("Secure")
+    if max_age is not None:
+        attributes.append(f"Max-Age={max_age}")
+    return "; ".join(attributes)
+
+
+def public_basic_auth_credentials() -> tuple[str, str] | None:
+    username = os.environ.get("AMAZON_BASIC_AUTH_USERNAME", "")
+    password = os.environ.get("AMAZON_BASIC_AUTH_PASSWORD", "")
+    if not username and not password:
+        return None
+    if not username or not password:
+        raise ValueError(
+            "AMAZON_BASIC_AUTH_USERNAME and AMAZON_BASIC_AUTH_PASSWORD "
+            "must be configured together"
+        )
+    return username, password
 PUBLIC_NAVIGATION_LANDINGS: dict[
     str, tuple[str, str, tuple[tuple[str, str], ...]]
 ] = {
@@ -533,7 +563,7 @@ class PublicHandler(BaseHTTPRequestHandler):
         sys.stdout.flush()
 
     def _security_headers(self) -> dict[str, str]:
-        return {
+        headers = {
             "Content-Security-Policy": (
                 "default-src 'self'; img-src 'self' data:; style-src 'self'; "
                 "script-src 'self'; connect-src 'self'; form-action 'self'; "
@@ -544,6 +574,51 @@ class PublicHandler(BaseHTTPRequestHandler):
             "X-Frame-Options": "DENY",
             "Cache-Control": "no-store",
         }
+        if env_flag("AMAZON_HSTS"):
+            headers["Strict-Transport-Security"] = "max-age=31536000"
+        if env_flag("AMAZON_NOINDEX"):
+            headers["X-Robots-Tag"] = "noindex, nofollow, noarchive"
+        return headers
+
+    def _public_basic_auth_is_valid(self) -> bool:
+        try:
+            expected = public_basic_auth_credentials()
+        except ValueError:
+            return False
+        if expected is None:
+            return True
+        header = self.headers.get("Authorization", "")
+        scheme, separator, encoded = header.partition(" ")
+        if not separator or scheme.casefold() != "basic":
+            return False
+        try:
+            decoded = base64.b64decode(encoded, validate=True)
+        except binascii.Error:
+            return False
+        username, separator, password = decoded.partition(b":")
+        if not separator:
+            return False
+        expected_username, expected_password = expected
+        return hmac.compare_digest(
+            username, expected_username.encode("utf-8")
+        ) and hmac.compare_digest(
+            password, expected_password.encode("utf-8")
+        )
+
+    def _require_public_basic_auth(self) -> bool:
+        if self._public_basic_auth_is_valid():
+            return True
+        self.close_connection = True
+        self._send(
+            401,
+            b"Authentication required.",
+            content_type="text/plain; charset=utf-8",
+            headers={
+                "Connection": "close",
+                "WWW-Authenticate": 'Basic realm="WebsiteBench Amazon", charset="UTF-8"',
+            },
+        )
+        return False
 
     def _send(
         self,
@@ -603,7 +678,7 @@ class PublicHandler(BaseHTTPRequestHandler):
         self.store.ensure_session(session_digest)
         cookies: list[str] = []
         if morsel is None or morsel.value != token:
-            cookies.append(f"{SESSION_COOKIE}={token}; Path=/; HttpOnly; SameSite=Lax")
+            cookies.append(browser_cookie(SESSION_COOKIE, token))
         return token, session_digest, cookies
 
     def _rotate_authenticated_session(
@@ -612,9 +687,7 @@ class PublicHandler(BaseHTTPRequestHandler):
         token = secrets.token_urlsafe(SESSION_BYTES)
         new_session_digest = digest(token)
         self.store.rotate_authenticated_session(session_digest, new_session_digest)
-        cookies[:] = [
-            f"{SESSION_COOKIE}={token}; Path=/; HttpOnly; SameSite=Lax"
-        ]
+        cookies[:] = [browser_cookie(SESSION_COOKIE, token)]
         return new_session_digest
 
     def _mail_mode(self) -> str:
@@ -891,6 +964,24 @@ class PublicHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         request = urlsplit(self.path)
         path = request.path or "/"
+        if path == "/healthz":
+            try:
+                self.store.meta()
+            except Exception:
+                self._send(
+                    503,
+                    json_bytes({"ok": False}),
+                    content_type="application/json; charset=utf-8",
+                )
+                return
+            self._send(
+                200,
+                json_bytes({"ok": True}),
+                content_type="application/json; charset=utf-8",
+            )
+            return
+        if not self._require_public_basic_auth():
+            return
         try:
             query = parse_qs(
                 request.query, keep_blank_values=True, max_num_fields=64
@@ -1004,7 +1095,7 @@ class PublicHandler(BaseHTTPRequestHandler):
                 self._same_origin_path(referer, BEST_SELLERS_PATH),
             )
             if flow_ready:
-                cookies.append(f"{FLOW_COOKIE}={capability}; Path=/; HttpOnly; SameSite=Lax")
+                cookies.append(browser_cookie(FLOW_COOKIE, capability))
             product = self.store.product(TARGET_ASIN)
             assert product is not None
             self._send_product_page(
@@ -1981,6 +2072,8 @@ class PublicHandler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         request = urlsplit(self.path)
         path = request.path
+        if not self._require_public_basic_auth():
+            return
         query = parse_qs(request.query, keep_blank_values=True)
         _, session_digest, cookies = self._session()
         try:
@@ -2007,7 +2100,7 @@ class PublicHandler(BaseHTTPRequestHandler):
                 self._send(403, b"Forbidden", content_type="text/plain; charset=utf-8", cookies=cookies)
                 return
             self.store.sign_out(session_digest)
-            cookies.append(f"{SESSION_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0")
+            cookies.append(browser_cookie(SESSION_COOKIE, "", max_age=0))
             self._send(
                 303,
                 b"",
@@ -3694,7 +3787,7 @@ class PublicHandler(BaseHTTPRequestHandler):
             self._terminal_source_is_canonical(),
         )
         if status == 303:
-            cookies.append(f"{FLOW_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0")
+            cookies.append(browser_cookie(FLOW_COOKIE, "", max_age=0))
             self._send(
                 303,
                 b"",
@@ -3947,7 +4040,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--admin-host", default=os.environ.get("AMAZON_ADMIN_HOST", "127.0.0.1"))
     parser.add_argument("--admin-port", type=int, default=int(os.environ.get("AMAZON_ADMIN_PORT", "8154")))
     parser.add_argument("--admin-token", default=os.environ.get("AMAZON_ADMIN_TOKEN"))
-    parser.add_argument("--db", type=Path, default=DEFAULT_DB)
+    parser.add_argument(
+        "--db",
+        type=Path,
+        default=Path(os.environ.get("AMAZON_DB_PATH", str(DEFAULT_DB))),
+    )
     parser.add_argument("--fixture", default="task-frozen-900136-v1.json")
     args = parser.parse_args()
     try:
@@ -3959,6 +4056,11 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    try:
+        public_basic_auth_credentials()
+    except ValueError as exc:
+        print(json.dumps({"event": "amazon-clone-config-error", "error": str(exc)}))
+        return 2
     smtp_config = load_smtp_config()
     local_inbox_url = load_local_inbox_url(smtp_config)
     store = Store(args.db.resolve(), SCHEMA_PATH, FIXTURE_ROOT)

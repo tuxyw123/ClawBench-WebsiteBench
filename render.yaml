@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: clawbench-amazon-demo
+    runtime: docker
+    plan: starter
+    region: singapore
+    branch: main
+    autoDeployTrigger: checksPass
+    numInstances: 1
+    healthCheckPath: /healthz
+    maxShutdownDelaySeconds: 30
+    dockerfilePath: ./deploy/amazon-clone/Dockerfile
+    dockerContext: ./materials/amazon/clone
+    buildFilter:
+      paths:
+        - materials/amazon/clone/**
+        - deploy/amazon-clone/**
+        - render.yaml
+      ignoredPaths:
+        - materials/amazon/clone/tests/**
+        - materials/amazon/clone/*.md
+    envVars:
+      - key: AMAZON_HOST
+        value: 0.0.0.0
+      - key: AMAZON_DB_PATH
+        value: /data/amazon.sqlite3
+      - key: AMAZON_ADMIN_HOST
+        value: 127.0.0.1
+      - key: AMAZON_ADMIN_PORT
+        value: "8154"
+      - key: AMAZON_ADMIN_TOKEN
+        generateValue: true
+      - key: AMAZON_BASIC_AUTH_USERNAME
+        value: bench
+      - key: AMAZON_BASIC_AUTH_PASSWORD
+        sync: false
+      - key: AMAZON_COOKIE_SECURE
+        value: "1"
+      - key: AMAZON_HSTS
+        value: "1"
+      - key: AMAZON_NOINDEX
+        value: "1"
+    disk:
+      name: amazon-data
+      mountPath: /data
+      sizeGB: 1

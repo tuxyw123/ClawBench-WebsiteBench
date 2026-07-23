@@ -1,0 +1,10 @@
+runtime/
+.runtime/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.sqlite3-*
+.env
+.env.*
+!.env.example
+tests/

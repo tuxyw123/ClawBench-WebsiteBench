@@ -1,0 +1,89 @@
+name: Amazon clone container
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/amazon-clone.yml"
+      - "deploy/amazon-clone/**"
+      - "materials/amazon/clone/**"
+      - "render.yaml"
+  pull_request:
+    paths:
+      - ".github/workflows/amazon-clone.yml"
+      - "deploy/amazon-clone/**"
+      - "materials/amazon/clone/**"
+      - "render.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.11"
+      - name: Run complete Amazon clone suite
+        run: python -m unittest discover -v -s materials/amazon/clone/tests
+      - name: Verify permanent-hosting unit contracts
+        run: python -m unittest discover -v -s deploy/amazon-clone/tests
+      - name: Build production container
+        run: docker build --tag clawbench-amazon:ci --file deploy/amazon-clone/Dockerfile materials/amazon/clone
+      - name: Verify protected HTTPS profile and persistent restart
+        shell: bash
+        run: |
+          set -euo pipefail
+          volume_name="clawbench-amazon-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          container_name="clawbench-amazon-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          cleanup() {
+            docker rm --force "${container_name}" >/dev/null 2>&1 || true
+            docker volume rm "${volume_name}" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+          docker volume create "${volume_name}" >/dev/null
+          start_container() {
+            docker run --detach \
+              --name "${container_name}" \
+              --env PORT=10000 \
+              --env AMAZON_ADMIN_TOKEN=ci-only-admin-token-000000000000 \
+              --env AMAZON_BASIC_AUTH_USERNAME=bench \
+              --env AMAZON_BASIC_AUTH_PASSWORD=ci-demo-password \
+              --env AMAZON_COOKIE_SECURE=1 \
+              --env AMAZON_HSTS=1 \
+              --env AMAZON_NOINDEX=1 \
+              --publish 127.0.0.1:18153:10000 \
+              --mount "source=${volume_name},target=/data" \
+              clawbench-amazon:ci >/dev/null
+            for attempt in $(seq 1 60); do
+              if curl --fail --silent http://127.0.0.1:18153/healthz > health.json; then
+                return 0
+              fi
+              sleep 1
+            done
+            docker logs "${container_name}"
+            return 1
+          }
+          start_container
+          test "$(tr -d '[:space:]' < health.json)" = '{"ok":true}'
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://127.0.0.1:18153/)" = "401"
+          curl --head --silent --user bench:ci-demo-password http://127.0.0.1:18153/ \
+            | grep --ignore-case --extended-regexp '^Set-Cookie: .*; Secure'
+          curl --head --silent --user bench:ci-demo-password http://127.0.0.1:18153/ \
+            | grep --ignore-case '^Strict-Transport-Security: max-age=31536000'
+          curl --head --silent --user bench:ci-demo-password http://127.0.0.1:18153/ \
+            | grep --ignore-case '^X-Robots-Tag: noindex, nofollow, noarchive'
+          docker exec "${container_name}" test -s /data/amazon.sqlite3
+          docker exec "${container_name}" \
+            gosu amazon-clone:amazon-clone python /app/clone/backup_db.py
+          docker exec "${container_name}" \
+            sh -c 'test "$(find /data/backups -maxdepth 1 -name "amazon-*.sqlite3" -type f | wc -l)" -eq 1'
+          docker rm --force "${container_name}" >/dev/null
+          start_container
+          docker exec "${container_name}" test -s /data/amazon.sqlite3
+          docker exec "${container_name}" \
+            sh -c 'test "$(find /data/backups -maxdepth 1 -name "amazon-*.sqlite3" -type f | wc -l)" -eq 1'

@@ -43,13 +43,33 @@ messages to the internet. Stop the foreground process to stop both services.
   `X-Bench-Admin-Token: local-amazon-bench`
 - SQLite: `runtime/amazon.sqlite3`
 
-Override the defaults with `PORT`, `AMAZON_ADMIN_PORT`, and
+Override the defaults with `PORT`, `AMAZON_DB_PATH`, `AMAZON_ADMIN_PORT`, and
 `AMAZON_ADMIN_TOKEN`, or use the corresponding command-line flags. Public
-requests to `/__bench/*` always return 404; the admin listener also returns 404
-when its token is absent or incorrect. The documented development token is
-accepted only for a loopback admin bind; a non-loopback `AMAZON_ADMIN_HOST` or
+`GET`/`HEAD /healthz` performs a read-only database check before session
+creation; it does not write a session or journal record. Public requests to
+`/__bench/*` always return 404; the admin listener also returns 404 when its
+token is absent or incorrect. The documented development token is accepted
+only for a loopback admin bind; a non-loopback `AMAZON_ADMIN_HOST` or
 `--admin-host` requires an explicitly configured token of at least 32 visible
 characters.
+
+### Permanent public demo profile
+
+The versioned container and one-click Blueprint live under
+`deploy/amazon-clone/` and at the repository root `render.yaml`. The hosted
+profile sets `AMAZON_COOKIE_SECURE=1`, `AMAZON_HSTS=1`, and
+`AMAZON_NOINDEX=1`, keeps the admin listener on loopback, leaves SMTP
+unconfigured, and puts `AMAZON_DB_PATH` on a single persistent volume. Setting
+`AMAZON_BASIC_AUTH_USERNAME` and `AMAZON_BASIC_AUTH_PASSWORD` together protects
+every public route except the read-only `/healthz`; partial configuration fails
+closed. The Blueprint fixes the non-secret username and requests the password
+as a deploy-time secret so it never enters the repository or image.
+
+This is a shared public demo, not the reference instance used for scoring.
+Visitors must use fictional data only. Formal benchmark runs use separate
+resettable Harbor references and block the public demo origin from the Agent
+and candidate networks. See `deploy/amazon-clone/README.md` before approving
+the paid deployment or adding `amazon.website-bench.com`.
 
 ### Optional SMTP delivery
 
@@ -222,10 +242,13 @@ domain store. It proves:
   account state across authentication without trusting client price/title data;
 - public access to the admin surface is denied.
 
-The final full discovery run passes `330/330` tests, including current
+The final clone discovery run passes `330/330` tests, including current
 cart/variant, comparison migration, commerce, review, payment, mail privacy,
-request-journal redaction, and shopping-entrypoint regressions. Re-run
-the command above after later evidence-scoped surfaces are added.
+request-journal redaction, and shopping-entrypoint regressions. The six
+permanent-hosting and application-consistent-backup unit contracts live under
+`deploy/amazon-clone/tests/` and run separately in the deployment workflow so
+they do not alter the frozen clone acceptance denominator. Re-run both suites
+after later evidence-scoped surfaces or hosting behavior are changed.
 
 The in-app browser QA additionally exercised the mobile terminal action
 `/cart/add-to-cart/ref=mw_dp_buy_crt` at `390×844` and the desktop action

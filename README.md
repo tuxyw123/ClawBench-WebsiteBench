@@ -89,6 +89,19 @@ Source evidence and its redistribution caveats are described in
 [`materials/amazon/README.md`](materials/amazon/README.md). The capture was
 anonymous and GET-only; reports omit cookies, authorization headers, and tokens.
 
+### Permanent public demo
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Ftuxyw123%2FClawBench-WebsiteBench)
+
+The Blueprint deploys the full clone from this repository's `main` branch as
+one paid, non-sleeping container with a 1 GB persistent SQLite disk. The account
+owner must review and approve the paid service and provide the access password
+as a deploy-time secret; it is never committed. Read the
+[`permanent demo guide`](docs/amazon-permanent-demo.md) before deployment:
+this shared public demo accepts fictional data only and must remain
+network-isolated from scored Agents and candidates. It does not replace the
+per-run Harbor reference or any release gate.
+
 ## Viewer
 
 Public static Viewer:

@@ -274,6 +274,37 @@
       "depends_on": []
     },
     {
+      "id": "publish-amazon-reference-demo",
+      "title": "发布 Amazon clone 的长期公开演示实例（不用于评分）",
+      "priority": "P1",
+      "owner": "site-author",
+      "status": "blocked",
+      "acceptance": [
+        "公开实例从当前 main 的版本化容器配置构建，并在 HTTPS 下通过无副作用健康检查。",
+        "除健康检查外的页面、资源和提交均受部署时注入的访问账号保护，密码不进入版本库或镜像。",
+        "HTTPS 会话 Cookie 使用 Secure、HttpOnly 与 SameSite，页面明确不接收真实凭据、支付信息或个人信息。",
+        "SQLite 只由单实例写入持久卷，重启和重新部署后保留状态，admin、reset 与 SMTP 均不向公网暴露。",
+        "公开 demo 与正式 Harbor reference、candidate 和 verifier 保持隔离，评分运行禁止访问公开实例。",
+        "一键部署、运维、隐私、备份和独立子域说明完整，并记录经验证的公网 URL。",
+        "公开上线前记录 Amazon 商标、素材所有权、许可证与再分发边界。"
+      ],
+      "evidence": [
+        "render.yaml",
+        "deploy/amazon-clone/",
+        "docs/amazon-permanent-demo.md",
+        ".github/workflows/amazon-clone.yml",
+        "materials/amazon/clone/server.py",
+        "materials/amazon/clone/backup_db.py",
+        "materials/amazon/artifacts/offline-clone/acceptance/"
+      ],
+      "blocked_by": [
+        "等待 Render 账户所有者批准付费 Starter web service 与 1 GB persistent disk，并设置部署时 Basic Auth 密码。",
+        "等待首次公网部署后记录并验证 onrender.com URL；自定义 amazon.website-bench.com 仍需域名所有者完成绑定。",
+        "Amazon 商标、图片、字体和其他素材的公开再分发边界尚未由 release manager 记录为通过。"
+      ],
+      "depends_on": []
+    },
+    {
       "id": "author-first-instance",
       "title": "把首个真实复刻站封装为 Harbor instance",
       "priority": "P0",
@@ -480,6 +511,21 @@
         "复用 site 时要求 instance overlay 带来实质不同的测试目标。"
       ],
       "trigger": "新增实例没有新的语义不变量、状态转换或失败模式覆盖。"
+    },
+    {
+      "id": "public-reference-demo-exposure",
+      "title": "公开参考 demo 影响评分隔离或积累真实用户数据",
+      "owner": "benchmark-maintainer",
+      "severity": "critical",
+      "likelihood": "possible",
+      "status": "open",
+      "description": "长期在线的共享 Amazon clone 既可能成为被测 Agent 的旁路参考，也会持久化访客提交的账户、地址和订单模拟数据。",
+      "mitigation": [
+        "正式评分使用每次运行可重置的隔离 reference，并在 Agent 与 candidate 网络策略中阻断公开 demo 域名。",
+        "公网只暴露 storefront；admin/reset 保持 loopback，SMTP 默认关闭且不配置真实支付或履约服务。",
+        "公开文档要求只使用虚构数据，并规定持久卷备份、保留和受控重置流程。"
+      ],
+      "trigger": "评分环境能够访问公开 demo，或公开实例收到、保存或暴露任何真实个人信息。"
     }
   ],
   "decisions": [
